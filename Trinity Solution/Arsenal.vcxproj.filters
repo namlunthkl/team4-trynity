@@ -34,9 +34,6 @@
     <Filter Include="AI States">
       <UniqueIdentifier>{b39e0762-8323-4bb9-b5d7-6daa62aa4d01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game States">
-      <UniqueIdentifier>{0a3adbab-0967-4950-8314-284a0cdfc5cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Messaging">
       <UniqueIdentifier>{d8a08ecb-6711-4118-bf30-e75aea2c8f9f}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,9 @@
     </Filter>
     <Filter Include="TinyXml">
       <UniqueIdentifier>{40f5bd91-b321-4c04-93bc-34e720ff9d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game States">
+      <UniqueIdentifier>{0a3adbab-0967-4950-8314-284a0cdfc5cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
