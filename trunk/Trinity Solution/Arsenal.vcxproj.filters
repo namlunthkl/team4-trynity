@@ -153,6 +153,9 @@
     <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
       <Filter>TinyXml</Filter>
     </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp">
+      <Filter>Tile Mapping</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="source\tinyxml\tinyxml.h">
       <Filter>TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Tile Mapping\CWorldEngine.h">
+      <Filter>Tile Mapping</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

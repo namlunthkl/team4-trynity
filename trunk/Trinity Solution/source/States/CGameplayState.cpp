@@ -12,8 +12,7 @@
 
 void CGameplayState::Enter(void)
 {
-	CreateMaps();
-	CreatePuzzles();
+	CWorldEngine::GetInstance()->InitWorldEngine();
 }
 bool CGameplayState::Input(void)
 {
@@ -21,21 +20,18 @@ bool CGameplayState::Input(void)
 }
 void CGameplayState::Update(float fElapsedTime)
 {
+	CWorldEngine::GetInstance()->UpdateWorld(fElapsedTime);
 }
 void CGameplayState::Render(void)
 {
+	CWorldEngine::GetInstance()->RenderWorld();
 }
 void CGameplayState::Exit(void)
 {
+	CWorldEngine::DeleteInstance();
 }
 CGameplayState* CGameplayState::GetInstance(void)
 {
 	static CGameplayState pInstance;
 	return &pInstance;
-}
-void CGameplayState::CreateMaps(void)
-{
-}
-void CGameplayState::CreatePuzzles(void)
-{
 }

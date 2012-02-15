@@ -10,12 +10,11 @@
 #define CGAMEPLAYSTATE_H_
 
 #include "IGameState.h"
-#include "..\Tile Mapping\CMap.h"
+#include "..\Tile Mapping\CWorldEngine.h"
 
 class CGameplayState : public IGameState
 {
-	vector<CMap> m_vMaps;
-
+	
 public:
 	void Enter(void);
 	bool Input(void);

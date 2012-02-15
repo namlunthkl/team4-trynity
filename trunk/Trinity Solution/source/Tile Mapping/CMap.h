@@ -26,6 +26,9 @@
 // A map has a tileset
 #include "CTileset.h"
 
+// For CheckCollisions function
+class IBaseInterface;
+
 // Map class
 // An array of layers, a tileset, a size and a position in the world
 class CMap
@@ -86,6 +89,13 @@ public:
 	//					space
 	////////////////////////////////////////////////////////////////////////
 	void Render(void);
+
+	////////////////////////////////////////////////////////////////////////
+	//	Purpose		:	Check collisions against all tiles on screen
+	//	Parameters	:	pBase - Object that we're checking collisions with
+	//	Return		:	False if collided, true otherwise
+	////////////////////////////////////////////////////////////////////////
+	bool CheckCollisions(const IBaseInterface* pBase);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload the file that is loaded by the Load function
