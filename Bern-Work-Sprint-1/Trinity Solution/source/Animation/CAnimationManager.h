@@ -9,13 +9,14 @@
 #define _CANIMATIONMANAGER_H_
 
 #include "CAnimation.h"
+#include "..\tinyxml\tinyxml.h"
 class CAnimationManager
 {
 private:
 	vector<CAnimation*> m_Animations;
 public:
 	bool UnloadAnimation(int nAnimation);
-	int LoadAnimation();
+	int LoadAnimation(const char* szFilename);
 	bool UnloadAll();
 	static CAnimationManager* GetInstance();
 };
