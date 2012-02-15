@@ -126,18 +126,21 @@ public:
 	//						ACCESSORS AND MUTATORS							//
 	//	------------------------------------------------------------------	//
 	//////////////////////////////////////////////////////////////////////////
+
+public:
+	inline short		GetScreenWidth	(void)					{ return m_sScreenWidth; }
+	inline short		GetScreenHeight	(void)					{ return m_sScreenHeight; }
+
 private:
-	inline HWND			GetWindowHandle(void)	{ return m_hWnd; }
-	inline short		GetScreenWidth(void)	{ return m_sScreenWidth; }
-	inline short		GetScreenHeight(void)	{ return m_sScreenHeight; }
-	inline bool			GetIsWindowed(void)		{ return m_bIsWindowed; }
-	inline IGameState*	GetCurrentState(void)	{ return m_pCurrentState; }
-	inline CTimer		GetTimer(void)			{ return m_Timer; }
+	inline HWND			GetWindowHandle	(void)					{ return m_hWnd; }
+	inline bool			GetIsWindowed	(void)					{ return m_bIsWindowed; }
+	inline IGameState*	GetCurrentState	(void)					{ return m_pCurrentState; }
+	inline CTimer		GetTimer		(void)					{ return m_Timer; }
 	
-	inline void SetWindowHandle	(HWND hWnd)				{ m_hWnd = hWnd; }
-	inline void SetScreenWidth	(short sScreenWidth)	{ m_sScreenWidth = sScreenWidth; }
-	inline void SetScreenHeight	(short sScreenHeight)	{ m_sScreenHeight = sScreenHeight; }
-	inline void SetIsWindowed	(bool bIsWindowed)		{ m_bIsWindowed = bIsWindowed; }
+	inline void			SetWindowHandle	(HWND hWnd)				{ m_hWnd = hWnd; }
+	inline void			SetScreenWidth	(short sScreenWidth)	{ m_sScreenWidth = sScreenWidth; }
+	inline void			SetScreenHeight	(short sScreenHeight)	{ m_sScreenHeight = sScreenHeight; }
+	inline void			SetIsWindowed	(bool bIsWindowed)		{ m_bIsWindowed = bIsWindowed; }
 };
 
 
