@@ -156,3 +156,14 @@ void CMap::Render(void)
 	// Only render the tiles that are on the screen's area for optimization
 	// purposes.
 }
+
+////////////////////////////////////////////////////////////////////////
+//	Purpose		:	Check collisions against all tiles on screen
+//	Parameters	:	pBase - Object that we're checking collisions with
+//	Return		:	False if collided, true otherwise
+////////////////////////////////////////////////////////////////////////
+bool CMap::CheckCollisions(const IBaseInterface* pBase)
+{
+	// TODO: Check collisions against all tiles on screen
+	return true;
+}
