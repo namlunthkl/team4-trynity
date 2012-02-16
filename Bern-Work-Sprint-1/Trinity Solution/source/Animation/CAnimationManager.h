@@ -19,5 +19,8 @@ public:
 	int LoadAnimation(const char* szFilename);
 	bool UnloadAll();
 	static CAnimationManager* GetInstance();
+
+	CAnimation* GetAnimation(int animationNumber) {return m_Animations[animationNumber] ;}
+
 };
 #endif

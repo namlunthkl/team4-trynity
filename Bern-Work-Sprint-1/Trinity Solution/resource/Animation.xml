@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations FileName ="nxc_bat_heihachi.PNG">
+           <Animation name="GetHit" looping="1" oslating="0" playing="0" speed="1" NumFrames="4">
+                   <Frame Duration="0.25" event ="string">
+                          <DrawRect x="23" y="279" width="69" height="69"/>
+                          <CollisionRect x="0" y="0" width="0" height="0"/>
+                          <Anchor x="34" y="64"/>
+                   </Frame>
+                   <Frame Duration="0.08" event ="string">
+                          <DrawRect x="105" y="270" width="76" height="78"/>
+                          <CollisionRect x="0" y="0" width="0" height="0"/>
+                          <Anchor x="39" y="74"/>
+                   </Frame>
+                   <Frame Duration="0.08" event ="string">
+                          <DrawRect x="197" y="280" width="104" height="61"/>
+                          <CollisionRect x="0" y="0" width="0" height="0"/>
+                          <Anchor x="55" y="56"/>
+                   </Frame>
+                   <Frame Duration="0.25" event ="string">
+                          <DrawRect x="311" y="307" width="113" height="35"/>
+                          <CollisionRect x="0" y="0" width="0" height="0"/>
+                          <Anchor x="56" y="30"/>
+                   </Frame>
+           </Animation>
+</Animations>
+

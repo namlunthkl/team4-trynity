@@ -11,11 +11,11 @@
 
 #include "IGameState.h"
 #include "..\Tile Mapping\CMap.h"
-
+#include "..\Animation\CAnimationPlayer.h"
 class CGameplayState : public IGameState
 {
 	vector<CMap> m_vMaps;
-
+	CAnimationPlayer* gethit;
 public:
 	void Enter(void);
 	bool Input(void);

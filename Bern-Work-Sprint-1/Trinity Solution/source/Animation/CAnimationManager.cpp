@@ -30,7 +30,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 	if(!pRoot)
 		return false;
 	string filepath;
-	filepath.append("../Resource/");
+	filepath.append("resource/");
 
 	const char* pDir;
 	if(pRoot->Attribute("FileName"))
@@ -42,62 +42,126 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 	}
 	TEX_MNG->LoadTexture(filepath.c_str());
 
-	TiXmlElement* pAnimation = pRoot->FirstChildElement("Animations");
+	TiXmlElement* pAnimation = pRoot->FirstChildElement("Animation");
 	while(pAnimation)
 	{
-		CAnimation tempAnimation;
-		int nTemp;
-		float fTemp;
-		const char* pDir;
-		if(pAnimation->Attribute("Name"))
+		CAnimation* tempAnimation = new CAnimation;
+		int nTemp = 0;
+		double dTemp = 0.0;
+		const char* pName;
+		if(pAnimation->Attribute("name"))
 		{
-			pDir = pRoot->Attribute("Name");
+			pName = pAnimation->Attribute("name");
 			char buffer[128] = {0};
-			strcpy_s(buffer,_countof(buffer),pDir);
-			tempAnimation.SetName(buffer);
+			strcpy_s(buffer,_countof(buffer),pName);
+			tempAnimation->SetName(buffer);
 		}
 
-		if(pAnimation->QueryIntAttribute("islooping",&nTemp) != NULL)
+		if(pAnimation->QueryIntAttribute("looping",&nTemp) != TIXML_NO_ATTRIBUTE)
 		{
-
-			tempAnimation.SetIsLooping((nTemp==1)?true:false);
+			tempAnimation->SetIsLooping((nTemp==1)?true:false);
 		}
 
-		if(pAnimation->QueryIntAttribute("isoslating",&nTemp) != NULL)
+		if(pAnimation->QueryIntAttribute("oslating",&nTemp) != TIXML_NO_ATTRIBUTE)
 		{
-			tempAnimation.SetIsOscillating((nTemp==1)?true:false);
+			tempAnimation->SetIsOscillating((nTemp==1)?true:false);
 		}
-		if(pAnimation->QueryIntAttribute("isplaying",&nTemp) != NULL)
+		if(pAnimation->QueryIntAttribute("playing",&nTemp) != TIXML_NO_ATTRIBUTE)
 		{
-			tempAnimation.SetIsPlaying((nTemp==1)?true:false);
+			tempAnimation->SetIsPlaying((nTemp==1)?true:false);
 		}
-		if(pAnimation->QueryFloatAttribute("speed",&fTemp) != NULL)
+		if(pAnimation->QueryDoubleAttribute("speed",&dTemp) != TIXML_NO_ATTRIBUTE)
 		{
-			tempAnimation.SetSpeed(fTemp);
+			tempAnimation->SetSpeed(dTemp);
 		}
-		if(pAnimation->QueryIntAttribute("speed",&nTemp) != NULL)
-		{
-			//tempAnimation.SetFrames(temp);
-		}
-		//const char* pType = pHighscore->GetText();
-		//if(pType)
+		//if(pAnimation->Attribute("NumFrames",&nTemp) != NULL)
 		//{
-		//	char cBuffer[128] = {0};
-		//	strcpy_s(cBuffer,_countof(cBuffer),pType);
-		//	//printf("type: %s", buffer);
-		//	//m_vMenuItems.push_back(cBuffer);
-		//	scoreline += cBuffer;
+		//	tempAnimation.SetSpeed(nTemp);
 		//}
-		//if(pHighscore->Attribute("score",&score) != NULL)
-		//{
-		//	char cBuffer[128] = {0};
-		//	sprintf_s(cBuffer,"score: %d ", score);
-		//	//m_vMenuItems.push_back(cBuffer);
-		//	scoreline+= cBuffer;
-		//}
-		//scoreline+= '\n';
-		//m_vMenuItems.push_back(scoreline.c_str());
+		TiXmlElement* pFrame = pAnimation->FirstChildElement("Frame");
+		while (pFrame)
+		{
+			CFrame tempFrame;
+			if(pAnimation->QueryDoubleAttribute("Duration",&dTemp) != NULL)
+			{
+				tempFrame.SetDuration(dTemp);
+			}
+
+			const char* pEvent;
+			if(pFrame->Attribute("event"))
+			{
+				pEvent = pFrame->Attribute("event");
+				char cBuffer[128] = {0};
+				strcpy_s(cBuffer,_countof(cBuffer),pEvent);
+				tempFrame.SetEvent(pEvent);
+			}
+
+			//	Get the draw rect
+			TiXmlElement* pDrawRect = pFrame->FirstChildElement("DrawRect");
+
+			RECT tempDrawRect;
+			if(pDrawRect->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempDrawRect.left = nTemp;
+			}
+			if(pDrawRect->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempDrawRect.top = nTemp;
+			}
+			if(pDrawRect->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempDrawRect.right = (nTemp + tempDrawRect.left);
+			}
+			if(pDrawRect->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempDrawRect.bottom = (nTemp + tempDrawRect.top);
+			}
+			//	Set the Draw Rect
+			tempFrame.SetDrawRect(tempDrawRect);
+
+			//	Get the collsion Rect
+			TiXmlElement* pCollisionRect = pDrawRect->NextSiblingElement("CollisionRect");
+
+			RECT tempCollisionRect;
+			if(pCollisionRect->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempCollisionRect.left = nTemp;
+			}
+			if(pCollisionRect->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempCollisionRect.top = nTemp;
+			}
+			if(pCollisionRect->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempCollisionRect.right = (nTemp + tempCollisionRect.left);
+			}
+			if(pCollisionRect->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempCollisionRect.bottom = (nTemp + tempCollisionRect.top);
+			}
+			//	Set the collision Rect
+			tempFrame.SetCollisionRect(tempCollisionRect);
+			//	Get the anchor
+			TiXmlElement* pAnchor = pDrawRect->NextSiblingElement("Anchor");
+
+			POINT tempAnchor;
+
+			if(pAnchor->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempAnchor.x = nTemp;
+			}
+			if(pAnchor->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempAnchor.y = nTemp;
+			}
+			//	Set the anchor
+			tempFrame.SetAnchorPoint(tempAnchor);
+			tempAnimation->GetFrames()->push_back(tempFrame);
+			pFrame = pFrame->NextSiblingElement("Frame");
+		}
+		m_Animations.push_back(tempAnimation);
 		pAnimation = pAnimation->NextSiblingElement("Animation");
+		
 	}
 	return 0;
 }

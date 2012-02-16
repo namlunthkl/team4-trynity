@@ -14,6 +14,7 @@
 // Include header file
 #include "CGame.h"
 #include "States\CMainMenuState.h"
+#include "States\CGameplayState.h"
 
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
@@ -48,7 +49,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	AUDIO->InitXAudio2();
 
 	// Change state to Main Menu
-	ChangeState(CMainMenuState::GetInstance());
+	ChangeState(CGameplayState::GetInstance());
 
 	// Example of map initialization
 #if 0
@@ -135,7 +136,7 @@ bool CGame::Input(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Update(void)
 {
-	//m_pCurrentState->Update();
+	m_pCurrentState->Update(m_Timer.m_fElapsedTime);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -154,6 +155,7 @@ void CGame::Render(void)
 
 	m_pCurrentState->Render();
 
+	
 #if 0
 	// HACK
 	a.Render();

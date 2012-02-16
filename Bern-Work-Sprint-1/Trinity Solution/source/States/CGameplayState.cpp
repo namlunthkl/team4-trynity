@@ -9,21 +9,27 @@
 #include "StdAfx.h"
 
 #include "CGameplayState.h"
+#include "..\Animation\CAnimationManager.h"
 
 void CGameplayState::Enter(void)
 {
 	CreateMaps();
 	CreatePuzzles();
+	CAnimationManager::GetInstance()->LoadAnimation("resource/Animation.xml");
+	gethit=new CAnimationPlayer(0);
 }
 bool CGameplayState::Input(void)
 {
+	gethit->Play();
 	return true;
 }
 void CGameplayState::Update(float fElapsedTime)
 {
+	gethit->Update(fElapsedTime);
 }
 void CGameplayState::Render(void)
 {
+	gethit->Render();
 }
 void CGameplayState::Exit(void)
 {
