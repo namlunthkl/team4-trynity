@@ -92,6 +92,7 @@
     <ClCompile Include="source\Input Manager\CInputManager.cpp" />
     <ClCompile Include="source\Messaging\CEventSystem.cpp" />
     <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
+    <ClCompile Include="source\Messaging\CStringTable.cpp" />
     <ClCompile Include="source\Particle\CParticleEmitter.cpp" />
     <ClCompile Include="source\Particle\CParticleManager.cpp" />
     <ClCompile Include="source\States\CAudioOptionsState.cpp" />
@@ -104,6 +105,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\Tile Mapping\CMap.cpp" />
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
     <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
     <ClCompile Include="source\tinyxml\tinystr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -157,6 +159,7 @@
     <ClInclude Include="source\Messaging\CEvent.h" />
     <ClInclude Include="source\Messaging\CEventSystem.h" />
     <ClInclude Include="source\Messaging\CMessageSystem.h" />
+    <ClInclude Include="source\Messaging\CStringTable.h" />
     <ClInclude Include="source\Messaging\IListener.h" />
     <ClInclude Include="source\Messaging\Messages.h" />
     <ClInclude Include="source\Particle\CParticle.h" />
