@@ -40,11 +40,12 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 		strcpy_s(buffer,_countof(buffer),pDir);
 		filepath.append(pDir);
 	}
-	TEX_MNG->LoadTexture(filepath.c_str());
-
+	int nAnimationSheet = TEX_MNG->LoadTexture(filepath.c_str(),D3DCOLOR_XRGB(255,0,255));
+	
 	TiXmlElement* pAnimation = pRoot->FirstChildElement("Animation");
 	while(pAnimation)
 	{
+
 		CAnimation* tempAnimation = new CAnimation;
 		int nTemp = 0;
 		double dTemp = 0.0;
@@ -159,6 +160,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			tempAnimation->GetFrames()->push_back(tempFrame);
 			pFrame = pFrame->NextSiblingElement("Frame");
 		}
+		tempAnimation->SetImageId(nAnimationSheet);
 		m_Animations.push_back(tempAnimation);
 		pAnimation = pAnimation->NextSiblingElement("Animation");
 		

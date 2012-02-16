@@ -16,6 +16,10 @@ class CGameplayState : public IGameState
 {
 	vector<CMap> m_vMaps;
 	CAnimationPlayer* gethit;
+	CAnimationPlayer* gethit2;
+	CAnimationPlayer* attack;
+	CAnimationPlayer* attack2;
+	float bucket;
 public:
 	void Enter(void);
 	bool Input(void);

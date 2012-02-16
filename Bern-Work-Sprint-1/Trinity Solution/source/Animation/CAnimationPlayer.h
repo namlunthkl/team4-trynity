@@ -13,15 +13,20 @@ class CAnimationPlayer
 private:
 	int m_nAnimationId;
 	//float m_fDuration;
+	bool m_bIsPlaying, m_bIsLooping;
 	unsigned int m_nFrameNumber;
 	double m_fTimer;
 public:
-	CAnimationPlayer(int nAnimationID) {m_nAnimationId = nAnimationID;}
+	inline CAnimationPlayer(int nAnimationID, bool bIsLooping) 
+	{
+		m_nAnimationId = nAnimationID; 
+		m_bIsLooping = bIsLooping;
+	}
 	void Play();
 	void Stop();
 	void Reset();
 	void Update(float fElapsedTime);
-	void Render();
+	void Render(int nPosX, int nPosY);
 
 };
 #endif

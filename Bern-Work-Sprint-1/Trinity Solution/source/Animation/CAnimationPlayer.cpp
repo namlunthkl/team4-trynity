@@ -10,15 +10,12 @@
 
 void CAnimationPlayer::Play()
 {
-	if(!CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetIsPlaying())
-	{
 		Reset();
-		CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->SetIsPlaying(true);
-	}
+		m_bIsPlaying = true;
 }
 void CAnimationPlayer::Stop()
 {
-	CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->SetIsPlaying(false);
+	m_bIsPlaying = false;
 }
 void CAnimationPlayer::Reset()
 {
@@ -27,16 +24,17 @@ void CAnimationPlayer::Reset()
 }
 void CAnimationPlayer::Update(float fElapsedTime)
 {
-	if(!CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetIsPlaying())
+	if(!m_bIsPlaying)
 		return;
-	m_fTimer += fElapsedTime*CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetSpeed();
+	m_fTimer += fElapsedTime;
+	m_fTimer *=	CAnimationManager::GetInstance()->GetAnimation( m_nAnimationId)->GetSpeed();
 	if(m_fTimer > CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration())
 	{
 		m_fTimer -= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
 		m_nFrameNumber++;
 		if(m_nFrameNumber >= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrames()->size())
 		{
-			if(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetIsLooping())
+			if(m_bIsLooping)
 			{
 				Reset();
 			}
@@ -48,9 +46,10 @@ void CAnimationPlayer::Update(float fElapsedTime)
 		}
 	}
 }
-void CAnimationPlayer::Render()
+void CAnimationPlayer::Render(int nPosX,int nPosY)
 {
+	int nSheet = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetImageId();
 	RECT drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 	POINT anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
-	TEX_MNG->Draw(m_nAnimationId,anchor.x,anchor.y,1,1,&drawRect);
+	TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect);
 }
