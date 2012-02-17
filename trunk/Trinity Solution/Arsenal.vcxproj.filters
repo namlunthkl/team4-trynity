@@ -156,6 +156,12 @@
     <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp">
       <Filter>Tile Mapping</Filter>
     </ClCompile>
+    <ClCompile Include="source\Messaging\CStringTable.cpp">
+      <Filter>Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp">
+      <Filter>Tile Mapping</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -301,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="source\Tile Mapping\CWorldEngine.h">
       <Filter>Tile Mapping</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Messaging\CStringTable.h">
+      <Filter>Messaging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
