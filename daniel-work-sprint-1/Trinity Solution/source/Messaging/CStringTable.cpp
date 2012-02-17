@@ -19,6 +19,14 @@ CStringTable::CStringTable(int nCapacity)
 
 int CStringTable::LoadString(const char const * szString)
 {
+	// Check if the string is already in the array
+	for(unsigned int i = 0; i < m_vszStringArray.size(); ++i)
+	{
+		if(m_vszStringArray[i] == szString)
+			return i;
+	}
+
+
 	if(m_vszStringArray.size() < m_nCapacity)
 	{
 		m_vszStringArray.push_back(szString);

@@ -30,38 +30,14 @@ CMap::CMap(void)
 	SetWidth(0);
 	SetHeight(0);
 	SetTileset(NULL);
-
-	m_pStringTable = new CStringTable(UCHAR_MAX);
 }
-
-//////////////////////////////////////////////////////////////////////////
-////	Purpose		:	Initialize the map
-////	Parameters	:	szFilename - location of the xml file to load
-////					nPosX and nPosY - position of the map in the world
-////	Return		:	False if initialization failed, true if succeeded
-//////////////////////////////////////////////////////////////////////////
-//bool CMap::Initialize(char* szFilename, CTileset* Tileset, int nPosX, int nPosY)
-//{
-//	// HACK
-//	SetPosX(nPosX);
-//	SetPosY(nPosY);
-//	SetTileset(Tileset);
-//
-//	// Try loading the file
-//	// If loading succeeds, return true
-//	if(Load(szFilename))
-//		return true;
-//	// Else, return false
-//	else
-//		return false;
-//}
 
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Load map information from a xml file
 //	Parameters	:	Location of the xml file to load
 //	Return		:	False if load failed, true if succeeded
 ////////////////////////////////////////////////////////////////////////
-bool CMap::Load(const char const * szFilename)
+bool CMap::Load(const char const * szFilename, CStringTable* pStringTable)
 {
 	// Create XML doc
 	TiXmlDocument doc;
@@ -76,7 +52,7 @@ bool CMap::Load(const char const * szFilename)
 		return false;
 
 	// Temporary variables to store the data we'll read
-	int nTilesetID = 0;
+	const char* szTileset = "";
 	int nWidth = 0;
 	int nHeight = 0;
 	int nPosX = 0;
@@ -87,8 +63,9 @@ bool CMap::Load(const char const * szFilename)
 	const char* szEvent = "";
 
 	// Get the Tileset ID
-	pRoot->Attribute("tileset", &nTilesetID);
-	CTileset* pTileset = CWorldEngine::GetInstance()->GetTileset(nTilesetID);
+	szTileset = pRoot->Attribute("tileset");
+	unsigned char ucTilesetID = pStringTable->LoadStringA(szTileset);
+	CTileset* pTileset = CWorldEngine::GetInstance()->GetTileset(ucTilesetID);
 	SetTileset(pTileset);
 
 	// Get the Map Element
@@ -134,7 +111,7 @@ bool CMap::Load(const char const * szFilename)
 			szEvent = pTile->Attribute("Event");
 
 			// Load the event in the string table and get its ID
-			unsigned char ucEventID = m_pStringTable->LoadStringA(szEvent);
+			unsigned char ucEventID = pStringTable->LoadStringA(szEvent);
 
 			// Create the tile
 			CTile tempTile((unsigned char)nTilePosX, (unsigned char)nTilePosY,
@@ -176,22 +153,24 @@ void CMap::Render(void)
 		// For each layer, loop through all the tiles
 		for(uiIndexTile = 0; uiIndexTile < m_vLayers[uiIndexLayer].GetSize(); ++uiIndexTile)
 		{
-			// TODO: The most efficient to cull tiles in here is to use some kind of
-			// algorithm to figure out between which indexes will the rendered tiles
-			// be. Then, we can loop through all of them and continue immediately if
-			// the index we're in is not on that range.
-
 			// Get a pointer to the current tile - for better readability
 			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
 
-			// Get the source rect of that tile
-			RECT rectSource = GetTileSourceRect(tileCurrent);
+			// Get position to draw;
+			int nTileWorldPosX = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
+			int nTileWorldPosY = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
+			int nTileScreenPosX = nTileWorldPosX - 0;	// TODO: Replace 0 by camera's X position
+			int nTileScreenPosY = nTileWorldPosY - 0;	// TODO: Replace 0 by camera's Y position
+			
+			if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) < GAME->GetScreenWidth()
+				&& nTileScreenPosY >= 0 && (nTileScreenPosY + GetTileset()->GetTileHeight()) < GAME->GetScreenHeight())
+			{
+				// Get the source rect of that tile
+				RECT rectSource = GetTileSourceRect(tileCurrent);
 
-			// Draw the tile using texture manager
-			TEX_MNG->Draw(GetTileset()->GetImageID(),
-				GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth,
-				GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight,
-				1.0f, 1.0f, &rectSource);
+				// Draw the tile using texture manager
+				TEX_MNG->Draw(GetTileset()->GetImageID(), nTileScreenPosX, nTileScreenPosY, 1.0f, 1.0f, &rectSource);
+			}
 
 			// Since we're reading line by line, from left to right, we need
 			// to increase the width index every time we draw a tile

@@ -55,9 +55,6 @@ class CMap
 	// Pointer to this map's tileset
 	CTileset*		m_pTileset;
 
-	// String table - Used for event names
-	CStringTable*	m_pStringTable;
-
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PRIVATE	FUNCTIONS							//
@@ -88,15 +85,7 @@ public:
 	//	Parameters	:	Location of the xml file to load
 	//	Return		:	False if load failed, true if succeeded
 	////////////////////////////////////////////////////////////////////////
-	bool Load(const char const * szFilename);
-
-	////////////////////////////////////////////////////////////////////////
-	//	Purpose		:	Initialize the map
-	//	Parameters	:	szFilename - location of the xml file to load
-	//					nPosX and nPosY - position of the map in the world
-	//	Return		:	False if initialization failed, true if succeeded
-	////////////////////////////////////////////////////////////////////////
-	/*bool Initialize(char* szFilename, CTileset* pTileset, int nPosX, int nPosY);*/
+	bool Load(const char const * szFilename, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Draw the map's tiles that are inside the window's

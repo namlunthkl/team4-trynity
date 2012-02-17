@@ -9,6 +9,8 @@
 #include "StdAfx.h"
 #include "CTileset.h"
 #include "../tinyxml/tinyxml.h"
+#include "../Messaging/CStringTable.h"
+
 
 // Constructor
 CTileset::CTileset(void)
@@ -25,7 +27,7 @@ CTileset::CTileset(void)
 //	Parameters	:	Location of the xml file to load
 //	Return		:	False if load failed, true if succeeded
 ////////////////////////////////////////////////////////////////////////
-bool CTileset::Load(const char const * szFilename)
+bool CTileset::Load(const char const * szFilename, CStringTable* pStringTable)
 {
 	// Create XML doc
 	TiXmlDocument doc;
@@ -46,7 +48,7 @@ bool CTileset::Load(const char const * szFilename)
 	int nTileHeight = 0;
 	const char* szImage = "";
 	int nTransparentColor = 0;
-	int nID = 0;
+	const char* szTilesetName = "";
 
 	// Read all the data from the tileset file
 	pRoot->Attribute("width", &nWidth);
@@ -54,7 +56,7 @@ bool CTileset::Load(const char const * szFilename)
 	pRoot->Attribute("tilewidth", &nTileWidth);
 	pRoot->Attribute("tileheight", &nTileHeight);
 	pRoot->Attribute("transparent", &nTransparentColor);
-	pRoot->Attribute("id", &nID);
+	szTilesetName = pRoot->Attribute("id");
 	szImage = pRoot->Attribute("image");
 
 	// Set the tileset members
@@ -63,7 +65,7 @@ bool CTileset::Load(const char const * szFilename)
 	SetHeight(nHeight);
 	SetTileWidth(nTileWidth);
 	SetTileHeight(nTileHeight);
-	SetID(nID);
+	SetID(pStringTable->LoadString(szTilesetName));
 
 	// Success!
 	return true;

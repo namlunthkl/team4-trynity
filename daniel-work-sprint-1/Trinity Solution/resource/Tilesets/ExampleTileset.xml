@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tileset width="8" height="18" tilewidth="32" tileheight="32" image="resource/Tilesets/ExampleTileset.png"
-transparent ="-1" id="0">
+<Tileset width="8" height="18" tilewidth="32" tileheight="32"
+image="resource/Tilesets/ExampleTileset.png"
+transparent ="-1" id="village">
 </Tileset>
+
 

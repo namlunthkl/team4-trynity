@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WorldEngine>
-           <Tileset file="resource/Tilesets/ExampleTileset.xml"/>
-           <Map file="resource/Maps/ExampleMap.xml"/>
+           <COMMENT> <Tileset file="resource/Tilesets/ExampleTileset.xml"/>  </COMMENT>
+                     <Tileset file="resource/Tilesets/ForestSampleTileset.xml"/>
+           <COMMENT> <Tileset file="resource/Tilesets/DesertSampleTileset.xml"/>   </COMMENT>
+           <COMMENT> <Map file="resource/Maps/ExampleMap.xml"/>     </COMMENT>
+                     <Map file="resource/Maps/ForestSampleMap.xml"/>
+           <COMMENT> <Map file="resource/Maps/DesertSampleMap.xml"/>  </COMMENT>
 </WorldEngine>
+
+
+
+
 
 

@@ -11,6 +11,7 @@
 
 #include "CWorldEngine.h"
 #include "../tinyxml/tinyxml.h"
+#include "../Messaging/CStringTable.h"
 
 // Singleton's instance
 CWorldEngine* CWorldEngine::sm_pInstance = NULL;
@@ -31,7 +32,8 @@ CWorldEngine* CWorldEngine::GetInstance(void)
 ////////////////////////////////////////////////////////////////////////
 void CWorldEngine::InitWorldEngine(void)
 {
-	// TODO: Change that to use default filename with maps information
+	m_pStringTable = new CStringTable(UCHAR_MAX);
+
 	LoadAllMaps("resource/WorldEngine.xml");
 
 	m_rDrawArea.top = 0 - 256;
@@ -75,7 +77,7 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 		// Get the file name
 		szSourceFile = pTileset->Attribute("file");
 		// Load the tileset
-		tempTileset->Load(szSourceFile);
+		tempTileset->Load(szSourceFile, m_pStringTable);
 		// Push it to the tilesets vector
 		m_vpTilesets.push_back(tempTileset);
 
@@ -97,7 +99,7 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 		// Get the file name
 		szSourceFile = pMap->Attribute("file");
 		// Load the tileset
-		tempMap->Load(szSourceFile);
+		tempMap->Load(szSourceFile, m_pStringTable);
 		// Push it to the tilesets vector
 		m_vpMaps.push_back(tempMap);
 

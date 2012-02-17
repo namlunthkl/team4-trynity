@@ -15,6 +15,8 @@
 
 // For CheckCollisions
 class IBaseInterface;
+// For event names
+class CStringTable;
 
 // WorldEngine class - proper singleton
 class CWorldEngine
@@ -36,6 +38,9 @@ class CWorldEngine
 
 	//	Static member pointer Instance - Singleton
 	static CWorldEngine*	sm_pInstance;
+
+	// String table - Used for event names
+	CStringTable*	m_pStringTable;
 
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//

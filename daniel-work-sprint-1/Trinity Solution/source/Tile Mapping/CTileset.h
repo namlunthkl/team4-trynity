@@ -16,6 +16,9 @@
 #ifndef CTILESET_H_
 #define CTILESET_H_
 
+// For the Load function
+class CStringTable;
+
 // CTileset class
 // Defines an image id and a size for a tileset
 class CTileset
@@ -43,7 +46,7 @@ public:
 	//	Parameters	:	Location of the xml file to load
 	//	Return		:	False if load failed, true if succeeded
 	////////////////////////////////////////////////////////////////////////
-	bool Load(const char const * szFilename);
+	bool Load(const char const * szFilename, CStringTable* pStringTable);
 
 	// Accessors
 	inline int				GetImageID		(void)	const					{ return m_imgTilesetID; }
