@@ -43,18 +43,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textEvent = new System.Windows.Forms.TextBox();
+            this.textBoxEvent = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tabLayers = new System.Windows.Forms.TabControl();
             this.tabLayer0 = new System.Windows.Forms.TabPage();
             this.checkBoxVisible = new System.Windows.Forms.CheckBox();
-            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +73,7 @@
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.setPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -145,7 +144,8 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
+            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -381,22 +381,11 @@
             this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 0;
             // 
-            // tilesetPanel
-            // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
-            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
-            this.tilesetPanel.Name = "tilesetPanel";
-            this.tilesetPanel.Size = new System.Drawing.Size(238, 334);
-            this.tilesetPanel.TabIndex = 0;
-            this.tilesetPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tilesetPanel_Paint);
-            this.tilesetPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseClick);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.comboBoxType);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textEvent);
+            this.groupBox1.Controls.Add(this.textBoxEvent);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(18, 19);
             this.groupBox1.Name = "groupBox1";
@@ -405,13 +394,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Tile";
             // 
-            // comboBox1
+            // comboBoxType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(81, 61);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 24);
-            this.comboBox1.TabIndex = 7;
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Items.AddRange(new object[] {
+            "Ground",
+            "Wall"});
+            this.comboBoxType.Location = new System.Drawing.Point(81, 61);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(100, 24);
+            this.comboBoxType.TabIndex = 7;
+            this.comboBoxType.SelectedIndexChanged += new System.EventHandler(this.comboBoxType_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -422,13 +415,13 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Type";
             // 
-            // textEvent
+            // textBoxEvent
             // 
-            this.textEvent.Location = new System.Drawing.Point(81, 32);
-            this.textEvent.Name = "textEvent";
-            this.textEvent.Size = new System.Drawing.Size(100, 22);
-            this.textEvent.TabIndex = 5;
-            this.textEvent.TextChanged += new System.EventHandler(this.textEvent_TextChanged);
+            this.textBoxEvent.Location = new System.Drawing.Point(81, 32);
+            this.textBoxEvent.Name = "textBoxEvent";
+            this.textBoxEvent.Size = new System.Drawing.Size(100, 22);
+            this.textBoxEvent.TabIndex = 5;
+            this.textBoxEvent.TextChanged += new System.EventHandler(this.textEvent_TextChanged);
             // 
             // label5
             // 
@@ -507,20 +500,6 @@
             this.checkBoxVisible.Text = "Visible";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
             this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
-            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPanel.Location = new System.Drawing.Point(0, 0);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(646, 450);
-            this.mapPanel.TabIndex = 1;
-            this.mapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mapPanel_Paint);
-            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
-            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
-            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
-            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // statusStrip1
             // 
@@ -720,6 +699,13 @@
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(216, 6);
+            // 
+            // setPathToolStripMenuItem
+            // 
+            this.setPathToolStripMenuItem.Name = "setPathToolStripMenuItem";
+            this.setPathToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
+            this.setPathToolStripMenuItem.Text = "Set Environment Path";
+            this.setPathToolStripMenuItem.Click += new System.EventHandler(this.setPathToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
@@ -1284,12 +1270,30 @@
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // setPathToolStripMenuItem
+            // tilesetPanel
             // 
-            this.setPathToolStripMenuItem.Name = "setPathToolStripMenuItem";
-            this.setPathToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
-            this.setPathToolStripMenuItem.Text = "Set Environment Path";
-            this.setPathToolStripMenuItem.Click += new System.EventHandler(this.setPathToolStripMenuItem_Click);
+            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
+            this.tilesetPanel.Name = "tilesetPanel";
+            this.tilesetPanel.Size = new System.Drawing.Size(238, 334);
+            this.tilesetPanel.TabIndex = 0;
+            this.tilesetPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tilesetPanel_Paint);
+            this.tilesetPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseClick);
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(646, 450);
+            this.mapPanel.TabIndex = 1;
+            this.mapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mapPanel_Paint);
+            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
+            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
+            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
+            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // CTileEditor
             // 
@@ -1383,9 +1387,9 @@
         private GraphicsNamespace.GraphicsPanel tilesetPanel;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textEvent;
+        private System.Windows.Forms.TextBox textBoxEvent;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkViewGrid;
         private System.Windows.Forms.NumericUpDown numMapHeight;
