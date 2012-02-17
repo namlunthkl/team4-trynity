@@ -7,12 +7,12 @@
 
 #ifndef _CVIDEOOPTIONSSTATE_H_
 #define _CVIDEOOPTIONSSTATE_H_
-#include "IGameState.h"
+#include "CBaseMenu.h"
 #include "../CGame.h"
 
 enum {VDEO_FULLSCREEN = 0, VDEO_SHOWHUD, VDEO_MINIMAP, VDEO_BACK, VDEO_MAX};
 
-class CVideoOptionsState : public IGameState
+class CVideoOptionsState : public IGameState, public CBaseMenu
 {
 private:
 	//	Instance
@@ -25,17 +25,8 @@ private:
 	~CVideoOptionsState();
 	
 	//	Assets
-	int m_imgBackground;
-	int m_imgScroll;
-	int m_imgCursor;
-	int m_sndMoveCursor;
-	int m_sndConfirm;
-
-	//vector<char*> m_vszMenuItems;
 
 	//	Members
-	unsigned int m_uiCurSelected;
-	float m_fLoadTimer;
 
 public:
 	//	Singleton

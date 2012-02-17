@@ -7,25 +7,15 @@
 
 #include "StdAfx.h"
 #include "../StdAfx.h"
-#include "CMainMenuState.h"
 #include "COptionsState.h"
 #include "CVideoOptionsState.h"
 #include "CAudioOptionsState.h"
+#include "CMainMenuState.h"
 
 COptionsState* COptionsState::m_pInstance = NULL;
 
 COptionsState::COptionsState()
 {
-	//	Assets
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
-	//	Members
-	m_uiCurSelected = 0;
-	m_fLoadTimer = 0.0f;
 }
 
 COptionsState::~COptionsState()
@@ -52,41 +42,29 @@ void COptionsState::DeleteInstance()
 
 void COptionsState::Enter()
 {
-	//	Load Assets
-	m_imgBackground = TEX_MNG->LoadTexture("TempAsset1.png");
-	m_imgScroll = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_imgCursor = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
 	//	Members
-	m_uiCurSelected = 0;
+	m_uiMenuCount = OPTN_MAX;
 	m_fLoadTimer = 0.0f;
 
-	//	Play Song
-	//
+	//	Imperfect..
+	m_uiCurSelected = 0;
 }
+
 void COptionsState::Exit()
 {
-	//	Stop Song
-	//
-
-	//	Unload Assets
-	TEX_MNG->UnloadTexture(m_imgBackground);
-	TEX_MNG->UnloadTexture(m_imgScroll);
-	TEX_MNG->UnloadTexture(m_imgCursor);
-	//unloadsonghere
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
 }
 
 bool COptionsState::Input()
 {
-	if(INPUT->KeyPressed(DIK_RETURN))
+	//	NOT SURE
+	CBaseMenu::Input();
+	//	ABOVE?
+
+	if(bMenuConfirm == true)
 	{
+		//	Set it back to false
+		bMenuConfirm = false;
+		//	Which choice is selected?
 		switch(m_uiCurSelected)
 		{
 		case OPTN_VIDEO:
@@ -106,53 +84,21 @@ bool COptionsState::Input()
 			}
 		}
 	}
-	else if(INPUT->KeyPressed(DIK_DOWN))
-	{
-		++m_uiCurSelected;
-		if(m_uiCurSelected == OPTN_MAX)
-		{
-			m_uiCurSelected = OPTN_VIDEO;
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_UP))
-	{
-		--m_uiCurSelected;
-		if(m_uiCurSelected > OPTN_MAX)	//	Because it's unsigned, check this way
-		{
-			m_uiCurSelected = OPTN_MAX - 1;
-		}
-	}
 	return true;
 }
 
 void COptionsState::Update(float fElapsedTime)
 {
+	CBaseMenu::Update(fElapsedTime);
 }
 
 void COptionsState::Render()
 {
-	TEX_MNG->Draw(m_imgBackground, 0, 0);
+	//	Draw the base menu's stuff .. NOT SURE
+	CBaseMenu::Render();
 
-	RECT rectScroll;
-	rectScroll.left = 0;
-	rectScroll.top = 0;
-	rectScroll.right = 400;
-	rectScroll.bottom = 300;
-
-	TEX_MNG->Draw(m_imgScroll, 200, 150);
-
-	RECT rectCursor;
-	rectCursor.left = 0;
-	rectCursor.top = 0;
-	rectCursor.right = 64;
-	rectCursor.bottom = 64;
-
-	//	Draw the text in even intervals
-	for(unsigned int i = 0; i < OPTN_MAX; ++i)
-	{
-		TEX_MNG->Draw(m_imgCursor, 210, 150);
-	}
-
-	//	Draw a cursor at intervals of the text
-	TEX_MNG->Draw(m_imgCursor, 200-32, 150-32 + m_uiCurSelected*32);
+	//	Draw this menu's stuff
+	pFont->Write("Video Options", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Audio Options", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
 }

@@ -14,16 +14,6 @@ CAudioOptionsState* CAudioOptionsState::m_pInstance = NULL;
 
 CAudioOptionsState::CAudioOptionsState()
 {
-	//	Assets
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
-	//	Members
-	m_uiCurSelected = 0;
-	m_fLoadTimer = 0.0f;
 }
 
 CAudioOptionsState::~CAudioOptionsState()
@@ -51,50 +41,46 @@ void CAudioOptionsState::DeleteInstance()
 void CAudioOptionsState::Enter()
 {
 	//	Load Assets
-	m_imgBackground = TEX_MNG->LoadTexture("TempAsset1.png");
-	m_imgScroll = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_imgCursor = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
-	//	Members
-	m_uiCurSelected = 0;
+	m_uiMenuCount = ADIO_MAX;
 	m_fLoadTimer = 0.0f;
 
-	//	Play Song
-	//
+	//	Imperfect..
+	m_uiCurSelected = 0;
 }
+
 void CAudioOptionsState::Exit()
 {
-	//	Stop Song
-	//
-
-	//	Unload Assets
-	TEX_MNG->UnloadTexture(m_imgBackground);
-	TEX_MNG->UnloadTexture(m_imgScroll);
-	TEX_MNG->UnloadTexture(m_imgCursor);
-	//unloadsonghere
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
 }
 
 bool CAudioOptionsState::Input()
 {
-	if(INPUT->KeyPressed(DIK_RETURN))
+	//	NOT SURE
+	CBaseMenu::Input();
+	//	ABOVE?
+
+	if(bMenuConfirm == true)
 	{
+		//	Set it back to false
+		bMenuConfirm = false;
+		//	Which choice is selected?
 		switch(m_uiCurSelected)
 		{
 		case ADIO_MUSIC:
 			{
-				//modify music
+				GAME->SetMusicVolume( GAME->GetMusicVolume() + 10 );
+				if(GAME->GetMusicVolume() == 110)
+				{
+					GAME->SetMusicVolume(0);
+				}
 				break;
 			}
 		case ADIO_SOUND:
 			{
-				//modify sound
+				GAME->SetSoundVolume( GAME->GetSoundVolume() + 10 );
+				if(GAME->GetSoundVolume() == 110)
+				{
+					GAME->SetSoundVolume(0);
+				}
 				break;
 			}
 		case ADIO_BACK:
@@ -102,22 +88,6 @@ bool CAudioOptionsState::Input()
 				GAME->ChangeState(COptionsState::GetInstance());
 				break;
 			}
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_DOWN))
-	{
-		++m_uiCurSelected;
-		if(m_uiCurSelected == ADIO_MAX)
-		{
-			m_uiCurSelected = ADIO_MUSIC;
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_UP))
-	{
-		--m_uiCurSelected;
-		if(m_uiCurSelected > ADIO_MAX)	//	Because it's unsigned, check this way
-		{
-			m_uiCurSelected = ADIO_MAX - 1;
 		}
 	}
 	return true;
@@ -129,28 +99,17 @@ void CAudioOptionsState::Update(float fElapsedTime)
 
 void CAudioOptionsState::Render()
 {
-	TEX_MNG->Draw(m_imgBackground, 0, 0);
+	//	Draw the base menu's stuff .. NOT SURE
+	CBaseMenu::Render();
 
-	RECT rectScroll;
-	rectScroll.left = 0;
-	rectScroll.top = 0;
-	rectScroll.right = 400;
-	rectScroll.bottom = 300;
-
-	TEX_MNG->Draw(m_imgScroll, 200, 150);
-
-	RECT rectCursor;
-	rectCursor.left = 0;
-	rectCursor.top = 0;
-	rectCursor.right = 64;
-	rectCursor.bottom = 64;
-
-	//	Draw the text in even intervals
-	for(unsigned int i = 0; i < ADIO_MAX; ++i)
-	{
-		TEX_MNG->Draw(m_imgCursor, 210, 150);
-	}
-
-	//	Draw a cursor at intervals of the text
-	TEX_MNG->Draw(m_imgCursor, 200-32, 150-32 + m_uiCurSelected*32);
+	//	Draw this menu's stuff
+	char buffer[10] = {0};
+	
+	pFont->Write("Music Volume", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+		sprintf_s(buffer, "%d", GAME->GetMusicVolume());
+		pFont->Write(buffer, 19, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Sound Volume", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+		sprintf_s(buffer, "%d", GAME->GetSoundVolume());
+		pFont->Write(buffer, 19, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
 }

@@ -8,25 +8,18 @@
 #include "StdAfx.h"
 #include "../StdAfx.h"
 #include "CMainMenuState.h"
-//#include "CNewGameState.h"
-//#include "CLoadGameState.h"
+#include "CNewGameState.h"
+#include "CLoadGameState.h"
 #include "COptionsState.h"
 #include "CCreditsState.h"
 
 CMainMenuState* CMainMenuState::m_pInstance = NULL;
 
-CMainMenuState::CMainMenuState()
+CMainMenuState::CMainMenuState()// : CBaseMenu()
 {
-	//	Assets
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
-	//	Members
 	m_uiCurSelected = 0;
-	m_fLoadTimer = 0.0f;
+	//	Call it here, not in Enter(), because I want to be able to specify a CurSelected
+	//	when exiting from another menu state.
 }
 
 CMainMenuState::~CMainMenuState()
@@ -53,51 +46,38 @@ void CMainMenuState::DeleteInstance()
 
 void CMainMenuState::Enter()
 {
-	//	Load Assets
-	m_imgBackground = TEX_MNG->LoadTexture("resource/TempAsset1.png");
-	m_imgScroll = TEX_MNG->LoadTexture("resource/TempAsset2.png");
-	m_imgCursor = TEX_MNG->LoadTexture("resource/TempAsset2.png");
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
 	//	Members
-	m_uiCurSelected = 0;
-	m_fLoadTimer = 0.0f;
+	m_uiMenuCount = MAIN_MAX;
 
-	//	Play Song
-	//
+	//	Imperfect..
+	m_uiCurSelected = 0;
 }
+
 void CMainMenuState::Exit()
 {
-	//	Stop Song
-	//
-
-	//	Unload Assets
-	TEX_MNG->UnloadTexture(m_imgBackground);
-	TEX_MNG->UnloadTexture(m_imgScroll);
-	TEX_MNG->UnloadTexture(m_imgCursor);
-	//unloadsonghere
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
 }
 
 bool CMainMenuState::Input()
 {	
-	if(INPUT->KeyPressed(DIK_RETURN))
+	//	NOT SURE
+	CBaseMenu::Input();
+	//	ABOVE?
+
+	if(bMenuConfirm == true)
 	{
+		//	Set it back to false
+		bMenuConfirm = false;
+		//	Which choice is selected?
 		switch(m_uiCurSelected)
 		{
 		case MAIN_NEW:
 			{
-				//GAME->ChangeState(CNewGameState::GetInstance());
+				GAME->ChangeState(CNewGameState::GetInstance());
 				break;
 			}
 		case MAIN_LOAD:
 			{
-				//GAME->ChangeState(CLoadGameState::GetInstance());
+				GAME->ChangeState(CLoadGameState::GetInstance());
 				break;
 			}
 		case MAIN_OPTIONS:
@@ -116,53 +96,23 @@ bool CMainMenuState::Input()
 			}
 		}
 	}
-	else if(INPUT->KeyPressed(DIK_DOWN))
-	{
-		++m_uiCurSelected;
-		if(m_uiCurSelected == MAIN_MAX)
-		{
-			m_uiCurSelected = MAIN_NEW;
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_UP))
-	{
-		--m_uiCurSelected;
-		if(m_uiCurSelected > MAIN_MAX)	//	Because it's unsigned, check this way
-		{
-			m_uiCurSelected = MAIN_MAX - 1;
-		}
-	}
 	return true;
 }
 
 void CMainMenuState::Update(float fElapsedTime)
 {
+	CBaseMenu::Update(fElapsedTime);
 }
 
 void CMainMenuState::Render()
 {
-	TEX_MNG->Draw(m_imgBackground, 0, 0);
+	//	Draw the base menu's stuff .. NOT SURE
+	CBaseMenu::Render();
 
-	RECT rectScroll;
-	rectScroll.left = 0;
-	rectScroll.top = 0;
-	rectScroll.right = 400;
-	rectScroll.bottom = 300;
-
-	TEX_MNG->Draw(m_imgScroll, 200, 150);
-
-	RECT rectCursor;
-	rectCursor.left = 0;
-	rectCursor.top = 0;
-	rectCursor.right = 64;
-	rectCursor.bottom = 64;
-
-	//	Draw the text in even intervals
-	for(unsigned int i = 0; i < MAIN_MAX; ++i)
-	{
-		TEX_MNG->Draw(m_imgCursor, 210, 150);
-	}
-
-	//	Draw a cursor at intervals of the text
-	TEX_MNG->Draw(m_imgCursor, 200-32, 150-32 + m_uiCurSelected*32);
+	//	Draw this menu's stuff
+	pFont->Write("New Game", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Game", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Options", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Credits", 2, 8 + (2*3), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Exit", 2, 8 + (2*4), D3DCOLOR_XRGB(255, 255, 255));
 }
