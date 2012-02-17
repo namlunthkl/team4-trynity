@@ -105,6 +105,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\Tile Mapping\CMap.cpp" />
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
     <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
     <ClCompile Include="source\tinyxml\tinystr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
