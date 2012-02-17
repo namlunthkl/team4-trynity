@@ -12,6 +12,7 @@
 //#include "CLoadGameState.h"
 #include "COptionsState.h"
 #include "CCreditsState.h"
+#include "CGameplayState.h"
 
 CMainMenuState* CMainMenuState::m_pInstance = NULL;
 
@@ -66,6 +67,9 @@ void CMainMenuState::Enter()
 
 	//	Play Song
 	//
+
+	//	HACK
+	GAME->ChangeState(CGameplayState::GetInstance());
 }
 void CMainMenuState::Exit()
 {
