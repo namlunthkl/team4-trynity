@@ -14,20 +14,21 @@ TestingState* TestingState::GetInstance(void)
 }
 void TestingState::Enter(void)
 {
+	cursorID = CSGD_TextureManager::GetInstance()->LoadTexture( "Resource/Particles/Spark.bmp", D3DCOLOR_ARGB( 255, 255, 255, 255 ) );
 	for( int i = 0 ; i < 1; i ++ )
 	{
-		p[i].Load( "Resource/data/test.xml" );
+		p[i].Load( "Resource/data/test2.xml" );
 	}
 }
 bool TestingState::Input(void)
 {
 	if( CSGD_DirectInput::GetInstance()->KeyPressed(DIK_ESCAPE)   ) { return false; }
 
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_RETURN ) )
+	if( CSGD_DirectInput::GetInstance()->MouseButtonPressed(0)  )
 	{
 		for( int i = 0; i < 1; i++ )
 		{
-		p[i].Fire( 350, 350 );
+			p[i].Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
 		}
 	}
 	return true;
@@ -36,11 +37,13 @@ void TestingState::Update(void)
 {
 	for( int i = 0; i < 1; i++ )
 	{
+		//p[i].Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
 		p[i].Update( CGame::GetInstance()->GetElapsedTime() );
 	}
 }
 void TestingState::Render(void)
 {
+	CSGD_TextureManager::GetInstance()->Draw( cursorID, CSGD_DirectInput::GetInstance()->MouseGetPosX(), CSGD_DirectInput::GetInstance()->MouseGetPosY() );
 	for( int i = 0; i < 1; i++ )
 	{
 		p[i].Render();

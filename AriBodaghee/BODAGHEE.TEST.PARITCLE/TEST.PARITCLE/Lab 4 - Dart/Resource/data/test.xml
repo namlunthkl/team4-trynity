@@ -6,35 +6,35 @@
       <ID>1</ID>
       <Particle_List/>
       <Data>
-        <fSize>0.5</fSize>
+        <fSize>0.2</fSize>
         <MaxLife>40</MaxLife>
-        <MinVelX>-175</MinVelX>
-        <MaxVelX>175</MaxVelX>
-        <MinVelY>-175</MinVelY>
-        <MaxVelY>175</MaxVelY>
-        <SpwnAreaWidth>200</SpwnAreaWidth>
-        <SpwnAreaHeight>200</SpwnAreaHeight>
-        <MinSpwnRadius>0</MinSpwnRadius>
-        <MaxSpwnRadius>0</MaxSpwnRadius>
+        <MinVelX>-300</MinVelX>
+        <MaxVelX>300</MaxVelX>
+        <MinVelY>-300</MinVelY>
+        <MaxVelY>300</MaxVelY>
+        <SpwnAreaWidth>0</SpwnAreaWidth>
+        <SpwnAreaHeight>0</SpwnAreaHeight>
+        <MinSpwnRadius>200</MinSpwnRadius>
+        <MaxSpwnRadius>200</MaxSpwnRadius>
         <FadeEffect>0</FadeEffect>
         <FadeValue>2</FadeValue>
-        <ScaleEffect>1</ScaleEffect>
-        <ScaleValue>0.1</ScaleValue>
+        <ScaleEffect>2</ScaleEffect>
+        <ScaleValue>1</ScaleValue>
         <RotationEffect>0</RotationEffect>
-        <RotationValue>1</RotationValue>
+        <RotationValue>0</RotationValue>
         <RedEffect>0</RedEffect>
-        <RedValue>1</RedValue>
+        <RedValue>0</RedValue>
         <GreenEffect>0</GreenEffect>
-        <GreenValue>1</GreenValue>
+        <GreenValue>0</GreenValue>
         <BlueEffect>0</BlueEffect>
-        <BlueValue>1</BlueValue>
+        <BlueValue>0</BlueValue>
         <SpwnPattern>3</SpwnPattern>
         <Source>2</Source>
         <Dest>2</Dest>
         <UseBlend>true</UseBlend>
-        <EmitterPosX>200</EmitterPosX>
-        <EmitterPosY>200</EmitterPosY>
-        <MaxParticles>100</MaxParticles>
+        <EmitterPosX>300</EmitterPosX>
+        <EmitterPosY>350</EmitterPosY>
+        <MaxParticles>500</MaxParticles>
         <EmitterVelX>0</EmitterVelX>
         <EmitterVelY>0</EmitterVelY>
       </Data>

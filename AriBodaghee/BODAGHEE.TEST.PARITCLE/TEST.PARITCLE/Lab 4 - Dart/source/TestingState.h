@@ -12,7 +12,7 @@ private:
 	TestingState( const TestingState& );
 	TestingState& operator=( const TestingState& );
 	~TestingState(void);
-	
+	int		cursorID;
 	
 
 public:
