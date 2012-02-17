@@ -383,9 +383,8 @@ namespace Limas_Tile_Editor
 
                         CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y];
 
-                        textEvent.Text = curTile.Event;
-
-                        m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y] = curTile;
+                        textBoxEvent.Text = curTile.Event;
+                        comboBoxType.SelectedIndex = curTile.TileID;
 
                         InvalidateMap(sender, e);
                     }
@@ -451,7 +450,7 @@ namespace Limas_Tile_Editor
 
         private void textEvent_TextChanged(object sender, EventArgs e)
         {
-            m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y].Event = textEvent.Text;
+            m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y].Event = textBoxEvent.Text;
         }
 
         private void copyToolStripButton_Click(object sender, EventArgs e)
@@ -931,6 +930,11 @@ namespace Limas_Tile_Editor
 
                 Properties.Settings.Default.Save();
             }
+        }
+
+        private void comboBoxType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y].TileID = comboBoxType.SelectedIndex ;
         }
 
     }
