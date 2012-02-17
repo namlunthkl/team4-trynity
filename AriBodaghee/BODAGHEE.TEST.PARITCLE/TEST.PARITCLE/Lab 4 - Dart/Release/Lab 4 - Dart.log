@@ -1,0 +1,58 @@
+﻿Build started 2/17/2012 4:00:15 PM.
+     1>Project "C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Lab 4 - Dart\Lab 4 - Dart.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\".
+       InitializeBuildStatus:
+         Creating "Release\Breaker.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt source\CBase.cpp source\CGame.cpp source\CSGD_ObjectManager.cpp source\Emitter.cpp source\FlyWeight.cpp source\Messaging\CSGD_EventSystem.cpp source\Particle.cpp source\ParticleWeapon.cpp "source\SGD Wrappers\CSGD_Direct3D.cpp" "source\SGD Wrappers\CSGD_DirectInput.cpp" "source\SGD Wrappers\CSGD_TextureManager.cpp" source\SGD_Math.cpp source\TestingState.cpp source\tinyxml\tinystr.cpp source\tinyxml\tinyxml.cpp source\tinyxml\tinyxmlerror.cpp source\tinyxml\tinyxmlparser.cpp source\WinMain.cpp
+         CBase.cpp
+         CGame.cpp
+         CSGD_ObjectManager.cpp
+         Emitter.cpp
+         FlyWeight.cpp
+         CSGD_EventSystem.cpp
+         Particle.cpp
+         ParticleWeapon.cpp
+         CSGD_Direct3D.cpp
+         CSGD_DirectInput.cpp
+         CSGD_TextureManager.cpp
+         SGD_Math.cpp
+         TestingState.cpp
+         tinystr.cpp
+         tinyxml.cpp
+         tinyxmlerror.cpp
+         tinyxmlparser.cpp
+         WinMain.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\Breaker.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\Breaker.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\Breaker.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\Breaker.lib" /MACHINE:X86 Release\CBase.obj
+         Release\CGame.obj
+         Release\CSGD_ObjectManager.obj
+         Release\Emitter.obj
+         Release\FlyWeight.obj
+         Release\CSGD_EventSystem.obj
+         Release\Particle.obj
+         Release\ParticleWeapon.obj
+         Release\CSGD_Direct3D.obj
+         Release\CSGD_DirectInput.obj
+         Release\CSGD_TextureManager.obj
+         Release\SGD_Math.obj
+         Release\TestingState.obj
+         Release\tinystr.obj
+         Release\tinyxml.obj
+         Release\tinyxmlerror.obj
+         Release\tinyxmlparser.obj
+         Release\WinMain.obj
+         Generating code
+         Finished generating code
+         Lab 4 - Dart.vcxproj -> C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\Breaker.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Release\Breaker.exe;#1" /manifest Release\Breaker.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\Breaker.unsuccessfulbuild".
+         Touching "Release\Breaker.lastbuildstate".
+     1>Done Building Project "C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Lab 4 - Dart\Lab 4 - Dart.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.86
