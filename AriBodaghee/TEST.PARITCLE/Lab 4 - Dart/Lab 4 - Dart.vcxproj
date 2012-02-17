@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3585DD0F-A2F5-4328-A51D-CDEEBA3F7B81}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Lab4Dart</RootNamespace>
+    <ProjectName>Breaker</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\AB_CEmitterManager.cpp" />
+    <ClCompile Include="source\AB_Emitter.cpp" />
+    <ClCompile Include="source\AB_FlyWeight.cpp" />
+    <ClCompile Include="source\AB_Particle.cpp" />
+    <ClCompile Include="source\CBase.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\CSGD_ObjectManager.cpp" />
+    <ClCompile Include="source\Messaging\CSGD_EventSystem.cpp" />
+    <ClCompile Include="source\SGD Wrappers\CSGD_Direct3D.cpp" />
+    <ClCompile Include="source\SGD Wrappers\CSGD_DirectInput.cpp" />
+    <ClCompile Include="source\SGD Wrappers\CSGD_TextureManager.cpp" />
+    <ClCompile Include="source\SGD_Math.cpp" />
+    <ClCompile Include="source\TestingState.cpp" />
+    <ClCompile Include="source\tinyxml\tinystr.cpp" />
+    <ClCompile Include="source\tinyxml\tinyxml.cpp" />
+    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\AB_Emitter.h" />
+    <ClInclude Include="source\AB_EmitterManager.h" />
+    <ClInclude Include="source\AB_FlyWeight.h" />
+    <ClInclude Include="source\AB_Particle.h" />
+    <ClInclude Include="source\CBase.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\CSGD_ObjectFactory.h" />
+    <ClInclude Include="source\CSGD_ObjectManager.h" />
+    <ClInclude Include="source\IBaseInterface.h" />
+    <ClInclude Include="source\IGameState.h" />
+    <ClInclude Include="source\Messaging\CEvent.h" />
+    <ClInclude Include="source\Messaging\CSGD_EventSystem.h" />
+    <ClInclude Include="source\Messaging\IListener.h" />
+    <ClInclude Include="source\SGD Wrappers\CSGD_Direct3D.h" />
+    <ClInclude Include="source\SGD Wrappers\CSGD_DirectInput.h" />
+    <ClInclude Include="source\SGD Wrappers\CSGD_TextureManager.h" />
+    <ClInclude Include="source\SGD Wrappers\SGD_Util.h" />
+    <ClInclude Include="source\SGD_Math.h" />
+    <ClInclude Include="source\TestingState.h" />
+    <ClInclude Include="source\tinyxml\tinystr.h" />
+    <ClInclude Include="source\tinyxml\tinyxml.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

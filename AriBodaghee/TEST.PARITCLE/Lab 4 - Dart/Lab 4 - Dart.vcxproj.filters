@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SGD Wrappers">
+      <UniqueIdentifier>{a8a8fce9-8ade-4310-8039-839809e24891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messages">
+      <UniqueIdentifier>{17f8a34a-9250-43ce-a932-9bdcbb945632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tinyxml">
+      <UniqueIdentifier>{b528604f-2c49-49a3-9d05-06ced728a083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{807e0672-07cc-43b0-99cd-24501112b477}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\SGD Wrappers\CSGD_Direct3D.cpp">
+      <Filter>SGD Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SGD Wrappers\CSGD_DirectInput.cpp">
+      <Filter>SGD Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SGD Wrappers\CSGD_TextureManager.cpp">
+      <Filter>SGD Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Messaging\CSGD_EventSystem.cpp">
+      <Filter>Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinystr.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxml.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CGame.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CSGD_ObjectManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SGD_Math.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TestingState.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AB_Particle.cpp" />
+    <ClCompile Include="source\AB_FlyWeight.cpp" />
+    <ClCompile Include="source\AB_Emitter.cpp" />
+    <ClCompile Include="source\AB_CEmitterManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\SGD Wrappers\CSGD_Direct3D.h">
+      <Filter>SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SGD Wrappers\CSGD_DirectInput.h">
+      <Filter>SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SGD Wrappers\CSGD_TextureManager.h">
+      <Filter>SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SGD Wrappers\SGD_Util.h">
+      <Filter>SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Messaging\CEvent.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Messaging\CSGD_EventSystem.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Messaging\IListener.h">
+      <Filter>Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CSGD_ObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CSGD_ObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\IBaseInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\IGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SGD_Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tinyxml\tinystr.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tinyxml\tinyxml.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AB_Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AB_FlyWeight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AB_Emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AB_EmitterManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

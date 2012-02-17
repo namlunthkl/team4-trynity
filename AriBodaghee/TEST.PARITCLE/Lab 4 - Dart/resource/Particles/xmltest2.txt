@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Holder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <List>
+    <Emitter>
+      <Name>Emitter Number: </Name>
+      <ID>1</ID>
+      <Particle_List />
+      <Data>
+        <fSize>0.1</fSize>
+        <MaxLife>30</MaxLife>
+        <MinVelX>-40</MinVelX>
+        <MaxVelX>40</MaxVelX>
+        <MinVelY>-40</MinVelY>
+        <MaxVelY>40</MaxVelY>
+        <SpwnAreaWidth>50</SpwnAreaWidth>
+        <SpwnAreaHeight>50</SpwnAreaHeight>
+        <MinSpwnRadius>0</MinSpwnRadius>
+        <MaxSpwnRadius>0</MaxSpwnRadius>
+        <FadeEffect>0</FadeEffect>
+        <FadeValue>1</FadeValue>
+        <ScaleEffect>0</ScaleEffect>
+        <ScaleValue>1</ScaleValue>
+        <RotationEffect>2</RotationEffect>
+        <RotationValue>2</RotationValue>
+        <RedEffect>0</RedEffect>
+        <RedValue>1</RedValue>
+        <GreenEffect>0</GreenEffect>
+        <GreenValue>1</GreenValue>
+        <BlueEffect>0</BlueEffect>
+        <BlueValue>1</BlueValue>
+        <SpwnPattern>1</SpwnPattern>
+        <Source>2</Source>
+        <Dest>2</Dest>
+        <UseBlend>true</UseBlend>
+        <EmitterPosX>490</EmitterPosX>
+        <EmitterPosY>649</EmitterPosY>
+        <MaxParticles>250</MaxParticles>
+        <EmitterVelX>0</EmitterVelX>
+        <EmitterVelY>0</EmitterVelY>
+      </Data>
+      <Continuous>true</Continuous>
+      <Lock>false</Lock>
+      <Hide>false</Hide>
+      <Image>0</Image>
+      <ImageFile>Light.bmp</ImageFile>
+    </Emitter>
+  </List>
+</Holder>
