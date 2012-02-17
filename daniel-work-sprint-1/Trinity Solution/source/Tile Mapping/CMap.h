@@ -85,7 +85,7 @@ public:
 	//	Parameters	:	Location of the xml file to load
 	//	Return		:	False if load failed, true if succeeded
 	////////////////////////////////////////////////////////////////////////
-	bool Load(char const * const szFilename, CStringTable * pStringTable);
+	bool Load(const char const * szFilename, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Draw the map's tiles that are inside the window's

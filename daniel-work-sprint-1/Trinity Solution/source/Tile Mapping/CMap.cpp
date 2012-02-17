@@ -37,7 +37,7 @@ CMap::CMap(void)
 //	Parameters	:	Location of the xml file to load
 //	Return		:	False if load failed, true if succeeded
 ////////////////////////////////////////////////////////////////////////
-bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
+bool CMap::Load(const char const * szFilename, CStringTable* pStringTable)
 {
 	// Create XML doc
 	TiXmlDocument doc;
@@ -178,7 +178,7 @@ void CMap::Render(void)
 
 			// Once we reach the end of a line, though, we need to reset the
 			// width index and increase the height index
-			if((int)uiIndexWidth >= GetWidth())
+			if(uiIndexWidth >= GetWidth())
 			{
 				// Reset width index
 				uiIndexWidth = 0;

@@ -179,8 +179,6 @@ void CWorldEngine::ShutdownWorldEngine(void)
 	}
 	m_vpMaps.clear();
 	m_vpTilesets.clear();
-	
-	delete m_pStringTable;
 
 	// TODO: Call shutdown on all maps and tilesets
 	// TODO: Each map and tileset should have a shutdown method to
