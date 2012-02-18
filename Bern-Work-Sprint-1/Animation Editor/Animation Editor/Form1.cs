@@ -19,10 +19,12 @@ namespace Animation_Editor
         bool m_bIsPlaying = false;
         int m_nFrameNumber = 0;
         float m_fTimer = 0.0f;
+
         ManagedTextureManager TM = ManagedTextureManager.Instance;
         ManagedDirect3D D3D = ManagedDirect3D.Instance;
         private Point start = Point.Empty;
         private Point end = Point.Empty;
+        System.DateTime PreviousTimeStamp = new System.DateTime();
         public Form1()
         {
             InitializeComponent();
@@ -41,12 +43,12 @@ namespace Animation_Editor
             Rectangle tempF = new Rectangle((int)numericUpDownXPosition.Value, (int)numericUpDownYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
             f.FrameRect = tempF;
             Rectangle tempC = new Rectangle((int)numericUpDownCollisionXPosition.Value, (int)numericUpDownCollisionYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
-
+            f.FrameDuration = 0.25M;
             listBoxFrames.Items.Add(f);
 
             DrawFrameRect.BackColor = Color.DodgerBlue;
             DrawFrameRect.ForeColor = Color.White;
-            listBoxFrames.SelectedIndex = listBoxFrames.Items.Count - 1;
+            listBoxFrames.SelectedIndex = listBoxFrames.Items.Count - 1;            
         }
 
         private void ToolStripExit_Click(object sender, EventArgs e)
@@ -135,7 +137,10 @@ namespace Animation_Editor
             }
             D3D.ChangeDisplayParam(graphicsPanelPlayer);
             {
-
+                System.DateTime StartTimeStamp = System.DateTime.Now;
+                System.TimeSpan ElapsedTime = StartTimeStamp - PreviousTimeStamp;
+                PreviousTimeStamp = StartTimeStamp;
+                Update((float)ElapsedTime.Seconds);
             }
         }
 
@@ -313,37 +318,56 @@ namespace Animation_Editor
 
         private void FrameListAdd_Click(object sender, EventArgs e)
         {
-            //  Current Point
-            numericUpDownCurrentPointX.Value = 0;
-            numericUpDownCurrentPointY.Value = 0;
-            // Current Rect
-            numericUpDownXPosition.Value = 0;
-            numericUpDownYPosition.Value = 0;
-            numericUpDownHeight.Value = 0;
-            numericUpDownWidth.Value = 0;
-            //  collision rect
-            numericUpDownCollisionXPosition.Value = 0;
-            numericUpDownCollisionYPosition.Value = 0;
-            numericUpDownCollisionHeight.Value = 0;
-            numericUpDownCollisionWidth.Value = 0;
-            //  Anchor Point
-            numericUpDownCurrentPointX.Value = 0.0M;
-            numericUpDownCurrentPointY.Value = 0.0M;
-            //  Frame Duration
-            numericUpDownFrameDuration.Value = .25M;
-            //  Trigger Event
-            TextBoxFrameTriggerEvent.Text = string.Empty;
+            if (listBoxFrames.SelectedIndex != -1)
+            {
+                Frame tempFrame = (Frame)listBoxFrames.Items[listBoxFrames.SelectedIndex];
+                // Current Rect
+                Rectangle tempDraw = new Rectangle(tempFrame.FrameRect.Left, tempFrame.FrameRect.Top, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
+                tempFrame.FrameRect = tempDraw;
+                //  collision rect
+                Rectangle tempCollision = new Rectangle(tempFrame.Collision.Left, tempFrame.Collision.Top, tempFrame.Collision.Width, tempFrame.Collision.Height);
+                tempFrame.Collision = tempCollision;
+                //  Anchor Point
+                Point tempAnchor = new Point(tempFrame.Anchor.X, tempFrame.Anchor.Y);
+                tempFrame.Anchor = tempAnchor;
+                //  Frame Duration
+                tempFrame.FrameDuration = numericUpDownFrameDuration.Value;
+                //  Trigger Event
+                tempFrame.TriggerEvent = TextBoxFrameTriggerEvent.Text;
 
-            Frame f = new Frame();
-            String tempS = "Frame " + (listBoxFrames.Items.Count+1);
-            f.Name = tempS;
-            Point tempP = new Point((int)numericUpDownCurrentPointX.Value,(int)numericUpDownCurrentPointY.Value);
-            f.Anchor = tempP;
-            Rectangle tempF = new Rectangle((int)numericUpDownXPosition.Value,(int)numericUpDownYPosition.Value,(int)numericUpDownWidth.Value,(int)numericUpDownHeight.Value);
-            f.FrameRect = tempF;
-            Rectangle tempC = new Rectangle((int)numericUpDownCollisionXPosition.Value,(int)numericUpDownCollisionYPosition.Value,(int)numericUpDownWidth.Value,(int)numericUpDownHeight.Value);
-            
-            listBoxFrames.Items.Add(f);
+                listBoxFrames.Items[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+                ////  Current Point
+                //numericUpDownCurrentPointX.Value = 0;
+                //numericUpDownCurrentPointY.Value = 0;
+                //// Current Rect
+                //numericUpDownXPosition.Value = 0;
+                //numericUpDownYPosition.Value = 0;
+                //numericUpDownHeight.Value = 0;
+                //numericUpDownWidth.Value = 0;
+                ////  collision rect
+                //numericUpDownCollisionXPosition.Value = 0;
+                //numericUpDownCollisionYPosition.Value = 0;
+                //numericUpDownCollisionHeight.Value = 0;
+                //numericUpDownCollisionWidth.Value = 0;
+                ////  Anchor Point
+                //numericUpDownCurrentPointX.Value = 0.0M;
+                //numericUpDownCurrentPointY.Value = 0.0M;
+                ////  Frame Duration
+                //numericUpDownFrameDuration.Value = .25M;
+                ////  Trigger Event
+                //TextBoxFrameTriggerEvent.Text = string.Empty;
+
+                Frame f = new Frame();
+                String tempS = "Frame " + (listBoxFrames.Items.Count + 1);
+                f.Name = tempS;
+                Point tempP = new Point((int)numericUpDownCurrentPointX.Value, (int)numericUpDownCurrentPointY.Value);
+                f.Anchor = tempP;
+                Rectangle tempF = new Rectangle((int)numericUpDownXPosition.Value, (int)numericUpDownYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
+                f.FrameRect = tempF;
+                Rectangle tempC = new Rectangle((int)numericUpDownCollisionXPosition.Value, (int)numericUpDownCollisionYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
+                f.FrameDuration = 0.25M;
+                listBoxFrames.Items.Add(f);
 
             
             listBoxFrames.SelectedIndex = listBoxFrames.Items.Count-1;
@@ -366,27 +390,31 @@ namespace Animation_Editor
 
         private void listBoxFrames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Frame tempFrame = (Frame)listBoxFrames.Items[listBoxFrames.SelectedIndex];
-            //  Current Point
-            numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
-            numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
-            // Current Rect
-            numericUpDownXPosition.Value = tempFrame.FrameRect.Left;
-            numericUpDownYPosition.Value = tempFrame.FrameRect.Top;
-            numericUpDownHeight.Value = tempFrame.FrameRect.Height;
-            numericUpDownWidth.Value = tempFrame.FrameRect.Width;
-            //  collision rect
-            numericUpDownCollisionXPosition.Value = tempFrame.Collision.Left;
-            numericUpDownCollisionYPosition.Value = tempFrame.Collision.Top;
-            numericUpDownCollisionHeight.Value = tempFrame.Collision.Height;
-            numericUpDownCollisionWidth.Value = tempFrame.Collision.Width;
-            //  Anchor Point
-            numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
-            numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
-            //  Frame Duration
-            numericUpDownFrameDuration.Value = tempFrame.FrameDuration;
-            //  Trigger Event
-            TextBoxFrameTriggerEvent.Text = tempFrame.TriggerEvent;
+            if (listBoxFrames.SelectedIndex != -1)
+            {
+                Frame tempFrame = (Frame)listBoxFrames.Items[listBoxFrames.SelectedIndex];
+                //  Current Point
+                numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
+                numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
+                // Current Rect
+                numericUpDownXPosition.Value = tempFrame.FrameRect.Left;
+                numericUpDownYPosition.Value = tempFrame.FrameRect.Top;
+                numericUpDownHeight.Value = tempFrame.FrameRect.Height;
+                numericUpDownWidth.Value = tempFrame.FrameRect.Width;
+                //  collision rect
+                numericUpDownCollisionXPosition.Value = tempFrame.Collision.Left;
+                numericUpDownCollisionYPosition.Value = tempFrame.Collision.Top;
+                numericUpDownCollisionHeight.Value = tempFrame.Collision.Height;
+                numericUpDownCollisionWidth.Value = tempFrame.Collision.Width;
+                //  Anchor Point
+                numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
+                numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
+                //  Frame Duration
+                numericUpDownFrameDuration.Value = tempFrame.FrameDuration;
+                //  Trigger Event
+                TextBoxFrameTriggerEvent.Text = tempFrame.TriggerEvent;
+            }
+          
         }
 
         private void numericUpDownCurrentPointX_ValueChanged(object sender, EventArgs e)
@@ -532,21 +560,104 @@ namespace Animation_Editor
 
         private void buttonPlayerPlay_Click(object sender, EventArgs e)
         {
-            PlayerReset_Click(sender, e);
-            m_bIsPlaying = true;
+            Play();
         }
 
         private void buttonPlayerStop_Click(object sender, EventArgs e)
         {
-            m_bIsPlaying = false;
+            Stop();
         }
 
         private void PlayerReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void Play()
+        {
+            Reset();
+            m_bIsPlaying = true;
+        }
+
+        private void Stop()
+        {
+            m_bIsPlaying = false;
+        }
+
+        private void Reset()
         {
             m_nFrameNumber = 0;
             m_fTimer = 0;
         }
 
-        
+        private void Update(float fElaspedTime)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
+                if (!m_bIsPlaying)
+                    return;
+                m_fTimer += fElaspedTime;
+                m_fTimer = ((float)temp.Speed) * m_fTimer;
+                if (m_fTimer > ((float)temp.Frames[m_nFrameNumber].FrameDuration))
+                {
+                    m_fTimer -= ((float)temp.Frames[m_nFrameNumber].FrameDuration);
+                    m_nFrameNumber++;
+                    if (m_nFrameNumber >= temp.Frames.Count)
+                    {
+                        if (temp.Looping)
+                        {
+                            Play();
+                        }
+                        else
+                        {
+                            Stop();
+                            m_nFrameNumber = temp.Frames.Count - 1;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        private void AnimationListAdd_Click(object sender, EventArgs e)
+        {
+            List<Frame> frames = new List<Frame>();
+            for (int i = 0; i < listBoxFrames.Items.Count; i++ )
+                frames.Add((Frame)listBoxFrames.Items[i]);
+            Animation Temp = new Animation();
+            Temp.Name = textBoxAnimationName.Text;
+            Temp.Frames = frames;
+            Temp.NumFrames = frames.Count;
+            Temp.Speed = numericUpDownAnimationSpeed.Value;
+            if (Temp.Name != string.Empty)
+            {
+                listBoxAnimations.Items.Add(Temp);
+                listBoxFrames.Items.Clear();
+            }
+            
+        }
+
+        private void numericUpDownFrameDuration_ValueChanged(object sender, EventArgs e)
+        {
+            if (listBoxFrames.Items.Count != 0)
+            {
+                Frame tempFrame = (Frame)listBoxFrames.Items[listBoxFrames.SelectedIndex];
+                tempFrame.FrameDuration = numericUpDownFrameDuration.Value;
+                listBoxFrames.Items[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+        }
+
+        private void listBoxAnimations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                listBoxFrames.Items.Clear();
+                Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
+                for (int i = 0; i < temp.NumFrames; i++)
+                    listBoxFrames.Items.Add(temp.Frames[i]);
+            }
+
+        }
     }
 }

@@ -22,9 +22,10 @@ namespace Animation_Editor
 
             //Display the form
             theform.Show();
-
+            
             while (theform.Looping)
             {
+
                 theform.Update();
 
                 theform.Render();

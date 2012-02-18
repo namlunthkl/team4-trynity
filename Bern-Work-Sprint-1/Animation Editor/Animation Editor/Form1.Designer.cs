@@ -66,7 +66,6 @@
             this.checkBoxOslating = new System.Windows.Forms.CheckBox();
             this.checkBoxLooping = new System.Windows.Forms.CheckBox();
             this.FrameListRemove = new System.Windows.Forms.Button();
-            this.FrameListInsert = new System.Windows.Forms.Button();
             this.FrameListAdd = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.listBoxFrames = new System.Windows.Forms.ListBox();
@@ -100,7 +99,6 @@
             this.numericUpDownCollisionXPosition = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAllAnimations = new System.Windows.Forms.GroupBox();
             this.AnimationListRemove = new System.Windows.Forms.Button();
-            this.AnimationListInsert = new System.Windows.Forms.Button();
             this.AnimationListAdd = new System.Windows.Forms.Button();
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
@@ -460,7 +458,6 @@
             this.groupBoxAnimation.Controls.Add(this.checkBoxOslating);
             this.groupBoxAnimation.Controls.Add(this.checkBoxLooping);
             this.groupBoxAnimation.Controls.Add(this.FrameListRemove);
-            this.groupBoxAnimation.Controls.Add(this.FrameListInsert);
             this.groupBoxAnimation.Controls.Add(this.FrameListAdd);
             this.groupBoxAnimation.Controls.Add(this.label8);
             this.groupBoxAnimation.Controls.Add(this.listBoxFrames);
@@ -495,27 +492,18 @@
             // 
             // FrameListRemove
             // 
-            this.FrameListRemove.Location = new System.Drawing.Point(221, 260);
+            this.FrameListRemove.Location = new System.Drawing.Point(159, 260);
             this.FrameListRemove.Name = "FrameListRemove";
-            this.FrameListRemove.Size = new System.Drawing.Size(81, 23);
+            this.FrameListRemove.Size = new System.Drawing.Size(143, 23);
             this.FrameListRemove.TabIndex = 6;
             this.FrameListRemove.Text = "Remove";
             this.FrameListRemove.UseVisualStyleBackColor = true;
-            // 
-            // FrameListInsert
-            // 
-            this.FrameListInsert.Location = new System.Drawing.Point(114, 260);
-            this.FrameListInsert.Name = "FrameListInsert";
-            this.FrameListInsert.Size = new System.Drawing.Size(83, 23);
-            this.FrameListInsert.TabIndex = 5;
-            this.FrameListInsert.Text = "Insert";
-            this.FrameListInsert.UseVisualStyleBackColor = true;
             // 
             // FrameListAdd
             // 
             this.FrameListAdd.Location = new System.Drawing.Point(6, 260);
             this.FrameListAdd.Name = "FrameListAdd";
-            this.FrameListAdd.Size = new System.Drawing.Size(84, 23);
+            this.FrameListAdd.Size = new System.Drawing.Size(143, 23);
             this.FrameListAdd.TabIndex = 4;
             this.FrameListAdd.Text = "Add";
             this.FrameListAdd.UseVisualStyleBackColor = true;
@@ -617,6 +605,7 @@
             0,
             0,
             131072});
+            this.numericUpDownFrameDuration.ValueChanged += new System.EventHandler(this.numericUpDownFrameDuration_ValueChanged);
             // 
             // numericUpDownAnimationSpeed
             // 
@@ -860,7 +849,6 @@
             // groupBoxAllAnimations
             // 
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
-            this.groupBoxAllAnimations.Controls.Add(this.AnimationListInsert);
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListAdd);
             this.groupBoxAllAnimations.Controls.Add(this.listBoxAnimations);
             this.groupBoxAllAnimations.Location = new System.Drawing.Point(367, 450);
@@ -872,30 +860,22 @@
             // 
             // AnimationListRemove
             // 
-            this.AnimationListRemove.Location = new System.Drawing.Point(221, 172);
+            this.AnimationListRemove.Location = new System.Drawing.Point(162, 179);
             this.AnimationListRemove.Name = "AnimationListRemove";
-            this.AnimationListRemove.Size = new System.Drawing.Size(81, 23);
+            this.AnimationListRemove.Size = new System.Drawing.Size(143, 23);
             this.AnimationListRemove.TabIndex = 9;
             this.AnimationListRemove.Text = "Remove";
             this.AnimationListRemove.UseVisualStyleBackColor = true;
             // 
-            // AnimationListInsert
-            // 
-            this.AnimationListInsert.Location = new System.Drawing.Point(114, 172);
-            this.AnimationListInsert.Name = "AnimationListInsert";
-            this.AnimationListInsert.Size = new System.Drawing.Size(83, 23);
-            this.AnimationListInsert.TabIndex = 8;
-            this.AnimationListInsert.Text = "Insert";
-            this.AnimationListInsert.UseVisualStyleBackColor = true;
-            // 
             // AnimationListAdd
             // 
-            this.AnimationListAdd.Location = new System.Drawing.Point(6, 172);
+            this.AnimationListAdd.Location = new System.Drawing.Point(7, 179);
             this.AnimationListAdd.Name = "AnimationListAdd";
-            this.AnimationListAdd.Size = new System.Drawing.Size(84, 23);
+            this.AnimationListAdd.Size = new System.Drawing.Size(143, 23);
             this.AnimationListAdd.TabIndex = 7;
             this.AnimationListAdd.Text = "Add";
             this.AnimationListAdd.UseVisualStyleBackColor = true;
+            this.AnimationListAdd.Click += new System.EventHandler(this.AnimationListAdd_Click);
             // 
             // listBoxAnimations
             // 
@@ -904,6 +884,7 @@
             this.listBoxAnimations.Name = "listBoxAnimations";
             this.listBoxAnimations.Size = new System.Drawing.Size(295, 147);
             this.listBoxAnimations.TabIndex = 0;
+            this.listBoxAnimations.SelectedIndexChanged += new System.EventHandler(this.listBoxAnimations_SelectedIndexChanged);
             // 
             // graphicsPanelPlayer
             // 
@@ -1017,7 +998,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownXPosition;
         private System.Windows.Forms.GroupBox groupBoxAnimation;
         private System.Windows.Forms.Button FrameListRemove;
-        private System.Windows.Forms.Button FrameListInsert;
         private System.Windows.Forms.Button FrameListAdd;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListBox listBoxFrames;
@@ -1054,7 +1034,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownCollisionXPosition;
         private System.Windows.Forms.GroupBox groupBoxAllAnimations;
         private System.Windows.Forms.Button AnimationListRemove;
-        private System.Windows.Forms.Button AnimationListInsert;
         private System.Windows.Forms.Button AnimationListAdd;
         private System.Windows.Forms.ListBox listBoxAnimations;
     }
