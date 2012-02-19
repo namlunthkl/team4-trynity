@@ -37,11 +37,9 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripOpenXML = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSaveXML = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripSaveAsXML = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripOpenBinary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSaveBinary = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSaveAsBinary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripExit = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxDraw = new System.Windows.Forms.GroupBox();
@@ -101,6 +99,8 @@
             this.AnimationListRemove = new System.Windows.Forms.Button();
             this.AnimationListAdd = new System.Windows.Forms.Button();
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
@@ -147,11 +147,9 @@
             this.toolStripSeparator,
             this.toolStripOpenXML,
             this.ToolStripSaveXML,
-            this.ToolStripSaveAsXML,
             this.toolStripSeparator1,
             this.ToolStripOpenBinary,
             this.toolStripSaveBinary,
-            this.toolStripSaveAsBinary,
             this.toolStripSeparator3,
             this.ToolStripExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -193,6 +191,7 @@
             this.toolStripOpenXML.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.toolStripOpenXML.Size = new System.Drawing.Size(201, 22);
             this.toolStripOpenXML.Text = "&Open XML";
+            this.toolStripOpenXML.Click += new System.EventHandler(this.toolStripOpenXML_Click);
             // 
             // ToolStripSaveXML
             // 
@@ -202,12 +201,7 @@
             this.ToolStripSaveXML.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.ToolStripSaveXML.Size = new System.Drawing.Size(201, 22);
             this.ToolStripSaveXML.Text = "&Save XML";
-            // 
-            // ToolStripSaveAsXML
-            // 
-            this.ToolStripSaveAsXML.Name = "ToolStripSaveAsXML";
-            this.ToolStripSaveAsXML.Size = new System.Drawing.Size(201, 22);
-            this.ToolStripSaveAsXML.Text = "Save &As XML";
+            this.ToolStripSaveXML.Click += new System.EventHandler(this.ToolStripSaveXML_Click);
             // 
             // toolStripSeparator1
             // 
@@ -229,12 +223,6 @@
             this.toolStripSaveBinary.Name = "toolStripSaveBinary";
             this.toolStripSaveBinary.Size = new System.Drawing.Size(201, 22);
             this.toolStripSaveBinary.Text = "Save Binary";
-            // 
-            // toolStripSaveAsBinary
-            // 
-            this.toolStripSaveAsBinary.Name = "toolStripSaveAsBinary";
-            this.toolStripSaveAsBinary.Size = new System.Drawing.Size(201, 22);
-            this.toolStripSaveAsBinary.Text = "Save As Binary";
             // 
             // toolStripSeparator3
             // 
@@ -886,6 +874,20 @@
             this.listBoxAnimations.TabIndex = 0;
             this.listBoxAnimations.SelectedIndexChanged += new System.EventHandler(this.listBoxAnimations_SelectedIndexChanged);
             // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(0, 418);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(638, 17);
+            this.hScrollBar1.TabIndex = 11;
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(641, 27);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 388);
+            this.vScrollBar1.TabIndex = 12;
+            // 
             // graphicsPanelPlayer
             // 
             this.graphicsPanelPlayer.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -896,11 +898,10 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.AutoScroll = true;
             this.MainPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.MainPanel.Location = new System.Drawing.Point(0, 27);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(671, 411);
+            this.MainPanel.Size = new System.Drawing.Size(638, 388);
             this.MainPanel.TabIndex = 1;
             this.MainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseDown);
             this.MainPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseMove);
@@ -911,6 +912,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 769);
+            this.Controls.Add(this.vScrollBar1);
+            this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.groupBoxAllAnimations);
             this.Controls.Add(this.groupBoxEditCollisionRect);
             this.Controls.Add(this.graphicsPanelPlayer);
@@ -968,12 +971,10 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripOpenBinary;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem ToolStripSaveXML;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripSaveAsXML;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripExit;
         private System.Windows.Forms.ToolStripMenuItem toolStripOpenXML;
         private System.Windows.Forms.ToolStripMenuItem toolStripSaveBinary;
-        private System.Windows.Forms.ToolStripMenuItem toolStripSaveAsBinary;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripImportAnimationImage;
@@ -1036,6 +1037,8 @@
         private System.Windows.Forms.Button AnimationListRemove;
         private System.Windows.Forms.Button AnimationListAdd;
         private System.Windows.Forms.ListBox listBoxAnimations;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }
 
