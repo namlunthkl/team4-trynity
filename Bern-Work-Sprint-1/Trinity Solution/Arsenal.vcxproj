@@ -81,6 +81,7 @@
     <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
     <ClCompile Include="source\Animation\CFrame.cpp" />
     <ClCompile Include="source\Camera\CCameraControl.cpp" />
+    <ClCompile Include="source\CBitmapFont.cpp" />
     <ClCompile Include="source\CGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -97,9 +98,12 @@
     <ClCompile Include="source\Particle\CParticleEmitter.cpp" />
     <ClCompile Include="source\Particle\CParticleManager.cpp" />
     <ClCompile Include="source\States\CAudioOptionsState.cpp" />
+    <ClCompile Include="source\States\CBaseMenu.cpp" />
     <ClCompile Include="source\States\CCreditsState.cpp" />
     <ClCompile Include="source\States\CGameplayState.cpp" />
+    <ClCompile Include="source\States\CLoadGameState.cpp" />
     <ClCompile Include="source\States\CMainMenuState.cpp" />
+    <ClCompile Include="source\States\CNewGameState.cpp" />
     <ClCompile Include="source\States\COptionsState.cpp" />
     <ClCompile Include="source\States\CVideoOptionsState.cpp" />
     <ClCompile Include="source\StdAfx.cpp">
@@ -144,6 +148,7 @@
     <ClInclude Include="source\Animation\CAnimationPlayer.h" />
     <ClInclude Include="source\Animation\CFrame.h" />
     <ClInclude Include="source\Camera\CCameraControl.h" />
+    <ClInclude Include="source\CBitmapFont.h" />
     <ClInclude Include="source\CGame.h" />
     <ClInclude Include="source\Characters\CEnemy.h" />
     <ClInclude Include="source\Characters\CNPC.h" />
@@ -164,9 +169,12 @@
     <ClInclude Include="source\Particle\CParticleEmitter.h" />
     <ClInclude Include="source\Particle\CParticleManager.h" />
     <ClInclude Include="source\States\CAudioOptionsState.h" />
+    <ClInclude Include="source\States\CBaseMenu.h" />
     <ClInclude Include="source\States\CCreditsState.h" />
     <ClInclude Include="source\States\CGameplayState.h" />
+    <ClInclude Include="source\States\CLoadGameState.h" />
     <ClInclude Include="source\States\CMainMenuState.h" />
+    <ClInclude Include="source\States\CNewGameState.h" />
     <ClInclude Include="source\States\COptionsState.h" />
     <ClInclude Include="source\States\CVideoOptionsState.h" />
     <ClInclude Include="source\States\IGameState.h" />

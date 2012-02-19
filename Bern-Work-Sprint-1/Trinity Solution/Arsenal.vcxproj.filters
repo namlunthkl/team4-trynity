@@ -153,6 +153,18 @@
     <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
       <Filter>TinyXml</Filter>
     </ClCompile>
+    <ClCompile Include="source\States\CBaseMenu.cpp">
+      <Filter>Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\States\CLoadGameState.cpp">
+      <Filter>Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\States\CNewGameState.cpp">
+      <Filter>Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBitmapFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -295,6 +307,18 @@
     </ClInclude>
     <ClInclude Include="source\tinyxml\tinyxml.h">
       <Filter>TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="source\States\CBaseMenu.h">
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="source\States\CLoadGameState.h">
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="source\States\CNewGameState.h">
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBitmapFont.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

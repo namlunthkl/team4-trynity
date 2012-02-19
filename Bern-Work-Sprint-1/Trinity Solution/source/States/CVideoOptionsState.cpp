@@ -14,16 +14,6 @@ CVideoOptionsState* CVideoOptionsState::m_pInstance = NULL;
 
 CVideoOptionsState::CVideoOptionsState()
 {
-	//	Assets
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
-	//	Members
-	m_uiCurSelected = 0;
-	m_fLoadTimer = 0.0f;
 }
 
 CVideoOptionsState::~CVideoOptionsState()
@@ -50,56 +40,48 @@ void CVideoOptionsState::DeleteInstance()
 
 void CVideoOptionsState::Enter()
 {
-	//	Load Assets
-	m_imgBackground = TEX_MNG->LoadTexture("TempAsset1.png");
-	m_imgScroll = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_imgCursor = TEX_MNG->LoadTexture("TempAsset2.png");
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
-
 	//	Members
-	m_uiCurSelected = 0;
+	m_uiMenuCount = VDEO_MAX;
 	m_fLoadTimer = 0.0f;
 
-	//	Play Song
-	//
+	//	Imperfect..
+	m_uiCurSelected = 0;
 }
+
 void CVideoOptionsState::Exit()
 {
-	//	Stop Song
-	//
-
-	//	Unload Assets
-	TEX_MNG->UnloadTexture(m_imgBackground);
-	TEX_MNG->UnloadTexture(m_imgScroll);
-	TEX_MNG->UnloadTexture(m_imgCursor);
-	//unloadsonghere
-	m_imgBackground = -1;
-	m_imgScroll = -1;
-	m_imgCursor = -1;
-	m_sndMoveCursor = -1;
-	m_sndConfirm = -1;
 }
 
 bool CVideoOptionsState::Input()
 {
-	if(INPUT->KeyPressed(DIK_RETURN))
+	//	NOT SURE
+	CBaseMenu::Input();
+	//	ABOVE?
+
+	if(bMenuConfirm == true)
 	{
+		//	Set it back to false
+		bMenuConfirm = false;
+		//	Which choice is selected?
 		switch(m_uiCurSelected)
 		{
 		case VDEO_FULLSCREEN:
 			{
-				//toggle fullscreen
+				GAME->SetIsWindowed( !GAME->GetIsWindowed() );
 				break;
 			}
 		case VDEO_SHOWHUD:
 			{
-				//toggleHud
+				GAME->SetShowHUD( !GAME->GetShowHUD() );
 				break;
 			}
 		case VDEO_MINIMAP:
 			{
-				//setmap
+				GAME->SetMapLocation( GAME->GetMapLocation() + 1 );
+				if( GAME->GetMapLocation() == 3 )
+				{
+					GAME->SetMapLocation( 0 );
+				}
 				break;
 			}
 		case VDEO_BACK:
@@ -107,22 +89,6 @@ bool CVideoOptionsState::Input()
 				GAME->ChangeState(COptionsState::GetInstance());
 				break;
 			}
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_DOWN))
-	{
-		++m_uiCurSelected;
-		if(m_uiCurSelected == VDEO_MAX)
-		{
-			m_uiCurSelected = VDEO_FULLSCREEN;
-		}
-	}
-	else if(INPUT->KeyPressed(DIK_UP))
-	{
-		--m_uiCurSelected;
-		if(m_uiCurSelected > VDEO_MAX)	//	Because it's unsigned, check this way
-		{
-			m_uiCurSelected = VDEO_MAX - 1;
 		}
 	}
 	return true;
@@ -134,28 +100,40 @@ void CVideoOptionsState::Update(float fElapsedTime)
 
 void CVideoOptionsState::Render()
 {
-	TEX_MNG->Draw(m_imgBackground, 0, 0);
+	//	Draw the base menu's stuff .. NOT SURE
+	CBaseMenu::Render();
 
-	RECT rectScroll;
-	rectScroll.left = 0;
-	rectScroll.top = 0;
-	rectScroll.right = 400;
-	rectScroll.bottom = 300;
-
-	TEX_MNG->Draw(m_imgScroll, 200, 150);
-
-	RECT rectCursor;
-	rectCursor.left = 0;
-	rectCursor.top = 0;
-	rectCursor.right = 64;
-	rectCursor.bottom = 64;
-
-	//	Draw the text in even intervals
-	for(unsigned int i = 0; i < VDEO_MAX; ++i)
+	//	Draw this menu's stuff
+	pFont->Write("Full Screen", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	if(GAME->GetIsWindowed() == false)
 	{
-		TEX_MNG->Draw(m_imgCursor, 210, 150);
+		pFont->Write("On", 19, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
 	}
-
-	//	Draw a cursor at intervals of the text
-	TEX_MNG->Draw(m_imgCursor, 200-32, 150-32 + m_uiCurSelected*32);
+	else
+	{
+		pFont->Write("Off", 19, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	pFont->Write("HUD", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	if(GAME->GetShowHUD() == true)
+	{
+		pFont->Write("On", 19, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	else
+	{
+		pFont->Write("Off", 19, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	pFont->Write("Map Location", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	if(GAME->GetMapLocation() == 0)
+	{
+		pFont->Write("U.R.", 19, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	else if(GAME->GetMapLocation() == 1)
+	{
+		pFont->Write("B.L.", 19, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	else if(GAME->GetMapLocation() == 2)
+	{
+		pFont->Write("B.R.", 19, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	}
+	pFont->Write("Back", 2, 8 + (2*3), D3DCOLOR_XRGB(255, 255, 255));
 }

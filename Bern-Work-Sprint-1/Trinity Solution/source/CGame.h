@@ -40,6 +40,10 @@ class CGame
 	short			m_sScreenWidth;
 	short			m_sScreenHeight;
 	bool			m_bIsWindowed;
+	bool			m_bShowHUD;
+	char			m_cMapLocation;	//	0, 1, 2
+	char			m_cMusicVolume;	//	0 thru 100
+	char			m_cSoundVolume;	//	0 thru 100
 
 	//	Game's current state
 	IGameState*		m_pCurrentState;
@@ -126,11 +130,15 @@ public:
 	//						ACCESSORS AND MUTATORS							//
 	//	------------------------------------------------------------------	//
 	//////////////////////////////////////////////////////////////////////////
-private:
 	inline HWND			GetWindowHandle(void)	{ return m_hWnd; }
 	inline short		GetScreenWidth(void)	{ return m_sScreenWidth; }
 	inline short		GetScreenHeight(void)	{ return m_sScreenHeight; }
 	inline bool			GetIsWindowed(void)		{ return m_bIsWindowed; }
+	inline bool			GetShowHUD(void)		{ return m_bShowHUD; }
+	inline char			GetMapLocation(void)	{ return m_cMapLocation; }
+	inline char			GetMusicVolume(void)	{ return m_cMusicVolume; }
+	inline char			GetSoundVolume(void)	{ return m_cSoundVolume; }
+
 	inline IGameState*	GetCurrentState(void)	{ return m_pCurrentState; }
 	inline CTimer		GetTimer(void)			{ return m_Timer; }
 	
@@ -138,8 +146,10 @@ private:
 	inline void SetScreenWidth	(short sScreenWidth)	{ m_sScreenWidth = sScreenWidth; }
 	inline void SetScreenHeight	(short sScreenHeight)	{ m_sScreenHeight = sScreenHeight; }
 	inline void SetIsWindowed	(bool bIsWindowed)		{ m_bIsWindowed = bIsWindowed; }
+	inline void SetShowHUD		(bool bShowHUD)			{ m_bShowHUD = bShowHUD; }
+	inline void SetMapLocation	(char cMapLocation)		{ m_cMapLocation = cMapLocation; }
+	inline void SetMusicVolume	(char cMusicVolume)		{ m_cMusicVolume = cMusicVolume; }
+	inline void SetSoundVolume	(char cSoundVolume)		{ m_cSoundVolume = cSoundVolume; }
 };
-
-
 
 #endif // CGAME_H_

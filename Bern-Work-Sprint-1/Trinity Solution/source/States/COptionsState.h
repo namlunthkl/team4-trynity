@@ -7,12 +7,12 @@
 
 #ifndef _COPTIONSSTATE_H_
 #define _COPTIONSSTATE_H_
-#include "IGameState.h"
+#include "CBaseMenu.h"
 #include "../CGame.h"
 
 enum {OPTN_VIDEO = 0, OPTN_AUDIO, OPTN_BACK, OPTN_MAX};
 
-class COptionsState : public IGameState
+class COptionsState : public IGameState, public CBaseMenu
 {
 private:
 	//	Instance
@@ -25,17 +25,8 @@ private:
 	~COptionsState();
 	
 	//	Assets
-	int m_imgBackground;
-	int m_imgScroll;
-	int m_imgCursor;
-	int m_sndMoveCursor;
-	int m_sndConfirm;
-
-	//vector<char*> m_vszMenuItems;
 
 	//	Members
-	unsigned int m_uiCurSelected;
-	float m_fLoadTimer;
 
 public:
 	//	Singleton

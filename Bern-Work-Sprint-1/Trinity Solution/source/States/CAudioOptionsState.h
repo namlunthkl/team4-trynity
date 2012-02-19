@@ -7,12 +7,12 @@
 
 #ifndef _CAUDIOOPTIONSSTATE_H_
 #define _CAUDIOOPTIONSSTATE_H_
-#include "IGameState.h"
+#include "CBaseMenu.h"
 #include "../CGame.h"
 
 enum {ADIO_MUSIC = 0, ADIO_SOUND, ADIO_BACK, ADIO_MAX};
 
-class CAudioOptionsState : public IGameState
+class CAudioOptionsState : public IGameState, public CBaseMenu
 {
 private:
 	//	Instance
@@ -25,17 +25,8 @@ private:
 	~CAudioOptionsState();
 	
 	//	Assets
-	int m_imgBackground;
-	int m_imgScroll;
-	int m_imgCursor;
-	int m_sndMoveCursor;
-	int m_sndConfirm;
-
-	//vector<char*> m_vszMenuItems;
 
 	//	Members
-	unsigned int m_uiCurSelected;
-	float m_fLoadTimer;
 
 public:
 	//	Singleton

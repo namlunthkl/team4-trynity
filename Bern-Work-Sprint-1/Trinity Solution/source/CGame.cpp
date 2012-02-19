@@ -42,6 +42,12 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	SetScreenHeight(nScreenHeight);
 	SetIsWindowed(bIsWindowed);
 
+	// Set gameplay variables
+	SetShowHUD(true);
+	SetMapLocation(2);	// 0 thru 2
+	SetMusicVolume(80);	// 0 thru 100
+	SetSoundVolume(100);// 0 thru 100
+
 	// Initialize all the resource managers
 	D3D->InitDirect3D(hWnd, nScreenWidth, nScreenHeight, bIsWindowed, true);
 	TEX_MNG->InitTextureManager(D3D->GetDirect3DDevice(), D3D->GetSprite());
@@ -126,6 +132,7 @@ bool CGame::Main(void)
 ////////////////////////////////////////////////////////////////////////
 bool CGame::Input(void)
 {
+	INPUT->ReadDevices();
 	m_pCurrentState->Input();
 	return true;
 }

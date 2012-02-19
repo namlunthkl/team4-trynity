@@ -7,12 +7,12 @@
 
 #ifndef _CMAINMENUSTATE_H_
 #define _CMAINMENUSTATE_H_
-#include "IGameState.h"
+#include "CBaseMenu.h"
 #include "../CGame.h"
 
 enum {MAIN_NEW = 0, MAIN_LOAD, MAIN_OPTIONS, MAIN_CREDITS, MAIN_EXIT, MAIN_MAX};
 
-class CMainMenuState : public IGameState
+class CMainMenuState : public IGameState, public CBaseMenu
 {
 private:
 	//	Instance
@@ -25,17 +25,8 @@ private:
 	~CMainMenuState();
 	
 	//	Assets
-	int m_imgBackground;
-	int m_imgScroll;
-	int m_imgCursor;
-	int m_sndMoveCursor;
-	int m_sndConfirm;
-
-	//vector<char*> m_vszMenuItems;
 
 	//	Members
-	unsigned int m_uiCurSelected;
-	float m_fLoadTimer;
 
 public:
 	//	Singleton
