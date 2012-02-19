@@ -6,7 +6,9 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#include "../StdAfx.h"
 #include "CCreditsState.h"
+#include "CMainMenuState.h"
 
 void CCreditsState::Enter()
 {

@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
 //    File Name				:	"CMessageSystem.h"
-//
 //    Author Name			:	Daniel Lima
 //    Creation Date			:	02/09 - 03:16 AM
 //    Purpose				:	Class that handles the Message System
@@ -10,13 +9,15 @@
 #define CMESSAGESYSTEM_H_
 
 #include "Messages.h"
+#include <queue>
+using std::queue;
 
 class CMessageSystem
 {
 	queue<CBaseMessage*> m_MsgQueue;
 	void(*m_pfnMsgProc)(CBaseMessage*);
 
-	// Proper singleton - Trilogy of evil
+	// Constructor & Trilogy
 	CMessageSystem() { m_pfnMsgProc; }
 	CMessageSystem(const CMessageSystem&);
 	CMessageSystem& operator=(const CMessageSystem&);

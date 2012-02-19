@@ -42,6 +42,8 @@ void COptionsState::DeleteInstance()
 
 void COptionsState::Enter()
 {
+	CBaseMenu::Enter();
+
 	//	Members
 	m_uiMenuCount = OPTN_MAX;
 	m_fLoadTimer = 0.0f;
@@ -98,7 +100,7 @@ void COptionsState::Render()
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("Video Options", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Audio Options", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Back", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Video Settings", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Audio Settings", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
 }

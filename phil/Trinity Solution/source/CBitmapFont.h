@@ -14,6 +14,7 @@ private:
 	int m_nCharWidth;
 	int m_nCharHeight;
 	int m_nNumCols;
+	bool m_bModified;
 
 	RECT CellAlgorithm(int nID);
 

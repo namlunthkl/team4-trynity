@@ -38,6 +38,7 @@ protected:
 	//	Members
 	bool bMenuConfirm;
 	float m_fLoadTimer;
+	float m_fCursorTime;
 	unsigned int m_uiCurSelected;
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;

@@ -41,6 +41,8 @@ void CNewGameState::DeleteInstance()
 
 void CNewGameState::Enter()
 {
+	CBaseMenu::Enter();
+
 	//	Members
 	m_uiMenuCount = NEWG_MAX;
 	m_fLoadTimer = 0.0f;
@@ -93,6 +95,7 @@ bool CNewGameState::Input()
 
 void CNewGameState::Update(float fElapsedTime)
 {
+	CBaseMenu::Update(fElapsedTime);
 }
 
 void CNewGameState::Render()
@@ -101,8 +104,8 @@ void CNewGameState::Render()
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("New Slot1", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot2", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot3", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Back", 2, 8 + (2*3), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
 }

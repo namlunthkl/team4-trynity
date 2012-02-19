@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
 //    File Name				:	"Messages.h"
-//
 //    Author Name			:	Daniel Lima
 //    Creation Date			:	02/09 - 03:47 AM
 //    Purpose				:	File where all messages are defines
@@ -10,10 +9,11 @@
 #define MESSAGES_H_
 
 typedef int MSGID;
-enum eMsgTypes { MSG_BASE };
+enum eMsgTypes { MSG_NULL = 0, MSG_MAX };
 
 class CBaseMessage
 {
+private:
 	MSGID	m_msgID;
 
 public:
