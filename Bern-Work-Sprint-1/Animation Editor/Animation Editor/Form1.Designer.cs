@@ -486,6 +486,7 @@
             this.FrameListRemove.TabIndex = 6;
             this.FrameListRemove.Text = "Remove";
             this.FrameListRemove.UseVisualStyleBackColor = true;
+            this.FrameListRemove.Click += new System.EventHandler(this.FrameListRemove_Click);
             // 
             // FrameListAdd
             // 
@@ -854,6 +855,7 @@
             this.AnimationListRemove.TabIndex = 9;
             this.AnimationListRemove.Text = "Remove";
             this.AnimationListRemove.UseVisualStyleBackColor = true;
+            this.AnimationListRemove.Click += new System.EventHandler(this.AnimationListRemove_Click);
             // 
             // AnimationListAdd
             // 

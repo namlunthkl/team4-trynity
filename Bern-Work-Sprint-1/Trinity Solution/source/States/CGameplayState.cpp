@@ -11,7 +11,10 @@
 #include "CGameplayState.h"
 #include "..\Animation\CAnimationManager.h"
 #include "..\Messaging\CEventSystem.h"
-
+CGameplayState::CGameplayState(void)
+{
+	CEventSystem::GetInstance()->RegisterForEvent("SpawnMessageBox", this);
+}
 void CGameplayState::Enter(void)
 {
 	CreateMaps();
@@ -62,4 +65,11 @@ void CGameplayState::CreateMaps(void)
 }
 void CGameplayState::CreatePuzzles(void)
 {
+}
+void CGameplayState::HandleEvent(CEvent* pEvent)
+{
+	if(pEvent->GetEventID() == "SpawnMessageBox")
+	{
+		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
+	}
 }

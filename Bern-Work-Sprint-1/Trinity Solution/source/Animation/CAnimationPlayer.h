@@ -8,8 +8,7 @@
 #ifndef _CANIMATIONPLAYER_H_
 #define _CANIMATIONPLAYER_H_
 #include "CAnimationManager.h"
-#include "../Messaging/IListener.h"
-class CAnimationPlayer : public IListener
+class CAnimationPlayer 
 {
 private:
 	int m_nAnimationId;
@@ -28,7 +27,5 @@ public:
 	void Reset();
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
-	void init();
-	void HandleEvent(CEvent* pEvent);
 };
 #endif

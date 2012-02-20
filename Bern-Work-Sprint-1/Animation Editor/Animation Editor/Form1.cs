@@ -20,7 +20,6 @@ namespace Animation_Editor
         bool m_bIsPlaying = false;
         int m_nFrameNumber = 1;
         float m_fTimer = 0.0f;
-
         ManagedTextureManager TM = ManagedTextureManager.Instance;
         ManagedDirect3D D3D = ManagedDirect3D.Instance;
         private Point start = Point.Empty;
@@ -365,26 +364,6 @@ namespace Animation_Editor
 
                 listBoxFrames.Items[listBoxFrames.SelectedIndex] = tempFrame;
             }
-                ////  Current Point
-                //numericUpDownCurrentPointX.Value = 0;
-                //numericUpDownCurrentPointY.Value = 0;
-                //// Current Rect
-                //numericUpDownXPosition.Value = 0;
-                //numericUpDownYPosition.Value = 0;
-                //numericUpDownHeight.Value = 0;
-                //numericUpDownWidth.Value = 0;
-                ////  collision rect
-                //numericUpDownCollisionXPosition.Value = 0;
-                //numericUpDownCollisionYPosition.Value = 0;
-                //numericUpDownCollisionHeight.Value = 0;
-                //numericUpDownCollisionWidth.Value = 0;
-                ////  Anchor Point
-                //numericUpDownCurrentPointX.Value = 0.0M;
-                //numericUpDownCurrentPointY.Value = 0.0M;
-                ////  Frame Duration
-                //numericUpDownFrameDuration.Value = .25M;
-                ////  Trigger Event
-                //TextBoxFrameTriggerEvent.Text = string.Empty;
 
                 Frame f = new Frame();
                 String tempS = "Frame " + (listBoxFrames.Items.Count + 1);
@@ -804,10 +783,11 @@ namespace Animation_Editor
                 XElement root = XElement.Load(dlg.FileName);
                 XAttribute FileName = root.Attribute("FileName");
 
-                imageid = TM.LoadTexture(FileName.ToString(), 0);
+                
                 FilePath = String.Empty;
                 FilePath += "\\resource\\";
-                FilePath += FileName.ToString();
+                FilePath += FileName.Value;
+                imageid = TM.LoadTexture(FilePath, 0);
                 SpriteSheet temp = new SpriteSheet(FilePath);
                 AnimationSheet[0, 0] = temp;
 
@@ -831,5 +811,23 @@ namespace Animation_Editor
             }
         }
 
+        private void FrameListRemove_Click(object sender, EventArgs e)
+        {
+            if (listBoxFrames.SelectedIndex != -1)
+                listBoxFrames.Items.RemoveAt(listBoxFrames.SelectedIndex);
+            for (int i = 0; i < listBoxFrames.Items.Count; i++)
+            {
+                Frame temp = (Frame)listBoxFrames.Items[i];
+                String tempS = "Frame " + (i + 1);
+                temp.Name = tempS;
+                listBoxFrames.Items[i] = temp;
+            }
+        }
+
+        private void AnimationListRemove_Click(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+                listBoxAnimations.Items.RemoveAt(listBoxAnimations.SelectedIndex);
+        }
     }
 }

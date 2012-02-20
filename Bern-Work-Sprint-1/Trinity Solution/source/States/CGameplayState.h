@@ -11,7 +11,8 @@
 #include "IGameState.h"
 #include "..\Tile Mapping\CMap.h"
 #include "..\Animation\CAnimationPlayer.h"
-class CGameplayState : public IGameState
+#include "../Messaging/IListener.h"
+class CGameplayState : public IGameState , public IListener
 {
 	vector<CMap> m_vMaps;
 	CAnimationPlayer* gethit;
@@ -20,6 +21,7 @@ class CGameplayState : public IGameState
 	CAnimationPlayer* attack2;
 	float bucket;
 public:
+	CGameplayState(void);
 	void Enter(void);
 	bool Input(void);
 	void Update(float fElapsedTime);
@@ -28,6 +30,7 @@ public:
 	static CGameplayState* GetInstance(void);
 	void CreateMaps(void);
 	void CreatePuzzles(void);
+	void HandleEvent(CEvent* pEvent);
 };
 
 #endif // CGAMEPLAYSTATE_H_
