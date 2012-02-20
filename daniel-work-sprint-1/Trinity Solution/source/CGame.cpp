@@ -125,6 +125,8 @@ bool CGame::Main(void)
 ////////////////////////////////////////////////////////////////////////
 bool CGame::Input(void)
 {
+	INPUT->ReadDevices();
+
 	m_pCurrentState->Input();
 	return true;
 }

@@ -46,6 +46,16 @@ const char* CStringTable::GetString(unsigned int uiIndex) const
 		return nullptr;
 }
 
+int CStringTable::GetStringIndex(char const * const szString) const
+{
+	for(unsigned int i = 0; i < m_vszStringArray.size(); ++i)
+	{
+		if(m_vszStringArray[i] == szString)
+			return i;
+	}
+	return -1;
+}
+
 void CStringTable::RemoveString(unsigned int uiIndex)
 {
 	if(uiIndex < m_vszStringArray.size())

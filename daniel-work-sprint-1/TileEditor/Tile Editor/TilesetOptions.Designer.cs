@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -61,23 +60,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTilesetWidth)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(365, 249);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(96, 33);
-            this.buttonCancel.TabIndex = 9;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(243, 249);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(96, 33);
+            this.buttonSave.Size = new System.Drawing.Size(218, 33);
             this.buttonSave.TabIndex = 10;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Apply";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -291,7 +280,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 289);
             this.ControlBox = false;
-            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxTile);
@@ -315,7 +303,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

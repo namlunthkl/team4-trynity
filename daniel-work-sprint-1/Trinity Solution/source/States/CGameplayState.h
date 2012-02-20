@@ -11,10 +11,13 @@
 
 #include "IGameState.h"
 #include "..\Tile Mapping\CWorldEngine.h"
+#include "../TestPlayer.h"
 
 class CGameplayState : public IGameState
 {
-	
+	// JUST FOR TESTING
+	TestPlayer* pPlayer;
+
 public:
 	void Enter(void);
 	bool Input(void);

@@ -141,9 +141,9 @@ void CWorldEngine::RenderWorld(void)
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Check collisions against all tiles on screen
 //	Parameters	:	pBase - Object that we're checking collisions with
-//	Return		:	False if collided, true otherwise
+//	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CWorldEngine::CheckCollisions(const IBaseInterface* pBase)
+bool CWorldEngine::CheckCollisions(IBaseInterface* pBase)
 {
 	// TODO: Call check collision on all maps that are on screen
 	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
@@ -156,10 +156,18 @@ bool CWorldEngine::CheckCollisions(const IBaseInterface* pBase)
 			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)
 		{
 			// TODO: Define check collisions function on CMap
-			// curMap->CheckCollisions(pBase);
+			if(curMap->CheckCollisions(pBase, m_pStringTable))
+			{
+				// If collided in this map, return true
+				return true;
+			}
+			// Else continue checking
 		}
 	}
-	return true;
+
+	// If it looped through all the maps and didn't return
+	// true for any of them, there was no collision at all
+	return false;
 }
 
 ////////////////////////////////////////////////////////////////////////

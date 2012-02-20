@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.checkBoxTransparency = new System.Windows.Forms.CheckBox();
-            this.checkViewIDs = new System.Windows.Forms.CheckBox();
+            this.checkViewCollision = new System.Windows.Forms.CheckBox();
             this.checkViewGrid = new System.Windows.Forms.CheckBox();
             this.numMapHeight = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,11 +44,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarTileset = new System.Windows.Forms.HScrollBar();
             this.vScrollBarTileset = new System.Windows.Forms.VScrollBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxEvent = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.eventsCheckBox7 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox6 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox1 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox5 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox2 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox4 = new System.Windows.Forms.CheckBox();
+            this.eventsCheckBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBoxCollidable = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBoxEvent = new System.Windows.Forms.TextBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tabLayers = new System.Windows.Forms.TabControl();
@@ -56,6 +66,7 @@
             this.checkBoxVisible = new System.Windows.Forms.CheckBox();
             this.hScrollBarMap = new System.Windows.Forms.HScrollBar();
             this.vScrollBarMap = new System.Windows.Forms.VScrollBar();
+            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -102,10 +113,6 @@
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
-            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkBoxCollidable = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -124,6 +131,7 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -146,7 +154,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(888, 759);
+            this.panel1.Size = new System.Drawing.Size(949, 759);
             this.panel1.TabIndex = 2;
             // 
             // splitContainer1
@@ -159,7 +167,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.checkBoxTransparency);
-            this.splitContainer1.Panel1.Controls.Add(this.checkViewIDs);
+            this.splitContainer1.Panel1.Controls.Add(this.checkViewCollision);
             this.splitContainer1.Panel1.Controls.Add(this.checkViewGrid);
             this.splitContainer1.Panel1.Controls.Add(this.numMapHeight);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -173,35 +181,35 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(888, 684);
+            this.splitContainer1.Size = new System.Drawing.Size(949, 684);
             this.splitContainer1.SplitterDistance = 44;
             this.splitContainer1.TabIndex = 3;
             // 
             // checkBoxTransparency
             // 
             this.checkBoxTransparency.AutoSize = true;
-            this.checkBoxTransparency.Location = new System.Drawing.Point(758, 9);
+            this.checkBoxTransparency.Checked = true;
+            this.checkBoxTransparency.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxTransparency.Location = new System.Drawing.Point(790, 9);
             this.checkBoxTransparency.Name = "checkBoxTransparency";
             this.checkBoxTransparency.Size = new System.Drawing.Size(118, 21);
             this.checkBoxTransparency.TabIndex = 10;
             this.checkBoxTransparency.Text = "Transparency";
             this.checkBoxTransparency.UseVisualStyleBackColor = true;
             // 
-            // checkViewIDs
+            // checkViewCollision
             // 
-            this.checkViewIDs.AutoSize = true;
-            this.checkViewIDs.Location = new System.Drawing.Point(669, 9);
-            this.checkViewIDs.Name = "checkViewIDs";
-            this.checkViewIDs.Size = new System.Drawing.Size(83, 21);
-            this.checkViewIDs.TabIndex = 10;
-            this.checkViewIDs.Text = "View IDs";
-            this.checkViewIDs.UseVisualStyleBackColor = true;
+            this.checkViewCollision.AutoSize = true;
+            this.checkViewCollision.Location = new System.Drawing.Point(669, 9);
+            this.checkViewCollision.Name = "checkViewCollision";
+            this.checkViewCollision.Size = new System.Drawing.Size(115, 21);
+            this.checkViewCollision.TabIndex = 10;
+            this.checkViewCollision.Text = "View Collision";
+            this.checkViewCollision.UseVisualStyleBackColor = true;
             // 
             // checkViewGrid
             // 
             this.checkViewGrid.AutoSize = true;
-            this.checkViewGrid.Checked = true;
-            this.checkViewGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkViewGrid.Location = new System.Drawing.Point(573, 9);
             this.checkViewGrid.Name = "checkViewGrid";
             this.checkViewGrid.Size = new System.Drawing.Size(90, 21);
@@ -328,8 +336,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(888, 636);
-            this.splitContainer2.SplitterDistance = 238;
+            this.splitContainer2.Size = new System.Drawing.Size(949, 636);
+            this.splitContainer2.SplitterDistance = 249;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -348,55 +356,173 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer3.Size = new System.Drawing.Size(238, 636);
+            this.splitContainer3.Size = new System.Drawing.Size(249, 636);
             this.splitContainer3.SplitterDistance = 365;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // tilesetPanel
+            // 
+            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
+            this.tilesetPanel.Name = "tilesetPanel";
+            this.tilesetPanel.Size = new System.Drawing.Size(228, 344);
+            this.tilesetPanel.TabIndex = 0;
+            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
+            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
+            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
             // 
             // hScrollBarTileset
             // 
             this.hScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.hScrollBarTileset.Location = new System.Drawing.Point(0, 344);
             this.hScrollBarTileset.Name = "hScrollBarTileset";
-            this.hScrollBarTileset.Size = new System.Drawing.Size(217, 21);
+            this.hScrollBarTileset.Size = new System.Drawing.Size(228, 21);
             this.hScrollBarTileset.TabIndex = 0;
             // 
             // vScrollBarTileset
             // 
             this.vScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBarTileset.Location = new System.Drawing.Point(217, 0);
+            this.vScrollBarTileset.Location = new System.Drawing.Point(228, 0);
             this.vScrollBarTileset.Name = "vScrollBarTileset";
             this.vScrollBarTileset.Size = new System.Drawing.Size(21, 365);
             this.vScrollBarTileset.TabIndex = 3;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkedListBox1);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.checkBoxCollidable);
-            this.groupBox1.Controls.Add(this.textBoxEvent);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(17, 13);
+            this.groupBox1.Controls.Add(this.textBoxEvent);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 233);
+            this.groupBox1.Size = new System.Drawing.Size(249, 267);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Tile";
             // 
-            // textBoxEvent
+            // groupBox2
             // 
-            this.textBoxEvent.Location = new System.Drawing.Point(83, 65);
-            this.textBoxEvent.Name = "textBoxEvent";
-            this.textBoxEvent.Size = new System.Drawing.Size(100, 22);
-            this.textBoxEvent.TabIndex = 5;
-            this.textBoxEvent.TextChanged += new System.EventHandler(this.textEvent_TextChanged);
+            this.groupBox2.Controls.Add(this.eventsCheckBox7);
+            this.groupBox2.Controls.Add(this.eventsCheckBox6);
+            this.groupBox2.Controls.Add(this.eventsCheckBox1);
+            this.groupBox2.Controls.Add(this.eventsCheckBox5);
+            this.groupBox2.Controls.Add(this.eventsCheckBox2);
+            this.groupBox2.Controls.Add(this.eventsCheckBox4);
+            this.groupBox2.Controls.Add(this.eventsCheckBox3);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.Location = new System.Drawing.Point(3, 82);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(243, 182);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Event Firing Conditions";
+            // 
+            // eventsCheckBox7
+            // 
+            this.eventsCheckBox7.AutoSize = true;
+            this.eventsCheckBox7.Location = new System.Drawing.Point(21, 144);
+            this.eventsCheckBox7.Name = "eventsCheckBox7";
+            this.eventsCheckBox7.Size = new System.Drawing.Size(112, 21);
+            this.eventsCheckBox7.TabIndex = 0;
+            this.eventsCheckBox7.Text = "Air Crossbow";
+            this.eventsCheckBox7.UseVisualStyleBackColor = true;
+            this.eventsCheckBox7.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox6
+            // 
+            this.eventsCheckBox6.AutoSize = true;
+            this.eventsCheckBox6.Location = new System.Drawing.Point(21, 125);
+            this.eventsCheckBox6.Name = "eventsCheckBox6";
+            this.eventsCheckBox6.Size = new System.Drawing.Size(121, 21);
+            this.eventsCheckBox6.TabIndex = 0;
+            this.eventsCheckBox6.Text = "Earth Hammer";
+            this.eventsCheckBox6.UseVisualStyleBackColor = true;
+            this.eventsCheckBox6.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox1
+            // 
+            this.eventsCheckBox1.AutoSize = true;
+            this.eventsCheckBox1.Location = new System.Drawing.Point(21, 30);
+            this.eventsCheckBox1.Name = "eventsCheckBox1";
+            this.eventsCheckBox1.Size = new System.Drawing.Size(108, 21);
+            this.eventsCheckBox1.TabIndex = 0;
+            this.eventsCheckBox1.Text = "Any collision";
+            this.eventsCheckBox1.UseVisualStyleBackColor = true;
+            this.eventsCheckBox1.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox5
+            // 
+            this.eventsCheckBox5.AutoSize = true;
+            this.eventsCheckBox5.Location = new System.Drawing.Point(21, 106);
+            this.eventsCheckBox5.Name = "eventsCheckBox5";
+            this.eventsCheckBox5.Size = new System.Drawing.Size(94, 21);
+            this.eventsCheckBox5.TabIndex = 0;
+            this.eventsCheckBox5.Text = "Fire Blade";
+            this.eventsCheckBox5.UseVisualStyleBackColor = true;
+            this.eventsCheckBox5.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox2
+            // 
+            this.eventsCheckBox2.AutoSize = true;
+            this.eventsCheckBox2.Location = new System.Drawing.Point(21, 49);
+            this.eventsCheckBox2.Name = "eventsCheckBox2";
+            this.eventsCheckBox2.Size = new System.Drawing.Size(124, 21);
+            this.eventsCheckBox2.TabIndex = 0;
+            this.eventsCheckBox2.Text = "Player collision";
+            this.eventsCheckBox2.UseVisualStyleBackColor = true;
+            this.eventsCheckBox2.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox4
+            // 
+            this.eventsCheckBox4.AutoSize = true;
+            this.eventsCheckBox4.Location = new System.Drawing.Point(21, 87);
+            this.eventsCheckBox4.Name = "eventsCheckBox4";
+            this.eventsCheckBox4.Size = new System.Drawing.Size(106, 21);
+            this.eventsCheckBox4.TabIndex = 0;
+            this.eventsCheckBox4.Text = "Basic attack";
+            this.eventsCheckBox4.UseVisualStyleBackColor = true;
+            this.eventsCheckBox4.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // eventsCheckBox3
+            // 
+            this.eventsCheckBox3.AutoSize = true;
+            this.eventsCheckBox3.Location = new System.Drawing.Point(21, 68);
+            this.eventsCheckBox3.Name = "eventsCheckBox3";
+            this.eventsCheckBox3.Size = new System.Drawing.Size(113, 21);
+            this.eventsCheckBox3.TabIndex = 0;
+            this.eventsCheckBox3.Text = "Action button";
+            this.eventsCheckBox3.UseVisualStyleBackColor = true;
+            this.eventsCheckBox3.CheckedChanged += new System.EventHandler(this.eventsCheckBox1_CheckedChanged);
+            // 
+            // checkBoxCollidable
+            // 
+            this.checkBoxCollidable.AutoSize = true;
+            this.checkBoxCollidable.Location = new System.Drawing.Point(24, 21);
+            this.checkBoxCollidable.Name = "checkBoxCollidable";
+            this.checkBoxCollidable.Size = new System.Drawing.Size(127, 21);
+            this.checkBoxCollidable.TabIndex = 1;
+            this.checkBoxCollidable.Text = "Physic Collision";
+            this.checkBoxCollidable.UseVisualStyleBackColor = true;
+            this.checkBoxCollidable.CheckedChanged += new System.EventHandler(this.checkBoxCollidable_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 65);
+            this.label5.Location = new System.Drawing.Point(21, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.Size = new System.Drawing.Size(85, 17);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Event";
+            this.label5.Text = "Event Name";
+            // 
+            // textBoxEvent
+            // 
+            this.textBoxEvent.Location = new System.Drawing.Point(112, 49);
+            this.textBoxEvent.Name = "textBoxEvent";
+            this.textBoxEvent.Size = new System.Drawing.Size(119, 22);
+            this.textBoxEvent.TabIndex = 5;
+            this.textBoxEvent.TextChanged += new System.EventHandler(this.textEvent_TextChanged);
             // 
             // splitContainer4
             // 
@@ -414,7 +540,7 @@
             this.splitContainer4.Panel2.Controls.Add(this.hScrollBarMap);
             this.splitContainer4.Panel2.Controls.Add(this.vScrollBarMap);
             this.splitContainer4.Panel2.Controls.Add(this.mapPanel);
-            this.splitContainer4.Size = new System.Drawing.Size(646, 636);
+            this.splitContainer4.Size = new System.Drawing.Size(696, 636);
             this.splitContainer4.SplitterDistance = 26;
             this.splitContainer4.TabIndex = 1;
             // 
@@ -431,8 +557,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.checkBoxVisible);
-            this.splitContainer5.Size = new System.Drawing.Size(646, 26);
-            this.splitContainer5.SplitterDistance = 531;
+            this.splitContainer5.Size = new System.Drawing.Size(696, 26);
+            this.splitContainer5.SplitterDistance = 572;
             this.splitContainer5.TabIndex = 0;
             // 
             // tabLayers
@@ -442,7 +568,7 @@
             this.tabLayers.Location = new System.Drawing.Point(0, 0);
             this.tabLayers.Name = "tabLayers";
             this.tabLayers.SelectedIndex = 0;
-            this.tabLayers.Size = new System.Drawing.Size(531, 26);
+            this.tabLayers.Size = new System.Drawing.Size(572, 26);
             this.tabLayers.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabLayers.TabIndex = 1;
             this.tabLayers.SelectedIndexChanged += new System.EventHandler(this.tabLayers_SelectedIndexChanged);
@@ -452,7 +578,7 @@
             this.tabLayer0.Location = new System.Drawing.Point(4, 25);
             this.tabLayer0.Name = "tabLayer0";
             this.tabLayer0.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayer0.Size = new System.Drawing.Size(523, 0);
+            this.tabLayer0.Size = new System.Drawing.Size(564, 0);
             this.tabLayer0.TabIndex = 0;
             this.tabLayer0.Text = "Layer 0";
             this.tabLayer0.UseVisualStyleBackColor = true;
@@ -463,7 +589,7 @@
             this.checkBoxVisible.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxVisible.Location = new System.Drawing.Point(0, 0);
             this.checkBoxVisible.Name = "checkBoxVisible";
-            this.checkBoxVisible.Size = new System.Drawing.Size(111, 26);
+            this.checkBoxVisible.Size = new System.Drawing.Size(120, 26);
             this.checkBoxVisible.TabIndex = 0;
             this.checkBoxVisible.Text = "Visible";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
@@ -474,22 +600,35 @@
             this.hScrollBarMap.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.hScrollBarMap.Location = new System.Drawing.Point(0, 585);
             this.hScrollBarMap.Name = "hScrollBarMap";
-            this.hScrollBarMap.Size = new System.Drawing.Size(625, 21);
+            this.hScrollBarMap.Size = new System.Drawing.Size(675, 21);
             this.hScrollBarMap.TabIndex = 1;
             // 
             // vScrollBarMap
             // 
             this.vScrollBarMap.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBarMap.Location = new System.Drawing.Point(625, 0);
+            this.vScrollBarMap.Location = new System.Drawing.Point(675, 0);
             this.vScrollBarMap.Name = "vScrollBarMap";
             this.vScrollBarMap.Size = new System.Drawing.Size(21, 606);
             this.vScrollBarMap.TabIndex = 2;
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(696, 606);
+            this.mapPanel.TabIndex = 1;
+            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
+            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
+            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
+            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 737);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(888, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(949, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -511,7 +650,7 @@
             this.helpToolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(888, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(949, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -640,7 +779,7 @@
             this.helpToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(888, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(949, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -804,14 +943,14 @@
             // importToolStripMenuItem1
             // 
             this.importToolStripMenuItem1.Name = "importToolStripMenuItem1";
-            this.importToolStripMenuItem1.Size = new System.Drawing.Size(123, 24);
+            this.importToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
             this.importToolStripMenuItem1.Text = "&Import";
             this.importToolStripMenuItem1.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem1
             // 
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(123, 24);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
             this.exportToolStripMenuItem1.Text = "&Export";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -828,14 +967,14 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.addToolStripMenuItem.Text = "&Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.newLayerToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.removeToolStripMenuItem.Text = "&Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.deleteLayerToolStripMenuItem_Click);
             // 
@@ -843,7 +982,7 @@
             // 
             this.renameToolStripMenuItem1.Enabled = false;
             this.renameToolStripMenuItem1.Name = "renameToolStripMenuItem1";
-            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(132, 24);
+            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
             this.renameToolStripMenuItem1.Text = "Re&name";
             // 
             // helpToolStripMenuItem1
@@ -892,62 +1031,11 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.aboutToolStripMenuItem1.Text = "&About...";
             // 
-            // tilesetPanel
-            // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
-            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
-            this.tilesetPanel.Name = "tilesetPanel";
-            this.tilesetPanel.Size = new System.Drawing.Size(217, 344);
-            this.tilesetPanel.TabIndex = 0;
-            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
-            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
-            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
-            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPanel.Location = new System.Drawing.Point(0, 0);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(646, 606);
-            this.mapPanel.TabIndex = 1;
-            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
-            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
-            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
-            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Any collision",
-            "Player collision",
-            "Action button",
-            "Basic Attack",
-            "Fire blade",
-            "Earth hammer",
-            "Air crossbow"});
-            this.checkedListBox1.Location = new System.Drawing.Point(24, 93);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(159, 123);
-            this.checkedListBox1.TabIndex = 0;
-            // 
-            // checkBoxCollidable
-            // 
-            this.checkBoxCollidable.AutoSize = true;
-            this.checkBoxCollidable.Location = new System.Drawing.Point(24, 32);
-            this.checkBoxCollidable.Name = "checkBoxCollidable";
-            this.checkBoxCollidable.Size = new System.Drawing.Size(91, 21);
-            this.checkBoxCollidable.TabIndex = 1;
-            this.checkBoxCollidable.Text = "Collidable";
-            this.checkBoxCollidable.UseVisualStyleBackColor = true;
-            // 
             // CTileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 759);
+            this.ClientSize = new System.Drawing.Size(949, 759);
             this.Controls.Add(this.panel1);
             this.Name = "CTileEditor";
             this.Text = "Form1";
@@ -973,6 +1061,8 @@
             this.splitContainer3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
@@ -995,7 +1085,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.CheckBox checkViewIDs;
+        private System.Windows.Forms.CheckBox checkViewCollision;
         private System.Windows.Forms.CheckBox checkViewGrid;
         private System.Windows.Forms.NumericUpDown numMapHeight;
         private System.Windows.Forms.Label label3;
@@ -1068,8 +1158,15 @@
         private System.Windows.Forms.HScrollBar hScrollBarMap;
         private System.Windows.Forms.VScrollBar vScrollBarMap;
         private System.Windows.Forms.CheckBox checkBoxTransparency;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.CheckBox checkBoxCollidable;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox eventsCheckBox7;
+        private System.Windows.Forms.CheckBox eventsCheckBox6;
+        private System.Windows.Forms.CheckBox eventsCheckBox1;
+        private System.Windows.Forms.CheckBox eventsCheckBox5;
+        private System.Windows.Forms.CheckBox eventsCheckBox2;
+        private System.Windows.Forms.CheckBox eventsCheckBox4;
+        private System.Windows.Forms.CheckBox eventsCheckBox3;
 
     }
 }

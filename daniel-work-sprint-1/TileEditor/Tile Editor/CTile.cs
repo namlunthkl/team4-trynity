@@ -21,13 +21,14 @@ namespace Tile_Editor
             set { nPosY = value; }
         }
 
-        int nTileID;
-        public int TileID
+        byte byteTileInfo;
+        public byte TileInfo
         {
-            get { return nTileID; }
-            set { nTileID = value; }
+            get { return byteTileInfo; }
+            set { byteTileInfo = value; }
         }
 
+       
         string szEvent;
         public string Event
         {
@@ -39,7 +40,7 @@ namespace Tile_Editor
         {
             nPosX = -1;
             nPosY = -1;
-            nTileID = 0;
+            byteTileInfo = 0;
             szEvent = "none";
         }
     }

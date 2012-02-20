@@ -95,9 +95,9 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Check collisions against all tiles on screen
 	//	Parameters	:	pBase - Object that we're checking collisions with
-	//	Return		:	False if collided, true otherwise
+	//	Return		:	True if collided, false otherwise
 	////////////////////////////////////////////////////////////////////////
-	bool CheckCollisions(const IBaseInterface* pBase);
+	bool CheckCollisions(IBaseInterface* pBase);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload files

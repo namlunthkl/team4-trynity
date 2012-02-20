@@ -27,6 +27,7 @@ public:
 	int LoadString(char const * const szString);
 
 	const char* GetString(unsigned int uiIndex) const;
+	int GetStringIndex(char const * const szString) const;
 
 	void RemoveString(unsigned int uiIndex);
 

@@ -17,6 +17,7 @@
 #include "../Messaging/CStringTable.h"
 #include "CWorldEngine.h"
 
+#include "../IBaseInterface.h"
 
 // Include header file
 #include "CMap.h"
@@ -37,7 +38,7 @@ CMap::CMap(void)
 //	Parameters	:	Location of the xml file to load
 //	Return		:	False if load failed, true if succeeded
 ////////////////////////////////////////////////////////////////////////
-bool CMap::Load(const char const * szFilename, CStringTable* pStringTable)
+bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 {
 	// Create XML doc
 	TiXmlDocument doc;
@@ -178,7 +179,7 @@ void CMap::Render(void)
 
 			// Once we reach the end of a line, though, we need to reset the
 			// width index and increase the height index
-			if(uiIndexWidth >= GetWidth())
+			if((int)uiIndexWidth >= GetWidth())
 			{
 				// Reset width index
 				uiIndexWidth = 0;
@@ -198,12 +199,109 @@ void CMap::Render(void)
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Check collisions against all tiles on screen
 //	Parameters	:	pBase - Object that we're checking collisions with
-//	Return		:	False if collided, true otherwise
+//	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CMap::CheckCollisions(const IBaseInterface* pBase)
+bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 {
 	// TODO: Check collisions against all tiles on screen
-	return true;
+	bool bCollided = false;					// Basically what will be returned
+
+	// Indexes we'll need for looping
+	unsigned int uiIndexLayer	= 0;		// Loop through layers
+	unsigned int uiIndexWidth	= 0;		// Loop through the map width / columns
+	unsigned int uiIndexHeight	= 0;		// Loop through the map height / lines
+	unsigned int uiIndexTile	= 0;		// Keep track of the tile we're looking in the array
+
+	// First loop through all the layers
+	for(uiIndexLayer = 0; uiIndexLayer < m_vLayers.size(); ++uiIndexLayer)
+	{
+		// For each layer, loop through all the tiles
+		for(uiIndexTile = 0; uiIndexTile < m_vLayers[uiIndexLayer].GetSize(); ++uiIndexTile)
+		{
+			// Get a pointer to the current tile - for better readability
+			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
+
+			// Check if the tile is collidable
+			if(TestBit(tileCurrent->GetInfo(), BIT_TILE_COLLISION))
+			{
+				// Checking a collidable tile
+
+				// Get the tile collision rect
+				RECT rectTileCollision;
+				rectTileCollision.left = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
+				rectTileCollision.top = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
+				rectTileCollision.right = rectTileCollision.left + GetTileset()->GetTileWidth();
+				rectTileCollision.bottom = rectTileCollision.top + GetTileset()->GetTileHeight();
+
+				RECT rectIntersection;
+				// If Base's collision rect intersects with this tile's collision rect...
+				if(IntersectRect(&rectIntersection, &rectTileCollision, &pBase->GetCollisionRect())) 
+				{
+					// ...we know that pBase collided with this tile
+					bCollided = true;
+
+					// If this tile has an event...
+					if(pStringTable->GetString(tileCurrent->GetEventID()) != "none")
+					{
+						char nConditionsMet = 0;
+						char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo());
+
+						//// If this tile should send an event in any collision
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ANY_COLLISION))
+						//	nConditionsMet++;
+						//// If this tile should send an event only when colliding with player
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_PLAYER_COLLISION))
+						//	// Check if pBase is the player and if it is, send event
+						//	if(/* check if pBase's type is player */)
+						//		nConditionsMet++;
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
+						//	if(/* check if action button was pressed */)
+						//		nConditionsMet++;
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_BASIC_ATTACK))
+						//	if(/* check if player attacked */)
+						//		nConditionsMet++;
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_FIRE_BLADE))
+						//	if(/* check if fire power was used */)
+						//		nConditionsMet++;
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_EARTH_HAMMER))
+						//	if(/* check if earth power was used */)
+						//		nConditionsMet++;
+						//if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_AIR_CROSSBOW))
+						//	if(/* check if air power was used */)
+						//		nConditionsMet++;
+
+						//if(nConditionsMet == nConditionsNeeded)
+						//	CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()));
+					}
+
+					// Continue checking
+				}
+			}
+
+			// Since we're reading line by line, from left to right, we need
+			// to increase the width index every time we draw a tile
+			++uiIndexWidth;
+
+			// Once we reach the end of a line, though, we need to reset the
+			// width index and increase the height index
+			if((int)uiIndexWidth >= GetWidth())
+			{
+				// Reset width index
+				uiIndexWidth = 0;
+
+				// Increase height index
+				++uiIndexHeight;
+			}
+		}
+
+		// Once we're done loading a layer, we should reset the width and height
+		// indexes, so that the next layer is rendered above this one
+		uiIndexWidth = 0;
+		uiIndexHeight = 0;
+	}
+
+	// Return if collided or not
+	return bCollided;
 }
 
 ////////////////////////////////////////////////////////////////////////

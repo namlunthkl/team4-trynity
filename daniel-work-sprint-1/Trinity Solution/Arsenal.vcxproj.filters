@@ -162,6 +162,9 @@
     <ClCompile Include="source\Tile Mapping\CTileset.cpp">
       <Filter>Tile Mapping</Filter>
     </ClCompile>
+    <ClCompile Include="source\ByteUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -310,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="source\Messaging\CStringTable.h">
       <Filter>Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ByteUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestPlayer.h">
+      <Filter>Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

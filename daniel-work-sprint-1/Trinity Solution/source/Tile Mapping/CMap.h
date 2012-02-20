@@ -55,6 +55,13 @@ class CMap
 	// Pointer to this map's tileset
 	CTileset*		m_pTileset;
 
+	// For tile collision checks and firing events
+	enum ETyleByte { BIT_TILE_COLLISION = 0, BIT_EVENT_ANY_COLLISION,
+		BIT_EVENT_PLAYER_COLLISION, BIT_EVENT_ACTION_BUTTON,
+		BIT_EVENT_BASIC_ATTACK, BIT_EVENT_FIRE_BLADE,
+		BIT_EVENT_EARTH_HAMMER, BIT_EVENT_AIR_CROSSBOW };
+
+
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PRIVATE	FUNCTIONS							//
@@ -85,7 +92,7 @@ public:
 	//	Parameters	:	Location of the xml file to load
 	//	Return		:	False if load failed, true if succeeded
 	////////////////////////////////////////////////////////////////////////
-	bool Load(const char const * szFilename, CStringTable * pStringTable);
+	bool Load(char const * const szFilename, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Draw the map's tiles that are inside the window's
@@ -96,9 +103,9 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Check collisions against all tiles on screen
 	//	Parameters	:	pBase - Object that we're checking collisions with
-	//	Return		:	False if collided, true otherwise
+	//	Return		:	True if collided, false otherwise
 	////////////////////////////////////////////////////////////////////////
-	bool CheckCollisions(const IBaseInterface* pBase);
+	bool CheckCollisions(IBaseInterface* pBase, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload the file that is loaded by the Load function

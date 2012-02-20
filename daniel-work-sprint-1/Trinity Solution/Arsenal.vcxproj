@@ -78,6 +78,9 @@
     <ClCompile Include="source\Animation\CAnimationManager.cpp" />
     <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
     <ClCompile Include="source\Animation\CFrame.cpp" />
+    <ClCompile Include="source\ByteUtil.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\Camera\CCameraControl.cpp" />
     <ClCompile Include="source\CGame.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -144,6 +147,7 @@
     <ClInclude Include="source\Animation\CAnimationManager.h" />
     <ClInclude Include="source\Animation\CAnimationPlayer.h" />
     <ClInclude Include="source\Animation\CFrame.h" />
+    <ClInclude Include="source\ByteUtil.h" />
     <ClInclude Include="source\Camera\CCameraControl.h" />
     <ClInclude Include="source\CGame.h" />
     <ClInclude Include="source\Characters\CEnemy.h" />
@@ -173,6 +177,7 @@
     <ClInclude Include="source\States\CVideoOptionsState.h" />
     <ClInclude Include="source\States\IGameState.h" />
     <ClInclude Include="source\StdAfx.h" />
+    <ClInclude Include="source\TestPlayer.h" />
     <ClInclude Include="source\Tile Mapping\CLayer.h" />
     <ClInclude Include="source\Tile Mapping\CMap.h" />
     <ClInclude Include="source\Tile Mapping\CTile.h" />
