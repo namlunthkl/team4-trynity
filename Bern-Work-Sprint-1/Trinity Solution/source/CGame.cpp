@@ -15,7 +15,7 @@
 #include "CGame.h"
 #include "States\CMainMenuState.h"
 #include "States\CGameplayState.h"
-
+#include "Animation\CAnimationManager.h"
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
 //	Return		:	Pointer to the singleton's instance
@@ -180,6 +180,8 @@ void CGame::Render(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Shutdown(void)
 {
+	CAnimationManager::GetInstance()->UnloadAll();
+
 	if(D3D)
 		D3D->ShutdownDirect3D();
 

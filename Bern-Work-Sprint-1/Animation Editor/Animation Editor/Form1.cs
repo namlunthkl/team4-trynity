@@ -19,6 +19,7 @@ namespace Animation_Editor
         public bool Looping = true;
         bool m_bIsPlaying = false;
         int m_nFrameNumber = 1;
+        float m_fScale = 1.0f;
         float m_fTimer = 0.0f;
         ManagedTextureManager TM = ManagedTextureManager.Instance;
         ManagedDirect3D D3D = ManagedDirect3D.Instance;
@@ -154,8 +155,8 @@ namespace Animation_Editor
                         PreviousTimeStamp = StartTimeStamp;
                         Update((float)ElapsedTime.Milliseconds/1000.0F);
                         TM.Draw(imageid, (int)(graphicsPanelPlayer.Width * .5F) - (temp.Frames[m_nFrameNumber].Anchor.X - temp.Frames[m_nFrameNumber].FrameRect.X),
-                            (int)(graphicsPanelPlayer.Height * .5F ) - (temp.Frames[m_nFrameNumber].Anchor.Y - temp.Frames[m_nFrameNumber].FrameRect.Y), 
-                            1.0f, 1.0f, temp.Frames[m_nFrameNumber].FrameRect, 0, 0, 0.0f, Color.White.ToArgb());
+                            (int)(graphicsPanelPlayer.Height * .5F ) - (temp.Frames[m_nFrameNumber].Anchor.Y - temp.Frames[m_nFrameNumber].FrameRect.Y),
+                            m_fScale, m_fScale, temp.Frames[m_nFrameNumber].FrameRect, 0, 0, 0.0f, Color.White.ToArgb());
                     }
                     D3D.SpriteEnd();
                     D3D.DeviceEnd();
@@ -784,8 +785,8 @@ namespace Animation_Editor
                 XAttribute FileName = root.Attribute("FileName");
 
                 
-                FilePath = String.Empty;
-                FilePath += "\\resource\\";
+                FilePath = Application.StartupPath.Remove(Application.StartupPath.Length-26,26);
+                FilePath += "/resource/";
                 FilePath += FileName.Value;
                 imageid = TM.LoadTexture(FilePath, 0);
                 SpriteSheet temp = new SpriteSheet(FilePath);
@@ -828,6 +829,36 @@ namespace Animation_Editor
         {
             if (listBoxAnimations.SelectedIndex != -1)
                 listBoxAnimations.Items.RemoveAt(listBoxAnimations.SelectedIndex);
+        }
+
+        private void buttonPlayerNextFrame_Click(object sender, EventArgs e)
+        {
+            Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
+            if (temp.Frames.Count > m_nFrameNumber+1)
+            {
+                m_nFrameNumber++;
+            }
+        }
+
+        private void buttonPlayerPrevFrame_Click(object sender, EventArgs e)
+        {
+            Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
+            if (0 <= m_nFrameNumber-1)
+            {
+                m_nFrameNumber--;
+            }
+        }
+
+        private void buttonZoomIn_Click(object sender, EventArgs e)
+        {
+            //ZOOM IN
+            m_fScale *= 2;
+        }
+
+        private void buttonZoomOut_Click(object sender, EventArgs e)
+        {
+            //ZOOM OUT
+            m_fScale *= 0.5f;
         }
     }
 }

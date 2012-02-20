@@ -655,21 +655,23 @@
             // 
             // buttonPlayerPrevFrame
             // 
-            this.buttonPlayerPrevFrame.Location = new System.Drawing.Point(84, 19);
+            this.buttonPlayerPrevFrame.Location = new System.Drawing.Point(6, 17);
             this.buttonPlayerPrevFrame.Name = "buttonPlayerPrevFrame";
             this.buttonPlayerPrevFrame.Size = new System.Drawing.Size(72, 23);
             this.buttonPlayerPrevFrame.TabIndex = 5;
             this.buttonPlayerPrevFrame.Text = "Prev. Frame";
             this.buttonPlayerPrevFrame.UseVisualStyleBackColor = true;
+            this.buttonPlayerPrevFrame.Click += new System.EventHandler(this.buttonPlayerPrevFrame_Click);
             // 
             // buttonPlayerNextFrame
             // 
-            this.buttonPlayerNextFrame.Location = new System.Drawing.Point(6, 19);
+            this.buttonPlayerNextFrame.Location = new System.Drawing.Point(84, 18);
             this.buttonPlayerNextFrame.Name = "buttonPlayerNextFrame";
             this.buttonPlayerNextFrame.Size = new System.Drawing.Size(72, 23);
             this.buttonPlayerNextFrame.TabIndex = 4;
             this.buttonPlayerNextFrame.Text = "Next Frame";
             this.buttonPlayerNextFrame.UseVisualStyleBackColor = true;
+            this.buttonPlayerNextFrame.Click += new System.EventHandler(this.buttonPlayerNextFrame_Click);
             // 
             // PlayerReset
             // 
@@ -720,6 +722,7 @@
             this.buttonZoomOut.TabIndex = 1;
             this.buttonZoomOut.Text = "Out";
             this.buttonZoomOut.UseVisualStyleBackColor = true;
+            this.buttonZoomOut.Click += new System.EventHandler(this.buttonZoomOut_Click);
             // 
             // buttonZoomIn
             // 
@@ -729,6 +732,7 @@
             this.buttonZoomIn.TabIndex = 0;
             this.buttonZoomIn.Text = "In";
             this.buttonZoomIn.UseVisualStyleBackColor = true;
+            this.buttonZoomIn.Click += new System.EventHandler(this.buttonZoomIn_Click);
             // 
             // groupBoxEditCollisionRect
             // 

@@ -168,5 +168,6 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 
 bool CAnimationManager::UnloadAll()
 {
+	m_Animations.clear();
 	return true;
 }
