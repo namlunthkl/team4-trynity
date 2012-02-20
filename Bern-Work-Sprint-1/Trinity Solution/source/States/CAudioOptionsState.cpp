@@ -40,6 +40,8 @@ void CAudioOptionsState::DeleteInstance()
 
 void CAudioOptionsState::Enter()
 {
+	CBaseMenu::Enter();
+
 	//	Load Assets
 	m_uiMenuCount = ADIO_MAX;
 	m_fLoadTimer = 0.0f;
@@ -95,6 +97,7 @@ bool CAudioOptionsState::Input()
 
 void CAudioOptionsState::Update(float fElapsedTime)
 {
+	CBaseMenu::Update(fElapsedTime);
 }
 
 void CAudioOptionsState::Render()
@@ -105,11 +108,11 @@ void CAudioOptionsState::Render()
 	//	Draw this menu's stuff
 	char buffer[10] = {0};
 	
-	pFont->Write("Music Volume", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Music Volume", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
 		sprintf_s(buffer, "%d", GAME->GetMusicVolume());
-		pFont->Write(buffer, 19, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Sound Volume", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write(buffer, 256, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Sound Volume", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
 		sprintf_s(buffer, "%d", GAME->GetSoundVolume());
-		pFont->Write(buffer, 19, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Back", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write(buffer, 256, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
 }

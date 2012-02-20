@@ -92,8 +92,6 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			if(pFrame->Attribute("event"))
 			{
 				pEvent = pFrame->Attribute("event");
-				char cBuffer[128] = {0};
-				strcpy_s(cBuffer,_countof(cBuffer),pEvent);
 				tempFrame.SetEvent(pEvent);
 			}
 

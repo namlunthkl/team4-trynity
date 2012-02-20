@@ -46,7 +46,9 @@ void CMainMenuState::DeleteInstance()
 
 void CMainMenuState::Enter()
 {
-	//	Members
+	CBaseMenu::Enter();
+
+	//	Imperfect..
 	m_uiMenuCount = MAIN_MAX;
 
 	//	Imperfect..
@@ -109,10 +111,14 @@ void CMainMenuState::Render()
 	//	Draw the base menu's stuff .. NOT SURE
 	CBaseMenu::Render();
 
+	//	DELETELATER JUST TO SHOW CHARS
+	pFont->Write("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 32, 9, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("abcdefghijklmnopqrstuvwxyz", 32, 10, D3DCOLOR_XRGB(255, 255, 255));
+	
 	//	Draw this menu's stuff
-	pFont->Write("New Game", 2, 8 + (2*0), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Load Game", 2, 8 + (2*1), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Options", 2, 8 + (2*2), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Credits", 2, 8 + (2*3), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Exit", 2, 8 + (2*4), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Game", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Game", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Settings", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Credits", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Exit", 32, 16, D3DCOLOR_XRGB(255, 255, 255));
 }

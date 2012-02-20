@@ -7,7 +7,11 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CAnimationPlayer.h"
-
+#include "../Messaging/CEventSystem.h"
+void CAnimationPlayer::init()
+{
+	CEventSystem::GetInstance()->RegisterForEvent("SpawnMessageBox", this);
+}
 void CAnimationPlayer::Play()
 {
 		Reset();
@@ -31,6 +35,9 @@ void CAnimationPlayer::Update(float fElapsedTime)
 	if(m_fTimer > CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration())
 	{
 		m_fTimer -= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
+		if(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent() != "NONE")
+			CEventSystem::GetInstance()->SendEvent(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent(),this);
+		string temp = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent();
 		m_nFrameNumber++;
 		if(m_nFrameNumber >= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrames()->size())
 		{
@@ -52,4 +59,11 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 	RECT drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 	POINT anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 	TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect);
+}
+void CAnimationPlayer::HandleEvent(CEvent* pEvent)
+{
+	if(pEvent->GetEventID() == "SpawnMessageBox")
+	{
+		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
+	}
 }

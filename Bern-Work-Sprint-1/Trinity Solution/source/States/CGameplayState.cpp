@@ -10,12 +10,14 @@
 
 #include "CGameplayState.h"
 #include "..\Animation\CAnimationManager.h"
+#include "..\Messaging\CEventSystem.h"
 
 void CGameplayState::Enter(void)
 {
 	CreateMaps();
 	CreatePuzzles();
 	CAnimationManager::GetInstance()->LoadAnimation("resource/Animation.xml");
+	
 	gethit=new CAnimationPlayer(0,true);
 	gethit->Play();
 	gethit2 = new CAnimationPlayer(0,false);
@@ -36,8 +38,8 @@ void CGameplayState::Update(float fElapsedTime)
 	gethit2->Update(fElapsedTime);
 	attack->Update(fElapsedTime);
 	attack2->Update(fElapsedTime);
-
 	
+	CEventSystem::GetInstance()->ProcessEvents();
 }
 void CGameplayState::Render(void)
 {
@@ -45,6 +47,7 @@ void CGameplayState::Render(void)
 	gethit2->Render(400,200);
 	attack->Render(200,400);
 	attack2->Render(400,400);
+	
 }
 void CGameplayState::Exit(void)
 {
