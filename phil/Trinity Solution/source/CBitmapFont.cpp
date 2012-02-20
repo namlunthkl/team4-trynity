@@ -11,7 +11,7 @@ CBitmapFont::CBitmapFont()
 	m_nCharWidth = 16;
 	m_nCharHeight = 32;
 	m_nNumCols = 8;
-	m_cStartChar = 65;
+	m_cStartChar = 33;
 	m_bModified = false;
 	m_nImageID = TEX_MNG->LoadTexture("resource/BitmapFont.png", D3DCOLOR_XRGB(255, 0, 255));
 }
@@ -27,79 +27,79 @@ RECT CBitmapFont::CellAlgorithm(int nID)
 	rCell.right = rCell.left + m_nCharWidth;
 	rCell.bottom = rCell.top + m_nCharHeight;
 
-	if(nID == 8)
+	if(nID == 8+32)
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
 		m_bModified = true;
 	}
-	else if(nID == 9 || nID == 10 || nID == 11)	//	JKL
+	else if(nID == 9+32 || nID == 10+32 || nID == 11+32)	//	JKL
 	{
 		rCell.left -= 10;
 		rCell.right -= 10;
 	}
-	else if(nID == 12)			//	M
+	else if(nID == 12+32)			//	M
 	{
 		rCell.left -= 10;
 		m_nCharWidth = 26;
 		m_bModified = true;
 	}
-	else if(nID == 22)			//	W
+	else if(nID == 22+32)			//	W
 	{
 		rCell.right += 10;
 		m_nCharWidth = 26;
 		m_bModified = true;
 	}
-	else if(nID == 23)			//	X
+	else if(nID == 23+32)			//	X
 	{
 		rCell.left -= 112;
 		rCell.right -= 112;
 		rCell.top += m_nCharHeight;
 		rCell.bottom += m_nCharHeight;
 	}
-	else if(nID == 24 || nID == 25)
+	else if(nID == 24+32 || nID == 25+32)
 	{
 		rCell.left += 16;
 		rCell.right += 16;
 	}
-	else if(nID == 40)			//	i
+	else if(nID == 40+32)			//	i
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
 		m_bModified = true;
 	}
-	else if(nID == 41)			//	j
+	else if(nID == 41+32)			//	j
 	{
 		rCell.right -= 6;
 		m_nCharWidth = 10;
 		m_bModified = true;
 	}
-	else if(nID == 43)			//	l
+	else if(nID == 43+32)			//	l
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
 		m_bModified = true;
 	}
-	else if(nID == 44)			//	m
+	else if(nID == 44+32)			//	m
 	{
 		rCell.left -= 10;
 		m_nCharWidth = 26;
 		m_bModified = true;
 	}
-	else if(nID == 54)			//	w
+	else if(nID == 54+32)			//	w
 	{
 		rCell.right += 10;
 		m_nCharWidth = 26;
 		m_bModified = true;
 	}
-	else if(nID == 55)			//	x
+	else if(nID == 55+32)			//	x
 	{
 		rCell.left -= 112;
 		rCell.right -= 112;
 		rCell.top += m_nCharHeight;
 		rCell.bottom += m_nCharHeight;
 	}
-	else if(nID == 56 || nID == 57)	//	y - z
+	else if(nID == 56+32 || nID == 57+32)	//	y - z
 	{
 		rCell.left += 16;
 		rCell.right += 16;
