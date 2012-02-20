@@ -21,14 +21,14 @@ void CGameplayState::Enter(void)
 	CreatePuzzles();
 	CAnimationManager::GetInstance()->LoadAnimation("resource/Animation.xml");
 	
-	gethit=new CAnimationPlayer(0,true);
-	gethit->Play();
-	gethit2 = new CAnimationPlayer(0,false);
-	gethit2->Play();
-	attack = new CAnimationPlayer(1,true);
+	//gethit=new CAnimationPlayer(0,true);
+	//gethit->Play();
+	//gethit2 = new CAnimationPlayer(0,false);
+	//gethit2->Play();
+	attack = new CAnimationPlayer(0,false);
 	attack->Play();
-	attack2 = new CAnimationPlayer(1,false);
-	attack2->Play();
+	//attack2 = new CAnimationPlayer(1,false);
+	//attack2->Play();
 }
 bool CGameplayState::Input(void)
 {
@@ -37,19 +37,19 @@ bool CGameplayState::Input(void)
 void CGameplayState::Update(float fElapsedTime)
 {
 	
-	gethit->Update(fElapsedTime);
-	gethit2->Update(fElapsedTime);
+	//gethit->Update(fElapsedTime);
+	//gethit2->Update(fElapsedTime);
 	attack->Update(fElapsedTime);
-	attack2->Update(fElapsedTime);
+	//attack2->Update(fElapsedTime);
 	
 	CEventSystem::GetInstance()->ProcessEvents();
 }
 void CGameplayState::Render(void)
 {
-	gethit->Render(200,200);
-	gethit2->Render(400,200);
+	//gethit->Render(200,200);
+	//gethit2->Render(400,200);
 	attack->Render(200,400);
-	attack2->Render(400,400);
+	//attack2->Render(400,400);
 	
 }
 void CGameplayState::Exit(void)

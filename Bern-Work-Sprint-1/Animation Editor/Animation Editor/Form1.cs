@@ -86,8 +86,15 @@ namespace Animation_Editor
 
                 Graphics g = MainPanel.CreateGraphics();
                 Size tempSize = new Size(temp.sheet.Width, temp.sheet.Height);
-                hScrollBar1.Maximum = tempSize.Width - MainPanel.Width;
-                vScrollBar1.Maximum = tempSize.Height- MainPanel.Height;
+                if ((tempSize.Width - MainPanel.Width) >= 0)
+                    hScrollBar1.Maximum = tempSize.Width - MainPanel.Width;
+                else
+                    hScrollBar1.Maximum = 0;
+
+                if ((tempSize.Height - MainPanel.Height) >= 0)
+                    vScrollBar1.Maximum = tempSize.Height - MainPanel.Height;
+                else
+                    vScrollBar1.Maximum = 0;
             }
         }
         
@@ -789,7 +796,8 @@ namespace Animation_Editor
             {
                 XElement root = XElement.Load(dlg.FileName);
                 XAttribute FileName = root.Attribute("FileName");
-
+                listBoxAnimations.Items.Clear();
+                listBoxFrames.Items.Clear();
                 
                 FilePath = Application.StartupPath.Remove(Application.StartupPath.Length-26,26);
                 FilePath += "/resource/";
@@ -803,17 +811,79 @@ namespace Animation_Editor
                 hScrollBar1.Maximum = tempSize.Width - MainPanel.Width;
                 vScrollBar1.Maximum = tempSize.Height - MainPanel.Height;
 
-                IEnumerable<XElement> xAnimations = root.Elements("Animations");
+                IEnumerable<XElement> xAnimations = root.Elements("Animation");
+
+                List<Frame> frames = new List<Frame>();
+                for (int i = 0; i < listBoxFrames.Items.Count; i++)
+                    frames.Add((Frame)listBoxFrames.Items[i]);
+                Animation Temp = new Animation();
+                int numberofanimations = 0;
 
                 foreach (XElement xAnimation in xAnimations)
                 {
-                    XAttribute locX = xAnimation.Attribute("X");
-                    XAttribute locY = xAnimation.Attribute("Y");
+                    numberofanimations++;
+                    XAttribute name = xAnimation.Attribute("name");
+                    Temp.Name = name.Value;
+                    XAttribute looping = xAnimation.Attribute("looping");
+                    Temp.Looping = bool.Parse(looping.Value);
+                    XAttribute oslating = xAnimation.Attribute("oslating");
+                    Temp.Oslating = bool.Parse(oslating.Value);
+                    XAttribute playing = xAnimation.Attribute("playing");
+                    Temp.Playing = bool.Parse(playing.Value);
+                    XAttribute speed = xAnimation.Attribute("speed");
+                    Temp.Speed = decimal.Parse(speed.Value);
+                    XAttribute NumFrames = xAnimation.Attribute("NumFrames");
+                    Temp.NumFrames = int.Parse(NumFrames.Value);
 
-                    XElement valX = xAnimation.Element("X");
-                    XElement valY = xAnimation.Element("Y");
+                    IEnumerable<XElement> xFrames = xAnimations.Elements("Frame");
+                    
+                    foreach (XElement xFrame in xFrames)
+                    {
+                        Frame TempFrame = new Frame();
+                        TempFrame.Name = "Frame " + (frames.Count + 1);
+                        XAttribute duration = xFrame.Attribute("duration");
+                        TempFrame.FrameDuration = decimal.Parse(duration.Value);
+                        XAttribute events = xFrame.Attribute("event");
+                        TempFrame.TriggerEvent = events.Value;
 
-                    //map[int.Parse(locX.Value), Convert.ToInt32(locY.Value)] = new Point(int.Parse(valX.Value), int.Parse(valY.Value));
+                        IEnumerable<XElement> xDrawRects = xFrame.Elements("DrawRect");
+                        foreach (XElement xDrawRect in xDrawRects)
+                        {
+                            Rectangle tempDraw = new Rectangle();
+                            XAttribute dx = xFrame.Attribute("x");
+                            tempDraw.X = int.Parse(dx.Value);
+                            XAttribute dy = xFrame.Attribute("y");
+                            tempDraw.Y = int.Parse(dy.Value);
+                            XAttribute dwidth = xFrame.Attribute("width");
+                            tempDraw.Width = int.Parse(dwidth.Value);
+                            XAttribute dheight = xFrame.Attribute("height");
+                            tempDraw.Height = int.Parse(dheight.Value);
+                            TempFrame.FrameRect = tempDraw;
+                        }
+                        IEnumerable<XElement> xCollisionRects = xFrame.Elements("CollisionRect");
+                        foreach (XElement xCollisionRect in xCollisionRects)
+                        {
+                            Rectangle tempCollision = new Rectangle();
+                            XAttribute cx = xFrame.Attribute("x");
+                            tempCollision.X = int.Parse(cx.Value);
+                            XAttribute cy = xFrame.Attribute("y");
+                            tempCollision.Y = int.Parse(cy.Value);
+                            XAttribute cwidth = xFrame.Attribute("width");
+                            tempCollision.Width = int.Parse(cwidth.Value);
+                            XAttribute cheight = xFrame.Attribute("height");
+                            tempCollision.Height = int.Parse(cheight.Value);
+                            TempFrame.FrameRect = tempCollision;
+                        }
+                        IEnumerable<XElement> xAnchors = xFrame.Elements("Anchor");
+                        foreach (XElement xAnchor in xAnchors)
+                        {
+                            XAttribute ay = xFrame.Attribute("y");
+                            XAttribute ax = xFrame.Attribute("x");
+                        }
+
+                        frames.Add(TempFrame);
+                    }
+                    listBoxAnimations.Items.Add(Temp);
                 }
             }
         }
