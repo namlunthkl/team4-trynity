@@ -51,6 +51,9 @@ void CAnimationPlayer::Update(float fElapsedTime)
 }
 void CAnimationPlayer::Render(int nPosX,int nPosY)
 {
+	if(!m_bIsPlaying)
+		return;
+
 	int nSheet = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetImageId();
 	RECT drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 	POINT anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();

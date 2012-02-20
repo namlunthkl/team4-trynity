@@ -26,6 +26,11 @@
 // A map has a tileset
 #include "CTileset.h"
 
+// For CheckCollisions function
+class IBaseInterface;
+// For Event names
+class CStringTable;
+
 // Map class
 // An array of layers, a tileset, a size and a position in the world
 class CMap
@@ -50,18 +55,27 @@ class CMap
 	// Pointer to this map's tileset
 	CTileset*		m_pTileset;
 
+	// For tile collision checks and firing events
+	enum ETyleByte { BIT_TILE_COLLISION = 0, BIT_EVENT_ANY_COLLISION,
+		BIT_EVENT_PLAYER_COLLISION, BIT_EVENT_ACTION_BUTTON,
+		BIT_EVENT_BASIC_ATTACK, BIT_EVENT_FIRE_BLADE,
+		BIT_EVENT_EARTH_HAMMER, BIT_EVENT_AIR_CROSSBOW };
+
+
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PRIVATE	FUNCTIONS							//
 	//	------------------------------------------------------------------	//
 	//////////////////////////////////////////////////////////////////////////
 
+	
+
 	////////////////////////////////////////////////////////////////////////
-	//	Purpose		:	Load map information from a xml file
-	//	Parameters	:	Location of the xml file to load
-	//	Return		:	False if load failed, true if succeeded
+	//	Purpose		:	Get the source RECT of a tile in a tileset
+	//	Parameters	:	Tile to use
+	//	Return		:	The source RECT
 	////////////////////////////////////////////////////////////////////////
-	bool Load(char* szFilename);
+	RECT GetTileSourceRect(CTile* tileCurrent);
 
 public:
 	//////////////////////////////////////////////////////////////////////////
@@ -74,18 +88,24 @@ public:
 	CMap(void);
 
 	////////////////////////////////////////////////////////////////////////
-	//	Purpose		:	Initialize the map
-	//	Parameters	:	szFilename - location of the xml file to load
-	//					nPosX and nPosY - position of the map in the world
-	//	Return		:	False if initialization failed, true if succeeded
+	//	Purpose		:	Load map information from a xml file
+	//	Parameters	:	Location of the xml file to load
+	//	Return		:	False if load failed, true if succeeded
 	////////////////////////////////////////////////////////////////////////
-	bool Initialize(char* szFilename, CTileset* pTileset, int nPosX, int nPosY);
+	bool Load(char const * const szFilename, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Draw the map's tiles that are inside the window's
 	//					space
 	////////////////////////////////////////////////////////////////////////
 	void Render(void);
+
+	////////////////////////////////////////////////////////////////////////
+	//	Purpose		:	Check collisions against all tiles on screen
+	//	Parameters	:	pBase - Object that we're checking collisions with
+	//	Return		:	True if collided, false otherwise
+	////////////////////////////////////////////////////////////////////////
+	bool CheckCollisions(IBaseInterface* pBase, CStringTable * pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload the file that is loaded by the Load function

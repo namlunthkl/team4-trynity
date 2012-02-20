@@ -25,6 +25,11 @@ public:
 	virtual unsigned int GetType() = 0;
 	virtual RECT GetCollisionRect() = 0;
 	virtual bool CheckCollision(IBaseInterface* pBase) = 0;
+
+	short GetPosX(void) { return m_sPosX; }
+	short GetPosY(void) { return m_sPosY; }
+	void SetPosX(short sPosX) { m_sPosX = sPosX; }
+	void SetPosY(short sPosY) { m_sPosY = sPosY; }
 };
 
 #endif

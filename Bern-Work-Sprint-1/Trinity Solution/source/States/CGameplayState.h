@@ -12,14 +12,19 @@
 #include "..\Tile Mapping\CMap.h"
 #include "..\Animation\CAnimationPlayer.h"
 #include "../Messaging/IListener.h"
+#include "../Characters/TestPlayer.h"
+
 class CGameplayState : public IGameState , public IListener
 {
 	vector<CMap> m_vMaps;
-	CAnimationPlayer* gethit;
-	CAnimationPlayer* gethit2;
-	CAnimationPlayer* attack;
-	CAnimationPlayer* attack2;
+	CAnimationPlayer* WalkUp;
+	CAnimationPlayer* WalkDown;
+	CAnimationPlayer* WalkRight;
+	CAnimationPlayer* WalkLeft;
 	float bucket;
+
+	// JUST FOR TESTING
+	TestPlayer* pPlayer;
 public:
 	CGameplayState(void);
 	void Enter(void);
@@ -28,8 +33,6 @@ public:
 	void Render(void);
 	void Exit(void);
 	static CGameplayState* GetInstance(void);
-	void CreateMaps(void);
-	void CreatePuzzles(void);
 	void HandleEvent(CEvent* pEvent);
 };
 

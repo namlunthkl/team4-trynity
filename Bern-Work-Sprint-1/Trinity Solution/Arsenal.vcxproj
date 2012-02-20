@@ -80,6 +80,9 @@
     <ClCompile Include="source\Animation\CAnimationManager.cpp" />
     <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
     <ClCompile Include="source\Animation\CFrame.cpp" />
+    <ClCompile Include="source\ByteUtil.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\Camera\CCameraControl.cpp" />
     <ClCompile Include="source\CBitmapFont.cpp" />
     <ClCompile Include="source\CGame.cpp">
@@ -95,6 +98,7 @@
     <ClCompile Include="source\Input Manager\CInputManager.cpp" />
     <ClCompile Include="source\Messaging\CEventSystem.cpp" />
     <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
+    <ClCompile Include="source\Messaging\CStringTable.cpp" />
     <ClCompile Include="source\Particle\CParticleEmitter.cpp" />
     <ClCompile Include="source\Particle\CParticleManager.cpp" />
     <ClCompile Include="source\States\CAudioOptionsState.cpp" />
@@ -110,6 +114,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\Tile Mapping\CMap.cpp" />
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
+    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
     <ClCompile Include="source\tinyxml\tinystr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -147,6 +153,7 @@
     <ClInclude Include="source\Animation\CAnimationManager.h" />
     <ClInclude Include="source\Animation\CAnimationPlayer.h" />
     <ClInclude Include="source\Animation\CFrame.h" />
+    <ClInclude Include="source\ByteUtil.h" />
     <ClInclude Include="source\Camera\CCameraControl.h" />
     <ClInclude Include="source\CBitmapFont.h" />
     <ClInclude Include="source\CGame.h" />
@@ -154,6 +161,7 @@
     <ClInclude Include="source\Characters\CNPC.h" />
     <ClInclude Include="source\Characters\CPlayer.h" />
     <ClInclude Include="source\Characters\IBaseCharacter.h" />
+    <ClInclude Include="source\Characters\TestPlayer.h" />
     <ClInclude Include="source\CObjectManager.h" />
     <ClInclude Include="source\CPuzzle.h" />
     <ClInclude Include="source\CPuzzleManager.h" />
@@ -163,6 +171,7 @@
     <ClInclude Include="source\Messaging\CEvent.h" />
     <ClInclude Include="source\Messaging\CEventSystem.h" />
     <ClInclude Include="source\Messaging\CMessageSystem.h" />
+    <ClInclude Include="source\Messaging\CStringTable.h" />
     <ClInclude Include="source\Messaging\IListener.h" />
     <ClInclude Include="source\Messaging\Messages.h" />
     <ClInclude Include="source\Particle\CParticle.h" />
@@ -183,6 +192,7 @@
     <ClInclude Include="source\Tile Mapping\CMap.h" />
     <ClInclude Include="source\Tile Mapping\CTile.h" />
     <ClInclude Include="source\Tile Mapping\CTileset.h" />
+    <ClInclude Include="source\Tile Mapping\CWorldEngine.h" />
     <ClInclude Include="source\tinyxml\tinystr.h" />
     <ClInclude Include="source\tinyxml\tinyxml.h" />
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
