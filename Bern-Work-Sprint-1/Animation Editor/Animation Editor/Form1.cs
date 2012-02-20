@@ -75,6 +75,8 @@ namespace Animation_Editor
         private void toolStripImportAnimationImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Images(*.BMP;*.JPG;*.JPEG;*.GIF;*.PNG;*.TGA;*.DDS)|*.BMP;*.JPG;*.JPEG;*.GIF;*.PNG;*.TGA;*.DDS|All files (*.*)|*.*";
+            dlg.FilterIndex = 1;
             if(DialogResult.OK == dlg.ShowDialog())
             {
                 imageid = TM.LoadTexture(dlg.FileName,0);
@@ -278,34 +280,38 @@ namespace Animation_Editor
         {
 
             Rectangle temp = new Rectangle();
-            if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+            if (end.X != 0 && end.Y != 0)
             {
-                temp.X = end.X;
-                temp.Y = end.Y;
-                temp.Width = start.X - end.X;
-                temp.Height = start.Y - end.Y;
+                if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+                {
+                    temp.X = end.X;
+                    temp.Y = end.Y;
+                    temp.Width = start.X - end.X;
+                    temp.Height = start.Y - end.Y;
+                }
+                else if ((end.X - start.X) < 0)
+                {
+                    temp.X = end.X;
+                    temp.Y = start.Y;
+                    temp.Width = start.X - end.X;
+                    temp.Height = end.Y - start.Y;
+                }
+                else if ((end.Y - start.Y) < 0)
+                {
+                    temp.X = start.X;
+                    temp.Y = end.Y;
+                    temp.Width = end.X - start.X;
+                    temp.Height = start.Y - end.Y;
+                }
+                else
+                {
+                    temp.X = start.X;
+                    temp.Y = start.Y;
+                    temp.Width = end.X - start.X;
+                    temp.Height = end.Y - start.Y;
+                }
             }
-            else if ((end.X - start.X) < 0)
-            {
-                temp.X = end.X;
-                temp.Y = start.Y;
-                temp.Width = start.X - end.X;
-                temp.Height = end.Y - start.Y;
-            }
-            else if((end.Y - start.Y) < 0)
-            {
-                temp.X = start.X;
-                temp.Y = end.Y;
-                temp.Width = end.X - start.X;
-                temp.Height = start.Y - end.Y;
-            }
-            else
-            {
-                temp.X = start.X;
-                temp.Y = start.Y;
-                temp.Width = end.X - start.X;
-                temp.Height = end.Y - start.Y;
-            }
+            
             
 
             if (listBoxFrames.Items.Count != 0 && listBoxFrames.SelectedIndex >= 0)

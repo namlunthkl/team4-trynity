@@ -210,6 +210,7 @@
             // 
             // ToolStripOpenBinary
             // 
+            this.ToolStripOpenBinary.Enabled = false;
             this.ToolStripOpenBinary.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripOpenBinary.Image")));
             this.ToolStripOpenBinary.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripOpenBinary.Name = "ToolStripOpenBinary";
@@ -218,6 +219,7 @@
             // 
             // toolStripSaveBinary
             // 
+            this.toolStripSaveBinary.Enabled = false;
             this.toolStripSaveBinary.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSaveBinary.Image")));
             this.toolStripSaveBinary.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSaveBinary.Name = "toolStripSaveBinary";
