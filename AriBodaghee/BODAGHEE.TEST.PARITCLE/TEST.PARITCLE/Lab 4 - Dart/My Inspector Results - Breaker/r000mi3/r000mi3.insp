@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <rdmgr>
+  <timestamp type="u64_t">1329628678</timestamp>
+  <hostname>Ari-PC</hostname>
+  <os>windows</os>
+  <product>Intel® Parallel Inspector 2011 Update 6</product>
+  <buildNumber type="s32_t">186554</buildNumber>
+  <variables>
+   <at>mi3</at>
+  </variables>
+ </rdmgr>
+</root>

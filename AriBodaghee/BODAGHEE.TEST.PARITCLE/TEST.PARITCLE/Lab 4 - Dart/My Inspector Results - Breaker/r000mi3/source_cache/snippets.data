@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets>
+  <file name="c:\users\laylee\desktop\te4m\bodaghee.test.paritcle\test.paritcle\lab 4 - dart\source\tinyxml\tinystr.h" md5="cf367876ee833646804f79b5dd331d83">
+    <snippet line="242">
+      <line line="239">			const size_type bytesNeeded = sizeof(Rep) + cap;</line>
+      <line line="240">			const size_type intsNeeded = ( bytesNeeded + sizeof(int) - 1 ) / sizeof( int ); </line>
+      <line line="241">			rep_ = reinterpret_cast&lt;Rep*&gt;( new int[ intsNeeded ] );</line>
+      <line line="242"/>
+      <line line="243">			rep_-&gt;str[ rep_-&gt;size = sz ] = '\0';</line>
+    </snippet>
+    <snippet line="259">
+      <line line="256">			// The rep_ is really an array of ints. (see the allocator, above).</line>
+      <line line="257">			// Cast it back before delete, so the compiler won't incorrectly call destructors.</line>
+      <line line="258">			delete [] ( reinterpret_cast&lt;int*&gt;( rep_ ) );</line>
+      <line line="259">		}</line>
+      <line line="260">	}</line>
+    </snippet>
+  </file>
+  <file name="f:\dd\vctools\crt_bld\self_x86\crt\src\dbgheap.c" md5="981cbf86231b14931a4b0a5183c29969">
+    <snippet line="2229">
+      <line line="2226">                                state-&gt;lCounts[use] = state-&gt;lSizes[use] = 0;</line>
+      <line line="2227"/>
+      <line line="2228">                        for (pHead = _pFirstBlock; pHead != NULL; pHead = pHead-&gt;pBlockHeaderNext)</line>
+      <line line="2229">                        {</line>
+      <line line="2230">                                if (_BLOCK_TYPE(pHead-&gt;nBlockUse) &gt;= 0 &amp;&amp; _BLOCK_TYPE(pHead-&gt;nBlockUse) &lt; _MAX_BLOCKS)</line>
+    </snippet>
+    <snippet line="2234">
+      <line line="2231">                                {</line>
+      <line line="2232">                                        state-&gt;lCounts[_BLOCK_TYPE(pHead-&gt;nBlockUse)]++;</line>
+      <line line="2233">                                        state-&gt;lSizes[_BLOCK_TYPE(pHead-&gt;nBlockUse)] += pHead-&gt;nDataSize;</line>
+      <line line="2234">                                }</line>
+      <line line="2235">                                else</line>
+    </snippet>
+    <snippet line="2328">
+      <line line="2325"/>
+      <line line="2326">        _LocaleUpdate _loc_update(plocinfo);</line>
+      <line line="2327">        for (i = 0; i &lt; min((int)pHead-&gt;nDataSize, MAXPRINT); i++)</line>
+      <line line="2328">        {</line>
+      <line line="2329">            ch = pbData(pHead)[i];</line>
+    </snippet>
+    <snippet line="2375">
+      <line line="2372">                (_BLOCK_TYPE(pHead-&gt;nBlockUse) == _CRT_BLOCK &amp;&amp;</line>
+      <line line="2373">               !(_crtDbgFlag &amp; _CRTDBG_CHECK_CRT_DF))</line>
+      <line line="2374">               )</line>
+      <line line="2375">            {</line>
+      <line line="2376">                /* ignore it for dumping */</line>
+    </snippet>
+    <snippet line="2380">
+      <line line="2377">            }</line>
+      <line line="2378">            else {</line>
+      <line line="2379">                if (pHead-&gt;szFileName != NULL)</line>
+      <line line="2380">                {</line>
+      <line line="2381">#pragma warning(push)</line>
+    </snippet>
+    <snippet line="2410">
+      <line line="2407">                        _printMemBlockData(plocinfo, pHead);</line>
+      <line line="2408">                }</line>
+      <line line="2409">                else if (pHead-&gt;nBlockUse == _NORMAL_BLOCK)</line>
+      <line line="2410">                {</line>
+      <line line="2411">                    _RPT2(_CRT_WARN, "normal block at 0x%p, %Iu bytes long.\n",</line>
+    </snippet>
+    <snippet line="2397">
+      <line line="2394">                _RPT1(_CRT_WARN, "{%ld} ", pHead-&gt;lRequest);</line>
+      <line line="2395"/>
+      <line line="2396">                if (_BLOCK_TYPE(pHead-&gt;nBlockUse) == _CLIENT_BLOCK)</line>
+      <line line="2397">                {</line>
+      <line line="2398">                    _RPT3(_CRT_WARN, "client block at 0x%p, subtype %x, %Iu bytes long.\n",</line>
+    </snippet>
+    <snippet line="2413">
+      <line line="2410">                {</line>
+      <line line="2411">                    _RPT2(_CRT_WARN, "normal block at 0x%p, %Iu bytes long.\n",</line>
+      <line line="2412">                        (BYTE *)pbData(pHead), pHead-&gt;nDataSize);</line>
+      <line line="2413"/>
+      <line line="2414">                    _printMemBlockData(plocinfo, pHead);</line>
+    </snippet>
+    <snippet line="2441">
+      <line line="2438">        _LocaleUpdate _loc_update(plocinfo);</line>
+      <line line="2439"/>
+      <line line="2440">        _CrtMemDumpAllObjectsSince_stat(state, _loc_update.GetLocaleT());</line>
+      <line line="2441">}</line>
+      <line line="2442"/>
+    </snippet>
+    <snippet line="2478">
+      <line line="2475">            _RPT0(_CRT_WARN, "Detected memory leaks!\n");</line>
+      <line line="2476"/>
+      <line line="2477">            _CrtMemDumpAllObjectsSince(NULL);</line>
+      <line line="2478">            return TRUE;</line>
+      <line line="2479">        }</line>
+    </snippet>
+  </file>
+  <file name="f:\dd\vctools\crt_bld\self_x86\crt\src\crt0dat.c" md5="9cda6d204cb018bb74c62e3bf9b13b9e">
+    <snippet line="393">
+      <line line="390">        )</line>
+      <line line="391">{</line>
+      <line line="392">        doexit(code, 0, 0); /* full term, kill process */</line>
+      <line line="393">}</line>
+      <line line="394"/>
+    </snippet>
+    <snippet line="600">
+      <line line="597">#ifndef CRTDLL</line>
+      <line line="598">                __freeCrtMemory();</line>
+      <line line="599">                _CrtDumpMemoryLeaks();</line>
+      <line line="600">#endif  /* CRTDLL */</line>
+      <line line="601">            }</line>
+    </snippet>
+  </file>
+</snippets>

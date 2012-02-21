@@ -1,0 +1,85 @@
+
+=== Start: [2012/02/19 00:17:59] === 
+Memory error analysis: started
+Result file: [C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Lab 4 - Dart\My Inspector Results - Breaker\r000mi3\r000mi3.insp] 
+Analysis started for C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Debug\Breaker.exe (pid = 212) 
+Loaded module: C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Debug\Breaker.exe, address range [0x01290000-0x013c2fff] 
+Loaded module: C:\Program Files\Intel\Parallel Studio 2011\Inspector\bin32\ccrt11.dll, address range [0x56000000-0x5613cfff] 
+Loaded module: C:\Windows\system32\apphelp.dll, address range [0x75e00000-0x75e4bfff], minimal analysis 
+Loaded module: C:\Windows\system32\KERNELBASE.dll, address range [0x76010000-0x76059fff] 
+Loaded module: C:\Windows\system32\kernel32.dll, address range [0x779a0000-0x77a73fff] 
+Loaded module: C:\Windows\SYSTEM32\ntdll.dll, address range [0x77d40000-0x77e7bfff] 
+Loaded module: C:\Windows\system32\USER32.dll, address range [0x77430000-0x774f8fff] 
+Loaded module: C:\Windows\system32\GDI32.dll, address range [0x764f0000-0x7653dfff] 
+Loaded module: C:\Windows\system32\LPK.dll, address range [0x76250000-0x76259fff], minimal analysis 
+Loaded module: C:\Windows\system32\USP10.dll, address range [0x77ed0000-0x77f6cfff], minimal analysis 
+Loaded module: C:\Windows\system32\msvcrt.dll, address range [0x765a0000-0x7664bfff] 
+Loaded module: C:\Windows\system32\d3d9.dll, address range [0x65ba0000-0x65d62fff], minimal analysis 
+Loaded module: C:\Windows\SYSTEM32\sechost.dll, address range [0x76370000-0x76388fff], minimal analysis 
+Loaded module: C:\Windows\system32\RPCRT4.dll, address range [0x772f0000-0x77390fff], minimal analysis 
+Loaded module: C:\Windows\system32\VERSION.dll, address range [0x753c0000-0x753c8fff], minimal analysis 
+Loaded module: C:\Windows\system32\d3d8thk.dll, address range [0x73f00000-0x73f05fff], minimal analysis 
+Loaded module: C:\Windows\system32\dwmapi.dll, address range [0x74520000-0x74532fff], minimal analysis 
+Loaded module: C:\Windows\system32\d3dx9_43.dll, address range [0x59e00000-0x59ffefff], minimal analysis 
+Loaded module: C:\Windows\system32\ADVAPI32.dll, address range [0x76290000-0x7632ffff] 
+Loaded module: C:\Windows\system32\DINPUT8.dll, address range [0x5fd90000-0x5fdbffff], minimal analysis 
+Loaded module: C:\Windows\system32\dbghelp.dll, address range [0x71090000-0x7117afff], minimal analysis 
+Loaded module: C:\Windows\system32\IMM32.DLL, address range [0x77eb0000-0x77ecefff], minimal analysis 
+Loaded module: C:\Windows\system32\MSCTF.dll, address range [0x77620000-0x776ebfff], minimal analysis 
+Loaded module: C:\Windows\system32\uxtheme.dll, address range [0x74bb0000-0x74beffff], minimal analysis 
+Loaded module: C:\Windows\system32\ole32.dll, address range [0x76390000-0x764ebfff], minimal analysis 
+Loaded module: C:\Windows\system32\CRYPTBASE.dll, address range [0x75e50000-0x75e5bfff], minimal analysis 
+Loaded module: C:\Windows\system32\nvd3dum.dll, address range [0x65200000-0x65b9cfff], minimal analysis 
+Loaded module: C:\Windows\system32\powrprof.dll, address range [0x74d70000-0x74d94fff], minimal analysis 
+Loaded module: C:\Windows\system32\SETUPAPI.dll, address range [0x77a80000-0x77c1cfff], minimal analysis 
+Loaded module: C:\Windows\system32\CFGMGR32.dll, address range [0x75f50000-0x75f76fff], minimal analysis 
+Loaded module: C:\Windows\system32\OLEAUT32.dll, address range [0x776f0000-0x7777efff], minimal analysis 
+Loaded module: C:\Windows\system32\DEVOBJ.dll, address range [0x76060000-0x76071fff], minimal analysis 
+Loaded module: C:\Windows\system32\HID.DLL, address range [0x74670000-0x74678fff], minimal analysis 
+Loaded module: C:\Windows\system32\WINMM.DLL, address range [0x74130000-0x74161fff], minimal analysis 
+Loaded module: C:\Windows\system32\WINTRUST.dll, address range [0x76080000-0x760acfff], minimal analysis 
+Loaded module: C:\Windows\system32\CRYPT32.dll, address range [0x760b0000-0x761ccfff], minimal analysis 
+Loaded module: C:\Windows\system32\MSASN1.dll, address range [0x75f40000-0x75f4bfff], minimal analysis 
+Unloaded module: C:\Windows\system32\powrprof.dll 
+Unloaded module: C:\Windows\system32\nvd3dum.dll 
+Process C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Debug\Breaker.exe exited with code 0. Leak analysis starting. Please wait... 
+Unloaded module: C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Debug\Breaker.exe 
+Unloaded module: C:\Program Files\Intel\Parallel Studio 2011\Inspector\bin32\ccrt11.dll 
+Unloaded module: C:\Windows\system32\apphelp.dll 
+Unloaded module: C:\Windows\system32\KERNELBASE.dll 
+Unloaded module: C:\Windows\system32\kernel32.dll 
+Unloaded module: C:\Windows\SYSTEM32\ntdll.dll 
+Unloaded module: C:\Windows\system32\USER32.dll 
+Unloaded module: C:\Windows\system32\GDI32.dll 
+Unloaded module: C:\Windows\system32\LPK.dll 
+Unloaded module: C:\Windows\system32\USP10.dll 
+Unloaded module: C:\Windows\system32\msvcrt.dll 
+Unloaded module: C:\Windows\system32\d3d9.dll 
+Unloaded module: C:\Windows\SYSTEM32\sechost.dll 
+Unloaded module: C:\Windows\system32\RPCRT4.dll 
+Unloaded module: C:\Windows\system32\VERSION.dll 
+Unloaded module: C:\Windows\system32\d3d8thk.dll 
+Unloaded module: C:\Windows\system32\dwmapi.dll 
+Unloaded module: C:\Windows\system32\d3dx9_43.dll 
+Unloaded module: C:\Windows\system32\ADVAPI32.dll 
+Unloaded module: C:\Windows\system32\DINPUT8.dll 
+Unloaded module: C:\Windows\system32\dbghelp.dll 
+Unloaded module: C:\Windows\system32\IMM32.DLL 
+Unloaded module: C:\Windows\system32\MSCTF.dll 
+Unloaded module: C:\Windows\system32\uxtheme.dll 
+Unloaded module: C:\Windows\system32\ole32.dll 
+Unloaded module: C:\Windows\system32\CRYPTBASE.dll 
+Unloaded module: C:\Windows\system32\SETUPAPI.dll 
+Unloaded module: C:\Windows\system32\CFGMGR32.dll 
+Unloaded module: C:\Windows\system32\OLEAUT32.dll 
+Unloaded module: C:\Windows\system32\DEVOBJ.dll 
+Unloaded module: C:\Windows\system32\HID.DLL 
+Unloaded module: C:\Windows\system32\WINMM.DLL 
+Unloaded module: C:\Windows\system32\WINTRUST.dll 
+Unloaded module: C:\Windows\system32\CRYPT32.dll 
+Unloaded module: C:\Windows\system32\MSASN1.dll 
+Completed analysis for C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Debug\Breaker.exe 
+Application exit code: [0] 
+Result file: [C:\Users\Laylee\Desktop\TE4M\BODAGHEE.TEST.PARITCLE\TEST.PARITCLE\Lab 4 - Dart\My Inspector Results - Breaker\r000mi3\r000mi3.insp] 
+Memory error analysis: completed
+=== End: [2012/02/19 00:18:46] === 
