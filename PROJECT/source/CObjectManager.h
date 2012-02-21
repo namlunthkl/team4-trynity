@@ -15,15 +15,22 @@ class CObjectManager
 private:
 	CObjectManager* m_pInstance;
 	vector<IBaseInterface*> m_vpObjectList;
+
 public:
+	CObjectManager(void) {}
+	~CObjectManager(void) {}
+
+	//	Instance
+	CObjectManager* GetInstance();
 	void DeleteInstance();
+
 	void UpdateObjects(float fElapsedTime);
 	void RenderObjects();
+
 	bool AddObject(IBaseInterface* pObject);
 	bool RemoveObject(IBaseInterface* pObject);
 	void RemoveAllObjects();
 	void CheckCollisions();
-	CObjectManager* GetInstance();
 };
 
 #endif
