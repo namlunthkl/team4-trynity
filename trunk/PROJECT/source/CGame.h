@@ -23,6 +23,7 @@
 
 // Timer class for game timing
 #include "CTimer.h"
+#include "CBitmapFont.h"
 
 // Game class
 // Proper singleton
@@ -41,9 +42,12 @@ class CGame
 	short			m_sScreenHeight;
 	bool			m_bIsWindowed;
 	bool			m_bShowHUD;
+	bool			m_bPaused;
 	char			m_cMapLocation;	//	0, 1, 2
 	char			m_cMusicVolume;	//	0 thru 100
 	char			m_cSoundVolume;	//	0 thru 100
+
+	CBitmapFont*	pFont1;
 
 	//	Game's current state
 	IGameState*		m_pCurrentState;
@@ -138,6 +142,7 @@ public:
 	inline char			GetMapLocation(void)	{ return m_cMapLocation; }
 	inline char			GetMusicVolume(void)	{ return m_cMusicVolume; }
 	inline char			GetSoundVolume(void)	{ return m_cSoundVolume; }
+	inline bool			GetPaused(void)			{ return m_bPaused; }
 
 	inline IGameState*	GetCurrentState(void)	{ return m_pCurrentState; }
 	inline CTimer		GetTimer(void)			{ return m_Timer; }
@@ -150,6 +155,7 @@ public:
 	inline void SetMapLocation	(char cMapLocation)		{ m_cMapLocation = cMapLocation; }
 	inline void SetMusicVolume	(char cMusicVolume)		{ m_cMusicVolume = cMusicVolume; }
 	inline void SetSoundVolume	(char cSoundVolume)		{ m_cSoundVolume = cSoundVolume; }
+	inline void SetPaused		(bool bPaused)			{ m_bPaused = bPaused; }
 };
 
 #endif // CGAME_H_

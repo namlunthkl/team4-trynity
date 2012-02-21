@@ -37,6 +37,12 @@ void CGameplayState::Enter(void)
 }
 bool CGameplayState::Input(void)
 {
+	//	Pause
+	if(INPUT->KeyPressed(DIK_ESCAPE))
+	{
+		GAME->SetPaused( true );
+	}
+
 	// TESTING
 	/*int nNewPlayerPosX = pPlayer->GetPosX();
 	int nNewPlayerPosY = pPlayer->GetPosY();
