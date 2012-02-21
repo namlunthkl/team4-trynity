@@ -55,10 +55,6 @@ class CGame
 	//	Timer - FPS, Game Time, Elapsed Time
 	CTimer			m_Timer;
 
-#if 0
-	// HACK: Map creation testing
-	CMap a;
-#endif
 
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//

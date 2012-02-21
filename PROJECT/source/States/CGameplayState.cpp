@@ -6,35 +6,40 @@
 //    Purpose				:	Contains the GameplayState
 ////////////////////////////////////////////////////////////////////////
 
+// Precompiled header
 #include "StdAfx.h"
 
+// Header file for this state
 #include "CGameplayState.h"
-#include "..\Animation\CAnimationManager.h"
-#include "..\Messaging\CEventSystem.h"
 
-#include "..\Tile Mapping\CWorldEngine.h"
+// Singleton Macros
+#define EVENTS CEventSystem::GetInstance()
+#define WORLD CWorldEngine::GetInstance()
 
-
+// Constructor
 CGameplayState::CGameplayState(void)
 {
-	CEventSystem::GetInstance()->RegisterForEvent("SpawnMessageBox", this);
 }
+
+// Initialize everything
 void CGameplayState::Enter(void)
 {
-	CWorldEngine::GetInstance()->InitWorldEngine();
-	CAnimationManager::GetInstance()->LoadAnimation("resource/Blue Flower.xml");
-	
-	//gethit=new CAnimationPlayer(0,true);
-	//gethit->Play();
-	//gethit2 = new CAnimationPlayer(0,false);
-	//gethit2->Play();
-	// attack = new CAnimationPlayer(0,true);
-	// attack->Play();
-	//attack2 = new CAnimationPlayer(1,false);
-	//attack2->Play();
+	// Initialize the world engine
+	WORLD->InitWorldEngine();
 
+	// Register for the event
+	EVENTS->RegisterForEvent("SpawnMessageBox", this);
+	EVENTS->RegisterForEvent("LightTorch", this);
+
+	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
+
+	pPlayer = new TestPlayer();
+	pPlayer->SetPosX(0);
+	pPlayer->SetPosY(0);
+
 }
+
 bool CGameplayState::Input(void)
 {
 	//	Pause
@@ -42,58 +47,16 @@ bool CGameplayState::Input(void)
 	{
 		GAME->SetPaused( true );
 	}
-
-	// TESTING
-	/*int nNewPlayerPosX = pPlayer->GetPosX();
-	int nNewPlayerPosY = pPlayer->GetPosY();
-
-	if(INPUT->KeyDown(DIK_UP))
-	{
-		nNewPlayerPosY--;
-		WalkUp->Play();
-	}
-	else
-		WalkUp->Stop();
-
-	if(INPUT->KeyDown(DIK_DOWN))
-	{
-		nNewPlayerPosY++;
-		WalkDown->Play();
-	}
-	else
-		WalkDown->Stop();
-
-	if(INPUT->KeyDown(DIK_LEFT))
-	{
-		nNewPlayerPosX--;
-		WalkLeft->Play();
-	}
-	else
-		WalkLeft->Stop();
-
-	if(INPUT->KeyDown(DIK_RIGHT))
-	{
-		nNewPlayerPosX++;
-		WalkRight->Play();
-	}
-	else
-		WalkRight->Stop();
-
-	TestPlayer* pTempPlayer = new TestPlayer();
-	pTempPlayer->Enter();
-	pTempPlayer->SetPosX(nNewPlayerPosX);
-	pTempPlayer->SetPosY(nNewPlayerPosY);
-
-	if(!CWorldEngine::GetInstance()->CheckCollisions(pTempPlayer))
-	{
-		pPlayer->SetPosX(nNewPlayerPosX);
-		pPlayer->SetPosY(nNewPlayerPosY);
-	}
-
-	delete pTempPlayer;
-*/
+	
 	if(INPUT->KeyPressed(DIK_RETURN))
-		PW.Fire(10, 10);
+	{
+		POINT* ptPosition = new POINT;
+		ptPosition->x = pPlayer->GetPosX();
+		ptPosition->y = pPlayer->GetPosY();
+
+		EVENTS->SendEvent("LightTorch", (void*)ptPosition);
+	}
+
 
 
 	return true;
@@ -101,41 +64,26 @@ bool CGameplayState::Input(void)
 void CGameplayState::Update(float fElapsedTime)
 {
 	// Update the best world engine ever created
-	CWorldEngine::GetInstance()->UpdateWorld(fElapsedTime);
+	WORLD->UpdateWorld(fElapsedTime);
+	EVENTS->ProcessEvents();
 
-	/*gethit->Update(fElapsedTime);*/
-
-	CEventSystem::GetInstance()->ProcessEvents();
-
-	//WalkUp->Update(fElapsedTime);
-	//WalkDown->Update(fElapsedTime);
-	//WalkRight->Update(fElapsedTime);
-	//WalkLeft->Update(fElapsedTime);
-
-	PW.Update(fElapsedTime);
-
+	if(PW.GetFired())
+		PW.Update(fElapsedTime);
 }
+
 void CGameplayState::Render(void)
 {
 	// Render the best world engine ever created
-	CWorldEngine::GetInstance()->RenderWorld();
+	WORLD->RenderWorld();
 
-	//gethit->Render(200,200);
-	//WalkUp->Render(pPlayer->GetPosX(), pPlayer->GetPosY());
-	//WalkDown->Render(pPlayer->GetPosX(), pPlayer->GetPosY());
-	//WalkLeft->Render(pPlayer->GetPosX(), pPlayer->GetPosY());
-	//WalkRight->Render(pPlayer->GetPosX(), pPlayer->GetPosY());
-
-	// TESTING
-	//pPlayer->Render();
-
-	PW.Render();
+	if(PW.GetFired())
+		PW.Render();
 }
 
 void CGameplayState::Exit(void)
 {
-	CWorldEngine::GetInstance()->ShutdownWorldEngine();
-	CWorldEngine::GetInstance()->DeleteInstance();
+	WORLD->ShutdownWorldEngine();
+	WORLD->DeleteInstance();
 }
 
 CGameplayState* CGameplayState::GetInstance(void)
@@ -149,5 +97,10 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	if(pEvent->GetEventID() == "SpawnMessageBox")
 	{
 		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
+	}
+	else if(pEvent->GetEventID() == "LightTorch")
+	{
+		POINT* ptPosition = (POINT*)pEvent->GetParam();
+		PW.Fire(ptPosition->x, ptPosition->y);
 	}
 }

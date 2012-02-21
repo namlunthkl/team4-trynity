@@ -161,59 +161,59 @@ void CBaseMenu::Render()
 
 	if(m_fCursorTime <= 0.1f)
 	{
-		rCursor.left = 0.0f;
-		rCursor.top = 0.0f;
-		rCursor.right = 32.0f;
-		rCursor.bottom = 32.0f;
+		rCursor.left = 0;
+		rCursor.top = 0;
+		rCursor.right = 32;
+		rCursor.bottom = 32;
 	}
 	else if(m_fCursorTime <= 0.2f)
 	{
-		rCursor.left = 32.0f;
-		rCursor.top = 0.0f;
-		rCursor.right = 64.0f;
-		rCursor.bottom = 32.0f;
+		rCursor.left = 32;
+		rCursor.top = 0;
+		rCursor.right = 64;
+		rCursor.bottom = 32;
 	}
 	else if(m_fCursorTime <= 0.3f)
 	{
-		rCursor.left = 64.0f;
-		rCursor.top = 0.0f;
-		rCursor.right = 96.0f;
-		rCursor.bottom = 32.0f;
+		rCursor.left = 64;
+		rCursor.top = 0;
+		rCursor.right = 96;
+		rCursor.bottom = 32;
 	}
 	else if(m_fCursorTime <= 0.4f)
 	{
-		rCursor.left = 96.0f;
-		rCursor.top = 0.0f;
-		rCursor.right = 128.0f;
-		rCursor.bottom = 32.0f;
+		rCursor.left = 96;
+		rCursor.top = 0;
+		rCursor.right = 128;
+		rCursor.bottom = 32;
 	}
 	else if(m_fCursorTime <= 0.5f)
 	{
-		rCursor.left = 0.0f;
-		rCursor.top = 32.0f;
-		rCursor.right = 32.0f;
-		rCursor.bottom = 64.0f;
+		rCursor.left = 0;
+		rCursor.top = 32;
+		rCursor.right = 32;
+		rCursor.bottom = 64;
 	}
 	else if(m_fCursorTime <= 0.6f)
 	{
-		rCursor.left = 32.0f;
-		rCursor.top = 32.0f;
-		rCursor.right = 64.0f;
-		rCursor.bottom = 64.0f;
+		rCursor.left = 32;
+		rCursor.top = 32;
+		rCursor.right = 64;
+		rCursor.bottom = 64;
 	}
 	else if(m_fCursorTime <= 0.7f)
 	{
-		rCursor.left = 64.0f;
-		rCursor.top = 32.0f;
-		rCursor.right = 96.0f;
-		rCursor.bottom = 64.0f;
+		rCursor.left = 64;
+		rCursor.top = 32;
+		rCursor.right = 96;
+		rCursor.bottom = 64;
 	}
 	else
 	{
-		rCursor.left = 96.0f;
-		rCursor.top = 32.0f;
-		rCursor.right = 128.0f;
-		rCursor.bottom = 64.0f;
+		rCursor.left = 96;
+		rCursor.top = 32;
+		rCursor.right = 128;
+		rCursor.bottom = 64;
 	}
 	TEX_MNG->Draw(m_imgCursor, 0, 384+(m_uiCurSelected*32), 1.0f, 1.0f, &rCursor);
 }
