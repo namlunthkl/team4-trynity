@@ -42,17 +42,17 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	SetScreenHeight(nScreenHeight);
 	SetIsWindowed(bIsWindowed);
 
-	// Set gameplay variables
-	SetShowHUD(true);
-	SetMapLocation(2);	// 0 thru 2
-	SetMusicVolume(80);	// 0 thru 100
-	SetSoundVolume(100);// 0 thru 100
+	//	Set paused false
+	m_bPaused = false;
 
 	// Initialize all the resource managers
 	D3D->InitDirect3D(hWnd, nScreenWidth, nScreenHeight, bIsWindowed, true);
 	TEX_MNG->InitTextureManager(D3D->GetDirect3DDevice(), D3D->GetSprite());
 	INPUT->InitDirectInput(hWnd, hInstance, DI_KEYBOARD | DI_MOUSE);
 	AUDIO->InitXAudio2();
+
+	//	Font
+	pFont1 = new CBitmapFont;
 
 	// Set gameplay variables
 	SetShowHUD(true);
@@ -108,7 +108,10 @@ bool CGame::Main(void)
 	if(!Input())
 		return false;
 	//		Update variables
-	Update();
+	if(m_bPaused == false)
+	{
+		Update();
+	}
 	//		Draw to the screen
 	Render();
 
@@ -141,7 +144,18 @@ bool CGame::Main(void)
 bool CGame::Input(void)
 {
 	INPUT->ReadDevices();
-	if(m_pCurrentState != NULL)
+	//TODO Change later when we have actual inventory.
+	if(m_bPaused == true)
+	{
+		if(m_pCurrentState != NULL)
+		{
+			if(INPUT->KeyPressed(DIK_ESCAPE))
+			{
+				m_bPaused = false;
+			}
+		}
+	}
+	else if(m_pCurrentState != NULL)
 	{
 		return m_pCurrentState->Input();
 	}	return true;
@@ -157,7 +171,6 @@ void CGame::Update(void)
 	{
 		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
 	}
-
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -174,9 +187,21 @@ void CGame::Render(void)
 	D3D->DeviceBegin();
 	D3D->SpriteBegin();
 	
-	if(m_pCurrentState != NULL)
+	//TODO enhance when we have an actual inventory screen
+	/*if(m_bPaused == true)
+	{
+		//D3D->Clear(10,10,10);
+	}
+	else */if(m_pCurrentState != NULL)
 	{
 		m_pCurrentState->Render();
+
+		if(GAME->GetPaused() == true)
+		{
+			pFont1->Write("GAME IS PAUSED", 24, 2, D3DCOLOR_XRGB(255, 0, 0));
+			pFont1->Write("Press ESC again to resume", 32, 3, D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("ESC brings up player inventory", 32, 4, D3DCOLOR_XRGB(255, 255, 255));
+		}
 	}
 
 	
@@ -197,6 +222,12 @@ void CGame::Render(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Shutdown(void)
 {
+	if(pFont1)
+	{
+		delete pFont1;
+		pFont1 = NULL;
+	}
+
 	CAnimationManager::GetInstance()->UnloadAll();
 
 	if(D3D)
