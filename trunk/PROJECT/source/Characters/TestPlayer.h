@@ -34,12 +34,15 @@ public:
 		SetPosY(0);
 		m_uiCurrentAnimation = 0;
 
-		CAnimationManager::GetInstance()->LoadAnimation("resource/Animation.xml");
+		CAnimationManager::GetInstance()->LoadAnimation("resource/character_walking.xml");
 		m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
-		//m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
-		//m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
-		//m_pAnimation[ANM_RIGHT] = new CAnimationPlayer(ANM_RIGHT, true);
+		m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
+		m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
+		m_pAnimation[ANM_RIGHT] = new CAnimationPlayer(ANM_RIGHT, true);
 		m_pAnimation[ANM_UP]->Play();
+		m_pAnimation[ANM_DOWN]->Play();
+		m_pAnimation[ANM_LEFT]->Play();
+		m_pAnimation[ANM_RIGHT]->Play();
 	}
 
 	// Input
@@ -87,6 +90,7 @@ public:
 		//TEX_MNG->Draw(m_uiSpriteIndex, GetPosX(), GetPosY());
 
 		m_pAnimation[m_uiCurrentAnimation]->Render(GetPosX(), GetPosY());
+		D3D->GetSprite()->Flush();
 	}
 
 	void Update(float fElapsedTime)
