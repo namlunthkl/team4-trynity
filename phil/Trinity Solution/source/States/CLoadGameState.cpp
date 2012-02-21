@@ -53,6 +53,7 @@ void CLoadGameState::Enter()
 
 void CLoadGameState::Exit()
 {
+	CBaseMenu::Exit();
 }
 
 bool CLoadGameState::Input()

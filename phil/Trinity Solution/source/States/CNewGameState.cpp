@@ -53,6 +53,7 @@ void CNewGameState::Enter()
 
 void CNewGameState::Exit()
 {
+	CBaseMenu::Exit();
 }
 
 bool CNewGameState::Input()

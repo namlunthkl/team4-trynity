@@ -89,11 +89,14 @@ bool CMainMenuState::Input()
 			}
 		case MAIN_CREDITS:
 			{
+				CBaseMenu::Exit();	//	To make sure the pFont gets deleted.
 				GAME->ChangeState(CCreditsState::GetInstance());
 				break;
 			}
 		case MAIN_EXIT:
 			{
+				GAME->ChangeState(NULL);
+				CBaseMenu::Exit();	//	To make sure the pFont gets deleted.
 				return false;
 			}
 		}

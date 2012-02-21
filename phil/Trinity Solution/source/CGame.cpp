@@ -41,17 +41,19 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	SetScreenHeight(nScreenHeight);
 	SetIsWindowed(bIsWindowed);
 
-	// Set gameplay variables
-	SetShowHUD(true);
-	SetMapLocation(2);	// 0 thru 2
-	SetMusicVolume(80);	// 0 thru 100
-	SetSoundVolume(100);// 0 thru 100
-
 	// Initialize all the resource managers
 	D3D->InitDirect3D(hWnd, nScreenWidth, nScreenHeight, bIsWindowed, true);
 	TEX_MNG->InitTextureManager(D3D->GetDirect3DDevice(), D3D->GetSprite());
 	INPUT->InitDirectInput(hWnd, hInstance, DI_KEYBOARD | DI_MOUSE);
 	AUDIO->InitXAudio2();
+
+	// Set gameplay variables
+	SetShowHUD(true);
+	SetMapLocation(2);	// 0 thru 2
+	SetMusicVolume(80);	// 0 thru 100
+	SetSoundVolume(100);// 0 thru 100
+	AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
+	AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
 
 	// Change state to Main Menu
 	ChangeState(CMainMenuState::GetInstance());
@@ -132,7 +134,10 @@ bool CGame::Main(void)
 bool CGame::Input(void)
 {
 	INPUT->ReadDevices();
-	m_pCurrentState->Input();
+	if(m_pCurrentState != NULL)
+	{
+		return m_pCurrentState->Input();
+	}
 	return true;
 }
 
@@ -142,7 +147,10 @@ bool CGame::Input(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Update(void)
 {
-	m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+	if(m_pCurrentState != NULL)
+	{
+		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -158,8 +166,11 @@ void CGame::Render(void)
 	D3D->Clear(50,50,50);
 	D3D->DeviceBegin();
 	D3D->SpriteBegin();
-
-	m_pCurrentState->Render();
+	
+	if(m_pCurrentState != NULL)
+	{
+		m_pCurrentState->Render();
+	}
 
 #if 0
 	// HACK

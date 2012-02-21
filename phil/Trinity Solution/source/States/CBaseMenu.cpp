@@ -27,8 +27,6 @@ CBaseMenu::CBaseMenu()
 	m_fLoadTimer = 0.0f;
 
 	bMenuConfirm = false;
-
-	pFont = new CBitmapFont;
 }
 
 CBaseMenu::~CBaseMenu()
@@ -64,12 +62,18 @@ void CBaseMenu::Enter()
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
 
+	//	After loading the sounds, ensure volumes are correct..
+	//AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume() );
+	//AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume() );
+
 	//	Members
 	m_fLoadTimer = 0.0f;
 	m_fCursorTime = 0.0f;
 
 	//	Play Song
 	//
+
+	pFont = new CBitmapFont;
 }
 
 void CBaseMenu::Exit()

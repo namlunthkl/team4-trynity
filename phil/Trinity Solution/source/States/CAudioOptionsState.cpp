@@ -74,6 +74,7 @@ bool CAudioOptionsState::Input()
 				{
 					GAME->SetMusicVolume(0);
 				}
+				AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
 				break;
 			}
 		case ADIO_SOUND:
@@ -83,6 +84,7 @@ bool CAudioOptionsState::Input()
 				{
 					GAME->SetSoundVolume(0);
 				}
+				AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
 				break;
 			}
 		case ADIO_BACK:
