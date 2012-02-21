@@ -125,7 +125,7 @@ namespace Animation_Editor
                     temp.Y = start.Y + offset.Y;
                     temp.Width = end.X - start.X;
                     temp.Height = end.Y - start.Y;
-                    D3D.DrawEmptyRect(temp, Color.Black);
+                    D3D.DrawEmptyRect(temp, Color.Black,1);
                 }
 
                 for (int i = 0; i < listBoxFrames.Items.Count; i++)
@@ -135,19 +135,19 @@ namespace Animation_Editor
                     Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
                         tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
 
-                    D3D.DrawEmptyRect(drawRect, Color.DodgerBlue);
+                    D3D.DrawEmptyRect(drawRect, Color.DodgerBlue,1);
 
                     Rectangle CollisionRect = new Rectangle(tempFrame.Collision.X + offset.X,
                         tempFrame.Collision.Y + offset.Y, tempFrame.Collision.Width, tempFrame.Collision.Height);
 
-                    D3D.DrawEmptyRect(CollisionRect, Color.Purple);
+                    D3D.DrawEmptyRect(CollisionRect, Color.Purple,1);
 
                     if (tempFrame.Anchor != Point.Empty)
                     {
                         Point tempPoint = new Point(tempFrame.Anchor.X + offset.X, tempFrame.Anchor.Y + offset.Y);
 
-                        D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red);
-                        D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red);
+                        D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red,1);
+                        D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red,1);
                     }
 
                 }
@@ -158,26 +158,24 @@ namespace Animation_Editor
             }
             D3D.ChangeDisplayParam(graphicsPanelPlayer);
             {
-                if(listBoxAnimations.Items.Count > 0 && listBoxAnimations.SelectedIndex != -1)
+                D3D.DeviceBegin();
+                D3D.SpriteBegin();
+                D3D.Clear(Color.White);
+                if (listBoxAnimations.Items.Count > 0 && listBoxAnimations.SelectedIndex != -1)
                 {
                     Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
-                    D3D.DeviceBegin();
-                    D3D.SpriteBegin();
-                    D3D.Clear(Color.White);
-                    {
                         System.DateTime StartTimeStamp = System.DateTime.Now;
                         System.TimeSpan ElapsedTime = StartTimeStamp - PreviousTimeStamp;
                         PreviousTimeStamp = StartTimeStamp;
-                        Update((float)ElapsedTime.Milliseconds/1000.0F);
+                        Update((float)ElapsedTime.Milliseconds / 1000.0F);
                         if (imageid >= 0)
                             TM.Draw(imageid, (int)(graphicsPanelPlayer.Width * .5F) - (temp.Frames[m_nFrameNumber].Anchor.X - temp.Frames[m_nFrameNumber].FrameRect.X),
-                                (int)(graphicsPanelPlayer.Height * .5F ) - (temp.Frames[m_nFrameNumber].Anchor.Y - temp.Frames[m_nFrameNumber].FrameRect.Y),
+                                (int)(graphicsPanelPlayer.Height * .5F) - (temp.Frames[m_nFrameNumber].Anchor.Y - temp.Frames[m_nFrameNumber].FrameRect.Y),
                                 m_fScale, m_fScale, temp.Frames[m_nFrameNumber].FrameRect, 0, 0, 0.0f, Color.White.ToArgb());
-                    }
-                    D3D.SpriteEnd();
-                    D3D.DeviceEnd();
-                    D3D.Present();
                 }
+                D3D.SpriteEnd();
+                D3D.DeviceEnd();
+                D3D.Present();
             }
         }
 
@@ -687,6 +685,8 @@ namespace Animation_Editor
                 Animation temp = (Animation)listBoxAnimations.Items[listBoxAnimations.SelectedIndex];
                 for (int i = 0; i < temp.NumFrames; i++)
                     listBoxFrames.Items.Add(temp.Frames[i]);
+
+                
             }
 
         }
@@ -724,10 +724,10 @@ namespace Animation_Editor
                  fowardString += tempstring[l];
              }
 
-             if (tempFilename != destFile)
-             {
-                 System.IO.File.Copy(AnimationSheet[0, 0].Filepath, destFile, true);
-             }
+             //if (tempFilename != destFile)
+             //{
+             //    System.IO.File.Copy(AnimationSheet[0, 0].Filepath, destFile, true);
+             //}
                
                XAttribute FileName = new XAttribute("FileName",fowardString);
                root.Add(FileName);
@@ -776,9 +776,9 @@ namespace Animation_Editor
                        XElement CollisionRect = new XElement("CollisionRect");
                        Frame.Add(CollisionRect);
 
-                       XAttribute cX = new XAttribute("x", tempF.Collision.X);
+                       XAttribute cX = new XAttribute("x", tempF.Collision.X - tempF.FrameRect.X);
                        CollisionRect.Add(cX);
-                       XAttribute cY = new XAttribute("y", tempF.Collision.Y);
+                       XAttribute cY = new XAttribute("y", tempF.Collision.Y - tempF.FrameRect.Y);
                        CollisionRect.Add(cY);
                        XAttribute cWidth = new XAttribute("width", tempF.Collision.Width);
                        CollisionRect.Add(cWidth);
@@ -889,8 +889,10 @@ namespace Animation_Editor
                             Rectangle tempCollision = new Rectangle();
                             XAttribute cx = xCollisionRect.Attribute("x");
                             tempCollision.X = int.Parse(cx.Value);
+                            tempCollision.X += TempFrame.FrameRect.X;
                             XAttribute cy = xCollisionRect.Attribute("y");
                             tempCollision.Y = int.Parse(cy.Value);
+                            tempCollision.Y += TempFrame.FrameRect.Y;
                             XAttribute cwidth = xCollisionRect.Attribute("width");
                             tempCollision.Width = int.Parse(cwidth.Value);
                             XAttribute cheight = xCollisionRect.Attribute("height");
@@ -990,6 +992,28 @@ namespace Animation_Editor
                     Frame tempFrame = (Frame)listBoxFrames.Items[i];
                     temp.Frames.Add(tempFrame);
                 }
+                temp.Looping = checkBoxLooping.Checked;
+                temp.Oslating = checkBoxOslating.Checked;
+            }
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Render();
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Render();
+        }
+
+        private void DeSelect_Click(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                if (listBoxAnimations.GetSelected(listBoxAnimations.SelectedIndex) == true)
+                    listBoxAnimations.SetSelected(listBoxAnimations.SelectedIndex, false);
+                listBoxFrames.Items.Clear();
             }
         }
     }
