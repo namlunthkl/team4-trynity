@@ -18,5 +18,7 @@ public:
 	void Update(float DT);
 	void Render();
 	bool Load(const char* szXMLFileName);
+
+	inline bool GetFired(void) const { return Fired; }
 };
 
