@@ -18,7 +18,7 @@ private:
 	int m_anmDestruction;
 	bool m_bActive;
 public:
-	virtual void Update() = 0;
+	virtual void Update(float fElapsedTime) = 0;
 	virtual void Render() = 0;
 	virtual void AddRef() = 0;
 	virtual void Release() = 0;
