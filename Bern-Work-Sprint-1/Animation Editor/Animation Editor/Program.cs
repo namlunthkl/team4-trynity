@@ -27,7 +27,7 @@ namespace Animation_Editor
             {
 
                 theform.Update();
-
+                
                 theform.Render();
 
                 Application.DoEvents();

@@ -14,13 +14,13 @@ namespace Animation_Editor
             sheet = new Bitmap(FilePath);
         }
 
-        public string filepath;
+        private string filepath;
         public string Filepath
         {
             get { return filepath; }
             set { filepath = value; }
         }
-        public Bitmap sheet;
+        private Bitmap sheet;
         public System.Drawing.Bitmap Sheet
         {
             get { return sheet; }

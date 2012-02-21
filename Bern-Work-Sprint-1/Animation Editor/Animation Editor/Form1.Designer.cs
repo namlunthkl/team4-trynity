@@ -32,6 +32,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripImportAnimationImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -103,6 +105,7 @@
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
+            this.AnimationUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxDraw.SuspendLayout();
             this.GroupBoxEditAnchorPoint.SuspendLayout();
@@ -142,6 +145,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripNew,
+            this.toolStripSeparator4,
+            this.toolStripMenuItem1,
             this.toolStripSeparator2,
             this.toolStripImportAnimationImage,
             this.toolStripSeparator,
@@ -165,6 +170,18 @@
             this.ToolStripNew.Size = new System.Drawing.Size(201, 22);
             this.ToolStripNew.Text = "&New";
             this.ToolStripNew.Click += new System.EventHandler(this.ToolStripNew_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(201, 22);
+            this.toolStripMenuItem1.Text = "Set Enviroment Path";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator2
             // 
@@ -843,6 +860,7 @@
             // 
             // groupBoxAllAnimations
             // 
+            this.groupBoxAllAnimations.Controls.Add(this.AnimationUpdate);
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListAdd);
             this.groupBoxAllAnimations.Controls.Add(this.listBoxAnimations);
@@ -855,9 +873,9 @@
             // 
             // AnimationListRemove
             // 
-            this.AnimationListRemove.Location = new System.Drawing.Point(162, 179);
+            this.AnimationListRemove.Location = new System.Drawing.Point(218, 179);
             this.AnimationListRemove.Name = "AnimationListRemove";
-            this.AnimationListRemove.Size = new System.Drawing.Size(143, 23);
+            this.AnimationListRemove.Size = new System.Drawing.Size(84, 23);
             this.AnimationListRemove.TabIndex = 9;
             this.AnimationListRemove.Text = "Remove";
             this.AnimationListRemove.UseVisualStyleBackColor = true;
@@ -867,7 +885,7 @@
             // 
             this.AnimationListAdd.Location = new System.Drawing.Point(7, 179);
             this.AnimationListAdd.Name = "AnimationListAdd";
-            this.AnimationListAdd.Size = new System.Drawing.Size(143, 23);
+            this.AnimationListAdd.Size = new System.Drawing.Size(84, 23);
             this.AnimationListAdd.TabIndex = 7;
             this.AnimationListAdd.Text = "Add";
             this.AnimationListAdd.UseVisualStyleBackColor = true;
@@ -914,6 +932,16 @@
             this.MainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseDown);
             this.MainPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseMove);
             this.MainPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseUp);
+            // 
+            // AnimationUpdate
+            // 
+            this.AnimationUpdate.Location = new System.Drawing.Point(110, 179);
+            this.AnimationUpdate.Name = "AnimationUpdate";
+            this.AnimationUpdate.Size = new System.Drawing.Size(84, 23);
+            this.AnimationUpdate.TabIndex = 10;
+            this.AnimationUpdate.Text = "Update";
+            this.AnimationUpdate.UseVisualStyleBackColor = true;
+            this.AnimationUpdate.Click += new System.EventHandler(this.AnimationUpdate_Click);
             // 
             // Form1
             // 
@@ -1047,6 +1075,9 @@
         private System.Windows.Forms.ListBox listBoxAnimations;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.Button AnimationUpdate;
     }
 }
 
