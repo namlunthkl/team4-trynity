@@ -236,7 +236,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(754, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1130, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1814,7 +1814,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 503);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(754, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1842,7 +1842,7 @@
             this.graphics_PanelViewer.BackColor = System.Drawing.SystemColors.Desktop;
             this.graphics_PanelViewer.Location = new System.Drawing.Point(312, 42);
             this.graphics_PanelViewer.Name = "graphics_PanelViewer";
-            this.graphics_PanelViewer.Size = new System.Drawing.Size(430, 450);
+            this.graphics_PanelViewer.Size = new System.Drawing.Size(806, 450);
             this.graphics_PanelViewer.TabIndex = 6;
             // 
             // Form1
@@ -1850,7 +1850,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(754, 525);
+            this.ClientSize = new System.Drawing.Size(1130, 525);
             this.Controls.Add(this.graphics_PanelViewer);
             this.Controls.Add(this.buttonREANIMATEPARTICLES);
             this.Controls.Add(this.buttonENABLEPOINTGRAVITY);

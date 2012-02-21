@@ -6,6 +6,7 @@ using System.Drawing;
 using BodagheeParticleTool;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
+using System.Threading;
 
 namespace ParticleTool
 {
@@ -72,8 +73,8 @@ namespace ParticleTool
             maxVelX = 0;
             minVelY = 0;
             maxVelY = 0;
-            spwnAreaWidth = 2;
-            spwnAreaHeight = 2;
+            spwnAreaWidth = 1;
+            spwnAreaHeight = 1;
             scaleStart = 0.0f;
             scaleEnd = 0.0f;
             rotation = 0.0f;
@@ -91,7 +92,7 @@ namespace ParticleTool
 
         public void Update(float deltaTime)
         {
-            for (int i = 0; i < Particle_List.Count(); i++)
+            for (int i = 0; i < maxParticles; i++)
             {
                 Particle_List[i].rotation += rotation * deltaTime;
                 Particle_List[i].life -= 1000 * deltaTime;
@@ -137,7 +138,8 @@ namespace ParticleTool
         }
         public void Respawn(Particle p)
         {
-            Random rand = new Random();
+            Thread.Sleep(1);
+            Random rand = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
             p.Life = (float)(rand.Next(0, (int)MaxLife * 1000));
             p.Size_p = FSize;
 
@@ -146,6 +148,9 @@ namespace ParticleTool
 
             p.PosX = EmitterPosX - (rand.Next(0, (int)SpwnAreaWidth * 2 + 1) - SpwnAreaWidth) / 2;
             p.PosY = EmitterPosY - (rand.Next(0, (int)SpwnAreaHeight * 2 + 1) - SpwnAreaHeight) / 2;
+
+            //p.posX = emitterPosX - ( rand.Next( (int)spwnAreaWidth, (int)spwnAreaHeight ) );
+            //p.posY = emitterPosY - ( rand.Next( (int)spwnAreaWidth, (int)spwnAreaHeight ) );
         }
         public void Render()
         {

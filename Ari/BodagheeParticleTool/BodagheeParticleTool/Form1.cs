@@ -247,8 +247,24 @@ namespace BodagheeParticleTool
         private void numericUpDownEmitterAmount_ValueChanged(object sender, EventArgs e)
         {
             emitterObject.MaxParticles = (int)numericUpDownEmitterAmount.Value;
-            Particle tempParticle = new Particle();
-            emitterObject.Particle_List.Add(tempParticle);
+            int diff = Math.Abs(emitterObject.MaxParticles - emitterObject.Particle_List.Count);
+
+            if (emitterObject.MaxParticles < emitterObject.Particle_List.Count)
+            {
+                for (int i = 0; i < diff; i++)
+                {
+                    emitterObject.Particle_List.RemoveAt(0);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < diff; i++)
+                {
+                    Particle tempParticle = new Particle();
+                    emitterObject.Particle_List.Add(tempParticle);
+                }
+            }
+            
         }
         private void numericUpDownEmitterLife_ValueChanged(object sender, EventArgs e)
         {
