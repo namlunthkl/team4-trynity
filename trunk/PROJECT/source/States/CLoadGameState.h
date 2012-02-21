@@ -12,7 +12,7 @@
 
 enum {LODG_SLOT1 = 0, LODG_SLOT2, LODG_SLOT3, LODG_BACK, LODG_MAX};
 
-class CLoadGameState : public IGameState, public CBaseMenu
+class CLoadGameState : public CBaseMenu
 {
 private:
 	//	Instance

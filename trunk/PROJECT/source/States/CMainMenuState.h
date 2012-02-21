@@ -12,7 +12,7 @@
 
 enum {MAIN_NEW = 0, MAIN_LOAD, MAIN_OPTIONS, MAIN_CREDITS, MAIN_EXIT, MAIN_MAX};
 
-class CMainMenuState : public IGameState, public CBaseMenu
+class CMainMenuState : public CBaseMenu
 {
 private:
 	//	Instance
