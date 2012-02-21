@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WorldEngine>
            <Tileset file="resource/Tilesets/ForestTileset.xml"/>
-           <Map file="resource/Maps/CollisionMap.xml"/>
+           <Map file="resource/Maps/Map for Sprint 1.xml"/>
 </WorldEngine>
+
 
 
 

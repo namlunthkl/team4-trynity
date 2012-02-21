@@ -14,7 +14,7 @@
 
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
-#define WORLD CWorldEngine::GetInstance()
+#define MESSAGES CMessageSystem::GetInstance()
 
 // Constructor
 CGameplayState::CGameplayState(void)
@@ -34,9 +34,8 @@ void CGameplayState::Enter(void)
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
 
-	pPlayer = new TestPlayer();
-	pPlayer->SetPosX(0);
-	pPlayer->SetPosY(0);
+	pPlayer = NULL;
+	MESSAGES->InitMessageSystem(MessageProc);
 
 }
 
@@ -47,17 +46,15 @@ bool CGameplayState::Input(void)
 	{
 		GAME->SetPaused( true );
 	}
-	
-	if(INPUT->KeyPressed(DIK_RETURN))
-	{
-		POINT* ptPosition = new POINT;
-		ptPosition->x = pPlayer->GetPosX();
-		ptPosition->y = pPlayer->GetPosY();
 
-		EVENTS->SendEvent("LightTorch", (void*)ptPosition);
-	}
+	// Create player
+	if(!pPlayer)
+		if(INPUT->KeyPressed(DIK_SPACE))
+			MESSAGES->SendMsg(new CCreatePlayerMessage(10, 10));
 
-
+	// Move player
+	if(pPlayer)
+		pPlayer->Input();
 
 	return true;
 }
@@ -69,6 +66,11 @@ void CGameplayState::Update(float fElapsedTime)
 
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
+
+	MESSAGES->ProcessMessages();
+
+	if(pPlayer)
+		pPlayer->Update(fElapsedTime);
 }
 
 void CGameplayState::Render(void)
@@ -78,12 +80,17 @@ void CGameplayState::Render(void)
 
 	if(PW.GetFired())
 		PW.Render();
+
+	if(pPlayer)
+		pPlayer->Render();
 }
 
 void CGameplayState::Exit(void)
 {
 	WORLD->ShutdownWorldEngine();
 	WORLD->DeleteInstance();
+	EVENTS->ShutdownEventSystem();
+	MESSAGES->ShutdownMessageSystem();
 }
 
 CGameplayState* CGameplayState::GetInstance(void)
@@ -100,7 +107,33 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	}
 	else if(pEvent->GetEventID() == "LightTorch")
 	{
-		POINT* ptPosition = (POINT*)pEvent->GetParam();
-		PW.Fire(ptPosition->x, ptPosition->y);
+		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
+
+		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
+		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
+
+		PosX += 15;
+		PosY -= 5;
+
+		PW.Fire(PosX, PosY);
 	}
+}
+
+void CGameplayState::MessageProc(CBaseMessage* pMsg)
+{
+	switch(pMsg->GetMsgID())
+	{
+	case MSG_CREATE_PLAYER:
+		{
+			CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
+			CGameplayState* pGameplay = CGameplayState::GetInstance();
+
+			// TODO: Add code here
+			pGameplay->pPlayer = new TestPlayer();
+			pGameplay->pPlayer->Enter();
+			pGameplay->pPlayer->SetPosX(pCPM->GetPosX());
+			pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
+			break;
+		}
+	};
 }

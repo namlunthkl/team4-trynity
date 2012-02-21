@@ -256,23 +256,26 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 							if(/* check if pBase's type is player */true)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
-							if(/* check if action button was pressed */true)
+							if(INPUT->KeyPressed(DIK_E))
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_BASIC_ATTACK))
-							if(/* check if player attacked */true)
+							if(/* check if player attacked */false)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_FIRE_BLADE))
-							if(/* check if fire power was used */true)
+							if(/* check if fire power was used */false)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_EARTH_HAMMER))
-							if(/* check if earth power was used */true)
+							if(/* check if earth power was used */false)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_AIR_CROSSBOW))
-							if(/* check if air power was used */true)
+							if(/* check if air power was used */false)
 								nConditionsMet++;
 
 						if(nConditionsMet == nConditionsNeeded)
-							CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()));
+						{
+							TileInfo* eventInfo = new TileInfo(uiIndexWidth, uiIndexHeight, tileCurrent, this);
+							CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()), eventInfo);
+						}
 					}
 
 					// Continue checking

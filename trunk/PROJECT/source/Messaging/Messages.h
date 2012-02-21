@@ -9,7 +9,7 @@
 #define MESSAGES_H_
 
 typedef int MSGID;
-enum eMsgTypes { MSG_NULL = 0, MSG_MAX };
+enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER, MSG_MAX };
 
 class CBaseMessage
 {
@@ -23,5 +23,16 @@ public:
 };
 
 // Declare other messages in here
+class CCreatePlayerMessage : public CBaseMessage
+{
+	int m_nPosX;
+	int m_nPosY;
+public:
+	CCreatePlayerMessage(int nPosX, int nPosY) : CBaseMessage(MSG_CREATE_PLAYER)
+	{ m_nPosX = nPosX; m_nPosY = nPosY; }
+	int GetPosX(void) { return m_nPosX; }
+	int GetPosY(void) { return m_nPosY; }
+};
+
 
 #endif MESSAGES_H_

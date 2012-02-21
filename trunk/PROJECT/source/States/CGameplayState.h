@@ -24,6 +24,7 @@
 // Event System
 #include "../Messaging/CEventSystem.h"
 #include "../Messaging/IListener.h"
+#include "../Messaging/CMessageSystem.h"
 
 class CGameplayState : public IGameState , public IListener
 {
@@ -59,6 +60,9 @@ public:
 
 	// Shutdown everything
 	void Exit(void);
+
+	// Message Proc for messaging system
+	static void MessageProc(CBaseMessage* pMsg);
 
 	// Singleton accessor
 	static CGameplayState* GetInstance(void);

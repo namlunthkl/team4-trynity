@@ -61,14 +61,11 @@ class CMap
 		BIT_EVENT_BASIC_ATTACK, BIT_EVENT_FIRE_BLADE,
 		BIT_EVENT_EARTH_HAMMER, BIT_EVENT_AIR_CROSSBOW };
 
-
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PRIVATE	FUNCTIONS							//
 	//	------------------------------------------------------------------	//
 	//////////////////////////////////////////////////////////////////////////
-
-	
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Get the source RECT of a tile in a tileset
@@ -78,6 +75,18 @@ class CMap
 	RECT GetTileSourceRect(CTile* tileCurrent);
 
 public:
+
+	// TileInfo struct - to send with events
+	struct TileInfo
+	{
+		short sMapPosX;
+		short sMapPosY;
+		CTile* Tile;
+		CMap* Map;
+		TileInfo(short mapPosX, short mapPosY, CTile* tile, CMap* map)
+		{ sMapPosX = mapPosX; sMapPosY = mapPosY; Tile = tile; Map = map; }
+	};
+
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PUBLIC	FUNCTIONS							//
