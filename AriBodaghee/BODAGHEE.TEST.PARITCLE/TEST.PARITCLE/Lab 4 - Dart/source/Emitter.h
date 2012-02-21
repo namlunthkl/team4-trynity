@@ -15,7 +15,6 @@ public:
 	 bool Continuous;
 	 bool reAnimate;
 
-
 	 int Image;
 	 string ImageFile;
 

@@ -84,7 +84,6 @@
     <ClCompile Include="source\Emitter.cpp" />
     <ClCompile Include="source\FlyWeight.cpp" />
     <ClCompile Include="source\Messaging\CSGD_EventSystem.cpp" />
-    <ClCompile Include="source\Particle.cpp" />
     <ClCompile Include="source\ParticleWeapon.cpp" />
     <ClCompile Include="source\SGD Wrappers\CSGD_Direct3D.cpp" />
     <ClCompile Include="source\SGD Wrappers\CSGD_DirectInput.cpp" />

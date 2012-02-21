@@ -1,7 +1,6 @@
 #ifndef _Particle_h_
 #define _Particle_h_
 
-
 class Particle
 {
 public:
@@ -21,9 +20,7 @@ public:
 
 	float Life;
 
-	Particle();
-	~Particle();
-	void Update(float DT);
-
+	Particle(){}
+	~Particle(){}
 };
 #endif

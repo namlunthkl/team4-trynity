@@ -7,7 +7,6 @@ ParticleWeapon::ParticleWeapon(void)
 {
 	Fired = false;
 }
-
 ParticleWeapon::~ParticleWeapon(void)
 {
 	for(unsigned int i = 0; i < Emitters.size(); i++)
@@ -18,7 +17,6 @@ ParticleWeapon::~ParticleWeapon(void)
 	}
 	Emitters.clear();
 }
-
 void ParticleWeapon::Fire(int PosX, int PosY)
 {
 	Fired = true;
@@ -30,17 +28,8 @@ void ParticleWeapon::Fire(int PosX, int PosY)
 		Emitters[i]->Data->EmitterPosY = (float)PosY;
 	}
 }
-
 void ParticleWeapon::Update(float DT)
 {
-	if(Fired == false)
-		for(unsigned int i = 0; i < Emitters.size(); i++)
-		{
-			Emitters[i]->Data->EmitterPosX = -1000;
-			Emitters[i]->Data->EmitterPosY = -1000;
-		}
-
-
 	for(unsigned int i = 0; i < Emitters.size(); i++)
 	{
 		Emitters[i]->Update(DT);
@@ -49,10 +38,8 @@ void ParticleWeapon::Update(float DT)
 			Fired = false;
 	}
 }
-
 void ParticleWeapon::Render()
 {
-
 	for(unsigned int i = 0; i < Emitters.size(); i++)
 		Emitters[i]->Render();
 }
@@ -87,7 +74,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 			temp = pSize->GetText();
 			tempE->Data->fSize = (float)atof(temp.c_str());
 
-
 			TiXmlElement* pLife = D->FirstChildElement("MaxLife");
 			temp = pLife->GetText();
 			tempE->Data->MaxLife = (float)atof(temp.c_str());
@@ -116,14 +102,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 			temp = pSpawnAHigh->GetText();
 			tempE->Data->SpwnAreaHeight = (float)atof(temp.c_str());
 
-			TiXmlElement* pMinSpwnRadius = D->FirstChildElement("MinSpwnRadius");
-			temp = pMinSpwnRadius->GetText();
-			tempE->Data->MinSpwnRadius = (float)atof(temp.c_str());
-
-			TiXmlElement* pMaxSpwnRadius = D->FirstChildElement("MaxSpwnRadius");
-			temp = pMaxSpwnRadius->GetText();
-			tempE->Data->MaxSpwnRadius = (float)atof(temp.c_str());
-
 			TiXmlElement* pFadeEffect = D->FirstChildElement("FadeEffect");
 			temp = pFadeEffect->GetText();
 			tempE->Data->FadeEffect = atoi(temp.c_str());
@@ -139,10 +117,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 			TiXmlElement* pScaleValue = D->FirstChildElement("ScaleValue");
 			temp = pScaleValue->GetText();
 			tempE->Data->ScaleValue = (float)atof(temp.c_str());
-
-			TiXmlElement* pRotationEffect = D->FirstChildElement("RotationEffect");
-			temp = pRotationEffect->GetText();
-			tempE->Data->RotationEffect = atoi(temp.c_str());
 
 			TiXmlElement* pRotationValue = D->FirstChildElement("RotationValue");
 			temp = pRotationValue->GetText();
@@ -172,10 +146,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 			temp = pBlueValue->GetText();
 			tempE->Data->BlueValue = (float)atof(temp.c_str());
 
-			TiXmlElement* pPattern = D->FirstChildElement("SpwnPattern");
-			temp = pPattern->GetText();
-			tempE->Data->SpwnPattern = atoi(temp.c_str());
-
 			TiXmlElement* pSource = D->FirstChildElement("Source");
 			temp = pSource->GetText();
 			tempE->Data->Source = atoi(temp.c_str());
@@ -183,13 +153,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 			TiXmlElement* pDest = D->FirstChildElement("Dest");
 			temp = pDest->GetText();
 			tempE->Data->Dest = atoi(temp.c_str());
-
-			TiXmlElement* pUseBlend = D->FirstChildElement("UseBlend");
-			temp = pUseBlend->GetText();
-			if(temp == "true")
-				tempE->Data->UseBlend = true;
-			else
-				tempE->Data->UseBlend = false;
 
 			TiXmlElement* pEmitterPosX = D->FirstChildElement("EmitterPosX");
 			temp = pEmitterPosX->GetText();

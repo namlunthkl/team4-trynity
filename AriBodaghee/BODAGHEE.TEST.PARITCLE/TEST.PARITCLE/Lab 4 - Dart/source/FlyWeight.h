@@ -13,17 +13,14 @@ public:
 	float MaxVelY;
 	float SpwnAreaWidth;
 	float SpwnAreaHeight;
-	float MinSpwnRadius;
-	float MaxSpwnRadius;
-
+	
+	float RotationValue;
+	
 	int FadeEffect;
 	float FadeValue;
 
-	int ScaleEffect;
-	float ScaleValue;
-
-	int RotationEffect;
-	float RotationValue;
+	
+	
 
 	int RedEffect;
 	float RedValue;
@@ -34,10 +31,12 @@ public:
 	int BlueEffect;
 	float BlueValue;
 
-	int SpwnPattern;
+	int ScaleEffect;
+	float ScaleValue;
+
 	int Source;
 	int Dest;
-	bool UseBlend;
+
 	float EmitterPosX;
 	float EmitterPosY;
 	int MaxParticles;
