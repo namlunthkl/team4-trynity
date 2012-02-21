@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Animations FileName="nxc_bat_heihachi.PNG">
+  <Animation name="Something" looping="0" oslating="0" playing="0" speed="1" NumFrames="2">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="14" y="91" width="103" height="81" />
+      <CollisionRect x="0" y="0" width="0" height="0" />
+      <Anchor x="53" y="74" />
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="15" y="182" width="75" height="86" />
+      <CollisionRect x="0" y="0" width="0" height="0" />
+      <Anchor x="40" y="81" />
+    </Frame>
+  </Animation>
+</Animations>
