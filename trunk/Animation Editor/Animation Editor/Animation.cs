@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace Animation_Editor
 {
@@ -45,8 +46,8 @@ namespace Animation_Editor
             get { return numFrames; }
             set { numFrames = value; }
         }
-        private List<Frame> frames;
-        public List<Frame> Frames
+        private BindingList<Frame> frames;
+        public BindingList<Frame> Frames
         {
             get { return frames; }
             set { frames = value; }

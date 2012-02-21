@@ -21,6 +21,9 @@ public:
 	{
 		m_nAnimationId = nAnimationID; 
 		m_bIsLooping = bIsLooping;
+		m_bIsPlaying = false;
+		m_nFrameNumber = 0;
+		m_fTimer = 0;
 	}
 	void Play();
 	void Stop();
