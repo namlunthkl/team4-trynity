@@ -164,8 +164,8 @@ void CMap::Render(void)
 			int nTileScreenPosX = nTileWorldPosX - 0;	// TODO: Replace 0 by camera's X position
 			int nTileScreenPosY = nTileWorldPosY - 0;	// TODO: Replace 0 by camera's Y position
 			
-			if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) < GAME->GetScreenWidth()
-				&& nTileScreenPosY >= 0 && (nTileScreenPosY + GetTileset()->GetTileHeight()) < GAME->GetScreenHeight())
+			if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth()
+				&& nTileScreenPosY >= 0 && (nTileScreenPosY + GetTileset()->GetTileHeight()) <= GAME->GetScreenHeight())
 			{
 				// Get the source rect of that tile
 				RECT rectSource = GetTileSourceRect(tileCurrent);

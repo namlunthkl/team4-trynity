@@ -50,7 +50,7 @@ bool CGameplayState::Input(void)
 	// Create player
 	if(!pPlayer)
 		if(INPUT->KeyPressed(DIK_SPACE))
-			MESSAGES->SendMsg(new CCreatePlayerMessage(10, 10));
+			MESSAGES->SendMsg(new CCreatePlayerMessage(600, 100));
 
 	// Move player
 	if(pPlayer)
@@ -80,6 +80,8 @@ void CGameplayState::Render(void)
 
 	if(PW.GetFired())
 		PW.Render();
+
+	D3D->GetSprite()->Flush();
 
 	if(pPlayer)
 		pPlayer->Render();
