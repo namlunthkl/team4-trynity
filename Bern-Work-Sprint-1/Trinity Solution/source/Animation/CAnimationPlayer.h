@@ -27,5 +27,6 @@ public:
 	void Reset();
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
+	RECT ReturnFrameRect(void);
 };
 #endif

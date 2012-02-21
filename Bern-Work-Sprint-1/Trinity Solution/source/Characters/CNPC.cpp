@@ -20,7 +20,7 @@ bool CNPC::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsign
 
 RECT CNPC::GetCollisionRect()
 {
-	RECT temp;
+	RECT temp = {42,42,42,42};
 	return temp;
 }
 

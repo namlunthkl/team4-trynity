@@ -12,7 +12,7 @@
 
 enum {NEWG_SLOT1 = 0, NEWG_SLOT2, NEWG_SLOT3, NEWG_BACK, NEWG_MAX};
 
-class CNewGameState : public IGameState, public CBaseMenu
+class CNewGameState : public CBaseMenu
 {
 private:
 	//	Instance

@@ -11,12 +11,14 @@
 
 // Xbox Controller
 #include <XInput.h>
+#pragma comment(lib,"XInput.lib")
 
 class CInputManager
 {
 private:
 	XINPUT_STATE m_ControllerState;
 	int m_nControllerNum;
+
 public:
 	CInputManager(int nPlayerNumber = -1);
 	XINPUT_STATE GetState();

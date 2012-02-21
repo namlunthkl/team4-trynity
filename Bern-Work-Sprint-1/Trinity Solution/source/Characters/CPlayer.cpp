@@ -39,7 +39,7 @@ bool CPlayer::Initialize(short sPosX, short sPosY, unsigned char ucCharType, uns
 
 RECT CPlayer::GetCollisionRect()
 {
-	RECT temp;
+	RECT temp = {42,42,42,42};
 	return temp;
 }
 

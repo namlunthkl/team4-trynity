@@ -20,7 +20,7 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 
 RECT CEnemy::GetCollisionRect()
 {
-	RECT temp;
+	RECT temp = {42,42,42,42};
 	return temp;
 }
 

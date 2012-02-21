@@ -21,25 +21,18 @@ CGameplayState::CGameplayState(void)
 }
 void CGameplayState::Enter(void)
 {
-	// Initialize the best world engine ever created
-	CWorldEngine::GetInstance()->InitWorldEngine();
+	CreateMaps();
+	CreatePuzzles();
+	CAnimationManager::GetInstance()->LoadAnimation("resource/Blue Flower.xml");
 	
-	//	How to load an animation using Bern's crappy animation editor
-	//		CAnimationManager::GetInstance()->LoadAnimation("resource/Animation.xml");	
-	//		gethit=new CAnimationPlayer(0,true);
-	//		gethit->Play();
-
-	CAnimationManager* pAM = CAnimationManager::GetInstance();
-
-	pAM->LoadAnimation("resource/character_walking.xml");
-	WalkUp = new CAnimationPlayer(0, true);
-	WalkDown = new CAnimationPlayer(1, true);
-	WalkLeft = new CAnimationPlayer(2, true);
-	WalkRight = new CAnimationPlayer(3, true);
-
-	// TESTING
-	pPlayer = new TestPlayer();
-	pPlayer->Enter();
+	//gethit=new CAnimationPlayer(0,true);
+	//gethit->Play();
+	//gethit2 = new CAnimationPlayer(0,false);
+	//gethit2->Play();
+	attack = new CAnimationPlayer(0,true);
+	attack->Play();
+	//attack2 = new CAnimationPlayer(1,false);
+	//attack2->Play();
 }
 bool CGameplayState::Input(void)
 {

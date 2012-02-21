@@ -12,7 +12,7 @@
 
 enum {ADIO_MUSIC = 0, ADIO_SOUND, ADIO_BACK, ADIO_MAX};
 
-class CAudioOptionsState : public IGameState, public CBaseMenu
+class CAudioOptionsState : public CBaseMenu
 {
 private:
 	//	Instance
