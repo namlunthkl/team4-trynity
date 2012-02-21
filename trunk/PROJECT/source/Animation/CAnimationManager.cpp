@@ -109,11 +109,11 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			}
 			if(pDrawRect->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempDrawRect.right = (nTemp + tempDrawRect.left);
+				tempDrawRect.right = (nTemp);
 			}
 			if(pDrawRect->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempDrawRect.bottom = (nTemp + tempDrawRect.top);
+				tempDrawRect.bottom = (nTemp);
 			}
 			//	Set the Draw Rect
 			tempFrame.SetDrawRect(tempDrawRect);
@@ -132,11 +132,11 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			}
 			if(pCollisionRect->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempCollisionRect.right = (nTemp + tempCollisionRect.left);
+				tempCollisionRect.right = (nTemp);
 			}
 			if(pCollisionRect->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempCollisionRect.bottom = (nTemp + tempCollisionRect.top);
+				tempCollisionRect.bottom = (nTemp);
 			}
 			//	Set the collision Rect
 			tempFrame.SetCollisionRect(tempCollisionRect);

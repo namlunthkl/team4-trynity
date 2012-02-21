@@ -98,6 +98,7 @@
             this.numericUpDownCollisionYPosition = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownCollisionXPosition = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAllAnimations = new System.Windows.Forms.GroupBox();
+            this.AnimationUpdate = new System.Windows.Forms.Button();
             this.AnimationListRemove = new System.Windows.Forms.Button();
             this.AnimationListAdd = new System.Windows.Forms.Button();
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
@@ -105,7 +106,7 @@
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
-            this.AnimationUpdate = new System.Windows.Forms.Button();
+            this.DeSelect = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxDraw.SuspendLayout();
             this.GroupBoxEditAnchorPoint.SuspendLayout();
@@ -860,22 +861,33 @@
             // 
             // groupBoxAllAnimations
             // 
-            this.groupBoxAllAnimations.Controls.Add(this.AnimationUpdate);
-            this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
+            this.groupBoxAllAnimations.Controls.Add(this.DeSelect);
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListAdd);
+            this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
             this.groupBoxAllAnimations.Controls.Add(this.listBoxAnimations);
-            this.groupBoxAllAnimations.Location = new System.Drawing.Point(367, 450);
+            this.groupBoxAllAnimations.Controls.Add(this.AnimationUpdate);
+            this.groupBoxAllAnimations.Location = new System.Drawing.Point(360, 450);
             this.groupBoxAllAnimations.Name = "groupBoxAllAnimations";
-            this.groupBoxAllAnimations.Size = new System.Drawing.Size(311, 208);
+            this.groupBoxAllAnimations.Size = new System.Drawing.Size(318, 208);
             this.groupBoxAllAnimations.TabIndex = 10;
             this.groupBoxAllAnimations.TabStop = false;
             this.groupBoxAllAnimations.Text = "Animations";
             // 
+            // AnimationUpdate
+            // 
+            this.AnimationUpdate.Location = new System.Drawing.Point(84, 179);
+            this.AnimationUpdate.Name = "AnimationUpdate";
+            this.AnimationUpdate.Size = new System.Drawing.Size(71, 23);
+            this.AnimationUpdate.TabIndex = 10;
+            this.AnimationUpdate.Text = "Update";
+            this.AnimationUpdate.UseVisualStyleBackColor = true;
+            this.AnimationUpdate.Click += new System.EventHandler(this.AnimationUpdate_Click);
+            // 
             // AnimationListRemove
             // 
-            this.AnimationListRemove.Location = new System.Drawing.Point(218, 179);
+            this.AnimationListRemove.Location = new System.Drawing.Point(238, 179);
             this.AnimationListRemove.Name = "AnimationListRemove";
-            this.AnimationListRemove.Size = new System.Drawing.Size(84, 23);
+            this.AnimationListRemove.Size = new System.Drawing.Size(71, 23);
             this.AnimationListRemove.TabIndex = 9;
             this.AnimationListRemove.Text = "Remove";
             this.AnimationListRemove.UseVisualStyleBackColor = true;
@@ -885,7 +897,7 @@
             // 
             this.AnimationListAdd.Location = new System.Drawing.Point(7, 179);
             this.AnimationListAdd.Name = "AnimationListAdd";
-            this.AnimationListAdd.Size = new System.Drawing.Size(84, 23);
+            this.AnimationListAdd.Size = new System.Drawing.Size(71, 23);
             this.AnimationListAdd.TabIndex = 7;
             this.AnimationListAdd.Text = "Add";
             this.AnimationListAdd.UseVisualStyleBackColor = true;
@@ -896,7 +908,7 @@
             this.listBoxAnimations.FormattingEnabled = true;
             this.listBoxAnimations.Location = new System.Drawing.Point(7, 19);
             this.listBoxAnimations.Name = "listBoxAnimations";
-            this.listBoxAnimations.Size = new System.Drawing.Size(295, 147);
+            this.listBoxAnimations.Size = new System.Drawing.Size(302, 147);
             this.listBoxAnimations.TabIndex = 0;
             this.listBoxAnimations.SelectedIndexChanged += new System.EventHandler(this.listBoxAnimations_SelectedIndexChanged);
             // 
@@ -906,6 +918,7 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(638, 17);
             this.hScrollBar1.TabIndex = 11;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // vScrollBar1
             // 
@@ -913,6 +926,7 @@
             this.vScrollBar1.Name = "vScrollBar1";
             this.vScrollBar1.Size = new System.Drawing.Size(17, 388);
             this.vScrollBar1.TabIndex = 12;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
             // graphicsPanelPlayer
             // 
@@ -933,15 +947,15 @@
             this.MainPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseMove);
             this.MainPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseUp);
             // 
-            // AnimationUpdate
+            // DeSelect
             // 
-            this.AnimationUpdate.Location = new System.Drawing.Point(110, 179);
-            this.AnimationUpdate.Name = "AnimationUpdate";
-            this.AnimationUpdate.Size = new System.Drawing.Size(84, 23);
-            this.AnimationUpdate.TabIndex = 10;
-            this.AnimationUpdate.Text = "Update";
-            this.AnimationUpdate.UseVisualStyleBackColor = true;
-            this.AnimationUpdate.Click += new System.EventHandler(this.AnimationUpdate_Click);
+            this.DeSelect.Location = new System.Drawing.Point(161, 179);
+            this.DeSelect.Name = "DeSelect";
+            this.DeSelect.Size = new System.Drawing.Size(71, 23);
+            this.DeSelect.TabIndex = 13;
+            this.DeSelect.Text = "Deselect";
+            this.DeSelect.UseVisualStyleBackColor = true;
+            this.DeSelect.Click += new System.EventHandler(this.DeSelect_Click);
             // 
             // Form1
             // 
@@ -1078,6 +1092,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Button AnimationUpdate;
+        private System.Windows.Forms.Button DeSelect;
     }
 }
 
