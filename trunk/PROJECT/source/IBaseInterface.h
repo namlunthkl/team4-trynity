@@ -7,7 +7,12 @@
 ////////////////////////////////////////////////////////////////////////
 #ifndef _IBASINTERFACE_H_
 #define _IBASINTERFACE_H_
+
+#include "StdAfx.h"
+
 #include "Animation/CAnimation.h"
+
+#include <Windows.h>
 
 class IBaseInterface
 {
@@ -28,8 +33,16 @@ public:
 
 	short GetPosX(void) { return m_sPosX; }
 	short GetPosY(void) { return m_sPosY; }
+	short GetVelX(void) { return m_sVelX; }
+	short GetVelY(void) { return m_sVelY; }
+	int GetImageID(void)	{ return m_nImageID; }
+	unsigned int GetRefCount(void)	{ return m_uiRefCount; }
 	void SetPosX(short sPosX) { m_sPosX = sPosX; }
 	void SetPosY(short sPosY) { m_sPosY = sPosY; }
+	void SetVelX(short sVelX) { m_sVelX = sVelX; }
+	void SetVelY(short sVelY) { m_sVelY = sVelY; }
+	void SetImageID(int nImageID)	{ m_nImageID = nImageID; }
+	void SetRefCount(unsigned int uiRefCount)	{ m_uiRefCount = uiRefCount; }
 };
 
 #endif

@@ -37,6 +37,13 @@ void CGameplayState::Enter(void)
 	pPlayer = NULL;
 	MESSAGES->InitMessageSystem(MessageProc);
 
+	pEnemy = new CEnemy();
+	pEnemy->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
+	pEnemy->SetPosX(50);
+	pEnemy->SetPosY(50);
+	pEnemy->SetVelX(1);
+	pEnemy->SetVelY(1);
+
 }
 
 bool CGameplayState::Input(void)
@@ -44,7 +51,7 @@ bool CGameplayState::Input(void)
 	//	Pause
 	if(INPUT->KeyPressed(DIK_ESCAPE))
 	{
-		GAME->SetPaused( true );
+		GAME->SetPaused( !GAME->GetPaused() );
 	}
 
 	// Create player
@@ -66,11 +73,15 @@ void CGameplayState::Update(float fElapsedTime)
 
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
+if(pEnemy)
+	pEnemy->Update(fElapsedTime);
 
 	MESSAGES->ProcessMessages();
 
 	if(pPlayer)
 		pPlayer->Update(fElapsedTime);
+
+
 }
 
 void CGameplayState::Render(void)
@@ -85,6 +96,8 @@ void CGameplayState::Render(void)
 
 	if(pPlayer)
 		pPlayer->Render();
+	if(pEnemy)
+		pEnemy->Render();
 }
 
 void CGameplayState::Exit(void)

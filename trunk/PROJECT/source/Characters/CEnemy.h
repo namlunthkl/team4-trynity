@@ -19,6 +19,8 @@ private:
 	unsigned char	m_ucEnemyType;
 	IBaseAIState*	m_pAIState;
 	int				m_sndEnemy;
+	//temp
+	float			m_fEnemyMoveTimer;
 public:
 	//	Enemy-specific
 	void ChangeState(IBaseAIState* pAIState);

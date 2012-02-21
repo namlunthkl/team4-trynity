@@ -26,10 +26,13 @@
 #include "../Messaging/IListener.h"
 #include "../Messaging/CMessageSystem.h"
 
+#include "../Characters/CEnemy.h"
+
 class CGameplayState : public IGameState , public IListener
 {
 	// JUST FOR TESTING
 	TestPlayer* pPlayer;
+	CEnemy* pEnemy;
 	ParticleWeapon PW;
 
 	//	Proper Singleton - needs trilogy of evil

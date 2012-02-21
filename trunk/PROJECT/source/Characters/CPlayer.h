@@ -21,7 +21,11 @@ private:
 	short			m_sBaseDamage;
 	unsigned char	m_cCurrentWeapon;
 	int				m_sndPlayer;
+
 public:
+	CPlayer();
+	~CPlayer();
+
 	//	Player-specific
 	void Attack();
 	void ChargedBlast();
