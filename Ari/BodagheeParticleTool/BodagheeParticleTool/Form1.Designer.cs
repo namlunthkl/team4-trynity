@@ -43,7 +43,6 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.randomizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,8 +70,6 @@
             this.labelEndingAlpha = new System.Windows.Forms.Label();
             this.numericUpDownEndingAlpha = new System.Windows.Forms.NumericUpDown();
             this.groupBoxScale = new System.Windows.Forms.GroupBox();
-            this.trackBarEndingScale = new System.Windows.Forms.TrackBar();
-            this.trackBarStartingScale = new System.Windows.Forms.TrackBar();
             this.labelEndingScale = new System.Windows.Forms.Label();
             this.numericUpDownEndingScale = new System.Windows.Forms.NumericUpDown();
             this.labelStartingScale = new System.Windows.Forms.Label();
@@ -99,6 +96,9 @@
             this.labelStartingAlpha = new System.Windows.Forms.Label();
             this.numericUpDownStartingAlpha = new System.Windows.Forms.NumericUpDown();
             this.tabPageEmitter = new System.Windows.Forms.TabPage();
+            this.groupBoxRotation = new System.Windows.Forms.GroupBox();
+            this.labelRotation = new System.Windows.Forms.Label();
+            this.numericUpDownRotation = new System.Windows.Forms.NumericUpDown();
             this.groupBoxEmitterShape = new System.Windows.Forms.GroupBox();
             this.labelEmitterShapeHeight = new System.Windows.Forms.Label();
             this.labelEmitterShapeWidth = new System.Windows.Forms.Label();
@@ -127,9 +127,6 @@
             this.numericUpDownEmitterVelocityX = new System.Windows.Forms.NumericUpDown();
             this.groupBoxParticleEmitter = new System.Windows.Forms.GroupBox();
             this.checkBoxEmitterBurst = new System.Windows.Forms.CheckBox();
-            this.trackBarEmitterSpread = new System.Windows.Forms.TrackBar();
-            this.labelEmitterSpread = new System.Windows.Forms.Label();
-            this.numericUpDownEmitterSpread = new System.Windows.Forms.NumericUpDown();
             this.trackBarEmitterLife = new System.Windows.Forms.TrackBar();
             this.labelEmitterLife = new System.Windows.Forms.Label();
             this.numericUpDownEmitterLife = new System.Windows.Forms.NumericUpDown();
@@ -141,12 +138,31 @@
             this.numericUpDownEmitterPositionY = new System.Windows.Forms.NumericUpDown();
             this.labelEmitterPositionX = new System.Windows.Forms.Label();
             this.numericUpDownEmitterPositionX = new System.Windows.Forms.NumericUpDown();
+            this.tabPageRandomize = new System.Windows.Forms.TabPage();
+            this.checkBoxRandomMaxVelY = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomShapeHeight = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomSource = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomDestination = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomStartColor = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomEndColor = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomMinVelX = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomMinVelY = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomMaxVelX = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomScaleStart = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomScaleEnd = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomAmount = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomLife = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomRotation = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomEmitterPositionX = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomEmitterPositionY = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomEmitterVelocityX = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomEmitterVelocityY = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandomShapeWidth = new System.Windows.Forms.CheckBox();
+            this.buttonRandomizeAll = new System.Windows.Forms.Button();
+            this.buttonRandomizeSelected = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.buttonENABLEPOINTGRAVITY = new System.Windows.Forms.Button();
             this.buttonREANIMATEPARTICLES = new System.Windows.Forms.Button();
-            this.groupBoxRotation = new System.Windows.Forms.GroupBox();
-            this.numericUpDownRotation = new System.Windows.Forms.NumericUpDown();
-            this.labelRotation = new System.Windows.Forms.Label();
             this.graphics_PanelViewer = new BodagheeParticleTool.Graphics_Panel();
             this.menuStrip1.SuspendLayout();
             this.tabControlEditor.SuspendLayout();
@@ -166,8 +182,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEndingAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndingAlpha)).BeginInit();
             this.groupBoxScale.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEndingScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarStartingScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndingScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartingScale)).BeginInit();
             this.groupBoxParticleMinVelocity.SuspendLayout();
@@ -185,6 +199,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarStartingAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartingAlpha)).BeginInit();
             this.tabPageEmitter.SuspendLayout();
+            this.groupBoxRotation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotation)).BeginInit();
             this.groupBoxEmitterShape.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterShapeHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterShapeWidth)).BeginInit();
@@ -200,8 +216,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityX)).BeginInit();
             this.groupBoxParticleEmitter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterSpread)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterSpread)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterLife)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterLife)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterAmount)).BeginInit();
@@ -209,8 +223,7 @@
             this.groupBoxEmitterPosition.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionX)).BeginInit();
-            this.groupBoxRotation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotation)).BeginInit();
+            this.tabPageRandomize.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -331,17 +344,10 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.randomizeToolStripMenuItem,
             this.changeBackgroundColorToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
-            // 
-            // randomizeToolStripMenuItem
-            // 
-            this.randomizeToolStripMenuItem.Name = "randomizeToolStripMenuItem";
-            this.randomizeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.randomizeToolStripMenuItem.Text = "Randomize";
             // 
             // changeBackgroundColorToolStripMenuItem
             // 
@@ -368,6 +374,7 @@
             // 
             this.tabControlEditor.Controls.Add(this.tabPageParticle);
             this.tabControlEditor.Controls.Add(this.tabPageEmitter);
+            this.tabControlEditor.Controls.Add(this.tabPageRandomize);
             this.tabControlEditor.Location = new System.Drawing.Point(0, 27);
             this.tabControlEditor.Name = "tabControlEditor";
             this.tabControlEditor.SelectedIndex = 0;
@@ -415,7 +422,7 @@
             // 
             this.numericUpDownMaxVelocityY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownMaxVelocityY.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
@@ -437,7 +444,7 @@
             // 
             this.numericUpDownMaxVelocityX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownMaxVelocityX.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
@@ -648,8 +655,6 @@
             // 
             // groupBoxScale
             // 
-            this.groupBoxScale.Controls.Add(this.trackBarEndingScale);
-            this.groupBoxScale.Controls.Add(this.trackBarStartingScale);
             this.groupBoxScale.Controls.Add(this.labelEndingScale);
             this.groupBoxScale.Controls.Add(this.numericUpDownEndingScale);
             this.groupBoxScale.Controls.Add(this.labelStartingScale);
@@ -660,20 +665,6 @@
             this.groupBoxScale.TabIndex = 3;
             this.groupBoxScale.TabStop = false;
             this.groupBoxScale.Text = "Scale";
-            // 
-            // trackBarEndingScale
-            // 
-            this.trackBarEndingScale.Location = new System.Drawing.Point(125, 36);
-            this.trackBarEndingScale.Name = "trackBarEndingScale";
-            this.trackBarEndingScale.Size = new System.Drawing.Size(153, 45);
-            this.trackBarEndingScale.TabIndex = 11;
-            // 
-            // trackBarStartingScale
-            // 
-            this.trackBarStartingScale.Location = new System.Drawing.Point(125, 14);
-            this.trackBarStartingScale.Name = "trackBarStartingScale";
-            this.trackBarStartingScale.Size = new System.Drawing.Size(153, 45);
-            this.trackBarStartingScale.TabIndex = 10;
             // 
             // labelEndingScale
             // 
@@ -694,10 +685,10 @@
             65536});
             this.numericUpDownEndingScale.Location = new System.Drawing.Point(39, 36);
             this.numericUpDownEndingScale.Maximum = new decimal(new int[] {
-            255,
+            500,
             0,
             0,
-            0});
+            131072});
             this.numericUpDownEndingScale.Name = "numericUpDownEndingScale";
             this.numericUpDownEndingScale.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownEndingScale.TabIndex = 8;
@@ -727,10 +718,10 @@
             65536});
             this.numericUpDownStartingScale.Location = new System.Drawing.Point(39, 14);
             this.numericUpDownStartingScale.Maximum = new decimal(new int[] {
-            255,
+            500,
             0,
             0,
-            0});
+            131072});
             this.numericUpDownStartingScale.Name = "numericUpDownStartingScale";
             this.numericUpDownStartingScale.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownStartingScale.TabIndex = 6;
@@ -767,10 +758,15 @@
             // 
             this.numericUpDownMinVelocityY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownMinVelocityY.Maximum = new decimal(new int[] {
-            255,
+            0,
             0,
             0,
             0});
+            this.numericUpDownMinVelocityY.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownMinVelocityY.Name = "numericUpDownMinVelocityY";
             this.numericUpDownMinVelocityY.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownMinVelocityY.TabIndex = 4;
@@ -789,10 +785,15 @@
             // 
             this.numericUpDownMinVelocityX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownMinVelocityX.Maximum = new decimal(new int[] {
-            255,
+            0,
             0,
             0,
             0});
+            this.numericUpDownMinVelocityX.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownMinVelocityX.Name = "numericUpDownMinVelocityX";
             this.numericUpDownMinVelocityX.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownMinVelocityX.TabIndex = 2;
@@ -1015,6 +1016,50 @@
             this.tabPageEmitter.TabIndex = 1;
             this.tabPageEmitter.Text = "Emitter";
             // 
+            // groupBoxRotation
+            // 
+            this.groupBoxRotation.Controls.Add(this.labelRotation);
+            this.groupBoxRotation.Controls.Add(this.numericUpDownRotation);
+            this.groupBoxRotation.Location = new System.Drawing.Point(6, 159);
+            this.groupBoxRotation.Name = "groupBoxRotation";
+            this.groupBoxRotation.Size = new System.Drawing.Size(126, 39);
+            this.groupBoxRotation.TabIndex = 9;
+            this.groupBoxRotation.TabStop = false;
+            this.groupBoxRotation.Text = "Rotation";
+            // 
+            // labelRotation
+            // 
+            this.labelRotation.AutoSize = true;
+            this.labelRotation.Location = new System.Drawing.Point(12, 16);
+            this.labelRotation.Name = "labelRotation";
+            this.labelRotation.Size = new System.Drawing.Size(28, 13);
+            this.labelRotation.TabIndex = 10;
+            this.labelRotation.Text = "Spin";
+            // 
+            // numericUpDownRotation
+            // 
+            this.numericUpDownRotation.DecimalPlaces = 2;
+            this.numericUpDownRotation.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownRotation.Location = new System.Drawing.Point(55, 13);
+            this.numericUpDownRotation.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownRotation.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownRotation.Name = "numericUpDownRotation";
+            this.numericUpDownRotation.Size = new System.Drawing.Size(65, 20);
+            this.numericUpDownRotation.TabIndex = 9;
+            this.numericUpDownRotation.ValueChanged += new System.EventHandler(this.numericUpDownRotation_ValueChanged);
+            // 
             // groupBoxEmitterShape
             // 
             this.groupBoxEmitterShape.Controls.Add(this.labelEmitterShapeHeight);
@@ -1049,8 +1094,8 @@
             // numericUpDownEmitterShapeHeight
             // 
             this.numericUpDownEmitterShapeHeight.Location = new System.Drawing.Point(49, 45);
-            this.numericUpDownEmitterShapeHeight.Maximum = new decimal(new int[] {
-            255,
+            this.numericUpDownEmitterShapeHeight.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1067,8 +1112,8 @@
             // numericUpDownEmitterShapeWidth
             // 
             this.numericUpDownEmitterShapeWidth.Location = new System.Drawing.Point(49, 19);
-            this.numericUpDownEmitterShapeWidth.Maximum = new decimal(new int[] {
-            255,
+            this.numericUpDownEmitterShapeWidth.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1314,10 +1359,15 @@
             // 
             this.numericUpDownEmitterVelocityY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownEmitterVelocityY.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
+            this.numericUpDownEmitterVelocityY.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownEmitterVelocityY.Name = "numericUpDownEmitterVelocityY";
             this.numericUpDownEmitterVelocityY.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownEmitterVelocityY.TabIndex = 4;
@@ -1336,10 +1386,15 @@
             // 
             this.numericUpDownEmitterVelocityX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownEmitterVelocityX.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
+            this.numericUpDownEmitterVelocityX.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownEmitterVelocityX.Name = "numericUpDownEmitterVelocityX";
             this.numericUpDownEmitterVelocityX.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownEmitterVelocityX.TabIndex = 2;
@@ -1348,9 +1403,6 @@
             // groupBoxParticleEmitter
             // 
             this.groupBoxParticleEmitter.Controls.Add(this.checkBoxEmitterBurst);
-            this.groupBoxParticleEmitter.Controls.Add(this.trackBarEmitterSpread);
-            this.groupBoxParticleEmitter.Controls.Add(this.labelEmitterSpread);
-            this.groupBoxParticleEmitter.Controls.Add(this.numericUpDownEmitterSpread);
             this.groupBoxParticleEmitter.Controls.Add(this.trackBarEmitterLife);
             this.groupBoxParticleEmitter.Controls.Add(this.labelEmitterLife);
             this.groupBoxParticleEmitter.Controls.Add(this.numericUpDownEmitterLife);
@@ -1359,7 +1411,7 @@
             this.groupBoxParticleEmitter.Controls.Add(this.numericUpDownEmitterAmount);
             this.groupBoxParticleEmitter.Location = new System.Drawing.Point(6, 3);
             this.groupBoxParticleEmitter.Name = "groupBoxParticleEmitter";
-            this.groupBoxParticleEmitter.Size = new System.Drawing.Size(126, 155);
+            this.groupBoxParticleEmitter.Size = new System.Drawing.Size(126, 125);
             this.groupBoxParticleEmitter.TabIndex = 5;
             this.groupBoxParticleEmitter.TabStop = false;
             this.groupBoxParticleEmitter.Text = "Particle";
@@ -1367,41 +1419,15 @@
             // checkBoxEmitterBurst
             // 
             this.checkBoxEmitterBurst.AutoSize = true;
-            this.checkBoxEmitterBurst.Location = new System.Drawing.Point(38, 133);
+            this.checkBoxEmitterBurst.Checked = true;
+            this.checkBoxEmitterBurst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxEmitterBurst.Location = new System.Drawing.Point(38, 96);
             this.checkBoxEmitterBurst.Name = "checkBoxEmitterBurst";
             this.checkBoxEmitterBurst.Size = new System.Drawing.Size(82, 17);
             this.checkBoxEmitterBurst.TabIndex = 11;
             this.checkBoxEmitterBurst.Text = "Loop | Burst";
             this.checkBoxEmitterBurst.UseVisualStyleBackColor = true;
             this.checkBoxEmitterBurst.CheckedChanged += new System.EventHandler(this.checkBoxEmitterBurst_CheckedChanged);
-            // 
-            // trackBarEmitterSpread
-            // 
-            this.trackBarEmitterSpread.Location = new System.Drawing.Point(6, 108);
-            this.trackBarEmitterSpread.Name = "trackBarEmitterSpread";
-            this.trackBarEmitterSpread.Size = new System.Drawing.Size(114, 45);
-            this.trackBarEmitterSpread.TabIndex = 10;
-            // 
-            // labelEmitterSpread
-            // 
-            this.labelEmitterSpread.AutoSize = true;
-            this.labelEmitterSpread.Location = new System.Drawing.Point(6, 92);
-            this.labelEmitterSpread.Name = "labelEmitterSpread";
-            this.labelEmitterSpread.Size = new System.Drawing.Size(41, 13);
-            this.labelEmitterSpread.TabIndex = 9;
-            this.labelEmitterSpread.Text = "Spread";
-            // 
-            // numericUpDownEmitterSpread
-            // 
-            this.numericUpDownEmitterSpread.Location = new System.Drawing.Point(55, 90);
-            this.numericUpDownEmitterSpread.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownEmitterSpread.Name = "numericUpDownEmitterSpread";
-            this.numericUpDownEmitterSpread.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDownEmitterSpread.TabIndex = 8;
             // 
             // trackBarEmitterLife
             // 
@@ -1422,8 +1448,8 @@
             // numericUpDownEmitterLife
             // 
             this.numericUpDownEmitterLife.Location = new System.Drawing.Point(55, 52);
-            this.numericUpDownEmitterLife.Maximum = new decimal(new int[] {
-            255,
+            this.numericUpDownEmitterLife.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -1457,7 +1483,7 @@
             // 
             this.numericUpDownEmitterAmount.Location = new System.Drawing.Point(55, 14);
             this.numericUpDownEmitterAmount.Maximum = new decimal(new int[] {
-            255,
+            2000,
             0,
             0,
             0});
@@ -1492,13 +1518,23 @@
             // 
             this.numericUpDownEmitterPositionY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownEmitterPositionY.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
+            this.numericUpDownEmitterPositionY.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownEmitterPositionY.Name = "numericUpDownEmitterPositionY";
             this.numericUpDownEmitterPositionY.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownEmitterPositionY.TabIndex = 4;
+            this.numericUpDownEmitterPositionY.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.numericUpDownEmitterPositionY.ValueChanged += new System.EventHandler(this.numericUpDownEmitterPositionY_ValueChanged);
             // 
             // labelEmitterPositionX
@@ -1514,14 +1550,265 @@
             // 
             this.numericUpDownEmitterPositionX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownEmitterPositionX.Maximum = new decimal(new int[] {
-            255,
+            200,
             0,
             0,
             0});
+            this.numericUpDownEmitterPositionX.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownEmitterPositionX.Name = "numericUpDownEmitterPositionX";
             this.numericUpDownEmitterPositionX.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownEmitterPositionX.TabIndex = 2;
+            this.numericUpDownEmitterPositionX.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.numericUpDownEmitterPositionX.ValueChanged += new System.EventHandler(this.numericUpDownEmitterPositionX_ValueChanged);
+            // 
+            // tabPageRandomize
+            // 
+            this.tabPageRandomize.BackColor = System.Drawing.Color.Teal;
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomMaxVelY);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomShapeHeight);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomSource);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomDestination);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomStartColor);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEndColor);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomMinVelX);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomMinVelY);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomMaxVelX);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomScaleStart);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomScaleEnd);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomAmount);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomLife);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomRotation);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterPositionX);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterPositionY);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterVelocityX);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterVelocityY);
+            this.tabPageRandomize.Controls.Add(this.checkBoxRandomShapeWidth);
+            this.tabPageRandomize.Controls.Add(this.buttonRandomizeAll);
+            this.tabPageRandomize.Controls.Add(this.buttonRandomizeSelected);
+            this.tabPageRandomize.Location = new System.Drawing.Point(4, 22);
+            this.tabPageRandomize.Name = "tabPageRandomize";
+            this.tabPageRandomize.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageRandomize.Size = new System.Drawing.Size(290, 398);
+            this.tabPageRandomize.TabIndex = 2;
+            this.tabPageRandomize.Text = "Randomize";
+            // 
+            // checkBoxRandomMaxVelY
+            // 
+            this.checkBoxRandomMaxVelY.AutoSize = true;
+            this.checkBoxRandomMaxVelY.Location = new System.Drawing.Point(8, 198);
+            this.checkBoxRandomMaxVelY.Name = "checkBoxRandomMaxVelY";
+            this.checkBoxRandomMaxVelY.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxRandomMaxVelY.TabIndex = 32;
+            this.checkBoxRandomMaxVelY.Text = "Max Vel Y";
+            this.checkBoxRandomMaxVelY.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomShapeHeight
+            // 
+            this.checkBoxRandomShapeHeight.AutoSize = true;
+            this.checkBoxRandomShapeHeight.Location = new System.Drawing.Point(152, 83);
+            this.checkBoxRandomShapeHeight.Name = "checkBoxRandomShapeHeight";
+            this.checkBoxRandomShapeHeight.Size = new System.Drawing.Size(91, 17);
+            this.checkBoxRandomShapeHeight.TabIndex = 31;
+            this.checkBoxRandomShapeHeight.Text = "Shape Height";
+            this.checkBoxRandomShapeHeight.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomSource
+            // 
+            this.checkBoxRandomSource.AutoSize = true;
+            this.checkBoxRandomSource.Location = new System.Drawing.Point(152, 106);
+            this.checkBoxRandomSource.Name = "checkBoxRandomSource";
+            this.checkBoxRandomSource.Size = new System.Drawing.Size(90, 17);
+            this.checkBoxRandomSource.TabIndex = 30;
+            this.checkBoxRandomSource.Text = "Source Blend";
+            this.checkBoxRandomSource.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomDestination
+            // 
+            this.checkBoxRandomDestination.AutoSize = true;
+            this.checkBoxRandomDestination.Location = new System.Drawing.Point(152, 129);
+            this.checkBoxRandomDestination.Name = "checkBoxRandomDestination";
+            this.checkBoxRandomDestination.Size = new System.Drawing.Size(109, 17);
+            this.checkBoxRandomDestination.TabIndex = 29;
+            this.checkBoxRandomDestination.Text = "Destination Blend";
+            this.checkBoxRandomDestination.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomStartColor
+            // 
+            this.checkBoxRandomStartColor.AutoSize = true;
+            this.checkBoxRandomStartColor.Location = new System.Drawing.Point(8, 83);
+            this.checkBoxRandomStartColor.Name = "checkBoxRandomStartColor";
+            this.checkBoxRandomStartColor.Size = new System.Drawing.Size(72, 17);
+            this.checkBoxRandomStartColor.TabIndex = 16;
+            this.checkBoxRandomStartColor.Text = "StartColor";
+            this.checkBoxRandomStartColor.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomEndColor
+            // 
+            this.checkBoxRandomEndColor.AutoSize = true;
+            this.checkBoxRandomEndColor.Location = new System.Drawing.Point(8, 106);
+            this.checkBoxRandomEndColor.Name = "checkBoxRandomEndColor";
+            this.checkBoxRandomEndColor.Size = new System.Drawing.Size(69, 17);
+            this.checkBoxRandomEndColor.TabIndex = 15;
+            this.checkBoxRandomEndColor.Text = "EndColor";
+            this.checkBoxRandomEndColor.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomMinVelX
+            // 
+            this.checkBoxRandomMinVelX.AutoSize = true;
+            this.checkBoxRandomMinVelX.Location = new System.Drawing.Point(8, 129);
+            this.checkBoxRandomMinVelX.Name = "checkBoxRandomMinVelX";
+            this.checkBoxRandomMinVelX.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxRandomMinVelX.TabIndex = 14;
+            this.checkBoxRandomMinVelX.Text = "Min Vel X";
+            this.checkBoxRandomMinVelX.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomMinVelY
+            // 
+            this.checkBoxRandomMinVelY.AutoSize = true;
+            this.checkBoxRandomMinVelY.Location = new System.Drawing.Point(8, 152);
+            this.checkBoxRandomMinVelY.Name = "checkBoxRandomMinVelY";
+            this.checkBoxRandomMinVelY.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxRandomMinVelY.TabIndex = 13;
+            this.checkBoxRandomMinVelY.Text = "Min Vel Y";
+            this.checkBoxRandomMinVelY.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomMaxVelX
+            // 
+            this.checkBoxRandomMaxVelX.AutoSize = true;
+            this.checkBoxRandomMaxVelX.Location = new System.Drawing.Point(8, 175);
+            this.checkBoxRandomMaxVelX.Name = "checkBoxRandomMaxVelX";
+            this.checkBoxRandomMaxVelX.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxRandomMaxVelX.TabIndex = 12;
+            this.checkBoxRandomMaxVelX.Text = "Max Vel X";
+            this.checkBoxRandomMaxVelX.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomScaleStart
+            // 
+            this.checkBoxRandomScaleStart.AutoSize = true;
+            this.checkBoxRandomScaleStart.Location = new System.Drawing.Point(8, 221);
+            this.checkBoxRandomScaleStart.Name = "checkBoxRandomScaleStart";
+            this.checkBoxRandomScaleStart.Size = new System.Drawing.Size(78, 17);
+            this.checkBoxRandomScaleStart.TabIndex = 11;
+            this.checkBoxRandomScaleStart.Text = "Scale Start";
+            this.checkBoxRandomScaleStart.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomScaleEnd
+            // 
+            this.checkBoxRandomScaleEnd.AutoSize = true;
+            this.checkBoxRandomScaleEnd.Location = new System.Drawing.Point(8, 244);
+            this.checkBoxRandomScaleEnd.Name = "checkBoxRandomScaleEnd";
+            this.checkBoxRandomScaleEnd.Size = new System.Drawing.Size(75, 17);
+            this.checkBoxRandomScaleEnd.TabIndex = 10;
+            this.checkBoxRandomScaleEnd.Text = "Scale End";
+            this.checkBoxRandomScaleEnd.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomAmount
+            // 
+            this.checkBoxRandomAmount.AutoSize = true;
+            this.checkBoxRandomAmount.Location = new System.Drawing.Point(8, 267);
+            this.checkBoxRandomAmount.Name = "checkBoxRandomAmount";
+            this.checkBoxRandomAmount.Size = new System.Drawing.Size(62, 17);
+            this.checkBoxRandomAmount.TabIndex = 9;
+            this.checkBoxRandomAmount.Text = "Amount";
+            this.checkBoxRandomAmount.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomLife
+            // 
+            this.checkBoxRandomLife.AutoSize = true;
+            this.checkBoxRandomLife.Location = new System.Drawing.Point(8, 290);
+            this.checkBoxRandomLife.Name = "checkBoxRandomLife";
+            this.checkBoxRandomLife.Size = new System.Drawing.Size(43, 17);
+            this.checkBoxRandomLife.TabIndex = 8;
+            this.checkBoxRandomLife.Text = "Life";
+            this.checkBoxRandomLife.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomRotation
+            // 
+            this.checkBoxRandomRotation.AutoSize = true;
+            this.checkBoxRandomRotation.Location = new System.Drawing.Point(152, 267);
+            this.checkBoxRandomRotation.Name = "checkBoxRandomRotation";
+            this.checkBoxRandomRotation.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxRandomRotation.TabIndex = 7;
+            this.checkBoxRandomRotation.Text = "Rotation";
+            this.checkBoxRandomRotation.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomEmitterPositionX
+            // 
+            this.checkBoxRandomEmitterPositionX.AutoSize = true;
+            this.checkBoxRandomEmitterPositionX.Location = new System.Drawing.Point(152, 152);
+            this.checkBoxRandomEmitterPositionX.Name = "checkBoxRandomEmitterPositionX";
+            this.checkBoxRandomEmitterPositionX.Size = new System.Drawing.Size(89, 17);
+            this.checkBoxRandomEmitterPositionX.TabIndex = 6;
+            this.checkBoxRandomEmitterPositionX.Text = "Emitter Pos X";
+            this.checkBoxRandomEmitterPositionX.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomEmitterPositionY
+            // 
+            this.checkBoxRandomEmitterPositionY.AutoSize = true;
+            this.checkBoxRandomEmitterPositionY.Location = new System.Drawing.Point(152, 175);
+            this.checkBoxRandomEmitterPositionY.Name = "checkBoxRandomEmitterPositionY";
+            this.checkBoxRandomEmitterPositionY.Size = new System.Drawing.Size(89, 17);
+            this.checkBoxRandomEmitterPositionY.TabIndex = 5;
+            this.checkBoxRandomEmitterPositionY.Text = "Emitter Pos Y";
+            this.checkBoxRandomEmitterPositionY.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomEmitterVelocityX
+            // 
+            this.checkBoxRandomEmitterVelocityX.AutoSize = true;
+            this.checkBoxRandomEmitterVelocityX.Location = new System.Drawing.Point(152, 198);
+            this.checkBoxRandomEmitterVelocityX.Name = "checkBoxRandomEmitterVelocityX";
+            this.checkBoxRandomEmitterVelocityX.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxRandomEmitterVelocityX.TabIndex = 4;
+            this.checkBoxRandomEmitterVelocityX.Text = "Emitter Vel X";
+            this.checkBoxRandomEmitterVelocityX.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomEmitterVelocityY
+            // 
+            this.checkBoxRandomEmitterVelocityY.AutoSize = true;
+            this.checkBoxRandomEmitterVelocityY.Location = new System.Drawing.Point(152, 221);
+            this.checkBoxRandomEmitterVelocityY.Name = "checkBoxRandomEmitterVelocityY";
+            this.checkBoxRandomEmitterVelocityY.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxRandomEmitterVelocityY.TabIndex = 3;
+            this.checkBoxRandomEmitterVelocityY.Text = "Emitter Vel Y";
+            this.checkBoxRandomEmitterVelocityY.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRandomShapeWidth
+            // 
+            this.checkBoxRandomShapeWidth.AutoSize = true;
+            this.checkBoxRandomShapeWidth.Location = new System.Drawing.Point(152, 244);
+            this.checkBoxRandomShapeWidth.Name = "checkBoxRandomShapeWidth";
+            this.checkBoxRandomShapeWidth.Size = new System.Drawing.Size(88, 17);
+            this.checkBoxRandomShapeWidth.TabIndex = 2;
+            this.checkBoxRandomShapeWidth.Text = "Shape Width";
+            this.checkBoxRandomShapeWidth.UseVisualStyleBackColor = true;
+            // 
+            // buttonRandomizeAll
+            // 
+            this.buttonRandomizeAll.Location = new System.Drawing.Point(152, 334);
+            this.buttonRandomizeAll.Name = "buttonRandomizeAll";
+            this.buttonRandomizeAll.Size = new System.Drawing.Size(130, 58);
+            this.buttonRandomizeAll.TabIndex = 1;
+            this.buttonRandomizeAll.Text = "Randomize All";
+            this.buttonRandomizeAll.UseVisualStyleBackColor = true;
+            this.buttonRandomizeAll.Click += new System.EventHandler(this.buttonRandomizeAll_Click);
+            // 
+            // buttonRandomizeSelected
+            // 
+            this.buttonRandomizeSelected.Location = new System.Drawing.Point(8, 334);
+            this.buttonRandomizeSelected.Name = "buttonRandomizeSelected";
+            this.buttonRandomizeSelected.Size = new System.Drawing.Size(130, 58);
+            this.buttonRandomizeSelected.TabIndex = 0;
+            this.buttonRandomizeSelected.Text = "Randomize Selected";
+            this.buttonRandomizeSelected.UseVisualStyleBackColor = true;
+            this.buttonRandomizeSelected.Click += new System.EventHandler(this.buttonRandomizeSelected_Click);
             // 
             // statusStrip1
             // 
@@ -1549,50 +1836,6 @@
             this.buttonREANIMATEPARTICLES.Text = "RE-ANIMATE PARTICLES";
             this.buttonREANIMATEPARTICLES.UseVisualStyleBackColor = true;
             this.buttonREANIMATEPARTICLES.Click += new System.EventHandler(this.buttonREANIMATEPARTICLES_Click);
-            // 
-            // groupBoxRotation
-            // 
-            this.groupBoxRotation.Controls.Add(this.labelRotation);
-            this.groupBoxRotation.Controls.Add(this.numericUpDownRotation);
-            this.groupBoxRotation.Location = new System.Drawing.Point(6, 159);
-            this.groupBoxRotation.Name = "groupBoxRotation";
-            this.groupBoxRotation.Size = new System.Drawing.Size(126, 39);
-            this.groupBoxRotation.TabIndex = 9;
-            this.groupBoxRotation.TabStop = false;
-            this.groupBoxRotation.Text = "Rotation";
-            // 
-            // numericUpDownRotation
-            // 
-            this.numericUpDownRotation.DecimalPlaces = 2;
-            this.numericUpDownRotation.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDownRotation.Location = new System.Drawing.Point(55, 13);
-            this.numericUpDownRotation.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDownRotation.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownRotation.Name = "numericUpDownRotation";
-            this.numericUpDownRotation.Size = new System.Drawing.Size(65, 20);
-            this.numericUpDownRotation.TabIndex = 9;
-            this.numericUpDownRotation.ValueChanged += new System.EventHandler(this.numericUpDownRotation_ValueChanged);
-            // 
-            // labelRotation
-            // 
-            this.labelRotation.AutoSize = true;
-            this.labelRotation.Location = new System.Drawing.Point(6, 20);
-            this.labelRotation.Name = "labelRotation";
-            this.labelRotation.Size = new System.Drawing.Size(28, 13);
-            this.labelRotation.TabIndex = 10;
-            this.labelRotation.Text = "Spin";
             // 
             // graphics_PanelViewer
             // 
@@ -1640,8 +1883,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndingAlpha)).EndInit();
             this.groupBoxScale.ResumeLayout(false);
             this.groupBoxScale.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEndingScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarStartingScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndingScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartingScale)).EndInit();
             this.groupBoxParticleMinVelocity.ResumeLayout(false);
@@ -1661,6 +1902,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarStartingAlpha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartingAlpha)).EndInit();
             this.tabPageEmitter.ResumeLayout(false);
+            this.groupBoxRotation.ResumeLayout(false);
+            this.groupBoxRotation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotation)).EndInit();
             this.groupBoxEmitterShape.ResumeLayout(false);
             this.groupBoxEmitterShape.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterShapeHeight)).EndInit();
@@ -1682,8 +1926,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityX)).EndInit();
             this.groupBoxParticleEmitter.ResumeLayout(false);
             this.groupBoxParticleEmitter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterSpread)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterSpread)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterLife)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterLife)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterAmount)).EndInit();
@@ -1692,9 +1934,8 @@
             this.groupBoxEmitterPosition.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionX)).EndInit();
-            this.groupBoxRotation.ResumeLayout(false);
-            this.groupBoxRotation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotation)).EndInit();
+            this.tabPageRandomize.ResumeLayout(false);
+            this.tabPageRandomize.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1757,8 +1998,6 @@
         private System.Windows.Forms.Label labelEndingAlpha;
         private System.Windows.Forms.NumericUpDown numericUpDownEndingAlpha;
         private System.Windows.Forms.GroupBox groupBoxScale;
-        private System.Windows.Forms.TrackBar trackBarEndingScale;
-        private System.Windows.Forms.TrackBar trackBarStartingScale;
         private System.Windows.Forms.Label labelEndingScale;
         private System.Windows.Forms.NumericUpDown numericUpDownEndingScale;
         private System.Windows.Forms.Label labelStartingScale;
@@ -1783,9 +2022,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownEmitterPositionY;
         private System.Windows.Forms.Label labelEmitterPositionX;
         private System.Windows.Forms.NumericUpDown numericUpDownEmitterPositionX;
-        private System.Windows.Forms.TrackBar trackBarEmitterSpread;
-        private System.Windows.Forms.Label labelEmitterSpread;
-        private System.Windows.Forms.NumericUpDown numericUpDownEmitterSpread;
         private System.Windows.Forms.TrackBar trackBarEmitterLife;
         private System.Windows.Forms.Label labelEmitterLife;
         private System.Windows.Forms.NumericUpDown numericUpDownEmitterLife;
@@ -1810,7 +2046,6 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importImageStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveBINARYtoolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem randomizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeBackgroundColorToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxEmitterShape;
         private Graphics_Panel graphics_PanelViewer;
@@ -1821,6 +2056,28 @@
         private System.Windows.Forms.GroupBox groupBoxRotation;
         private System.Windows.Forms.Label labelRotation;
         private System.Windows.Forms.NumericUpDown numericUpDownRotation;
+        private System.Windows.Forms.TabPage tabPageRandomize;
+        private System.Windows.Forms.CheckBox checkBoxRandomStartColor;
+        private System.Windows.Forms.CheckBox checkBoxRandomEndColor;
+        private System.Windows.Forms.CheckBox checkBoxRandomMinVelX;
+        private System.Windows.Forms.CheckBox checkBoxRandomMinVelY;
+        private System.Windows.Forms.CheckBox checkBoxRandomMaxVelX;
+        private System.Windows.Forms.CheckBox checkBoxRandomScaleStart;
+        private System.Windows.Forms.CheckBox checkBoxRandomScaleEnd;
+        private System.Windows.Forms.CheckBox checkBoxRandomAmount;
+        private System.Windows.Forms.CheckBox checkBoxRandomLife;
+        private System.Windows.Forms.CheckBox checkBoxRandomRotation;
+        private System.Windows.Forms.CheckBox checkBoxRandomEmitterPositionX;
+        private System.Windows.Forms.CheckBox checkBoxRandomEmitterPositionY;
+        private System.Windows.Forms.CheckBox checkBoxRandomEmitterVelocityX;
+        private System.Windows.Forms.CheckBox checkBoxRandomEmitterVelocityY;
+        private System.Windows.Forms.CheckBox checkBoxRandomShapeWidth;
+        private System.Windows.Forms.Button buttonRandomizeAll;
+        private System.Windows.Forms.Button buttonRandomizeSelected;
+        private System.Windows.Forms.CheckBox checkBoxRandomShapeHeight;
+        private System.Windows.Forms.CheckBox checkBoxRandomSource;
+        private System.Windows.Forms.CheckBox checkBoxRandomDestination;
+        private System.Windows.Forms.CheckBox checkBoxRandomMaxVelY;
     }
 }
 

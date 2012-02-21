@@ -10,6 +10,7 @@ using SGP;
 using ParticleTool;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
+using System.Threading;
 
 namespace BodagheeParticleTool
 {
@@ -35,7 +36,6 @@ namespace BodagheeParticleTool
             InitializeComponent();
             D3D.InitManagedDirect3D(graphics_PanelViewer);
             TM.InitManagedTextureManager(ManagedDirect3D.Instance.Device, ManagedDirect3D.Instance.Sprite);
-            emitterObject.Init();
 
         }
         public void Render()
@@ -84,8 +84,6 @@ namespace BodagheeParticleTool
             trackBarStartingRed.Value = var.R;
             trackBarStartingGreen.Value = var.G;
             trackBarStartingBlue.Value = var.B;
-
-
         }
         private void buttonCustomEndingColor_Click(object sender, EventArgs e)
         {
@@ -282,6 +280,7 @@ namespace BodagheeParticleTool
             emitterObject.ScaleEnd = (float)numericUpDownEndingScale.Value;
         }
 
+
         private void numericUpDownEmitterShapeWidth_ValueChanged(object sender, EventArgs e)
         {
             emitterObject.SpwnAreaWidth = (float)numericUpDownEmitterShapeWidth.Value;
@@ -311,11 +310,10 @@ namespace BodagheeParticleTool
 
         private void checkBoxEmitterBurst_CheckedChanged(object sender, EventArgs e)
         {
-            emitterObject.continuous = checkBoxEmitterBurst.Checked;
+
         }
         private void buttonREANIMATEPARTICLES_Click(object sender, EventArgs e)
         {
-            emitterObject.reAnimate = true;
         }
 
         private void comboBoxSourceBlend_SelectedIndexChanged(object sender, EventArgs e)
@@ -334,6 +332,163 @@ namespace BodagheeParticleTool
             emitterObject.Rotation = (float)numericUpDownRotation.Value;
         }
 
+        private void buttonRandomizeAll_Click(object sender, EventArgs e)
+        {
+            checkBoxRandomStartColor.Checked = true;
+            checkBoxRandomEndColor.Checked = true;
+            checkBoxRandomMinVelX.Checked = true;
+            checkBoxRandomMinVelY.Checked = true;
+            checkBoxRandomMaxVelX.Checked = true;
+            checkBoxRandomMaxVelY.Checked = true;
+            checkBoxRandomScaleStart.Checked = true;
+            checkBoxRandomScaleEnd.Checked = true;
+            checkBoxRandomAmount.Checked = true;
+            checkBoxRandomLife.Checked = true;
+            checkBoxRandomShapeHeight.Checked = true;
+            checkBoxRandomShapeWidth.Checked = true;
+            checkBoxRandomSource.Checked = true;
+            checkBoxRandomDestination.Checked = true;
+            checkBoxRandomEmitterPositionX.Checked = true;
+            checkBoxRandomEmitterPositionY.Checked = true;
+            checkBoxRandomEmitterVelocityX.Checked = true;
+            checkBoxRandomEmitterVelocityY.Checked = true;
+            checkBoxRandomRotation.Checked = true;
+        }
+        private void buttonRandomizeSelected_Click(object sender, EventArgs e)
+        { 
+            Random rand = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
+            if (checkBoxRandomStartColor.Checked == true)
+            {
+                Thread.Sleep(1);
+                byte a1 = (byte)rand.Next(0, 255);
+                byte r1 = (byte)rand.Next(0, 255);
+                byte g1 = (byte)rand.Next(0, 255);
+                byte b1 = (byte)rand.Next(0, 255);
+
+                Color color1 = Color.FromArgb(a1, r1, g1, b1);
+                pictureBoxStartingColor.BackColor = color1;
+
+                numericUpDownStartingAlpha.Value = a1;
+                numericUpDownStartingRed.Value = r1;
+                numericUpDownStartingGreen.Value = g1;
+                numericUpDownStartingBlue.Value = b1;
+
+                trackBarStartingAlpha.Value = a1;
+                trackBarStartingRed.Value = r1;
+                trackBarStartingGreen.Value = g1;
+                trackBarStartingBlue.Value = b1;
+            }
+            if (checkBoxRandomEndColor.Checked == true)
+            {
+                Thread.Sleep(1);
+                byte a2 = (byte)rand.Next(0, 255);
+                byte r2 = (byte)rand.Next(0, 255);
+                byte g2 = (byte)rand.Next(0, 255);
+                byte b2 = (byte)rand.Next(0, 255);
+
+                Color color2 = Color.FromArgb(a2, r2, g2, b2);
+                pictureBoxEndingColor.BackColor = color2;
+
+                numericUpDownEndingAlpha.Value = a2;
+                numericUpDownEndingRed.Value = r2;
+                numericUpDownEndingGreen.Value = g2;
+                numericUpDownEndingBlue.Value = b2;
+
+                trackBarEndingAlpha.Value = a2;
+                trackBarEndingRed.Value = r2;
+                trackBarEndingGreen.Value = g2;
+                trackBarEndingBlue.Value = b2;
+            }
+            if (checkBoxRandomMinVelX.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownMinVelocityX.Value = rand.Next(-200, 0);
+
+            }
+            if (checkBoxRandomMinVelY.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownMinVelocityY.Value = rand.Next(-200, 0);
+            }
+            if (checkBoxRandomMaxVelX.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownMaxVelocityX.Value = rand.Next(0, 200);
+            }
+            if (checkBoxRandomMaxVelY.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownMaxVelocityY.Value = rand.Next(0, 200);
+            }
+            if (checkBoxRandomScaleStart.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownStartingScale.Value = rand.Next(0, 5);
+            }
+            if (checkBoxRandomScaleEnd.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEndingScale.Value = rand.Next(0, 5);
+            }
+            if (checkBoxRandomAmount.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterAmount.Value = rand.Next(0, 2000);
+            }
+            if (checkBoxRandomLife.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterLife.Value = rand.Next(1, 100);
+            }
+            if (checkBoxRandomShapeHeight.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterShapeHeight.Value = rand.Next(1, 100);
+            }
+            if (checkBoxRandomShapeWidth.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterShapeWidth.Value = rand.Next(1, 100);
+            }
+            if (checkBoxRandomSource.Checked == true)
+            {
+                Thread.Sleep(1);
+                emitterObject.Source = rand.Next(0, 14);
+                comboBoxSourceBlend.SelectedIndex = emitterObject.Source;
+            }
+            if (checkBoxRandomDestination.Checked == true)
+            {
+                Thread.Sleep(1);
+                emitterObject.Dest = rand.Next(0, 14);
+                comboBoxDestinationBlend.SelectedIndex = emitterObject.Dest;
+            }
+            if (checkBoxRandomEmitterPositionX.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterPositionX.Value = rand.Next(-200, 200);
+            }
+            if (checkBoxRandomEmitterPositionY.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterPositionY.Value = rand.Next(-200, 200);
+            }
+            if (checkBoxRandomEmitterVelocityX.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterVelocityX.Value = rand.Next(-200, 200);
+            }
+            if (checkBoxRandomEmitterVelocityY.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownEmitterVelocityY.Value = rand.Next(-200, 200);
+            }
+            if (checkBoxRandomRotation.Checked == true)
+            {
+                Thread.Sleep(1);
+                numericUpDownRotation.Value = rand.Next(-10, 10);
+            }
+
+        }
 
     }
 }
