@@ -12,7 +12,7 @@
 
 enum {OPTN_VIDEO = 0, OPTN_AUDIO, OPTN_BACK, OPTN_MAX};
 
-class COptionsState : public IGameState, public CBaseMenu
+class COptionsState : public CBaseMenu
 {
 private:
 	//	Instance

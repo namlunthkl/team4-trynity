@@ -12,7 +12,7 @@
 
 enum {VDEO_FULLSCREEN = 0, VDEO_SHOWHUD, VDEO_MINIMAP, VDEO_BACK, VDEO_MAX};
 
-class CVideoOptionsState : public IGameState, public CBaseMenu
+class CVideoOptionsState : public CBaseMenu
 {
 private:
 	//	Instance
