@@ -70,6 +70,7 @@ bool CVideoOptionsState::Input()
 		case VDEO_FULLSCREEN:
 			{
 				GAME->SetIsWindowed( !GAME->GetIsWindowed() );
+				D3D->ChangeDisplayParam(GAME->GetScreenWidth(), GAME->GetScreenHeight(), GAME->GetIsWindowed());
 				break;
 			}
 		case VDEO_SHOWHUD:
