@@ -44,6 +44,9 @@ void CGameplayState::Enter(void)
 	pEnemy->SetVelX(1);
 	pEnemy->SetVelY(1);
 
+	//	TODO  Temporary, just to demonstrate that the options work
+	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm") );
+
 }
 
 bool CGameplayState::Input(void)
