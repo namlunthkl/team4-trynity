@@ -30,40 +30,40 @@ bool CInputManager::GetPause(void)
 {
 	if(INPUT->KeyPressed(DIK_ESCAPE) || (m_bControllerSet && m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START))
 		return true;
-
+							
 	return false;
 }
 bool CInputManager::GetUp(void)
 {
-	if(INPUT->KeyDown(DIK_W) || (m_PlayerController->GetState().Gamepad.sThumbLY > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE))
+	if(INPUT->KeyDown(DIK_W) || m_PlayerController->GetState().Gamepad.sThumbLY >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		return true;
 
 	return false;
 }
 bool CInputManager::GetLeft(void)
 {
-	if(INPUT->KeyDown(DIK_A) || (m_PlayerController->GetState().Gamepad.sThumbLX < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE))
+	if(INPUT->KeyDown(DIK_A) || m_PlayerController->GetState().Gamepad.sThumbLX <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		return true;
-
+								
 	return false;
 }
 bool CInputManager::GetRight(void)
 {
-	if(INPUT->KeyDown(DIK_D) || (m_PlayerController->GetState().Gamepad.sThumbLX > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE))
+	if(INPUT->KeyDown(DIK_D) || m_PlayerController->GetState().Gamepad.sThumbLX >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		return true;
-
+								
 	return false;
 }
 bool CInputManager::GetDown(void)
 {
-	if(INPUT->KeyDown(DIK_S) || (m_PlayerController->GetState().Gamepad.sThumbLY < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE))
+	if(INPUT->KeyDown(DIK_S) || m_PlayerController->GetState().Gamepad.sThumbLY <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		return true;
 
 	return false;
 }
 bool CInputManager::GetPressedUp(void)
 {
-	if(INPUT->KeyPressed(DIK_W) || (m_PlayerController->GetState().Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == false))
+	if(INPUT->KeyPressed(DIK_UP) || (m_PlayerController->GetState().Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == false))
 	{
 		m_bUp = true;
 		return true;
@@ -75,7 +75,7 @@ bool CInputManager::GetPressedUp(void)
 }
 bool CInputManager::GetPressedLeft(void)
 {
-	if(INPUT->KeyPressed(DIK_A) || (m_PlayerController->GetState().Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft == false))
+	if(INPUT->KeyPressed(DIK_LEFT) || (m_PlayerController->GetState().Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft == false))
 	{
 		m_bLeft = true;
 		return true;
@@ -87,7 +87,7 @@ bool CInputManager::GetPressedLeft(void)
 }
 bool CInputManager::GetPressedRight(void)
 {
-	if(INPUT->KeyPressed(DIK_D) || (m_PlayerController->GetState().Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == false))
+	if(INPUT->KeyPressed(DIK_RIGHT) || (m_PlayerController->GetState().Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == false))
 	{
 		m_bRight = true;
 		return true;
@@ -99,7 +99,7 @@ bool CInputManager::GetPressedRight(void)
 }
 bool CInputManager::GetPressedDown(void)
 {
-	if(INPUT->KeyPressed(DIK_S) || (m_PlayerController->GetState().Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == false))
+	if(INPUT->KeyPressed(DIK_DOWN) || (m_PlayerController->GetState().Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == false))
 	{
 		m_bDown = true;
 		return true;
@@ -139,7 +139,7 @@ bool CInputManager::GetAttack(void)
 }
 bool CInputManager::GetPressedA(void)
 {
-	if(INPUT->KeyPressed(DIK_E) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false)
+	if(INPUT->KeyPressed(DIK_RETURN) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false)
 	{
 		m_bA = true;
 		return true;
