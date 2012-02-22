@@ -141,7 +141,7 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 //	Purpose		:	Draw the map's tiles that are inside the window's
 //					space
 ////////////////////////////////////////////////////////////////////////
-void CMap::Render(void)
+void CMap::Render(int nCullingMode)
 {
 	// Indexes we'll need for looping
 	unsigned int uiIndexLayer	= 0;		// Loop through layers
@@ -164,8 +164,27 @@ void CMap::Render(void)
 			int nTileScreenPosX = nTileWorldPosX - 0;	// TODO: Replace 0 by camera's X position
 			int nTileScreenPosY = nTileWorldPosY - 0;	// TODO: Replace 0 by camera's Y position
 			
-			if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth()
-				&& nTileScreenPosY >= 0 && (nTileScreenPosY + GetTileset()->GetTileHeight()) <= GAME->GetScreenHeight())
+			bool bRender = false;
+			switch(nCullingMode)
+			{
+			case CULLING_NONE:
+				bRender = true;
+				break;
+			case CULLING_HALF_SCREEN:
+				if(nTileScreenPosX >= GAME->GetScreenWidth() / 4 &&
+					(nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth() * 3.0f / 4.0f &&
+					nTileScreenPosY >= GAME->GetScreenHeight() / 4 &&
+					(nTileScreenPosY + GetTileset()->GetTileHeight()) <= GAME->GetScreenHeight() * 3.0f / 4.0f)
+					bRender = true;
+				break;
+			case CULLING_SCREEN:
+				if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth()
+					&& nTileScreenPosY >= 0 && (nTileScreenPosY) <= GAME->GetScreenHeight())
+					bRender = true;
+				break;
+			}
+
+			if(bRender)
 			{
 				// Get the source rect of that tile
 				RECT rectSource = GetTileSourceRect(tileCurrent);

@@ -195,6 +195,8 @@ HWND MakeWindow(HINSTANCE hInstance)
 	// Setup window style flags
 	DWORD dwWindowStyleFlags = WS_VISIBLE;
 
+	ShowCursor(FALSE);	// Stop showing the mouse cursor
+
 	if (g_bIS_WINDOWED)
 	{
 		dwWindowStyleFlags |= WS_OVERLAPPEDWINDOW;
@@ -202,7 +204,6 @@ HWND MakeWindow(HINSTANCE hInstance)
 	else
 	{
 		dwWindowStyleFlags |= WS_POPUP;
-		ShowCursor(FALSE);	// Stop showing the mouse cursor
 	}
 
 	// Setup the desired client area size

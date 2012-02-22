@@ -12,6 +12,7 @@
 #include "CWorldEngine.h"
 #include "../tinyxml/tinyxml.h"
 #include "../Messaging/CStringTable.h"
+#include "../Input Manager/CInputManager.h"
 
 // Singleton's instance
 CWorldEngine* CWorldEngine::sm_pInstance = NULL;
@@ -40,6 +41,8 @@ void CWorldEngine::InitWorldEngine(void)
 	m_rDrawArea.left = 0 - 256;
 	m_rDrawArea.right = m_rDrawArea.left + GAME->GetScreenWidth() + 256;
 	m_rDrawArea.bottom = m_rDrawArea.top + GAME->GetScreenHeight() + 256;
+
+	m_nCullingMode = CMap::CULLING_SCREEN;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -116,7 +119,21 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 ////////////////////////////////////////////////////////////////////////
 void CWorldEngine::UpdateWorld(float fElapsedTime)
 {
-	
+	Input();
+}
+
+////////////////////////////////////////////////////////////////////////
+//	Purpose		:	Get input that changes the maps
+////////////////////////////////////////////////////////////////////////
+void CWorldEngine::Input(void)
+{
+	if(INPUT->KeyPressed(DIK_K))
+	{
+		m_nCullingMode++;
+
+		if(m_nCullingMode == CMap::CULLING_MAX)
+			m_nCullingMode = 0;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -133,7 +150,7 @@ void CWorldEngine::RenderWorld(void)
 			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
 			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)
 		{
-			curMap->Render();
+			curMap->Render(m_nCullingMode);
 		}
 	}
 }
