@@ -17,23 +17,39 @@ class CInputManager
 {
 private:
 	CXboxController* m_PlayerController;
-	static CInputManager m_Instance;
-	bool m_bControllerSet,m_bStart,m_bLBumper,m_bRBumper,m_bYButton,m_bRightTrigger;
-	CInputManager(void);
-	CInputManager(const CInputManager&);
-	CInputManager& operator=(const CInputManager&);
+	bool m_bControllerSet,m_bStart,m_bLBumper,m_bRBumper,m_bYButton,m_bRightTrigger,m_bUp,m_bDown,m_bLeft,m_bRight,m_bA;
+	CInputManager(void){}
+
+	~CInputManager(void){}
+	CInputManager(const CInputManager&){}
+	CInputManager& operator=(const CInputManager&){}
 public:
-	static CInputManager* GetInstance() {return &m_Instance;}
-	void SetController(int PlayerController) 
+	static CInputManager* GetInstance() 
 	{
-		m_PlayerController = new CXboxController(PlayerController);
-		m_bControllerSet = true;
+		static CInputManager m_Instance;
+		return &m_Instance;
 	}
+
+	void SetController(int PlayerController);
+
 	bool GetPause(void);
-	bool GetFoward(void);
+
+	bool GetUp(void);
 	bool GetLeft(void);
 	bool GetRight(void);
 	bool GetDown(void);
+
+	bool GetPressedUp(void);
+	bool GetPressedLeft(void);
+	bool GetPressedRight(void);
+	bool GetPressedDown(void);
+	bool GetPressedA(void);
+	bool GetPressedPause(void);
+	//bool GetUpUp(void);
+	//bool GetUpLeft(void);
+	//bool GetUpRight(void);
+	//bool GetUpDown(void);
+
 	bool GetSwapWeapon(void);
 	bool GetSwapMask(void);
 	bool GetInventory(void);

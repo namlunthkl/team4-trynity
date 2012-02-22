@@ -11,7 +11,7 @@
 
 // Header file for this state
 #include "CGameplayState.h"
-
+#include "../Input Manager/CInputManager.h"
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
@@ -52,7 +52,7 @@ void CGameplayState::Enter(void)
 bool CGameplayState::Input(void)
 {
 	//	Pause
-	if(INPUT->KeyPressed(DIK_ESCAPE))
+	if(CInputManager::GetInstance()->GetPressedPause())
 	{
 		GAME->SetPaused( !GAME->GetPaused() );
 	}

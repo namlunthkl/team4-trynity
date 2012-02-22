@@ -22,7 +22,7 @@
 
 // Include header file
 #include "CMap.h"
-
+#include "../Input Manager/CInputManager.h"
 // Constructor
 // Sets all parameters to 0/NULL values
 CMap::CMap(void)
@@ -256,7 +256,7 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 							if(/* check if pBase's type is player */true)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
-							if(INPUT->KeyPressed(DIK_E))
+							if(CInputManager::GetInstance()->GetPressedA())
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_BASIC_ATTACK))
 							if(/* check if player attacked */false)

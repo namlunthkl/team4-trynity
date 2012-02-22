@@ -16,6 +16,7 @@
 #include "States\CMainMenuState.h"
 #include "States\CGameplayState.h"
 #include "Animation\CAnimationManager.h"
+#include "Input Manager/CInputManager.h"
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
 //	Return		:	Pointer to the singleton's instance
@@ -149,7 +150,7 @@ bool CGame::Input(void)
 	{
 		if(m_pCurrentState != NULL)
 		{
-			if(INPUT->KeyPressed(DIK_ESCAPE))
+			if(CInputManager::GetInstance()->GetPressedPause())
 			{
 				m_bPaused = false;
 			}
