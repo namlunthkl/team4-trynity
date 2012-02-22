@@ -34,7 +34,7 @@ private:
 	int m_sndMoveCursor;
 	int m_sndConfirm;
 
-	
+	int m_imgTempTitle;
 
 protected:
 	//	Members
