@@ -1006,7 +1006,7 @@ namespace Animation_Editor
 
                 IEnumerable<XElement> xAnimations = root.Elements("Animation");
 
-                BindingList<Frame> frames = new BindingList<Frame>();
+                List<Frame> frames = new List<Frame>();
 
                 Animation Temp = new Animation();
 
