@@ -506,5 +506,11 @@ namespace BodagheeParticleTool
 
         }
 
+        private void graphics_PanelViewer_MouseMove(object sender, MouseEventArgs e)
+        {
+            emitterObject.EmitterPosX = e.X;
+            emitterObject.EmitterPosY = e.Y;
+        }
+
     }
 }

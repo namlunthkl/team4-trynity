@@ -161,6 +161,7 @@
             this.buttonRandomizeAll = new System.Windows.Forms.Button();
             this.buttonRandomizeSelected = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelFPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.buttonENABLEPOINTGRAVITY = new System.Windows.Forms.Button();
             this.buttonREANIMATEPARTICLES = new System.Windows.Forms.Button();
             this.graphics_PanelViewer = new BodagheeParticleTool.Graphics_Panel();
@@ -224,6 +225,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionX)).BeginInit();
             this.tabPageRandomize.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1812,11 +1814,19 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelFPS});
             this.statusStrip1.Location = new System.Drawing.Point(0, 503);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabelFPS
+            // 
+            this.toolStripStatusLabelFPS.Name = "toolStripStatusLabelFPS";
+            this.toolStripStatusLabelFPS.Size = new System.Drawing.Size(26, 17);
+            this.toolStripStatusLabelFPS.Text = "FPS";
             // 
             // buttonENABLEPOINTGRAVITY
             // 
@@ -1844,6 +1854,7 @@
             this.graphics_PanelViewer.Name = "graphics_PanelViewer";
             this.graphics_PanelViewer.Size = new System.Drawing.Size(806, 450);
             this.graphics_PanelViewer.TabIndex = 6;
+            this.graphics_PanelViewer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.graphics_PanelViewer_MouseMove);
             // 
             // Form1
             // 
@@ -1936,6 +1947,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterPositionX)).EndInit();
             this.tabPageRandomize.ResumeLayout(false);
             this.tabPageRandomize.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2078,6 +2091,7 @@
         private System.Windows.Forms.CheckBox checkBoxRandomSource;
         private System.Windows.Forms.CheckBox checkBoxRandomDestination;
         private System.Windows.Forms.CheckBox checkBoxRandomMaxVelY;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelFPS;
     }
 }
 

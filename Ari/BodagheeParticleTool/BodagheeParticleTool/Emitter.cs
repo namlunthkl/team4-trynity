@@ -146,11 +146,8 @@ namespace ParticleTool
             p.VelX = rand.Next((int)(MinVelX), (int)(MaxVelX));
             p.VelY = rand.Next((int)(MinVelY), (int)(MaxVelY));
 
-            p.PosX = EmitterPosX - (rand.Next(0, (int)SpwnAreaWidth * 2 + 1) - SpwnAreaWidth) / 2;
-            p.PosY = EmitterPosY - (rand.Next(0, (int)SpwnAreaHeight * 2 + 1) - SpwnAreaHeight) / 2;
-
-            //p.posX = emitterPosX - ( rand.Next( (int)spwnAreaWidth, (int)spwnAreaHeight ) );
-            //p.posY = emitterPosY - ( rand.Next( (int)spwnAreaWidth, (int)spwnAreaHeight ) );
+            p.posX = rand.Next( (int)emitterPosX, ( (int)(emitterPosX) + (int)(spwnAreaWidth) ) );
+            p.posY = rand.Next( (int)emitterPosY, ( (int)(emitterPosY) + (int)(spwnAreaHeight) ) );
         }
         public void Render()
         {
