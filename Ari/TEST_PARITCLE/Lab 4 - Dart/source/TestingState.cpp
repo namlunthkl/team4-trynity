@@ -17,7 +17,7 @@ void TestingState::Enter(void)
 	cursorID = CSGD_TextureManager::GetInstance()->LoadTexture( "Resource/Particles/Spark.bmp", D3DCOLOR_ARGB( 255, 255, 255, 255 ) );
 
 	p.Load( "Resource/data/Rain.xml" );
-
+	p.Fire( 200, 100 );
 }
 bool TestingState::Input(void)
 {
@@ -26,7 +26,8 @@ bool TestingState::Input(void)
 
 	if( CSGD_DirectInput::GetInstance()->MouseButtonPressed(0)  )
 	{
-		p.Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
+		//p.Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
+		
 	}
 	return true;
 }
