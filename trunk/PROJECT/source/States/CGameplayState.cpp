@@ -12,6 +12,7 @@
 // Header file for this state
 #include "CGameplayState.h"
 #include "../Input Manager/CInputManager.h"
+
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
@@ -33,7 +34,8 @@ void CGameplayState::Enter(void)
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
-
+	m_Rain.Load("resource/data/rain.xml");
+	m_Rain.Fire((int)(GAME->GetScreenWidth()*.5f),(int)(GAME->GetScreenHeight()*.5f));
 	pPlayer = NULL;
 	MESSAGES->InitMessageSystem(MessageProc);
 
@@ -75,14 +77,14 @@ void CGameplayState::Update(float fElapsedTime)
 	// Update the best world engine ever created
 	WORLD->UpdateWorld(fElapsedTime);
 	EVENTS->ProcessEvents();
-
+	m_Rain.Update(fElapsedTime);
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
 if(pEnemy)
 	pEnemy->Update(fElapsedTime);
 
 	MESSAGES->ProcessMessages();
-
+	
 	if(pPlayer)
 		pPlayer->Update(fElapsedTime);
 
@@ -96,13 +98,14 @@ void CGameplayState::Render(void)
 
 	if(PW.GetFired())
 		PW.Render();
-
+	
 	D3D->GetSprite()->Flush();
 
 	if(pPlayer)
 		pPlayer->Render();
 	if(pEnemy)
 		pEnemy->Render();
+	m_Rain.Render();
 }
 
 void CGameplayState::Exit(void)

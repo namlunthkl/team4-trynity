@@ -34,7 +34,7 @@ class CGameplayState : public IGameState , public IListener
 	TestPlayer* pPlayer;
 	CEnemy* pEnemy;
 	ParticleWeapon PW;
-
+	ParticleWeapon m_Rain;
 	//	Proper Singleton - needs trilogy of evil
 	//		Copy Constructor
 	CGameplayState(const CGameplayState&){}
