@@ -821,7 +821,7 @@ namespace Animation_Editor
                 //    frames.Add((Frame)frameList[i]);
                 Animation Temp = new Animation();
                 Temp.Name = textBoxAnimationName.Text;
-                Temp.Frames = frameList;
+                Temp.Frames = new BindingList<Frame>(frameList);
                 Temp.NumFrames = frameList.Count;
                 Temp.Speed = numericUpDownAnimationSpeed.Value;
                 Temp.Looping = checkBoxLooping.Checked;
@@ -982,15 +982,11 @@ namespace Animation_Editor
                 XAttribute FileName = root.Attribute("FileName");
                 animationList.Clear();
                 frameList.Clear();
-                //FilePath = Application.StartupPath.Remove(Application.StartupPath.Length-26,26);
-                //FilePath += "/resource/";
+               
                 String tempFilePath = FilePath;
                 tempFilePath += "\\";
                 tempFilePath += FileName.Value;
-                //String tempFilePath = String.Empty;
-                //tempFilePath = Application.StartupPath;
-                //tempFilePath += "/";
-                //tempFilePath += FileName.Value;
+
                 imageid = TM.LoadTexture(tempFilePath, 0);
                 SpriteSheet temp = new SpriteSheet(tempFilePath);
                 AnimationSheet[0, 0] = temp;
@@ -1011,14 +1007,12 @@ namespace Animation_Editor
                 IEnumerable<XElement> xAnimations = root.Elements("Animation");
 
                 BindingList<Frame> frames = new BindingList<Frame>();
-                for (int i = 0; i < frameList.Count; i++)
-                    frames.Add((Frame)frameList[i]);
+
                 Animation Temp = new Animation();
-                int numberofanimations = 0;
+
 
                 foreach (XElement xAnimation in xAnimations)
                 {
-                    numberofanimations++;
                     XAttribute name = xAnimation.Attribute("name");
                     Temp.Name = name.Value;
                     XAttribute looping = xAnimation.Attribute("looping");
@@ -1032,7 +1026,7 @@ namespace Animation_Editor
                     XAttribute NumFrames = xAnimation.Attribute("NumFrames");
                     Temp.NumFrames = int.Parse(NumFrames.Value);
 
-                    IEnumerable<XElement> xFrames = xAnimations.Elements("Frame");
+                    IEnumerable<XElement> xFrames = xAnimation.Elements("Frame");
                     
                     foreach (XElement xFrame in xFrames)
                     {
@@ -1084,11 +1078,10 @@ namespace Animation_Editor
                         }
 
                         frames.Add(TempFrame);
+                        
                     }
-                    for (int i = 0; i < frames.Count; i++)
-                    {
-                        Temp.Frames = frames;
-                    }
+                    Temp.Frames = new BindingList<Frame>(frames);
+                    frames.Clear();
                     animationList.Add(Temp);
                 }
             }
