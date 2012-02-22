@@ -16,7 +16,7 @@ void TestingState::Enter(void)
 {
 	cursorID = CSGD_TextureManager::GetInstance()->LoadTexture( "Resource/Particles/Spark.bmp", D3DCOLOR_ARGB( 255, 255, 255, 255 ) );
 
-	p.Load( "Resource/data/LeafyBurst.xml" );
+	p.Load( "Resource/data/Rain.xml" );
 
 }
 bool TestingState::Input(void)
