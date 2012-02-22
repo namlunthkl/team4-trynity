@@ -1,0 +1,31 @@
+﻿Build started 2/6/2012 3:56:28 PM.
+     1>Project "C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\DirectXTest\DirectXTest.vcxproj" on node 2 (rebuild target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\DirectXTest.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\..\Ari's Personal Projects\DirectXTest\DirectXTest\CCameraControl.cpp" DEMO_APP.cpp main.cpp Timer.cpp
+         CCameraControl.cpp
+     1>..\..\..\Ari's Personal Projects\DirectXTest\DirectXTest\CCameraControl.cpp(13): warning C4305: 'argument' : truncation from 'double' to 'FLOAT'
+     1>..\..\..\Ari's Personal Projects\DirectXTest\DirectXTest\CCameraControl.cpp(27): warning C4305: 'argument' : truncation from 'double' to 'FLOAT'
+         DEMO_APP.cpp
+     1>DEMO_APP.cpp(73): warning C4305: 'argument' : truncation from 'double' to 'FLOAT'
+         main.cpp
+         Timer.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\Release\DirectXTest.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DirectXTest.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\Release\DirectXTest.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\Release\DirectXTest.lib" /MACHINE:X86 Release\CCameraControl.obj
+         Release\DEMO_APP.obj
+         Release\main.obj
+         Release\Timer.obj
+         Generating code
+         Finished generating code
+         DirectXTest.vcxproj -> C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\Release\DirectXTest.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\Release\DirectXTest.exe;#1" /manifest Release\DirectXTest.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\DirectXTest.unsuccessfulbuild".
+         Touching "Release\DirectXTest.lastbuildstate".
+     1>Done Building Project "C:\Users\Laylee\Desktop\Ari's Personal Projects\DirectXTest\DirectXTest\DirectXTest.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.99
