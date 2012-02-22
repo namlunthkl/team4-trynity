@@ -1089,17 +1089,28 @@ namespace Animation_Editor
 
         private void FrameListRemove_Click(object sender, EventArgs e)
         {
-            if (listBoxFrames.SelectedIndex != -1)
+            if (listBoxAnimations.SelectedIndex != -1)
             {
                 animationList[listBoxAnimations.SelectedIndex].Frames.Remove(animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex]);
                 animationList[listBoxAnimations.SelectedIndex].NumFrames = animationList[listBoxAnimations.SelectedIndex].Frames.Count;
+                for (int i = 0; i < frameList.Count; i++)
+                {
+                    Frame temp = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[i];
+                    String tempS = "Frame " + (i + 1);
+                    temp.Name = tempS;
+                    animationList[listBoxAnimations.SelectedIndex].Frames[i] = temp;
+                }
             }
-            for (int i = 0; i < frameList.Count; i++)
+            else if(listBoxFrames.SelectedIndex != -1)
             {
-                Frame temp = (Frame)frameList[i];
-                String tempS = "Frame " + (i + 1);
-                temp.Name = tempS;
-                frameList[i] = temp;
+                frameList.RemoveAt(listBoxFrames.SelectedIndex);
+                for (int i = 0; i < frameList.Count; i++)
+                {
+                    Frame temp = (Frame)frameList[i];
+                    String tempS = "Frame " + (i + 1);
+                    temp.Name = tempS;
+                    frameList[i] = temp;
+                }
             }
         }
 
