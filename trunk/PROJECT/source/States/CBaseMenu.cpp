@@ -8,7 +8,7 @@
 #include "StdAfx.h"
 #include "../StdAfx.h"
 #include "CBaseMenu.h"
-
+#include "../Input Manager/CInputManager.h"
 CBaseMenu* CBaseMenu::m_pInstance = NULL;
 
 CBaseMenu::CBaseMenu()
@@ -36,6 +36,8 @@ CBaseMenu::CBaseMenu()
 	m_dwTitleScrollStamp = timeGetTime();
 
 	bMenuConfirm = false;
+
+	CInputManager::GetInstance()->SetController(1);
 }
 
 CBaseMenu::~CBaseMenu()
@@ -116,12 +118,12 @@ void CBaseMenu::Exit()
 
 bool CBaseMenu::Input()
 {	
-	if(INPUT->KeyPressed(DIK_RETURN))
+	if(CInputManager::GetInstance()->GetPressedA())
 	{
 		AUDIO->SFXPlaySound(m_sndConfirm, false);
 		bMenuConfirm = true;
 	}
-	else if(INPUT->KeyPressed(DIK_DOWN))
+	else if(CInputManager::GetInstance()->GetPressedDown())
 	{
 		if(m_uiMenuCount > 0)
 		{
@@ -133,7 +135,7 @@ bool CBaseMenu::Input()
 			}
 		}
 	}
-	else if(INPUT->KeyPressed(DIK_UP))
+	else if(CInputManager::GetInstance()->GetPressedUp())
 	{
 		if(m_uiMenuCount > 0)
 		{

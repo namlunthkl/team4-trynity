@@ -7,7 +7,7 @@
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../Animation/CAnimationPlayer.h"
 #include "../Animation/CAnimationManager.h"
-
+#include "../Input Manager/CInputManager.h"
 #define WORLD CWorldEngine::GetInstance()
 
 class TestPlayer : public IBaseInterface
@@ -33,7 +33,7 @@ public:
 		SetPosX(0);
 		SetPosY(0);
 		m_uiCurrentAnimation = 0;
-
+		CInputManager::GetInstance()->SetController(1);
 		CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
 		m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 		m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
@@ -51,25 +51,39 @@ public:
 		int nNewPosX = GetPosX();
 		int nNewPosY = GetPosY();
 
-		if(INPUT->KeyDown(DIK_UP))
+
+		
+		
+		
+		if(CInputManager::GetInstance()->GetUp())
 		{
 			m_uiCurrentAnimation = ANM_UP;
+			if(CInputManager::GetInstance()->GetLeft())
+			{
+				m_uiCurrentAnimation = ANM_LEFT;
+				nNewPosX--;
+			}
+			if(CInputManager::GetInstance()->GetRight())
+			{
+				m_uiCurrentAnimation = ANM_RIGHT;
+				nNewPosX++;
+			}
 			nNewPosY--;
 		}
-		if(INPUT->KeyDown(DIK_DOWN))
+		if(CInputManager::GetInstance()->GetDown())
 		{
 			m_uiCurrentAnimation = ANM_DOWN;
+			if(CInputManager::GetInstance()->GetLeft())
+			{
+				m_uiCurrentAnimation = ANM_LEFT;
+				nNewPosX--;
+			}
+			if(CInputManager::GetInstance()->GetRight())
+			{
+				m_uiCurrentAnimation = ANM_RIGHT;
+				nNewPosX++;
+			}
 			nNewPosY++;
-		}
-		if(INPUT->KeyDown(DIK_LEFT))
-		{
-			m_uiCurrentAnimation = ANM_LEFT;
-			nNewPosX--;
-		}
-		if(INPUT->KeyDown(DIK_RIGHT))
-		{
-			m_uiCurrentAnimation = ANM_RIGHT;
-			nNewPosX++;
 		}
 
 		TestPlayer test;
