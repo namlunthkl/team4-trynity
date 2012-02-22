@@ -21,6 +21,8 @@ CBaseMenu::CBaseMenu()
 	m_sndMoveCursor = -1;
 	m_sndConfirm = -1;
 
+	m_imgTempTitle = -1;
+
 	m_uiCurSelected = 0;
 	m_uiMenuCount = 0;
 	m_fCursorTime = 0.0f;
@@ -68,11 +70,10 @@ void CBaseMenu::Enter()
 	m_imgCrossbow = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
+
 	SetBGMusic(AUDIO->MusicLoadSong("resource/Main Theme.xwm"));
 
-	//	After loading the sounds, ensure volumes are correct..
-	//AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume() );
-	//AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume() );
+	m_imgTempTitle = TEX_MNG->LoadTexture("resource/Trinity.png");
 
 	//	Members
 	m_fLoadTimer = 0.0f;
@@ -191,6 +192,9 @@ void CBaseMenu::Render()
 		m_dwTitleScrollStamp = timeGetTime();
 	}
 	
+	//	TODO Temp Title
+	TEX_MNG->Draw(m_imgTempTitle, 32, 32);
+
 	//	Draw a cursor at intervals of the text
 	//pFont->Write("XX", 0, 12 + m_uiCurSelected, D3DCOLOR_XRGB(255, 255, 255));
 	RECT rCursor;

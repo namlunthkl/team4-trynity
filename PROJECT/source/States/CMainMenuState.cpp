@@ -118,14 +118,14 @@ void CMainMenuState::Update(float fElapsedTime)
 
 void CMainMenuState::Render()
 {
-	//	Draw the base menu's stuff .. NOT SURE
+	//	Draw the base menu's stuff
 	CBaseMenu::Render();
 	
 
 	//	DELETELATER JUST TO SHOW CHARS
 	//pFont->Write("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 32, 9, D3DCOLOR_XRGB(255, 255, 255));
 	//pFont->Write("abcdefghijklmnopqrstuvwxyz", 32, 10, D3DCOLOR_XRGB(255, 255, 255));
-	
+
 	//	Draw this menu's stuff
 	pFont->Write("New Game", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Load Game", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
