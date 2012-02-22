@@ -24,7 +24,7 @@ public:
 	// Destructor
 	~TestPlayer(void) {}
 
-	enum Animation { ANM_UP, ANM_DOWN, ANM_LEFT, ANM_RIGHT };
+	enum Animation { ANM_UP, ANM_DOWN, ANM_RIGHT, ANM_LEFT };
 
 	// Initialize all variables to BASE_CHAR defaults
 	virtual void Enter(void)
@@ -34,7 +34,7 @@ public:
 		SetPosY(0);
 		m_uiCurrentAnimation = 0;
 
-		CAnimationManager::GetInstance()->LoadAnimation("resource/character_walking.xml");
+		CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
 		m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 		m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
 		m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
@@ -101,15 +101,15 @@ public:
 	// Get the rectangle used for collision
 	RECT GetCollisionRect(void)
 	{
-		//RECT collision;
-		//collision.left = GetPosX();
-		//collision.top = GetPosY();
-		//collision.right = GetPosX() + TEX_MNG->GetTextureWidth(m_uiSpriteIndex);
-		//collision.bottom = GetPosY() + TEX_MNG->GetTextureHeight(m_uiSpriteIndex);
+		RECT rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
+		POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
+		
+		rectCollision.top += GetPosY() - anchor.y;
+		rectCollision.left += GetPosX() - anchor.x;
+		rectCollision.bottom += GetPosY() - anchor.y;
+		rectCollision.right += GetPosX() - anchor.x;
 
-		//return collision;
-
-		return m_pAnimation[m_uiCurrentAnimation]->ReturnFrameRect();
+		return rectCollision;
 	}
 
 	void AddRef() {}

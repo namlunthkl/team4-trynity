@@ -62,5 +62,15 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 
 RECT CAnimationPlayer::ReturnFrameRect(void)
 {
+	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
+}
+
+RECT CAnimationPlayer::ReturnCollisionRect(void)
+{
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetCollisionRect();
+}
+
+POINT CAnimationPlayer::ReturnAnchorPoint(void)
+{
+	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 }
