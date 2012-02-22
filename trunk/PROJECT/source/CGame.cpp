@@ -66,13 +66,6 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	// Change state to Main Menu
 	ChangeState(CMainMenuState::GetInstance());
 
-	// Example of map initialization
-#if 0
-	// HACK
-	// Remove later
-	CTileset* tileset = new CTileset(TEX_MNG->LoadTexture("tile.png", D3DCOLOR_XRGB(255, 255, 255)), 9, 8, 32, 32);
-	a.Initialize("map.txt", tileset, 0, 0);
-#endif
 
 	// Get time stamps
 	// It's more accurate if it's on the end

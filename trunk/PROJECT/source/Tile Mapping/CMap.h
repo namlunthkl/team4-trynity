@@ -76,6 +76,8 @@ class CMap
 
 public:
 
+	enum CullingMode { CULLING_SCREEN, CULLING_HALF_SCREEN, CULLING_MAX, CULLING_NONE };
+
 	// TileInfo struct - to send with events
 	struct TileInfo
 	{
@@ -107,7 +109,7 @@ public:
 	//	Purpose		:	Draw the map's tiles that are inside the window's
 	//					space
 	////////////////////////////////////////////////////////////////////////
-	void Render(void);
+	void Render(int nCullingMode);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Check collisions against all tiles on screen
