@@ -139,30 +139,59 @@ namespace Animation_Editor
                     temp.Height = end.Y - start.Y;
                     D3D.DrawEmptyRect(temp, Color.Black,1);
                 }
-
-                for (int i = 0; i < frameList.Count; i++)
+                if(listBoxAnimations.SelectedIndex != -1)
                 {
-
-                    Frame tempFrame = frameList[i];
-                    Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
-                        tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
-
-                    D3D.DrawEmptyRect(drawRect, Color.DodgerBlue,1);
-
-                    Rectangle CollisionRect = new Rectangle(tempFrame.Collision.X + offset.X,
-                        tempFrame.Collision.Y + offset.Y, tempFrame.Collision.Width, tempFrame.Collision.Height);
-
-                    D3D.DrawEmptyRect(CollisionRect, Color.Purple,1);
-
-                    if (tempFrame.Anchor != Point.Empty)
+                    for (int i = 0; i < animationList[listBoxAnimations.SelectedIndex].NumFrames; i++)
                     {
-                        Point tempPoint = new Point(tempFrame.Anchor.X + offset.X, tempFrame.Anchor.Y + offset.Y);
 
-                        D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red,1);
-                        D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red,1);
+                        Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[i];
+                        Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
+                            tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
+
+                        D3D.DrawEmptyRect(drawRect, Color.DodgerBlue, 1);
+
+                        Rectangle CollisionRect = new Rectangle(tempFrame.Collision.X + offset.X,
+                            tempFrame.Collision.Y + offset.Y, tempFrame.Collision.Width, tempFrame.Collision.Height);
+
+                        D3D.DrawEmptyRect(CollisionRect, Color.Purple, 1);
+
+                        if (tempFrame.Anchor != Point.Empty)
+                        {
+                            Point tempPoint = new Point(tempFrame.Anchor.X + offset.X, tempFrame.Anchor.Y + offset.Y);
+
+                            D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red, 1);
+                            D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red, 1);
+                        }
+
                     }
-
                 }
+                else
+                {
+                    for (int i = 0; i < frameList.Count; i++)
+                    {
+
+                        Frame tempFrame = frameList[i];
+                        Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
+                            tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
+
+                        D3D.DrawEmptyRect(drawRect, Color.DodgerBlue, 1);
+
+                        Rectangle CollisionRect = new Rectangle(tempFrame.Collision.X + offset.X,
+                            tempFrame.Collision.Y + offset.Y, tempFrame.Collision.Width, tempFrame.Collision.Height);
+
+                        D3D.DrawEmptyRect(CollisionRect, Color.Purple, 1);
+
+                        if (tempFrame.Anchor != Point.Empty)
+                        {
+                            Point tempPoint = new Point(tempFrame.Anchor.X + offset.X, tempFrame.Anchor.Y + offset.Y);
+
+                            D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red, 1);
+                            D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red, 1);
+                        }
+
+                    }
+                }
+                
 
                 D3D.SpriteEnd();
                 D3D.DeviceEnd();
@@ -482,8 +511,8 @@ namespace Animation_Editor
 
         private void numericUpDownCurrentPointX_ValueChanged(object sender, EventArgs e)
         {
-            
-            if(frameList.Count != 0)
+
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Point temp = new Point();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -493,11 +522,21 @@ namespace Animation_Editor
                 tempFrame.Anchor = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Anchor;
+
+                temp.X = (int)numericUpDownCurrentPointX.Value;
+                tempFrame.Anchor = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownCurrentPointY_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Point temp = new Point();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -507,11 +546,21 @@ namespace Animation_Editor
                 tempFrame.Anchor = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Anchor;
+
+                temp.Y = (int)numericUpDownCurrentPointY.Value;
+                tempFrame.Anchor = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownXPosition_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -521,11 +570,21 @@ namespace Animation_Editor
                 tempFrame.FrameRect = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if(listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.FrameRect;
+
+                temp.X = (int)numericUpDownXPosition.Value;
+                tempFrame.FrameRect = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownYPosition_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -535,11 +594,21 @@ namespace Animation_Editor
                 tempFrame.FrameRect = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.FrameRect;
+
+                temp.Y = (int)numericUpDownYPosition.Value;
+                tempFrame.FrameRect = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownHeight_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -549,11 +618,21 @@ namespace Animation_Editor
                 tempFrame.FrameRect = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.FrameRect;
+
+                temp.Height = (int)numericUpDownHeight.Value;
+                tempFrame.FrameRect = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownWidth_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -563,11 +642,21 @@ namespace Animation_Editor
                 tempFrame.FrameRect = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.FrameRect;
+
+                temp.Width = (int)numericUpDownWidth.Value;
+                tempFrame.FrameRect = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownCollisionXPosition_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -577,11 +666,21 @@ namespace Animation_Editor
                 tempFrame.Collision = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Collision;
+
+                temp.X = (int)numericUpDownCollisionXPosition.Value;
+                tempFrame.Collision = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownCollisionYPosition_ValueChanged(object sender, EventArgs e)
         {
-             if(frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -591,11 +690,21 @@ namespace Animation_Editor
                 tempFrame.Collision = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Collision;
+
+                temp.Y = (int)numericUpDownCollisionYPosition.Value;
+                tempFrame.Collision = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownCollisionHeight_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -605,11 +714,21 @@ namespace Animation_Editor
                 tempFrame.Collision = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Collision;
+
+                temp.Height = (int)numericUpDownCollisionHeight.Value;
+                tempFrame.Collision = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
         }
 
         private void numericUpDownCollisionWidth_ValueChanged(object sender, EventArgs e)
         {
-            if (frameList.Count != 0)
+            if (listBoxAnimations.SelectedIndex >= 0)
             {
                 Rectangle temp = new Rectangle();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
@@ -618,6 +737,16 @@ namespace Animation_Editor
                 temp.Width = (int)numericUpDownCollisionWidth.Value;
                 tempFrame.Collision = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Rectangle temp = new Rectangle();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.Collision;
+
+                temp.Width = (int)numericUpDownCollisionWidth.Value;
+                tempFrame.Collision = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
             }
         }
 
@@ -697,10 +826,10 @@ namespace Animation_Editor
                 Temp.Speed = numericUpDownAnimationSpeed.Value;
                 Temp.Looping = checkBoxLooping.Checked;
                 Temp.Oslating = checkBoxOslating.Checked;
-                if (Temp.Name != string.Empty)
+                if (Temp.Name != String.Empty)
                 {
                     animationList.Add(Temp);
-                    frameList.Clear();
+                    //frameList.Clear();
                 }
             }
             
@@ -721,11 +850,11 @@ namespace Animation_Editor
         {
             if (listBoxAnimations.SelectedIndex != -1)
             {
-                frameList.Clear();
+                
                 Animation temp = (Animation)animationList[listBoxAnimations.SelectedIndex];
-                for (int i = 0; i < temp.NumFrames; i++)
-                    frameList.Add(temp.Frames[i]);
-
+                listBoxFrames.DataSource = animationList[listBoxAnimations.SelectedIndex].Frames;
+                listBoxFrames.SelectedIndex = 0;
+               
                 textBoxAnimationName.Text = temp.Name;
                 checkBoxLooping.Checked = temp.Looping;
                 checkBoxOslating.Checked = temp.Oslating;
@@ -968,7 +1097,10 @@ namespace Animation_Editor
         private void FrameListRemove_Click(object sender, EventArgs e)
         {
             if (listBoxFrames.SelectedIndex != -1)
-                frameList.RemoveAt(listBoxFrames.SelectedIndex);
+            {
+                animationList[listBoxAnimations.SelectedIndex].Frames.Remove(animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex]);
+                animationList[listBoxAnimations.SelectedIndex].NumFrames = animationList[listBoxAnimations.SelectedIndex].Frames.Count;
+            }
             for (int i = 0; i < frameList.Count; i++)
             {
                 Frame temp = (Frame)frameList[i];
