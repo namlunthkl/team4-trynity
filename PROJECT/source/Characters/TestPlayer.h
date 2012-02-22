@@ -112,7 +112,6 @@ public:
 		return m_pAnimation[m_uiCurrentAnimation]->ReturnFrameRect();
 	}
 
-	void Update(float fElapsedTime) {}
 	void AddRef() {}
 	void Release() {}
 	unsigned int GetType() { return 1;}
