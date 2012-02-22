@@ -71,11 +71,15 @@ bool COptionsState::Input()
 		{
 		case OPTN_VIDEO:
 			{
+				CVideoOptionsState::GetInstance()->SetTitleIndex(m_pnTitleIndex);
+				CVideoOptionsState::GetInstance()->SetTitleScrollDir(m_pbTitleScrollDir);
 				GAME->ChangeState(CVideoOptionsState::GetInstance());
 				break;
 			}
 		case OPTN_AUDIO:
 			{
+				CAudioOptionsState::GetInstance()->SetTitleIndex(m_pnTitleIndex);
+				CAudioOptionsState::GetInstance()->SetTitleScrollDir(m_pbTitleScrollDir);
 				GAME->ChangeState(CAudioOptionsState::GetInstance());
 				break;
 			}

@@ -26,6 +26,13 @@ CBaseMenu::CBaseMenu()
 	m_fCursorTime = 0.0f;
 	m_fLoadTimer = 0.0f;
 
+	m_pnTitleIndex = new int;
+	m_pbTitleScrollDir = new bool;
+	*m_pnTitleIndex = 0;
+	*m_pbTitleScrollDir = true;
+
+	m_dwTitleScrollStamp = timeGetTime();
+
 	bMenuConfirm = false;
 }
 
@@ -54,13 +61,14 @@ void CBaseMenu::DeleteInstance()
 void CBaseMenu::Enter()
 {
 	//	Load Assets
-	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png");
-	m_imgTitle = TEX_MNG->LoadTexture("resource/TempAsset1.png");
+	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png", D3DCOLOR_XRGB(0,0,0));
+	m_imgTitle = TEX_MNG->LoadTexture("resource/TitleScreen2.png");
 	m_imgSword = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_imgHammer = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_imgCrossbow = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
+	SetBGMusic(AUDIO->MusicLoadSong("resource/Main Theme.xwm"));
 
 	//	After loading the sounds, ensure volumes are correct..
 	//AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume() );
@@ -71,7 +79,8 @@ void CBaseMenu::Enter()
 	m_fCursorTime = 0.0f;
 
 	//	Play Song
-	//
+	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
+	AUDIO->MusicPlaySong(GetBGMusic(), true);
 
 	pFont = new CBitmapFont;
 }
@@ -155,6 +164,33 @@ void CBaseMenu::Render()
 	rCursor.right = 16;
 	rCursor.bottom = 16;*/
 
+
+	// Draw Title Background Moving
+	RECT rectSourceTitle;
+	rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
+	rectSourceTitle.top = 0;
+	rectSourceTitle.right = rectSourceTitle.left + GAME->GetScreenWidth();
+	rectSourceTitle.bottom = GAME->GetScreenHeight();
+
+	TEX_MNG->Draw(m_imgTitle, 0, 0, 1.0f, 1.0f, &rectSourceTitle);
+
+	if (timeGetTime() - m_dwTitleScrollStamp > 10)
+	{
+		if(*m_pbTitleScrollDir)
+		{
+			(*m_pnTitleIndex)++;
+			if(GAME->GetScreenWidth() + (*m_pnTitleIndex) * 0.35 >= 1200)
+				*m_pbTitleScrollDir = false;
+		}
+		else
+		{
+			(*m_pnTitleIndex)--;
+			if((*m_pnTitleIndex) == 0)
+				*m_pbTitleScrollDir = true;
+		}
+		m_dwTitleScrollStamp = timeGetTime();
+	}
+	
 	//	Draw a cursor at intervals of the text
 	//pFont->Write("XX", 0, 12 + m_uiCurSelected, D3DCOLOR_XRGB(255, 255, 255));
 	RECT rCursor;

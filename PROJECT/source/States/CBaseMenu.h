@@ -34,6 +34,8 @@ private:
 	int m_sndMoveCursor;
 	int m_sndConfirm;
 
+	
+
 protected:
 	//	Members
 	bool bMenuConfirm;
@@ -42,6 +44,11 @@ protected:
 	unsigned int m_uiCurSelected;
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;
+
+	// Variables for background scrolling
+	int* m_pnTitleIndex;
+	bool* m_pbTitleScrollDir;
+	DWORD m_dwTitleScrollStamp;
 
 public:
 	//	Singleton
@@ -53,6 +60,9 @@ public:
 	bool Input();
 	void Update(float fElapsedTime);
 	void Render();
+
+	inline void SetTitleIndex(int* pnTitleIndex) { m_pnTitleIndex = pnTitleIndex; }
+	inline void SetTitleScrollDir(bool* pbTitleScrollDir) { m_pbTitleScrollDir = pbTitleScrollDir; }
 };
 
 #endif

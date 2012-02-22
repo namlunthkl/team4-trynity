@@ -62,6 +62,8 @@ bool CGameplayState::Input(void)
 		if(INPUT->KeyPressed(DIK_SPACE))
 			MESSAGES->SendMsg(new CCreatePlayerMessage(600, 100));
 
+
+
 	// Move player
 	if(pPlayer)
 		pPlayer->Input();
