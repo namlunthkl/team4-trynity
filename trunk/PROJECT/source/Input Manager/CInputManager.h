@@ -10,20 +10,33 @@
 #define _CINPUTMANAGER_H_
 
 // Xbox Controller
-#include <XInput.h>
+#include "CXboxController.h"
 #pragma comment(lib,"XInput.lib")
 
 class CInputManager
 {
 private:
-	XINPUT_STATE m_ControllerState;
-	int m_nControllerNum;
-
+	CXboxController* m_PlayerController;
+	static CInputManager m_Instance;
+	bool m_bControllerSet,m_bStart,m_bLBumper,m_bRBumper,m_bYButton,m_bRightTrigger;
+	CInputManager(void);
+	CInputManager(const CInputManager&);
+	CInputManager& operator=(const CInputManager&);
 public:
-	CInputManager(int nPlayerNumber = -1);
-	XINPUT_STATE GetState();
-	bool IsConnected();
-	void Vibrate(int nLeftVal, int nRightVal);
-	static CInputManager* GetInstance();
+	static CInputManager* GetInstance() {return &m_Instance;}
+	void SetController(int PlayerController) 
+	{
+		m_PlayerController = new CXboxController(PlayerController);
+		m_bControllerSet = true;
+	}
+	bool GetPause(void);
+	bool GetFoward(void);
+	bool GetLeft(void);
+	bool GetRight(void);
+	bool GetDown(void);
+	bool GetSwapWeapon(void);
+	bool GetSwapMask(void);
+	bool GetInventory(void);
+	bool GetAttack(void);
 };
 #endif

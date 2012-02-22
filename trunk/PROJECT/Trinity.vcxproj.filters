@@ -177,6 +177,9 @@
     <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
     </ClCompile>
+    <ClCompile Include="source\Input Manager\CXboxController.cpp">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="source\tinyxml\tinyxml.h">
       <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Input Manager\CXboxController.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
