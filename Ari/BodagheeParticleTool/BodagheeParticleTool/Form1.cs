@@ -22,7 +22,7 @@ namespace BodagheeParticleTool
         Color BackGroundColor = Color.Black;
         System.DateTime PreviousTimeStamp = new System.DateTime();
         Emitter emitterObject = new Emitter();
-
+        bool mouseMoveOK = false;
 
         public void Update(float deltaTime)
         {
@@ -264,7 +264,7 @@ namespace BodagheeParticleTool
                     emitterObject.Particle_List.Add(tempParticle);
                 }
             }
-            
+
         }
         private void numericUpDownEmitterLife_ValueChanged(object sender, EventArgs e)
         {
@@ -372,7 +372,7 @@ namespace BodagheeParticleTool
             checkBoxRandomRotation.Checked = true;
         }
         private void buttonRandomizeSelected_Click(object sender, EventArgs e)
-        { 
+        {
             Random rand = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
             if (checkBoxRandomStartColor.Checked == true)
             {
@@ -420,52 +420,61 @@ namespace BodagheeParticleTool
             {
                 Thread.Sleep(1);
                 numericUpDownMinVelocityX.Value = rand.Next(-200, 0);
-
+                emitterObject.MinVelX = (float)numericUpDownMinVelocityX.Value;
             }
             if (checkBoxRandomMinVelY.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownMinVelocityY.Value = rand.Next(-200, 0);
+                emitterObject.MinVelY = (float)numericUpDownMinVelocityY.Value;
             }
             if (checkBoxRandomMaxVelX.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownMaxVelocityX.Value = rand.Next(0, 200);
+                emitterObject.MaxVelX = (float)numericUpDownMaxVelocityX.Value;
             }
             if (checkBoxRandomMaxVelY.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownMaxVelocityY.Value = rand.Next(0, 200);
+                emitterObject.MaxVelY = (float)numericUpDownMaxVelocityY.Value;
             }
             if (checkBoxRandomScaleStart.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownStartingScale.Value = rand.Next(0, 5);
+                emitterObject.ScaleStart = (float)numericUpDownStartingScale.Value;
             }
             if (checkBoxRandomScaleEnd.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownEndingScale.Value = rand.Next(0, 5);
+                emitterObject.ScaleEnd = (float)numericUpDownEndingScale.Value;
             }
             if (checkBoxRandomAmount.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownEmitterAmount.Value = rand.Next(0, 2000);
+                emitterObject.MaxParticles = (int)numericUpDownEmitterAmount.Value;
             }
             if (checkBoxRandomLife.Checked == true)
             {
                 Thread.Sleep(1);
-                numericUpDownEmitterLife.Value = rand.Next(1, 100);
+                numericUpDownEmitterLife.Value = rand.Next(1, 20);
+                emitterObject.MaxLife = (int)numericUpDownEmitterLife.Value;
             }
             if (checkBoxRandomShapeHeight.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownEmitterShapeHeight.Value = rand.Next(1, 100);
+                emitterObject.SpwnAreaHeight = (float)numericUpDownEmitterShapeHeight.Value;
             }
             if (checkBoxRandomShapeWidth.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownEmitterShapeWidth.Value = rand.Next(1, 100);
+                emitterObject.SpwnAreaWidth = (float)numericUpDownEmitterShapeWidth.Value;
             }
             if (checkBoxRandomSource.Checked == true)
             {
@@ -482,35 +491,68 @@ namespace BodagheeParticleTool
             if (checkBoxRandomEmitterPositionX.Checked == true)
             {
                 Thread.Sleep(1);
-                numericUpDownEmitterPositionX.Value = rand.Next(-200, 200);
+                numericUpDownEmitterPositionX.Value = rand.Next(0, 800);
+                emitterObject.EmitterPosX = (float)numericUpDownEmitterPositionX.Value;
             }
             if (checkBoxRandomEmitterPositionY.Checked == true)
             {
                 Thread.Sleep(1);
-                numericUpDownEmitterPositionY.Value = rand.Next(-200, 200);
+                numericUpDownEmitterPositionY.Value = rand.Next(0, 450);
+                emitterObject.EmitterPosY = (float)numericUpDownEmitterPositionY.Value;
             }
             if (checkBoxRandomEmitterVelocityX.Checked == true)
             {
                 Thread.Sleep(1);
-                numericUpDownEmitterVelocityX.Value = rand.Next(-200, 200);
+                numericUpDownEmitterVelocityX.Value = rand.Next(-5, 5);
+                emitterObject.EmitterVelX = (float)numericUpDownEmitterVelocityX.Value;
             }
             if (checkBoxRandomEmitterVelocityY.Checked == true)
             {
                 Thread.Sleep(1);
-                numericUpDownEmitterVelocityY.Value = rand.Next(-200, 200);
+                numericUpDownEmitterVelocityY.Value = rand.Next(-5, 5);
+                emitterObject.EmitterVelY = (float)numericUpDownEmitterVelocityY.Value;
             }
             if (checkBoxRandomRotation.Checked == true)
             {
                 Thread.Sleep(1);
                 numericUpDownRotation.Value = rand.Next(-10, 10);
+                emitterObject.Rotation = (float)numericUpDownRotation.Value;
             }
-
         }
 
         private void graphics_PanelViewer_MouseMove(object sender, MouseEventArgs e)
         {
-            emitterObject.EmitterPosX = e.X;
-            emitterObject.EmitterPosY = e.Y;
+            if (mouseMoveOK)
+            {
+                if (emitterObject.image != -1)
+                {
+                    if (e.X >= 0 && e.X <= graphics_PanelViewer.Width)
+                    {
+                        emitterObject.EmitterPosX = e.X - (TM.GetTextureWidth(emitterObject.image) >> 1);
+                        numericUpDownEmitterPositionX.Value = (decimal)emitterObject.EmitterPosX;
+                    }
+                    if (e.Y >= 0 && e.Y <= graphics_PanelViewer.Height)
+                    {
+                        emitterObject.EmitterPosY = e.Y - (TM.GetTextureHeight(emitterObject.image) >> 1);
+                        numericUpDownEmitterPositionY.Value = (decimal)emitterObject.EmitterPosY;
+                    }
+                }    
+            }
+        }
+
+        private void saveXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void graphics_PanelViewer_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseMoveOK = true;
+        }
+
+        private void graphics_PanelViewer_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseMoveOK = false;
         }
 
     }

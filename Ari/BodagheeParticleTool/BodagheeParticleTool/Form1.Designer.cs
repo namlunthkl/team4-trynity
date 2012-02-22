@@ -307,6 +307,7 @@
             this.saveXMLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveXMLToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.saveXMLToolStripMenuItem.Text = "&Save XML";
+            this.saveXMLToolStripMenuItem.Click += new System.EventHandler(this.saveXMLToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1361,12 +1362,12 @@
             // 
             this.numericUpDownEmitterVelocityY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownEmitterVelocityY.Maximum = new decimal(new int[] {
-            200,
+            5,
             0,
             0,
             0});
             this.numericUpDownEmitterVelocityY.Minimum = new decimal(new int[] {
-            200,
+            5,
             0,
             0,
             -2147483648});
@@ -1388,12 +1389,12 @@
             // 
             this.numericUpDownEmitterVelocityX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownEmitterVelocityX.Maximum = new decimal(new int[] {
-            200,
+            5,
             0,
             0,
             0});
             this.numericUpDownEmitterVelocityX.Minimum = new decimal(new int[] {
-            200,
+            5,
             0,
             0,
             -2147483648});
@@ -1450,6 +1451,11 @@
             // numericUpDownEmitterLife
             // 
             this.numericUpDownEmitterLife.Location = new System.Drawing.Point(55, 52);
+            this.numericUpDownEmitterLife.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.numericUpDownEmitterLife.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1520,12 +1526,12 @@
             // 
             this.numericUpDownEmitterPositionY.Location = new System.Drawing.Point(40, 36);
             this.numericUpDownEmitterPositionY.Maximum = new decimal(new int[] {
-            200,
+            10000,
             0,
             0,
             0});
             this.numericUpDownEmitterPositionY.Minimum = new decimal(new int[] {
-            200,
+            10000,
             0,
             0,
             -2147483648});
@@ -1552,12 +1558,12 @@
             // 
             this.numericUpDownEmitterPositionX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownEmitterPositionX.Maximum = new decimal(new int[] {
-            200,
+            10000,
             0,
             0,
             0});
             this.numericUpDownEmitterPositionX.Minimum = new decimal(new int[] {
-            200,
+            10000,
             0,
             0,
             -2147483648});
@@ -1854,7 +1860,9 @@
             this.graphics_PanelViewer.Name = "graphics_PanelViewer";
             this.graphics_PanelViewer.Size = new System.Drawing.Size(806, 450);
             this.graphics_PanelViewer.TabIndex = 6;
+            this.graphics_PanelViewer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphics_PanelViewer_MouseDown);
             this.graphics_PanelViewer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.graphics_PanelViewer_MouseMove);
+            this.graphics_PanelViewer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.graphics_PanelViewer_MouseUp);
             // 
             // Form1
             // 

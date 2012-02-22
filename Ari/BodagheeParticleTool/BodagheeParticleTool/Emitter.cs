@@ -64,7 +64,7 @@ namespace ParticleTool
 
         public Emitter()
         {
-            image = 0;
+            image = -1;
             colorStart = Color.White;
             colorEnd = Color.White;
             fSize = 1.0f;
