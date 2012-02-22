@@ -56,10 +56,13 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	pFont1 = new CBitmapFont;
 
 	// Set gameplay variables
-	SetShowHUD(true);
-	SetMapLocation(2);	// 0 thru 2
-	SetMusicVolume(80);	// 0 thru 100
-	SetSoundVolume(100);// 0 thru 100
+	//SetShowHUD(true);
+	//SetMapLocation(2);	// 0 thru 2
+	//SetMusicVolume(80);	// 0 thru 100
+	//SetSoundVolume(100);// 0 thru 100
+
+	ReadOptionsFromFile();
+
 	AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
 	AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
 
@@ -252,5 +255,60 @@ void CGame::ChangeState(IGameState* pNewState)
 	if(m_pCurrentState != NULL)
 	{
 		m_pCurrentState->Enter();
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+//	Purpose		:	Send the game's options to an outputted file
+//	Parameters	:	
+////////////////////////////////////////////////////////////////////////
+void CGame::OutputOptionsToFile()
+{
+	ofstream foutOptions("option.txt", ios_base::out | ios_base::trunc);
+
+	if(foutOptions.is_open())
+	{
+		foutOptions << GAME->GetShowHUD() << '\n' <<
+		(unsigned int)(GAME->GetMapLocation()) << '\n' <<
+		(unsigned int)(GAME->GetMusicVolume()) << '\n' <<
+		(unsigned int)(GAME->GetSoundVolume());
+		
+		foutOptions.close();
+	}
+}
+
+void CGame::ReadOptionsFromFile()
+{
+	ifstream finOptions("option.txt", ios_base::in);
+
+	if(finOptions.is_open())
+	{
+		//	Make some temporary values for loading
+		bool bTempShowHUD;
+		unsigned int cTempMapLocation;
+		unsigned int cTempMusicVolume;
+		unsigned int cTempSoundVolume;
+		//	Load from the txt option file, into the temporary values
+		finOptions >> bTempShowHUD;
+		finOptions >> cTempMapLocation;
+		finOptions >> cTempMusicVolume;
+		finOptions >> cTempSoundVolume;
+		//	Error-check the txt option file's values, and then set them
+		if(bTempShowHUD == true || bTempShowHUD == false)
+			GAME->SetShowHUD( bTempShowHUD );
+		else
+			GAME->SetShowHUD( true );
+		if(cTempMapLocation == 0 || cTempMapLocation == 1 || cTempMapLocation == 2)
+			GAME->SetMapLocation( cTempMapLocation );
+		else
+			GAME->SetMapLocation( 2 );
+		if(cTempMusicVolume >= 0 && cTempMusicVolume <= 100)
+			GAME->SetMusicVolume( cTempMusicVolume );
+		else
+			GAME->SetMusicVolume( 80 );
+		if(cTempSoundVolume >= 0 && cTempSoundVolume <= 100)
+			GAME->SetSoundVolume( cTempSoundVolume );
+		else
+			GAME->SetSoundVolume( 100 );
 	}
 }

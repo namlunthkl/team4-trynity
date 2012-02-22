@@ -24,7 +24,6 @@ private:
 public:
 	CBitmapFont();
 	void Write(const char* szTextToPrint, int nPosX, int nPosY, DWORD dwColor);
-	void WriteCentered(const char* szTextToPrint, int nPosY, DWORD dwColor);
 };
 
 #endif

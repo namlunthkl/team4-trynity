@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
 //    File Name				:	"CGameplayState.cpp"
-//
 //    Author Name			:	Daniel Lima
 //    Creation Date			:	02/09/12 - 1:00 AM
 //    Purpose				:	Contains the GameplayState
