@@ -92,48 +92,49 @@ namespace ParticleTool
 
         public void Update(float deltaTime)
         {
-            for (int i = 0; i < maxParticles; i++)
-            {
-                Particle_List[i].rotation += rotation * deltaTime;
-                Particle_List[i].life -= 1000 * deltaTime;
-                Particle_List[i].Color = ColorOperator.Lerp(ColorEnd, ColorStart, Particle_List[i].life / 1000);
+                for (int i = 0; i < maxParticles; i++)
+                {
+                    Particle_List[i].rotation += rotation * deltaTime;
+                    Particle_List[i].life -= 1000 * deltaTime;
+                    Particle_List[i].Color = ColorOperator.Lerp(ColorEnd, ColorStart, Particle_List[i].life / 1000);
+
+                    Particle_List[i].posX += Particle_List[i].velX * deltaTime;
+                    Particle_List[i].posY += Particle_List[i].velY * deltaTime;
+
+                    if (scaleStart <= scaleEnd)
+                    {
+                        Particle_List[i].size_p += 0.5f * deltaTime;
+                        if (Particle_List[i].size_p >= scaleEnd)
+                        {
+                            Particle_List[i].size_p += 0;
+                        }
+                    }
+                    if (scaleStart >= scaleEnd)
+                    {
+                        Particle_List[i].size_p -= 0.5f * deltaTime;
+                        if (Particle_List[i].size_p <= scaleStart)
+                        {
+                            Particle_List[i].size_p += 0;
+                        }
+                    }
+
+                    EmitterPosX += EmitterVelX * deltaTime;
+                    EmitterPosY += EmitterVelY * deltaTime;
+
+                    if (Particle_List[i].Life < 0 && continuous)
+                    {
+                        Respawn(Particle_List[i]);
+                    }
+                    if ( Particle_List[i].life < 0 && reAnimate && continuous != true)
+                    {
+                        Respawn(Particle_List[i]);
+
+                        if (i >= maxParticles - 1)
+                        {
+                            reAnimate = false;
+                        }
+                    }
                 
-                Particle_List[i].posX += Particle_List[i].velX * deltaTime;
-                Particle_List[i].posY += Particle_List[i].velY * deltaTime;
-
-                if (scaleStart <= scaleEnd )
-                {
-                    Particle_List[i].size_p += 0.5f * deltaTime;
-                    if (Particle_List[i].size_p >= scaleEnd)
-                    {
-                        Particle_List[i].size_p += 0;
-                    }
-                }
-                if (scaleStart >= scaleEnd )
-                {
-                    Particle_List[i].size_p -= 0.5f * deltaTime;
-                    if (Particle_List[i].size_p <= scaleStart)
-                    {
-                        Particle_List[i].size_p += 0;
-                    }
-                }
-
-                EmitterPosX += EmitterVelX * deltaTime;
-                EmitterPosY += EmitterVelY * deltaTime;
-
-                if (Particle_List[i].Life < 0 && continuous)
-                {
-                    Respawn(Particle_List[i]);
-                }
-                //else if (reAnimate)
-                //{
-                // Respawn(Particle_List[i]);
-
-                // if (i >= Particle_List.Count() - 1)
-                // {
-                //     reAnimate = false;
-                // }
-                // }
             }
         }
         public void Respawn(Particle p)

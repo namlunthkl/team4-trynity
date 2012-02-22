@@ -1425,9 +1425,9 @@
             this.checkBoxEmitterBurst.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxEmitterBurst.Location = new System.Drawing.Point(38, 96);
             this.checkBoxEmitterBurst.Name = "checkBoxEmitterBurst";
-            this.checkBoxEmitterBurst.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxEmitterBurst.Size = new System.Drawing.Size(79, 17);
             this.checkBoxEmitterBurst.TabIndex = 11;
-            this.checkBoxEmitterBurst.Text = "Loop | Burst";
+            this.checkBoxEmitterBurst.Text = "Continuous";
             this.checkBoxEmitterBurst.UseVisualStyleBackColor = true;
             this.checkBoxEmitterBurst.CheckedChanged += new System.EventHandler(this.checkBoxEmitterBurst_CheckedChanged);
             // 

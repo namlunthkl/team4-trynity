@@ -326,10 +326,11 @@ namespace BodagheeParticleTool
 
         private void checkBoxEmitterBurst_CheckedChanged(object sender, EventArgs e)
         {
-
+            emitterObject.continuous = checkBoxEmitterBurst.Checked;
         }
         private void buttonREANIMATEPARTICLES_Click(object sender, EventArgs e)
         {
+            emitterObject.reAnimate = true;
         }
 
         private void comboBoxSourceBlend_SelectedIndexChanged(object sender, EventArgs e)
