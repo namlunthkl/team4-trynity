@@ -57,6 +57,12 @@ public:
 	//	Purpose		:	Clean up dynamically allocated memory
 	////////////////////////////////////////////////////////////////////////
 	virtual void Exit(void) = 0;
+
+
+
+	// Accessors and mutators
+	inline int GetBGMusic(void) { return m_musBGM; }
+	inline void SetBGMusic(int musBGM) { m_musBGM = musBGM; }
 	
 protected:
 	virtual ~IGameState() = 0 {}

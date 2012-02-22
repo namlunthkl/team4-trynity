@@ -71,16 +71,19 @@ bool CNewGameState::Input()
 		{
 		case NEWG_SLOT1:
 			{
+				AUDIO->MusicStopSong(GetBGMusic());
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT2:
 			{
+				AUDIO->MusicStopSong(GetBGMusic());
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT3:
 			{
+				AUDIO->MusicStopSong(GetBGMusic());
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}

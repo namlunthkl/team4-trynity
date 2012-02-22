@@ -74,16 +74,22 @@ bool CMainMenuState::Input()
 		{
 		case MAIN_NEW:
 			{
+				CNewGameState::GetInstance()->SetTitleIndex(m_pnTitleIndex);
+				CNewGameState::GetInstance()->SetTitleScrollDir(m_pbTitleScrollDir);
 				GAME->ChangeState(CNewGameState::GetInstance());
 				break;
 			}
 		case MAIN_LOAD:
 			{
+				CLoadGameState::GetInstance()->SetTitleIndex(m_pnTitleIndex);
+				CLoadGameState::GetInstance()->SetTitleScrollDir(m_pbTitleScrollDir);
 				GAME->ChangeState(CLoadGameState::GetInstance());
 				break;
 			}
 		case MAIN_OPTIONS:
 			{
+				COptionsState::GetInstance()->SetTitleIndex(m_pnTitleIndex);
+				COptionsState::GetInstance()->SetTitleScrollDir(m_pbTitleScrollDir);
 				GAME->ChangeState(COptionsState::GetInstance());
 				break;
 			}
@@ -95,6 +101,7 @@ bool CMainMenuState::Input()
 			}
 		case MAIN_EXIT:
 			{
+
 				GAME->ChangeState(NULL);
 				CBaseMenu::Exit();	//	To make sure the pFont gets deleted.
 				return false;
@@ -113,10 +120,11 @@ void CMainMenuState::Render()
 {
 	//	Draw the base menu's stuff .. NOT SURE
 	CBaseMenu::Render();
+	
 
 	//	DELETELATER JUST TO SHOW CHARS
-	pFont->Write("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 32, 9, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("abcdefghijklmnopqrstuvwxyz", 32, 10, D3DCOLOR_XRGB(255, 255, 255));
+	//pFont->Write("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 32, 9, D3DCOLOR_XRGB(255, 255, 255));
+	//pFont->Write("abcdefghijklmnopqrstuvwxyz", 32, 10, D3DCOLOR_XRGB(255, 255, 255));
 	
 	//	Draw this menu's stuff
 	pFont->Write("New Game", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
