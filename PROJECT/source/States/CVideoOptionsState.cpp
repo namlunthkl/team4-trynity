@@ -89,6 +89,8 @@ bool CVideoOptionsState::Input()
 			}
 		case VDEO_BACK:
 			{
+				//	When we leave the state, save all the crap to the outputted options files
+				GAME->OutputOptionsToFile();
 				GAME->ChangeState(COptionsState::GetInstance());
 				break;
 			}
@@ -104,7 +106,7 @@ void CVideoOptionsState::Update(float fElapsedTime)
 
 void CVideoOptionsState::Render()
 {
-	//	Draw the base menu's stuff .. NOT SURE
+	//	Draw the base menu's stuff
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff

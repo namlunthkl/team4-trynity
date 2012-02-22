@@ -89,6 +89,7 @@ bool CAudioOptionsState::Input()
 			}
 		case ADIO_BACK:
 			{
+				GAME->OutputOptionsToFile();
 				GAME->ChangeState(COptionsState::GetInstance());
 				break;
 			}

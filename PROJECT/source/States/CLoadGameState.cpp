@@ -91,6 +91,28 @@ bool CLoadGameState::Input()
 			}
 		}
 	}
+	//	Delete a slot
+	else if(INPUT->KeyDown(DIK_LSHIFT) && INPUT->KeyPressed(DIK_DELETE) || INPUT->KeyDown(DIK_RSHIFT) && INPUT->KeyPressed(DIK_DELETE))
+	{
+		switch(m_uiCurSelected)
+		{
+		case LODG_SLOT1:
+			{
+				//delete slot 1
+				break;
+			}
+		case LODG_SLOT2:
+			{
+				//delete slot 2
+				break;
+			}
+		case LODG_SLOT3:
+			{
+				//delete slot 3
+				break;
+			}
+		}
+	}
 	return true;
 }
 
@@ -109,4 +131,5 @@ void CLoadGameState::Render()
 	pFont->Write("Load Slot2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Load Slot3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("SHIFT DELETE to delete a slot", 32, 17, D3DCOLOR_XRGB(80, 0, 0));
 }
