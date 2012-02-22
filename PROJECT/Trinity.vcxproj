@@ -91,6 +91,7 @@
     <ClCompile Include="source\CPuzzleManager.cpp" />
     <ClCompile Include="source\IBaseInterface.cpp" />
     <ClCompile Include="source\Input Manager\CInputManager.cpp" />
+    <ClCompile Include="source\Input Manager\CXboxController.cpp" />
     <ClCompile Include="source\Messaging\CEventSystem.cpp" />
     <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
     <ClCompile Include="source\Messaging\CStringTable.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="source\CTimer.h" />
     <ClInclude Include="source\IBaseInterface.h" />
     <ClInclude Include="source\Input Manager\CInputManager.h" />
+    <ClInclude Include="source\Input Manager\CXboxController.h" />
     <ClInclude Include="source\Messaging\CEvent.h" />
     <ClInclude Include="source\Messaging\CEventSystem.h" />
     <ClInclude Include="source\Messaging\CMessageSystem.h" />
