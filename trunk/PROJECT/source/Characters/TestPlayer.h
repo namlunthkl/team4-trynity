@@ -8,6 +8,7 @@
 #include "../Animation/CAnimationPlayer.h"
 #include "../Animation/CAnimationManager.h"
 #include "../Input Manager/CInputManager.h"
+#include "../Particle Engine/ParticleWeapon.h"
 #define WORLD CWorldEngine::GetInstance()
 
 class TestPlayer : public IBaseInterface
@@ -18,7 +19,7 @@ public:
 	unsigned int m_uiCurrentAnimation;
 
 	CAnimationPlayer* m_pAnimation[4];
-
+	ParticleWeapon m_footsteps;
 	// Contructor
 	TestPlayer(void) {}
 	// Destructor
@@ -35,6 +36,7 @@ public:
 		m_uiCurrentAnimation = 0;
 		CInputManager::GetInstance()->SetController(1);
 		CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
+		m_footsteps.Load("Resource/data/leafyburst.xml");
 		m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 		m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
 		m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
@@ -53,38 +55,57 @@ public:
 
 
 		
-		
-		
+		int x = 0;
+		if(CInputManager::GetInstance()->GetLeft())
+		{
+			m_uiCurrentAnimation = ANM_LEFT;
+			nNewPosX--;
+		}
+		if(CInputManager::GetInstance()->GetRight())
+		{
+			m_uiCurrentAnimation = ANM_RIGHT;
+			nNewPosX++;
+
+		}
+
 		if(CInputManager::GetInstance()->GetUp())
 		{
 			m_uiCurrentAnimation = ANM_UP;
-			if(CInputManager::GetInstance()->GetLeft())
-			{
-				m_uiCurrentAnimation = ANM_LEFT;
-				nNewPosX--;
-			}
-			if(CInputManager::GetInstance()->GetRight())
-			{
-				m_uiCurrentAnimation = ANM_RIGHT;
-				nNewPosX++;
-			}
 			nNewPosY--;
 		}
 		if(CInputManager::GetInstance()->GetDown())
 		{
 			m_uiCurrentAnimation = ANM_DOWN;
-			if(CInputManager::GetInstance()->GetLeft())
-			{
-				m_uiCurrentAnimation = ANM_LEFT;
-				nNewPosX--;
-			}
-			if(CInputManager::GetInstance()->GetRight())
-			{
-				m_uiCurrentAnimation = ANM_RIGHT;
-				nNewPosX++;
-			}
 			nNewPosY++;
 		}
+
+		if(nNewPosY < GetPosY() && nNewPosX < GetPosX())
+		{
+			m_uiCurrentAnimation = ANM_LEFT;
+		}
+		else if(nNewPosY < GetPosY() && nNewPosX > GetPosX())
+		{
+			m_uiCurrentAnimation = ANM_RIGHT;
+		}
+		else if(nNewPosY < GetPosY())
+		{
+			m_uiCurrentAnimation = ANM_UP;
+		}
+		else if(nNewPosY > GetPosY() && nNewPosX < GetPosX())
+		{
+			m_uiCurrentAnimation = ANM_LEFT;
+		}
+		else if(nNewPosY > GetPosY() && nNewPosX > GetPosX())
+		{
+			m_uiCurrentAnimation = ANM_RIGHT;
+		}
+		else if(nNewPosY > GetPosY())
+		{
+			m_uiCurrentAnimation = ANM_DOWN;
+		}
+
+		if(nNewPosX != GetPosX() || nNewPosY != GetPosY())
+			m_footsteps.Fire(nNewPosX,nNewPosY);
 
 		TestPlayer test;
 		test.Enter();
@@ -105,11 +126,13 @@ public:
 
 		m_pAnimation[m_uiCurrentAnimation]->Render(GetPosX(), GetPosY());
 		D3D->GetSprite()->Flush();
+		m_footsteps.Render();
 	}
 
 	void Update(float fElapsedTime)
 	{
 		m_pAnimation[m_uiCurrentAnimation]->Update(fElapsedTime);
+		m_footsteps.Update(fElapsedTime);
 	}
 
 	// Get the rectangle used for collision
