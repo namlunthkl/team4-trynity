@@ -31,5 +31,10 @@ public:
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
 	RECT ReturnFrameRect(void);
+
+	RECT ReturnCollisionRect(void);
+
+	POINT ReturnAnchorPoint(void);
+
 };
 #endif
