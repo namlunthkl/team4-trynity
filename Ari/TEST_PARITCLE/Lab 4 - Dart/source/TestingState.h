@@ -16,8 +16,7 @@ private:
 	
 
 public:
-	ParticleWeapon		p[1];
-	//ParticleWeapon		t[1];
+	ParticleWeapon		p;
 	static TestingState* GetInstance( void );
 
 	void Enter(void);

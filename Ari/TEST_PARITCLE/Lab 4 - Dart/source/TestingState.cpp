@@ -4,7 +4,7 @@
 
 TestingState::TestingState(void)
 {
-	
+
 }
 TestingState::~TestingState(){}
 TestingState* TestingState::GetInstance(void)
@@ -15,10 +15,9 @@ TestingState* TestingState::GetInstance(void)
 void TestingState::Enter(void)
 {
 	cursorID = CSGD_TextureManager::GetInstance()->LoadTexture( "Resource/Particles/Spark.bmp", D3DCOLOR_ARGB( 255, 255, 255, 255 ) );
-	for( int i = 0 ; i < 1; i ++ )
-	{
-		p[i].Load( "Resource/data/MainMenuFog.xml" );
-	}
+
+	p.Load( "Resource/data/LeafyBurst.xml" );
+
 }
 bool TestingState::Input(void)
 {
@@ -27,30 +26,23 @@ bool TestingState::Input(void)
 
 	if( CSGD_DirectInput::GetInstance()->MouseButtonPressed(0)  )
 	{
-		for( int i = 0; i < 1; i++ )
-		{
-			p[i].Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
-		}
+		p.Fire( (float)(CSGD_DirectInput::GetInstance()->MouseGetPosX() ), (float)(CSGD_DirectInput::GetInstance()->MouseGetPosY() ) );
 	}
 	return true;
 }
 void TestingState::Update(void)
 {
-	for( int i = 0; i < 1; i++ )
-	{
-		//p[i].Fire( (int)(CSGD_DirectInput::GetInstance()->MouseGetPosX()), (int)(CSGD_DirectInput::GetInstance()->MouseGetPosY()) );
-		p[i].Update( CGame::GetInstance()->GetElapsedTime() );
-	}
+	//p.Fire( (int)(CSGD_DirectInput::GetInstance()->MouseGetPosX()), (int)(CSGD_DirectInput::GetInstance()->MouseGetPosY()) );
+	p.Update( CGame::GetInstance()->GetElapsedTime() );
+
 }
 void TestingState::Render(void)
 {
 	CSGD_TextureManager::GetInstance()->Draw( cursorID, CSGD_DirectInput::GetInstance()->MouseGetPosX(), CSGD_DirectInput::GetInstance()->MouseGetPosY() );
-	for( int i = 0; i < 1; i++ )
-	{
-		p[i].Render();
-	}
+	p.Render();
+
 }
 void TestingState::Exit(void)
 {
-	
+
 }
