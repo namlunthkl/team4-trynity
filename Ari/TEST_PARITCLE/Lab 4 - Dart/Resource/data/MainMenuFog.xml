@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Holder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
   <List>
     <Emitter>
       <Name>Emitter Number: </Name>
@@ -38,4 +38,3 @@
       <ImageFile>Smoke.bmp</ImageFile>
     </Emitter>
   </List>
-</Holder>
