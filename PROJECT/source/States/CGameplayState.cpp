@@ -47,6 +47,7 @@ void CGameplayState::Enter(void)
 
 	pEnemy = new CEnemy();
 	pEnemy->Initialize(50, 50, 0, 1, 0, NULL, NULL);
+	pEnemy->LoadAnimation();
 	//pEnemy->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
 	pEnemy->SetVelX(1);
 	pEnemy->SetVelY(1);

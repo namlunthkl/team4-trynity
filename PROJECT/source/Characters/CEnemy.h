@@ -21,7 +21,7 @@ private:
 	IBaseAIState*	m_pAIState;
 	int				m_sndEnemy;
 
-	unsigned int m_uiCurrentAnimation;
+	int m_nCurrentAnimation;
 	CAnimationPlayer* m_pAnimation[4];
 	//temp
 	float			m_fEnemyMoveTimer;
@@ -38,6 +38,7 @@ public:
 	void Update(float fElapsedTime);
 	void Render();
 	void Shutdown();
+	void LoadAnimation();
 	//	References
 	void AddRef();
 	void Release();
