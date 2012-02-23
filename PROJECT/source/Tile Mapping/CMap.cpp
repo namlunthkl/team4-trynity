@@ -11,7 +11,10 @@
 
 // Precompiled header
 #include "StdAfx.h"
-#include "..\StdAfx.h"
+
+// Include header file
+#include "CMap.h"
+
 
 #include "../tinyxml/tinyxml.h"
 #include "../Messaging/CStringTable.h"
@@ -20,9 +23,11 @@
 #include "../IBaseInterface.h"
 #include "../Messaging/CEventSystem.h"
 
-// Include header file
-#include "CMap.h"
 #include "../Input Manager/CInputManager.h"
+#include "../States/CGameplayState.h"
+
+#define GAMEPLAY CGameplayState::GetInstance()
+
 // Constructor
 // Sets all parameters to 0/NULL values
 CMap::CMap(void)
@@ -161,8 +166,8 @@ void CMap::Render(int nCullingMode)
 			// Get position to draw;
 			int nTileWorldPosX = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
 			int nTileWorldPosY = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
-			int nTileScreenPosX = nTileWorldPosX - 0;	// TODO: Replace 0 by camera's X position
-			int nTileScreenPosY = nTileWorldPosY - 0;	// TODO: Replace 0 by camera's Y position
+			int nTileScreenPosX = GAMEPLAY->GetScreenPositionX(nTileWorldPosX);
+			int nTileScreenPosY = GAMEPLAY->GetScreenPositionY(nTileWorldPosY);
 			
 			bool bRender = false;
 			switch(nCullingMode)
@@ -171,15 +176,13 @@ void CMap::Render(int nCullingMode)
 				bRender = true;
 				break;
 			case CULLING_HALF_SCREEN:
-				if(nTileScreenPosX >= GAME->GetScreenWidth() / 4 &&
-					(nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth() * 3.0f / 4.0f &&
-					nTileScreenPosY >= GAME->GetScreenHeight() / 4 &&
-					(nTileScreenPosY + GetTileset()->GetTileHeight()) <= GAME->GetScreenHeight() * 3.0f / 4.0f)
+				if(nTileScreenPosX > 0 && nTileScreenPosX + GetTileset()->GetTileWidth() < GAME->GetScreenWidth()
+					&& nTileScreenPosY > 0 && nTileScreenPosY+ GetTileset()->GetTileHeight() < GAME->GetScreenHeight())
 					bRender = true;
 				break;
 			case CULLING_SCREEN:
-				if(nTileScreenPosX >= 0 && (nTileScreenPosX + GetTileset()->GetTileWidth()) <= GAME->GetScreenWidth()
-					&& nTileScreenPosY >= 0 && (nTileScreenPosY) <= GAME->GetScreenHeight())
+				if(nTileScreenPosX + GetTileset()->GetTileWidth() >= 0 && (nTileScreenPosX) <= GAME->GetScreenWidth()
+					&& nTileScreenPosY + GetTileset()->GetTileHeight() >= 0 && (nTileScreenPosY) <= GAME->GetScreenHeight())
 					bRender = true;
 				break;
 			}

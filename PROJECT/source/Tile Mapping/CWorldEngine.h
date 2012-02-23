@@ -123,6 +123,15 @@ public:
 	//	Parameters	:	The wanted tileset's ID
 	////////////////////////////////////////////////////////////////////////
 	CTileset* GetTileset(unsigned char ucID);
+
+
+	///////////
+	// HACK
+	///////////
+	inline int GetWorldWidth(void)
+	{ return m_vpMaps[0]->GetWidth() * m_vpMaps[0]->GetTileset()->GetTileWidth(); }
+	inline int GetWorldHeight(void)
+	{ return m_vpMaps[0]->GetHeight() * m_vpMaps[0]->GetTileset()->GetTileHeight(); }
 };
 
 #endif // C_WORLD_ENGINE_H_

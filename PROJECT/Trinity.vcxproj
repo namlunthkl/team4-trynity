@@ -88,6 +88,7 @@
     <ClCompile Include="source\Characters\CEnemy.cpp" />
     <ClCompile Include="source\Characters\CNPC.cpp" />
     <ClCompile Include="source\Characters\CPlayer.cpp" />
+    <ClCompile Include="source\Characters\TestPlayer.cpp" />
     <ClCompile Include="source\CObjectManager.cpp" />
     <ClCompile Include="source\CPuzzle.cpp" />
     <ClCompile Include="source\CPuzzleManager.cpp" />

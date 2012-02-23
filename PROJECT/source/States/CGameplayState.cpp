@@ -13,6 +13,7 @@
 
 #include "../Input Manager/CInputManager.h"
 #include "../Camera/CCameraControl.h"
+#define WORLD CWorldEngine::GetInstance()
 
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
@@ -21,6 +22,10 @@
 // Constructor
 CGameplayState::CGameplayState(void)
 {
+	pPlayer = NULL;
+	pEnemy = NULL;
+	m_nCameraPosX = 0;
+	m_nCameraPosY = 0;
 }
 
 // Initialize everything
@@ -28,7 +33,7 @@ void CGameplayState::Enter(void)
 {
 	// Initialize the world engine
 	WORLD->InitWorldEngine();
-
+	
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
 	EVENTS->RegisterForEvent("LightTorch", this);
@@ -89,11 +94,26 @@ if(pEnemy)
 	if(pPlayer)
 		pPlayer->Update(fElapsedTime);
 
-	// CAMERA->Update(fElapsedTime);
-	
-	//if(pPlayer)
-	//	CAMERA->SetCameraPositionX(pPlayer->GetPosX());
+	///////////////////
+	// Update camera
+	///////////////////
+	if(pPlayer)
+	{
+		int nNewCameraPosX = pPlayer->GetPosX() - GAME->GetScreenWidth() / 2;
+		int nNewCameraPosY = pPlayer->GetPosY() - GAME->GetScreenHeight() / 2;
 
+		m_nCameraPosX = nNewCameraPosX;
+		m_nCameraPosY = nNewCameraPosY;
+
+		if(m_nCameraPosX < 0)
+			m_nCameraPosX = 0;
+		if(m_nCameraPosY < 0)
+			m_nCameraPosY = 0;
+		if(m_nCameraPosX > WORLD->GetWorldWidth() - GAME->GetScreenWidth())
+			m_nCameraPosX = WORLD->GetWorldWidth() - GAME->GetScreenWidth();
+		if(m_nCameraPosY > WORLD->GetWorldHeight() - GAME->GetScreenHeight())
+			m_nCameraPosY = WORLD->GetWorldHeight() - GAME->GetScreenHeight();
+	}
 }
 
 void CGameplayState::Render(void)
@@ -141,6 +161,9 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
 		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
 
+		PosX = GetScreenPositionX(PosX);
+		PosY = GetScreenPositionY(PosY);
+
 		PosX += 15;
 		PosY -= 5;
 
@@ -166,3 +189,4 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		}
 	};
 }
+
