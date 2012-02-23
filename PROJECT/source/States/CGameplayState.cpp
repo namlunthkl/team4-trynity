@@ -84,8 +84,12 @@ void CGameplayState::Update(float fElapsedTime)
 	WORLD->UpdateWorld(fElapsedTime);
 	EVENTS->ProcessEvents();
 	m_Rain.Update(fElapsedTime);
+
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
+
+
+
 if(pEnemy)
 	pEnemy->Update(fElapsedTime);
 
@@ -122,7 +126,7 @@ void CGameplayState::Render(void)
 	WORLD->RenderWorld();
 
 	if(PW.GetFired())
-		PW.Render();
+		PW.Render(m_nCameraPosX, m_nCameraPosY);
 	
 	D3D->GetSprite()->Flush();
 
@@ -160,9 +164,6 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 
 		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
 		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
-
-		PosX = GetScreenPositionX(PosX);
-		PosY = GetScreenPositionY(PosY);
 
 		PosX += 15;
 		PosY -= 5;

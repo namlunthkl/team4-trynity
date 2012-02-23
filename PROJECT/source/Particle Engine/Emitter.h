@@ -32,7 +32,7 @@ public:
 
 	 void Init();
 	 void Update( float DT );
-	 void Render();
+	 void Render(int nCameraPosX, int nCameraPosY);
 	 void ReSpwn(Particle* P);
 
 };

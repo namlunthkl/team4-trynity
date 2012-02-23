@@ -137,7 +137,7 @@ void Emitter::ReSpwn(Particle* P)
 	P->PosY = Data->EmitterPosY - (rand() % (int)(Data->SpwnAreaHeight * 2 + 1) - Data->SpwnAreaHeight) / 2;
 
 }
-void Emitter::Render()
+void Emitter::Render(int nCameraPosX, int nCameraPosY)
 {
 	DWORD tempBlends[2] = {0};
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->GetRenderState(D3DRS_SRCBLEND, &tempBlends[0]);
@@ -166,9 +166,9 @@ void Emitter::Render()
 		int OffsetY = (int)(tempP->PosY - (float)CSGD_TextureManager::GetInstance()->GetTextureHeight(image) * tempP->Size_p / 2.0f);
 
 		if(tempP->Rotation == 0)
-			CSGD_TextureManager::GetInstance()->Draw(image, OffSetX, OffsetY, tempP->Size_p, tempP->Size_p,NULL,0,0,0,D3DCOLOR_ARGB((int)tempP->A,(int)tempP->R,(int)tempP->G,(int)tempP->B)); 
+			CSGD_TextureManager::GetInstance()->Draw(image, OffSetX - nCameraPosX, OffsetY - nCameraPosY, tempP->Size_p, tempP->Size_p,NULL,0,0,0,D3DCOLOR_ARGB((int)tempP->A,(int)tempP->R,(int)tempP->G,(int)tempP->B)); 
 		else
-			CSGD_TextureManager::GetInstance()->Draw(image, (int)tempP->PosX, (int)tempP->PosY, tempP->Size_p, tempP->Size_p,NULL,0,0,0,D3DCOLOR_ARGB((int)tempP->A,(int)tempP->R,(int)tempP->G,(int)tempP->B));         
+			CSGD_TextureManager::GetInstance()->Draw(image, (int)tempP->PosX - nCameraPosX, (int)tempP->PosY - nCameraPosY, tempP->Size_p, tempP->Size_p,NULL,0,0,0,D3DCOLOR_ARGB((int)tempP->A,(int)tempP->R,(int)tempP->G,(int)tempP->B));         
 
 	}
 	CSGD_Direct3D::GetInstance()->GetSprite()->Flush();
