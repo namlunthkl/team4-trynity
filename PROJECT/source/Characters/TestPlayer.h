@@ -21,7 +21,7 @@ public:
 	~TestPlayer(void) {}
 
 	enum Animation { ANM_UP, ANM_DOWN, ANM_RIGHT, ANM_LEFT };
-	enum AnimationFile { ANM_FILE_UP = 3, ANM_FILE_DOWN, ANM_FILE_RIGHT, ANM_FILE_LEFT };
+	enum AnimationFile { ANM_FILE_UP = 4, ANM_FILE_DOWN, ANM_FILE_RIGHT, ANM_FILE_LEFT };
 
 	// Initialize all variables to BASE_CHAR defaults
 	virtual void Enter(void);
