@@ -55,7 +55,7 @@ void CGameplayState::Enter(void)
 	// CAMERA->InitializeCamera();
 	
 	//	TODO  Temporary, just to demonstrate that the options work
-	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm") );
+	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
 }
 

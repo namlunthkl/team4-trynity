@@ -83,7 +83,7 @@ void CBaseMenu::Enter()
 
 	//	Play Song
 	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
-	AUDIO->MusicPlaySong(GetBGMusic(), true);
+		AUDIO->MusicPlaySong(GetBGMusic(),true);
 
 	pFont = new CBitmapFont;
 }
@@ -157,6 +157,8 @@ void CBaseMenu::Update(float fElapsedTime)
 	{
 		m_fCursorTime = 0.0f;
 	}
+
+	
 }
 
 void CBaseMenu::Render()
