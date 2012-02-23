@@ -992,7 +992,7 @@ namespace Animation_Editor
                 SpriteSheet temp = new SpriteSheet(tempFilePath);
                 AnimationSheet[0, 0] = temp;
 
-                Graphics g = MainPanel.CreateGraphics();
+                //Graphics g = MainPanel.CreateGraphics();
                 Size tempSize = new Size(temp.Sheet.Width, temp.Sheet.Height);
 
                 if ((tempSize.Width - MainPanel.Width) >= 0)
