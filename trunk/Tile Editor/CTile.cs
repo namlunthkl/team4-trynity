@@ -69,11 +69,4 @@ namespace Tile_Editor
             set { m_nID = value; }
         }
     }
-
-    class TilePlaced
-    {
-        int nPosX;
-        int nPosY;
-
-    }
 }

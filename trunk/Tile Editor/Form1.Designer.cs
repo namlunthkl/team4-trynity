@@ -210,6 +210,8 @@
             // checkViewGrid
             // 
             this.checkViewGrid.AutoSize = true;
+            this.checkViewGrid.Checked = true;
+            this.checkViewGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkViewGrid.Location = new System.Drawing.Point(573, 9);
             this.checkViewGrid.Name = "checkViewGrid";
             this.checkViewGrid.Size = new System.Drawing.Size(90, 21);
