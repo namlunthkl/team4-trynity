@@ -30,6 +30,7 @@ void ParticleWeapon::Fire(int PosX, int PosY)
 		Emitters[i]->Data->EmitterPosY = (float)PosY;
 	}
 }
+
 void ParticleWeapon::Update(float DT)
 {
 	for(unsigned int i = 0; i < Emitters.size(); i++)
@@ -40,10 +41,10 @@ void ParticleWeapon::Update(float DT)
 			Fired = false;
 	}
 }
-void ParticleWeapon::Render()
+void ParticleWeapon::Render(int nCameraPosX, int nCameraPosY)
 {
 	for(unsigned int i = 0; i < Emitters.size(); i++)
-		Emitters[i]->Render();
+		Emitters[i]->Render(nCameraPosX, nCameraPosY);
 }
 bool ParticleWeapon::Load(const char* szXMLFileName)
 {
