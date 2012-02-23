@@ -14,7 +14,6 @@ void TestPlayer::Enter(void)
 	SetPosX(0);
 	SetPosY(0);
 	m_uiCurrentAnimation = 0;
-	CInputManager::GetInstance()->SetController(1);
 	CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
 	m_footsteps.Load("Resource/data/leafyburst.xml");
 	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_FILE_UP, true);

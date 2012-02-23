@@ -156,12 +156,15 @@ namespace ParticleTool
             {
                 if (this.Particle_List[i].Life > 0)
                 {
-                    int OffSetX = (int)((int)(SGP.ManagedTextureManager.Instance.GetTextureWidth(image) >> 1) * this.Particle_List[i].Size_p);
-                    int OffSetY = (int)((int)(SGP.ManagedTextureManager.Instance.GetTextureHeight(image) >> 1) * this.Particle_List[i].Size_p);
-
-                    SGP.ManagedTextureManager.Instance.Draw(image, (int)this.Particle_List[i].PosX,
+                    if (image != -1)
+                    {
+                        int OffSetX = (int)((int)(SGP.ManagedTextureManager.Instance.GetTextureWidth(image) >> 1) * this.Particle_List[i].Size_p);
+                        int OffSetY = (int)((int)(SGP.ManagedTextureManager.Instance.GetTextureHeight(image) >> 1) * this.Particle_List[i].Size_p);
+                    
+                        SGP.ManagedTextureManager.Instance.Draw(image, (int)this.Particle_List[i].PosX,
                         (int)this.Particle_List[i].PosY, this.Particle_List[i].Size_p, this.Particle_List[i].Size_p, Rectangle.Empty, OffSetX, OffSetY,
                         this.Particle_List[i].rotation, this.Particle_List[i].Color.ToArgb());
+                    }
                 }
             }
             SGP.ManagedDirect3D.Instance.Sprite.Flush();
