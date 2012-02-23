@@ -46,9 +46,8 @@ void CGameplayState::Enter(void)
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	pEnemy = new CEnemy();
-	pEnemy->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
-	pEnemy->SetPosX(50);
-	pEnemy->SetPosY(50);
+	pEnemy->Initialize(50, 50, 0, 1, 0, NULL, NULL);
+	//pEnemy->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
 	pEnemy->SetVelX(1);
 	pEnemy->SetVelY(1);
 
