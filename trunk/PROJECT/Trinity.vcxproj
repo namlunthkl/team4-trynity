@@ -80,7 +80,9 @@
     <ClCompile Include="source\ByteUtil.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\Camera\CCameraControl.cpp" />
+    <ClCompile Include="source\Camera\CCameraControl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\CBitmapFont.cpp" />
     <ClCompile Include="source\CGame.cpp" />
     <ClCompile Include="source\Characters\CEnemy.cpp" />

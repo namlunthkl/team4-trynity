@@ -1,5 +1,5 @@
 #include "CCameraControl.h"
-#include "CGame.h"
+#include "../CGame.h"
 
 
 CCameraControl::CCameraControl(void)
@@ -11,7 +11,7 @@ void CCameraControl::InitializeCamera()
 {
 	D3DXVECTOR3 eye(0,3.0f,0.01f), at(0,0,0), up(0,1,0);
 	//float fov = (D3DXToRadian(75)), aspect = (WINDOW_WIDTH/(float)WINDOW_HEIGHT), znear = 0.01f, zfar = 100.0f; 
-	float fov = (D3DXToRadian(75)), aspect = (CGame::GetInstance()->GetScreenW()/(float)CGame::GetInstance()->GetScreenH()), znear = 0.01f, zfar = 100.0f; 
+	float fov = (D3DXToRadian(75)), aspect = (CGame::GetInstance()->GetScreenWidth()/(float)CGame::GetInstance()->GetScreenHeight()), znear = 0.01f, zfar = 100.0f; 
 	
 	D3DXMatrixPerspectiveFovLH(&m_D3DProjection,fov,aspect,znear,zfar);
 	SetYMod( 3 );
