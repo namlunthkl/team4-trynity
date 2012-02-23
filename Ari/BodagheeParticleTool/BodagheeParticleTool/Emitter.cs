@@ -31,14 +31,11 @@ namespace ParticleTool
         private float scaleStart;
         private float scaleEnd;
         private float rotation;
-        private int spwnPattern;
         private int source;
         private int dest;
         private float emitterPosX;
         private float emitterPosY;
         private int maxParticles;
-        private float emitterVelX;
-        private float emitterVelY;
 
         public Color ColorStart { get { return colorStart; } set { colorStart = value; } }
         public Color ColorEnd { get { return colorEnd; } set { colorEnd = value; } }
@@ -53,14 +50,11 @@ namespace ParticleTool
         public float ScaleStart{ get { return scaleStart; } set { scaleStart = value; } }
         public float ScaleEnd{ get { return scaleEnd; }set { scaleEnd = value; }}
         public float Rotation{ get { return rotation; } set { rotation = value; } }
-        public int SpwnPattern {get { return spwnPattern; } set { spwnPattern = value; } }
         public int Source{get { return source; }set { source = value; } }
         public int Dest{get { return dest; } set { dest = value; } }
         public float EmitterPosX{get { return emitterPosX; }set { emitterPosX = value; }}
         public float EmitterPosY{ get { return emitterPosY; }set { emitterPosY = value; }}
         public int MaxParticles { get { return maxParticles; }set { maxParticles = value; } }
-        public float EmitterVelX {get { return emitterVelX; } set { emitterVelX = value; } }
-        public float EmitterVelY {get { return emitterVelY; }set { emitterVelY = value; }}
 
         public Emitter()
         {
@@ -78,14 +72,12 @@ namespace ParticleTool
             scaleStart = 0.0f;
             scaleEnd = 0.0f;
             rotation = 0.0f;
-            spwnPattern = 0;
             source = 2;
             dest = 3;
             emitterPosX = 0;
             emitterPosY = 0;
             maxParticles = 0;
-            emitterVelX = 0;
-            emitterVelY = 0;
+
             continuous = true;
             reAnimate = false;
         }
@@ -117,9 +109,6 @@ namespace ParticleTool
                             Particle_List[i].size_p += 0;
                         }
                     }
-
-                    EmitterPosX += EmitterVelX * deltaTime;
-                    EmitterPosY += EmitterVelY * deltaTime;
 
                     if (Particle_List[i].Life < 0 && continuous)
                     {

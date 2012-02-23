@@ -11,11 +11,15 @@ using ParticleTool;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace BodagheeParticleTool
 {
     public partial class Form1 : Form
     {
+        //Relative file path
+        string m_szPath = "";
+
         public bool Looping = true;
         ManagedTextureManager TM = ManagedTextureManager.Instance;
         ManagedDirect3D D3D = ManagedDirect3D.Instance;
@@ -315,15 +319,6 @@ namespace BodagheeParticleTool
             emitterObject.EmitterPosY = (float)numericUpDownEmitterPositionY.Value;
         }
 
-        private void numericUpDownEmitterVelocityX_ValueChanged(object sender, EventArgs e)
-        {
-            emitterObject.EmitterVelX = (float)numericUpDownEmitterVelocityX.Value;
-        }
-        private void numericUpDownEmitterVelocityY_ValueChanged(object sender, EventArgs e)
-        {
-            emitterObject.EmitterVelY = (float)numericUpDownEmitterVelocityY.Value;
-        }
-
         private void checkBoxEmitterBurst_CheckedChanged(object sender, EventArgs e)
         {
             emitterObject.continuous = checkBoxEmitterBurst.Checked;
@@ -365,10 +360,6 @@ namespace BodagheeParticleTool
             checkBoxRandomShapeWidth.Checked = true;
             checkBoxRandomSource.Checked = true;
             checkBoxRandomDestination.Checked = true;
-            checkBoxRandomEmitterPositionX.Checked = true;
-            checkBoxRandomEmitterPositionY.Checked = true;
-            checkBoxRandomEmitterVelocityX.Checked = true;
-            checkBoxRandomEmitterVelocityY.Checked = true;
             checkBoxRandomRotation.Checked = true;
         }
         private void buttonRandomizeSelected_Click(object sender, EventArgs e)
@@ -488,30 +479,6 @@ namespace BodagheeParticleTool
                 emitterObject.Dest = rand.Next(0, 14);
                 comboBoxDestinationBlend.SelectedIndex = emitterObject.Dest;
             }
-            if (checkBoxRandomEmitterPositionX.Checked == true)
-            {
-                Thread.Sleep(1);
-                numericUpDownEmitterPositionX.Value = rand.Next(0, 800);
-                emitterObject.EmitterPosX = (float)numericUpDownEmitterPositionX.Value;
-            }
-            if (checkBoxRandomEmitterPositionY.Checked == true)
-            {
-                Thread.Sleep(1);
-                numericUpDownEmitterPositionY.Value = rand.Next(0, 450);
-                emitterObject.EmitterPosY = (float)numericUpDownEmitterPositionY.Value;
-            }
-            if (checkBoxRandomEmitterVelocityX.Checked == true)
-            {
-                Thread.Sleep(1);
-                numericUpDownEmitterVelocityX.Value = rand.Next(-5, 5);
-                emitterObject.EmitterVelX = (float)numericUpDownEmitterVelocityX.Value;
-            }
-            if (checkBoxRandomEmitterVelocityY.Checked == true)
-            {
-                Thread.Sleep(1);
-                numericUpDownEmitterVelocityY.Value = rand.Next(-5, 5);
-                emitterObject.EmitterVelY = (float)numericUpDownEmitterVelocityY.Value;
-            }
             if (checkBoxRandomRotation.Checked == true)
             {
                 Thread.Sleep(1);
@@ -542,18 +509,206 @@ namespace BodagheeParticleTool
 
         private void saveXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dlgSaveFile = new SaveFileDialog();
+            dlgSaveFile.Filter = "All File|*.*|XML Files|*.xml";
+            dlgSaveFile.FilterIndex = 2;
+            dlgSaveFile.DefaultExt = "xml";
+            dlgSaveFile.InitialDirectory = m_szPath;
 
+            if (DialogResult.OK == dlgSaveFile.ShowDialog())
+            {
+                // ROOT
+                XElement xRoot = new XElement("Particle");
+                
+                // IMAGEFILE
+                XAttribute xImageFile = new XAttribute("ImageFile", emitterObject.imageFile );
+                xRoot.Add(xImageFile);
+                
+                XElement xEmitter = new XElement("Emitter");
+                xRoot.Add(xEmitter);
+
+                // CONTINUOUS
+                XAttribute xContinuous = new XAttribute("Continuous", (emitterObject.continuous == true) ? 1: 0);
+                xEmitter.Add(xContinuous);
+                // RE-ANIMATE
+                XAttribute xReAnimate = new XAttribute("Reanimate", (emitterObject.reAnimate == true) ? 1: 0);
+                xEmitter.Add(xReAnimate);
+                // EMITTER POS X
+                XAttribute xEmitterPosX = new XAttribute("EmitterPosX", emitterObject.EmitterPosX);
+                xEmitter.Add(xEmitterPosX);
+                // EMITTER POS Y
+                XAttribute xEmitterPosY = new XAttribute("EmitterPosY", emitterObject.EmitterPosY);
+                xEmitter.Add(xEmitterPosY);
+                // MAX PARTICLES
+                XAttribute xMaxParticles = new XAttribute("MaxParticles", emitterObject.MaxParticles);
+                xEmitter.Add(xMaxParticles);
+                // SIZE
+                XAttribute xSize = new XAttribute("Size", emitterObject.FSize);
+                xEmitter.Add(xSize);
+                // MAX LIFE
+                XAttribute xMaxLife = new XAttribute("MaxLife", emitterObject.MaxLife);
+                xEmitter.Add(xMaxLife);
+                // SPAWN WIDTH
+                XAttribute xSpawnWidth = new XAttribute("SpawnWidth", emitterObject.SpwnAreaWidth);
+                xEmitter.Add(xSpawnWidth);
+                // SPAWN HEIGHT
+                XAttribute xSpawnHeight = new XAttribute("SpawnHeight", emitterObject.SpwnAreaHeight);
+                xEmitter.Add(xSpawnHeight);
+                // SCALE START
+                XAttribute xScaleStart = new XAttribute("ScaleStart", emitterObject.ScaleStart);
+                xEmitter.Add(xScaleStart);
+                // SCALE END
+                XAttribute xScaleEnd = new XAttribute("ScaleEnd", emitterObject.ScaleEnd);
+                xEmitter.Add(xScaleEnd);
+                // ROTATION
+                XAttribute xRotation = new XAttribute("Rotation", emitterObject.Rotation);
+                xEmitter.Add(xRotation);
+                // MIN VEL X
+                XAttribute xMinVelX = new XAttribute("MinVelX", emitterObject.MinVelX);
+                xEmitter.Add(xMinVelX);
+                // MAX VEL X
+                XAttribute xMaxVelX = new XAttribute("MaxVelX", emitterObject.MaxVelX);
+                xEmitter.Add(xMaxVelX);
+                // MIN VEL Y
+                XAttribute xMinVelY = new XAttribute("MinVelY", emitterObject.MinVelY);
+                xEmitter.Add(xMinVelY);
+                // MAX VEL Y
+                XAttribute xMaxVelY = new XAttribute("MaxVelY", emitterObject.MaxVelY);
+                xEmitter.Add(xMaxVelY);
+                // COLOR START
+                XAttribute xStartColorA = new XAttribute("StartColorA", emitterObject.ColorStart.A);
+                xEmitter.Add(xStartColorA);
+                XAttribute xStartColorR = new XAttribute("StartColorR", emitterObject.ColorStart.R);
+                xEmitter.Add(xStartColorR);
+                XAttribute xStartColorG = new XAttribute("StartColorG", emitterObject.ColorStart.G);
+                xEmitter.Add(xStartColorG);
+                XAttribute xStartColorB = new XAttribute("StartColorB", emitterObject.ColorStart.B);
+                xEmitter.Add(xStartColorB);
+                // COLOR END
+                XAttribute xEndColorA = new XAttribute("EndColorA", emitterObject.ColorEnd.A);
+                xEmitter.Add(xEndColorA);
+                XAttribute xEndColorR = new XAttribute("EndColorR", emitterObject.ColorEnd.R);
+                xEmitter.Add(xEndColorR);
+                XAttribute xEndColorG = new XAttribute("EndColorG", emitterObject.ColorEnd.G);
+                xEmitter.Add(xEndColorG);
+                XAttribute xEndColorB = new XAttribute("EndColorB", emitterObject.ColorEnd.B);
+                xEmitter.Add(xEndColorB);
+                // SOURCE
+                XAttribute xSource = new XAttribute("Source", emitterObject.Source);
+                xEmitter.Add(xSource);
+                // DEST
+                XAttribute xDest = new XAttribute("Dest", emitterObject.Dest);
+                xEmitter.Add(xDest);
+
+                xRoot.Save(dlgSaveFile.FileName);
+            }
         }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlgOpenFile = new OpenFileDialog();
+            dlgOpenFile.Filter = "All Files|*.*|XML Files|*.xml";
+            dlgOpenFile.FilterIndex = 2;
+            dlgOpenFile.InitialDirectory = m_szPath;
 
+            if (DialogResult.OK == dlgOpenFile.ShowDialog())
+            {
+                XElement xRoot = XElement.Load(dlgOpenFile.FileName);
+
+                XAttribute xImageName = xRoot.Attribute("ImageFile");
+                emitterObject.imageFile = xImageName.Value;
+
+                emitterObject.image =TM.LoadTexture(xImageName.Value, 0);
+                XElement xEmitter = xRoot.Element("Emitter");
+
+                XAttribute xContinuous = xEmitter.Attribute("Continuous");
+                checkBoxEmitterBurst.Checked = (int.Parse(xContinuous.Value) == 1) ? true : false;
+
+                XAttribute xReAnimate = xEmitter.Attribute("Reanimate");
+                emitterObject.reAnimate = (int.Parse(xReAnimate.Value) == 1) ? true : false;
+
+                XAttribute xEmitterPosX = xEmitter.Attribute( "EmitterPosX" );
+                numericUpDownEmitterPositionX.Value = decimal.Parse(xEmitterPosX.Value);
+
+                XAttribute xEmitterPosY = xEmitter.Attribute("EmitterPosY");
+                numericUpDownEmitterPositionY.Value = decimal.Parse(xEmitterPosY.Value);
+
+                XAttribute xMaxParticles = xEmitter.Attribute("MaxParticles");
+                numericUpDownEmitterAmount.Value = int.Parse(xMaxParticles.Value);
+
+                XAttribute xSize = xEmitter.Attribute("Size");
+                emitterObject.FSize = float.Parse(xSize.Value);
+                //WTF IS MISSING HERE
+
+                XAttribute xMaxLife = xEmitter.Attribute("MaxLife");
+                numericUpDownEmitterLife.Value= decimal.Parse(xMaxLife.Value);
+
+                XAttribute xSpawnWidth = xEmitter.Attribute("SpawnWidth"); 
+                numericUpDownEmitterShapeWidth.Value = decimal.Parse(xSpawnWidth.Value);
+
+                XAttribute xSpawnHeight = xEmitter.Attribute("SpawnHeight");
+                numericUpDownEmitterShapeHeight.Value = decimal.Parse(xSpawnHeight.Value);
+
+                XAttribute xScaleStart = xEmitter.Attribute("ScaleStart");
+                numericUpDownStartingScale.Value = decimal.Parse(xScaleStart.Value);
+
+                XAttribute xScaleEnd = xEmitter.Attribute("ScaleEnd");
+                numericUpDownEndingScale.Value = decimal.Parse(xScaleEnd.Value);
+
+                XAttribute xRotation = xEmitter.Attribute("Rotation");
+                numericUpDownRotation.Value = decimal.Parse(xRotation.Value);
+
+                XAttribute xMinVelX = xEmitter.Attribute("MinVelX");
+                numericUpDownMinVelocityX.Value = decimal.Parse(xMinVelX.Value);
+
+                XAttribute xMaxVelX = xEmitter.Attribute("MaxVelX");
+                numericUpDownMaxVelocityX.Value = decimal.Parse(xMaxVelX.Value);
+
+                XAttribute xMinVelY = xEmitter.Attribute("MinVelY");
+                numericUpDownMinVelocityY.Value = decimal.Parse(xMinVelY.Value);
+
+                XAttribute xMaxVelY = xEmitter.Attribute("MaxVelY");
+                numericUpDownMaxVelocityY.Value = decimal.Parse(xMaxVelY.Value);
+
+                XAttribute xStartColorA = xEmitter.Attribute("StartColorA");
+                byte tempSA = byte.Parse(xStartColorA.Value);
+                XAttribute xStartColorR = xEmitter.Attribute("StartColorR");
+                byte tempSR = byte.Parse(xStartColorR.Value);
+                XAttribute xStartColorG = xEmitter.Attribute("StartColorG");
+                byte tempSG = byte.Parse(xStartColorG.Value);
+                XAttribute xStartColorB = xEmitter.Attribute("StartColorB");
+                byte tempSB = byte.Parse(xStartColorB.Value);
+                numericUpDownStartingAlpha.Value = (decimal)tempSA;
+                numericUpDownStartingRed.Value = (decimal)tempSR;
+                numericUpDownStartingGreen.Value = (decimal)tempSG;
+                numericUpDownStartingBlue.Value = (decimal)tempSB;
+                
+                XAttribute xEndColorA = xEmitter.Attribute("EndColorA");
+                byte tempEA = byte.Parse(xEndColorA.Value);
+                XAttribute xEndColorR = xEmitter.Attribute("EndColorR");
+                byte tempER = byte.Parse(xEndColorR.Value);
+                XAttribute xEndColorG = xEmitter.Attribute("EndColorG");
+                byte tempEG = byte.Parse(xEndColorG.Value);
+                XAttribute xEndColorB = xEmitter.Attribute("EndColorB");
+                byte tempEB = byte.Parse(xEndColorB.Value);
+                numericUpDownEndingAlpha.Value = (decimal)tempEA;
+                numericUpDownEndingRed.Value = (decimal)tempER;
+                numericUpDownEndingGreen.Value = (decimal)tempEG;
+                numericUpDownEndingBlue.Value = (decimal)tempEB;
+
+                XAttribute xSource = xEmitter.Attribute("Source");
+                comboBoxSourceBlend.SelectedIndex = int.Parse(xSource.Value);
+
+                XAttribute xDest = xEmitter.Attribute("Dest");
+                comboBoxDestinationBlend.SelectedIndex = int.Parse(xDest.Value);
+            }
+        }
         private void graphics_PanelViewer_MouseDown(object sender, MouseEventArgs e)
         {
             mouseMoveOK = true;
         }
-
         private void graphics_PanelViewer_MouseUp(object sender, MouseEventArgs e)
         {
             mouseMoveOK = false;
         }
-
     }
 }

@@ -120,11 +120,6 @@
             this.comboBoxSourceBlend = new System.Windows.Forms.ComboBox();
             this.labelDestinationBlend = new System.Windows.Forms.Label();
             this.labelSourceBlend = new System.Windows.Forms.Label();
-            this.groupBoxEmitterVelocity = new System.Windows.Forms.GroupBox();
-            this.labelEmitterVelocityY = new System.Windows.Forms.Label();
-            this.numericUpDownEmitterVelocityY = new System.Windows.Forms.NumericUpDown();
-            this.labelEmitterVelocityX = new System.Windows.Forms.Label();
-            this.numericUpDownEmitterVelocityX = new System.Windows.Forms.NumericUpDown();
             this.groupBoxParticleEmitter = new System.Windows.Forms.GroupBox();
             this.checkBoxEmitterBurst = new System.Windows.Forms.CheckBox();
             this.trackBarEmitterLife = new System.Windows.Forms.TrackBar();
@@ -153,10 +148,6 @@
             this.checkBoxRandomAmount = new System.Windows.Forms.CheckBox();
             this.checkBoxRandomLife = new System.Windows.Forms.CheckBox();
             this.checkBoxRandomRotation = new System.Windows.Forms.CheckBox();
-            this.checkBoxRandomEmitterPositionX = new System.Windows.Forms.CheckBox();
-            this.checkBoxRandomEmitterPositionY = new System.Windows.Forms.CheckBox();
-            this.checkBoxRandomEmitterVelocityX = new System.Windows.Forms.CheckBox();
-            this.checkBoxRandomEmitterVelocityY = new System.Windows.Forms.CheckBox();
             this.checkBoxRandomShapeWidth = new System.Windows.Forms.CheckBox();
             this.buttonRandomizeAll = new System.Windows.Forms.Button();
             this.buttonRandomizeSelected = new System.Windows.Forms.Button();
@@ -213,9 +204,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointGravityPositionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointGravityPositionX)).BeginInit();
             this.groupBoxEmitterBlendModes.SuspendLayout();
-            this.groupBoxEmitterVelocity.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityX)).BeginInit();
             this.groupBoxParticleEmitter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterLife)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterLife)).BeginInit();
@@ -259,6 +247,7 @@
             // 
             // newToolStripMenuItem
             // 
+            this.newToolStripMenuItem.Enabled = false;
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
@@ -274,6 +263,7 @@
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // importImageStripMenuItem
             // 
@@ -292,6 +282,7 @@
             // 
             // saveBINARYtoolStripMenuItem
             // 
+            this.saveBINARYtoolStripMenuItem.Enabled = false;
             this.saveBINARYtoolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveBINARYtoolStripMenuItem.Image")));
             this.saveBINARYtoolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveBINARYtoolStripMenuItem.Name = "saveBINARYtoolStripMenuItem";
@@ -332,16 +323,18 @@
             // 
             // undoToolStripMenuItem
             // 
+            this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
+            this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolsToolStripMenuItem
@@ -370,7 +363,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // tabControlEditor
@@ -1009,7 +1002,6 @@
             this.tabPageEmitter.Controls.Add(this.groupBoxEmitterShape);
             this.tabPageEmitter.Controls.Add(this.groupBoxPointGravity);
             this.tabPageEmitter.Controls.Add(this.groupBoxEmitterBlendModes);
-            this.tabPageEmitter.Controls.Add(this.groupBoxEmitterVelocity);
             this.tabPageEmitter.Controls.Add(this.groupBoxParticleEmitter);
             this.tabPageEmitter.Controls.Add(this.groupBoxEmitterPosition);
             this.tabPageEmitter.Location = new System.Drawing.Point(4, 22);
@@ -1069,7 +1061,7 @@
             this.groupBoxEmitterShape.Controls.Add(this.labelEmitterShapeWidth);
             this.groupBoxEmitterShape.Controls.Add(this.numericUpDownEmitterShapeHeight);
             this.groupBoxEmitterShape.Controls.Add(this.numericUpDownEmitterShapeWidth);
-            this.groupBoxEmitterShape.Location = new System.Drawing.Point(158, 127);
+            this.groupBoxEmitterShape.Location = new System.Drawing.Point(158, 65);
             this.groupBoxEmitterShape.Name = "groupBoxEmitterShape";
             this.groupBoxEmitterShape.Size = new System.Drawing.Size(126, 71);
             this.groupBoxEmitterShape.TabIndex = 8;
@@ -1336,73 +1328,6 @@
             this.labelSourceBlend.TabIndex = 0;
             this.labelSourceBlend.Text = "SOURCE BLEND";
             // 
-            // groupBoxEmitterVelocity
-            // 
-            this.groupBoxEmitterVelocity.Controls.Add(this.labelEmitterVelocityY);
-            this.groupBoxEmitterVelocity.Controls.Add(this.numericUpDownEmitterVelocityY);
-            this.groupBoxEmitterVelocity.Controls.Add(this.labelEmitterVelocityX);
-            this.groupBoxEmitterVelocity.Controls.Add(this.numericUpDownEmitterVelocityX);
-            this.groupBoxEmitterVelocity.Location = new System.Drawing.Point(158, 65);
-            this.groupBoxEmitterVelocity.Name = "groupBoxEmitterVelocity";
-            this.groupBoxEmitterVelocity.Size = new System.Drawing.Size(126, 63);
-            this.groupBoxEmitterVelocity.TabIndex = 4;
-            this.groupBoxEmitterVelocity.TabStop = false;
-            this.groupBoxEmitterVelocity.Text = "Velocity";
-            // 
-            // labelEmitterVelocityY
-            // 
-            this.labelEmitterVelocityY.AutoSize = true;
-            this.labelEmitterVelocityY.Location = new System.Drawing.Point(6, 38);
-            this.labelEmitterVelocityY.Name = "labelEmitterVelocityY";
-            this.labelEmitterVelocityY.Size = new System.Drawing.Size(14, 13);
-            this.labelEmitterVelocityY.TabIndex = 5;
-            this.labelEmitterVelocityY.Text = "Y";
-            // 
-            // numericUpDownEmitterVelocityY
-            // 
-            this.numericUpDownEmitterVelocityY.Location = new System.Drawing.Point(40, 36);
-            this.numericUpDownEmitterVelocityY.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDownEmitterVelocityY.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownEmitterVelocityY.Name = "numericUpDownEmitterVelocityY";
-            this.numericUpDownEmitterVelocityY.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDownEmitterVelocityY.TabIndex = 4;
-            this.numericUpDownEmitterVelocityY.ValueChanged += new System.EventHandler(this.numericUpDownEmitterVelocityY_ValueChanged);
-            // 
-            // labelEmitterVelocityX
-            // 
-            this.labelEmitterVelocityX.AutoSize = true;
-            this.labelEmitterVelocityX.Location = new System.Drawing.Point(6, 16);
-            this.labelEmitterVelocityX.Name = "labelEmitterVelocityX";
-            this.labelEmitterVelocityX.Size = new System.Drawing.Size(14, 13);
-            this.labelEmitterVelocityX.TabIndex = 3;
-            this.labelEmitterVelocityX.Text = "X";
-            // 
-            // numericUpDownEmitterVelocityX
-            // 
-            this.numericUpDownEmitterVelocityX.Location = new System.Drawing.Point(40, 14);
-            this.numericUpDownEmitterVelocityX.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDownEmitterVelocityX.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownEmitterVelocityX.Name = "numericUpDownEmitterVelocityX";
-            this.numericUpDownEmitterVelocityX.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDownEmitterVelocityX.TabIndex = 2;
-            this.numericUpDownEmitterVelocityX.ValueChanged += new System.EventHandler(this.numericUpDownEmitterVelocityX_ValueChanged);
-            // 
             // groupBoxParticleEmitter
             // 
             this.groupBoxParticleEmitter.Controls.Add(this.checkBoxEmitterBurst);
@@ -1594,10 +1519,6 @@
             this.tabPageRandomize.Controls.Add(this.checkBoxRandomAmount);
             this.tabPageRandomize.Controls.Add(this.checkBoxRandomLife);
             this.tabPageRandomize.Controls.Add(this.checkBoxRandomRotation);
-            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterPositionX);
-            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterPositionY);
-            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterVelocityX);
-            this.tabPageRandomize.Controls.Add(this.checkBoxRandomEmitterVelocityY);
             this.tabPageRandomize.Controls.Add(this.checkBoxRandomShapeWidth);
             this.tabPageRandomize.Controls.Add(this.buttonRandomizeAll);
             this.tabPageRandomize.Controls.Add(this.buttonRandomizeSelected);
@@ -1747,46 +1668,6 @@
             this.checkBoxRandomRotation.TabIndex = 7;
             this.checkBoxRandomRotation.Text = "Rotation";
             this.checkBoxRandomRotation.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRandomEmitterPositionX
-            // 
-            this.checkBoxRandomEmitterPositionX.AutoSize = true;
-            this.checkBoxRandomEmitterPositionX.Location = new System.Drawing.Point(152, 152);
-            this.checkBoxRandomEmitterPositionX.Name = "checkBoxRandomEmitterPositionX";
-            this.checkBoxRandomEmitterPositionX.Size = new System.Drawing.Size(89, 17);
-            this.checkBoxRandomEmitterPositionX.TabIndex = 6;
-            this.checkBoxRandomEmitterPositionX.Text = "Emitter Pos X";
-            this.checkBoxRandomEmitterPositionX.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRandomEmitterPositionY
-            // 
-            this.checkBoxRandomEmitterPositionY.AutoSize = true;
-            this.checkBoxRandomEmitterPositionY.Location = new System.Drawing.Point(152, 175);
-            this.checkBoxRandomEmitterPositionY.Name = "checkBoxRandomEmitterPositionY";
-            this.checkBoxRandomEmitterPositionY.Size = new System.Drawing.Size(89, 17);
-            this.checkBoxRandomEmitterPositionY.TabIndex = 5;
-            this.checkBoxRandomEmitterPositionY.Text = "Emitter Pos Y";
-            this.checkBoxRandomEmitterPositionY.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRandomEmitterVelocityX
-            // 
-            this.checkBoxRandomEmitterVelocityX.AutoSize = true;
-            this.checkBoxRandomEmitterVelocityX.Location = new System.Drawing.Point(152, 198);
-            this.checkBoxRandomEmitterVelocityX.Name = "checkBoxRandomEmitterVelocityX";
-            this.checkBoxRandomEmitterVelocityX.Size = new System.Drawing.Size(86, 17);
-            this.checkBoxRandomEmitterVelocityX.TabIndex = 4;
-            this.checkBoxRandomEmitterVelocityX.Text = "Emitter Vel X";
-            this.checkBoxRandomEmitterVelocityX.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRandomEmitterVelocityY
-            // 
-            this.checkBoxRandomEmitterVelocityY.AutoSize = true;
-            this.checkBoxRandomEmitterVelocityY.Location = new System.Drawing.Point(152, 221);
-            this.checkBoxRandomEmitterVelocityY.Name = "checkBoxRandomEmitterVelocityY";
-            this.checkBoxRandomEmitterVelocityY.Size = new System.Drawing.Size(86, 17);
-            this.checkBoxRandomEmitterVelocityY.TabIndex = 3;
-            this.checkBoxRandomEmitterVelocityY.Text = "Emitter Vel Y";
-            this.checkBoxRandomEmitterVelocityY.UseVisualStyleBackColor = true;
             // 
             // checkBoxRandomShapeWidth
             // 
@@ -1939,10 +1820,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointGravityPositionX)).EndInit();
             this.groupBoxEmitterBlendModes.ResumeLayout(false);
             this.groupBoxEmitterBlendModes.PerformLayout();
-            this.groupBoxEmitterVelocity.ResumeLayout(false);
-            this.groupBoxEmitterVelocity.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEmitterVelocityX)).EndInit();
             this.groupBoxParticleEmitter.ResumeLayout(false);
             this.groupBoxParticleEmitter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarEmitterLife)).EndInit();
@@ -2033,11 +1910,6 @@
         private System.Windows.Forms.GroupBox groupBoxParticleEmitter;
         private System.Windows.Forms.Label labelEmitterAmount;
         private System.Windows.Forms.NumericUpDown numericUpDownEmitterAmount;
-        private System.Windows.Forms.GroupBox groupBoxEmitterVelocity;
-        private System.Windows.Forms.Label labelEmitterVelocityY;
-        private System.Windows.Forms.NumericUpDown numericUpDownEmitterVelocityY;
-        private System.Windows.Forms.Label labelEmitterVelocityX;
-        private System.Windows.Forms.NumericUpDown numericUpDownEmitterVelocityX;
         private System.Windows.Forms.GroupBox groupBoxEmitterPosition;
         private System.Windows.Forms.Label labelEmitterPositionY;
         private System.Windows.Forms.NumericUpDown numericUpDownEmitterPositionY;
@@ -2088,10 +1960,6 @@
         private System.Windows.Forms.CheckBox checkBoxRandomAmount;
         private System.Windows.Forms.CheckBox checkBoxRandomLife;
         private System.Windows.Forms.CheckBox checkBoxRandomRotation;
-        private System.Windows.Forms.CheckBox checkBoxRandomEmitterPositionX;
-        private System.Windows.Forms.CheckBox checkBoxRandomEmitterPositionY;
-        private System.Windows.Forms.CheckBox checkBoxRandomEmitterVelocityX;
-        private System.Windows.Forms.CheckBox checkBoxRandomEmitterVelocityY;
         private System.Windows.Forms.CheckBox checkBoxRandomShapeWidth;
         private System.Windows.Forms.Button buttonRandomizeAll;
         private System.Windows.Forms.Button buttonRandomizeSelected;
