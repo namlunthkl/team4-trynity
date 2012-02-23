@@ -98,12 +98,12 @@
             this.numericUpDownCollisionYPosition = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownCollisionXPosition = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAllAnimations = new System.Windows.Forms.GroupBox();
-            this.AnimationListRemove = new System.Windows.Forms.Button();
+            this.DeSelect = new System.Windows.Forms.Button();
             this.AnimationListAdd = new System.Windows.Forms.Button();
+            this.AnimationListRemove = new System.Windows.Forms.Button();
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.DeSelect = new System.Windows.Forms.Button();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
@@ -393,7 +393,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 49);
+            this.label4.Location = new System.Drawing.Point(7, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 5;
@@ -402,7 +402,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 22);
+            this.label3.Location = new System.Drawing.Point(7, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 4;
@@ -436,7 +436,7 @@
             // 
             // numericUpDownYPosition
             // 
-            this.numericUpDownYPosition.Location = new System.Drawing.Point(73, 47);
+            this.numericUpDownYPosition.Location = new System.Drawing.Point(73, 20);
             this.numericUpDownYPosition.Maximum = new decimal(new int[] {
             8192,
             0,
@@ -449,7 +449,7 @@
             // 
             // numericUpDownXPosition
             // 
-            this.numericUpDownXPosition.Location = new System.Drawing.Point(73, 20);
+            this.numericUpDownXPosition.Location = new System.Drawing.Point(73, 47);
             this.numericUpDownXPosition.Maximum = new decimal(new int[] {
             8192,
             0,
@@ -480,12 +480,14 @@
             // checkBoxOslating
             // 
             this.checkBoxOslating.AutoSize = true;
+            this.checkBoxOslating.Enabled = false;
             this.checkBoxOslating.Location = new System.Drawing.Point(221, 39);
             this.checkBoxOslating.Name = "checkBoxOslating";
             this.checkBoxOslating.Size = new System.Drawing.Size(64, 17);
             this.checkBoxOslating.TabIndex = 8;
             this.checkBoxOslating.Text = "Oslating";
             this.checkBoxOslating.UseVisualStyleBackColor = true;
+            this.checkBoxOslating.CheckedChanged += new System.EventHandler(this.checkBoxOslating_CheckedChanged);
             // 
             // checkBoxLooping
             // 
@@ -496,6 +498,7 @@
             this.checkBoxLooping.TabIndex = 7;
             this.checkBoxLooping.Text = "Looping";
             this.checkBoxLooping.UseVisualStyleBackColor = true;
+            this.checkBoxLooping.Leave += new System.EventHandler(this.checkBoxLooping_Leave);
             // 
             // FrameListRemove
             // 
@@ -550,6 +553,7 @@
             this.textBoxAnimationName.Name = "textBoxAnimationName";
             this.textBoxAnimationName.Size = new System.Drawing.Size(164, 20);
             this.textBoxAnimationName.TabIndex = 0;
+            this.textBoxAnimationName.Leave += new System.EventHandler(this.textBoxAnimationName_Leave);
             // 
             // groupBoxFrame
             // 
@@ -572,6 +576,7 @@
             this.TextBoxFrameTriggerEvent.Name = "TextBoxFrameTriggerEvent";
             this.TextBoxFrameTriggerEvent.Size = new System.Drawing.Size(164, 20);
             this.TextBoxFrameTriggerEvent.TabIndex = 12;
+            this.TextBoxFrameTriggerEvent.Leave += new System.EventHandler(this.TextBoxFrameTriggerEvent_Leave);
             // 
             // label11
             // 
@@ -614,6 +619,7 @@
             0,
             131072});
             this.numericUpDownFrameDuration.ValueChanged += new System.EventHandler(this.numericUpDownFrameDuration_ValueChanged);
+            this.numericUpDownFrameDuration.Leave += new System.EventHandler(this.numericUpDownFrameDuration_Leave);
             // 
             // numericUpDownAnimationSpeed
             // 
@@ -632,6 +638,7 @@
             0,
             0,
             0});
+            this.numericUpDownAnimationSpeed.Leave += new System.EventHandler(this.numericUpDownAnimationSpeed_Leave);
             // 
             // label9
             // 
@@ -786,7 +793,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 49);
+            this.label14.Location = new System.Drawing.Point(7, 22);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 5;
@@ -795,7 +802,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 22);
+            this.label15.Location = new System.Drawing.Point(7, 49);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 4;
@@ -829,7 +836,7 @@
             // 
             // numericUpDownCollisionYPosition
             // 
-            this.numericUpDownCollisionYPosition.Location = new System.Drawing.Point(73, 47);
+            this.numericUpDownCollisionYPosition.Location = new System.Drawing.Point(73, 19);
             this.numericUpDownCollisionYPosition.Maximum = new decimal(new int[] {
             8192,
             0,
@@ -842,7 +849,7 @@
             // 
             // numericUpDownCollisionXPosition
             // 
-            this.numericUpDownCollisionXPosition.Location = new System.Drawing.Point(73, 20);
+            this.numericUpDownCollisionXPosition.Location = new System.Drawing.Point(73, 47);
             this.numericUpDownCollisionXPosition.Maximum = new decimal(new int[] {
             8192,
             0,
@@ -855,9 +862,9 @@
             // 
             // groupBoxAllAnimations
             // 
+            this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
             this.groupBoxAllAnimations.Controls.Add(this.DeSelect);
             this.groupBoxAllAnimations.Controls.Add(this.AnimationListAdd);
-            this.groupBoxAllAnimations.Controls.Add(this.AnimationListRemove);
             this.groupBoxAllAnimations.Controls.Add(this.listBoxAnimations);
             this.groupBoxAllAnimations.Location = new System.Drawing.Point(360, 450);
             this.groupBoxAllAnimations.Name = "groupBoxAllAnimations";
@@ -866,25 +873,35 @@
             this.groupBoxAllAnimations.TabStop = false;
             this.groupBoxAllAnimations.Text = "Animations";
             // 
-            // AnimationListRemove
+            // DeSelect
             // 
-            this.AnimationListRemove.Location = new System.Drawing.Point(238, 179);
-            this.AnimationListRemove.Name = "AnimationListRemove";
-            this.AnimationListRemove.Size = new System.Drawing.Size(71, 23);
-            this.AnimationListRemove.TabIndex = 9;
-            this.AnimationListRemove.Text = "Remove";
-            this.AnimationListRemove.UseVisualStyleBackColor = true;
-            this.AnimationListRemove.Click += new System.EventHandler(this.AnimationListRemove_Click);
+            this.DeSelect.Location = new System.Drawing.Point(109, 179);
+            this.DeSelect.Name = "DeSelect";
+            this.DeSelect.Size = new System.Drawing.Size(96, 23);
+            this.DeSelect.TabIndex = 13;
+            this.DeSelect.Text = "Deselect";
+            this.DeSelect.UseVisualStyleBackColor = true;
+            this.DeSelect.Click += new System.EventHandler(this.DeSelect_Click);
             // 
             // AnimationListAdd
             // 
             this.AnimationListAdd.Location = new System.Drawing.Point(7, 179);
             this.AnimationListAdd.Name = "AnimationListAdd";
-            this.AnimationListAdd.Size = new System.Drawing.Size(71, 23);
+            this.AnimationListAdd.Size = new System.Drawing.Size(96, 23);
             this.AnimationListAdd.TabIndex = 7;
             this.AnimationListAdd.Text = "Add";
             this.AnimationListAdd.UseVisualStyleBackColor = true;
             this.AnimationListAdd.Click += new System.EventHandler(this.AnimationListAdd_Click);
+            // 
+            // AnimationListRemove
+            // 
+            this.AnimationListRemove.Location = new System.Drawing.Point(213, 179);
+            this.AnimationListRemove.Name = "AnimationListRemove";
+            this.AnimationListRemove.Size = new System.Drawing.Size(96, 23);
+            this.AnimationListRemove.TabIndex = 9;
+            this.AnimationListRemove.Text = "Remove";
+            this.AnimationListRemove.UseVisualStyleBackColor = true;
+            this.AnimationListRemove.Click += new System.EventHandler(this.AnimationListRemove_Click);
             // 
             // listBoxAnimations
             // 
@@ -910,16 +927,6 @@
             this.vScrollBar1.Size = new System.Drawing.Size(17, 388);
             this.vScrollBar1.TabIndex = 12;
             this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
-            // 
-            // DeSelect
-            // 
-            this.DeSelect.Location = new System.Drawing.Point(161, 179);
-            this.DeSelect.Name = "DeSelect";
-            this.DeSelect.Size = new System.Drawing.Size(71, 23);
-            this.DeSelect.TabIndex = 13;
-            this.DeSelect.Text = "Deselect";
-            this.DeSelect.UseVisualStyleBackColor = true;
-            this.DeSelect.Click += new System.EventHandler(this.DeSelect_Click);
             // 
             // graphicsPanelPlayer
             // 

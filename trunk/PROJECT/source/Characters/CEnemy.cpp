@@ -31,7 +31,7 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 
 	// Hack
 	m_uiCurrentAnimation = 0;
-	CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
+	CAnimationManager::GetInstance()->LoadAnimation("resource/squire_walk.xml");
 	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
 	m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
@@ -50,7 +50,7 @@ RECT CEnemy::GetCollisionRect()
 	
 	//rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
 	//POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
-
+	//
 	//rectCollision.top += GetPosY() - anchor.y;
 	//rectCollision.left += GetPosX() - anchor.x;
 	//rectCollision.bottom += GetPosY() - anchor.y;

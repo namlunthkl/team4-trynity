@@ -1212,5 +1212,65 @@ namespace Animation_Editor
             checkBoxLooping.Checked = false;
             checkBoxOslating.Checked = false;
         }
+
+        private void textBoxAnimationName_Leave(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                animationList[listBoxAnimations.SelectedIndex].Name = textBoxAnimationName.Text;
+                listBoxAnimations.DataSource = null;
+                listBoxAnimations.DataSource = animationList;
+            }
+        }
+
+        private void checkBoxLooping_Leave(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                animationList[listBoxAnimations.SelectedIndex].Looping = checkBoxLooping.Checked;
+                listBoxAnimations.DataSource = null;
+                listBoxAnimations.DataSource = animationList;
+            }
+        }
+
+        private void checkBoxOslating_CheckedChanged(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                animationList[listBoxAnimations.SelectedIndex].Oslating = checkBoxOslating.Checked;
+                listBoxAnimations.DataSource = null;
+                listBoxAnimations.DataSource = animationList;
+            }
+        }
+
+        private void numericUpDownAnimationSpeed_Leave(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                animationList[listBoxAnimations.SelectedIndex].Speed = numericUpDownAnimationSpeed.Value;
+                listBoxAnimations.DataSource = null;
+                listBoxAnimations.DataSource = animationList;
+            }
+        }
+
+        private void numericUpDownFrameDuration_Leave(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex != -1)
+            {
+                animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex].FrameDuration = numericUpDownFrameDuration.Value;
+                listBoxAnimations.DataSource = null;
+                listBoxAnimations.DataSource = animationList;
+            }
+        }
+
+        private void TextBoxFrameTriggerEvent_Leave(object sender, EventArgs e)
+        {
+           if (listBoxAnimations.SelectedIndex != -1)
+           {
+               animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex].TriggerEvent = TextBoxFrameTriggerEvent.Text;
+               listBoxAnimations.DataSource = null;
+               listBoxAnimations.DataSource = animationList;
+           }
+        }
     }
 }
