@@ -43,6 +43,10 @@ class CGameplayState : public IGameState , public IListener
 	//		Destructor
 	~CGameplayState(void){}
 
+	// Simple camera system
+	int m_nCameraPosX;
+	int m_nCameraPosY;
+
 
 public:
 
@@ -72,6 +76,21 @@ public:
 
 	// Handle events
 	void HandleEvent(CEvent* pEvent);
+
+	// Those are going to be used by all objects so that
+	// they are placed in the screen in a position
+	// relative to the camera position
+	inline int GetScreenPositionX(int nPosX)
+	{ return nPosX - m_nCameraPosX; }
+
+	inline int GetScreenPositionY(int nPosY)
+	{ return nPosY - m_nCameraPosY; }
+
+	inline int GetWorldPositionX(int nPosX)
+	{ return nPosX + m_nCameraPosX; }
+
+	inline int GetWorldPositionY(int nPosY)
+	{ return nPosY + m_nCameraPosY; }
 };
 
 #endif // CGAMEPLAYSTATE_H_

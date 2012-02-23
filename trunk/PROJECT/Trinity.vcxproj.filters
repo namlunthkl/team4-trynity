@@ -180,6 +180,9 @@
     <ClCompile Include="source\Input Manager\CXboxController.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
+    <ClCompile Include="source\Characters\TestPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
