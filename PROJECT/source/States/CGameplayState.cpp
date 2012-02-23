@@ -10,11 +10,14 @@
 
 // Header file for this state
 #include "CGameplayState.h"
+
 #include "../Input Manager/CInputManager.h"
+#include "../Camera/CCameraControl.h"
 
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
+#define CAMERA CCameraControl::GetInstance()
 
 // Constructor
 CGameplayState::CGameplayState(void)
@@ -45,6 +48,8 @@ void CGameplayState::Enter(void)
 	pEnemy->SetVelX(1);
 	pEnemy->SetVelY(1);
 
+	CAMERA->InitializeCamera();
+
 	//	TODO  Temporary, just to demonstrate that the options work
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm") );
 
@@ -62,8 +67,6 @@ bool CGameplayState::Input(void)
 	if(!pPlayer)
 		if(INPUT->KeyPressed(DIK_SPACE))
 			MESSAGES->SendMsg(new CCreatePlayerMessage(600, 100));
-
-
 
 	// Move player
 	if(pPlayer)
@@ -87,6 +90,10 @@ if(pEnemy)
 	if(pPlayer)
 		pPlayer->Update(fElapsedTime);
 
+	CAMERA->Update(fElapsedTime);
+	
+	if(pPlayer)
+		CAMERA->SetCameraPositionX(pPlayer->GetPosX());
 
 }
 
@@ -105,6 +112,7 @@ void CGameplayState::Render(void)
 	if(pEnemy)
 		pEnemy->Render();
 	m_Rain.Render();
+
 }
 
 void CGameplayState::Exit(void)

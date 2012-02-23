@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CEnemy.h"
+#include "../Tile Mapping/CWorldEngine.h"
 
 //	Enemy-specific
 void CEnemy::ChangeState(IBaseAIState* pAIState)
@@ -26,17 +27,36 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 {
 	SetPosX( sPosX );
 	SetPosY( sPosY );
-
-
 	int temp = GetImageID();
-	
+
+	// Hack
+	m_uiCurrentAnimation = 0;
+	CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
+	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
+	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
+	m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
+	m_pAnimation[ANM_RIGHT] = new CAnimationPlayer(ANM_RIGHT, true);
+	m_pAnimation[ANM_UP]->Play();
+	m_pAnimation[ANM_DOWN]->Play();
+	m_pAnimation[ANM_LEFT]->Play();
+	m_pAnimation[ANM_RIGHT]->Play();
+
 	return true;
 }
 
 RECT CEnemy::GetCollisionRect()
 {
-	RECT temp = {32,32,32,32};
-	return temp;
+	RECT rectCollision = {0, 0, 0, 0};
+	
+	//rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
+	//POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
+
+	//rectCollision.top += GetPosY() - anchor.y;
+	//rectCollision.left += GetPosX() - anchor.x;
+	//rectCollision.bottom += GetPosY() - anchor.y;
+	//rectCollision.right += GetPosX() - anchor.x;
+
+	return rectCollision;
 }
 
 bool CEnemy::CheckCollision(IBaseInterface* pBase)
@@ -63,8 +83,14 @@ void CEnemy::Update(float fElapsedTime)
 		}
 		else
 		{
-			SetPosX( GetPosX() + GetVelX() );
-			SetPosY( GetPosY() + GetVelY() );
+			CEnemy tempEnemy;
+			tempEnemy.Initialize(GetPosX() + GetVelX(), GetPosY() + GetVelY(), 0, 0, 0, NULL, NULL);
+
+			if(!CWorldEngine::GetInstance()->CheckCollisions(&tempEnemy))
+			{
+				SetPosX( GetPosX() + GetVelX() );
+				SetPosY( GetPosY() + GetVelY() );
+			}
 		}
 	}
 	else
