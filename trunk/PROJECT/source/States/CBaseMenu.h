@@ -45,6 +45,8 @@ protected:
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;
 
+	
+
 	// Variables for background scrolling
 	int* m_pnTitleIndex;
 	bool* m_pbTitleScrollDir;

@@ -17,6 +17,9 @@
 #include "States\CGameplayState.h"
 #include "Animation\CAnimationManager.h"
 #include "Input Manager/CInputManager.h"
+
+#include "ByteUtil.h"
+
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
 //	Return		:	Pointer to the singleton's instance
@@ -37,6 +40,9 @@ CGame* CGame::GetInstance(void)
 bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	int nScreenHeight, bool bIsWindowed)
 {
+	//basically a char that has 3 bools whether slots contain info.
+	m_cLoadedOrNot = 0;
+	
 	// Set window variables
 	m_hWnd = hWnd;
 	SetScreenWidth(nScreenWidth);
@@ -59,7 +65,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	//SetShowHUD(true);
 	//SetMapLocation(2);	// 0 thru 2
 	//SetMusicVolume(80);	// 0 thru 100
-	//SetSoundVolume(100);// 0 thru 100
+	//SetSoundVolume(100);	// 0 thru 100
 
 	ReadOptionsFromFile();
 
@@ -150,6 +156,12 @@ bool CGame::Input(void)
 			{
 				m_bPaused = false;
 			}
+			else if(INPUT->KeyPressed(DIK_DELETE))
+			{
+				AUDIO->SilenceAll();
+				m_bPaused = false;
+				GAME->ChangeState(CMainMenuState::GetInstance());
+			}
 		}
 	}
 	else if(m_pCurrentState != NULL)
@@ -197,7 +209,8 @@ void CGame::Render(void)
 		{
 			pFont1->Write("GAME IS PAUSED", 24, 2, D3DCOLOR_XRGB(255, 0, 0));
 			pFont1->Write("Press ESC again to resume", 32, 3, D3DCOLOR_XRGB(255, 255, 255));
-			pFont1->Write("ESC brings up player inventory", 32, 4, D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("ESC brings up player inventory!", 32, 4, D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("PRESS DELETE FOR MAIN MENU", 32, 6, D3DCOLOR_XRGB(255, 255, 255));
 		}
 	}
 
@@ -306,4 +319,118 @@ void CGame::ReadOptionsFromFile()
 		else
 			GAME->SetSoundVolume( 100 );
 	}
+}
+
+char CGame::ReadSaveSlots()
+{
+	Byte cLoadedOrNot = 0;
+
+	ifstream finSlot1("save1.txt", ios_base::in);
+	if(finSlot1.is_open())
+	{
+		bool bHasData = false;
+		finSlot1 >> bHasData;
+		if(bHasData == true)
+			TurnBitOn(cLoadedOrNot, 0);
+		else
+			TurnBitOff(cLoadedOrNot, 0);
+	}
+
+	ifstream finSlot2("save2.txt", ios_base::in);
+	if(finSlot2.is_open())
+	{
+		bool bHasData = false;
+		finSlot2 >> bHasData;
+		if(bHasData == true)
+			TurnBitOn(cLoadedOrNot, 1);
+		else
+			TurnBitOff(cLoadedOrNot, 1);
+	}
+
+	ifstream finSlot3("save3.txt", ios_base::in);
+	if(finSlot3.is_open())
+	{
+		bool bHasData = false;
+		finSlot3 >> bHasData;
+		if(bHasData == true)
+			TurnBitOn(cLoadedOrNot, 2);
+		else
+			TurnBitOff(cLoadedOrNot, 2);
+	}
+
+	return cLoadedOrNot;
+}
+
+void CGame::DeleteSlot1()
+{
+	ofstream fout("save1.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 0;
+		
+		fout.close();
+	}
+	TurnBitOff(m_cLoadedOrNot, 0);
+}
+void CGame::DeleteSlot2()
+{
+	ofstream fout("save2.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 0;
+		
+		fout.close();
+	}
+	TurnBitOff(m_cLoadedOrNot, 1);
+}
+void CGame::DeleteSlot3()
+{
+	ofstream fout("save3.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 0;
+		
+		fout.close();
+	}
+	TurnBitOff(m_cLoadedOrNot, 2);
+}
+
+void CGame::SaveSlot1()
+{
+	ofstream fout("save1.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 1;
+		
+		fout.close();
+	}
+	TurnBitOn(m_cLoadedOrNot, 0);
+}
+void CGame::SaveSlot2()
+{
+	ofstream fout("save2.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 1;
+		
+		fout.close();
+	}
+	TurnBitOn(m_cLoadedOrNot, 1);
+}
+void CGame::SaveSlot3()
+{
+	ofstream fout("save3.txt", ios_base::out | ios_base::trunc);
+
+	if(fout.is_open())
+	{
+		fout << 1;
+		
+		fout.close();
+	}
+	TurnBitOn(m_cLoadedOrNot, 2);
 }

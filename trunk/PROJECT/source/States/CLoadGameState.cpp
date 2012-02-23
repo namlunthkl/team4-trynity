@@ -47,6 +47,9 @@ void CLoadGameState::Enter()
 	m_uiMenuCount = LODG_MAX;
 	m_fLoadTimer = 0.0f;
 
+	//	Check the existing save states, 'n crap
+	GAME->m_cLoadedOrNot = GAME->ReadSaveSlots();
+
 	//	Imperfect..
 	m_uiCurSelected = 0;
 }
@@ -98,17 +101,17 @@ bool CLoadGameState::Input()
 		{
 		case LODG_SLOT1:
 			{
-				//delete slot 1
+				GAME->DeleteSlot1();
 				break;
 			}
 		case LODG_SLOT2:
 			{
-				//delete slot 2
+				GAME->DeleteSlot2();
 				break;
 			}
 		case LODG_SLOT3:
 			{
-				//delete slot 3
+				GAME->DeleteSlot3();
 				break;
 			}
 		}
@@ -123,13 +126,25 @@ void CLoadGameState::Update(float fElapsedTime)
 
 void CLoadGameState::Render()
 {
-	//	Draw the base menu's stuff .. NOT SURE
+	//	Draw the base menu's stuff
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("Load Slot1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Load Slot2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Load Slot3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Slot 1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 0))
+		pFont->Write("CONTAINS SAVED DATA", 250, 12, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Slot 2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 1))
+		pFont->Write("CONTAINS SAVED DATA", 250, 13, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Slot 3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 2))
+		pFont->Write("CONTAINS SAVED DATA", 250, 14, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 14, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("SHIFT DELETE to delete a slot", 32, 17, D3DCOLOR_XRGB(80, 0, 0));
 }

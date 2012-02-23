@@ -47,6 +47,9 @@ void CNewGameState::Enter()
 	m_uiMenuCount = NEWG_MAX;
 	m_fLoadTimer = 0.0f;
 
+	//	Check the existing save states, 'n crap
+	GAME->m_cLoadedOrNot = GAME->ReadSaveSlots();
+
 	//	Imperfect..
 	m_uiCurSelected = 0;
 }
@@ -72,18 +75,21 @@ bool CNewGameState::Input()
 		case NEWG_SLOT1:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
+				GAME->SaveSlot1();
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT2:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
+				GAME->SaveSlot2();
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT3:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
+				GAME->SaveSlot3();
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
@@ -104,12 +110,24 @@ void CNewGameState::Update(float fElapsedTime)
 
 void CNewGameState::Render()
 {
-	//	Draw the base menu's stuff .. NOT SURE
+	//	Draw the base menu's stuff
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("New Slot1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 0))
+		pFont->Write("CONTAINS SAVED DATA", 250, 12, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 1))
+		pFont->Write("CONTAINS SAVED DATA", 250, 13, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	if(TestBit(GAME->m_cLoadedOrNot, 2))
+		pFont->Write("CONTAINS SAVED DATA", 250, 14, D3DCOLOR_XRGB(128, 192, 255));
+	else
+		pFont->Write("Empty slot", 250, 14, D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
 }

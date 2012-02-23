@@ -25,6 +25,8 @@
 #include "CTimer.h"
 #include "CBitmapFont.h"
 
+#include "ByteUtil.h"
+
 // Game class
 // Proper singleton
 class CGame
@@ -84,6 +86,9 @@ class CGame
 	void Render(void);
 
 public:
+
+	Byte m_cLoadedOrNot;
+
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
 	//							PUBLIC	FUNCTIONS							//
@@ -131,6 +136,14 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	void OutputOptionsToFile();
 	void ReadOptionsFromFile();
+
+	char ReadSaveSlots();
+	void SaveSlot1();
+	void SaveSlot2();
+	void SaveSlot3();
+	void DeleteSlot1();
+	void DeleteSlot2();
+	void DeleteSlot3();
 
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
