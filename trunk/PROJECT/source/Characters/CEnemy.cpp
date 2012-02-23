@@ -27,10 +27,15 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 {
 	SetPosX( sPosX );
 	SetPosY( sPosY );
-	int temp = GetImageID();
+	m_nCurrentAnimation = -1;
 
+	return true;
+}
+
+void CEnemy::LoadAnimation()
+{
 	// Hack
-	m_uiCurrentAnimation = 0;
+	m_nCurrentAnimation = 0;
 	CAnimationManager::GetInstance()->LoadAnimation("resource/npc walk.xml");
 	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
@@ -40,21 +45,22 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 	m_pAnimation[ANM_DOWN]->Play();
 	m_pAnimation[ANM_LEFT]->Play();
 	m_pAnimation[ANM_RIGHT]->Play();
-
-	return true;
 }
 
 RECT CEnemy::GetCollisionRect()
 {
 	RECT rectCollision = {0, 0, 0, 0};
 	
-	rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
-	POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
-	
-	rectCollision.top += GetPosY() - anchor.y;
-	rectCollision.left += GetPosX() - anchor.x;
-	rectCollision.bottom += GetPosY() - anchor.y;
-	rectCollision.right += GetPosX() - anchor.x;
+	if(m_nCurrentAnimation != -1)
+	{
+		rectCollision = m_pAnimation[m_nCurrentAnimation]->ReturnCollisionRect();
+		POINT anchor = m_pAnimation[m_nCurrentAnimation]->ReturnAnchorPoint();
+
+		rectCollision.top += GetPosY() - anchor.y;
+		rectCollision.left += GetPosX() - anchor.x;
+		rectCollision.bottom += GetPosY() - anchor.y;
+		rectCollision.right += GetPosX() - anchor.x;
+	}
 
 	return rectCollision;
 }
@@ -70,7 +76,8 @@ void CEnemy::HandleEvent(CEvent* pEvent)
 
 void CEnemy::Update(float fElapsedTime)
 {
-	m_pAnimation[m_uiCurrentAnimation]->Update(fElapsedTime);
+	if(m_nCurrentAnimation != -1)
+		m_pAnimation[m_nCurrentAnimation]->Update(fElapsedTime);
 
 	if(m_fEnemyMoveTimer < 0.0f)
 		m_fEnemyMoveTimer = 0.0f;
@@ -114,14 +121,15 @@ void CEnemy::Update(float fElapsedTime)
 
 void CEnemy::Render()
 {
-	RECT rPlayer;
-	rPlayer.left = 96;
-	rPlayer.top = 0;
-	rPlayer.right = 192;
-	rPlayer.bottom = 96;
+	//RECT rPlayer;
+	//rPlayer.left = 96;
+	//rPlayer.top = 0;
+	//rPlayer.right = 192;
+	//rPlayer.bottom = 96;
 	// TEX_MNG->Draw( GetImageID(), GetPosX(), GetPosY(), 1.0f, 1.0f, &rPlayer);
 
-	m_pAnimation[m_uiCurrentAnimation]->Render(CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
+	if(m_nCurrentAnimation != -1)
+	m_pAnimation[m_nCurrentAnimation]->Render(CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
 		CGameplayState::GetInstance()->GetScreenPositionY(GetPosY()));
 }
 

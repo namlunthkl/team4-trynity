@@ -181,7 +181,7 @@
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
     <ClCompile Include="source\Characters\TestPlayer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Object Hierarchy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +192,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Camera\CCameraControl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Characters\TestPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Particle Engine\FlyWeight.h">
@@ -355,6 +352,9 @@
     </ClInclude>
     <ClInclude Include="source\Input Manager\CXboxController.h">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Characters\TestPlayer.h">
+      <Filter>Object Hierarchy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
