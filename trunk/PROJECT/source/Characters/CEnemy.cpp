@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CEnemy.h"
-#include "../Tile Mapping/CWorldEngine.h"
+#include "../States/CGameplayState.h"
 
 //	Enemy-specific
 void CEnemy::ChangeState(IBaseAIState* pAIState)
@@ -31,7 +31,7 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 
 	// Hack
 	m_uiCurrentAnimation = 0;
-	CAnimationManager::GetInstance()->LoadAnimation("resource/squire_walk.xml");
+	CAnimationManager::GetInstance()->LoadAnimation("resource/npc walk.xml");
 	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
 	m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_LEFT, true);
@@ -48,13 +48,13 @@ RECT CEnemy::GetCollisionRect()
 {
 	RECT rectCollision = {0, 0, 0, 0};
 	
-	//rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
-	//POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
-	//
-	//rectCollision.top += GetPosY() - anchor.y;
-	//rectCollision.left += GetPosX() - anchor.x;
-	//rectCollision.bottom += GetPosY() - anchor.y;
-	//rectCollision.right += GetPosX() - anchor.x;
+	rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
+	POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
+	
+	rectCollision.top += GetPosY() - anchor.y;
+	rectCollision.left += GetPosX() - anchor.x;
+	rectCollision.bottom += GetPosY() - anchor.y;
+	rectCollision.right += GetPosX() - anchor.x;
 
 	return rectCollision;
 }
@@ -70,6 +70,8 @@ void CEnemy::HandleEvent(CEvent* pEvent)
 
 void CEnemy::Update(float fElapsedTime)
 {
+	m_pAnimation[m_uiCurrentAnimation]->Update(fElapsedTime);
+
 	if(m_fEnemyMoveTimer < 0.0f)
 		m_fEnemyMoveTimer = 0.0f;
 	if(GetVelX() != 0 && GetVelY() != 0)
@@ -117,7 +119,10 @@ void CEnemy::Render()
 	rPlayer.top = 0;
 	rPlayer.right = 192;
 	rPlayer.bottom = 96;
-	TEX_MNG->Draw( GetImageID(), GetPosX(), GetPosY(), 1.0f, 1.0f, &rPlayer);
+	// TEX_MNG->Draw( GetImageID(), GetPosX(), GetPosY(), 1.0f, 1.0f, &rPlayer);
+
+	m_pAnimation[m_uiCurrentAnimation]->Render(CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
+		CGameplayState::GetInstance()->GetScreenPositionY(GetPosY()));
 }
 
 void CEnemy::Shutdown()
