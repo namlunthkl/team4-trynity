@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarTileset = new System.Windows.Forms.HScrollBar();
             this.vScrollBarTileset = new System.Windows.Forms.VScrollBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -63,6 +64,7 @@
             this.tabLayers = new System.Windows.Forms.TabControl();
             this.tabLayer0 = new System.Windows.Forms.TabPage();
             this.checkBoxVisible = new System.Windows.Forms.CheckBox();
+            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarMap = new System.Windows.Forms.HScrollBar();
             this.vScrollBarMap = new System.Windows.Forms.VScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -111,8 +113,6 @@
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
-            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -360,6 +360,19 @@
             this.splitContainer3.SplitterDistance = 365;
             this.splitContainer3.TabIndex = 0;
             // 
+            // tilesetPanel
+            // 
+            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
+            this.tilesetPanel.Name = "tilesetPanel";
+            this.tilesetPanel.Size = new System.Drawing.Size(228, 344);
+            this.tilesetPanel.TabIndex = 0;
+            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
+            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
+            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
+            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
+            // 
             // hScrollBarTileset
             // 
             this.hScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -582,6 +595,20 @@
             this.checkBoxVisible.Text = "Visible";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
             this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(675, 585);
+            this.mapPanel.TabIndex = 1;
+            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
+            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
+            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
+            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
+            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // hScrollBarMap
             // 
@@ -851,12 +878,14 @@
             // 
             // undoToolStripMenuItem1
             // 
+            this.undoToolStripMenuItem1.Enabled = false;
             this.undoToolStripMenuItem1.Name = "undoToolStripMenuItem1";
             this.undoToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.undoToolStripMenuItem1.Text = "&Undo";
             // 
             // redoToolStripMenuItem1
             // 
+            this.redoToolStripMenuItem1.Enabled = false;
             this.redoToolStripMenuItem1.Name = "redoToolStripMenuItem1";
             this.redoToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.redoToolStripMenuItem1.Text = "&Redo";
@@ -916,15 +945,15 @@
             // importToolStripMenuItem1
             // 
             this.importToolStripMenuItem1.Name = "importToolStripMenuItem1";
-            this.importToolStripMenuItem1.Size = new System.Drawing.Size(123, 24);
-            this.importToolStripMenuItem1.Text = "&Import";
+            this.importToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
+            this.importToolStripMenuItem1.Text = "&Import XML File";
             this.importToolStripMenuItem1.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem1
             // 
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(123, 24);
-            this.exportToolStripMenuItem1.Text = "&Export";
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
+            this.exportToolStripMenuItem1.Text = "&Export XML File";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // layersToolStripMenuItem
@@ -940,22 +969,22 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.addToolStripMenuItem.Text = "&Add";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.addToolStripMenuItem.Text = "&Add Layer";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.newLayerToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.removeToolStripMenuItem.Text = "&Remove";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.removeToolStripMenuItem.Text = "&Remove Layer";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.deleteLayerToolStripMenuItem_Click);
             // 
             // renameToolStripMenuItem1
             // 
             this.renameToolStripMenuItem1.Enabled = false;
             this.renameToolStripMenuItem1.Name = "renameToolStripMenuItem1";
-            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(132, 24);
+            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(171, 24);
             this.renameToolStripMenuItem1.Text = "Re&name";
             // 
             // helpToolStripMenuItem1
@@ -1003,33 +1032,6 @@
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.aboutToolStripMenuItem1.Text = "&About...";
-            // 
-            // tilesetPanel
-            // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
-            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
-            this.tilesetPanel.Name = "tilesetPanel";
-            this.tilesetPanel.Size = new System.Drawing.Size(228, 344);
-            this.tilesetPanel.TabIndex = 0;
-            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
-            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
-            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
-            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
-            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPanel.Location = new System.Drawing.Point(0, 0);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(675, 585);
-            this.mapPanel.TabIndex = 1;
-            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
-            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
-            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
-            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
-            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // CTileEditor
             // 
