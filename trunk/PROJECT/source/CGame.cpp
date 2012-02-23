@@ -201,11 +201,6 @@ void CGame::Render(void)
 		}
 	}
 
-	
-#if 0
-	// HACK
-	a.Render();
-#endif
 
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();

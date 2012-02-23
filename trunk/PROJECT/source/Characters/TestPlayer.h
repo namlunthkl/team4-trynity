@@ -53,9 +53,6 @@ public:
 		int nNewPosX = GetPosX();
 		int nNewPosY = GetPosY();
 
-
-		
-		int x = 0;
 		if(CInputManager::GetInstance()->GetLeft())
 		{
 			m_uiCurrentAnimation = ANM_LEFT;

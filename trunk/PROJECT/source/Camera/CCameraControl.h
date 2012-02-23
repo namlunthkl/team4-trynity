@@ -1,12 +1,14 @@
-////////////////////////////////////////////////////////////////////////
-//    File Name    : "CCameraControl.h"
-//
-//    Author Name   : Ari Bodaghee
-//    Creation Date   : 02/08/12 - 7:47 PM
-//    Purpose    : Contains the CCameraControl
-////////////////////////////////////////////////////////////////////////
 #ifndef CCAMERACONTROL_H_
 #define CCAMERACONTROL_H_
+
+
+#include <d3d9.h>
+#include <d3dx9.h>
+#include <d3dx9math.h>
+
+#pragma comment( lib, "d3d9.lib" )
+#pragma comment( lib, "d3dx9.lib" )
+
 
 class CCameraControl
 {
@@ -22,14 +24,10 @@ private:
 	
 	D3DXMATRIX	m_D3DCamera;
 	D3DXMATRIX	m_D3DProjection;
+public:
 	
 	CCameraControl(void);
-	CCameraControl( const CCameraControl& );
-	CCameraControl& operator=( const CCameraControl& );
 	~CCameraControl(void);
-
-public:
-	static CCameraControl* GetInstance( void );
 	
 	float GetTime(void )							{ return m_fTime; }
 	float GetTimeToWait(void )						{ return m_fTimeToWait; }

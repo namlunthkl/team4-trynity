@@ -10,7 +10,8 @@
 #define C_ENEMY_H_
 
 #include "IBaseCharacter.h"
-#include "..\AI_States\IBaseAIState.h"
+#include "../AI_States/IBaseAIState.h"
+#include "../Animation/CAnimationPlayer.h"
 
 class CEnemy : public IBaseCharacter
 {
@@ -19,9 +20,14 @@ private:
 	unsigned char	m_ucEnemyType;
 	IBaseAIState*	m_pAIState;
 	int				m_sndEnemy;
+
+	unsigned int m_uiCurrentAnimation;
+	CAnimationPlayer* m_pAnimation[4];
 	//temp
 	float			m_fEnemyMoveTimer;
 public:
+	enum Animation { ANM_UP, ANM_DOWN, ANM_RIGHT, ANM_LEFT };
+
 	//	Enemy-specific
 	void ChangeState(IBaseAIState* pAIState);
 	//
