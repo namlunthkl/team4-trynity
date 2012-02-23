@@ -17,7 +17,6 @@
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
-#define CAMERA CCameraControl::GetInstance()
 
 // Constructor
 CGameplayState::CGameplayState(void)
@@ -48,8 +47,8 @@ void CGameplayState::Enter(void)
 	pEnemy->SetVelX(1);
 	pEnemy->SetVelY(1);
 
-	CAMERA->InitializeCamera();
-
+	// CAMERA->InitializeCamera();
+	
 	//	TODO  Temporary, just to demonstrate that the options work
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm") );
 
@@ -90,10 +89,10 @@ if(pEnemy)
 	if(pPlayer)
 		pPlayer->Update(fElapsedTime);
 
-	CAMERA->Update(fElapsedTime);
+	// CAMERA->Update(fElapsedTime);
 	
-	if(pPlayer)
-		CAMERA->SetCameraPositionX(pPlayer->GetPosX());
+	//if(pPlayer)
+	//	CAMERA->SetCameraPositionX(pPlayer->GetPosX());
 
 }
 
