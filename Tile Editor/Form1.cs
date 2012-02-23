@@ -119,7 +119,7 @@ namespace Tile_Editor
         //      Relative file path
         string m_szPath = "";
 
-        bool MapCreationLocked = false;
+        bool m_bMapCreationLocked = false;
 
         //////////////////////////////////////////////////////////////////////////
         //	------------------------------------------------------------------	//
@@ -285,8 +285,9 @@ namespace Tile_Editor
                                 TM.Draw(m_imgTileset, ptPosition.X, ptPosition.Y, 1.0f, 1.0f, rSource, 0, 0, 0.0f, colDraw.ToArgb());
                                 D3D.Sprite.Flush();
                             }
+
                             // If "View IDs" is selected, draw IDs for all tiles
-                            if (checkViewCollision.Checked)
+                            if (nLayerIndex == tabLayers.SelectedIndex && checkViewCollision.Checked)
                             {
                                 char cCollisionID;
                                 // Test first bit (collision)
@@ -322,7 +323,7 @@ namespace Tile_Editor
         //  Recreates the map with the size gotten from the UI
         void RecreateMap(object sender, EventArgs e)
         {
-            if (MapCreationLocked)
+            if (m_bMapCreationLocked)
                 return;
 
             //  Update sizeMap variable
@@ -781,7 +782,7 @@ namespace Tile_Editor
 
         void OpenMap(string szFilename)
         {
-            MapCreationLocked = true;
+            m_bMapCreationLocked = true;
 
             // Clean up our variables
             m_listLayers.Clear();
@@ -860,7 +861,7 @@ namespace Tile_Editor
             UpdateAutoScrollSizes();
             ResetInterface();
 
-            MapCreationLocked = false;
+            m_bMapCreationLocked = false;
         }
 
         // Export the tileset
@@ -963,6 +964,9 @@ namespace Tile_Editor
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            // Lock object to avoid threading errors
+            m_bMapCreationLocked = true;
+
             m_listLayers.Clear();
 
             // Get the map size
@@ -991,11 +995,11 @@ namespace Tile_Editor
             m_listLayers.Add(firstLayer);
 
             checkBoxVisible.Checked = firstLayer.Visible;
-
             InitVariables();
-
             ResetInterface();
 
+            // Lock object to avoid threading errors
+            m_bMapCreationLocked = false;
         }
 
 
