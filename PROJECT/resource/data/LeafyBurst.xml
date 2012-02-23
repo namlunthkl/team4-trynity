@@ -7,7 +7,7 @@
       <Particle_List/>
       <Data>
         <fSize>0.25</fSize>
-        <MaxLife>10</MaxLife>
+        <MaxLife>3</MaxLife>
         <MinVelX>-55</MinVelX>
         <MaxVelX>55</MaxVelX>
         <MinVelY>-1</MinVelY>
@@ -39,3 +39,4 @@
     </Emitter>
   </List>
 </Holder>
+

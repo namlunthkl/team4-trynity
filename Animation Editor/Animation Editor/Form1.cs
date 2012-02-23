@@ -816,12 +816,13 @@ namespace Animation_Editor
         {
            if(listBoxFrames.SelectedIndex != -1)
             {
-                //BindingList<Frame> frames = new BindingList<Frame>();
-                //for (int i = 0; i < frameList.Count; i++)
-                //    frames.Add((Frame)frameList[i]);
+                
                 Animation Temp = new Animation();
                 Temp.Name = textBoxAnimationName.Text;
-                Temp.Frames = new BindingList<Frame>(frameList);
+                BindingList<Frame> frames = new BindingList<Frame>();
+                for (int i = 0; i < frameList.Count; i++)
+                    frames.Add((Frame)frameList[i]);
+                Temp.Frames = frames;
                 Temp.NumFrames = frameList.Count;
                 Temp.Speed = numericUpDownAnimationSpeed.Value;
                 Temp.Looping = checkBoxLooping.Checked;
@@ -829,7 +830,7 @@ namespace Animation_Editor
                 if (Temp.Name != String.Empty)
                 {
                     animationList.Add(Temp);
-                    //frameList.Clear();
+                    frameList.Clear();
                 }
             }
             
@@ -1006,13 +1007,14 @@ namespace Animation_Editor
 
                 IEnumerable<XElement> xAnimations = root.Elements("Animation");
 
-                List<Frame> frames = new List<Frame>();
+                //BindingList<Frame> frames = new BindingList<Frame>();
 
-                Animation Temp = new Animation();
+                
 
 
                 foreach (XElement xAnimation in xAnimations)
                 {
+                    Animation Temp = new Animation();
                     XAttribute name = xAnimation.Attribute("name");
                     Temp.Name = name.Value;
                     XAttribute looping = xAnimation.Attribute("looping");
@@ -1031,7 +1033,7 @@ namespace Animation_Editor
                     foreach (XElement xFrame in xFrames)
                     {
                         Frame TempFrame = new Frame();
-                        TempFrame.Name = "Frame " + (frames.Count + 1);
+                        TempFrame.Name = "Frame " + (frameList.Count + 1);
                         XAttribute duration = xFrame.Attribute("duration");
                         TempFrame.FrameDuration = decimal.Parse(duration.Value);
                         XAttribute events = xFrame.Attribute("event");
@@ -1077,11 +1079,14 @@ namespace Animation_Editor
                             TempFrame.Anchor = tempPoint;
                         }
 
-                        frames.Add(TempFrame);
+                        frameList.Add(TempFrame);
                         
                     }
+                    BindingList<Frame> frames = new BindingList<Frame>();
+                    for (int i = 0; i < frameList.Count; i++)
+                        frames.Add((Frame)frameList[i]);
                     Temp.Frames = new BindingList<Frame>(frames);
-                    frames.Clear();
+                    frameList.Clear();
                     animationList.Add(Temp);
                 }
             }
