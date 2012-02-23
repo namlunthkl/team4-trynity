@@ -35,7 +35,7 @@ bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsi
 void CEnemy::LoadAnimation()
 {
 	// Hack
-	m_nCurrentAnimation = 0;
+	m_nCurrentAnimation = 1;
 	CAnimationManager::GetInstance()->LoadAnimation("resource/npc walk.xml");
 	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_UP, true);
 	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_DOWN, true);
