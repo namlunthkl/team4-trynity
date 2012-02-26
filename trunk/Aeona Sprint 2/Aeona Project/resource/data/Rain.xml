@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Holder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <List>
+    <Emitter>
+      <Name>Emitter Number: </Name>
+      <ID>1</ID>
+      <Particle_List/>
+      <Data>
+        <fSize>0.30</fSize>
+        <MaxLife>20</MaxLife>
+        <MinVelX>-90</MinVelX>
+        <MaxVelX>-100</MaxVelX>
+        <MinVelY>90</MinVelY>
+        <MaxVelY>100</MaxVelY>
+        <SpwnAreaWidth>900</SpwnAreaWidth>
+        <SpwnAreaHeight>800</SpwnAreaHeight>
+        <FadeEffect>2</FadeEffect>
+        <FadeValue>255</FadeValue>
+        <ScaleEffect>1</ScaleEffect>
+        <ScaleValue>0.1</ScaleValue>
+        <RotationValue>1</RotationValue>
+        <RedEffect>2</RedEffect>
+        <RedValue>1</RedValue>
+        <GreenEffect>2</GreenEffect>
+        <GreenValue>0</GreenValue>
+        <BlueEffect>2</BlueEffect>
+        <BlueValue>255</BlueValue>
+        <Source>2</Source>
+        <Dest>2</Dest>
+        <EmitterPosX>0</EmitterPosX>
+        <EmitterPosY>0</EmitterPosY>
+        <MaxParticles>500</MaxParticles>
+        <EmitterVelX>0</EmitterVelX>
+        <EmitterVelY>0</EmitterVelY>
+      </Data>
+      <Continuous>true</Continuous>
+      <Image>0</Image>
+      <ImageFile>Slanty3.png</ImageFile>
+    </Emitter>
+  </List>
+</Holder>
+
+
