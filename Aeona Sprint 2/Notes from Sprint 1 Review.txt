@@ -1,0 +1,12 @@
+John's Commments
+if you save the game and load it again particles effects stack with each other
+fix collision so that if you don't get stuck on an object if you're moving in multiple vectors
+get everything working with the controller
+up the maximum value for tile options numeric up downs
+large tilesets cause slow down
+usafe filenames in save file from tile editor
+collision painting could cause a slow down on level creation
+paint bucket may help with map creation
+
+My observations
+change settings on menu using arrow keys

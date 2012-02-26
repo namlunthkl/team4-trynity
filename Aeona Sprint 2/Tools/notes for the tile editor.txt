@@ -1,0 +1,15 @@
+TILE EDITOR AND ENGINE
+
+// Important
+- correctly use relative file paths (when saving the tileset image)
+- undo and redo
+- need to implement shutdown/unload methods for tileset and map
+- have an overloaded function for check collisions that instead of taking an IBaseCharacter takes directly all the attributes needed for it.
+
+
+- zoom (change scaling)
+- paint
+- play(?)
+- if user tries to load invalid files, give an error message instead of crashing
+- save button (not only save as)
+- when saving the tileset, have it save the image to the resource folder in the project
