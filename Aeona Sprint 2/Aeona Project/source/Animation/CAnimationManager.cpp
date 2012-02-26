@@ -143,7 +143,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			//	Get the anchor
 			TiXmlElement* pAnchor = pDrawRect->NextSiblingElement("Anchor");
 
-			POINT tempAnchor;
+			Point tempAnchor;
 
 			if(pAnchor->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{

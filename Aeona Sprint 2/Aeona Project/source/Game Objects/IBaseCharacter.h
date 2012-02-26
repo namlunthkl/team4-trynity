@@ -5,15 +5,20 @@
 //    Creation Date			:	02/09/12 - 3:03 AM
 //    Purpose				:	Base character from which all the other
 //								characters inherit
+//
+//    Last Updater Name		:   Daniel Lima
+//    Last Update Date      :   02/25 - 8:00 PM
+//    Last Update Notes     :   ADD NOTES HERE
 ////////////////////////////////////////////////////////////////////////
 
+// Standard header protection
 #ifndef I_BASE_CHARACTER_H_
 #define I_BASE_CHARACTER_H_
 
-#include "..\IBaseInterface.h"
-#include "..\Messaging\CEventSystem.h"
+#include "../Game Objects/CBaseObject.h"
+#include "../Messaging/CEventSystem.h"
 
-class IBaseCharacter : public IBaseInterface
+class IBaseCharacter : public CBaseObject
 {
 private:
 	unsigned char m_ucCharType;

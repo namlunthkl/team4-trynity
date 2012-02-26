@@ -9,9 +9,9 @@
 #ifndef C_PLAYER_H_
 #define C_PLAYER_H_
 
-#include "IBaseCharacter.h"
+#include "CBaseObject.h"
 
-class CPlayer : public IBaseCharacter
+class CPlayer : public CBaseObject
 {
 private:
 	CPlayer*		m_pInstance;
@@ -41,11 +41,7 @@ public:
 	void Update(float fElapsedTime);
 	void Render();
 	void Shutdown();
-	//	References
-	void AddRef();
-	void Release();
-	//	Type
-	unsigned int GetType();
+	inline unsigned int GetType(void) { return TYPE_PLAYER; }
 };
 
 #endif // C_PLAYER_H_

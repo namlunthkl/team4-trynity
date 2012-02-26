@@ -129,21 +129,6 @@
     <ClCompile Include="source\Animation\CFrame.cpp">
       <Filter>Animation Engine</Filter>
     </ClCompile>
-    <ClCompile Include="source\Characters\CEnemy.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Characters\CNPC.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\CObjectManager.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Characters\CPlayer.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\IBaseInterface.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
     <ClCompile Include="source\Messaging\CEventSystem.cpp">
       <Filter>Messaging</Filter>
     </ClCompile>
@@ -180,8 +165,26 @@
     <ClCompile Include="source\Input Manager\CXboxController.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
-    <ClCompile Include="source\Characters\TestPlayer.cpp">
+    <ClCompile Include="source\Game Objects\CBaseObject.cpp">
       <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CEnemy.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CNPC.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CObjectManager.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CPlayer.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\TestPlayer.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,12 +233,6 @@
     <ClInclude Include="source\Messaging\IListener.h">
       <Filter>Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="source\Characters\IBaseCharacter.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\IBaseInterface.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
     <ClInclude Include="source\States\IGameState.h">
       <Filter>Game States</Filter>
     </ClInclude>
@@ -274,18 +271,6 @@
     </ClInclude>
     <ClInclude Include="source\Input Manager\CInputManager.h">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Characters\CNPC.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\CObjectManager.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Characters\CPlayer.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Characters\CEnemy.h">
-      <Filter>Object Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="source\States\COptionsState.h">
       <Filter>Game States</Filter>
@@ -353,8 +338,32 @@
     <ClInclude Include="source\Input Manager\CXboxController.h">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
-    <ClInclude Include="source\Characters\TestPlayer.h">
+    <ClInclude Include="source\Game Objects\CBaseObject.h">
       <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CEnemy.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CNPC.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CObjectManager.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CPlayer.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\IBaseCharacter.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\TestPlayer.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\IBaseInterface.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Wrappers\SGD_Math.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

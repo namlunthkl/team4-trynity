@@ -20,7 +20,7 @@
 #include "../Messaging/CStringTable.h"
 #include "CWorldEngine.h"
 
-#include "../IBaseInterface.h"
+#include "../Game Objects/IBaseInterface.h"
 #include "../Messaging/CEventSystem.h"
 
 #include "../Input Manager/CInputManager.h"

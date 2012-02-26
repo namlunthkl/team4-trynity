@@ -55,7 +55,7 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 	{
 		int nSheet = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetImageId();
 		RECT drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
-		POINT anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
+		Point anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 		TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect);
 	}
 }
@@ -70,7 +70,7 @@ RECT CAnimationPlayer::ReturnCollisionRect(void)
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetCollisionRect();
 }
 
-POINT CAnimationPlayer::ReturnAnchorPoint(void)
+Point CAnimationPlayer::ReturnAnchorPoint(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 }
