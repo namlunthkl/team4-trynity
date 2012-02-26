@@ -20,4 +20,36 @@ void ToggleBit(Byte& byteArgument, BitIndex bitToSet);
 char GetNumberOfBitsOn(Byte byteArgument);
 char GetNumberOfBitsOff(Byte byteArgument);
 
+struct Point
+{
+	int x;
+	int y;
+	Point(int x=0, int y=0)
+	{ this->x = x; this->y = y; }
+};
+
+struct PointL
+{
+	long x;
+	long y;
+	PointL(long x=0, long y=0)
+	{ this->x = x; this->y = y; }
+};
+
+struct PointD
+{
+	double x;
+	double y;
+	PointD(double x=0, double y=0)
+	{ this->x = x; this->y = y; }
+};
+
+struct PointF
+{
+	float x;
+	float y;
+	PointF(float x=0, float y=0)
+	{ this->x = x; this->y = y; }
+};
+
 #endif // BYTEUTIL_H_

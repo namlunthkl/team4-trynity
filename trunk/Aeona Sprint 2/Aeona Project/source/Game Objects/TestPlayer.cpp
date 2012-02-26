@@ -115,10 +115,10 @@ void TestPlayer::Update(float fElapsedTime)
 }
 
 // Get the rectangle used for collision
-RECT TestPlayer::GetCollisionRect(void)
+RECT TestPlayer::GetCollisionRect(void) const
 {
 	RECT rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
-	POINT anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
+	Point anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
 
 	rectCollision.top += GetPosY() - anchor.y;
 	rectCollision.left += GetPosX() - anchor.x;

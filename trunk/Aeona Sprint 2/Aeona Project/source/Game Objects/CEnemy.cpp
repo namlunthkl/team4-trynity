@@ -54,7 +54,7 @@ RECT CEnemy::GetCollisionRect()
 	if(m_nCurrentAnimation != -1)
 	{
 		rectCollision = m_pAnimation[m_nCurrentAnimation]->ReturnCollisionRect();
-		POINT anchor = m_pAnimation[m_nCurrentAnimation]->ReturnAnchorPoint();
+		Point anchor = m_pAnimation[m_nCurrentAnimation]->ReturnAnchorPoint();
 
 		rectCollision.top += GetPosY() - anchor.y;
 		rectCollision.left += GetPosX() - anchor.x;
@@ -138,24 +138,4 @@ void CEnemy::Render()
 
 void CEnemy::Shutdown()
 {
-}
-
-//	References
-void CEnemy::AddRef()
-{
-	SetRefCount( GetRefCount() + 1 );
-}
-void CEnemy::Release()
-{
-	SetRefCount( GetRefCount() - 1 );
-	if( GetRefCount() == 0 )
-	{
-		delete this;
-	}
-}
-
-//	Type
-unsigned int CEnemy::GetType()
-{
-	return 0;
 }

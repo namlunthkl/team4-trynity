@@ -84,23 +84,3 @@ void CPlayer::Render()
 void CPlayer::Shutdown()
 {
 }
-
-//	References
-void CPlayer::AddRef()
-{
-}
-
-void CPlayer::Release()
-{
-	SetRefCount( GetRefCount() - 1 );
-	if( GetRefCount() == 0 )
-	{
-		delete this;
-	}
-}
-
-//	Type
-unsigned int CPlayer::GetType()
-{
-	return 0;
-}

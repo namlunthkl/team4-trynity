@@ -9,11 +9,11 @@
 #ifndef C_ENEMY_H_
 #define C_ENEMY_H_
 
-#include "IBaseCharacter.h"
+#include "CBaseObject.h"
 #include "../AI_States/IBaseAIState.h"
 #include "../Animation/CAnimationPlayer.h"
 
-class CEnemy : public IBaseCharacter
+class CEnemy : public CBaseObject
 {
 private:
 	unsigned char	m_ucDamage;
@@ -39,11 +39,8 @@ public:
 	void Render();
 	void Shutdown();
 	void LoadAnimation();
-	//	References
-	void AddRef();
-	void Release();
-	//	Type
-	unsigned int GetType();
+	
+	inline unsigned int GetType(void) { return TYPE_BASE_ENEMY; }
 };
 
 #endif // C_ENEMY_H_

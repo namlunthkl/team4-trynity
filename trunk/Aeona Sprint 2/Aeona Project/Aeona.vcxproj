@@ -86,14 +86,14 @@
     </ClCompile>
     <ClCompile Include="source\CBitmapFont.cpp" />
     <ClCompile Include="source\CGame.cpp" />
-    <ClCompile Include="source\Characters\CEnemy.cpp" />
-    <ClCompile Include="source\Characters\CNPC.cpp" />
-    <ClCompile Include="source\Characters\CPlayer.cpp" />
-    <ClCompile Include="source\Characters\TestPlayer.cpp" />
-    <ClCompile Include="source\CObjectManager.cpp" />
     <ClCompile Include="source\CPuzzle.cpp" />
     <ClCompile Include="source\CPuzzleManager.cpp" />
-    <ClCompile Include="source\IBaseInterface.cpp" />
+    <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
+    <ClCompile Include="source\Game Objects\CEnemy.cpp" />
+    <ClCompile Include="source\Game Objects\CNPC.cpp" />
+    <ClCompile Include="source\Game Objects\CObjectManager.cpp" />
+    <ClCompile Include="source\Game Objects\CPlayer.cpp" />
+    <ClCompile Include="source\Game Objects\TestPlayer.cpp" />
     <ClCompile Include="source\Input Manager\CInputManager.cpp" />
     <ClCompile Include="source\Input Manager\CXboxController.cpp" />
     <ClCompile Include="source\Messaging\CEventSystem.cpp" />
@@ -148,6 +148,9 @@
     <ClCompile Include="source\Wrappers\CSGD_XAudio2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
@@ -162,16 +165,17 @@
     <ClInclude Include="source\Camera\CCameraControl.h" />
     <ClInclude Include="source\CBitmapFont.h" />
     <ClInclude Include="source\CGame.h" />
-    <ClInclude Include="source\Characters\CEnemy.h" />
-    <ClInclude Include="source\Characters\CNPC.h" />
-    <ClInclude Include="source\Characters\CPlayer.h" />
-    <ClInclude Include="source\Characters\IBaseCharacter.h" />
-    <ClInclude Include="source\Characters\TestPlayer.h" />
-    <ClInclude Include="source\CObjectManager.h" />
     <ClInclude Include="source\CPuzzle.h" />
     <ClInclude Include="source\CPuzzleManager.h" />
     <ClInclude Include="source\CTimer.h" />
-    <ClInclude Include="source\IBaseInterface.h" />
+    <ClInclude Include="source\Game Objects\CBaseObject.h" />
+    <ClInclude Include="source\Game Objects\CEnemy.h" />
+    <ClInclude Include="source\Game Objects\CNPC.h" />
+    <ClInclude Include="source\Game Objects\CObjectManager.h" />
+    <ClInclude Include="source\Game Objects\CPlayer.h" />
+    <ClInclude Include="source\Game Objects\IBaseCharacter.h" />
+    <ClInclude Include="source\Game Objects\IBaseInterface.h" />
+    <ClInclude Include="source\Game Objects\TestPlayer.h" />
     <ClInclude Include="source\Input Manager\CInputManager.h" />
     <ClInclude Include="source\Input Manager\CXboxController.h" />
     <ClInclude Include="source\Messaging\CEvent.h" />
@@ -206,6 +210,7 @@
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />
     <ClInclude Include="source\Wrappers\CSGD_TextureManager.h" />
     <ClInclude Include="source\Wrappers\CSGD_XAudio2.h" />
+    <ClInclude Include="source\Wrappers\SGD_Math.h" />
     <ClInclude Include="source\Wrappers\SGD_Util.h" />
   </ItemGroup>
   <ItemGroup>

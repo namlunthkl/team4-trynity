@@ -34,7 +34,7 @@ public:
 
 	RECT ReturnCollisionRect(void);
 
-	POINT ReturnAnchorPoint(void);
+	Point ReturnAnchorPoint(void);
 
 };
 #endif

@@ -1,12 +1,12 @@
 #ifndef CTESTPLAYER_H_
 #define CTESTPLAYER_H_
 
-#include "../IBaseInterface.h"
+#include "../Game Objects/CBaseObject.h"
 #include "../Animation/CAnimationPlayer.h"
 #include "../Animation/CAnimationManager.h"
 #include "../Particle Engine/ParticleWeapon.h"
 
-class TestPlayer : public IBaseInterface
+class TestPlayer : public CBaseObject
 {
 public:
 	unsigned int m_uiSpriteIndex;
@@ -24,7 +24,7 @@ public:
 	enum AnimationFile { ANM_FILE_UP = 4, ANM_FILE_DOWN, ANM_FILE_RIGHT, ANM_FILE_LEFT };
 
 	// Initialize all variables to BASE_CHAR defaults
-	virtual void Enter(void);
+	void Enter(void);
 
 	// Input
 	void Input(void);
@@ -33,12 +33,8 @@ public:
 	void Update(float fElapsedTime);
 
 	// Get the rectangle used for collision
-	RECT GetCollisionRect(void);
+	RECT GetCollisionRect(void) const;
 
-	void AddRef() {}
-	void Release() {}
-	unsigned int GetType() { return 1;}
-	bool CheckCollision(IBaseInterface* pBase) { return false; }
 };
 
 

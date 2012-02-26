@@ -11,7 +11,7 @@ class CFrame
 {
 private:
 	RECT m_DrawRect, m_CollisionRect;
-	POINT m_AnchorPoint;
+	Point m_AnchorPoint;
 	double m_fDuration;
 	string m_szEvent;
 	
@@ -19,13 +19,13 @@ public:
 	//	Accessors
 	RECT GetDrawRect() const { return m_DrawRect; }
 	RECT GetCollisionRect() const { return m_CollisionRect; }
-	POINT GetAnchorPoint() const { return m_AnchorPoint; }
+	Point GetAnchorPoint() const { return m_AnchorPoint; }
 	double GetDuration() const { return m_fDuration; }
 	string GetEvent() const { return m_szEvent; }
 	//	Mutators
 	void SetDrawRect(RECT val) { m_DrawRect = val; }
 	void SetCollisionRect(RECT val) { m_CollisionRect = val; }
-	void SetAnchorPoint(POINT val) { m_AnchorPoint = val; }
+	void SetAnchorPoint(Point val) { m_AnchorPoint = val; }
 	void SetDuration(double val) { m_fDuration = val; }
 	void SetEvent(string val) { m_szEvent = val; }
 };
