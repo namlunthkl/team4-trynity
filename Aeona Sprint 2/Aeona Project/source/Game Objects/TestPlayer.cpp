@@ -10,120 +10,123 @@
 // Initialize all variables to BASE_CHAR defaults
 void TestPlayer::Enter(void)
 {
-	m_uiSpriteIndex = TEX_MNG->LoadTexture("resource/test.png", D3DCOLOR_XRGB(255, 255, 255));
-	SetPosX(0);
-	SetPosY(0);
-	m_uiCurrentAnimation = 0;
-	CAnimationManager::GetInstance()->LoadAnimation("resource/Char Walk.xml");
+	Activate();
+	CBaseCharacter::LoadAnimations("resource/Char Walk.xml");
 	m_footsteps.Load("Resource/data/leafyburst.xml");
-	m_pAnimation[ANM_UP] = new CAnimationPlayer(ANM_FILE_UP, true);
-	m_pAnimation[ANM_DOWN] = new CAnimationPlayer(ANM_FILE_DOWN, true);
-	m_pAnimation[ANM_LEFT] = new CAnimationPlayer(ANM_FILE_LEFT, true);
-	m_pAnimation[ANM_RIGHT] = new CAnimationPlayer(ANM_FILE_RIGHT, true);
-	m_pAnimation[ANM_UP]->Play();
-	m_pAnimation[ANM_DOWN]->Play();
-	m_pAnimation[ANM_LEFT]->Play();
-	m_pAnimation[ANM_RIGHT]->Play();
 }
 
 // Input
 void TestPlayer::Input(void)
 {
-	int nNewPosX = GetPosX();
-	int nNewPosY = GetPosY();
+	int nOffsetX, nOffsetY;
+	nOffsetX = nOffsetY = 0;
 
 	if(CInputManager::GetInstance()->GetLeft())
 	{
-		m_uiCurrentAnimation = ANM_LEFT;
-		nNewPosX-= 2;
+		SetCurrentAnimation(ANM_WALK_LEFT);
+		nOffsetX = -2;
 	}
 	if(CInputManager::GetInstance()->GetRight())
 	{
-		m_uiCurrentAnimation = ANM_RIGHT;
-		nNewPosX+= 2;
+		SetCurrentAnimation(ANM_WALK_RIGHT);
+		nOffsetX = 2;
 
 	}
-
 	if(CInputManager::GetInstance()->GetUp())
 	{
-		m_uiCurrentAnimation = ANM_UP;
-		nNewPosY-= 2;
+		SetCurrentAnimation(ANM_WALK_UP);
+		nOffsetY = -2;
 	}
 	if(CInputManager::GetInstance()->GetDown())
 	{
-		m_uiCurrentAnimation = ANM_DOWN;
-		nNewPosY+= 2;
+		SetCurrentAnimation(ANM_WALK_DOWN);
+		nOffsetY = 2;
 	}
 
-	if(nNewPosY < GetPosY() && nNewPosX < GetPosX())
+	/*if(nNewPosY < GetPosY() && nNewPosX < GetPosX())
 	{
-		m_uiCurrentAnimation = ANM_LEFT;
+		SetCurrentAnimation(ANM_WALK_LEFT);
 	}
 	else if(nNewPosY < GetPosY() && nNewPosX > GetPosX())
 	{
-		m_uiCurrentAnimation = ANM_RIGHT;
+		SetCurrentAnimation(ANM_WALK_RIGHT);
 	}
 	else if(nNewPosY < GetPosY())
 	{
-		m_uiCurrentAnimation = ANM_UP;
+		SetCurrentAnimation(ANM_WALK_UP);
 	}
 	else if(nNewPosY > GetPosY() && nNewPosX < GetPosX())
 	{
-		m_uiCurrentAnimation = ANM_LEFT;
+		SetCurrentAnimation(ANM_WALK_LEFT);
 	}
 	else if(nNewPosY > GetPosY() && nNewPosX > GetPosX())
 	{
-		m_uiCurrentAnimation = ANM_RIGHT;
+		SetCurrentAnimation(ANM_WALK_RIGHT);
 	}
 	else if(nNewPosY > GetPosY())
 	{
-		m_uiCurrentAnimation = ANM_DOWN;
-	}
+		SetCurrentAnimation(ANM_WALK_DOWN);
+	}*/
 
-	if(nNewPosX != GetPosX() || nNewPosY != GetPosY())
-		m_footsteps.Fire(
-		CGameplayState::GetInstance()->GetScreenPositionX(nNewPosX),
-		CGameplayState::GetInstance()->GetScreenPositionY(nNewPosY));
+	//if(nNewPosX != GetPosX() || nNewPosY != GetPosY())
+	//	m_footsteps.Fire(
+	//	SCREEN_POS_X((int)nNewPosX),
+	//	SCREEN_POS_Y((int)nNewPosY));
 
-	TestPlayer test;
-	test.Enter();
-	test.SetPosX(nNewPosX);
-	test.SetPosY(nNewPosY);
+	//TestPlayer test;
+	//test.Enter();
+	//test.SetPosX(nNewPosX);
+	//test.SetPosY(nNewPosY);
 
-	if(!WORLD->CheckCollisions(&test))
+	RectD CollisionRect = GetCollisionRect();
+	CollisionRect.left += nOffsetX;
+	CollisionRect.right += nOffsetX;
+	CollisionRect.top += nOffsetY;
+	CollisionRect.bottom += nOffsetY;
+
+	//SetPosX(nNewPosX);
+	//SetPosY(nNewPosY);
+
+	if(!WORLD->CheckCollisions(CollisionRect.GetWindowsRECT(), GetType()))
 	{
-		SetPosX(nNewPosX);
-		SetPosY(nNewPosY);
+		SetPosX(GetPosX() + nOffsetX);
+		SetPosY(GetPosY() + nOffsetY);
 	}
 }
 
-// Draw to the screen
-void TestPlayer::Render(void)
-{
-	//TEX_MNG->Draw(m_uiSpriteIndex, GetPosX(), GetPosY());
-
-	m_pAnimation[m_uiCurrentAnimation]->Render(
-		CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
-		CGameplayState::GetInstance()->GetScreenPositionY(GetPosY()));
-	m_footsteps.Render();
-}
-
-void TestPlayer::Update(float fElapsedTime)
-{
-	m_pAnimation[m_uiCurrentAnimation]->Update(fElapsedTime);
-	m_footsteps.Update(fElapsedTime);
-}
-
-// Get the rectangle used for collision
-RECT TestPlayer::GetCollisionRect(void) const
-{
-	RECT rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
-	Point anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
-
-	rectCollision.top += GetPosY() - anchor.y;
-	rectCollision.left += GetPosX() - anchor.x;
-	rectCollision.bottom += GetPosY() - anchor.y;
-	rectCollision.right += GetPosX() - anchor.x;
-
-	return rectCollision;
-}
+//// Draw to the screen
+//void TestPlayer::Render(void)
+//{
+//	//TEX_MNG->Draw(m_uiSpriteIndex, GetPosX(), GetPosY());
+//
+//	CBaseObject::Render();
+//
+//	/*GetAnimationPlayer(m_uiCurrentAnimation)->Render(
+//		SCREEN_POS_X((int)GetPosX()),
+//		SCREEN_POS_Y((int)GetPosY()));
+//	m_footsteps.Render();*/
+//}
+//
+//void TestPlayer::Update(float fElapsedTime)
+//{
+//	CBaseCharacter::Update(fElapsedTime);
+//
+//	//GetAnimationPlayer(m_uiCurrentAnimation)->Update(fElapsedTime);
+//	//m_footsteps.Update(fElapsedTime);
+//}
+//
+//// Get the rectangle used for collision
+//RectD TestPlayer::GetCollisionRect(void) const
+//{
+//	return CBaseCharacter::GetCollisionRect();
+//
+//	//RectD rectCollision = m_pAnimation[m_uiCurrentAnimation]->ReturnCollisionRect();
+//	//Point anchor = m_pAnimation[m_uiCurrentAnimation]->ReturnAnchorPoint();
+//
+//	//rectCollision.top += GetPosY() - anchor.y;
+//	//rectCollision.left += GetPosX() - anchor.x;
+//	//rectCollision.bottom += GetPosY() - anchor.y;
+//	//rectCollision.right += GetPosX() - anchor.x;
+//
+//	//return rectCollision;
+//}

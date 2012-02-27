@@ -40,10 +40,14 @@ using std::queue;
 #pragma comment(lib, "Winmm.lib")
 
 // Wrappers
-#include "Wrappers\CSGD_TextureManager.h"
-#include "Wrappers\CSGD_Direct3D.h"
-#include "Wrappers\CSGD_DirectInput.h"
-#include "Wrappers\CSGD_XAudio2.h"
+#include "Wrappers/CSGD_TextureManager.h"
+#include "Wrappers/CSGD_Direct3D.h"
+#include "Wrappers/CSGD_DirectInput.h"
+#include "Wrappers/CSGD_XAudio2.h"
+#include "Wrappers/SGD_Math.h"
+#include "Wrappers/SGD_Util.h"
+#include "Util/UtilStructs.h"
+#include "Util/ByteUtil.h"
 
 // Our files
 #include "CGame.h"

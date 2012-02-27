@@ -43,6 +43,9 @@
     <Filter Include="Utilities %28XML, Wrappers and Managers%29\Tiny XML">
       <UniqueIdentifier>{ade446a8-326a-4d80-a836-3a4d68696163}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Puzzles">
+      <UniqueIdentifier>{ff0e6667-f151-4d7c-b772-c01a29c74070}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\CGame.cpp">
@@ -70,12 +73,6 @@
       <Filter>World Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Tile Mapping\CTileset.cpp">
-      <Filter>World Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\CPuzzleManager.cpp">
-      <Filter>World Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\CPuzzle.cpp">
       <Filter>World Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Tile Mapping\CMap.cpp">
@@ -121,9 +118,6 @@
       <Filter>Particles Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Input Manager\CInputManager.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ByteUtil.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
     <ClCompile Include="source\Animation\CFrame.cpp">
@@ -186,6 +180,18 @@
     <ClCompile Include="source\Wrappers\SGD_Math.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CBaseCharacter.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Util\ByteUtil.cpp">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzle.cpp">
+      <Filter>Puzzles</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp">
+      <Filter>Puzzles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -242,17 +248,8 @@
     <ClInclude Include="source\Tile Mapping\CTileset.h">
       <Filter>World Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\CPuzzle.h">
-      <Filter>World Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\CPuzzleManager.h">
-      <Filter>World Engine</Filter>
-    </ClInclude>
     <ClInclude Include="source\Tile Mapping\CWorldEngine.h">
       <Filter>World Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\CTimer.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
     <ClInclude Include="source\AI_States\CRandomAIState.h">
       <Filter>Artificial Intelligence</Filter>
@@ -292,9 +289,6 @@
     </ClInclude>
     <ClInclude Include="source\Tile Mapping\CMap.h">
       <Filter>World Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ByteUtil.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
     <ClInclude Include="source\Messaging\CEvent.h">
       <Filter>Messaging</Filter>
@@ -353,9 +347,6 @@
     <ClInclude Include="source\Game Objects\CPlayer.h">
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
-    <ClInclude Include="source\Game Objects\IBaseCharacter.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
     <ClInclude Include="source\Game Objects\TestPlayer.h">
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
@@ -364,6 +355,24 @@
     </ClInclude>
     <ClInclude Include="source\Wrappers\SGD_Math.h">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\UtilStructs.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CBaseCharacter.h">
+      <Filter>Object Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\ByteUtil.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\CTimer.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzle.h">
+      <Filter>Puzzles</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzleManager.h">
+      <Filter>Puzzles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

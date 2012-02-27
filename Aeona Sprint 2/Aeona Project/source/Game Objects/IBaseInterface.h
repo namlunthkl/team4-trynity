@@ -26,6 +26,8 @@
 class IBaseInterface
 {
 public:
+	enum Type { TYPE_BASE_OBJECT, TYPE_BASE_CHARACTER, TYPE_PLAYER, TYPE_BASE_ENEMY, TYPE_MAX };
+
 	// Destructor
 	virtual ~IBaseInterface(void) = 0 {}
 
@@ -33,7 +35,7 @@ public:
 	virtual void Update(float fElapsedTime) = 0;
 	virtual void Render(void) = 0;
 	virtual unsigned int GetType(void) const = 0;
-	virtual RECT GetCollisionRect(void) const = 0;
+	virtual RectD GetCollisionRect(void) const = 0;
 	virtual bool CheckCollision(IBaseInterface* pObject) = 0;
 
 	// Add and release references

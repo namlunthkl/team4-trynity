@@ -19,8 +19,13 @@ bool CAnimationManager::UnloadAnimation(int nAnimation)
 	return true;
 }
 
-int CAnimationManager::LoadAnimation(const char* szFileName)
+int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, int* pnLastAnmID)
 {
+	if(pnFirstAnmID)
+		*pnFirstAnmID = -1;
+	if(pnLastAnmID)
+		*pnLastAnmID = -1;
+
 	TiXmlDocument doc;
 	if(doc.LoadFile(szFileName) == false)
 		return false;
@@ -121,7 +126,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 			//	Get the collsion Rect
 			TiXmlElement* pCollisionRect = pDrawRect->NextSiblingElement("CollisionRect");
 
-			RECT tempCollisionRect;
+			RectD tempCollisionRect;
 			if(pCollisionRect->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempCollisionRect.left = nTemp;
@@ -160,8 +165,19 @@ int CAnimationManager::LoadAnimation(const char* szFileName)
 		}
 		tempAnimation->SetImageId(nAnimationSheet);
 		m_Animations.push_back(tempAnimation);
+
+		// Set the right values to be returned
+		if(pnFirstAnmID)
+		{
+			if(*pnFirstAnmID == -1)
+				*pnFirstAnmID = m_Animations.size() - 1;
+		}
+		if(pnLastAnmID)
+		{
+			*pnLastAnmID = m_Animations.size() - 1;
+		}
+
 		pAnimation = pAnimation->NextSiblingElement("Animation");
-		
 	}
 	return 0;
 }

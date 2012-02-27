@@ -16,7 +16,7 @@ private:
 	vector<CAnimation*> m_Animations;
 public:
 	bool UnloadAnimation(int nAnimation);
-	int LoadAnimation(const char* szFilename);
+	int LoadAnimation(const char* szFilename, int* pnFirstAnmID = NULL, int* pnLastAnmID = NULL);
 	bool UnloadAll();
 	static CAnimationManager* GetInstance();
 

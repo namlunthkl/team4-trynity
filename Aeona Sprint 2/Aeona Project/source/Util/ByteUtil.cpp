@@ -18,6 +18,10 @@ void TurnBitOn(Byte& byteArgument, BitIndex bitToSet)
 void TurnBitOff(Byte& byteArgument, BitIndex bitToSet)
 { byteArgument &= ~(1 << (7 - bitToSet)); }
 
+// Set a bit to on or off depending on the last argument
+void SetBit(Byte& byteArgument, BitIndex bitToSet, bool bValue)
+{ bValue ? TurnBitOn(byteArgument, bitToSet) : TurnBitOff(byteArgument, bitToSet); }
+
 // Returns true if bit is 1, false otherwise
 bool TestBit(Byte byteArgument, BitIndex bitToTest)
 { return (byteArgument & (1 << (7 - bitToTest))) ? true : false; }

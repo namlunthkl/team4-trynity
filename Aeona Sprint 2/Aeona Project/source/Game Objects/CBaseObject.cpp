@@ -12,10 +12,8 @@
 #include "StdAfx.h"
 // Include header file
 #include "CBaseObject.h"
-
+// For rendering using screen position
 #include "../States/CGameplayState.h"
-#define SCREEN_POS_X(X) CGameplayState::GetInstance()->GetScreenPositionX(X)
-#define SCREEN_POS_Y(Y) CGameplayState::GetInstance()->GetScreenPositionY(Y)
 
 
 // Constructor
@@ -53,22 +51,22 @@ void CBaseObject::Render(void)
 {
 	if(!IsActive()) return;
 
-	POINT ptAnchor = { m_uiWidth / 2, m_uiHeight / 2 };
+	Point ptAnchor(m_uiWidth / 2, m_uiHeight / 2);
 
 	// If there's no animation, render object's image in its position
 	if(m_vpAnimations.empty())
 	{
-		TEX_MNG->Draw(m_nImageID, SCREEN_POS_X(m_ptPosition.x) - ptAnchor.x, SCREEN_POS_Y(m_ptPosition.y) - ptAnchor.y);
+		TEX_MNG->Draw(m_nImageID, SCREEN_POS_X((int)m_ptPosition.x) - ptAnchor.x, SCREEN_POS_Y((int)m_ptPosition.y) - ptAnchor.y);
 	}
 	else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
-		m_vpAnimations[m_anmCurrent]->Render(SCREEN_POS_X(m_ptPosition.x), SCREEN_POS_Y(m_ptPosition.y));
+		m_vpAnimations[m_anmCurrent]->Render(SCREEN_POS_X((int)m_ptPosition.x), SCREEN_POS_Y((int)m_ptPosition.y));
 	}
 }
 
-RECT CBaseObject::GetCollisionRect(void) const
+RectD CBaseObject::GetCollisionRect(void) const
 {
-	RECT rectCollision = { 0, 0, 0, 0 };
+	RectD rectCollision(0, 0, 0, 0);
 	Point ptAnchor(m_uiWidth / 2, m_uiHeight / 2);
 
 	// If there's no animation use the width and height to get
@@ -101,7 +99,7 @@ RECT CBaseObject::GetCollisionRect(void) const
 bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 {
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
-	if(IntersectRect(&rectCollisionResult, &GetCollisionRect(), &pObject->GetCollisionRect()))
+	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pObject->GetCollisionRect().GetWindowsRECT()))
 		return true;
 	else return false;
 }
@@ -147,4 +145,9 @@ bool CBaseObject::PopAnimationPlayer (void)
 		return false;
 	m_vpAnimations.pop_back();
 	return true;
+}
+void CBaseObject::SetCurrentAnimation (int anmCurrent)
+{
+	if(anmCurrent < m_vpAnimations.size())
+		m_anmCurrent = anmCurrent;
 }

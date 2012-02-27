@@ -111,8 +111,8 @@ void CGameplayState::Update(float fElapsedTime)
 	///////////////////
 	if(pPlayer)
 	{
-		int nNewCameraPosX = pPlayer->GetPosX() - GAME->GetScreenWidth() / 2;
-		int nNewCameraPosY = pPlayer->GetPosY() - GAME->GetScreenHeight() / 2;
+		int nNewCameraPosX = (int)pPlayer->GetPosX() - GAME->GetScreenWidth() / 2;
+		int nNewCameraPosY = (int)pPlayer->GetPosY() - GAME->GetScreenHeight() / 2;
 
 		m_nCameraPosX = nNewCameraPosX;
 		m_nCameraPosY = nNewCameraPosY;

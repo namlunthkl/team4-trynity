@@ -32,7 +32,7 @@ public:
 	void Render(int nPosX, int nPosY);
 	RECT ReturnFrameRect(void);
 
-	RECT ReturnCollisionRect(void);
+	RectD ReturnCollisionRect(void);
 
 	Point ReturnAnchorPoint(void);
 

@@ -65,7 +65,7 @@ RECT CAnimationPlayer::ReturnFrameRect(void)
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 }
 
-RECT CAnimationPlayer::ReturnCollisionRect(void)
+RectD CAnimationPlayer::ReturnCollisionRect(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetCollisionRect();
 }
