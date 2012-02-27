@@ -17,7 +17,6 @@
 #include "../Animation/CAnimationPlayer.h"
 // World Engine
 #include "../Tile Mapping/CWorldEngine.h"
-#include "../Game Objects/TestPlayer.h"
 // Particle Engine
 #include "../Particle Engine/ParticleWeapon.h"
 
@@ -33,8 +32,6 @@
 
 class CGameplayState : public IGameState , public IListener
 {
-	// JUST FOR TESTING
-	TestPlayer* pPlayer;
 	CEnemy* pNPC;
 	CEnemy* pEnemy;
 	ParticleWeapon PW;

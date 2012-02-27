@@ -15,11 +15,15 @@
 
 class CRandomAIState : public IBaseAIState
 {
+	// Trilogy for proper singleton
+	CRandomAIState(const CRandomAIState&){}
+	CRandomAIState* operator=(const CRandomAIState&){}
+	~CRandomAIState(void){}
 public:
-	void Enter(void);
-	void Update(float fElapsedTime);
-	void Render(void);
-	void Exit(void);
+	static CRandomAIState* GetInstance(void);
+	void Enter(CBaseCharacter* pCharacter);
+	void Update(CBaseCharacter* pCharacter, float fElapsedTime);
+	void Exit(CBaseCharacter* pCharacter);
 };
 
 #endif // C_RANDOM_AI_STATE_H_

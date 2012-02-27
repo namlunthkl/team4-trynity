@@ -26,7 +26,7 @@
 class IBaseInterface
 {
 public:
-	enum Type { TYPE_BASE_OBJECT, TYPE_BASE_CHARACTER, TYPE_PLAYER, TYPE_BASE_ENEMY, TYPE_MAX };
+	enum Type { TYPE_OBJ_BASE, TYPE_CHAR_BASE, TYPE_CHAR_PLAYER, TYPE_CHAR_ENEMY, TYPE_CHAR_NPC, TYPE_MAX };
 
 	// Destructor
 	virtual ~IBaseInterface(void) = 0 {}

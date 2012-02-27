@@ -22,10 +22,10 @@
 #include "States\IGameState.h"
 
 // Timer class for game timing
-#include "CTimer.h"
+#include "Util/CTimer.h"
 #include "CBitmapFont.h"
 
-#include "ByteUtil.h"
+#include "Util/ByteUtil.h"
 
 // Game class
 // Proper singleton

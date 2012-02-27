@@ -6,42 +6,72 @@
 //    Purpose				:	Game player character class
 ////////////////////////////////////////////////////////////////////////
 
+// Standard header protection
 #ifndef C_PLAYER_H_
 #define C_PLAYER_H_
 
-#include "CBaseObject.h"
+// Include parent class
+#include "CBaseCharacter.h"
 
-class CPlayer : public CBaseObject
+#include "../Particle Engine/ParticleWeapon.h"
+
+// TODO: When weapon class is done, replace this forward
+// declaration by actually including the weapon
+class CWeapon
 {
-private:
-	CPlayer*		m_pInstance;
-	unsigned char	m_cWeapons;
-	unsigned char	m_cMasks;
-	bool			m_bHasHeartPiece;
-	short			m_sBaseDamage;
-	unsigned char	m_cCurrentWeapon;
-	int				m_sndPlayer;
+	int a;
+};
+
+class CPlayer : public CBaseCharacter
+{
+	Byte			m_byteWeapons;
+	Byte			m_byteMasks;
+	bool			m_bHeartPiece;
+	unsigned int	m_uiCurrentWeapon;
+	unsigned int	m_uiCurrentMask;
+	vector<CWeapon>	m_vGameWeapons;
+	int				m_sndPlayerMovement;
+	ParticleWeapon	m_footsteps;
+
+
+	// Singleton needs trilogy
+	CPlayer(const CPlayer&){}
+	CPlayer* operator=(const CPlayer&){}
+	// Constructor
+	CPlayer(void);
 
 public:
-	CPlayer();
-	~CPlayer();
+	enum EWeapons { WEAPON_DAGGER, WEAPON_BLADE, WEAPON_HAMMER, WEAPON_CROSSBOW, WEAPON_MAX };
+	enum EMasks { MASK_NONE, MASK_SPEED, MASK_ENDURANCE, MASK_STRENGHT, MASK_LIGHT, MASK_MAX };
 
-	//	Player-specific
-	void Attack();
-	void ChargedBlast();
-	void GetHurt();
-	void Die();
-	void CallOut();
-	void LevelUp();
-	//
-	bool Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsigned int uiSpeed, unsigned char ucMaxHP, CAnimation* panmMove, CAnimation* panmDestruction);
-	RECT GetCollisionRect();
-	bool CheckCollision(IBaseInterface* pBase);
-	void HandleEvent(CEvent* pEvent);
+	// Singleton's accessor
+	static CPlayer* GetInstance(void);
+
+	// Common routines - Overloaded methods
 	void Update(float fElapsedTime);
-	void Render();
-	void Shutdown();
-	inline unsigned int GetType(void) { return TYPE_PLAYER; }
+	void Attack(CBaseCharacter* pTarget);
+	void ChargedAttack(void);
+	void Die(void);
+	unsigned int GetType(void) const { return TYPE_CHAR_PLAYER; }
+
+	// Get input for the player
+	void Input(void);
+	// Cycle through the weapons
+	void CycleWeapon(void);
+	// Cycle through the masks
+	void CycleMask(void);
+	// Set the bit for a weapon on
+	void AquireWeapon(unsigned int uiWeaponType);
+	// Set bit of a mask on
+	void AquireMask(unsigned int uiMaskType);
+	// Set bool for heart piece on or increase health
+	void AquireHeartPiece(void);
+
+	// Desturctor
+	~CPlayer(void);
+
+
+	inline bool HasHeartPiece(void) { return m_bHeartPiece; }
 };
 
 #endif // C_PLAYER_H_

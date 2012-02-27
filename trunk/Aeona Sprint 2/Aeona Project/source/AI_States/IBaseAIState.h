@@ -7,16 +7,19 @@
 //								the AI states inherit
 ////////////////////////////////////////////////////////////////////////
 
+// Standard header protection
 #ifndef I_BASE_AI_STATE_H_
 #define I_BASE_AI_STATE_H_
+
+// The object the AI will be controlling
+#include "../Game Objects/CBaseCharacter.h"
 
 class IBaseAIState
 {
 public:
-	virtual void Enter(void) = 0;
-	virtual void Update(float fElapsedTime) = 0;
-	virtual void Render(void) = 0;
-	virtual void Exit(void) = 0;
+	virtual void Enter(CBaseCharacter* pCharacter) = 0;
+	virtual void Update(CBaseCharacter* pCharacter, float fElapsedTime) = 0;
+	virtual void Exit(CBaseCharacter* pCharacter) = 0;
 };
 
 #endif // I_BASE_AI_STATE_H_

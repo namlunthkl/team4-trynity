@@ -15,11 +15,15 @@
 
 class CSwarmAIState : public IBaseAIState
 {
+	// Trilogy for proper singleton
+	CSwarmAIState(const CSwarmAIState&){}
+	CSwarmAIState* operator=(const CSwarmAIState&){}
+	~CSwarmAIState(void){}
 public:
-	void Enter(void);
-	void Update(float fElapsedTime);
-	void Render(void);
-	void Exit(void);
+	static CSwarmAIState* GetInstance(void);
+	void Enter(CBaseCharacter* pCharacter);
+	void Update(CBaseCharacter* pCharacter, float fElapsedTime);
+	void Exit(CBaseCharacter* pCharacter);
 };
 
 #endif // C_SWARM_AI_STATE_H_

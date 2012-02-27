@@ -14,11 +14,15 @@
 
 class CIdleAIState : public IBaseAIState
 {
+	// Trilogy for proper singleton
+	CIdleAIState(const CIdleAIState&){}
+	CIdleAIState* operator=(const CIdleAIState&){}
+	~CIdleAIState(void){}
 public:
-	void Enter(void);
-	void Update(float fElapsedTime);
-	void Render(void);
-	void Exit(void);
+	static CIdleAIState* GetInstance(void);
+	void Enter(CBaseCharacter* pCharacter);
+	void Update(CBaseCharacter* pCharacter, float fElapsedTime);
+	void Exit(CBaseCharacter* pCharacter);
 };
 
 #endif // C_IDLE_AI_STATE_H_

@@ -40,7 +40,7 @@ public:
 	void Shutdown();
 	void LoadAnimation();
 	
-	inline unsigned int GetType(void) { return TYPE_BASE_ENEMY; }
+	inline unsigned int GetType(void) { return TYPE_CHAR_ENEMY; }
 };
 
 #endif // C_ENEMY_H_

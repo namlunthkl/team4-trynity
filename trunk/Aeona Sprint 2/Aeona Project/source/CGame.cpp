@@ -18,7 +18,7 @@
 #include "Animation\CAnimationManager.h"
 #include "Input Manager/CInputManager.h"
 
-#include "ByteUtil.h"
+#include "Util/ByteUtil.h"
 
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
