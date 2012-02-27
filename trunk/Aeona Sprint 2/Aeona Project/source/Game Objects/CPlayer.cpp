@@ -78,7 +78,7 @@ void CPlayer::Render()
 	rPlayer.top = 0;
 	rPlayer.right = 96;
 	rPlayer.bottom = 96;
-	TEX_MNG->Draw( GetImageID(), GetPosX(), GetPosY(), 1.0f, 1.0f, &rPlayer);
+	TEX_MNG->Draw( GetImageID(), (int)GetPosX(), (int)GetPosY(), 1.0f, 1.0f, &rPlayer);
 }
 
 void CPlayer::Shutdown()

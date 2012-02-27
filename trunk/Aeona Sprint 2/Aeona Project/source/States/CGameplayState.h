@@ -28,6 +28,9 @@
 
 #include "../Game Objects/CEnemy.h"
 
+#define SCREEN_POS_X(X) CGameplayState::GetInstance()->GetScreenPositionX(X)
+#define SCREEN_POS_Y(Y) CGameplayState::GetInstance()->GetScreenPositionY(Y)
+
 class CGameplayState : public IGameState , public IListener
 {
 	// JUST FOR TESTING

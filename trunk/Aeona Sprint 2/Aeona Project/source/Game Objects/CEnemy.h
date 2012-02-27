@@ -32,7 +32,7 @@ public:
 	void ChangeState(IBaseAIState* pAIState);
 	//
 	bool Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsigned int uiSpeed, unsigned char ucMaxHP, CAnimation* panmMove, CAnimation* panmDestruction);
-	RECT GetCollisionRect();
+	RectD GetCollisionRect();
 	bool CheckCollision(IBaseInterface* pBase);
 	void HandleEvent(CEvent* pEvent);
 	void Update(float fElapsedTime);

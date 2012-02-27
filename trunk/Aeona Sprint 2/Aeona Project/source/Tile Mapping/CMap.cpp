@@ -224,7 +224,7 @@ void CMap::Render(int nCullingMode)
 //	Parameters	:	pBase - Object that we're checking collisions with
 //	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
+bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringTable* pStringTable)
 {
 	// TODO: Check collisions against all tiles on screen
 	bool bCollided = false;					// Basically what will be returned
@@ -258,7 +258,7 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 
 				RECT rectIntersection;
 				// If Base's collision rect intersects with this tile's collision rect...
-				if(IntersectRect(&rectIntersection, &rectTileCollision, &pBase->GetCollisionRect())) 
+				if(IntersectRect(&rectIntersection, &rectTileCollision, &ObjCollisionRect)) 
 				{
 					// ...we know that pBase collided with this tile
 					bCollided = true;
@@ -275,7 +275,7 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 						// If this tile should send an event only when colliding with player
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_PLAYER_COLLISION))
 							// Check if pBase is the player and if it is, send event
-							if(/* check if pBase's type is player */true)
+							if(ObjType == IBaseInterface::TYPE_PLAYER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
 							if(CInputManager::GetInstance()->GetPressedA())

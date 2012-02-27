@@ -47,9 +47,9 @@ void CEnemy::LoadAnimation()
 	m_pAnimation[ANM_RIGHT]->Play();
 }
 
-RECT CEnemy::GetCollisionRect()
+RectD CEnemy::GetCollisionRect()
 {
-	RECT rectCollision = {0, 0, 0, 0};
+	RectD rectCollision(0, 0, 0, 0);
 	
 	if(m_nCurrentAnimation != -1)
 	{
@@ -95,11 +95,11 @@ void CEnemy::Update(float fElapsedTime)
 			CEnemy tempEnemy;
 			tempEnemy.Initialize(GetPosX() + GetVelX(), GetPosY() + GetVelY(), 0, 0, 0, NULL, NULL);
 
-			if(!CWorldEngine::GetInstance()->CheckCollisions(&tempEnemy))
+			/*if(!CWorldEngine::GetInstance()->CheckCollisions(&tempEnemy))
 			{
 				SetPosX( GetPosX() + GetVelX() );
 				SetPosY( GetPosY() + GetVelY() );
-			}
+			}*/
 		}
 	}
 	else
@@ -109,8 +109,8 @@ void CEnemy::Update(float fElapsedTime)
 		{
 			m_fEnemyMoveTimer = 0.0f;
 
-			SetVelX(rand()%3 - 1);
-			SetVelY(rand()%3 - 1);
+			SetVelX((float)(rand()%3 - 1));
+			SetVelY((float)(rand()%3 - 1));
 		}
 		else
 		{
@@ -122,8 +122,8 @@ void CEnemy::Update(float fElapsedTime)
 void CEnemy::Render()
 {
 	if(m_nCurrentAnimation != -1)
-		m_pAnimation[m_nCurrentAnimation]->Render(CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
-		CGameplayState::GetInstance()->GetScreenPositionY(GetPosY()));
+		m_pAnimation[m_nCurrentAnimation]->Render(SCREEN_POS_X((int)GetPosX()),
+		SCREEN_POS_Y((int)GetPosY()));
 	else
 	{
 		RECT rPlayer;
@@ -131,8 +131,8 @@ void CEnemy::Render()
 		rPlayer.top = 0;
 		rPlayer.right = 192;
 		rPlayer.bottom = 96;
-		TEX_MNG->Draw( GetImageID(), CGameplayState::GetInstance()->GetScreenPositionX(GetPosX()),
-			CGameplayState::GetInstance()->GetScreenPositionY(GetPosY()), 1.0f, 1.0f, &rPlayer);
+		TEX_MNG->Draw( GetImageID(), SCREEN_POS_X((int)GetPosX()),
+			SCREEN_POS_Y((int)GetPosY()), 1.0f, 1.0f, &rPlayer);
 	}
 }
 

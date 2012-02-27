@@ -14,14 +14,10 @@
 
 // Parent class
 #include "IBaseInterface.h"
-#include "../Messaging/IListener.h"
 // For animations
 #include "../Animation/CAnimationPlayer.h"
-#include <vector>
-using std::vector;
-// For velocity vector
-#include "../Wrappers/SGD_Math.h"
-
+// For event handling
+#include "../Messaging/IListener.h"
 
 // CBaseObject
 // All game objects will inherit from this class
@@ -49,9 +45,6 @@ class CBaseObject : public IBaseInterface
 	vector<CAnimationPlayer*> m_vpAnimations;
 	int				m_anmCurrent;
 
-protected:
-	enum Type { TYPE_BASE_OBJECT, TYPE_BASE_CHARACTER, TYPE_PLAYER, TYPE_BASE_ENEMY, TYPE_MAX };
-
 public:
 	// Constructor
 	CBaseObject(long lPositionX = 0, long lPositionY = 0, unsigned int uiSpeed = 0U,
@@ -60,7 +53,7 @@ public:
 	// Common routines
 	virtual void Update(float fElapsedTime);
 	virtual void Render(void);
-	virtual RECT GetCollisionRect(void) const;
+	virtual RectD GetCollisionRect(void) const;
 	virtual bool CheckCollision(IBaseInterface* pObject);
 
 	virtual inline unsigned int GetType(void) const { return TYPE_BASE_OBJECT; }
@@ -73,33 +66,36 @@ public:
 	virtual ~CBaseObject(void);
 
 	// Accessors
-	inline unsigned int			GetRefCount	(void)	const	{ return m_uiRefCount; }
-	inline bool					IsActive	(void)	const	{ return m_bActive; }
-	inline PointD				GetPosition	(void)	const	{ return m_ptPosition; }
-	inline double				GetPosX		(void)	const	{ return m_ptPosition.x; }
-	inline double				GetPosY		(void)	const	{ return m_ptPosition.y; }
-	inline unsigned int			GetSpeed	(void)	const	{ return m_uiSpeed; }
-	inline tVector2D			GetVelocity (void)	const	{ return m_vecVelocity; }
-	inline float				GetVelX		(void)	const	{ return m_vecVelocity.fX; }
-	inline float				GetVelY		(void)	const	{ return m_vecVelocity.fY; }
-	inline int					GetImageID	(void)	const	{ return m_nImageID; }
-	inline unsigned int			GetWidth	(void)	const	{ return m_uiWidth; }
-	inline unsigned int			GetHeight	(void)	const	{ return m_uiHeight; }
-	CAnimationPlayer*	GetAnimationPlayer (unsigned int uiAnmIndex ) const;
+	inline unsigned int		GetRefCount			(void)	const	{ return m_uiRefCount; }
+	inline bool				IsActive			(void)	const	{ return m_bActive; }
+	inline PointD			GetPosition			(void)	const	{ return m_ptPosition; }
+	inline double			GetPosX				(void)	const	{ return m_ptPosition.x; }
+	inline double			GetPosY				(void)	const	{ return m_ptPosition.y; }
+	inline unsigned int		GetSpeed			(void)	const	{ return m_uiSpeed; }
+	inline tVector2D		GetVelocity			(void)	const	{ return m_vecVelocity; }
+	inline float			GetVelX				(void)	const	{ return m_vecVelocity.fX; }
+	inline float			GetVelY				(void)	const	{ return m_vecVelocity.fY; }
+	inline int				GetImageID			(void)	const	{ return m_nImageID; }
+	inline unsigned int		GetWidth			(void)	const	{ return m_uiWidth; }
+	inline unsigned int		GetHeight			(void)	const	{ return m_uiHeight; }
+	inline int				GetCurrentAnimation (void)	const	{ return m_anmCurrent; }
+	CAnimationPlayer*	GetAnimationPlayer	(unsigned int uiAnmIndex ) const;
 
 	// Mutators
-	inline void Activate	(void)					{ m_bActive = true; }
-	inline void Deactivate	(void)					{ m_bActive = false; }
-	inline void SetPosX		(double lPosX)			{ m_ptPosition.x = lPosX; }
-	inline void SetPosY		(double lPosY)			{ m_ptPosition.y = lPosY; }
-	inline void SetSpeed	(unsigned int uiSpeed)	{ m_uiSpeed = uiSpeed; }
-	inline void SetVelX		(float fVelX)			{ m_vecVelocity.fX = fVelX; }
-	inline void SetVelY		(float fVelY)			{ m_vecVelocity.fY = fVelY; }
-	inline void SetImageID	(int nImageID)			{ m_nImageID = nImageID; }
-	inline void SetWidth	(unsigned int uiWidth)	{ m_uiWidth = uiWidth; }
-	inline void SetHeight	(unsigned int uiHeight) { m_uiHeight = uiHeight; }
-	void PushAnimationPlayer (CAnimationPlayer* pAnimation);
-	bool PopAnimationPlayer (void);
+	inline void Activate		(void)						{ m_bActive = true; }
+	inline void Deactivate		(void)						{ m_bActive = false; }
+	inline void SetPosX			(double lPosX)				{ m_ptPosition.x = lPosX; }
+	inline void SetPosY			(double lPosY)				{ m_ptPosition.y = lPosY; }
+	inline void SetSpeed		(unsigned int uiSpeed)		{ m_uiSpeed = uiSpeed; }
+	inline void SetVelX			(float fVelX)				{ m_vecVelocity.fX = fVelX; }
+	inline void SetVelY			(float fVelY)				{ m_vecVelocity.fY = fVelY; }
+	inline void SetImageID		(int nImageID)				{ m_nImageID = nImageID; }
+	inline void SetWidth		(unsigned int uiWidth)		{ m_uiWidth = uiWidth; }
+	inline void SetHeight		(unsigned int uiHeight)		{ m_uiHeight = uiHeight; }
+
+	void SetCurrentAnimation	(int anmCurrent);
+	void PushAnimationPlayer	(CAnimationPlayer* pAnimation);
+	bool PopAnimationPlayer		(void);
 };
 
 #endif // C_BASE_OBJECT_H_
