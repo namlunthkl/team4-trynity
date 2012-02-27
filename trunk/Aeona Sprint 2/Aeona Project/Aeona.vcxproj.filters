@@ -174,9 +174,6 @@
     <ClCompile Include="source\Game Objects\CPlayer.cpp">
       <Filter>Object Hierarchy</Filter>
     </ClCompile>
-    <ClCompile Include="source\Game Objects\TestPlayer.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
     <ClCompile Include="source\Wrappers\SGD_Math.cpp">
       <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
@@ -345,9 +342,6 @@
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="source\Game Objects\CPlayer.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Game Objects\TestPlayer.h">
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="source\Game Objects\IBaseInterface.h">
