@@ -16,7 +16,7 @@
 #include "CBaseObject.h"
 
 // For Artificial Intelligence
-#include "../AI_States/IBaseAIState.h"
+class IBaseAIState;
 
 // CBaseCharacter
 // All game characters will inherit from this class
@@ -40,7 +40,7 @@ protected:
 public:
 	// Constructor
 	CBaseCharacter(long lPositionX = 0, long lPositionY = 0, unsigned int uiSpeed = 0U,
-		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0, bool bActive = false,
+		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
 
 	// Common routines
@@ -50,13 +50,16 @@ public:
 	virtual void Die(void);
 	virtual void ChangeAIState(IBaseAIState* pAIState);
 
-	virtual inline unsigned int GetType(void) const { return TYPE_BASE_CHARACTER; }
+	virtual inline unsigned int GetType(void) const { return TYPE_CHAR_BASE; }
 
 	void SufferDamage(unsigned int uiDamage);
 	void Heal(unsigned int uiHealAmount);
 
 	// Destructor
 	~CBaseCharacter(void);
+
+
+	inline void GainHeart(void) { m_uiMaxHealth++; }
 };
 
 #endif // C_BASE_CHARACTER_H_

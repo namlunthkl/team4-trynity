@@ -9,19 +9,7 @@
 #include "CEnemy.h"
 #include "../States/CGameplayState.h"
 
-//	Enemy-specific
-void CEnemy::ChangeState(IBaseAIState* pAIState)
-{
-	if(m_pAIState != NULL)
-	{
-		m_pAIState->Exit();
-	}
-	m_pAIState = pAIState;
-	if(m_pAIState != NULL)
-	{
-		m_pAIState->Enter();
-	}
-}
+
 
 bool CEnemy::Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsigned int uiSpeed, unsigned char ucMaxHP, CAnimation* panmMove, CAnimation* panmDestruction)
 {

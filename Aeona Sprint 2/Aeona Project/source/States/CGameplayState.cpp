@@ -19,10 +19,12 @@
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
 
+#include "../Game Objects/CPlayer.h"
+#define PLAYER CPlayer::GetInstance()
+
 // Constructor
 CGameplayState::CGameplayState(void)
 {
-	pPlayer = NULL;
 	pNPC = NULL;
 	m_nCameraPosX = 0;
 	m_nCameraPosY = 0;
@@ -42,7 +44,6 @@ void CGameplayState::Enter(void)
 	PW.Load("resource/data/FireFlicker.xml");
 	m_Rain.Load("resource/data/rain.xml");
 	m_Rain.Fire((int)(GAME->GetScreenWidth()*.5f),(int)(GAME->GetScreenHeight()*.5f));
-	pPlayer = NULL;
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	pNPC = new CEnemy();
@@ -58,7 +59,11 @@ void CGameplayState::Enter(void)
 	pEnemy->SetVelY(1);
 
 	// CAMERA->InitializeCamera();
-	
+	PLAYER->SetPosX(600);
+	PLAYER->SetPosY(100);
+	PLAYER->SetSpeed(100);
+
+
 	//	TODO  Temporary, just to demonstrate that the options work
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
@@ -72,14 +77,9 @@ bool CGameplayState::Input(void)
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
 
-	// Create player
-	if(!pPlayer)
-		if(INPUT->KeyPressed(DIK_SPACE))
-			MESSAGES->SendMsg(new CCreatePlayerMessage(600, 100));
-
 	// Move player
-	if(pPlayer)
-		pPlayer->Input();
+	if(PLAYER)
+		PLAYER->Input();
 
 	return true;
 }
@@ -103,16 +103,16 @@ void CGameplayState::Update(float fElapsedTime)
 
 	MESSAGES->ProcessMessages();
 
-	if(pPlayer)
-		pPlayer->Update(fElapsedTime);
+	if(PLAYER)
+		PLAYER->Update(fElapsedTime);
 
 	///////////////////
 	// Update camera
 	///////////////////
-	if(pPlayer)
+	if(PLAYER)
 	{
-		int nNewCameraPosX = (int)pPlayer->GetPosX() - GAME->GetScreenWidth() / 2;
-		int nNewCameraPosY = (int)pPlayer->GetPosY() - GAME->GetScreenHeight() / 2;
+		int nNewCameraPosX = (int)PLAYER->GetPosX() - GAME->GetScreenWidth() / 2;
+		int nNewCameraPosY = (int)PLAYER->GetPosY() - GAME->GetScreenHeight() / 2;
 
 		m_nCameraPosX = nNewCameraPosX;
 		m_nCameraPosY = nNewCameraPosY;
@@ -138,8 +138,8 @@ void CGameplayState::Render(void)
 	
 	D3D->GetSprite()->Flush();
 
-	if(pPlayer)
-		pPlayer->Render();
+	if(PLAYER)
+		PLAYER->Render();
 	
 	if(pNPC)
 		pNPC->Render();
@@ -194,15 +194,15 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 	{
 	case MSG_CREATE_PLAYER:
 		{
-			CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
-			CGameplayState* pGameplay = CGameplayState::GetInstance();
+			//CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
+			//CGameplayState* pGameplay = CGameplayState::GetInstance();
 
-			// TODO: Add code here
-			pGameplay->pPlayer = new TestPlayer();
-			pGameplay->pPlayer->Enter();
-			pGameplay->pPlayer->SetPosX(pCPM->GetPosX());
-			pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
-			break;
+			//// TODO: Add code here
+			//pGameplay->pPlayer = new TestPlayer();
+			//pGameplay->pPlayer->Enter();
+			//pGameplay->pPlayer->SetPosX(pCPM->GetPosX());
+			//pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
+			//break;
 		}
 	};
 }

@@ -262,20 +262,23 @@ bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringT
 				{
 					// ...we know that pBase collided with this tile
 					bCollided = true;
+				}
 
-					// If this tile has an event...
-					if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
+				// If this tile has an event...
+				if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
+				{
+					char nConditionsMet = 0;
+					char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
+
+					if(bCollided)
 					{
-						char nConditionsMet = 0;
-						char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
-
 						// If this tile should send an event in any collision
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ANY_COLLISION))
 							nConditionsMet++;
 						// If this tile should send an event only when colliding with player
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_PLAYER_COLLISION))
 							// Check if pBase is the player and if it is, send event
-							if(ObjType == IBaseInterface::TYPE_PLAYER)
+							if(ObjType == IBaseInterface::TYPE_CHAR_PLAYER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
 							if(CInputManager::GetInstance()->GetPressedA())
@@ -292,14 +295,13 @@ bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringT
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_AIR_CROSSBOW))
 							if(/* check if air power was used */false)
 								nConditionsMet++;
-
-						if(nConditionsMet == nConditionsNeeded)
-						{
-							TileInfo* eventInfo = new TileInfo(uiIndexWidth, uiIndexHeight, tileCurrent, this);
-							CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()), eventInfo);
-						}
 					}
 
+					if(nConditionsMet == nConditionsNeeded)
+					{
+						TileInfo* eventInfo = new TileInfo(uiIndexWidth, uiIndexHeight, tileCurrent, this);
+						CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()), eventInfo);
+					}
 					// Continue checking
 				}
 			}

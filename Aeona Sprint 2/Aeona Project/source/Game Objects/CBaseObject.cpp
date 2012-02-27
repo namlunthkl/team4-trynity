@@ -38,8 +38,8 @@ void CBaseObject::Update(float fElapsedTime)
 	if(!IsActive()) return;
 
 	// Update position based on velocity
-	m_ptPosition.x = (long) (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
-	m_ptPosition.y = (long) (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
+	m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
+	m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
 
 	if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
@@ -148,6 +148,6 @@ bool CBaseObject::PopAnimationPlayer (void)
 }
 void CBaseObject::SetCurrentAnimation (int anmCurrent)
 {
-	if(anmCurrent < m_vpAnimations.size())
+	if(anmCurrent < (int) m_vpAnimations.size())
 		m_anmCurrent = anmCurrent;
 }

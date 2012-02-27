@@ -14,7 +14,7 @@
 #ifndef CTILE_H_
 #define CTILE_H_
 
-#include "../ByteUtil.h"
+#include "../Util/ByteUtil.h"
 
 // CTile class
 // Defines a tile based on a position in a tileset and an ID

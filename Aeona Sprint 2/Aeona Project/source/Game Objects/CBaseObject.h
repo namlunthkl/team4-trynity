@@ -56,7 +56,7 @@ public:
 	virtual RectD GetCollisionRect(void) const;
 	virtual bool CheckCollision(IBaseInterface* pObject);
 
-	virtual inline unsigned int GetType(void) const { return TYPE_BASE_OBJECT; }
+	virtual inline unsigned int GetType(void) const { return TYPE_OBJ_BASE; }
 
 	// Add and release references
 	virtual void AddRef(void);
