@@ -149,10 +149,6 @@ void CGameplayState::Render(void)
 		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
 	}
 
-
-	if(pEnemy)
-		pEnemy->Render();
-	
 	D3D->GetSprite()->Flush();
 
 	m_Rain.Render();
