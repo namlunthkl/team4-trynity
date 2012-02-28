@@ -98,14 +98,20 @@
             this.numericUpDownCollisionYPosition = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownCollisionXPosition = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAllAnimations = new System.Windows.Forms.GroupBox();
+            this.AnimationListRemove = new System.Windows.Forms.Button();
             this.DeSelect = new System.Windows.Forms.Button();
             this.AnimationListAdd = new System.Windows.Forms.Button();
-            this.AnimationListRemove = new System.Windows.Forms.Button();
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.DrawWeaponPoint = new System.Windows.Forms.Button();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
+            this.groupBoxWeaponPoint = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.numericUpDownWeaponPointY = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownWeaponPointX = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxDraw.SuspendLayout();
             this.GroupBoxEditAnchorPoint.SuspendLayout();
@@ -129,6 +135,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionYPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionXPosition)).BeginInit();
             this.groupBoxAllAnimations.SuspendLayout();
+            this.groupBoxWeaponPoint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -137,7 +146,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1006, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1043, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -257,12 +266,13 @@
             // 
             // GroupBoxDraw
             // 
+            this.GroupBoxDraw.Controls.Add(this.DrawWeaponPoint);
             this.GroupBoxDraw.Controls.Add(this.DrawAnchorPoint);
             this.GroupBoxDraw.Controls.Add(this.DrawCollisionRect);
             this.GroupBoxDraw.Controls.Add(this.DrawFrameRect);
             this.GroupBoxDraw.Location = new System.Drawing.Point(677, 27);
             this.GroupBoxDraw.Name = "GroupBoxDraw";
-            this.GroupBoxDraw.Size = new System.Drawing.Size(142, 205);
+            this.GroupBoxDraw.Size = new System.Drawing.Size(167, 205);
             this.GroupBoxDraw.TabIndex = 2;
             this.GroupBoxDraw.TabStop = false;
             this.GroupBoxDraw.Text = "Draw";
@@ -304,12 +314,12 @@
             this.GroupBoxEditAnchorPoint.Controls.Add(this.label1);
             this.GroupBoxEditAnchorPoint.Controls.Add(this.numericUpDownCurrentPointY);
             this.GroupBoxEditAnchorPoint.Controls.Add(this.numericUpDownCurrentPointX);
-            this.GroupBoxEditAnchorPoint.Location = new System.Drawing.Point(825, 28);
+            this.GroupBoxEditAnchorPoint.Location = new System.Drawing.Point(853, 28);
             this.GroupBoxEditAnchorPoint.Name = "GroupBoxEditAnchorPoint";
             this.GroupBoxEditAnchorPoint.Size = new System.Drawing.Size(167, 72);
             this.GroupBoxEditAnchorPoint.TabIndex = 3;
             this.GroupBoxEditAnchorPoint.TabStop = false;
-            this.GroupBoxEditAnchorPoint.Text = "Edit Current Anchor Point :";
+            this.GroupBoxEditAnchorPoint.Text = "Edit Anchor Point :";
             // 
             // label2
             // 
@@ -365,7 +375,7 @@
             this.GroupBoxEditFrameRect.Controls.Add(this.numericUpDownHeight);
             this.GroupBoxEditFrameRect.Controls.Add(this.numericUpDownYPosition);
             this.GroupBoxEditFrameRect.Controls.Add(this.numericUpDownXPosition);
-            this.GroupBoxEditFrameRect.Location = new System.Drawing.Point(825, 107);
+            this.GroupBoxEditFrameRect.Location = new System.Drawing.Point(853, 106);
             this.GroupBoxEditFrameRect.Name = "GroupBoxEditFrameRect";
             this.GroupBoxEditFrameRect.Size = new System.Drawing.Size(167, 125);
             this.GroupBoxEditFrameRect.TabIndex = 4;
@@ -765,7 +775,7 @@
             this.groupBoxEditCollisionRect.Controls.Add(this.numericUpDownCollisionHeight);
             this.groupBoxEditCollisionRect.Controls.Add(this.numericUpDownCollisionYPosition);
             this.groupBoxEditCollisionRect.Controls.Add(this.numericUpDownCollisionXPosition);
-            this.groupBoxEditCollisionRect.Location = new System.Drawing.Point(825, 238);
+            this.groupBoxEditCollisionRect.Location = new System.Drawing.Point(853, 237);
             this.groupBoxEditCollisionRect.Name = "groupBoxEditCollisionRect";
             this.groupBoxEditCollisionRect.Size = new System.Drawing.Size(167, 125);
             this.groupBoxEditCollisionRect.TabIndex = 9;
@@ -873,6 +883,16 @@
             this.groupBoxAllAnimations.TabStop = false;
             this.groupBoxAllAnimations.Text = "Animations";
             // 
+            // AnimationListRemove
+            // 
+            this.AnimationListRemove.Location = new System.Drawing.Point(213, 179);
+            this.AnimationListRemove.Name = "AnimationListRemove";
+            this.AnimationListRemove.Size = new System.Drawing.Size(96, 23);
+            this.AnimationListRemove.TabIndex = 9;
+            this.AnimationListRemove.Text = "Remove";
+            this.AnimationListRemove.UseVisualStyleBackColor = true;
+            this.AnimationListRemove.Click += new System.EventHandler(this.AnimationListRemove_Click);
+            // 
             // DeSelect
             // 
             this.DeSelect.Location = new System.Drawing.Point(109, 179);
@@ -892,16 +912,6 @@
             this.AnimationListAdd.Text = "Add";
             this.AnimationListAdd.UseVisualStyleBackColor = true;
             this.AnimationListAdd.Click += new System.EventHandler(this.AnimationListAdd_Click);
-            // 
-            // AnimationListRemove
-            // 
-            this.AnimationListRemove.Location = new System.Drawing.Point(213, 179);
-            this.AnimationListRemove.Name = "AnimationListRemove";
-            this.AnimationListRemove.Size = new System.Drawing.Size(96, 23);
-            this.AnimationListRemove.TabIndex = 9;
-            this.AnimationListRemove.Text = "Remove";
-            this.AnimationListRemove.UseVisualStyleBackColor = true;
-            this.AnimationListRemove.Click += new System.EventHandler(this.AnimationListRemove_Click);
             // 
             // listBoxAnimations
             // 
@@ -928,6 +938,16 @@
             this.vScrollBar1.TabIndex = 12;
             this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
+            // DrawWeaponPoint
+            // 
+            this.DrawWeaponPoint.Location = new System.Drawing.Point(7, 110);
+            this.DrawWeaponPoint.Name = "DrawWeaponPoint";
+            this.DrawWeaponPoint.Size = new System.Drawing.Size(129, 23);
+            this.DrawWeaponPoint.TabIndex = 3;
+            this.DrawWeaponPoint.Text = "Weapon Anchor Point";
+            this.DrawWeaponPoint.UseVisualStyleBackColor = true;
+            this.DrawWeaponPoint.Click += new System.EventHandler(this.DrawWeaponPoint_Click);
+            // 
             // graphicsPanelPlayer
             // 
             this.graphicsPanelPlayer.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -947,11 +967,69 @@
             this.MainPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseMove);
             this.MainPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPanel_MouseUp);
             // 
+            // groupBoxWeaponPoint
+            // 
+            this.groupBoxWeaponPoint.Controls.Add(this.label16);
+            this.groupBoxWeaponPoint.Controls.Add(this.label17);
+            this.groupBoxWeaponPoint.Controls.Add(this.numericUpDownWeaponPointY);
+            this.groupBoxWeaponPoint.Controls.Add(this.numericUpDownWeaponPointX);
+            this.groupBoxWeaponPoint.Location = new System.Drawing.Point(680, 238);
+            this.groupBoxWeaponPoint.Name = "groupBoxWeaponPoint";
+            this.groupBoxWeaponPoint.Size = new System.Drawing.Size(167, 72);
+            this.groupBoxWeaponPoint.TabIndex = 13;
+            this.groupBoxWeaponPoint.TabStop = false;
+            this.groupBoxWeaponPoint.Text = "Edit Weapon Anchor Point :";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 41);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Y Position :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 13);
+            this.label17.TabIndex = 2;
+            this.label17.Text = "X Position :";
+            // 
+            // numericUpDownWeaponPointY
+            // 
+            this.numericUpDownWeaponPointY.Location = new System.Drawing.Point(73, 39);
+            this.numericUpDownWeaponPointY.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownWeaponPointY.Name = "numericUpDownWeaponPointY";
+            this.numericUpDownWeaponPointY.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponPointY.TabIndex = 1;
+            this.numericUpDownWeaponPointY.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointY_ValueChanged);
+            // 
+            // numericUpDownWeaponPointX
+            // 
+            this.numericUpDownWeaponPointX.Location = new System.Drawing.Point(73, 13);
+            this.numericUpDownWeaponPointX.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownWeaponPointX.Name = "numericUpDownWeaponPointX";
+            this.numericUpDownWeaponPointX.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponPointX.TabIndex = 0;
+            this.numericUpDownWeaponPointX.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointX_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 769);
+            this.ClientSize = new System.Drawing.Size(1043, 769);
+            this.Controls.Add(this.groupBoxWeaponPoint);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.groupBoxAllAnimations);
@@ -998,6 +1076,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionYPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionXPosition)).EndInit();
             this.groupBoxAllAnimations.ResumeLayout(false);
+            this.groupBoxWeaponPoint.ResumeLayout(false);
+            this.groupBoxWeaponPoint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1082,6 +1164,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Button DeSelect;
+        private System.Windows.Forms.Button DrawWeaponPoint;
+        private System.Windows.Forms.GroupBox groupBoxWeaponPoint;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointY;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointX;
     }
 }
 

@@ -35,6 +35,12 @@ namespace Animation_Editor
             get { return anchor; }
             set { anchor = value; }
         }
+        private Point weaponAnchor;
+        public System.Drawing.Point WeaponAnchor
+        {
+            get { return weaponAnchor; }
+            set { weaponAnchor = value; }
+        }
         private string triggerEvent;
         public string TriggerEvent
         {
