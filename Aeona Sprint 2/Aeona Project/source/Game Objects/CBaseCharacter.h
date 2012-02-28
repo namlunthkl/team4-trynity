@@ -32,14 +32,16 @@ class CBaseCharacter : public CBaseObject
 	// Every character needs an AI State
 	IBaseAIState*	m_pAIState;
 
-protected:
-	// Enum for animations
-	enum Animations { ANM_WALK_UP, ANM_WALK_DOWN, ANM_WALK_RIGHT, ANM_WALK_LEFT,
-		ANM_ATTACK, ANM_DIE, ANM_MAX };
+	// Used by AI States
+	float			m_fMoveTimer;
 
 public:
+	// Enum for animations
+	enum EAnimations { ANM_WALK_UP, ANM_WALK_DOWN, ANM_WALK_RIGHT, ANM_WALK_LEFT,
+		ANM_ATTACK, ANM_DIE, ANM_MAX };
+
 	// Constructor
-	CBaseCharacter(long lPositionX = 0, long lPositionY = 0, unsigned int uiSpeed = 0U,
+	CBaseCharacter(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
 
@@ -60,6 +62,9 @@ public:
 
 
 	inline void GainHeart(void) { m_uiMaxHealth++; }
+	
+	inline float GetMoveTimer(void) const { return m_fMoveTimer; }
+	inline void SetMoveTimer(float fMoveTimer) { m_fMoveTimer = fMoveTimer; }
 };
 
 #endif // C_BASE_CHARACTER_H_

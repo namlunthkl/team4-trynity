@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\AI_States\CRandomAIState.cpp" />
     <ClCompile Include="source\Animation\CAnimation.cpp" />
     <ClCompile Include="source\Animation\CAnimationManager.cpp" />
     <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />

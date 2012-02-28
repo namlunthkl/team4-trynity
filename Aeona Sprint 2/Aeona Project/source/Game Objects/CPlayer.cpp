@@ -8,6 +8,7 @@
 #include "CPlayer.h"
 #include "../Messaging/CEventSystem.h"
 #include "../Input Manager/CInputManager.h"
+#include "../States/CGameplayState.h"
 
 // Constructor
 CPlayer::CPlayer(void) : CBaseCharacter()
@@ -21,7 +22,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	
 	Activate();
 	CBaseCharacter::LoadAnimations("resource/Char Walk.xml");
-	m_footsteps.Load("Resource/data/leafyburst.xml");
+	m_fxFootsteps.Load("Resource/data/leafyburst.xml");
 }
 
 CPlayer* CPlayer::GetInstance(void)
@@ -36,7 +37,28 @@ CPlayer* CPlayer::GetInstance(void)
 
 void CPlayer::Update(float fElapsedTime)
 {
+	// Store the old position of the player for future checks
+	PointD ptOldPosition = GetPosition();
+
+	// Call Base Character's update method to move the player
 	CBaseCharacter::Update(fElapsedTime);
+	// Update the particles
+	m_fxFootsteps.Update(fElapsedTime);
+
+	// Fire the particle effect if the position changed
+	if(ptOldPosition != GetPosition())
+	{
+		m_fxFootsteps.Fire(SCREEN_POS_X(GetPosX()), SCREEN_POS_Y(GetPosY()));
+	}
+}
+
+void CPlayer::Render(void)
+{
+	// Render the player
+	CBaseCharacter::Render();
+
+	// Render the particles
+	m_fxFootsteps.Render();
 }
 
 void CPlayer::Attack(CBaseCharacter* pTarget)
@@ -59,19 +81,6 @@ void CPlayer::Die(void)
 // Get input for the player
 void CPlayer::Input(void)
 {
-	if(CInputManager::GetInstance()->GetLeft())
-	{
-		SetCurrentAnimation(ANM_WALK_LEFT);
-		SetVelX(-(float)GetSpeed());
-	}
-	else if(CInputManager::GetInstance()->GetRight())
-	{
-		SetCurrentAnimation(ANM_WALK_RIGHT);
-		SetVelX((float)GetSpeed());
-	}
-	else
-		SetVelX(0);
-
 	if(CInputManager::GetInstance()->GetUp())
 	{
 		SetCurrentAnimation(ANM_WALK_UP);
@@ -84,6 +93,19 @@ void CPlayer::Input(void)
 	}
 	else
 		SetVelY(0);
+
+	if(CInputManager::GetInstance()->GetLeft())
+	{
+		SetCurrentAnimation(ANM_WALK_LEFT);
+		SetVelX(-(float)GetSpeed());
+	}
+	else if(CInputManager::GetInstance()->GetRight())
+	{
+		SetCurrentAnimation(ANM_WALK_RIGHT);
+		SetVelX((float)GetSpeed());
+	}
+	else
+		SetVelX(0);
 }
 
 // Cycle through the weapons

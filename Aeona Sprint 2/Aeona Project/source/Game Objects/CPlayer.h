@@ -31,7 +31,7 @@ class CPlayer : public CBaseCharacter
 	unsigned int	m_uiCurrentMask;
 	vector<CWeapon>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
-	ParticleWeapon	m_footsteps;
+	ParticleWeapon	m_fxFootsteps;
 
 
 	// Singleton needs trilogy
@@ -49,6 +49,7 @@ public:
 
 	// Common routines - Overloaded methods
 	void Update(float fElapsedTime);
+	void Render(void);
 	void Attack(CBaseCharacter* pTarget);
 	void ChargedAttack(void);
 	void Die(void);
@@ -67,7 +68,7 @@ public:
 	// Set bool for heart piece on or increase health
 	void AquireHeartPiece(void);
 
-	// Desturctor
+	// Destructor
 	~CPlayer(void);
 
 

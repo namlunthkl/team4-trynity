@@ -9,37 +9,23 @@
 #ifndef C_ENEMY_H_
 #define C_ENEMY_H_
 
-#include "CBaseObject.h"
+#include "CBaseCharacter.h"
 #include "../AI_States/IBaseAIState.h"
-#include "../Animation/CAnimationPlayer.h"
 
-class CEnemy : public CBaseObject
+class CEnemy : public CBaseCharacter
 {
 private:
-	unsigned char	m_ucDamage;
-	unsigned char	m_ucEnemyType;
-	IBaseAIState*	m_pAIState;
+	// Sound that plays when the enemy is moving
 	int				m_sndEnemy;
 
-	int m_nCurrentAnimation;
-	CAnimationPlayer* m_pAnimation[4];
-	//temp
-	float			m_fEnemyMoveTimer;
 public:
-	enum Animation { ANM_UP, ANM_DOWN, ANM_RIGHT, ANM_LEFT };
+	// Constructor
+	CEnemy(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
+		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
+		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
 
-	//	Enemy-specific
-	void ChangeState(IBaseAIState* pAIState);
-	//
-	bool Initialize(short sPosX, short sPosY, unsigned char ucCharType, unsigned int uiSpeed, unsigned char ucMaxHP, CAnimation* panmMove, CAnimation* panmDestruction);
-	RectD GetCollisionRect();
-	bool CheckCollision(IBaseInterface* pBase);
-	void HandleEvent(CEvent* pEvent);
-	void Update(float fElapsedTime);
-	void Render();
-	void Shutdown();
-	void LoadAnimation();
-	
+	~CEnemy(void);
+
 	inline unsigned int GetType(void) { return TYPE_CHAR_ENEMY; }
 };
 

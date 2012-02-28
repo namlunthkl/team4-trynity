@@ -16,10 +16,10 @@
 #include "../AI_States/IBaseAIState.h"
 
 // Constructor
-CBaseCharacter::CBaseCharacter(long lPositionX, long lPositionY, unsigned int uiSpeed,
+CBaseCharacter::CBaseCharacter(double dPositionX, double dPositionY, unsigned int uiSpeed,
 	int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage)
-	: CBaseObject(lPositionX, lPositionY, uiSpeed, nImageID, uiWidth ,uiHeight, bActive)
+	: CBaseObject(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth ,uiHeight, bActive)
 {
 	m_uiMaxHealth = uiMaxHealth;
 	m_uiCurHealth = uiMaxHealth;
