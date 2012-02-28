@@ -48,6 +48,8 @@ class CGameplayState : public IGameState , public IListener
 	int m_nCameraPosX;
 	int m_nCameraPosY;
 
+	//	Assets
+	int m_imgHUD;
 
 public:
 
@@ -65,6 +67,9 @@ public:
 
 	// Render the world and the objects in the game
 	void Render(void);
+
+	// Render the HUD in a separate function
+	void RenderHUD(void);
 
 	// Shutdown everything
 	void Exit(void);
