@@ -49,9 +49,9 @@ void CGameplayState::Enter(void)
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
-	for(int i=0; i < 2; ++i)
+	for(int i=0; i < 8; ++i)
 	{
-		for(int j = 0; j < 2; ++j)
+		for(int j = 0; j < 8; ++j)
 		{
 			CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
 			pEnemy->ChangeAIState(CRandomAIState::GetInstance());
@@ -140,6 +140,8 @@ void CGameplayState::Render(void)
 
 	if(PLAYER)
 		PLAYER->Render();
+
+	OBJECTS->RenderObjects();
 
 	if(CInputManager::GetInstance()->GetAttack())
 	{
