@@ -9,6 +9,8 @@
 #include "CObjectManager.h"
 
 #include "CBaseObject.h"
+#include "../Tile Mapping/CWorldEngine.h"
+#include "../States/CGameplayState.h"
 
 CObjectManager* CObjectManager::sm_pInstance = nullptr;
 
@@ -120,6 +122,38 @@ void CObjectManager::CheckCollisions()
 				 }
 			 }
 		 }
+
+		 RECT objRect = m_vpObjectList[i]->GetCollisionRect().GetWindowsRECT();
+		 RECT* intersectRect = WORLD->CheckCollisions(
+			 m_vpObjectList[i]->GetCollisionRect().GetWindowsRECT(), m_vpObjectList[i]->GetType());
+
+		 if(intersectRect)
+		 {
+			 int nRectWidth = intersectRect->right - intersectRect->left;
+			 int nRectHeight = intersectRect->bottom - intersectRect->top;
+			 int nAnmHeight = objRect.bottom - objRect.top;
+			 int nAnmWidth = objRect.right - objRect.left;
+			 CBaseObject* pObject = (CBaseObject*)m_vpObjectList[i];
+
+			 if(nRectWidth > nRectHeight)
+			 {
+				 //// Top/Down Collision
+				 //if(pObject->GetPosY() < pObject->GetPosY())
+					// pObject->SetPosY(WORLD_POS_Y(intersectRect->top + pObject->m_ptAnchor.y - nAnmHeight));
+				 //else
+					// pObject->SetPosY(WORLD_POS_Y(intersectRect->bottom + m_ptAnchor.y));
+			 }
+			 else
+			 {
+				 //// Side Collision
+				 //if(m_vpObjectList[i]->GetPosX() < pBaseObject->GetPosX())
+					// SetPosX(WORLD_POS_X(rectCollisionResult.left + m_ptAnchor.x - nAnmWidth));
+				 //else
+					// SetPosX(WORLD_POS_X(rectCollisionResult.right + m_ptAnchor.x));
+			 }
+
+		 }
+
 	 }
 
 }

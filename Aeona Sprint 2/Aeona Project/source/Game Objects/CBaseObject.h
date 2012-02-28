@@ -93,6 +93,7 @@ public:
 	inline void SetImageID		(int nImageID)				{ m_nImageID = nImageID; }
 	inline void SetWidth		(unsigned int uiWidth)		{ m_uiWidth = uiWidth; }
 	inline void SetHeight		(unsigned int uiHeight)		{ m_uiHeight = uiHeight; }
+	inline void SetDebugMode	(bool bDebugMode)			{ m_bDebugMode = bDebugMode; }
 
 	void SetCurrentAnimation	(int anmCurrent);
 	void PushAnimationPlayer	(CAnimationPlayer* pAnimation);

@@ -224,10 +224,9 @@ void CMap::Render(int nCullingMode)
 //	Parameters	:	pBase - Object that we're checking collisions with
 //	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringTable* pStringTable)
+RECT* CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringTable* pStringTable)
 {
-	// TODO: Check collisions against all tiles on screen
-	bool bCollided = false;					// Basically what will be returned
+	RECT* rectIntersection = nullptr;
 
 	// Indexes we'll need for looping
 	unsigned int uiIndexLayer	= 0;		// Loop through layers
@@ -256,13 +255,8 @@ bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringT
 				rectTileCollision.right = rectTileCollision.left + GetTileset()->GetTileWidth();
 				rectTileCollision.bottom = rectTileCollision.top + GetTileset()->GetTileHeight();
 
-				RECT rectIntersection;
 				// If Base's collision rect intersects with this tile's collision rect...
-				if(IntersectRect(&rectIntersection, &rectTileCollision, &ObjCollisionRect)) 
-				{
-					// ...we know that pBase collided with this tile
-					bCollided = true;
-				}
+				IntersectRect(rectIntersection, &rectTileCollision, &ObjCollisionRect);
 
 				// If this tile has an event...
 				if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
@@ -270,7 +264,7 @@ bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringT
 					char nConditionsMet = 0;
 					char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
 
-					if(bCollided)
+					if(rectIntersection)
 					{
 						// If this tile should send an event in any collision
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ANY_COLLISION))
@@ -329,7 +323,7 @@ bool CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringT
 	}
 
 	// Return if collided or not
-	return bCollided;
+	return rectIntersection;
 }
 
 ////////////////////////////////////////////////////////////////////////
