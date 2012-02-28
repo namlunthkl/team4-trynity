@@ -156,7 +156,7 @@ bool CGame::Input(void)
 			{
 				m_bPaused = false;
 			}
-			else if(INPUT->KeyPressed(DIK_DELETE))
+			else if(CInputManager::GetInstance()->GetPressedBack())
 			{
 				AUDIO->SilenceAll();
 				m_bPaused = false;
