@@ -7,6 +7,7 @@
 
 // Precompiled header
 #include "StdAfx.h"
+#include "..\StdAfx.h"
 
 // Header file for this state
 #include "CGameplayState.h"
@@ -61,7 +62,10 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 
+
+
 	//	TODO  Temporary, just to demonstrate that the options work
+	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD.png", D3DCOLOR_XRGB(255, 255, 255));
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
 }
@@ -80,6 +84,7 @@ bool CGameplayState::Input(void)
 
 	return true;
 }
+
 void CGameplayState::Update(float fElapsedTime)
 {
 	// Update the best world engine ever created
@@ -118,7 +123,8 @@ void CGameplayState::Update(float fElapsedTime)
 
 void CGameplayState::Render(void)
 {
-	// Render the best world engine ever created
+	//	Render the best world engine ever created
+	//	Daniel's just such a cool guy!
 	WORLD->RenderWorld();
 
 	if(PW.GetFired())
@@ -132,6 +138,11 @@ void CGameplayState::Render(void)
 
 	m_Rain.Render();
 
+	//	Render a neato HUD
+	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
+	{
+		RenderHUD();
+	}
 }
 
 void CGameplayState::Exit(void)
@@ -174,7 +185,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 {
 	switch(pMsg->GetMsgID())
 	{
-	case MSG_CREATE_PLAYER:
+		case MSG_CREATE_PLAYER:
 		{
 			//CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
 			//CGameplayState* pGameplay = CGameplayState::GetInstance();
@@ -186,6 +197,79 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			//pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
 			//break;
 		}
-	};
+	}
 }
 
+void CGameplayState::RenderHUD()
+{
+	RECT rFace;
+	rFace.left = 112;
+	rFace.top = 0;
+	rFace.right = 112+66;
+	rFace.bottom = 66;
+
+	RECT rItem;
+	rItem.left = 112+66;
+	rItem.top = 0;
+	rItem.right = 112+66+66;
+	rItem.bottom = 66;
+
+	RECT rHeart;
+	rHeart.left = 64;
+	rHeart.top = 0;
+	rHeart.right = 64+24;
+	rHeart.bottom = 22;
+
+	RECT rBroke;
+	rBroke.left = 64+24;
+	rBroke.top = 0;
+	rBroke.right = 64+24+24;
+	rBroke.bottom = 22;
+
+	//	Draw the face thing
+	TEX_MNG->Draw(m_imgHUD, 4, 4, 1.0f, 1.0f, &rFace);
+
+	//	Draw the item box thing
+	TEX_MNG->Draw(m_imgHUD, 64+128, 4, 1.0f, 1.0f, &rItem);
+
+	//	Draw some lil hearts inbetween the two boxes
+	unsigned int tempMaxH = 10;
+	unsigned int tempCurH = 6;
+
+	//	Draw the first row of 5 hearts
+	for(unsigned int i = 1; i < 6; ++i)
+	{
+		if(i <= tempCurH)
+			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4, 1.0f, 1.0f, &rHeart);
+		else
+			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4, 1.0f, 1.0f, &rBroke);
+	}
+	//	Draw the second row of 5 hearts
+	for(unsigned int i = 1; i < 6; ++i)
+	{
+		if(i+5 <= tempCurH)
+			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4+22, 1.0f, 1.0f, &rHeart);
+		else
+			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4+22, 1.0f, 1.0f, &rBroke);
+	}
+
+	RECT rMap;
+	rMap.left = 112;
+	rMap.top = 66;
+	rMap.right = 112+96;
+	rMap.bottom = 66+96;
+
+	//	Draw the minimap frame
+	if(GAME->GetMapLocation() == 0)
+	{
+		TEX_MNG->Draw(m_imgHUD, 800-96-4, 4, 1.0f, 1.0f, &rMap);
+	}
+	else if(GAME->GetMapLocation() == 1)
+	{
+		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &rMap);
+	}
+	else
+	{
+		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &rMap);
+	}
+}

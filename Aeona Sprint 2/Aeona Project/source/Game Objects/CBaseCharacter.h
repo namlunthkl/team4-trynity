@@ -54,6 +54,9 @@ public:
 
 	virtual inline unsigned int GetType(void) const { return TYPE_CHAR_BASE; }
 
+	inline unsigned int GetMaxHealth(void)	{ return m_uiMaxHealth; }
+	inline unsigned int GetCurHealth(void)	{ return m_uiCurHealth; }
+
 	void SufferDamage(unsigned int uiDamage);
 	void Heal(unsigned int uiHealAmount);
 
