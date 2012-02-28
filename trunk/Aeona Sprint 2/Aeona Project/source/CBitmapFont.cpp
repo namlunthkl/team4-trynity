@@ -12,16 +12,12 @@ CBitmapFont::CBitmapFont()
 	m_nCharHeight = 32;
 	m_nNumCols = 8;
 	m_cStartChar = 33;
-	m_bModified = false;
 	m_nImageID = TEX_MNG->LoadTexture("resource/BitmapFont.png", D3DCOLOR_XRGB(255, 0, 255));
 }
 
 RECT CBitmapFont::CellAlgorithm(int nID)
 {
 	RECT rCell;
-
-	
-
 	rCell.left = (nID % m_nNumCols) * m_nCharWidth;
 	rCell.top = (nID / m_nNumCols) * m_nCharHeight;
 	rCell.right = rCell.left + m_nCharWidth;
@@ -31,7 +27,6 @@ RECT CBitmapFont::CellAlgorithm(int nID)
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
-		m_bModified = true;
 	}
 	else if(nID == 9+32 || nID == 10+32 || nID == 11+32)	//	JKL
 	{
@@ -42,13 +37,11 @@ RECT CBitmapFont::CellAlgorithm(int nID)
 	{
 		rCell.left -= 10;
 		m_nCharWidth = 26;
-		m_bModified = true;
 	}
 	else if(nID == 22+32)			//	W
 	{
 		rCell.right += 10;
 		m_nCharWidth = 26;
-		m_bModified = true;
 	}
 	else if(nID == 23+32)			//	X
 	{
@@ -62,35 +55,45 @@ RECT CBitmapFont::CellAlgorithm(int nID)
 		rCell.left += 16;
 		rCell.right += 16;
 	}
+	else if(nID == 37+32)			//	f
+	{
+		rCell.right -= 2;
+		m_nCharWidth = 14;
+	}
 	else if(nID == 40+32)			//	i
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
-		m_bModified = true;
 	}
 	else if(nID == 41+32)			//	j
 	{
 		rCell.right -= 6;
 		m_nCharWidth = 10;
-		m_bModified = true;
 	}
 	else if(nID == 43+32)			//	l
 	{
 		rCell.right -= 10;
 		m_nCharWidth = 6;
-		m_bModified = true;
 	}
 	else if(nID == 44+32)			//	m
 	{
 		rCell.left -= 10;
 		m_nCharWidth = 26;
-		m_bModified = true;
+	}
+	else if(nID == 49+32)			//	r
+	{
+		rCell.right -= 6;
+		m_nCharWidth = 10;
+	}
+	else if(nID == 51+32)			//	t
+	{
+		rCell.right -= 2;
+		m_nCharWidth = 14;
 	}
 	else if(nID == 54+32)			//	w
 	{
 		rCell.right += 10;
 		m_nCharWidth = 26;
-		m_bModified = true;
 	}
 	else if(nID == 55+32)			//	x
 	{
@@ -113,11 +116,11 @@ void CBitmapFont::Write(const char* szTextToPrint, int nPosX, int nPosY, DWORD d
 	int length = strlen(szTextToPrint);
 	for(int i = 0; i < length; ++i)
 	{
-		m_nCharWidth = 16;	//reset
+		m_nCharWidth = 16;
 		char ch = szTextToPrint[i];
 		if(ch == ' ')
 		{
-			nPosX += m_nCharWidth;
+			nPosX += 12;
 			continue;
 		}
 		int id = (int)(ch - m_cStartChar);
