@@ -332,76 +332,146 @@ namespace Animation_Editor
 
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
-
             Rectangle temp = new Rectangle();
-            if (end.X != 0 && end.Y != 0)
+            if (listBoxAnimations.SelectedIndex != -1)
             {
-                if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+                if (end.X != 0 && end.Y != 0)
                 {
-                    temp.X = end.X;
-                    temp.Y = end.Y;
-                    temp.Width = start.X - end.X;
-                    temp.Height = start.Y - end.Y;
-                }
-                else if ((end.X - start.X) < 0)
-                {
-                    temp.X = end.X;
-                    temp.Y = start.Y;
-                    temp.Width = start.X - end.X;
-                    temp.Height = end.Y - start.Y;
-                }
-                else if ((end.Y - start.Y) < 0)
-                {
-                    temp.X = start.X;
-                    temp.Y = end.Y;
-                    temp.Width = end.X - start.X;
-                    temp.Height = start.Y - end.Y;
+                    if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+                    {
+                        temp.X = end.X;
+                        temp.Y = end.Y;
+                        temp.Width = start.X - end.X;
+                        temp.Height = start.Y - end.Y;
+                    }
+                    else if ((end.X - start.X) < 0)
+                    {
+                        temp.X = end.X;
+                        temp.Y = start.Y;
+                        temp.Width = start.X - end.X;
+                        temp.Height = end.Y - start.Y;
+                    }
+                    else if ((end.Y - start.Y) < 0)
+                    {
+                        temp.X = start.X;
+                        temp.Y = end.Y;
+                        temp.Width = end.X - start.X;
+                        temp.Height = start.Y - end.Y;
+                    }
+                    else
+                    {
+                        temp.X = start.X;
+                        temp.Y = start.Y;
+                        temp.Width = end.X - start.X;
+                        temp.Height = end.Y - start.Y;
+                    }
+                    if (animationList[listBoxAnimations.SelectedIndex].NumFrames != 0 && listBoxFrames.SelectedIndex >= 0 )
+                    {
+                        switch (CurrentAction)
+                        {
+                            case 1:
+                                {
+                                    //  Draw Frame Rect
+                                    Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                    tempFrame.FrameRect = temp;
+                                    animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    //  Draw Collision Rect
+                                    Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                    tempFrame.Collision = temp;
+                                    animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    //  Draw Anchor Point
+                                    Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                    tempFrame.Anchor = start;
+                                    animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                        }
+
+                    }
+
+                    start = Point.Empty;
+                    end = Point.Empty;
                 }
                 else
                 {
-                    temp.X = start.X;
-                    temp.Y = start.Y;
-                    temp.Width = end.X - start.X;
-                    temp.Height = end.Y - start.Y;
-                }
-            }
-            
-            
+                    if (end.X != 0 && end.Y != 0)
+                    {
+                        if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+                        {
+                            temp.X = end.X;
+                            temp.Y = end.Y;
+                            temp.Width = start.X - end.X;
+                            temp.Height = start.Y - end.Y;
+                        }
+                        else if ((end.X - start.X) < 0)
+                        {
+                            temp.X = end.X;
+                            temp.Y = start.Y;
+                            temp.Width = start.X - end.X;
+                            temp.Height = end.Y - start.Y;
+                        }
+                        else if ((end.Y - start.Y) < 0)
+                        {
+                            temp.X = start.X;
+                            temp.Y = end.Y;
+                            temp.Width = end.X - start.X;
+                            temp.Height = start.Y - end.Y;
+                        }
+                        else
+                        {
+                            temp.X = start.X;
+                            temp.Y = start.Y;
+                            temp.Width = end.X - start.X;
+                            temp.Height = end.Y - start.Y;
+                        }
+                    }
 
-            if (frameList.Count != 0 && listBoxFrames.SelectedIndex >= 0)
-            {
-                switch (CurrentAction)
-                {
-                    case 1:
+
+
+                    if (frameList.Count != 0 && listBoxFrames.SelectedIndex >= 0)
+                    {
+                        switch (CurrentAction)
                         {
-                            //  Draw Frame Rect
-                            Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                            tempFrame.FrameRect = temp;
-                            frameList[listBoxFrames.SelectedIndex] = tempFrame;
-                            break;
+                            case 1:
+                                {
+                                    //  Draw Frame Rect
+                                    Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                    tempFrame.FrameRect = temp;
+                                    frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    //  Draw Collision Rect
+                                    Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                    tempFrame.Collision = temp;
+                                    frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    //  Draw Anchor Point
+                                    Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                    tempFrame.Anchor = start;
+                                    frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
                         }
-                    case 2:
-                        {
-                            //  Draw Collision Rect
-                            Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                            tempFrame.Collision = temp;
-                            frameList[listBoxFrames.SelectedIndex] = tempFrame;
-                            break;
-                        }
-                    case 3:
-                        {
-                            //  Draw Anchor Point
-                            Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                            tempFrame.Anchor = start;
-                            frameList[listBoxFrames.SelectedIndex] = tempFrame;
-                            break;
-                        }
+
+                    }
+
+                    start = Point.Empty;
+                    end = Point.Empty;
                 }
-                
             }
-            
-            start = Point.Empty;
-            end = Point.Empty;
         }
 
         private void FrameListAdd_Click(object sender, EventArgs e)
