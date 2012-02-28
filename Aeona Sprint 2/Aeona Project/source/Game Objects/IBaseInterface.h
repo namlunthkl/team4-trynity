@@ -35,7 +35,7 @@ public:
 	virtual void Update(float fElapsedTime) = 0;
 	virtual void Render(void) = 0;
 	virtual unsigned int GetType(void) const = 0;
-	virtual RectD GetCollisionRect(void) const = 0;
+	virtual RectD GetCollisionRect(void) = 0;
 	virtual bool CheckCollision(IBaseInterface* pObject) = 0;
 
 	// Add and release references

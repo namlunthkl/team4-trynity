@@ -11,18 +11,19 @@
 // Header file for this state
 #include "CGameplayState.h"
 
+// Includes
 #include "../Input Manager/CInputManager.h"
 #include "../Camera/CCameraControl.h"
-#define WORLD CWorldEngine::GetInstance()
+#include "../Game Objects/CPlayer.h"
+#include "../AI_States/CRandomAIState.h"
+#include "../Game Objects/CObjectManager.h"
 
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
-
-#include "../Game Objects/CPlayer.h"
+#define WORLD CWorldEngine::GetInstance()
 #define PLAYER CPlayer::GetInstance()
-
-#include "../AI_States/CRandomAIState.h"
+#define OBJECTS CObjectManager::GetInstance()
 
 // Constructor
 CGameplayState::CGameplayState(void)
@@ -34,7 +35,7 @@ CGameplayState::CGameplayState(void)
 // Initialize everything
 void CGameplayState::Enter(void)
 {
-	// Initialize the world engine
+	// Initialize stuff
 	WORLD->InitWorldEngine();
 	
 	// Register for the event
@@ -47,23 +48,17 @@ void CGameplayState::Enter(void)
 	m_Rain.Fire((int)(GAME->GetScreenWidth()*.5f),(int)(GAME->GetScreenHeight()*.5f));
 	MESSAGES->InitMessageSystem(MessageProc);
 
-	//pNPC = new CEnemy();
-	//pNPC->Initialize(50, 50, 0, 1, 0, NULL, NULL);
-	//pNPC->LoadAnimation();
-	//pNPC->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
-	//pNPC->SetVelX(1);
-	//pNPC->SetVelY(1);
-
-	pEnemy = new CEnemy(50, 250, 50, -1, 0, 0, true, 100, 1);
-	//pEnemy->Initialize(50, 250, 0, 1, 0, 0, 0);
-	//pEnemy->SetVelX(-1);
-	//pEnemy->SetVelY(1);
+	// Add enemies to the level
+	CEnemy* pEnemy = new CEnemy(50, 250, 50, -1, 0, 0, true, 100, 1);
 	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+	OBJECTS->AddObject(pEnemy);
+	pEnemy->Release();
 
-	// CAMERA->InitializeCamera();
-	PLAYER->SetPosX(600);
+
+	PLAYER->SetPosX(100);
 	PLAYER->SetPosY(100);
 	PLAYER->SetSpeed(100);
+	OBJECTS->AddObject(PLAYER);
 
 
 	//	TODO  Temporary, just to demonstrate that the options work
@@ -95,13 +90,9 @@ void CGameplayState::Update(float fElapsedTime)
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
 
-	if(pEnemy)
-		pEnemy->Update(fElapsedTime);
-
 	MESSAGES->ProcessMessages();
-
-	if(PLAYER)
-		PLAYER->Update(fElapsedTime);
+	OBJECTS->UpdateObjects(fElapsedTime);
+	OBJECTS->CheckCollisions();
 
 	///////////////////
 	// Update camera
@@ -135,13 +126,8 @@ void CGameplayState::Render(void)
 	
 	D3D->GetSprite()->Flush();
 
-	if(PLAYER)
-		PLAYER->Render();
-	
+	OBJECTS->RenderObjects();
 
-	if(pEnemy)
-		pEnemy->Render();
-	
 	D3D->GetSprite()->Flush();
 
 	m_Rain.Render();
@@ -154,6 +140,8 @@ void CGameplayState::Exit(void)
 	WORLD->DeleteInstance();
 	EVENTS->ShutdownEventSystem();
 	MESSAGES->ShutdownMessageSystem();
+	OBJECTS->RemoveAllObjects();
+	OBJECTS->DeleteInstance();
 }
 
 CGameplayState* CGameplayState::GetInstance(void)

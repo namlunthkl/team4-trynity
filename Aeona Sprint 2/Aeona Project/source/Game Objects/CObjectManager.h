@@ -13,7 +13,7 @@
 class CObjectManager
 {
 private:
-	CObjectManager* m_pInstance;
+	static CObjectManager* sm_pInstance;
 	vector<IBaseInterface*> m_vpObjectList;
 
 public:
@@ -21,8 +21,8 @@ public:
 	~CObjectManager(void) {}
 
 	//	Instance
-	CObjectManager* GetInstance();
-	void DeleteInstance();
+	static CObjectManager* GetInstance();
+	static void DeleteInstance();
 
 	void UpdateObjects(float fElapsedTime);
 	void RenderObjects();

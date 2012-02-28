@@ -29,10 +29,11 @@
 
 #define SCREEN_POS_X(X) CGameplayState::GetInstance()->GetScreenPositionX(X)
 #define SCREEN_POS_Y(Y) CGameplayState::GetInstance()->GetScreenPositionY(Y)
+#define WORLD_POS_X(X)	CGameplayState::GetInstance()->GetWorldPositionX(X)
+#define WORLD_POS_Y(Y)	CGameplayState::GetInstance()->GetWorldPositionY(Y)
 
 class CGameplayState : public IGameState , public IListener
 {
-	CEnemy* pEnemy;
 	ParticleWeapon PW;
 	ParticleWeapon m_Rain;
 	//	Proper Singleton - needs trilogy of evil
