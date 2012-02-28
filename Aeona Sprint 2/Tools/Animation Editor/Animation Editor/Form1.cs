@@ -130,7 +130,7 @@ namespace Animation_Editor
                     TM.Draw(imageid, offset.X, offset.Y, 1.0f, 1.0f, Rectangle.Empty, 0, 0, 0.0f, Color.White.ToArgb());
                 D3D.Sprite.Flush();
 
-                if (end != Point.Empty)
+                if (end != Point.Empty && CurrentAction == 1 || CurrentAction == 2)
                 {
                     Rectangle temp = new Rectangle();
                     temp.X = start.X + offset.X;
@@ -139,12 +139,24 @@ namespace Animation_Editor
                     temp.Height = end.Y - start.Y;
                     D3D.DrawEmptyRect(temp, Color.Black,1);
                 }
+                else if (end != Point.Empty && CurrentAction == 5)
+                {
+                    D3D.DrawLine(start.X, start.Y, end.X, end.Y, Color.Black, 1);
+                }
+                else if (start != Point.Empty && CurrentAction == 3 || start != Point.Empty && CurrentAction == 4)
+                {
+                    Point tempPoint = new Point(start.X + offset.X, start.Y + offset.Y);
+
+                    D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Black, 1);
+                    D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Black, 1);
+                }
                 if(listBoxAnimations.SelectedIndex != -1)
                 {
                     for (int i = 0; i < animationList[listBoxAnimations.SelectedIndex].NumFrames; i++)
                     {
 
                         Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[i];
+
                         Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
                             tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
 
@@ -162,14 +174,13 @@ namespace Animation_Editor
                             D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Red, 1);
                             D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red, 1);
                         }
-                        if (tempFrame.WeaponAnchor != Point.Empty)
+                        if (tempFrame.WeaponAnchor != Point.Empty && tempFrame.WeaponPoint != Point.Empty)
                         {
-                            Point tempPoint = new Point(tempFrame.WeaponAnchor.X + offset.X, tempFrame.WeaponAnchor.Y + offset.Y);
-
-                            D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Green, 1);
-                            D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Green, 1);
+                            Point tempPoint1 = new Point(tempFrame.WeaponAnchor.X + offset.X, tempFrame.WeaponAnchor.Y + offset.Y);
+                            Point tempPoint2 = new Point(tempFrame.WeaponPoint.X + offset.X, tempFrame.WeaponPoint.Y + offset.Y);
+                            D3D.DrawLine(tempPoint1.X, tempPoint1.Y, tempPoint2.X, tempPoint2.Y, Color.Gold, 1);
                         }
-
+                        
                     }
                 }
                 else
@@ -178,6 +189,7 @@ namespace Animation_Editor
                     {
 
                         Frame tempFrame = frameList[i];
+
                         Rectangle drawRect = new Rectangle(tempFrame.FrameRect.X + offset.X,
                             tempFrame.FrameRect.Y + offset.Y, tempFrame.FrameRect.Width, tempFrame.FrameRect.Height);
 
@@ -196,6 +208,19 @@ namespace Animation_Editor
                             D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Red, 1);
                         }
 
+                        if (tempFrame.WeaponAnchor != Point.Empty)
+                        {
+                            Point tempPoint = new Point(tempFrame.WeaponAnchor.X + offset.X, tempFrame.WeaponAnchor.Y + offset.Y);
+
+                            D3D.DrawLine(tempPoint.X - 5, tempPoint.Y, tempPoint.X + 5, tempPoint.Y, Color.Green, 1);
+                            D3D.DrawLine(tempPoint.X, tempPoint.Y - 5, tempPoint.X, tempPoint.Y + 5, Color.Green, 1);
+                        }
+                        if (tempFrame.WeaponAnchor != Point.Empty && tempFrame.WeaponPoint != Point.Empty)
+                        {
+                            Point tempPoint1 = new Point(tempFrame.WeaponAnchor.X + offset.X, tempFrame.WeaponAnchor.Y + offset.Y);
+                            Point tempPoint2 = new Point(tempFrame.WeaponPoint.X + offset.X, tempFrame.WeaponPoint.Y + offset.Y);
+                            D3D.DrawLine(tempPoint1.X, tempPoint1.Y, tempPoint2.X, tempPoint2.Y, Color.Gold, 1);
+                        }
                     }
                 }
                 
@@ -237,6 +262,8 @@ namespace Animation_Editor
             DrawAnchorPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             DrawWeaponPoint.BackColor = Color.FromKnownColor(KnownColor.Control);
             DrawWeaponPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawWeaponAngle.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawWeaponAngle.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             CurrentAction = 1;
         }
 
@@ -250,6 +277,8 @@ namespace Animation_Editor
             DrawAnchorPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             DrawWeaponPoint.BackColor = Color.FromKnownColor(KnownColor.Control);
             DrawWeaponPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawWeaponAngle.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawWeaponAngle.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             CurrentAction = 2;
         }
 
@@ -263,6 +292,8 @@ namespace Animation_Editor
             DrawAnchorPoint.ForeColor = Color.White;
             DrawWeaponPoint.BackColor = Color.FromKnownColor(KnownColor.Control);
             DrawWeaponPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawWeaponAngle.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawWeaponAngle.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             CurrentAction = 3;
         }
 
@@ -284,6 +315,14 @@ namespace Animation_Editor
             numericUpDownYPosition.Value = 0;
             numericUpDownHeight.Value = 0;
             numericUpDownWidth.Value = 0;
+            //  Weapon Anchor Point
+            numericUpDownWeaponPointX.Value = 0;
+            numericUpDownWeaponPointY.Value = 0;
+            //  Weapon point
+            numericUpDownWeaponPointY2.Value = 0;
+            numericUpDownWeaponPointX2.Value = 0;
+            //  Weapon Angle 
+            numericUpDownAngle.Value = 0;
             //  Frame Duration
             numericUpDownFrameDuration.Value = 0.25M;
             //  Animation Speed
@@ -350,9 +389,9 @@ namespace Animation_Editor
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
             Rectangle temp = new Rectangle();
-            if (end.X != 0 && end.Y != 0)
+            if (start != Point.Empty)
             {
-                if (listBoxAnimations.SelectedIndex != -1)
+                if (listBoxAnimations.SelectedIndex != -1 && end != Point.Empty)
                 {
                     if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
                     {
@@ -388,18 +427,24 @@ namespace Animation_Editor
                         {
                             case 1:
                                 {
-                                    //  Draw Frame Rect
-                                    Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
-                                    tempFrame.FrameRect = temp;
-                                    animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    if (end != Point.Empty)
+                                    {
+                                        //  Draw Frame Rect
+                                        Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                        tempFrame.FrameRect = temp;
+                                        animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
                                     break;
                                 }
                             case 2:
                                 {
-                                    //  Draw Collision Rect
-                                    Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
-                                    tempFrame.Collision = temp;
-                                    animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    if (end != Point.Empty)
+                                    {
+                                        //  Draw Collision Rect
+                                        Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                        tempFrame.Collision = temp;
+                                        animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
                                     break;
                                 }
                             case 3:
@@ -418,6 +463,18 @@ namespace Animation_Editor
                                     animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
                                     break;
                                 }
+                            case 5:
+                                {
+                                    //  Draw Collision Rect
+                                    if (end != Point.Empty)
+                                    {
+                                        Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                                        tempFrame.WeaponAnchor = start;
+                                        tempFrame.WeaponPoint = end;
+                                        animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
+                                    break;
+                                }
                         }
 
                     }
@@ -427,14 +484,15 @@ namespace Animation_Editor
                 }
                 else
                 {
-                    if (end.X != 0 && end.Y != 0)
+                    if (end != Point.Empty)
                     {
-                        if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0)
+                        if ((end.X - start.X) < 0 && (end.Y - start.Y) < 0 )
                         {
                             temp.X = end.X;
                             temp.Y = end.Y;
                             temp.Width = start.X - end.X;
                             temp.Height = start.Y - end.Y;
+
                         }
                         else if ((end.X - start.X) < 0)
                         {
@@ -467,18 +525,24 @@ namespace Animation_Editor
                         {
                             case 1:
                                 {
-                                    //  Draw Frame Rect
-                                    Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                                    tempFrame.FrameRect = temp;
-                                    frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    if (end != Point.Empty)
+                                    {
+                                        //  Draw Frame Rect
+                                        Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                        tempFrame.FrameRect = temp;
+                                        frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
                                     break;
                                 }
                             case 2:
                                 {
                                     //  Draw Collision Rect
-                                    Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                                    tempFrame.Collision = temp;
-                                    frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    if (end != Point.Empty)
+                                    {
+                                        Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                        tempFrame.Collision = temp;
+                                        frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
                                     break;
                                 }
                             case 3:
@@ -492,9 +556,23 @@ namespace Animation_Editor
                             case 4:
                                 {
                                     //  Draw Anchor Point
+                                    //Point temp2 = start;
                                     Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
                                     tempFrame.WeaponAnchor = start;
+
                                     frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    //  Draw Collision Rect
+                                    if (end != Point.Empty)
+                                    {
+                                        Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                                        tempFrame.WeaponAnchor = start;
+                                        tempFrame.WeaponPoint = end;
+                                        frameList[listBoxFrames.SelectedIndex] = tempFrame;
+                                    }
                                     break;
                                 }
                         }
@@ -580,6 +658,14 @@ namespace Animation_Editor
                 //  Anchor Point
                 numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
                 numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
+                //  Weapon Anchor Point
+                numericUpDownWeaponPointX.Value = tempFrame.WeaponAnchor.X;
+                numericUpDownWeaponPointY.Value = tempFrame.WeaponAnchor.Y;
+                //  Weapon point
+                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.X;
+                numericUpDownWeaponPointX2.Value = tempFrame.WeaponPoint.Y;
+                //  Weapon Angle 
+                numericUpDownAngle.Value = tempFrame.WeaponAngle;
                 //  Frame Duration
                 numericUpDownFrameDuration.Value = tempFrame.FrameDuration;
                 //  Trigger Event
@@ -604,6 +690,14 @@ namespace Animation_Editor
                 //  Anchor Point
                 numericUpDownCurrentPointX.Value = tempFrame.Anchor.X;
                 numericUpDownCurrentPointY.Value = tempFrame.Anchor.Y;
+                //  Weapon Anchor Point
+                numericUpDownWeaponPointX.Value = tempFrame.WeaponAnchor.X;
+                numericUpDownWeaponPointY.Value = tempFrame.WeaponAnchor.Y;
+                //  Weapon point
+                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.Y;
+                numericUpDownWeaponPointX2.Value = tempFrame.WeaponPoint.X;
+                //  Weapon Angle 
+                numericUpDownAngle.Value = tempFrame.WeaponAngle;
                 //  Frame Duration
                 numericUpDownFrameDuration.Value = tempFrame.FrameDuration;
                 //  Trigger Event
@@ -1386,6 +1480,8 @@ namespace Animation_Editor
             DrawAnchorPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             DrawWeaponPoint.BackColor = Color.Green;
             DrawWeaponPoint.ForeColor = Color.White;
+            DrawWeaponAngle.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawWeaponAngle.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
             CurrentAction = 4;
         }
 
@@ -1421,7 +1517,7 @@ namespace Animation_Editor
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
                 temp = tempFrame.WeaponAnchor;
 
-                temp.X = (int)numericUpDownWeaponPointY.Value;
+                temp.Y = (int)numericUpDownWeaponPointY.Value;
                 tempFrame.WeaponAnchor = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
             }
@@ -1431,8 +1527,101 @@ namespace Animation_Editor
                 Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
                 temp = tempFrame.WeaponAnchor;
 
-                temp.X = (int)numericUpDownWeaponPointY.Value;
+                temp.Y = (int)numericUpDownWeaponPointY.Value;
                 tempFrame.WeaponAnchor = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+        }
+
+        private void DrawWeaponAngle_Click(object sender, EventArgs e)
+        {
+            DrawFrameRect.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawFrameRect.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawCollisionRect.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawCollisionRect.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawAnchorPoint.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawAnchorPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawWeaponPoint.BackColor = Color.FromKnownColor(KnownColor.Control);
+            DrawWeaponPoint.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
+            DrawWeaponAngle.BackColor = Color.Gold;
+            DrawWeaponAngle.ForeColor = Color.White;
+
+            CurrentAction = 5;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDownWeaponPointY2_ValueChanged(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex >= 0)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                temp = tempFrame.WeaponPoint;
+
+                temp.Y = (int)numericUpDownWeaponPointY2.Value;
+                tempFrame.WeaponPoint = temp;
+                animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.WeaponPoint;
+
+                temp.Y = (int)numericUpDownWeaponPointY2.Value;
+                tempFrame.WeaponPoint = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+        }
+
+        private void numericUpDownWeaponPointX2_ValueChanged(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex >= 0)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                temp = tempFrame.WeaponPoint;
+
+                temp.X = (int)numericUpDownWeaponPointX2.Value;
+                tempFrame.WeaponPoint = temp;
+                animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Point temp = new Point();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                temp = tempFrame.WeaponPoint;
+
+                temp.X = (int)numericUpDownWeaponPointX2.Value;
+                tempFrame.WeaponPoint = temp;
+                frameList[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+        }
+
+        private void numericUpDownAngle_ValueChanged(object sender, EventArgs e)
+        {
+            if (listBoxAnimations.SelectedIndex >= 0)
+            {
+                Decimal temp = new Decimal();
+                Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
+                //temp = ;
+
+                temp = numericUpDownAngle.Value;
+                tempFrame.WeaponAngle = temp;
+                animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
+            }
+            else if (listBoxFrames.SelectedIndex != -1)
+            {
+                Decimal temp = new Decimal();
+                Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
+                //temp = ;
+
+                temp = numericUpDownAngle.Value;
+                tempFrame.WeaponAngle = temp;
                 frameList[listBoxFrames.SelectedIndex] = tempFrame;
             }
         }

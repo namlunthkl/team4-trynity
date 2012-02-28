@@ -132,9 +132,12 @@ bool CInputManager::GetInventory(void)
 }
 bool CInputManager::GetAttack(void)
 {
-	if(m_bControllerSet && INPUT->KeyPressed(DIK_RETURN) || (m_PlayerController->GetState().Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD))
+	if(m_bControllerSet && INPUT->KeyDown(DIK_RETURN) || (m_PlayerController->GetState().Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD))
+	{	
+		m_fTimeheld += GAME->GetTimer().m_fElapsedTime;
 		return true;
-
+	}
+	m_fTimeheld = 0;
 	return false;
 }
 bool CInputManager::GetPressedA(void)
@@ -158,6 +161,45 @@ bool CInputManager::GetPressedPause(void)
 	}
 	else if(!(m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START) && m_bStart == true)
 		m_bStart = false;
+
+	return false;
+}
+bool CInputManager::GetPressedBack(void)
+{
+	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK && m_bBack == false)
+	{
+		m_bBack = true;
+		return true;
+	}
+	else if(!(m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK) && m_bBack == true)
+		m_bBack = false;
+
+	return false;
+}
+
+bool CInputManager::GetDownBack(void)
+{
+	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK)
+		return true;
+
+	return false;
+}
+bool CInputManager::GetPressedB(void)
+{
+	if(INPUT->KeyPressed(DIK_RSHIFT) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B && m_bB == false)
+	{
+		m_bB = true;
+		return true;
+	}
+	else if(!(m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B) && m_bB == true)
+		m_bB = false;
+
+	return false;
+}
+bool CInputManager::DeleteGame(void)
+{
+	if(GetPressedB() && GetDownBack() )
+		return true;
 
 	return false;
 }

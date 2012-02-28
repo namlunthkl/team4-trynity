@@ -17,12 +17,15 @@ class CInputManager
 {
 private:
 	CXboxController* m_PlayerController;
-	bool m_bControllerSet,m_bStart,m_bLBumper,m_bRBumper,m_bYButton,m_bRightTrigger,m_bUp,m_bDown,m_bLeft,m_bRight,m_bA;
+	bool m_bControllerSet,m_bStart,m_bLBumper,m_bRBumper,m_bYButton,m_bRightTrigger,m_bUp,m_bDown,m_bLeft,m_bRight,m_bA,m_bBack,m_bB;
+	float m_fTimeheld;
+	
 	CInputManager(void){}
 
 	~CInputManager(void){}
 	CInputManager(const CInputManager&){}
 	CInputManager& operator=(const CInputManager&){}
+	
 public:
 	static CInputManager* GetInstance() 
 	{
@@ -49,10 +52,14 @@ public:
 	//bool GetUpLeft(void);
 	//bool GetUpRight(void);
 	//bool GetUpDown(void);
-
+	bool GetDownBack(void);
+	bool DeleteGame(void);
+	bool GetPressedBack(void);
+	bool GetPressedB(void);
 	bool GetSwapWeapon(void);
 	bool GetSwapMask(void);
 	bool GetInventory(void);
 	bool GetAttack(void);
+	float Timeheld() const { return m_fTimeheld; }
 };
 #endif
