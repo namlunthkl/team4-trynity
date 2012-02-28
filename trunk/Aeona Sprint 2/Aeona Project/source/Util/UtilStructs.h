@@ -10,6 +10,18 @@ struct Point
 		x = nX;
 		y = nY;
 	}
+	bool operator==(const Point& p)
+	{
+		if(x == p.x && y == p.y)
+			return true;
+		else return false;
+	}
+	bool operator!=(const Point& p)
+	{
+		if(x == p.x && y == p.y)
+			return false;
+		else return true;
+	}
 };
 
 struct PointL
@@ -20,6 +32,18 @@ struct PointL
 	{
 		x = nX;
 		y = nY;
+	}
+	bool operator==(const PointL& p)
+	{
+		if(x == p.x && y == p.y)
+			return true;
+		else return false;
+	}
+	bool operator!=(const PointL& p)
+	{
+		if(x == p.x && y == p.y)
+			return false;
+		else return true;
 	}
 };
 
@@ -32,6 +56,18 @@ struct PointD
 		x = dX;
 		y = dY;
 	}
+	bool operator==(const PointD& p)
+	{
+		if(x == p.x && y == p.y)
+			return true;
+		else return false;
+	}
+	bool operator!=(const PointD& p)
+	{
+		if(x == p.x && y == p.y)
+			return false;
+		else return true;
+	}
 };
 
 struct PointF
@@ -42,6 +78,18 @@ struct PointF
 	{
 		x = fX;
 		y = fY;
+	}
+	bool operator==(const PointF& p)
+	{
+		if(x == p.x && y == p.y)
+			return true;
+		else return false;
+	}
+	bool operator!=(const PointF& p)
+	{
+		if(x == p.x && y == p.y)
+			return false;
+		else return true;
 	}
 };
 
@@ -62,6 +110,14 @@ struct Rect
 		width = nRight - nLeft;
 		height = nBottom - nTop;
 	}
+	void OffsetRect(int nOffsetX, int nOffsetY)
+	{
+		left += nOffsetX;
+		right += nOffsetX;
+		top += nOffsetY;
+		bottom += nOffsetY;
+	}
+
 	RECT GetWindowsRECT(void)
 	{
 		RECT rectTemp;
@@ -89,6 +145,13 @@ struct RectD
 		bottom = dBottom;
 		width = dRight - dLeft;
 		height = dBottom - dTop;
+	}
+	void OffsetRect(double dOffsetX, double dOffsetY)
+	{
+		left += dOffsetX;
+		right += dOffsetX;
+		top += dOffsetY;
+		bottom += dOffsetY;
 	}
 	RECT GetWindowsRECT(void)
 	{

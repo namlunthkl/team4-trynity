@@ -19,11 +19,16 @@ class CRandomAIState : public IBaseAIState
 	CRandomAIState(const CRandomAIState&){}
 	CRandomAIState* operator=(const CRandomAIState&){}
 	~CRandomAIState(void){}
+	CRandomAIState(void){}
+
+	static CRandomAIState* sm_pInstance;
+	
 public:
-	static CRandomAIState* GetInstance(void);
+	static IBaseAIState* GetInstance(void);
 	void Enter(CBaseCharacter* pCharacter);
 	void Update(CBaseCharacter* pCharacter, float fElapsedTime);
 	void Exit(CBaseCharacter* pCharacter);
+	static void DeleteInstance(void);
 };
 
 #endif // C_RANDOM_AI_STATE_H_

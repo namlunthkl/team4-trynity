@@ -22,10 +22,11 @@
 #include "../Game Objects/CPlayer.h"
 #define PLAYER CPlayer::GetInstance()
 
+#include "../AI_States/CRandomAIState.h"
+
 // Constructor
 CGameplayState::CGameplayState(void)
 {
-	pNPC = NULL;
 	m_nCameraPosX = 0;
 	m_nCameraPosY = 0;
 }
@@ -46,17 +47,18 @@ void CGameplayState::Enter(void)
 	m_Rain.Fire((int)(GAME->GetScreenWidth()*.5f),(int)(GAME->GetScreenHeight()*.5f));
 	MESSAGES->InitMessageSystem(MessageProc);
 
-	pNPC = new CEnemy();
-	pNPC->Initialize(50, 50, 0, 1, 0, NULL, NULL);
-	pNPC->LoadAnimation();
+	//pNPC = new CEnemy();
+	//pNPC->Initialize(50, 50, 0, 1, 0, NULL, NULL);
+	//pNPC->LoadAnimation();
 	//pNPC->SetImageID( TEX_MNG->LoadTexture("resource/TempAsset2.png"));
-	pNPC->SetVelX(1);
-	pNPC->SetVelY(1);
+	//pNPC->SetVelX(1);
+	//pNPC->SetVelY(1);
 
-	pEnemy = new CEnemy();
-	pEnemy->Initialize(50, 250, 0, 1, 0, 0, 0);
-	pEnemy->SetVelX(-1);
-	pEnemy->SetVelY(1);
+	pEnemy = new CEnemy(50, 250, 50, -1, 0, 0, true, 100, 1);
+	//pEnemy->Initialize(50, 250, 0, 1, 0, 0, 0);
+	//pEnemy->SetVelX(-1);
+	//pEnemy->SetVelY(1);
+	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
 
 	// CAMERA->InitializeCamera();
 	PLAYER->SetPosX(600);
@@ -92,11 +94,6 @@ void CGameplayState::Update(float fElapsedTime)
 
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
-
-
-
-	if(pNPC)
-		pNPC->Update(fElapsedTime);
 
 	if(pEnemy)
 		pEnemy->Update(fElapsedTime);
@@ -141,9 +138,6 @@ void CGameplayState::Render(void)
 	if(PLAYER)
 		PLAYER->Render();
 	
-	if(pNPC)
-		pNPC->Render();
-
 
 	if(pEnemy)
 		pEnemy->Render();

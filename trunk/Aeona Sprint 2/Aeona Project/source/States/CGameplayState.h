@@ -32,7 +32,6 @@
 
 class CGameplayState : public IGameState , public IListener
 {
-	CEnemy* pNPC;
 	CEnemy* pEnemy;
 	ParticleWeapon PW;
 	ParticleWeapon m_Rain;

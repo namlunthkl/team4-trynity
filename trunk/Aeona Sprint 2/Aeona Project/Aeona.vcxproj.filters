@@ -189,6 +189,9 @@
     <ClCompile Include="source\Puzzles\CPuzzleManager.cpp">
       <Filter>Puzzles</Filter>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CRandomAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">

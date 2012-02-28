@@ -47,7 +47,7 @@ class CBaseObject : public IBaseInterface
 
 public:
 	// Constructor
-	CBaseObject(long lPositionX = 0, long lPositionY = 0, unsigned int uiSpeed = 0U,
+	CBaseObject(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0, bool bActive = false);
 
 	// Common routines

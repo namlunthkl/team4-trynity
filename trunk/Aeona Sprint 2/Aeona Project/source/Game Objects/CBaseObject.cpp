@@ -17,11 +17,11 @@
 
 
 // Constructor
-CBaseObject::CBaseObject(long lPositionX, long lPositionY, unsigned int uiSpeed,
+CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSpeed,
 	int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive)
 {
-	m_ptPosition.x		= lPositionX;
-	m_ptPosition.y		= lPositionY;
+	m_ptPosition.x		= dPositionX;
+	m_ptPosition.y		= dPositionY;
 	m_uiSpeed			= uiSpeed;
 	m_nImageID			= nImageID;
 	m_uiWidth			= uiWidth;
@@ -37,13 +37,22 @@ void CBaseObject::Update(float fElapsedTime)
 {
 	if(!IsActive()) return;
 
-	// Update position based on velocity
-	m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
-	m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
+	// Before updating the position based on velocity,
+	// let's find where the new collision rect will be
+	// so we can check for collisions
+	RectD NewRect = GetCollisionRect();
+	NewRect.OffsetRect(m_vecVelocity.fX * fElapsedTime, m_vecVelocity.fY * fElapsedTime);
 
-	if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+	if(!CWorldEngine::GetInstance()->CheckCollisions(NewRect.GetWindowsRECT(), GetType()))
 	{
-		m_vpAnimations[m_anmCurrent]->Update(fElapsedTime);
+		// Update position based on velocity
+		m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
+		m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
+
+		if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+		{
+			m_vpAnimations[m_anmCurrent]->Update(fElapsedTime);
+		}
 	}
 }
 
