@@ -160,7 +160,7 @@ void CWorldEngine::RenderWorld(void)
 //	Parameters	:	pBase - Object that we're checking collisions with
 //	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CWorldEngine::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType)
+RECT* CWorldEngine::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType)
 {
 	// TODO: Call check collision on all maps that are on screen
 	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
@@ -173,10 +173,12 @@ bool CWorldEngine::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType)
 			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)
 		{
 			// TODO: Define check collisions function on CMap
-			if(curMap->CheckCollisions(ObjCollisionRect, ObjType, m_pStringTable))
+			RECT* collisionResult = nullptr;
+			collisionResult = curMap->CheckCollisions(ObjCollisionRect, ObjType, m_pStringTable);
+			if(collisionResult)
 			{
 				// If collided in this map, return true
-				return true;
+				return collisionResult;
 			}
 			// Else continue checking
 		}
@@ -184,7 +186,7 @@ bool CWorldEngine::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType)
 
 	// If it looped through all the maps and didn't return
 	// true for any of them, there was no collision at all
-	return false;
+	return nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////

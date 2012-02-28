@@ -22,7 +22,6 @@
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
-#define WORLD CWorldEngine::GetInstance()
 #define PLAYER CPlayer::GetInstance()
 #define OBJECTS CObjectManager::GetInstance()
 
@@ -50,15 +49,22 @@ void CGameplayState::Enter(void)
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
-	CEnemy* pEnemy = new CEnemy(50, 250, 50, -1, 0, 0, true, 100, 1);
-	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-	OBJECTS->AddObject(pEnemy);
-	pEnemy->Release();
-
+	for(int i=0; i < 2; ++i)
+	{
+		for(int j = 0; j < 2; ++j)
+		{
+			CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
+			pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+			pEnemy->SetDebugMode(false);
+			OBJECTS->AddObject(pEnemy);
+			pEnemy->Release();
+		}
+	}
 
 	PLAYER->SetPosX(100);
 	PLAYER->SetPosY(100);
 	PLAYER->SetSpeed(100);
+	//PLAYER->SetDebugMode(true);
 	OBJECTS->AddObject(PLAYER);
 
 

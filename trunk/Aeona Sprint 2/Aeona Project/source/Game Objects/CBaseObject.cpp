@@ -74,6 +74,11 @@ void CBaseObject::Render(void)
 	{
 		m_vpAnimations[m_anmCurrent]->Render(SCREEN_POS_X((int)m_ptPosition.x), SCREEN_POS_Y((int)m_ptPosition.y));
 	}
+
+	if(m_bDebugMode)
+	{
+		D3D->DrawRect(GetCollisionRect().GetWindowsRECT(), 255, 0, 0);
+	}
 }
 
 RectD CBaseObject::GetCollisionRect(void)
@@ -112,6 +117,8 @@ RectD CBaseObject::GetCollisionRect(void)
 // Return true if collided, false otherwise
 bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 {
+	if(GetType() == TYPE_CHAR_BASE && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
+
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
 	
@@ -119,11 +126,13 @@ bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 	{
 		int nRectWidth = rectCollisionResult.right - rectCollisionResult.left;
 		int nRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
-		if(nRectWidth >= nRectHeight)
+		int nAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
+		int nAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
+		if(nRectWidth > nRectHeight)
 		{
 			// Top/Down Collision
 			if(GetPosY() < pBaseObject->GetPosY())
-				SetPosY(WORLD_POS_Y(rectCollisionResult.top - m_ptAnchor.y));
+				SetPosY(WORLD_POS_Y(rectCollisionResult.top + m_ptAnchor.y - nAnmHeight));
 			else
 				SetPosY(WORLD_POS_Y(rectCollisionResult.bottom + m_ptAnchor.y));
 		}
@@ -131,7 +140,7 @@ bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 		{
 			// Side Collision
 			if(GetPosX() < pBaseObject->GetPosX())
-				SetPosX(WORLD_POS_X(rectCollisionResult.left - m_ptAnchor.x));
+				SetPosX(WORLD_POS_X(rectCollisionResult.left + m_ptAnchor.x - nAnmWidth));
 			else
 				SetPosX(WORLD_POS_X(rectCollisionResult.right + m_ptAnchor.x));
 		}		
