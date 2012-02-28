@@ -10,7 +10,7 @@
 #include "CLoadGameState.h"
 #include "CGameplayState.h"
 #include "CMainMenuState.h"
-
+#include "../Input Manager/CInputManager.h"
 CLoadGameState* CLoadGameState::m_pInstance = NULL;
 
 CLoadGameState::CLoadGameState()
@@ -95,7 +95,7 @@ bool CLoadGameState::Input()
 		}
 	}
 	//	Delete a slot
-	else if(INPUT->KeyDown(DIK_LSHIFT) && INPUT->KeyPressed(DIK_DELETE) || INPUT->KeyDown(DIK_RSHIFT) && INPUT->KeyPressed(DIK_DELETE))
+	else if(CInputManager::GetInstance()->DeleteGame())
 	{
 		switch(m_uiCurSelected)
 		{
