@@ -8,21 +8,25 @@
 #include "StdAfx.h"
 #include "CObjectManager.h"
 
+#include "CBaseObject.h"
+
+CObjectManager* CObjectManager::sm_pInstance = nullptr;
+
 CObjectManager* CObjectManager::GetInstance()
 {
-	if(m_pInstance == NULL)
+	if(sm_pInstance == NULL)
 	{
-		m_pInstance = new CObjectManager;
+		sm_pInstance = new CObjectManager;
 	}
-	return m_pInstance;
+	return sm_pInstance;
 }
 
 void CObjectManager::DeleteInstance()
 {
-	if(m_pInstance)
+	if(sm_pInstance)
 	{
-		delete m_pInstance;
-		m_pInstance = NULL;
+		delete sm_pInstance;
+		sm_pInstance = NULL;
 	}
 }
 
@@ -97,4 +101,25 @@ void CObjectManager::RemoveAllObjects()
 
 void CObjectManager::CheckCollisions()
 {
+	// Loop through all the objects and check collisions in all of them
+	for(unsigned int i = 0; i < m_vpObjectList.size(); i++)
+	 {
+		 for(unsigned int j = 0; j < m_vpObjectList.size(); j++)
+		 {
+			 if(i != j)
+			 {
+				 // Check Collision between object i and j
+				 if(((CBaseObject*)m_vpObjectList[i])->IsActive() && ((CBaseObject*)m_vpObjectList[j])->IsActive())
+				 {
+					 if(m_vpObjectList[i]->CheckCollision(m_vpObjectList[j]))
+					 {
+						 // If object i collided with object j stop checking
+						 // object i and go on to the next object i
+						 continue;
+					 }
+				 }
+			 }
+		 }
+	 }
+
 }

@@ -32,6 +32,7 @@ class CBaseObject : public IBaseInterface
 
 	// Every object should have a position in the world
 	PointD			m_ptPosition;
+	Point			m_ptAnchor;
 	// Every object should have a velocity and speed
 	unsigned int	m_uiSpeed;
 	tVector2D		m_vecVelocity;
@@ -53,7 +54,7 @@ public:
 	// Common routines
 	virtual void Update(float fElapsedTime);
 	virtual void Render(void);
-	virtual RectD GetCollisionRect(void) const;
+	virtual RectD GetCollisionRect(void);
 	virtual bool CheckCollision(IBaseInterface* pObject);
 
 	virtual inline unsigned int GetType(void) const { return TYPE_OBJ_BASE; }
@@ -84,8 +85,8 @@ public:
 	// Mutators
 	inline void Activate		(void)						{ m_bActive = true; }
 	inline void Deactivate		(void)						{ m_bActive = false; }
-	inline void SetPosX			(double lPosX)				{ m_ptPosition.x = lPosX; }
-	inline void SetPosY			(double lPosY)				{ m_ptPosition.y = lPosY; }
+	inline void SetPosX			(double dPosX)				{ m_ptPosition.x = dPosX; }
+	inline void SetPosY			(double dPosY)				{ m_ptPosition.y = dPosY; }
 	inline void SetSpeed		(unsigned int uiSpeed)		{ m_uiSpeed = uiSpeed; }
 	inline void SetVelX			(float fVelX)				{ m_vecVelocity.fX = fVelX; }
 	inline void SetVelY			(float fVelY)				{ m_vecVelocity.fY = fVelY; }

@@ -22,6 +22,15 @@ struct Point
 			return false;
 		else return true;
 	}
+	Point& operator=(const Point& p)
+	{
+		if(*this != p)
+		{
+			x = p.x;
+			y = p.y;
+		}
+		return *this;
+	}
 };
 
 struct PointL
@@ -44,6 +53,15 @@ struct PointL
 		if(x == p.x && y == p.y)
 			return false;
 		else return true;
+	}
+	PointL& operator=(const PointL& p)
+	{
+		if(*this != p)
+		{
+			x = p.x;
+			y = p.y;
+		}
+		return *this;
 	}
 };
 
@@ -68,6 +86,15 @@ struct PointD
 			return false;
 		else return true;
 	}
+	PointD& operator=(const PointD& p)
+	{
+		if(*this != p)
+		{
+			x = p.x;
+			y = p.y;
+		}
+		return *this;
+	}
 };
 
 struct PointF
@@ -90,6 +117,15 @@ struct PointF
 		if(x == p.x && y == p.y)
 			return false;
 		else return true;
+	}
+	PointF& operator=(const PointF& p)
+	{
+		if(*this != p)
+		{
+			x = p.x;
+			y = p.y;
+		}
+		return *this;
 	}
 };
 
