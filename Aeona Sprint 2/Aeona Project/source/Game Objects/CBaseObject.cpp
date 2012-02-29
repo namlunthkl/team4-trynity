@@ -40,18 +40,9 @@ void CBaseObject::Update(float fElapsedTime)
 {
 	if(!IsActive()) return;
 
-	// Before updating the position based on velocity,
-	// let's find where the new collision rect will be
-	// so we can check for collisions
-	RectD NewRect = GetCollisionRect();
-	NewRect.OffsetRect(m_vecVelocity.fX * fElapsedTime, m_vecVelocity.fY * fElapsedTime);
-
-	if(!CWorldEngine::GetInstance()->CheckCollisions(NewRect.GetWindowsRECT(), GetType()))
-	{
-		// Update position based on velocity
-		m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
-		m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
-	}
+	// Update position based on velocity
+	m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
+	m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
 
 	if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
@@ -132,17 +123,17 @@ bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 		{
 			// Top/Down Collision
 			if(GetPosY() < pBaseObject->GetPosY())
-				SetPosY(WORLD_POS_Y(rectCollisionResult.top + m_ptAnchor.y - nAnmHeight));
+				SetPosY(rectCollisionResult.top + m_ptAnchor.y - nAnmHeight);
 			else
-				SetPosY(WORLD_POS_Y(rectCollisionResult.bottom + m_ptAnchor.y));
+				SetPosY(rectCollisionResult.bottom + m_ptAnchor.y);
 		}
 		else
 		{
 			// Side Collision
 			if(GetPosX() < pBaseObject->GetPosX())
-				SetPosX(WORLD_POS_X(rectCollisionResult.left + m_ptAnchor.x - nAnmWidth));
+				SetPosX(rectCollisionResult.left + m_ptAnchor.x - nAnmWidth);
 			else
-				SetPosX(WORLD_POS_X(rectCollisionResult.right + m_ptAnchor.x));
+				SetPosX(rectCollisionResult.right + m_ptAnchor.x);
 		}		
 
 		return true;

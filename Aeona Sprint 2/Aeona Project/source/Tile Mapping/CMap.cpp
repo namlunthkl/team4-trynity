@@ -224,9 +224,12 @@ void CMap::Render(int nCullingMode)
 //	Parameters	:	pBase - Object that we're checking collisions with
 //	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-RECT* CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringTable* pStringTable)
+bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 {
-	RECT* rectIntersection = nullptr;
+	// TODO: Check collisions against all tiles on screen
+	bool bCollided = false;					// Basically what will be returned
+
+	CBaseObject* pObject = (CBaseObject*)pBase;
 
 	// Indexes we'll need for looping
 	unsigned int uiIndexLayer	= 0;		// Loop through layers
@@ -255,24 +258,50 @@ RECT* CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CString
 				rectTileCollision.right = rectTileCollision.left + GetTileset()->GetTileWidth();
 				rectTileCollision.bottom = rectTileCollision.top + GetTileset()->GetTileHeight();
 
+				RECT rectIntersection;
 				// If Base's collision rect intersects with this tile's collision rect...
-				IntersectRect(rectIntersection, &rectTileCollision, &ObjCollisionRect);
-
-				// If this tile has an event...
-				if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
+				if(IntersectRect(&rectIntersection, &rectTileCollision, &pBase->GetCollisionRect().GetWindowsRECT())) 
 				{
-					char nConditionsMet = 0;
-					char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
+					// ...we know that pBase collided with this tile
+					bCollided = true;
 
-					if(rectIntersection)
+					int nRectWidth = rectIntersection.right - rectIntersection.left;
+					int nRectHeight = rectIntersection.bottom - rectIntersection.top;
+					int nAnmHeight = pObject->GetCollisionRect().bottom - pObject->GetCollisionRect().top;
+					int nAnmWidth = pObject->GetCollisionRect().right - pObject->GetCollisionRect().left;
+					double dTilePosX = (rectTileCollision.right + rectTileCollision.left) / 2;
+					double dTilePosY = (rectTileCollision.bottom + rectTileCollision.top) / 2;
+
+					if(nRectWidth > nRectHeight)
 					{
+						// Top/Down Collision
+						if(pObject->GetPosY() < dTilePosY)
+							pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - nAnmHeight);
+						else
+							pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
+					}
+					else
+					{
+						// Side Collision
+						if(pObject->GetPosX() < dTilePosX)
+							pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - nAnmWidth);
+						else
+							pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
+					}
+
+					// If this tile has an event...
+					if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
+					{
+						char nConditionsMet = 0;
+						char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
+
 						// If this tile should send an event in any collision
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ANY_COLLISION))
 							nConditionsMet++;
 						// If this tile should send an event only when colliding with player
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_PLAYER_COLLISION))
 							// Check if pBase is the player and if it is, send event
-							if(ObjType == IBaseInterface::TYPE_CHAR_PLAYER)
+							if(pBase->GetType() == IBaseInterface::TYPE_CHAR_PLAYER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
 							if(CInputManager::GetInstance()->GetPressedA())
@@ -289,15 +318,16 @@ RECT* CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CString
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_AIR_CROSSBOW))
 							if(/* check if air power was used */false)
 								nConditionsMet++;
-					}
 
-					if(nConditionsMet == nConditionsNeeded)
-					{
-						TileInfo* eventInfo = new TileInfo(uiIndexWidth, uiIndexHeight, tileCurrent, this);
-						CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()), eventInfo);
+						if(nConditionsMet == nConditionsNeeded)
+						{
+							TileInfo* eventInfo = new TileInfo(uiIndexWidth, uiIndexHeight, tileCurrent, this);
+							CEventSystem::GetInstance()->SendEvent(pStringTable->GetString(tileCurrent->GetEventID()), eventInfo);
+						}
 					}
 					// Continue checking
 				}
+
 			}
 
 			// Since we're reading line by line, from left to right, we need
@@ -323,7 +353,7 @@ RECT* CMap::CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CString
 	}
 
 	// Return if collided or not
-	return rectIntersection;
+	return bCollided;
 }
 
 ////////////////////////////////////////////////////////////////////////

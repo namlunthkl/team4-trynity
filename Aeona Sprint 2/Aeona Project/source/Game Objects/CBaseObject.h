@@ -80,6 +80,7 @@ public:
 	inline unsigned int		GetWidth			(void)	const	{ return m_uiWidth; }
 	inline unsigned int		GetHeight			(void)	const	{ return m_uiHeight; }
 	inline int				GetCurrentAnimation (void)	const	{ return m_anmCurrent; }
+	inline Point			GetAnchorPoint		(void)	const	{ return m_ptAnchor; }
 	CAnimationPlayer*	GetAnimationPlayer	(unsigned int uiAnmIndex ) const;
 
 	// Mutators

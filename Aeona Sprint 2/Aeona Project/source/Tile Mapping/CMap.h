@@ -116,7 +116,7 @@ public:
 	//	Parameters	:	pBase - Object that we're checking collisions with
 	//	Return		:	True if collided, false otherwise
 	////////////////////////////////////////////////////////////////////////
-	RECT* CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType, CStringTable* pStringTable);
+	bool CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload the file that is loaded by the Load function
