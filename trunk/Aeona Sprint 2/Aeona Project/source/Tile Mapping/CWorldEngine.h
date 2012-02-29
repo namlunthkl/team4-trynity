@@ -108,7 +108,7 @@ public:
 	//	Parameters	:	pBase - Object that we're checking collisions with
 	//	Return		:	True if collided, false otherwise
 	////////////////////////////////////////////////////////////////////////
-	RECT* CheckCollisions(RECT ObjCollisionRect, unsigned int ObjType);
+	bool CheckCollisions(IBaseInterface* pBase);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload files
