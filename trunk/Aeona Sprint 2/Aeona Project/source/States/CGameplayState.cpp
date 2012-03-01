@@ -77,7 +77,7 @@ void CGameplayState::Enter(void)
 	pNPC2->LoadAnimations("resource/npc walk2.xml");
 	pNPC2->ChangeAIState(CRandomAIState::GetInstance());
 	pNPC2->SetDebugMode(false);
-	pNPC2->LoadText("This is awesome");
+	pNPC2->LoadText("I am so confused");
 	OBJECTS->AddObject(pNPC2);
 	pNPC2->Release();
 
