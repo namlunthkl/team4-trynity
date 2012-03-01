@@ -14,7 +14,7 @@ CEnemy::CEnemy(double dPositionX, double dPositionY, unsigned int uiSpeed,
 		unsigned int uiMaxHealth, unsigned int uiAttackDamage)
 		: CBaseCharacter(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
-	
+	LoadAnimations("resource/Npc Walk2.xml");
 }
 
 CEnemy::~CEnemy(void)

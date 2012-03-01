@@ -51,7 +51,9 @@ namespace Animation_Editor
             Rectangle tempC = new Rectangle((int)numericUpDownCollisionXPosition.Value, (int)numericUpDownCollisionYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
             f.FrameDuration = 0.25M;
             f.TriggerEvent = "NONE";
-
+            f.WeaponAnchor = Point.Empty;
+            f.WeaponPoint = Point.Empty;
+            f.WeaponAngle = 0;
             frameList.Add(f);
             listBoxFrames.DataSource = null;
             listBoxFrames.DataSource = frameList;
@@ -346,7 +348,9 @@ namespace Animation_Editor
             Rectangle tempF = new Rectangle((int)numericUpDownXPosition.Value, (int)numericUpDownYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
             f.FrameRect = tempF;
             Rectangle tempC = new Rectangle((int)numericUpDownCollisionXPosition.Value, (int)numericUpDownCollisionYPosition.Value, (int)numericUpDownWidth.Value, (int)numericUpDownHeight.Value);
-
+            f.WeaponAnchor = Point.Empty;
+            f.WeaponPoint = Point.Empty;
+            f.WeaponAngle = 0;
             frameList.Add(f);
             listBoxFrames.DataSource = null;
             listBoxFrames.DataSource = frameList;
@@ -471,6 +475,14 @@ namespace Animation_Editor
                                         Frame tempFrame = animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
                                         tempFrame.WeaponAnchor = start;
                                         tempFrame.WeaponPoint = end;
+
+                                        Double tempAngle = Math.Atan2(tempFrame.WeaponAnchor.X - tempFrame.WeaponPoint.X, tempFrame.WeaponAnchor.Y - tempFrame.WeaponPoint.Y);
+                                        if (tempAngle > 0)
+                                            tempAngle = tempAngle * (180 / Math.PI);
+                                        else
+                                            tempAngle = 360 + tempAngle * (180 / Math.PI);
+                                        tempFrame.WeaponAngle = (Decimal)tempAngle;
+
                                         animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
                                     }
                                     break;
@@ -571,6 +583,14 @@ namespace Animation_Editor
                                         Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
                                         tempFrame.WeaponAnchor = start;
                                         tempFrame.WeaponPoint = end;
+
+                                        Double tempAngle = Math.Atan2(tempFrame.WeaponAnchor.X - tempFrame.WeaponPoint.X, tempFrame.WeaponAnchor.Y - tempFrame.WeaponPoint.Y);
+                                        if(tempAngle > 0)
+                                            tempAngle = tempAngle *(180/Math.PI);
+                                        else
+                                            tempAngle = 360 + tempAngle * (180 / Math.PI);
+                                        tempFrame.WeaponAngle = (Decimal)tempAngle;
+
                                         frameList[listBoxFrames.SelectedIndex] = tempFrame;
                                     }
                                     break;
@@ -599,7 +619,9 @@ namespace Animation_Editor
                 Rectangle tempC = new Rectangle(0, 0, 0, 0);
                 f.FrameDuration = 0.25M;
                 f.TriggerEvent = "NONE";
-
+                f.WeaponAnchor = Point.Empty;
+                f.WeaponPoint = Point.Empty;
+                f.WeaponAngle = 0;
                 animationList[listBoxAnimations.SelectedIndex].Frames.Add(f);
                 animationList[listBoxAnimations.SelectedIndex].NumFrames++;
                 listBoxFrames.DataSource = animationList[listBoxAnimations.SelectedIndex].Frames;
@@ -617,7 +639,9 @@ namespace Animation_Editor
                 Rectangle tempC = new Rectangle(0, 0, 0, 0);
                 f.FrameDuration = 0.25M;
                 f.TriggerEvent = "NONE";
-
+                f.WeaponAnchor = Point.Empty;
+                f.WeaponPoint = Point.Empty;
+                f.WeaponAngle = 0;
                 frameList.Add(f);
             }
         }
@@ -662,8 +686,8 @@ namespace Animation_Editor
                 numericUpDownWeaponPointX.Value = tempFrame.WeaponAnchor.X;
                 numericUpDownWeaponPointY.Value = tempFrame.WeaponAnchor.Y;
                 //  Weapon point
-                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.X;
-                numericUpDownWeaponPointX2.Value = tempFrame.WeaponPoint.Y;
+                numericUpDownWeaponPointX2.Value = tempFrame.WeaponPoint.X;
+                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.Y;
                 //  Weapon Angle 
                 numericUpDownAngle.Value = tempFrame.WeaponAngle;
                 //  Frame Duration
@@ -694,8 +718,8 @@ namespace Animation_Editor
                 numericUpDownWeaponPointX.Value = tempFrame.WeaponAnchor.X;
                 numericUpDownWeaponPointY.Value = tempFrame.WeaponAnchor.Y;
                 //  Weapon point
-                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.Y;
                 numericUpDownWeaponPointX2.Value = tempFrame.WeaponPoint.X;
+                numericUpDownWeaponPointY2.Value = tempFrame.WeaponPoint.Y;
                 //  Weapon Angle 
                 numericUpDownAngle.Value = tempFrame.WeaponAngle;
                 //  Frame Duration
@@ -1162,6 +1186,22 @@ namespace Animation_Editor
                        AnchorPoint.Add(pX);
                        XAttribute pY = new XAttribute("y", tempF.Anchor.Y - tempF.FrameRect.Y);
                        AnchorPoint.Add(pY);
+
+                       XElement Weapon = new XElement("Weapon");
+                       
+                       XAttribute wpX = new XAttribute("x", tempF.WeaponAnchor.X - tempF.FrameRect.X);
+                       Weapon.Add(wpX);
+                       XAttribute wpY = new XAttribute("y", tempF.WeaponAnchor.Y - tempF.FrameRect.Y);
+                       Weapon.Add(wpY);
+                       XAttribute wpX2 = new XAttribute("x2", tempF.WeaponPoint.X - tempF.FrameRect.X);
+                       Weapon.Add(wpX2);
+                       XAttribute wpY2 = new XAttribute("y2", tempF.WeaponPoint.Y - tempF.FrameRect.Y);
+                       Weapon.Add(wpY2);
+                       XAttribute wpA = new XAttribute("angle", tempF.WeaponAngle);
+                       Weapon.Add(wpA);
+
+                       Frame.Add(Weapon);
+                       
                    }
                }
                root.Save(dlg.FileName);
@@ -1275,9 +1315,32 @@ namespace Animation_Editor
                             tempPoint.Y += TempFrame.FrameRect.Y;
                             TempFrame.Anchor = tempPoint;
                         }
-
-                        frameList.Add(TempFrame);
+                        XElement xWeapon = xFrame.Element("Weapon");
+                        {
+                            Point tempWeapon1 = Point.Empty;
+                            Point tempWeapon2 = Point.Empty;
+                            Decimal tempAngle = 0;
                         
+                            XAttribute wx1 = xWeapon.Attribute("x");
+                            tempWeapon1.X = int.Parse(wx1.Value);
+                            XAttribute wy1 = xWeapon.Attribute("y");
+                            tempWeapon1.Y = int.Parse(wy1.Value);
+                        
+                            TempFrame.WeaponAnchor = tempWeapon1;
+                        
+                            XAttribute wx2 = xWeapon.Attribute("x2");
+                            tempWeapon2.X = int.Parse(wx2.Value);
+                            XAttribute wy2 = xWeapon.Attribute("y2");
+                            tempWeapon2.Y = int.Parse(wy2.Value);
+                        
+                            TempFrame.WeaponPoint = tempWeapon2;
+                        
+                            XAttribute wa = xWeapon.Attribute("angle");
+                            tempAngle = Decimal.Parse(wa.Value);
+                        
+                            TempFrame.WeaponAngle = tempAngle;
+                        }
+                        frameList.Add(TempFrame);
                     }
                     BindingList<Frame> frames = new BindingList<Frame>();
                     for (int i = 0; i < frameList.Count; i++)
@@ -1362,25 +1425,6 @@ namespace Animation_Editor
                 Properties.Settings.Default.Save();
             }
         }
-
-        //private void AnimationUpdate_Click(object sender, EventArgs e)
-        //{
-        //    if (listBoxAnimations.SelectedIndex != -1)
-        //    {
-        //        Animation temp = (Animation)animationList[listBoxAnimations.SelectedIndex];
-        //        for (int i = temp.NumFrames; i < frameList.Count; i++)
-        //        {
-        //            Frame tempFrame = (Frame)frameList[i];
-        //            temp.Frames.Add(tempFrame);
-        //            temp.NumFrames++;
-        //        }
-        //        
-        //        temp.Name = textBoxAnimationName.Text;
-        //        temp.Oslating = checkBoxOslating.Checked;
-        //        temp.Speed = numericUpDownAnimationSpeed.Value;
-        //        //animationList[listBoxAnimations.SelectedIndex] = temp;
-        //    }
-        //}
 
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
@@ -1549,10 +1593,6 @@ namespace Animation_Editor
             CurrentAction = 5;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void numericUpDownWeaponPointY2_ValueChanged(object sender, EventArgs e)
         {
@@ -1608,8 +1648,7 @@ namespace Animation_Editor
             {
                 Decimal temp = new Decimal();
                 Frame tempFrame = (Frame)animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex];
-                //temp = ;
-
+                
                 temp = numericUpDownAngle.Value;
                 tempFrame.WeaponAngle = temp;
                 animationList[listBoxAnimations.SelectedIndex].Frames[listBoxFrames.SelectedIndex] = tempFrame;
@@ -1618,7 +1657,6 @@ namespace Animation_Editor
             {
                 Decimal temp = new Decimal();
                 Frame tempFrame = (Frame)frameList[listBoxFrames.SelectedIndex];
-                //temp = ;
 
                 temp = numericUpDownAngle.Value;
                 tempFrame.WeaponAngle = temp;

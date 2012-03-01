@@ -158,8 +158,28 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 			{
 				tempAnchor.y = nTemp;
 			}
-			//	Set the anchor
-			tempFrame.SetAnchorPoint(tempAnchor);
+
+			TiXmlElement* pWeapon = pDrawRect->NextSiblingElement("Weapon");
+
+			Point tempWeaponAnchor;
+			if(pWeapon->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempWeaponAnchor.x = nTemp;
+			}
+			if(pWeapon->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempWeaponAnchor.y = nTemp;
+			}
+			tempFrame.SetWeaponAnchorPoint(tempWeaponAnchor);
+
+			float tempWeaponAngle;
+			if(pWeapon->QueryDoubleAttribute("angle",&dTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempWeaponAngle = dTemp;
+			}
+			tempFrame.SetWeaponAngle(tempWeaponAngle);
+			
+
 			tempAnimation->GetFrames()->push_back(tempFrame);
 			pFrame = pFrame->NextSiblingElement("Frame");
 		}

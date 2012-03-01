@@ -21,7 +21,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_sndPlayerMovement = -1;
 	
 	Activate();
-	CBaseCharacter::LoadAnimations("resource/Char Walk.xml");
+	CBaseCharacter::LoadAnimations("resource/Char Walk2.xml");
 	m_fxFootsteps.Load("Resource/data/leafyburst.xml");
 }
 

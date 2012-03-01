@@ -66,7 +66,7 @@ void CGameplayState::Enter(void)
 	CBitmapFont* pFont = new CBitmapFont();
 
 	CNPC* pNPC = new CNPC(true, 150, -1, pFont, 400, 200, 20, -1, 0, 0, true, 100, 0);
-	pNPC->LoadAnimations("resource/npc walk.xml");
+	pNPC->LoadAnimations("resource/npc walk2.xml");
 	pNPC->ChangeAIState(CRandomAIState::GetInstance());
 	pNPC->SetDebugMode(false);
 	pNPC->LoadText("Hello. I am the first NPC of this game.");
@@ -74,7 +74,7 @@ void CGameplayState::Enter(void)
 	pNPC->Release();
 
 	CNPC* pNPC2 = new CNPC(false, 150, -1, pFont, 700, 500, 20, -1, 0, 0, true, 100, 0);
-	pNPC2->LoadAnimations("resource/npc walk.xml");
+	pNPC2->LoadAnimations("resource/npc walk2.xml");
 	pNPC2->ChangeAIState(CRandomAIState::GetInstance());
 	pNPC2->SetDebugMode(false);
 	pNPC2->LoadText("This is awesome");

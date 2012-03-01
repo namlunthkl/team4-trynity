@@ -13,6 +13,8 @@ private:
 	RECT m_DrawRect;
 	RectD m_CollisionRect;
 	Point m_AnchorPoint;
+	Point m_WeaponAnchorPoint;
+	float m_WeaponAngle;
 	double m_fDuration;
 	string m_szEvent;
 	
@@ -23,11 +25,16 @@ public:
 	Point GetAnchorPoint() const { return m_AnchorPoint; }
 	double GetDuration() const { return m_fDuration; }
 	string GetEvent() const { return m_szEvent; }
+	Point GetWeaponAnchorPoint() const { return m_WeaponAnchorPoint; }
+	float GetWeaponAngle() const { return m_WeaponAngle; }
+	
 	//	Mutators
 	void SetDrawRect(RECT val) { m_DrawRect = val; }
 	void SetCollisionRect(RectD val) { m_CollisionRect = val; }
 	void SetAnchorPoint(Point val) { m_AnchorPoint = val; }
 	void SetDuration(double val) { m_fDuration = val; }
 	void SetEvent(string val) { m_szEvent = val; }
+	void SetWeaponAnchorPoint(Point val) { m_WeaponAnchorPoint = val; }
+	void SetWeaponAngle(float val) { m_WeaponAngle = val; }
 };
 #endif
