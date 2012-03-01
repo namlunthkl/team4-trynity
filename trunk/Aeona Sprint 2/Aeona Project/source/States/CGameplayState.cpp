@@ -289,11 +289,39 @@ void CGameplayState::RenderHUD()
 		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
 	}
 
-	//	Define the minimap frame
-	r1.left = 0;
+	//	Draw the weapon XP bar background
+	r1.left = 110;
+	r1.top = 32;
+	r1.right = 110+320;
+	r1.bottom = 64;
+
+	TEX_MNG->Draw(m_imgHUD, 800-39-320, 4, 1.0f, 1.0f, &r1);
+	
+	//	Value for the actual current XP
+
+	float tempXP = 0.7f;
+
+	//	Draw the weapon XP bar foreground
+	r1.left = 110 + (320 * (1.0f - tempXP));
 	r1.top = 0;
-	r1.right = 96;
-	r1.bottom = 96;
+	r1.bottom = 32;
+
+	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP), 4, 1.0f, 1.0f, &r1);
+	
+	//	Define the potion spot
+	r1.left = 206;
+	r1.top = 64;
+	r1.right = 206+64;
+	r1.bottom = 64+64;
+
+	//	Draw the potion spot
+	TEX_MNG->Draw(m_imgHUD, 800-400-32, 4, 1.0f, 1.0f, &r1);
+
+	//	Define the minimap frame
+	r1.left = 110;
+	r1.top = 64;
+	r1.right = 110+96;
+	r1.bottom = 64+96;
 
 	//	Draw the minimap frame
 	if(GAME->GetMapLocation() == 0)

@@ -120,7 +120,7 @@ void CBitmapFont::Write(const char* szTextToPrint, int nPosX, int nPosY, DWORD d
 		char ch = szTextToPrint[i];
 		if(ch == ' ')
 		{
-			nPosX += 12;
+			nPosX += 11;
 			continue;
 		}
 		int id = (int)(ch - m_cStartChar);
