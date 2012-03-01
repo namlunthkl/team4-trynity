@@ -240,7 +240,6 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 void CGameplayState::RenderHUD()
 {
 	RECT r1;
-	RECT r2;
 
 	r1.left = 39;
 	r1.top = 0;
@@ -286,7 +285,7 @@ void CGameplayState::RenderHUD()
 			r1.top += 32;
 			r1.bottom += 32;
 		}
-		TEX_MNG->Draw(m_imgHUD, 39, 4, 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
 	}
 
 	//	Define the minimap frame
