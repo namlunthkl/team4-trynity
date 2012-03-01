@@ -258,7 +258,7 @@ void CGameplayState::RenderHUD()
 	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
 
 	//	Draw some life hearts
-	unsigned int tempMaxH = 10;
+	unsigned int tempMaxH = 8;
 	unsigned int tempCurH = 6;
 
 	r1.left = 78;
@@ -271,19 +271,20 @@ void CGameplayState::RenderHUD()
 		if(i < tempCurH)
 		{
 			//	Define a solid heart
-			//	(Rect already defined!)
+			r1.top = 0;
+			r1.bottom = 32;
 		}
 		else if(i >= tempMaxH)
 		{
 			//	Define an invisible heart
-			r1.top += 64;
-			r1.bottom += 64;
+			r1.top = 64;
+			r1.bottom = 96;
 		}
 		else
 		{
 			//	Define a broken heart
-			r1.top += 32;
-			r1.bottom += 32;
+			r1.top = 32;
+			r1.bottom = 64;
 		}
 		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
 	}
