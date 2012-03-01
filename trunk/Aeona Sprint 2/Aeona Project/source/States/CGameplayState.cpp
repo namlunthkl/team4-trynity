@@ -45,8 +45,8 @@ void CGameplayState::Enter(void)
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
-	m_Rain.Load("resource/data/rain.xml");
-	m_Rain.Fire((int)(GAME->GetScreenWidth()*.5f),(int)(GAME->GetScreenHeight()*.5f));
+	m_Rain.Load("resource/data/FallingLeaves.xml");
+	m_Rain.Fire(0,0);
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
@@ -161,7 +161,7 @@ void CGameplayState::Render(void)
 	WORLD->RenderWorld();
 
 	if(PW.GetFired())
-		PW.Render(m_nCameraPosX, m_nCameraPosY);
+		PW.Render();
 	
 	D3D->GetSprite()->Flush();
 

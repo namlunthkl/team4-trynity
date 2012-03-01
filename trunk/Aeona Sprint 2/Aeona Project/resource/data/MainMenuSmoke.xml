@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Smoke.bmp</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>-43</EmitterPosX>
+  <EmitterPosY>400</EmitterPosY>
+  <MaxParticles>200</MaxParticles>
+  <Size>1</Size>
+  <MaxLife>5</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>1</SpawnHeight>
+  <ScaleStart>0</ScaleStart>
+  <ScaleEnd>0</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>0</MinVelX>
+  <MaxVelX>0</MaxVelX>
+  <MinVelY>-30</MinVelY>
+  <MaxVelY>0</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>255</StartColorR>
+  <StartColorG>255</StartColorG>
+  <StartColorB>255</StartColorB>
+  <EndColorA>0</EndColorA>
+  <EndColorR>255</EndColorR>
+  <EndColorG>255</EndColorG>
+  <EndColorB>255</EndColorB>
+  <Source>5</Source>
+  <Dest>14</Dest>
+</Particle>
