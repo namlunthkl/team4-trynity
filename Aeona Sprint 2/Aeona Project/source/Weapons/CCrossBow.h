@@ -13,8 +13,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 // Standard header protection
-#ifndef CCrossBow_H_
-#define CCrossBow_H_
+#ifndef CCROSSBOW_H_
+#define CCROSSBOW_H_
 
 #include "IBaseWeapon.h"
 class CCrossBow : public IBaseWeapon
@@ -22,8 +22,9 @@ class CCrossBow : public IBaseWeapon
 private:
 
 public:
-	~CCrossBow(void) = 0 {}
-
+	~CCrossBow(void) {}
+	void Attack(void);
+	void ChargedAttack(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
 	void SetWeaponRotation(float fWeaponRotation);
 };

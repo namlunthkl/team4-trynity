@@ -5,25 +5,25 @@
       <DrawRect x="1" y="87" width="43" height="66" />
       <CollisionRect x="2" y="2" width="39" height="61" />
       <Anchor x="21" y="62" />
-      <Weapon x="9" y="45" x2="1" y2="36" angle="41.6335406301184" />
+      <Weapon x="10" y="47" x2="3" y2="32" angle="25.016892653568" />
     </Frame>
     <Frame duration="0.25" event="NONE">
       <DrawRect x="1" y="157" width="44" height="64" />
       <CollisionRect x="2" y="2" width="40" height="60" />
       <Anchor x="22" y="60" />
-      <Weapon x="7" y="41" x2="2" y2="33" angle="32.0053815803904" />
+      <Weapon x="8" y="45" x2="0" y2="27" angle="23.9624882487296" />
     </Frame>
     <Frame duration="0.25" event="NONE">
       <DrawRect x="3" y="231" width="44" height="68" />
       <CollisionRect x="2" y="2" width="40" height="64" />
       <Anchor x="23" y="66" />
-      <Weapon x="6" y="41" x2="0" y2="33" angle="36.869895094272" />
+      <Weapon x="6" y="43" x2="-2" y2="28" angle="28.0724867383296" />
     </Frame>
     <Frame duration="0.25" event="NONE">
       <DrawRect x="3" y="305" width="46" height="68" />
       <CollisionRect x="3" y="2" width="40" height="63" />
       <Anchor x="24" y="64" />
-      <Weapon x="7" y="39" x2="1" y2="30" angle="33.6900657250304" />
+      <Weapon x="6" y="45" x2="1" y2="31" angle="19.6538240335872" />
     </Frame>
   </Animation>
   <Animation name="Walk Down" looping="1" oslating="0" playing="0" speed="1" NumFrames="4">
@@ -73,8 +73,8 @@
     </Frame>
     <Frame duration="0.25" event="NONE">
       <DrawRect x="109" y="300" width="51" height="73" />
-      <CollisionRect x="14" y="4" width="33" height="65" />
-      <Anchor x="33" y="64" />
+      <CollisionRect x="7" y="5" width="40" height="65" />
+      <Anchor x="33" y="65" />
       <Weapon x="28" y="55" x2="49" y2="55" angle="269.999998500864" />
     </Frame>
   </Animation>

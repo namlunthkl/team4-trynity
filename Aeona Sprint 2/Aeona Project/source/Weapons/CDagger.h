@@ -22,8 +22,9 @@ class CDagger : public IBaseWeapon
 private:
 
 public:
-	~CDagger(void) = 0 {}
-
+	~CDagger(void) {}
+	void Attack(void);
+	void ChargedAttack(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_DAGGER; }
 	void SetWeaponRotation(float fWeaponRotation);
 };

@@ -15,12 +15,6 @@
 
 #include "../Particle Engine/ParticleWeapon.h"
 #include "../Weapons/IBaseWeapon.h"
-// TODO: When weapon class is done, replace this forward
-// declaration by actually including the weapon
-class CWeapon
-{
-	int a;
-};
 
 class CPlayer : public CBaseCharacter
 {
@@ -29,7 +23,7 @@ class CPlayer : public CBaseCharacter
 	bool			m_bHeartPiece;
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
-	vector<CWeapon>	m_vGameWeapons;
+	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 
@@ -41,7 +35,7 @@ class CPlayer : public CBaseCharacter
 	CPlayer(void);
 
 public:
-	enum EWeapons { WEAPON_DAGGER, WEAPON_BLADE, WEAPON_HAMMER, WEAPON_CROSSBOW, WEAPON_MAX };
+	enum EWeapons { WEAPON_DAGGER, WEAPON_SWORD, WEAPON_HAMMER, WEAPON_CROSSBOW, WEAPON_MAX };
 	enum EMasks { MASK_NONE, MASK_SPEED, MASK_ENDURANCE, MASK_STRENGHT, MASK_LIGHT, MASK_MAX };
 
 	// Singleton's accessor

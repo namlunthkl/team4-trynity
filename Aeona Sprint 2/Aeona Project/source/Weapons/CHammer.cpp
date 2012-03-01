@@ -6,3 +6,11 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CHammer.h"
+void CHammer::Attack(void)
+{
+	//
+}
+void CHammer::ChargedAttack(void)
+{
+	//
+}

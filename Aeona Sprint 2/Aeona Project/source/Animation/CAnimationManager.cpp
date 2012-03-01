@@ -88,7 +88,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 		while (pFrame)
 		{
 			CFrame tempFrame;
-			if(pAnimation->QueryDoubleAttribute("Duration",&dTemp) != NULL)
+			if(pFrame->QueryDoubleAttribute("duration",&dTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempFrame.SetDuration(dTemp);
 			}
