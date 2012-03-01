@@ -23,7 +23,7 @@
 class IBaseWeapon
 {
 public:
-	enum WeaponType { TYPE_WEAPON_BASE = 0, YPE_WEAPON_DAGGER, YPE_WEAPON_SWORD, TYPE_WEAPON_HAMMER, YPE_WEAPON_BOW, TYPE_MAX };
+	enum WeaponType { TYPE_WEAPON_BASE = 0, TYPE_WEAPON_DAGGER, TYPE_WEAPON_SWORD, TYPE_WEAPON_HAMMER, TYPE_WEAPON_CROSSBOW, TYPE_MAX };
 
 	// Destructor
 	virtual ~IBaseWeapon(void) = 0 {}
@@ -34,7 +34,7 @@ public:
 	//virtual void Input(void) = 0;
 
 	virtual unsigned int GetWeaponType(void) const = 0;
-	virtual SetWeaponRotation(float fWeaponRotation);
+	virtual void SetWeaponRotation(float fWeaponRotation) = 0;
 };
 
 #endif

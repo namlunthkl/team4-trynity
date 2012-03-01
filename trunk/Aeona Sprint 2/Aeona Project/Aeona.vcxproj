@@ -140,6 +140,10 @@
     <ClCompile Include="source\Util\ByteUtil.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CCrossBow.cpp" />
+    <ClCompile Include="source\Weapons\CDagger.cpp" />
+    <ClCompile Include="source\Weapons\CHammer.cpp" />
+    <ClCompile Include="source\Weapons\CSword.cpp" />
     <ClCompile Include="source\WinMain.cpp" />
     <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -211,6 +215,10 @@
     <ClInclude Include="source\Util\ByteUtil.h" />
     <ClInclude Include="source\Util\CTimer.h" />
     <ClInclude Include="source\Util\UtilStructs.h" />
+    <ClInclude Include="source\Weapons\CCrossBow.h" />
+    <ClInclude Include="source\Weapons\CDagger.h" />
+    <ClInclude Include="source\Weapons\CHammer.h" />
+    <ClInclude Include="source\Weapons\CSword.h" />
     <ClInclude Include="source\Weapons\IBaseWeapon.h" />
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />

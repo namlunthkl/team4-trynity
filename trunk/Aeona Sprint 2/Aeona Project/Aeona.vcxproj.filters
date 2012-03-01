@@ -195,6 +195,18 @@
     <ClCompile Include="source\AI_States\CRandomAIState.cpp">
       <Filter>Artificial Intelligence</Filter>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CSword.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CDagger.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CHammer.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CCrossBow.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -375,6 +387,18 @@
       <Filter>Puzzles</Filter>
     </ClInclude>
     <ClInclude Include="source\Weapons\IBaseWeapon.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CSword.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CDagger.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CHammer.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CCrossBow.h">
       <Filter>Weapons</Filter>
     </ClInclude>
   </ItemGroup>
