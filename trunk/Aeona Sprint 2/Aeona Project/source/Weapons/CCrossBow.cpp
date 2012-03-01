@@ -6,3 +6,15 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CCrossBow.h"
+void CCrossBow::Attack(void)
+{
+	//
+}
+void CCrossBow::ChargedAttack(void)
+{
+	//
+}
+void CCrossBow::SetWeaponRotation(float fWeaponRotation)
+{
+
+}

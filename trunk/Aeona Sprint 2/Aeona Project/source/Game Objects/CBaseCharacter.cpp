@@ -47,6 +47,8 @@ bool CBaseCharacter::LoadAnimations(char const * const szFilename)
 		pAnmPlayer->Play();
 	}
 
+	SetCurrentAnimation(0);
+
 	return true;
 }
 

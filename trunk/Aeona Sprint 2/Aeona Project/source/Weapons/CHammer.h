@@ -22,8 +22,9 @@ class CHammer : public IBaseWeapon
 private:
 
 public:
-	~CHammer(void) = 0 {}
-
+	~CHammer(void) {}
+	void Attack(void);
+	void ChargedAttack(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_HAMMER; }
 	void SetWeaponRotation(float fWeaponRotation);
 };

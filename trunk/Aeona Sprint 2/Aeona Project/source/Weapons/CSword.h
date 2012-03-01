@@ -22,8 +22,13 @@ class CSword : public IBaseWeapon
 private:
 
 public:
-	~CSword(void) = 0 {}
+	~CSword(void) {}
+	CSword();
 
+	void Attack(void);
+	void ChargedAttack(void);
+
+	void Render(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_SWORD; }
 	void SetWeaponRotation(float fWeaponRotation);
 };

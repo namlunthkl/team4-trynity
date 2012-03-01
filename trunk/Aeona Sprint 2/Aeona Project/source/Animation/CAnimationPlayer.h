@@ -36,5 +36,9 @@ public:
 
 	Point ReturnAnchorPoint(void);
 
+	Point ReturnWeaponPoint(void);
+
+	float ReturnWeaponAngle(void);
+
 };
 #endif

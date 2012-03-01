@@ -9,17 +9,21 @@
 #include "../Messaging/CEventSystem.h"
 #include "../Input Manager/CInputManager.h"
 #include "../States/CGameplayState.h"
-
+#include "../Weapons/CDagger.h"
+#include "../Weapons/CSword.h"
+#include "../Weapons/CHammer.h"
+#include "../Weapons/CCrossBow.h"
 // Constructor
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
 	m_byteWeapons = 0;
 	m_byteMasks = 0;
 	m_bHeartPiece = false;
-	m_uiCurrentWeapon = WEAPON_DAGGER;
+	m_uiCurrentWeapon = WEAPON_SWORD;
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
-	
+	m_vGameWeapons.push_back(new CDagger);
+	m_vGameWeapons.push_back(new CSword);
 	Activate();
 	CBaseCharacter::LoadAnimations("resource/Char Walk2.xml");
 	m_fxFootsteps.Load("Resource/data/leafyburst.xml");
@@ -45,6 +49,17 @@ void CPlayer::Update(float fElapsedTime)
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
 
+	unsigned int x = GetCurrentAnimation();
+
+	CAnimationPlayer* y = GetAnimationPlayer(x);
+
+	m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
+	
+	Point TempWepPoint;
+	TempWepPoint.x = GetPosX() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().x;
+	TempWepPoint.y = GetPosY() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().y;
+	m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
+
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
 	{
@@ -56,7 +71,7 @@ void CPlayer::Render(void)
 {
 	// Render the player
 	CBaseCharacter::Render();
-
+	m_vGameWeapons[m_uiCurrentWeapon]->Render();
 	// Render the particles
 	m_fxFootsteps.Render();
 }

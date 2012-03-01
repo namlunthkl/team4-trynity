@@ -21,6 +21,7 @@ void CAnimationPlayer::Reset()
 {
 	this->m_nFrameNumber = 0;
 	this->m_fTimer = 0;
+	this->m_fTimer = 0;
 }
 void CAnimationPlayer::Update(float fElapsedTime)
 {
@@ -28,7 +29,9 @@ void CAnimationPlayer::Update(float fElapsedTime)
 		return;
 	m_fTimer += fElapsedTime;
 	m_fTimer *=	CAnimationManager::GetInstance()->GetAnimation( m_nAnimationId)->GetSpeed();
-	if(m_fTimer > CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration())
+	double x = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
+	CFrame* tempframe = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber);
+	if(((long)x*100000) < ((long)m_fTimer*100000))
 	{
 		m_fTimer -= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
 		if(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent() != "NONE")
@@ -73,4 +76,12 @@ RectD CAnimationPlayer::ReturnCollisionRect(void)
 Point CAnimationPlayer::ReturnAnchorPoint(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
+}
+Point CAnimationPlayer::ReturnWeaponPoint(void)
+{
+	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAnchorPoint();
+}
+float CAnimationPlayer::ReturnWeaponAngle(void)
+{
+	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAngle();
 }

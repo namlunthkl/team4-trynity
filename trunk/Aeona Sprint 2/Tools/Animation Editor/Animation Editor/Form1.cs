@@ -180,7 +180,7 @@ namespace Animation_Editor
                         {
                             Point tempPoint1 = new Point(tempFrame.WeaponAnchor.X + offset.X, tempFrame.WeaponAnchor.Y + offset.Y);
                             Point tempPoint2 = new Point(tempFrame.WeaponPoint.X + offset.X, tempFrame.WeaponPoint.Y + offset.Y);
-                            D3D.DrawLine(tempPoint1.X, tempPoint1.Y, tempPoint2.X, tempPoint2.Y, Color.Gold, 1);
+                            D3D.DrawLine(tempPoint1.X, tempPoint1.Y, tempPoint2.X, tempPoint2.Y, Color.Gold, 5);
                         }
                         
                     }
@@ -1323,16 +1323,18 @@ namespace Animation_Editor
                         
                             XAttribute wx1 = xWeapon.Attribute("x");
                             tempWeapon1.X = int.Parse(wx1.Value);
+                            tempWeapon1.X += TempFrame.FrameRect.X;
                             XAttribute wy1 = xWeapon.Attribute("y");
                             tempWeapon1.Y = int.Parse(wy1.Value);
-                        
+                            tempWeapon1.Y += TempFrame.FrameRect.Y;
                             TempFrame.WeaponAnchor = tempWeapon1;
                         
                             XAttribute wx2 = xWeapon.Attribute("x2");
                             tempWeapon2.X = int.Parse(wx2.Value);
+                            tempWeapon2.X += TempFrame.FrameRect.X;
                             XAttribute wy2 = xWeapon.Attribute("y2");
                             tempWeapon2.Y = int.Parse(wy2.Value);
-                        
+                            tempWeapon2.Y += TempFrame.FrameRect.Y;
                             TempFrame.WeaponPoint = tempWeapon2;
                         
                             XAttribute wa = xWeapon.Attribute("angle");
