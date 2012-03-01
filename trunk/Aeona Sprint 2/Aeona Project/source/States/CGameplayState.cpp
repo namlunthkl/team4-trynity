@@ -65,21 +65,28 @@ void CGameplayState::Enter(void)
 
 	CBitmapFont* pFont = new CBitmapFont();
 
-	CNPC* pNPC = new CNPC(true, 150, -1, pFont, 400, 200, 20, -1, 0, 0, true, 100, 0);
-	pNPC->LoadAnimations("resource/npc walk2.xml");
-	pNPC->ChangeAIState(CRandomAIState::GetInstance());
-	pNPC->SetDebugMode(false);
-	pNPC->LoadText("Hello. I am the first NPC of this game.");
-	OBJECTS->AddObject(pNPC);
-	pNPC->Release();
+	CNPC* pNPC[5];
 
-	CNPC* pNPC2 = new CNPC(false, 150, -1, pFont, 700, 500, 20, -1, 0, 0, true, 100, 0);
-	pNPC2->LoadAnimations("resource/npc walk2.xml");
-	pNPC2->ChangeAIState(CRandomAIState::GetInstance());
-	pNPC2->SetDebugMode(false);
-	pNPC2->LoadText("I am so confused");
-	OBJECTS->AddObject(pNPC2);
-	pNPC2->Release();
+	pNPC[0] = new CNPC(true, 150, -1, pFont, 400, 200, 20, -1, 0, 0, true, 100, 0);
+	pNPC[1] = new CNPC(false, 150, -1, pFont, 650, 500, 20, -1, 0, 0, true, 100, 0);
+	pNPC[2] = new CNPC(false, 150, -1, pFont, 850, 500, 20, -1, 0, 0, true, 100, 0);
+	pNPC[3] = new CNPC(false, 150, -1, pFont, 200, 200, 20, -1, 0, 0, true, 100, 0);
+	pNPC[4] = new CNPC(false, 150, -1, pFont, 900, 200, 20, -1, 0, 0, true, 100, 0);
+
+	for(int i=0; i < 5; ++i)
+	{
+		pNPC[i]->LoadAnimations("resource/npc walk2.xml");
+		pNPC[i]->ChangeAIState(CRandomAIState::GetInstance());
+		pNPC[i]->SetDebugMode(false);
+		OBJECTS->AddObject(pNPC[i]);
+		pNPC[i]->Release();
+	}
+
+	pNPC[0]->LoadText("I am so confuseeeeed");
+	pNPC[1]->LoadText("You should make a pointer to that guy");
+	pNPC[2]->LoadText("Wait, what?");
+	pNPC[3]->LoadText("Do not bother me, I am eating my soup here");
+	pNPC[4]->LoadText("SHOW ME");
 
 
 	PLAYER->SetPosX(600);

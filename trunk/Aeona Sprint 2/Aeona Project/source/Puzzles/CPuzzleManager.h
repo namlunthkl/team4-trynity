@@ -22,11 +22,13 @@
 class CPuzzleManager
 {
 	vector<CPuzzle*> m_vpPuzzles;
+	unsigned int PushPuzzle(CPuzzle* pPuzzle);
 
 public:
-	unsigned int PushPuzzle(CPuzzle* pPuzzle);
+	void InitPuzzleManager(void);
 	static CPuzzleManager* GetInstance(void);
 	void UpdatePuzzles(float fElapsedTime);
+	void ShutdownPuzzleManager(void);
 };
 
 #endif // CPUZZLEMANAGER_H_

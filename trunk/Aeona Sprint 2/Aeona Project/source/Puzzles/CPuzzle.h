@@ -18,11 +18,13 @@
 #ifndef CPUZZLE_H_
 #define CPUZZLE_H_
 
-// Just for now...
-class IListener;
-class CEvent;
+#include "../Messaging/CEventSystem.h"
+#include "../Messaging/IListener.h"
 
-class CPuzzle //: public IListener
+#include <vector>
+using std::vector;
+
+class CPuzzle : public IListener
 {
 	// Number of arguments needed for the puzzle
 	unsigned int m_uiArgCount;
@@ -30,20 +32,23 @@ class CPuzzle //: public IListener
 	// Arguments used by the puzzle
 	vector<int> m_vnArguments;
 
-	// Event the puzzle is listening to
+	// Event the puzzle is going to send
 	char* m_szEvent;
 
 	// Handle Event function pointer
-	void(*m_pfHandleEvent)(void);
+	void(*m_pfHandleEvent)(CEvent*, CPuzzle*);
 
 	// Update function pointer
-	void(*m_pfUpdate)(void);
+	void(*m_pfUpdate)(CPuzzle*);
 
 public:
 	void HandleEvent(CEvent* pEvent);
 	void Update(float fElapsedTime);
 	void Initialize(unsigned int uiArgCount, char* szEvent,
-		void(*pfHandleEvent)(void), void(*pfUpdate)(void));
+		 vector<char*> m_szEventsToListen, void(*pfHandleEvent)(CEvent*, CPuzzle*), void(*pfUpdate)(CPuzzle*));
+
+	inline unsigned int GetArgCount(void) const { return m_uiArgCount; }
+	inline vector<int>* GetArguments(void)  { return &m_vnArguments; }
 };
 
 

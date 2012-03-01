@@ -193,6 +193,7 @@
     <ClInclude Include="source\Particle Engine\Particle.h" />
     <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
     <ClInclude Include="source\Puzzles\CPuzzle.h" />
+    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
     <ClInclude Include="source\Puzzles\CPuzzleManager.h" />
     <ClInclude Include="source\States\CAudioOptionsState.h" />
     <ClInclude Include="source\States\CBaseMenu.h" />
