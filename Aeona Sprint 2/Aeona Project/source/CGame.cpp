@@ -20,6 +20,15 @@
 
 #include "Util/ByteUtil.h"
 
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	#include "Camera\CCameraControl.h"
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
+
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Singleton's accessor
 //	Return		:	Pointer to the singleton's instance
@@ -40,6 +49,14 @@ CGame* CGame::GetInstance(void)
 bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	int nScreenHeight, bool bIsWindowed)
 {
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	m_fCharge = 0.0f;
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
 	
@@ -80,6 +97,15 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	// It's more accurate if it's on the end
 	m_Timer.m_dwTimeStamp = timeGetTime();
 	m_Timer.m_dwPreviousTimeStamp = timeGetTime();
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CCameraControl::GetInstance()->InitializeCamera( GetScreenWidth(), GetScreenHeight() );
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 
 	// If everything succeeded and Game was
 	// initialized, return true
@@ -147,6 +173,43 @@ bool CGame::Main(void)
 bool CGame::Input(void)
 {
 	INPUT->ReadDevices();
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+		if( INPUT->KeyPressed( DIK_T ) )
+		{
+			CCameraControl::GetInstance()->SetKillCam(true);
+		}
+		if( INPUT->KeyDown( DIK_C ) )
+		{
+			m_fCharge += 1.0f * CGame::GetInstance()->GetTimer().m_fElapsedTime;
+		}
+		if( INPUT->KeyUp( DIK_C ) )
+		{
+			m_fCharge = 0.0f;
+			CCameraControl::GetInstance()->SetReleaseButton( true );
+		}
+		if( INPUT->KeyDown ( DIK_I ) )
+		{
+			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() + 0.5 );
+		}
+		if( INPUT->KeyDown ( DIK_K ) )
+		{
+			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() - 0.5 );
+		}
+		if( INPUT->KeyDown ( DIK_J ) )
+		{
+			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() + 0.5 );
+		}
+		if( INPUT->KeyDown ( DIK_L ) )
+		{
+			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() - 0.5 );
+		}
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 	//TODO Change later when we have actual inventory.
 	if(m_bPaused == true)
 	{
@@ -179,6 +242,17 @@ void CGame::Update(void)
 	if(m_pCurrentState != NULL)
 	{
 		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+			///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+		CCameraControl::GetInstance()->Update( m_Timer.m_fElapsedTime );
+		if( !CCameraControl::GetInstance()->GetKillCam() )
+		{
+			CCameraControl::GetInstance()->ChargeCamSequence( m_fCharge );
+		}
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 	}
 }
 
@@ -194,8 +268,27 @@ void CGame::Render(void)
 	// differentiate
 	D3D->Clear(50,50,50);
 	D3D->DeviceBegin();
+	
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CCameraControl::GetInstance()->SetSpriteProjection();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+	
 	D3D->SpriteBegin();
 	
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
+	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
+	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 	//TODO enhance when we have an actual inventory screen
 	/*if(m_bPaused == true)
 	{

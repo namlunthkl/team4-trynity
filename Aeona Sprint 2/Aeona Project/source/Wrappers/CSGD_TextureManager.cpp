@@ -355,6 +355,16 @@ bool CSGD_TextureManager::Draw(int nID, int nX, int nY, float fScaleX, float fSc
 	D3DXMATRIX translate;
 	D3DXMATRIX combined;
 
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	D3DXMATRIX original;
+	m_lpSprite->GetTransform( & original );
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
+
 	// Initialize the Combined matrix.
 	D3DXMatrixIdentity(&combined);
 
@@ -374,6 +384,16 @@ bool CSGD_TextureManager::Draw(int nID, int nX, int nY, float fScaleX, float fSc
 	D3DXMatrixTranslation(&translate, (float)nX, (float)nY, 0.0f);
 	combined *= translate;
 
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	combined *= original;
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
+
+
 	// Apply the transform.
 	m_lpSprite->SetTransform(&combined);
 
@@ -383,7 +403,22 @@ bool CSGD_TextureManager::Draw(int nID, int nX, int nY, float fScaleX, float fSc
 
 	// Move the world back to identity.
 	D3DXMatrixIdentity(&combined);
-	m_lpSprite->SetTransform(&combined);
+	///////////////////////////
+	//ARI CHANGE CODE
+	///////////////////////////
+	//m_lpSprite->SetTransform(&combined);
+	///////////////////////////
+	//END ARI CHANGE CODE
+	///////////////////////////
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	m_lpSprite->SetTransform(&original);
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 
 	// success.
 	return true;
