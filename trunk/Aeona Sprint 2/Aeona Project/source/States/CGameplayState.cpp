@@ -92,7 +92,7 @@ void CGameplayState::Enter(void)
 
 
 	//	TODO  Temporary, just to demonstrate that the options work
-	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD.png", D3DCOLOR_XRGB(255, 255, 255));
+	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
 }
@@ -239,74 +239,69 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 
 void CGameplayState::RenderHUD()
 {
-	RECT rFace;
-	rFace.left = 112;
-	rFace.top = 0;
-	rFace.right = 112+66;
-	rFace.bottom = 66;
+	RECT r1;
+	RECT r2;
 
-	RECT rItem;
-	rItem.left = 112+66;
-	rItem.top = 0;
-	rItem.right = 112+66+66;
-	rItem.bottom = 66;
+	r1.left = 39;
+	r1.top = 0;
+	r1.right = 39+39;
+	r1.bottom = 128;
 
-	RECT rHeart;
-	rHeart.left = 64;
-	rHeart.top = 0;
-	rHeart.right = 64+24;
-	rHeart.bottom = 22;
+	//	Draw the amulet!
+	TEX_MNG->Draw(m_imgHUD, 0, 0, 1.0f, 1.0f, &r1);
 
-	RECT rBroke;
-	rBroke.left = 64+24;
-	rBroke.top = 0;
-	rBroke.right = 64+24+24;
-	rBroke.bottom = 22;
+	r1.left = 0;
+	r1.top = 0;
+	r1.right = 39;
+	r1.bottom = 128;
 
-	//	Draw the face thing
-	TEX_MNG->Draw(m_imgHUD, 4, 4, 1.0f, 1.0f, &rFace);
+	//	Draw the weapon!
+	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
 
-	//	Draw the item box thing
-	TEX_MNG->Draw(m_imgHUD, 64+128, 4, 1.0f, 1.0f, &rItem);
-
-	//	Draw some lil hearts inbetween the two boxes
+	//	Draw some life hearts
 	unsigned int tempMaxH = 10;
 	unsigned int tempCurH = 6;
 
-	//	Draw the first row of 5 hearts
-	for(unsigned int i = 1; i < 6; ++i)
+	r1.left = 78;
+	r1.top = 0;
+	r1.right = 78+32;
+	r1.bottom = 32;
+	
+	for(unsigned int i = 0; i < 10; ++i)
 	{
-		if(i <= tempCurH)
-			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4, 1.0f, 1.0f, &rHeart);
+		if(i < tempCurH)
+		{
+			//	Define a solid heart
+			//	(Rect already defined!)
+		}
+		else if(i >= tempMaxH)
+		{
+			//	Define an invisible heart
+			r1.top += 64;
+			r1.bottom += 64;
+		}
 		else
-			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4, 1.0f, 1.0f, &rBroke);
-	}
-	//	Draw the second row of 5 hearts
-	for(unsigned int i = 1; i < 6; ++i)
-	{
-		if(i+5 <= tempCurH)
-			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4+22, 1.0f, 1.0f, &rHeart);
-		else
-			TEX_MNG->Draw(m_imgHUD, 4+66+1 + (i-1)*24, 4+22, 1.0f, 1.0f, &rBroke);
+		{
+			//	Define a broken heart
+			r1.top += 32;
+			r1.bottom += 32;
+		}
+		TEX_MNG->Draw(m_imgHUD, 39, 4, 1.0f, 1.0f, &r1);
 	}
 
-	RECT rMap;
-	rMap.left = 112;
-	rMap.top = 66;
-	rMap.right = 112+96;
-	rMap.bottom = 66+96;
+	//	Define the minimap frame
+	r1.left = 0;
+	r1.top = 0;
+	r1.right = 96;
+	r1.bottom = 96;
 
 	//	Draw the minimap frame
 	if(GAME->GetMapLocation() == 0)
 	{
-		TEX_MNG->Draw(m_imgHUD, 800-96-4, 4, 1.0f, 1.0f, &rMap);
-	}
-	else if(GAME->GetMapLocation() == 1)
-	{
-		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &rMap);
+		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &r1);
 	}
 	else
 	{
-		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &rMap);
+		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
 	}
 }
