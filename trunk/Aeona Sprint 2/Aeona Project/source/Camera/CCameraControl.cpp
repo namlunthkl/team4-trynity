@@ -1,60 +1,55 @@
+#include "..\StdAfx.h"
 #include "CCameraControl.h"
-#include "../CGame.h"
 
 
 CCameraControl::CCameraControl(void)
 {
 	SetTime( 0 );
 }
-CCameraControl::~CCameraControl(void){}
-void CCameraControl::InitializeCamera()
+CCameraControl* CCameraControl::GetInstance(void)
 {
-	D3DXVECTOR3 eye(0,3.0f,0.01f), at(0,0,0), up(0,1,0);
-	//float fov = (D3DXToRadian(75)), aspect = (WINDOW_WIDTH/(float)WINDOW_HEIGHT), znear = 0.01f, zfar = 100.0f; 
-	float fov = (D3DXToRadian(75)), aspect = (CGame::GetInstance()->GetScreenWidth()/(float)CGame::GetInstance()->GetScreenHeight()), znear = 0.01f, zfar = 100.0f; 
-	
-	D3DXMatrixPerspectiveFovLH(&m_D3DProjection,fov,aspect,znear,zfar);
-	SetYMod( 3 );
+	static CCameraControl instance;
+	return &instance;
+}
+CCameraControl::~CCameraControl(void){}
+void CCameraControl::InitializeCamera( int screenWidth, int screenHeight )
+{
+	D3DXMatrixPerspectiveOffCenterLH( &m_D3DProjection, screenWidth >> 1, screenWidth >> 1, screenHeight >> 1, screenHeight >> 1, 0.0f, 1.0f );
+	SetScale( 1.0f );
+	SetPositionX( 0.0f );
+	SetPositionY( 0.0f );
+	m_nScreenWidth = screenWidth;
+	m_nScreenHeight = screenHeight;
+
 	SetChange( true );
 	SetStop( false );
 	SetKillCam( false );
 	SetTimeToWait( 0 );
+
+	SetReleaseButton( false );
 }
 void CCameraControl::Update( float fTime )
 {
 	SetTime( fTime );
-	if( GetKillCam() )
-	{
-		KillCamSequence( 2 );
-	}
-	D3DXVECTOR3 eye1(0, GetYMod(), 0.01f ), at1(0,0,0), up1(0,1,0);
-	D3DXMatrixLookAtLH(&m_D3DCamera,&eye1,&at1,&up1);
+	if( GetKillCam() ) { KillCamSequence( 3 ); }
 }
 void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 {
 	if( GetChange() )
 	{
-		if( !GetStop() )
-		{
-			SetYMod( GetYMod() - ( 10 * GetTime() ) );
-		}
-
-		if( GetYMod() <= 1.0 )
+		if( !GetStop() ) { SetScale( GetScale() + 7.0f * GetTime() ); }
+		if( GetScale() >= 3.0f )
 		{
 			SetStop( true );
-			SetTimeToWait( GetTimeToWait() + ( 1 * GetTime() ) );
-			if( GetTimeToWait() >= fAmountOfTimeToPause )
-			{
-				SetChange( false );
-			}
+			SetTimeToWait( GetTimeToWait() + ( GetTime() ) );
+			if( GetTimeToWait() >= fAmountOfTimeToPause ) { SetChange( false ); }
 		}
 	}
-
 	if( !GetChange() )
 	{
 		SetTimeToWait( 0 );
-		SetYMod( GetYMod() + ( 3 * GetTime() ) );
-		if( GetYMod() >= 3.0f )
+		SetScale( GetScale() - 2.0f * GetTime() );
+		if( GetScale() <= 1.0f )
 		{
 			SetChange( true );
 			SetStop( false );
@@ -64,5 +59,48 @@ void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 }
 void CCameraControl::ChargeCamSequence( float fChargeTime )
 {
+	if( fChargeTime >= 2.0f )
+	{
+		SetScale( GetScale() + 0.02f * GetTime() );
 
+		if( GetScale() >= 1.3f )
+		{
+			SetScale( 1.3f );
+		}	
+	}	
+	if( fChargeTime == 0.0f && GetReleaseButton() )
+	{
+		SetScale( GetScale() - 3.0f * GetTime() );
+
+		if( GetScale() <= 1.0f )
+		{
+			SetScale( 1.0f );
+			SetReleaseButton( false );
+		}
+	}
+
+}
+
+D3DXMATRIX CCameraControl::GetView( void )
+{
+	//RKP
+	D3DXMATRIX S, T, t1, t2;
+	D3DXMatrixScaling( &S, m_D3DScale, m_D3DScale, 1.0f  );
+	D3DXMatrixTranslation( &T, m_D3DPosition.x, m_D3DPosition.y, 0  );
+	D3DXMatrixTranslation( &t1, -m_nScreenWidth >> 1, -m_nScreenHeight >> 1, 0 );
+	D3DXMatrixTranslation( &t2, m_nScreenWidth >> 1, m_nScreenHeight >> 1, 0 );
+	//RKP
+
+	return ( T * t1 * S * t2 );
+}
+void CCameraControl::SetSpriteProjection( void )
+{
+	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetTransform( D3DTS_PROJECTION, &m_D3DProjection );
+}
+D3DXMATRIX CCameraControl::GetOffset( void )
+{
+	D3DXMATRIX matFirstTranslation ;
+	D3DXMatrixTranslation( &matFirstTranslation, m_nScreenWidth >> 1, m_nScreenHeight >> 1, 0  );
+
+	return matFirstTranslation;
 }
