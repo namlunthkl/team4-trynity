@@ -16,17 +16,36 @@
 #include "StdAfx.h"
 
 #include "CPuzzleManager.h"
+#include "CPuzzleFunctions.h"
+
+void CPuzzleManager::InitPuzzleManager(void)
+{
+
+
+
+}
+
+void CPuzzleManager::ShutdownPuzzleManager(void)
+{
+
+}
 
 unsigned int CPuzzleManager::PushPuzzle(CPuzzle* pPuzzle)
 {
-	return 0;
+	if(pPuzzle)
+		m_vpPuzzles.push_back(pPuzzle);
+
+	return m_vpPuzzles.size() - 1;
 }
 
 CPuzzleManager* CPuzzleManager::GetInstance(void)
 {
-	return NULL;
+	static CPuzzleManager instance;
+	return &instance;
 }
 
 void CPuzzleManager::UpdatePuzzles(float fElapsedTime)
 {
+	for(unsigned int i=0; i < m_vpPuzzles.size(); ++i)
+		m_vpPuzzles[i]->Update(fElapsedTime);
 }

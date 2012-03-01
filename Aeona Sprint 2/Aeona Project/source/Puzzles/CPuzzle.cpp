@@ -14,28 +14,24 @@
 
 void CPuzzle::HandleEvent(CEvent* pEvent)
 {
-	// If it is the event we're listening to...
-	/*if(pEvent->GetEventID() == m_szEvent)
-	{
-		// Call this puzzle's specific handle event
-		m_pfHandleEvent();
-	}
-	*/
+	// Call this puzzle's specific handle event
+	m_pfHandleEvent(pEvent, this);
 }
 
 void CPuzzle::Update(float fElapsedTime)
 {
 	// Call this puzzle's specific update
-	m_pfUpdate();
+	m_pfUpdate(this);
 }
 
-void CPuzzle::Initialize(unsigned int uiArgCount, char* szEvent,
-	void(*pfHandleEvent)(void), void(*pfUpdate)(void))
+void CPuzzle::Initialize(unsigned int uiArgCount, char* szEvent, vector<char*> m_szEventsToListen,
+	void(*pfHandleEvent)(CEvent*, CPuzzle*), void(*pfUpdate)(CPuzzle*))
 {
 	m_uiArgCount = uiArgCount;
 	m_szEvent = szEvent;
 	m_pfHandleEvent = pfHandleEvent;
 	m_pfUpdate = pfUpdate;
 
-	// EventSystem->RegisterClient(m_szEvent, this);
+	for(unsigned int i=0; i < m_szEventsToListen.size(); ++i)
+		CEventSystem::GetInstance()->RegisterForEvent(m_szEventsToListen[i], this);
 }

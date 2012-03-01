@@ -401,6 +401,9 @@
     <ClInclude Include="source\Weapons\CCrossBow.h">
       <Filter>Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h">
+      <Filter>Puzzles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="source\States\TempAsset1.png">
