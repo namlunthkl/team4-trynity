@@ -95,6 +95,24 @@ struct PointD
 		}
 		return *this;
 	}
+	double GetDistanceUntil(const PointD& p)
+	{
+		double dDistance = 0;
+
+		// Get Deltas
+		double dDeltaX = p.x - x;
+		double dDeltaY = p.y - y;
+
+		// Get absolute value
+		if(dDeltaX < 0) dDeltaX = -dDeltaX;
+		if(dDeltaY < 0) dDeltaY = -dDeltaY;
+
+		// Teorema de Pitágoras!
+		dDistance = sqrt((dDeltaX * dDeltaX) + (dDeltaY * dDeltaY));
+
+		// Return distance
+		return dDistance;
+	}
 };
 
 struct PointF

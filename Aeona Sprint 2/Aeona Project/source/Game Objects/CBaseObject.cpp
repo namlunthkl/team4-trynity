@@ -50,6 +50,11 @@ void CBaseObject::Update(float fElapsedTime)
 	}
 }
 
+void CBaseObject::Input(void)
+{
+
+}
+
 void CBaseObject::Render(void)
 {
 	if(!IsActive()) return;
@@ -108,7 +113,7 @@ RectD CBaseObject::GetCollisionRect(void)
 // Return true if collided, false otherwise
 bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 {
-	if(GetType() == TYPE_CHAR_BASE && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
+	if(GetType() == TYPE_CHAR_ENEMY && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
 
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;

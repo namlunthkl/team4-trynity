@@ -65,7 +65,6 @@ public:
 
 
 	inline void GainHeart(void) { m_uiMaxHealth++; }
-	
 	inline float GetMoveTimer(void) const { return m_fMoveTimer; }
 	inline void SetMoveTimer(float fMoveTimer) { m_fMoveTimer = fMoveTimer; }
 };

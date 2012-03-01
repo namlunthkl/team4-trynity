@@ -18,6 +18,7 @@
 #include "../Game Objects/CPlayer.h"
 #include "../AI_States/CRandomAIState.h"
 #include "../Game Objects/CObjectManager.h"
+#include "../Game Objects/CNPC.h"
 
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
@@ -49,17 +50,37 @@ void CGameplayState::Enter(void)
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
-	for(int i=0; i < 5; ++i)
+	/*for(int i=0; i < 3; ++i)
 	{
-		for(int j = 0; j < 5; ++j)
+		for(int j = 0; j < 3; ++j)
 		{
 			CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
 			pEnemy->ChangeAIState(CRandomAIState::GetInstance());
 			pEnemy->SetDebugMode(false);
+			pEnemy->LoadAnimations("resource/npc walk.xml");
 			OBJECTS->AddObject(pEnemy);
 			pEnemy->Release();
 		}
-	}
+	}*/
+
+	CBitmapFont* pFont = new CBitmapFont();
+
+	CNPC* pNPC = new CNPC(true, 150, -1, pFont, 400, 200, 20, -1, 0, 0, true, 100, 0);
+	pNPC->LoadAnimations("resource/npc walk.xml");
+	pNPC->ChangeAIState(CRandomAIState::GetInstance());
+	pNPC->SetDebugMode(false);
+	pNPC->LoadText("Hello. I am the first NPC of this game.");
+	OBJECTS->AddObject(pNPC);
+	pNPC->Release();
+
+	CNPC* pNPC2 = new CNPC(false, 150, -1, pFont, 700, 500, 20, -1, 0, 0, true, 100, 0);
+	pNPC2->LoadAnimations("resource/npc walk.xml");
+	pNPC2->ChangeAIState(CRandomAIState::GetInstance());
+	pNPC2->SetDebugMode(false);
+	pNPC2->LoadText("This is awesome");
+	OBJECTS->AddObject(pNPC2);
+	pNPC2->Release();
+
 
 	PLAYER->SetPosX(100);
 	PLAYER->SetPosY(100);
@@ -84,9 +105,8 @@ bool CGameplayState::Input(void)
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
 
-	// Move player
-	if(PLAYER)
-		PLAYER->Input();
+	// Get Input from all objects
+	CObjectManager::GetInstance()->InputFromObjects();
 
 	return true;
 }

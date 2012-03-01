@@ -54,6 +54,7 @@ public:
 	// Common routines
 	virtual void Update(float fElapsedTime);
 	virtual void Render(void);
+	virtual void Input(void);
 	virtual RectD GetCollisionRect(void);
 	virtual bool CheckCollision(IBaseInterface* pObject);
 

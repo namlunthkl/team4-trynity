@@ -26,7 +26,7 @@ public:
 
 	~CEnemy(void);
 
-	inline unsigned int GetType(void) { return TYPE_CHAR_ENEMY; }
+	inline unsigned int GetType(void) const { return TYPE_CHAR_ENEMY; }
 };
 
 #endif // C_ENEMY_H_
