@@ -1,9 +1,8 @@
 #include "StdAfx.h"
-
 #include "ParticleWeapon.h"
-#include "../CGame.h"
-#include "../tinyxml/tinystr.h"
-#include "../tinyxml/tinyxml.h"
+#include "..\CGame.h"
+#include "..\tinyxml\tinystr.h"
+#include "..\tinyxml\tinyxml.h"
 
 ParticleWeapon::ParticleWeapon(void)
 {
@@ -11,40 +10,46 @@ ParticleWeapon::ParticleWeapon(void)
 }
 ParticleWeapon::~ParticleWeapon(void)
 {
-	for(unsigned int i = 0; i < Emitters.size(); i++)
-	{
-		delete (Emitter*)(Emitters[i]);
-		Emitters[i] = NULL;
-		
-	}
-	Emitters.clear();
+	//for(unsigned int i = 0; i < Emitters.size(); i++)
+	//{
+	//	delete (Emitter*)(Emitters[i]);
+	//	Emitters[i] = NULL;	
+	//}
+	//Emitters.clear();
 }
-void ParticleWeapon::Fire(int PosX, int PosY)
+void ParticleWeapon::Fire(float PosX, float PosY)
 {
+	//Fired = true;
+	//
+	//for(unsigned int i = 0; i < Emitters.size(); i++)
+	//{
+	//	Emitters[i]->reAnimate = true;
+	//	Emitters[i]->EmitterPosX = (float)PosX;
+	//	Emitters[i]->EmitterPosY = (float)PosY;
+	//}
 	Fired = true;
-	
-	for(unsigned int i = 0; i < Emitters.size(); i++)
-	{
-		Emitters[i]->reAnimate = true;
-		Emitters[i]->Data->EmitterPosX = (float)PosX;
-		Emitters[i]->Data->EmitterPosY = (float)PosY;
-	}
+	emitter.reAnimate = true;
+	emitter.EmitterPosX = PosX;
+	emitter.EmitterPosY = PosY;
 }
-
 void ParticleWeapon::Update(float DT)
 {
-	for(unsigned int i = 0; i < Emitters.size(); i++)
-	{
-		Emitters[i]->Update(DT);
+	//for(unsigned int i = 0; i < Emitters.size(); i++)
+	//{
+	//	Emitters[i]->Update(DT);
 
-		if(Emitters[i]->Data->EmitterPosY <= 0)
-			Fired = false;
-	}
+	//	if(Emitters[i]->EmitterPosY <= 0)
+	//		Fired = false;
+	//}
+	if( emitter.EmitterPosY <= 0 )
+		Fired = false;
+	emitter.Update(DT);
 }
-void ParticleWeapon::Render(int nCameraPosX, int nCameraPosY)
+void ParticleWeapon::Render()
 {
-	for(unsigned int i = 0; i < Emitters.size(); i++)
-		Emitters[i]->Render(nCameraPosX, nCameraPosY);
+	//for(unsigned int i = 0; i < Emitters.size(); i++)
+	//	Emitters[i]->Render();
+	emitter.Render();
 }
 bool ParticleWeapon::Load(const char* szXMLFileName)
 {
@@ -52,150 +57,156 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 
 	TiXmlDocument doc;
 
-	if(doc.LoadFile(szXMLFileName) == false)
-		return false;
+	if( !doc.LoadFile(szXMLFileName) ) { return false; }
 
 	TiXmlElement* pRoot = doc.RootElement();
 
-	if(pRoot == NULL)
-		return false;
+	if( !pRoot ){ return false; }
 
-	TiXmlElement* L = pRoot->FirstChildElement("List");
+	//TiXmlElement* L = pRoot->FirstChildElement("Particle");
 
-	if(L)
+	if(pRoot)
 	{
-		TiXmlElement* E = L->FirstChildElement("Emitter");
+		string temp;
 
-		while(E)
-		{
-			Emitter* tempE = new Emitter();
-			string temp;
+		TiXmlElement* pImageFile = pRoot->FirstChildElement("ImageFile");
+		temp = pImageFile->GetText();
+		emitter.ImageFile = Folder + temp;
+		
+		emitter.Image = CSGD_TextureManager::GetInstance()->LoadTexture(emitter.ImageFile.c_str(), D3DCOLOR_XRGB(0,0,0));
 
-			TiXmlElement* D = E->FirstChildElement("Data");
+		TiXmlElement* pContinuous = pRoot->FirstChildElement("Continuous");
+		temp = pContinuous->GetText();
+		if(temp == "1"){ emitter.Continuous = true; } 
+		else{ emitter.Continuous = false; }
 
-			TiXmlElement* pSize = D->FirstChildElement("fSize");
-			temp = pSize->GetText();
-			tempE->Data->fSize = (float)atof(temp.c_str());
+		TiXmlElement* pReAnimate = pRoot->FirstChildElement("Reanimate");
+		temp = pReAnimate->GetText();
+		if(temp == "1"){ emitter.reAnimate = true; } 
+		else{ emitter.reAnimate = false; }
 
-			TiXmlElement* pLife = D->FirstChildElement("MaxLife");
-			temp = pLife->GetText();
-			tempE->Data->MaxLife = (float)atof(temp.c_str());
+		TiXmlElement* pEmitterPosX = pRoot->FirstChildElement("EmitterPosX");
+		temp = pEmitterPosX->GetText();
+		emitter.EmitterPosX = (float)(atoi(temp.c_str()));
 
-			TiXmlElement* pMinVelX = D->FirstChildElement("MinVelX");
-			temp = pMinVelX->GetText();
-			tempE->Data->MinVelX = (float)atof(temp.c_str());
+		TiXmlElement* pEmitterPosY = pRoot->FirstChildElement("EmitterPosY");
+		temp = pEmitterPosY->GetText();
+		emitter.EmitterPosY = (float)(atoi(temp.c_str()));
 
-			TiXmlElement* pMaxVelX = D->FirstChildElement("MaxVelX");
-			temp = pMaxVelX->GetText();
-			tempE->Data->MaxVelX = (float)atof(temp.c_str());
+		TiXmlElement* pMaxParticles = pRoot->FirstChildElement("MaxParticles");
+		temp = pMaxParticles->GetText();
+		emitter.MaxParticles = atoi(temp.c_str());
 
-			TiXmlElement* pMinVelY = D->FirstChildElement("MinVelY");
-			temp = pMinVelY->GetText();
-			tempE->Data->MinVelY = (float)atof(temp.c_str());
+		TiXmlElement* pSize = pRoot->FirstChildElement("Size");
+		temp = pSize->GetText();
+		emitter.fSize = (float)atof(temp.c_str());
 
-			TiXmlElement* pMaxVelY = D->FirstChildElement("MaxVelY");
-			temp = pMaxVelY->GetText();
-			tempE->Data->MaxVelY = (float)atof(temp.c_str());
+		TiXmlElement* pLife = pRoot->FirstChildElement("MaxLife");
+		temp = pLife->GetText();
+		emitter.MaxLife = (float)atof(temp.c_str());
 
-			TiXmlElement* pSpawnAWid = D->FirstChildElement("SpwnAreaWidth");
-			temp = pSpawnAWid->GetText();
-			tempE->Data->SpwnAreaWidth = (float)atof(temp.c_str());
+		TiXmlElement* pSpawnWidth = pRoot->FirstChildElement("SpawnWidth");
+		temp = pSpawnWidth->GetText();
+		emitter.SpawnWidth = (float)atof(temp.c_str());
 
-			TiXmlElement* pSpawnAHigh = D->FirstChildElement("SpwnAreaHeight");
-			temp = pSpawnAHigh->GetText();
-			tempE->Data->SpwnAreaHeight = (float)atof(temp.c_str());
+		TiXmlElement* pSpawnHeight = pRoot->FirstChildElement("SpawnHeight");
+		temp = pSpawnHeight->GetText();
+		emitter.SpawnHeight = (float)atof(temp.c_str());
 
-			TiXmlElement* pFadeEffect = D->FirstChildElement("FadeEffect");
-			temp = pFadeEffect->GetText();
-			tempE->Data->FadeEffect = atoi(temp.c_str());
+		TiXmlElement* pScaleStart = pRoot->FirstChildElement("ScaleStart");
+		temp = pScaleStart->GetText();
+		emitter.ScaleStart = (float)atof(temp.c_str());
 
-			TiXmlElement* pFadeValue = D->FirstChildElement("FadeValue");
-			temp = pFadeValue->GetText();
-			tempE->Data->FadeValue = (float)atof(temp.c_str());
+		TiXmlElement* pScaleEnd = pRoot->FirstChildElement("ScaleEnd");
+		temp = pScaleEnd->GetText();
+		emitter.ScaleEnd = (float)atof(temp.c_str());
 
-			TiXmlElement* pScaleEffect = D->FirstChildElement("ScaleEffect");
-			temp = pScaleEffect->GetText();
-			tempE->Data->ScaleEffect = atoi(temp.c_str());
+		TiXmlElement* pRotation = pRoot->FirstChildElement("Rotation");
+		temp = pRotation->GetText();
+		emitter.Rotation = (float)atof(temp.c_str());
 
-			TiXmlElement* pScaleValue = D->FirstChildElement("ScaleValue");
-			temp = pScaleValue->GetText();
-			tempE->Data->ScaleValue = (float)atof(temp.c_str());
+		TiXmlElement* pMinVelX = pRoot->FirstChildElement("MinVelX");
+		temp = pMinVelX->GetText();
+		emitter.MinVelX = (float)atof(temp.c_str());
 
-			TiXmlElement* pRotationValue = D->FirstChildElement("RotationValue");
-			temp = pRotationValue->GetText();
-			tempE->Data->RotationValue = (float)atof(temp.c_str());
+		TiXmlElement* pMaxVelX = pRoot->FirstChildElement("MaxVelX");
+		temp = pMaxVelX->GetText();
+		emitter.MaxVelX = (float)atof(temp.c_str());
 
-			TiXmlElement* pRedEffect = D->FirstChildElement("RedEffect");
-			temp = pRedEffect->GetText();
-			tempE->Data->RedEffect = atoi(temp.c_str());
+		TiXmlElement* pMinVelY = pRoot->FirstChildElement("MinVelY");
+		temp = pMinVelY->GetText();
+		emitter.MinVelY = (float)atof(temp.c_str());
 
-			TiXmlElement* pRedValue = D->FirstChildElement("RedValue");
-			temp = pRedValue->GetText();
-			tempE->Data->RedValue = (float)atof(temp.c_str());
-
-			TiXmlElement* pGreenEffect = D->FirstChildElement("GreenEffect");
-			temp = pGreenEffect->GetText();
-			tempE->Data->GreenEffect = atoi(temp.c_str());
-
-			TiXmlElement* pGreenValue = D->FirstChildElement("GreenValue");
-			temp = pGreenValue->GetText();
-			tempE->Data->GreenValue = (float)atof(temp.c_str());
-
-			TiXmlElement* pBlueEffect = D->FirstChildElement("BlueEffect");
-			temp = pBlueEffect->GetText();
-			tempE->Data->BlueEffect = atoi(temp.c_str());
-
-			TiXmlElement* pBlueValue = D->FirstChildElement("BlueValue");
-			temp = pBlueValue->GetText();
-			tempE->Data->BlueValue = (float)atof(temp.c_str());
-
-			TiXmlElement* pSource = D->FirstChildElement("Source");
-			temp = pSource->GetText();
-			tempE->Data->Source = atoi(temp.c_str());
-
-			TiXmlElement* pDest = D->FirstChildElement("Dest");
-			temp = pDest->GetText();
-			tempE->Data->Dest = atoi(temp.c_str());
-
-			TiXmlElement* pEmitterPosX = D->FirstChildElement("EmitterPosX");
-			temp = pEmitterPosX->GetText();
-			tempE->Data->EmitterPosX = (float)(atoi(temp.c_str()));
-
-			TiXmlElement* pEmitterPosY = D->FirstChildElement("EmitterPosY");
-			temp = pEmitterPosY->GetText();
-			tempE->Data->EmitterPosY = (float)(atoi(temp.c_str()));
-
-			TiXmlElement* pMaxParticles = D->FirstChildElement("MaxParticles");
-			temp = pMaxParticles->GetText();
-			tempE->Data->MaxParticles = atoi(temp.c_str());
-
-			TiXmlElement* pEmitterVelX = D->FirstChildElement("EmitterVelX");
-			temp = pEmitterVelX->GetText();
-			tempE->Data->EmitterVelX = (float)(atoi(temp.c_str()));
-
-			TiXmlElement* pEmitterVelY = D->FirstChildElement("EmitterVelY");
-			temp = pEmitterVelY->GetText();
-			tempE->Data->EmitterVelY = (float)(atoi(temp.c_str()));
-
-			TiXmlElement* pContinuous = E->FirstChildElement("Continuous");
-			temp = pContinuous->GetText();
-			if(temp == "true")
-				tempE->Continuous = true;
-			else
-				tempE->Continuous = false;
+		TiXmlElement* pMaxVelY = pRoot->FirstChildElement("MaxVelY");
+		temp = pMaxVelY->GetText();
+		emitter.MaxVelY = (float)atof(temp.c_str());
 
 
-			TiXmlElement* pImageFile = E->FirstChildElement("ImageFile");
-			temp = pImageFile->GetText();
-			tempE->ImageFile = Folder + temp;
 
-			tempE->Image = CSGD_TextureManager::GetInstance()->LoadTexture(tempE->ImageFile.c_str(), D3DCOLOR_XRGB(0,0,0));
 
-			tempE->Init();
-			Emitters.push_back(tempE);
+		TiXmlElement* pStartColorA = pRoot->FirstChildElement("StartColorA");
+		temp = pStartColorA->GetText();
+		emitter.ColorStartA = (int)atof(temp.c_str());
 
-			E = E->NextSiblingElement("Emitter");
-		}
+		TiXmlElement* pStartColorR = pRoot->FirstChildElement("StartColorR");
+		temp = pStartColorR->GetText();
+		emitter.ColorStartR = (int)atof(temp.c_str());
+
+		TiXmlElement* pStartColorG = pRoot->FirstChildElement("StartColorG");
+		temp = pStartColorG->GetText();
+		emitter.ColorStartG = (int)atof(temp.c_str());
+
+		TiXmlElement* pStartColorB = pRoot->FirstChildElement("StartColorB");
+		temp = pStartColorB->GetText();
+		emitter.ColorStartB = (int)atof(temp.c_str());
+
+
+
+		TiXmlElement* pEndColorA = pRoot->FirstChildElement("EndColorA");
+		temp = pEndColorA->GetText();
+		emitter.ColorEndA = (int)atof(temp.c_str());
+
+		TiXmlElement* pEndColorR = pRoot->FirstChildElement("EndColorR");
+		temp = pEndColorR->GetText();
+		emitter.ColorEndR = (int)atof(temp.c_str());
+
+		TiXmlElement* pEndColorG = pRoot->FirstChildElement("EndColorG");
+		temp = pEndColorG->GetText();
+		emitter.ColorEndG = (int)atof(temp.c_str());
+
+		TiXmlElement* pEndColorB = pRoot->FirstChildElement("EndColorB");
+		temp = pEndColorB->GetText();
+		emitter.ColorEndB = (int)atof(temp.c_str());
+
+		TiXmlElement* pSource = pRoot->FirstChildElement("Source");
+		temp = pSource->GetText();
+		emitter.Source = atoi(temp.c_str());
+
+		TiXmlElement* pDest = pRoot->FirstChildElement("Dest");
+		temp = pDest->GetText();
+		emitter.Destination = atoi(temp.c_str());
+
+		TiXmlElement* pGravPosX = pRoot->FirstChildElement("GravPosX");
+		temp = pGravPosX->GetText();
+		emitter.GravityPosX = atoi(temp.c_str());
+
+		TiXmlElement* pGravPosY = pRoot->FirstChildElement("GravPosY");
+		temp = pGravPosY->GetText();
+		emitter.GravityPosY = atoi(temp.c_str());
+
+		TiXmlElement* pGravPower = pRoot->FirstChildElement("GravPower");
+		temp = pGravPower->GetText();
+		emitter.GravityPower = atoi(temp.c_str());
+		
+		TiXmlElement* pGravDistX = pRoot->FirstChildElement("GravDistX");
+		temp = pGravDistX->GetText();
+		emitter.GravityDistX = atoi(temp.c_str());
+
+		TiXmlElement* pGravDistY = pRoot->FirstChildElement("GravDistY");
+		temp = pGravDistY->GetText();
+		emitter.GravityDistY = atoi(temp.c_str());
+
+		emitter.Init();
 	}
 
 	return true;

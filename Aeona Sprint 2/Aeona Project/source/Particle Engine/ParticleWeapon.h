@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PARTICLEWEAPON_H_
+#define PARTICLEWEAPON_H_
 
 #include <vector>
 #include "Emitter.h"
@@ -8,17 +9,18 @@ using namespace std;
 class ParticleWeapon
 {
 	bool Fired;
-	vector<Emitter*> Emitters;
-
+	Emitter emitter;
 public:
 	ParticleWeapon(void);
 	~ParticleWeapon(void);
 
-	void Fire(int PosX , int PosY );
-	void Update(float DT);
-	void Render(int nCameraPosX = 0, int nCameraPosY = 0);
-	bool Load(const char* szXMLFileName);
+	bool GetFired(void)		{ return Fired; }
+	void SetFired( bool f)	{ Fired = f; }
 
-	inline bool GetFired(void) const { return Fired; }
+	void Fire(float PosX , float PosY );
+	void Update(float DT);
+	void Render();
+	bool Load(const char* szXMLFileName);
 };
 
+#endif

@@ -3,37 +3,64 @@
 #include <string>
 #include <vector>
 using namespace std;
-
 #include "Particle.h"
-#include "FlyWeight.h"
+
 
 class Emitter
 {
 public:
-	 vector<Particle*> Particle_List;
-	 FlyWeight* Data;   
-	 bool Continuous;
-	 bool reAnimate;
+	vector<Particle*> Particle_List;   
+	bool Continuous;
+	bool reAnimate;
 
-	 int Image;
-	 string ImageFile;
+	int Image;
+	string ImageFile;
 
-	 Emitter();
+	int ColorStartA;
+	int ColorStartR;
+	int ColorStartG;
+	int ColorStartB;
+	int ColorEndA;
+	int ColorEndR;
+	int ColorEndG;
+	int ColorEndB;
 
-	//		Trilogy of EVIL!:
-	//			Copy constructor
+	float fSize;
+	float MaxLife;
+
+	float MinVelX;
+	float MaxVelX;
+	float MinVelY;
+	float MaxVelY;
+	float SpawnWidth;
+	float SpawnHeight;
+
+	float ScaleStart;
+	float ScaleEnd;
+	float Rotation;
+
+	int Source;
+	int Destination;
+
+	float EmitterPosX;
+	float EmitterPosY;
+	int MaxParticles;
+
+	float GravityPosX;
+	float GravityPosY;
+	float GravityPower;
+	float GravityDistX;
+	float GravityDistY;
+
+	Emitter();
 	Emitter(const Emitter& E);
-
-	//			Assignment operator
 	Emitter& operator=(const Emitter& E);
-	
-	//			~Destructor
 	~Emitter(void);
 
-	 void Init();
-	 void Update( float DT );
-	 void Render(int nCameraPosX, int nCameraPosY);
-	 void ReSpwn(Particle* P);
+	void Init();
+	void Update( float DT );
+	void Render();
+	void ReSpwn(Particle* P);
 
 };
 #endif

@@ -51,6 +51,7 @@ class CGameplayState : public IGameState , public IListener
 	//	Assets
 	int m_imgHUD;
 
+
 public:
 
 	// Constructor

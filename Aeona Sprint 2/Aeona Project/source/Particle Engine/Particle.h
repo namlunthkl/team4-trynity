@@ -4,10 +4,10 @@
 class Particle
 {
 public:
-	float A;
-	float R;
-	float G;
-	float B;
+	int A;
+	int R;
+	int G;
+	int B;
 
 	float PosX;
 	float PosY;
@@ -19,6 +19,7 @@ public:
 	float Rotation;
 
 	float Life;
+	float curLife;
 
 	Particle(){}
 	~Particle(){}

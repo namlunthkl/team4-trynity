@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Corona.bmp</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>341</EmitterPosX>
+  <EmitterPosY>159</EmitterPosY>
+  <MaxParticles>200</MaxParticles>
+  <Size>1</Size>
+  <MaxLife>5</MaxLife>
+  <SpawnWidth>1</SpawnWidth>
+  <SpawnHeight>1</SpawnHeight>
+  <ScaleStart>1</ScaleStart>
+  <ScaleEnd>1</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>-200</MinVelX>
+  <MaxVelX>200</MaxVelX>
+  <MinVelY>-200</MinVelY>
+  <MaxVelY>200</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>141</StartColorR>
+  <StartColorG>98</StartColorG>
+  <StartColorB>205</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>228</EndColorR>
+  <EndColorG>100</EndColorG>
+  <EndColorB>183</EndColorB>
+  <Source>7</Source>
+  <Dest>14</Dest>
+  <GravPosX>0</GravPosX>
+  <GravPosY>0</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>
