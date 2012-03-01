@@ -43,6 +43,14 @@ void CObjectManager::UpdateObjects(float fElapsedTime)
 	}
 }
 
+void CObjectManager::InputFromObjects()
+{
+	for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)
+	{
+		m_vpObjectList[i]->Input();
+	}
+}
+
 void CObjectManager::RenderObjects()
 {
 	for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)

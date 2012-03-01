@@ -26,6 +26,7 @@ public:
 
 	void UpdateObjects(float fElapsedTime);
 	void RenderObjects();
+	void InputFromObjects();
 
 	bool AddObject(IBaseInterface* pObject);
 	bool RemoveObject(IBaseInterface* pObject);
