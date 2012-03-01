@@ -107,17 +107,17 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.groupBoxWeaponPoint = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.numericUpDownWeaponPointY = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownWeaponPointX = new System.Windows.Forms.NumericUpDown();
             this.WeaponAngleGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.numericUpDownAngle = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.numericUpDownWeaponPointY2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownWeaponPointX2 = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.numericUpDownAngle = new System.Windows.Forms.NumericUpDown();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
@@ -147,9 +147,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).BeginInit();
             this.WeaponAngleGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -984,15 +984,6 @@
             this.groupBoxWeaponPoint.TabStop = false;
             this.groupBoxWeaponPoint.Text = "Edit Weapon Anchor Point :";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 16);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 13);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Y Position :";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -1001,6 +992,15 @@
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 2;
             this.label17.Text = "X Position :";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Y Position :";
             // 
             // numericUpDownWeaponPointY
             // 
@@ -1042,28 +1042,6 @@
             this.WeaponAngleGroupBox1.TabIndex = 14;
             this.WeaponAngleGroupBox1.TabStop = false;
             this.WeaponAngleGroupBox1.Text = "Edit Weapon Angle :";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(9, 16);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(40, 13);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "Angle :";
-            // 
-            // numericUpDownAngle
-            // 
-            this.numericUpDownAngle.Location = new System.Drawing.Point(75, 14);
-            this.numericUpDownAngle.Maximum = new decimal(new int[] {
-            8192,
-            0,
-            0,
-            0});
-            this.numericUpDownAngle.Name = "numericUpDownAngle";
-            this.numericUpDownAngle.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownAngle.TabIndex = 3;
-            this.numericUpDownAngle.ValueChanged += new System.EventHandler(this.numericUpDownAngle_ValueChanged);
             // 
             // label19
             // 
@@ -1108,6 +1086,29 @@
             this.numericUpDownWeaponPointX2.Size = new System.Drawing.Size(81, 20);
             this.numericUpDownWeaponPointX2.TabIndex = 6;
             this.numericUpDownWeaponPointX2.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointX2_ValueChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(9, 16);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(40, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Angle :";
+            // 
+            // numericUpDownAngle
+            // 
+            this.numericUpDownAngle.Enabled = false;
+            this.numericUpDownAngle.Location = new System.Drawing.Point(75, 14);
+            this.numericUpDownAngle.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownAngle.Name = "numericUpDownAngle";
+            this.numericUpDownAngle.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownAngle.TabIndex = 3;
+            this.numericUpDownAngle.ValueChanged += new System.EventHandler(this.numericUpDownAngle_ValueChanged);
             // 
             // graphicsPanelPlayer
             // 
@@ -1187,9 +1188,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).EndInit();
             this.WeaponAngleGroupBox1.ResumeLayout(false);
             this.WeaponAngleGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

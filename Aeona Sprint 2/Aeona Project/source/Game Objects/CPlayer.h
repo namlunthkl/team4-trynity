@@ -14,7 +14,7 @@
 #include "CBaseCharacter.h"
 
 #include "../Particle Engine/ParticleWeapon.h"
-
+#include "../Weapons/IBaseWeapon.h"
 // TODO: When weapon class is done, replace this forward
 // declaration by actually including the weapon
 class CWeapon

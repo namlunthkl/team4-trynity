@@ -211,6 +211,7 @@
     <ClInclude Include="source\Util\ByteUtil.h" />
     <ClInclude Include="source\Util\CTimer.h" />
     <ClInclude Include="source\Util\UtilStructs.h" />
+    <ClInclude Include="source\Weapons\IBaseWeapon.h" />
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />
     <ClInclude Include="source\Wrappers\CSGD_TextureManager.h" />

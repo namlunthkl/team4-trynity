@@ -46,6 +46,9 @@
     <Filter Include="Puzzles">
       <UniqueIdentifier>{ff0e6667-f151-4d7c-b772-c01a29c74070}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Weapons">
+      <UniqueIdentifier>{842e5745-6339-4b9b-98d2-2e3855347dca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\CGame.cpp">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="source\Puzzles\CPuzzleManager.h">
       <Filter>Puzzles</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\IBaseWeapon.h">
+      <Filter>Weapons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
