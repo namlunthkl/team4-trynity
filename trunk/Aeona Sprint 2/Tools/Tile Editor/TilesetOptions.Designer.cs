@@ -252,6 +252,11 @@
             // numTilesetHeight
             // 
             this.numTilesetHeight.Location = new System.Drawing.Point(90, 60);
+            this.numTilesetHeight.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.numTilesetHeight.Name = "numTilesetHeight";
             this.numTilesetHeight.Size = new System.Drawing.Size(70, 22);
             this.numTilesetHeight.TabIndex = 3;
@@ -269,6 +274,11 @@
             // numTilesetWidth
             // 
             this.numTilesetWidth.Location = new System.Drawing.Point(90, 26);
+            this.numTilesetWidth.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
             this.numTilesetWidth.Name = "numTilesetWidth";
             this.numTilesetWidth.Size = new System.Drawing.Size(70, 22);
             this.numTilesetWidth.TabIndex = 2;
