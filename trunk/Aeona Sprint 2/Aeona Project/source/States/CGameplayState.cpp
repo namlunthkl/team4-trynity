@@ -82,8 +82,8 @@ void CGameplayState::Enter(void)
 	pNPC2->Release();
 
 
-	PLAYER->SetPosX(100);
-	PLAYER->SetPosY(100);
+	PLAYER->SetPosX(600);
+	PLAYER->SetPosY(200);
 	PLAYER->SetSpeed(100);
 	//PLAYER->SetDebugMode(true);
 	OBJECTS->AddObject(PLAYER);
