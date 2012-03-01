@@ -402,8 +402,8 @@ namespace Tile_Editor
                         nHorIndex * m_sizeTile.Width + ptOffset.X,
                         nVertIndex * m_sizeTile.Height + ptOffset.Y);
 
-                    // e.Graphics.DrawEmptyRectangle(Pens.Black, new Rectangle(ptPosition, SizeTile));
-                    D3D.DrawEmptyRect(new Rectangle(ptPosition, SizeTile), Color.Black, 1.0f);
+                    if(checkViewGrid.Checked == true)
+                        D3D.DrawEmptyRect(new Rectangle(ptPosition, SizeTile), Color.Black, 1.0f);
                     
                 }
             }
@@ -1008,13 +1008,13 @@ namespace Tile_Editor
             //  Default values for variables
             mapPosX.Value = 0;
             mapPosY.Value = 0;
-            string TilesetPath = Application.StartupPath.Remove(Application.StartupPath.Length - 10, 10);
-            m_imgTileset = TM.LoadTexture(TilesetPath + "/Resources/Default.png", Color.White.ToArgb());
+            string TilesetPath = Application.StartupPath.Remove(Application.StartupPath.Length - 9, 9);
+            m_imgTileset = TM.LoadTexture(TilesetPath + "Resources\\Default.png", Color.White.ToArgb());
             SizeTileset = new Size(9, 8);
             SizeTile = new Size(32, 32);
             m_ptSelectedOnTileset = new Point(0, 0);
             m_bMousePainting = false;
-            m_szTilesetFileName = TilesetPath + "/Resources/Default.png";
+            m_szTilesetFileName = TilesetPath + "Resources\\Default.png";
             m_colorTransparent = Color.White;
             m_szTilesetNameID = "untitled";
             m_rectMultiSelected = new Rectangle();
