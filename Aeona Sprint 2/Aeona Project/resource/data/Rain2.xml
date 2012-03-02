@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>smoke2.jpg</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>0</EmitterPosX>
+  <EmitterPosY>-10</EmitterPosY>
+  <MaxParticles>103</MaxParticles>
+  <Size>0.3</Size>
+  <MaxLife>3</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>600</SpawnHeight>
+  <ScaleStart>0.3</ScaleStart>
+  <ScaleEnd>0.3</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>-30</MinVelX>
+  <MaxVelX>0</MaxVelX>
+  <MinVelY>195</MinVelY>
+  <MaxVelY>200</MaxVelY>
+  <StartColorA>0</StartColorA>
+  <StartColorR>181</StartColorR>
+  <StartColorG>210</StartColorG>
+  <StartColorB>255</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>0</EndColorR>
+  <EndColorG>0</EndColorG>
+  <EndColorB>255</EndColorB>
+  <Source>5</Source>
+  <Dest>6</Dest>
+  <GravPosX>0</GravPosX>
+  <GravPosY>0</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>
