@@ -14,7 +14,7 @@ CCameraControl* CCameraControl::GetInstance(void)
 CCameraControl::~CCameraControl(void){}
 void CCameraControl::InitializeCamera( int screenWidth, int screenHeight )
 {
-	D3DXMatrixPerspectiveOffCenterLH( &m_D3DProjection, screenWidth >> 1, screenWidth >> 1, screenHeight >> 1, screenHeight >> 1, 0.0f, 1.0f );
+	D3DXMatrixPerspectiveOffCenterLH( &m_D3DProjection, (float)(screenWidth >> 1), (float)(screenWidth >> 1), (float)(screenHeight >> 1), (float)(screenHeight >> 1), 0.0f, 1.0f );
 	SetScale( 1.0f );
 	SetPositionX( 0.0f );
 	SetPositionY( 0.0f );
@@ -87,8 +87,8 @@ D3DXMATRIX CCameraControl::GetView( void )
 	D3DXMATRIX S, T, t1, t2;
 	D3DXMatrixScaling( &S, m_D3DScale, m_D3DScale, 1.0f  );
 	D3DXMatrixTranslation( &T, m_D3DPosition.x, m_D3DPosition.y, 0  );
-	D3DXMatrixTranslation( &t1, -m_nScreenWidth >> 1, -m_nScreenHeight >> 1, 0 );
-	D3DXMatrixTranslation( &t2, m_nScreenWidth >> 1, m_nScreenHeight >> 1, 0 );
+	D3DXMatrixTranslation( &t1, (float)(-m_nScreenWidth >> 1), (float)(-m_nScreenHeight >> 1), 0.0f );
+	D3DXMatrixTranslation( &t2, (float)(m_nScreenWidth >> 1), (float)(m_nScreenHeight >> 1), 0.0f );
 	//RKP
 
 	return ( T * t1 * S * t2 );
@@ -100,7 +100,7 @@ void CCameraControl::SetSpriteProjection( void )
 D3DXMATRIX CCameraControl::GetOffset( void )
 {
 	D3DXMATRIX matFirstTranslation ;
-	D3DXMatrixTranslation( &matFirstTranslation, m_nScreenWidth >> 1, m_nScreenHeight >> 1, 0  );
+	D3DXMatrixTranslation( &matFirstTranslation, (float)(m_nScreenWidth >> 1), (float)(m_nScreenHeight >> 1), 0.0f  );
 
 	return matFirstTranslation;
 }

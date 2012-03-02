@@ -27,7 +27,6 @@ class CPlayer : public CBaseCharacter
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 
-
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
 	CPlayer* operator=(const CPlayer&){}

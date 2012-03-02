@@ -26,7 +26,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_vGameWeapons.push_back(new CSword);
 	Activate();
 	CBaseCharacter::LoadAnimations("resource/Char Walk2.xml");
-	m_fxFootsteps.Load("Resource/data/leafyburst.xml");
+	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
 }
 
 CPlayer* CPlayer::GetInstance(void)
@@ -62,8 +62,10 @@ void CPlayer::Update(float fElapsedTime)
 
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
-	{
-		m_fxFootsteps.Fire(SCREEN_POS_X(GetPosX()), SCREEN_POS_Y(GetPosY()));
+	{	
+		m_fxFootsteps.emitter.EmitterPosX = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + SCREEN_POS_X((float)GetPosX()) ;
+		m_fxFootsteps.emitter.EmitterPosY = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + SCREEN_POS_Y((float)GetPosY());
+		m_fxFootsteps.Fire();
 	}
 }
 
