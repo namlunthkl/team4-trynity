@@ -24,7 +24,6 @@ void CSword::Render()
 	TEX_MNG->Draw(GetImageID(),SCREEN_POS_X(GetWeaponAnchor().x-8),SCREEN_POS_Y(GetWeaponAnchor().y-57),1.0f,1.0f,0,8,57,x);
 }
 void CSword::ChargedAttack(void)
-
 {
 	//
 }
