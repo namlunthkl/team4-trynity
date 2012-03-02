@@ -45,7 +45,7 @@ void CGameplayState::Enter(void)
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
-	m_Rain.Load("resource/data/FallingLeaves.xml");
+	m_Rain.Load("resource/data/Rain.xml");
 	m_Rain.Fire(0,0);
 	MESSAGES->InitMessageSystem(MessageProc);
 
