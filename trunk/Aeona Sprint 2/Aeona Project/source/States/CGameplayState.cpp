@@ -46,7 +46,7 @@ void CGameplayState::Enter(void)
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
 	m_Rain.Load("resource/data/Rain.xml");
-	m_Rain.Fire(0,0);
+	m_Rain.Fire();
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
@@ -221,7 +221,9 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		PosX += 15;
 		PosY -= 5;
 
-		PW.Fire(PosX, PosY);
+		PW.Fire();
+		PW.emitter.EmitterPosX = (float)PosX;
+		PW.emitter.EmitterPosY = (float)PosY;
 	}
 }
 

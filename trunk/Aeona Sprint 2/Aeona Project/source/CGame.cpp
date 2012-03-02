@@ -192,19 +192,19 @@ bool CGame::Input(void)
 		}
 		if( INPUT->KeyDown ( DIK_I ) )
 		{
-			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() + 0.5 );
+			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() + 0.5f );
 		}
 		if( INPUT->KeyDown ( DIK_K ) )
 		{
-			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() - 0.5 );
+			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() - 0.5f );
 		}
 		if( INPUT->KeyDown ( DIK_J ) )
 		{
-			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() + 0.5 );
+			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() + 0.5f );
 		}
 		if( INPUT->KeyDown ( DIK_L ) )
 		{
-			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() - 0.5 );
+			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() - 0.5f );
 		}
 	///////////////////////////
 	//END ARI EXTRA CODE

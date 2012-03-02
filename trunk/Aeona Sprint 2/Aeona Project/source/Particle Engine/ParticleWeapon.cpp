@@ -17,38 +17,17 @@ ParticleWeapon::~ParticleWeapon(void)
 	//}
 	//Emitters.clear();
 }
-void ParticleWeapon::Fire(float PosX, float PosY)
+void ParticleWeapon::Fire()
 {
-	//Fired = true;
-	//
-	//for(unsigned int i = 0; i < Emitters.size(); i++)
-	//{
-	//	Emitters[i]->reAnimate = true;
-	//	Emitters[i]->EmitterPosX = (float)PosX;
-	//	Emitters[i]->EmitterPosY = (float)PosY;
-	//}
 	Fired = true;
 	emitter.reAnimate = true;
-	emitter.EmitterPosX = PosX;
-	emitter.EmitterPosY = PosY;
 }
 void ParticleWeapon::Update(float DT)
 {
-	//for(unsigned int i = 0; i < Emitters.size(); i++)
-	//{
-	//	Emitters[i]->Update(DT);
-
-	//	if(Emitters[i]->EmitterPosY <= 0)
-	//		Fired = false;
-	//}
-	if( emitter.EmitterPosY <= 0 )
-		Fired = false;
 	emitter.Update(DT);
 }
 void ParticleWeapon::Render()
 {
-	//for(unsigned int i = 0; i < Emitters.size(); i++)
-	//	Emitters[i]->Render();
 	emitter.Render();
 }
 bool ParticleWeapon::Load(const char* szXMLFileName)
@@ -62,8 +41,6 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 	TiXmlElement* pRoot = doc.RootElement();
 
 	if( !pRoot ){ return false; }
-
-	//TiXmlElement* L = pRoot->FirstChildElement("Particle");
 
 	if(pRoot)
 	{
@@ -188,23 +165,23 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 
 		TiXmlElement* pGravPosX = pRoot->FirstChildElement("GravPosX");
 		temp = pGravPosX->GetText();
-		emitter.GravityPosX = atoi(temp.c_str());
+		emitter.GravityPosX = (float)atoi(temp.c_str());
 
 		TiXmlElement* pGravPosY = pRoot->FirstChildElement("GravPosY");
 		temp = pGravPosY->GetText();
-		emitter.GravityPosY = atoi(temp.c_str());
+		emitter.GravityPosY = (float)atoi(temp.c_str());
 
 		TiXmlElement* pGravPower = pRoot->FirstChildElement("GravPower");
 		temp = pGravPower->GetText();
-		emitter.GravityPower = atoi(temp.c_str());
+		emitter.GravityPower = (float)atoi(temp.c_str());
 		
 		TiXmlElement* pGravDistX = pRoot->FirstChildElement("GravDistX");
 		temp = pGravDistX->GetText();
-		emitter.GravityDistX = atoi(temp.c_str());
+		emitter.GravityDistX = (float)atoi(temp.c_str());
 
 		TiXmlElement* pGravDistY = pRoot->FirstChildElement("GravDistY");
 		temp = pGravDistY->GetText();
-		emitter.GravityDistY = atoi(temp.c_str());
+		emitter.GravityDistY = (float)atoi(temp.c_str());
 
 		emitter.Init();
 	}

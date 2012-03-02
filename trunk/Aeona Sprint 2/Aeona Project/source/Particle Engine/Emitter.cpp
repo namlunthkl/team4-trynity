@@ -101,11 +101,11 @@ void Emitter::Update( float DT )
 		Particle_List[i]->Rotation += Rotation * DT;
 		Particle_List[i]->Life -= DT;
 
-		Particle_List[i]->A = (int)Lerp( ColorStartA, ColorEndA, ( Particle_List[i]->curLife -  Particle_List[i]->Life ) / Particle_List[i]->curLife );
-		Particle_List[i]->R = (int)Lerp( ColorStartR, ColorEndR, ( Particle_List[i]->curLife -  Particle_List[i]->Life ) / Particle_List[i]->curLife ); 
-		Particle_List[i]->G = (int)Lerp( ColorStartG, ColorEndG, ( Particle_List[i]->curLife -  Particle_List[i]->Life ) / Particle_List[i]->curLife );
-		Particle_List[i]->B = (int)Lerp( ColorStartB, ColorEndB, ( Particle_List[i]->curLife -  Particle_List[i]->Life ) / Particle_List[i]->curLife );
-		fSize = Lerp( ScaleStart, ScaleEnd, ( Particle_List[i]->curLife -  Particle_List[i]->Life ) / Particle_List[i]->curLife );
+		Particle_List[i]->A = (int)(Lerp( (float)ColorStartA, (float)ColorEndA, ( Particle_List[i]->curLife - Particle_List[i]->Life ) / Particle_List[i]->curLife ));
+		Particle_List[i]->R = (int)(Lerp( (float)ColorStartR, (float)ColorEndR, ( Particle_List[i]->curLife - Particle_List[i]->Life ) / Particle_List[i]->curLife )); 
+		Particle_List[i]->G = (int)(Lerp( (float)ColorStartG, (float)ColorEndG, ( Particle_List[i]->curLife - Particle_List[i]->Life ) / Particle_List[i]->curLife ));
+		Particle_List[i]->B = (int)(Lerp( (float)ColorStartB, (float)ColorEndB, ( Particle_List[i]->curLife - Particle_List[i]->Life ) / Particle_List[i]->curLife ));
+		fSize = Lerp( ScaleStart, ScaleEnd, ( Particle_List[i]->curLife - Particle_List[i]->Life ) / Particle_List[i]->curLife );
 		Particle_List[i]->Size_p = fSize;
 
 		GravityDistX = GravityPosX - Particle_List[i]->PosX;
@@ -144,7 +144,7 @@ void Emitter::Update( float DT )
 void Emitter::ReSpwn(Particle* P)
 {
 	P->Life = RandomFloat( 0.0f, MaxLife );
-	P->curLife - P->Life;
+	P->curLife = P->Life;
 	P->Size_p = ScaleStart;
 
 	P->Rotation = Rotation;
