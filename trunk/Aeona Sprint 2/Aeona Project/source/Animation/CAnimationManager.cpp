@@ -80,10 +80,6 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 		{
 			tempAnimation->SetSpeed(dTemp);
 		}
-		//if(pAnimation->Attribute("NumFrames",&nTemp) != NULL)
-		//{
-		//	tempAnimation.SetSpeed(nTemp);
-		//}
 		TiXmlElement* pFrame = pAnimation->FirstChildElement("Frame");
 		while (pFrame)
 		{
