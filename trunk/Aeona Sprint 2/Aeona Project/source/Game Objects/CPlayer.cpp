@@ -64,12 +64,12 @@ void CPlayer::Update(float fElapsedTime)
 	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
 
 	// Fire the particle effect if the position changed
-	/*if(ptOldPosition != GetPosition())
+	if(ptOldPosition != GetPosition())
 	{
-		m_fxFootsteps.emitter.EmitterPosX = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().x + (float)GetPosX();
-		m_fxFootsteps.emitter.EmitterPosY = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().y + (float)GetPosY();
+		m_fxFootsteps.emitter.EmitterPosX = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX();
+		m_fxFootsteps.emitter.EmitterPosY = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY();
 		m_fxFootsteps.Fire();
-	}*/
+	}
 }
 
 void CPlayer::Render(void)
@@ -81,9 +81,9 @@ void CPlayer::Render(void)
 	m_fxFootsteps.Render();
 }
 
-void CPlayer::Attack(CBaseCharacter* pTarget)
+void CPlayer::Attack(void)
 {
-	CBaseCharacter::Attack(pTarget);
+	CBaseCharacter::Attack();
 	m_vGameWeapons[m_uiCurrentWeapon]->Attack();
 }
 
@@ -166,25 +166,31 @@ void CPlayer::Input(void)
 				break;
 			}
 		}
-		if(CInputManager::GetInstance()->Timeheld() > 0.5f)
-		{
-			if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->GetIsPlaying() == true)
-				m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
-		}
+		//if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+		//{
+		//	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
+		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
+		//}
 	}
 	else
 	{
 		//if(attacked == true)
-		//if(CInputManager::GetInstance()->Timeheld() > 0.5f)
-		// m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
-		// Charged Attack();
-		//else
-		// Attack();
+		//{
+		//	if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+		//	{
+		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
+		//		ChargedAttack();
+		//	}
+		//	else
+		//	{
+		//		Attack();
+		//	}
+		//}
+		
 		if (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_UP || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_DOWN ||
 			m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_LEFT || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
 			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(m_vGameWeapons[m_uiCurrentWeapon]->GetPreviousAnimation());
-			m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation());
 		}
 		
 		SetPrevVelX(GetVelX());

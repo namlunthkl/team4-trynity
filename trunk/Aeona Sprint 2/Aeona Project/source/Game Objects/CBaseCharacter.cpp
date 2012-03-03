@@ -64,10 +64,10 @@ void CBaseCharacter::Update(float fElapsedTime)
 		m_pAIState->Update(this, fElapsedTime);
 }
 
-void CBaseCharacter::Attack(CBaseCharacter* pTarget)
+void CBaseCharacter::Attack()
 {
 	// TODO: Play attack animation
-	pTarget->SufferDamage(m_uiAttackDamage);
+	// TODO: DO DAMAGE
 }
 
 void CBaseCharacter::Die(void)

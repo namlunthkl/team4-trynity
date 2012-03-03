@@ -50,7 +50,7 @@ public:
 	// Common routines
 	bool LoadAnimations(char const * const szFilename);
 	virtual void Update(float fElapsedTime);
-	virtual void Attack(CBaseCharacter* pTarget);
+	virtual void Attack(void);
 	virtual void Die(void);
 	virtual void ChangeAIState(IBaseAIState* pAIState);
 

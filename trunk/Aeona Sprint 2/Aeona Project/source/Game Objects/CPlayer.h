@@ -43,7 +43,7 @@ public:
 	// Common routines - Overloaded methods
 	void Update(float fElapsedTime);
 	void Render(void);
-	void Attack(CBaseCharacter* pTarget);
+	void Attack(void);
 	void ChargedAttack(void);
 	void Die(void);
 	unsigned int GetType(void) const { return TYPE_CHAR_PLAYER; }
