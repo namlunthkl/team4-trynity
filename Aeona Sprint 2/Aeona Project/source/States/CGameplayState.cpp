@@ -148,7 +148,21 @@ bool CGameplayState::Input(void)
 		CWeatherManager::GetInstance()->LoadWeather( 5 );
 		CWeatherManager::GetInstance()->SetIsOn( true );
 	}
-
+	if( INPUT->KeyPressed( DIK_6 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 6 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_7 ) )
+	{
+		CWeatherManager::GetInstance()->GetWeather()->ShutDown();
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_8 ) )
+	{
+		CWeatherManager::GetInstance()->GetWeather2()->ShutDown();
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
 	return true;
 }
 
