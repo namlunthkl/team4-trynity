@@ -13,6 +13,7 @@
 #include "../Weapons/CSword.h"
 #include "../Weapons/CHammer.h"
 #include "../Weapons/CCrossBow.h"
+#include "../Camera/CCameraControl.h"
 // Constructor
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
@@ -56,6 +57,10 @@ void CPlayer::Update(float fElapsedTime)
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
 
+	if(!CCameraControl::GetInstance()->GetKillCam())
+	{
+		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
+	}
 	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
 	
 	//Point TempWepPoint;
@@ -75,6 +80,9 @@ void CPlayer::Update(float fElapsedTime)
 void CPlayer::Render(void)
 {
 	// Render the player
+	// 
+	// 
+
 	//CBaseCharacter::Render
 	m_vGameWeapons[m_uiCurrentWeapon]->Render(GetPosition());
 	// Render the particles
@@ -107,6 +115,7 @@ void CPlayer::Input(void)
 	if(CInputManager::GetInstance()->GetAttack())
 	{
 		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(true);
+		//CCameraControl::GetInstance()->KillCamSequence(true);
 	}
 	else
 	{
@@ -166,11 +175,13 @@ void CPlayer::Input(void)
 				break;
 			}
 		}
-		//if(CInputManager::GetInstance()->Timeheld() > 0.5f)
-		//{
-		//	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
-		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
-		//}
+		
+		if(CInputManager::GetInstance()->Timeheld() > 2.0f)
+		{
+			if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
+				m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
+			
+		}
 	}
 	else
 	{

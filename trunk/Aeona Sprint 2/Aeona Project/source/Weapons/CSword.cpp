@@ -12,7 +12,7 @@ CSword::CSword()
 {
 	
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/Char Animations.xml");
+	CBaseCharacter::LoadAnimations("resource/PlayerAnimations.xml");
 	SetAttacking(false);
 }
 void CSword::Attack(void)
