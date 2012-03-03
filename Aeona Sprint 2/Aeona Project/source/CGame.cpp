@@ -59,6 +59,8 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
+
+	m_uiAmountLoaded = 0;
 	
 	// Set window variables
 	m_hWnd = hWnd;
@@ -77,6 +79,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 
 	//	Font
 	pFont1 = new CBitmapFont;
+	m_imgLoadingBackground = TEX_MNG->LoadTexture("resource/LoadingRiver.jpg");
 
 	// Set gameplay variables
 	//SetShowHUD(true);
@@ -237,6 +240,7 @@ void CGame::Update(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Render(void)
 {
+
 
 
 	//TODO enhance when we have an actual inventory screen
@@ -482,4 +486,45 @@ void CGame::SaveSlot3()
 		fout.close();
 	}
 	TurnBitOn(m_cLoadedOrNot, 2);
+}
+
+void CGame::RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoadScreen)
+{
+	D3D->Clear(0,0,0);
+	D3D->DeviceBegin();
+	D3D->SpriteBegin();
+	
+	char buffer[64] = {0};
+	sprintf_s(buffer, "%d", uiAmountLoaded);
+
+	//	Draw some loading screen background
+	TEX_MNG->Draw(m_imgLoadingBackground, 0, 0, 1.0f, 1.0f);
+	//	Necessary to render rect
+	D3D->GetSprite()->Flush();
+
+	switch(uiLoadScreen)
+	{
+		case 0:
+		{
+			RECT r;
+			r.left = 128-4;
+			r.top = 300-8;
+			r.right = 800-128+4;
+			r.bottom = 300+8;
+			
+			D3D->DrawRect(r, 0, 0, 0);
+
+			RECT r2;
+			r2.left = 128;
+			r2.top = 300-4;
+			r2.right = 128 + (544/8)*uiAmountLoaded;
+			r2.bottom = 300+4;
+
+			D3D->DrawRect(r2, 160, 160, 160);
+		}
+	}
+
+	D3D->SpriteEnd();
+	D3D->DeviceEnd();
+	D3D->Present();
 }

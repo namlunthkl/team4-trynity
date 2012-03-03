@@ -86,6 +86,8 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 
 		// Move on to the next sibling
 		pTileset = pTileset->NextSiblingElement("Tileset");
+
+		GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	}
 
 	// Get a pointer to the first Map
@@ -108,6 +110,8 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 
 		// Move on to the next sibling
 		pMap = pMap->NextSiblingElement("Map");
+
+		GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	}
 
 	// Succeeded
