@@ -13,7 +13,7 @@ class CAnimationPlayer
 private:
 	int m_nAnimationId;
 	//float m_fDuration;
-	bool m_bIsPlaying, m_bIsLooping;
+	bool m_bIsPlaying, m_bIsLooping, m_bPause;
 
 
 	unsigned int m_nFrameNumber;
@@ -40,9 +40,7 @@ public:
 	RECT ReturnWeaponCollisionRect(void);
 
 	Point ReturnAnchorPoint(void);
-
-
-	bool GetIsPlaying() const { return m_bIsPlaying; }
+	bool GetPaused() const { return m_bPause; }
 	//Point ReturnWeaponPoint(void);
 	//
 	//float ReturnWeaponAngle(void);

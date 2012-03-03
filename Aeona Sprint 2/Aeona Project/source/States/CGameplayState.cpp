@@ -89,7 +89,7 @@ void CGameplayState::Enter(void)
 	PLAYER->SetPosX(600);
 	PLAYER->SetPosY(200);
 	PLAYER->SetSpeed(100);
-	//PLAYER->SetDebugMode(true);
+	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
 

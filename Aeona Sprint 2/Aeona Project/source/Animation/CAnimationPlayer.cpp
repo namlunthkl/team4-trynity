@@ -19,16 +19,17 @@ void CAnimationPlayer::Stop()
 }
 void CAnimationPlayer::Pause()
 {
-	if(m_bIsPlaying == true)
-		m_bIsPlaying = false;
+	if(m_bPause == true)
+		m_bPause = false;
 	else
-		m_bIsPlaying = true;
+		m_bPause = true;
 }
 void CAnimationPlayer::Reset()
 {
 	this->m_nFrameNumber = 0;
 	this->m_fTimer = 0;
 	this->m_fTimer = 0;
+	this->m_bPause = false;
 }
 void CAnimationPlayer::Update(float fElapsedTime)
 {
@@ -38,7 +39,7 @@ void CAnimationPlayer::Update(float fElapsedTime)
 	m_fTimer *=	CAnimationManager::GetInstance()->GetAnimation( m_nAnimationId)->GetSpeed();
 	double x = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
 	CFrame* tempframe = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber);
-	if(((long)x*100000) < ((long)m_fTimer*100000))
+	if(((long)x*100000) < ((long)m_fTimer*100000) && m_bPause == false)
 	{
 		m_fTimer -= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
 		if(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent() != "NONE")

@@ -33,6 +33,7 @@ CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSp
 	m_vecVelocity.fX	= 0.0f;
 	m_vecVelocity.fY	= 0.0f;
 	m_uiRefCount		= 1;
+	m_bDebugMode		= false;
 }
 
 // Common routines
