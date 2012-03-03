@@ -126,6 +126,7 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	CTileset* GetTileset(unsigned char ucID);
 
+	const char* GetMapWherePointIs(double dPositionX, double dPositionY);
 
 	///////////
 	// HACK

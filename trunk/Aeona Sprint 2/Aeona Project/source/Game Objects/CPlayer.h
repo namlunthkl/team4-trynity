@@ -69,6 +69,7 @@ public:
 	// Destructor
 	~CPlayer(void);
 
+	const char* GetRegion(void) const;
 
 	inline bool HasHeartPiece(void) { return m_bHeartPiece; }
 };

@@ -54,7 +54,7 @@ public:
 	void Render(void);
 	inline unsigned int GetArgCount(void) const { return m_uiArgCount; }
 	inline vector<int>* GetArguments(void)  { return &m_vnArguments; }
-
+	inline const char* GetEvent(void) const { return m_szEvent; }
 	inline ParticleWeapon* GetParticle(int index) { return m_vParticle[index]; }
 };
 
