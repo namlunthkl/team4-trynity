@@ -242,3 +242,22 @@ CTileset* CWorldEngine::GetTileset(unsigned char ucID)
 	// If none was found, return null
 	return NULL;
 }
+
+
+const char* CWorldEngine::GetMapWherePointIs(double dPositionX, double dPositionY)
+{
+	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
+	{
+		CMap* curMap = m_vpMaps[uiIndex];
+
+		if(dPositionX > curMap->GetPosX() &&
+			dPositionX < curMap->GetPosX() + curMap->GetWidth() * curMap->GetTileset()->GetTileWidth() &&
+			dPositionY > curMap->GetPosY() &&
+			dPositionY < curMap->GetPosY() + curMap->GetHeight() * curMap->GetTileset()->GetTileHeight())
+		{
+			return m_pStringTable->GetString(curMap->GetTileset()->GetID());
+		}
+	}
+
+	return nullptr;
+}

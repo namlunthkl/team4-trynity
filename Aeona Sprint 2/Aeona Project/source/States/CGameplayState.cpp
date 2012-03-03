@@ -51,6 +51,7 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("LightTorch.3", this);
 	EVENTS->RegisterForEvent("Teleport.Cave", this);
 	EVENTS->RegisterForEvent("Teleport.Map", this);
+	EVENTS->RegisterForEvent("OpenDoor", this);
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
@@ -292,6 +293,11 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	{
 		PLAYER->SetPosX(1000);
 		PLAYER->SetPosY(400);
+	}
+	if(pEvent->GetEventID() == "OpenDoor")
+	{
+		MessageBox(GAME->GetWindowHandle(),"OpenDoor event was fired - You won the game!!!","You won",MB_OK);
+		GAME->ChangeState(NULL);
 	}
 }
 

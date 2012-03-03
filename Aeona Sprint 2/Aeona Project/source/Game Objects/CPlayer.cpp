@@ -319,3 +319,8 @@ CPlayer::~CPlayer(void)
 {
 
 }
+
+const char* CPlayer::GetRegion(void) const
+{
+	return CWorldEngine::GetInstance()->GetMapWherePointIs(GetPosX(), GetPosY());
+}

@@ -13,7 +13,7 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 	unsigned int i;
 	string EventName = "";
 	int EventNumber = 0;
-	vector<int> Args = *pPuzzle->GetArguments();
+	vector<int>* Args = pPuzzle->GetArguments();
 
 	for(i = 0; i < pEvent->GetEventID().size(); ++i)
 	{
@@ -32,15 +32,15 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
 		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
 
-		if(EventNumber < Args.size())
+		if(EventNumber < Args->size())
 		{
-			if(Args[EventNumber] == 1)
+			if((*Args)[EventNumber] == 1)
 			{
-				Args[EventNumber] = 0;
+				(*Args)[EventNumber] = 0;
 			}
 			else
 			{
-				Args[EventNumber] = 1;
+				(*Args)[EventNumber] = 1;
 
 				if(pPuzzle->GetParticle(EventNumber))
 				{
@@ -51,6 +51,15 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 			}
 		}
 
+
+		for(unsigned int i=0; i < (*Args).size(); ++i)
+		{
+			if((*Args)[i] == 0)
+				break;
+
+			if((*Args)[i] == 1 && i == (*Args).size() - 1)
+				CEventSystem::GetInstance()->SendEvent(pPuzzle->GetEvent());
+		}
 	}
 }
 
