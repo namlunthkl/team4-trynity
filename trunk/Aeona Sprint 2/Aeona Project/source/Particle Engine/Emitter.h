@@ -62,6 +62,5 @@ public:
 	void Render();
 	void ReSpwn(Particle* P);
 	void ShutDown(void);
-
 };
 #endif

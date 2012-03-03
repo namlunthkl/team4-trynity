@@ -114,6 +114,8 @@ void CObjectManager::CheckCollisions()
 	// Loop through all the objects and check collisions in all of them
 	for(unsigned int i = 0; i < m_vpObjectList.size(); i++)
 	 {
+		 WORLD->CheckCollisions(m_vpObjectList[i]);
+
 		 for(unsigned int j = 0; j < m_vpObjectList.size(); j++)
 		 {
 			 if(i != j)
@@ -130,8 +132,6 @@ void CObjectManager::CheckCollisions()
 				 }
 			 }
 		 }
-
-		 WORLD->CheckCollisions(m_vpObjectList[i]);
 
 	 }
 

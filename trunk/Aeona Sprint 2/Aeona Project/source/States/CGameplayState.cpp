@@ -19,7 +19,7 @@
 #include "../AI_States/CRandomAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
-
+#include "../Puzzles/CPuzzleManager.h"
 // SINGLETON Weather Engine
 #include "../Weather System/WeatherManager.h"
 
@@ -29,7 +29,7 @@
 #define PLAYER CPlayer::GetInstance()
 #define OBJECTS CObjectManager::GetInstance()
 #define CAMERA CCameraControl::GetInstance()
-
+#define PUZZLES CPuzzleManager::GetInstance()
 // Constructor
 CGameplayState::CGameplayState(void)
 {
@@ -45,7 +45,12 @@ void CGameplayState::Enter(void)
 
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
-	EVENTS->RegisterForEvent("LightTorch", this);
+	EVENTS->RegisterForEvent("LightTorch.0", this);
+	EVENTS->RegisterForEvent("LightTorch.1", this);
+	EVENTS->RegisterForEvent("LightTorch.2", this);
+	EVENTS->RegisterForEvent("LightTorch.3", this);
+	EVENTS->RegisterForEvent("Teleport.Cave", this);
+	EVENTS->RegisterForEvent("Teleport.Map", this);
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
@@ -69,6 +74,9 @@ void CGameplayState::Enter(void)
 	pEnemy->Release();
 	}
 	}*/
+	
+	PUZZLES->InitPuzzleManager();
+
 
 	CBitmapFont* pFont = new CBitmapFont();
 
@@ -136,6 +144,7 @@ void CGameplayState::Update(float fElapsedTime)
 	// Update the best world engine ever created
 	WORLD->UpdateWorld(fElapsedTime);
 	EVENTS->ProcessEvents();
+	PUZZLES->UpdatePuzzles(fElapsedTime);
 
 	//m_Rain.Update(fElapsedTime);
 	CWeatherManager::GetInstance()->Update( fElapsedTime );
@@ -186,20 +195,15 @@ void CGameplayState::Render(void)
 	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
 	//END ARI EXTRA CODE
 
-	{
-		WORLD->RenderWorld();
+	WORLD->RenderWorld();
 
-		D3D->GetSprite()->Flush();
+	D3D->GetSprite()->Flush();
 
-		if(PW.GetFired())
-			PW.Render();
+	PUZZLES->RenderPuzzles();
 
-		D3D->GetSprite()->Flush();
+	D3D->GetSprite()->Flush();
 
-		OBJECTS->RenderObjects();
-
-		D3D->GetSprite()->Flush();
-	}
+	OBJECTS->RenderObjects();
 
 	D3D->GetSprite()->Flush();
 
@@ -241,7 +245,7 @@ void CGameplayState::Render(void)
 
 void CGameplayState::Exit(void)
 {
-	
+	PUZZLES->ShutdownPuzzleManager();
 	WORLD->ShutdownWorldEngine();
 	WORLD->DeleteInstance();
 	EVENTS->ShutdownEventSystem();
@@ -265,7 +269,7 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	{
 		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
 	}
-	else if(pEvent->GetEventID() == "LightTorch")
+	if(pEvent->GetEventID() == "LightTorch")
 	{
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
 
@@ -278,6 +282,16 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		PW.Fire();
 		PW.emitter.EmitterPosX = (float)PosX;
 		PW.emitter.EmitterPosY = (float)PosY;
+	}
+	if(pEvent->GetEventID() == "Teleport.Cave")
+	{
+		PLAYER->SetPosX(150);
+		PLAYER->SetPosY(1580);
+	}
+	if(pEvent->GetEventID() == "Teleport.Map")
+	{
+		PLAYER->SetPosX(1000);
+		PLAYER->SetPosY(400);
 	}
 }
 

@@ -25,7 +25,7 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 
 	EventNumber = atoi(pEvent->GetEventID().c_str() + (i+1));
 
-	if(EventName == "LightTorch")
+	if(EventName == "TorchLit")
 	{
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
 
@@ -37,15 +37,27 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 			if(Args[EventNumber] == 1)
 			{
 				Args[EventNumber] = 0;
-
 			}
 			else
 			{
 				Args[EventNumber] = 1;
+
+				if(pPuzzle->GetParticle(EventNumber))
+				{
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosX = PosX;
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosY = PosY;
+					pPuzzle->GetParticle(EventNumber)->Fire();
+				}
 			}
 		}
 
 	}
+}
+
+void PuzzleA_Torched_Update(CPuzzle* pPuzzle)
+{
+
+
 }
 
 

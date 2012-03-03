@@ -2,6 +2,8 @@
 <WorldEngine>
            <Tileset file="resource/Tilesets/TilesetSprint2.xml"/>
            <Map file="resource/Maps/MapSprint2.xml"/>
+	   <Tileset file="resource/Tilesets/TilesetCave.xml"/>
+	   <Map file="resource/Maps/MapCave.xml"/>
 </WorldEngine>
 
 
