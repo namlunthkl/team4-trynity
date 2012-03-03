@@ -98,15 +98,6 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	m_Timer.m_dwTimeStamp = timeGetTime();
 	m_Timer.m_dwPreviousTimeStamp = timeGetTime();
 
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CCameraControl::GetInstance()->InitializeCamera( GetScreenWidth(), GetScreenHeight() );
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-
-
 	// If everything succeeded and Game was
 	// initialized, return true
 	return true;
@@ -245,7 +236,6 @@ void CGame::Update(void)
 			///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
-		CCameraControl::GetInstance()->Update( m_Timer.m_fElapsedTime );
 		if( !CCameraControl::GetInstance()->GetKillCam() )
 		{
 			CCameraControl::GetInstance()->ChargeCamSequence( m_fCharge );

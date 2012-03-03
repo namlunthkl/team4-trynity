@@ -28,12 +28,11 @@
 #define MESSAGES CMessageSystem::GetInstance()
 #define PLAYER CPlayer::GetInstance()
 #define OBJECTS CObjectManager::GetInstance()
+#define CAMERA CCameraControl::GetInstance()
 
 // Constructor
 CGameplayState::CGameplayState(void)
 {
-	m_nCameraPosX = 0;
-	m_nCameraPosY = 0;
 }
 
 // Initialize everything
@@ -94,11 +93,17 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 
-
-
 	//	TODO  Temporary, just to demonstrate that the options work
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), PLAYER->GetPosX(), PLAYER->GetPosY() );
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 
 }
 
@@ -149,6 +154,9 @@ bool CGameplayState::Input(void)
 
 void CGameplayState::Update(float fElapsedTime)
 {
+	// Update the Camera
+	CCameraControl::GetInstance()->Update( fElapsedTime );
+
 	// Update the best world engine ever created
 	WORLD->UpdateWorld(fElapsedTime);
 	EVENTS->ProcessEvents();
@@ -292,7 +300,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 128;
 
 	//	Draw the amulet!
-	TEX_MNG->Draw(m_imgHUD, 0, 0, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 0 - CAMERA->GetPositionX(), 0 - CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 
 	r1.left = 0;
 	r1.top = 0;
@@ -300,7 +308,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 128;
 
 	//	Draw the weapon!
-	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39- CAMERA->GetPositionX(), 0- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 
 	//	Draw some life hearts
 	unsigned int tempMaxH = 8;
@@ -331,7 +339,7 @@ void CGameplayState::RenderHUD()
 			r1.top = 32;
 			r1.bottom = 64;
 		}
-		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 39+(i*32)- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 	}
 
 	//	Draw the weapon XP bar background
@@ -340,7 +348,7 @@ void CGameplayState::RenderHUD()
 	r1.right = 110+320;
 	r1.bottom = 64;
 
-	TEX_MNG->Draw(m_imgHUD, 800-39-320, 4, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39-320- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 
 	//	Value for the actual current XP
 
@@ -351,7 +359,7 @@ void CGameplayState::RenderHUD()
 	r1.top = 0;
 	r1.bottom = 32;
 
-	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP), 4, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP)- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 
 	//	Define the potion spot
 	r1.left = 206;
@@ -360,7 +368,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 64+64;
 
 	//	Draw the potion spot
-	TEX_MNG->Draw(m_imgHUD, 800-400-32, 4, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-400-32- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 
 	//	Define the minimap frame
 	r1.left = 110;
@@ -371,10 +379,10 @@ void CGameplayState::RenderHUD()
 	//	Draw the minimap frame
 	if(GAME->GetMapLocation() == 0)
 	{
-		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 4- CAMERA->GetPositionX(), 600-96-4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 	}
 	else
 	{
-		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 800-96-4- CAMERA->GetPositionX(), 600-96-4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
 	}
 }

@@ -64,7 +64,7 @@ public:
 	void SetStop( bool bStop )						{ m_bStop = bStop; }
 	void SetReleaseButton( bool bReleaseButton)		{ m_bReleaseButton = bReleaseButton; }
 
-	void InitializeCamera( int nSreenWidth, int nScreenHeight );
+	void InitializeCamera( int nSreenWidth, int nScreenHeight, float StartX, float StartY );
 	void Update( float fTime );
 	void KillCamSequence( float fAmountOfTimeToPause );
 	void ChargeCamSequence( float fChargeTime );
