@@ -20,6 +20,7 @@
 // Particle Engine
 #include "../Particle Engine/ParticleWeapon.h"
 
+
 // Event System
 #include "../Messaging/CEventSystem.h"
 #include "../Messaging/IListener.h"
@@ -35,7 +36,8 @@
 class CGameplayState : public IGameState , public IListener
 {
 	ParticleWeapon PW;
-	ParticleWeapon m_Rain;
+	//ParticleWeapon m_Rain;
+
 	//	Proper Singleton - needs trilogy of evil
 	//		Copy Constructor
 	CGameplayState(const CGameplayState&){}

@@ -77,10 +77,7 @@ Emitter& Emitter::operator=(const Emitter& E)
 }
 Emitter::~Emitter()
 {
-	for(unsigned int i = 0; i < Particle_List.size(); i++)
-		delete (Particle*)(Particle_List[i]);
-
-	Particle_List.clear();
+	ShutDown();
 }
 
 void Emitter::Init()
@@ -115,10 +112,10 @@ void Emitter::Update( float DT )
 		length = sqrt( ( GravityDistX * GravityDistX ) + ( GravityDistY * GravityDistY ) );
 
 		GravityDistX = GravityDistX / length;
-        GravityDistY = GravityDistY / length;
+		GravityDistY = GravityDistY / length;
 
-        GravityDistX *= GravityPower;
-        GravityDistY *= GravityPower;
+		GravityDistX *= GravityPower;
+		GravityDistY *= GravityPower;
 
 		Particle_List[i]->PosX += Particle_List[i]->VelX * DT;
 		Particle_List[i]->PosY += Particle_List[i]->VelY * DT;
@@ -185,4 +182,13 @@ void Emitter::Render()
 	CSGD_Direct3D::GetInstance()->GetSprite()->Flush();
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderState(D3DRS_SRCBLEND, tempBlends[0]);
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderState(D3DRS_DESTBLEND, tempBlends[1]);
+}
+void Emitter::ShutDown(void)
+{
+	for(unsigned int i = 0; i < Particle_List.size(); i++)
+		delete (Particle*)(Particle_List[i]);
+
+	Particle_List.clear();
+
+	MaxParticles = 0;
 }

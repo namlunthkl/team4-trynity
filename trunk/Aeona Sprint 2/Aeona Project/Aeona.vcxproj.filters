@@ -49,6 +49,9 @@
     <Filter Include="Weapons">
       <UniqueIdentifier>{842e5745-6339-4b9b-98d2-2e3855347dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Weather System">
+      <UniqueIdentifier>{476a5e86-d607-43e7-9ca0-d42e110d4e44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\CGame.cpp">
@@ -115,9 +118,6 @@
       <Filter>Particles Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
-      <Filter>Particles Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Particle Engine\FlyWeight.cpp">
       <Filter>Particles Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Input Manager\CInputManager.cpp">
@@ -207,6 +207,9 @@
     <ClCompile Include="source\Weapons\CCrossBow.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="source\Weather System\WeatherManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -217,9 +220,6 @@
     </ClInclude>
     <ClInclude Include="source\Camera\CCameraControl.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Particle Engine\FlyWeight.h">
-      <Filter>Particles Engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Particle Engine\Emitter.h">
       <Filter>Particles Engine</Filter>
@@ -403,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="source\Puzzles\CPuzzleFunctions.h">
       <Filter>Puzzles</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weather System\WeatherManager.h">
+      <Filter>Weather System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
