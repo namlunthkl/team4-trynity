@@ -125,52 +125,6 @@ bool CGameplayState::Input(void)
 
 	// Get Input from all objects
 	CObjectManager::GetInstance()->InputFromObjects();
-
-	if( INPUT->KeyPressed( DIK_0 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 0 );
-		CWeatherManager::GetInstance()->SetIsOn( false );
-	}
-	if( INPUT->KeyPressed( DIK_1 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 1 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_2 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 2 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_3 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 3 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_4 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 4 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_5 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 5 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_6 ) )
-	{
-		CWeatherManager::GetInstance()->LoadWeather( 6 );
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_7 ) )
-	{
-		CWeatherManager::GetInstance()->GetWeather()->ShutDown();
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
-	if( INPUT->KeyPressed( DIK_8 ) )
-	{
-		CWeatherManager::GetInstance()->GetWeather2()->ShutDown();
-		CWeatherManager::GetInstance()->SetIsOn( true );
-	}
 	return true;
 }
 

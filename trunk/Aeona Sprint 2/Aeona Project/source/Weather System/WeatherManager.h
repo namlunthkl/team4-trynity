@@ -3,13 +3,12 @@
 
 #include "..\Particle Engine\Emitter.h"
 
-enum WEATHER{ RAIN = 1, SNOW, LEAVES, SAND, EMBER, RAINSNOW };
+enum WEATHER{ RAIN = 1, SNOW, LEAVES, SAND, EMBER, BUTTERFLIES };
 
 class CWeatherManager
 {
 private:
 	Emitter weather;  
-	Emitter weather2;
 	bool m_bIsOn;
 	float m_fTimeToWait;
 	float m_fTime;
@@ -29,7 +28,6 @@ public:
 	void SetTypeOfWeather( short sType )	{ m_usTypeOfWeather = sType; }
 	
 	Emitter* GetWeather(void)				{ return &weather; }
-	Emitter* GetWeather2(void)				{ return &weather2; }
 	bool GetIsOn(void)						{ return m_bIsOn; }
 	float GetTimeToWait(void)				{ return m_fTimeToWait; }
 	float GetTime(void)						{ return m_fTime; }
@@ -39,7 +37,6 @@ public:
 	void Update( float fTime );
 	void Render();
 	bool LoadXML(const char* szXMLFileName);
-	bool LoadXML2(const char* szXMLFileName);
 	void ShutDown(void);
 };
 #endif
