@@ -104,38 +104,6 @@
       <WeaponCollisionRect x="-180" y="-302" width="0" height="0"/>
     </Frame>
   </Animation>
-  <Animation name="Idle Up" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="0" y="0" width="42" height="70"/>
-      <CollisionRect x="10" y="30" width="23" height="33"/>
-      <Anchor x="21" y="60"/>
-      <WeaponCollisionRect x="0" y="0" width="0" height="0"/>
-    </Frame>
-  </Animation>
-  <Animation name="Idle Down" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="51" y="0" width="48" height="66"/>
-      <CollisionRect x="13" y="31" width="23" height="33"/>
-      <Anchor x="24" y="61"/>
-      <WeaponCollisionRect x="-51" y="0" width="0" height="0"/>
-    </Frame>
-  </Animation>
-  <Animation name="Idle Right" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="110" y="0" width="42" height="65"/>
-      <CollisionRect x="13" y="30" width="23" height="33"/>
-      <Anchor x="25" y="60"/>
-      <WeaponCollisionRect x="-110" y="0" width="0" height="0"/>
-    </Frame>
-  </Animation>
-  <Animation name="Idle Left" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="183" y="0" width="55" height="63"/>
-      <CollisionRect x="13" y="30" width="23" height="33"/>
-      <Anchor x="24" y="58"/>
-      <WeaponCollisionRect x="-183" y="0" width="0" height="0"/>
-    </Frame>
-  </Animation>
   <Animation name="Attack Up" looping="0" oslating="0" playing="0" speed="1" NumFrames="4">
     <Frame duration="0.25" event="NONE">
       <DrawRect x="255" y="84" width="58" height="69"/>
@@ -240,6 +208,39 @@
       <WeaponCollisionRect x="0" y="-1" width="17" height="68"/>
     </Frame>
   </Animation>
+  <Animation name="Idle Up" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="0" y="0" width="42" height="70"/>
+      <CollisionRect x="10" y="30" width="23" height="33"/>
+      <Anchor x="21" y="60"/>
+      <WeaponCollisionRect x="0" y="0" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Idle Down" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="51" y="0" width="48" height="66"/>
+      <CollisionRect x="13" y="31" width="23" height="33"/>
+      <Anchor x="24" y="61"/>
+      <WeaponCollisionRect x="-51" y="0" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Idle Right" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="110" y="0" width="42" height="65"/>
+      <CollisionRect x="13" y="30" width="23" height="33"/>
+      <Anchor x="25" y="60"/>
+      <WeaponCollisionRect x="-110" y="0" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Idle Left" looping="0" oslating="0" playing="0" speed="1" NumFrames="1">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="183" y="0" width="55" height="63"/>
+      <CollisionRect x="13" y="30" width="23" height="33"/>
+      <Anchor x="24" y="58"/>
+      <WeaponCollisionRect x="-183" y="0" width="0" height="0"/>
+    </Frame>
+  </Animation>
 </Animations>
+
 
 
