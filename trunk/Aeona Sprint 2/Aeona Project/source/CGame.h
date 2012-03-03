@@ -49,6 +49,9 @@ class CGame
 	char			m_cMusicVolume;	//	0 thru 100
 	char			m_cSoundVolume;	//	0 thru 100
 
+	unsigned int	m_uiAmountLoaded;	//	for loading screen
+	int				m_imgLoadingBackground;	//	for loading screen
+
 	CBitmapFont*	pFont1;
 
 	//	Game's current state
@@ -147,6 +150,8 @@ public:
 	void OutputOptionsToFile();
 	void ReadOptionsFromFile();
 
+	void RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoadScreen);
+
 	char ReadSaveSlots();
 	void SaveSlot1();
 	void SaveSlot2();
@@ -183,6 +188,9 @@ public:
 	inline void SetMusicVolume	(char cMusicVolume)		{ m_cMusicVolume = cMusicVolume; }
 	inline void SetSoundVolume	(char cSoundVolume)		{ m_cSoundVolume = cSoundVolume; }
 	inline void SetPaused		(bool bPaused)			{ m_bPaused = bPaused; }
+
+	inline void ResetAmountLoaded(void)							{ m_uiAmountLoaded = 0; }
+	inline unsigned int IncrementAndReturnAmountLoaded(void)	{ return ++m_uiAmountLoaded; }
 };
 
 #endif // CGAME_H_

@@ -138,6 +138,8 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 
 		// Move on to the next Layer (sibling)
 		pLayer = pLayer->NextSiblingElement("Layer");
+
+		GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	}
 
 	// Success!

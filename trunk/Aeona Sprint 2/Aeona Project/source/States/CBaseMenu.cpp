@@ -73,7 +73,7 @@ void CBaseMenu::Enter()
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
 
-	SetBGMusic(AUDIO->MusicLoadSong("resource/Main Theme.xwm"));
+	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Dramatic.xwm"));
 
 	m_imgTempTitle = TEX_MNG->LoadTexture("resource/Trinity.png");
 

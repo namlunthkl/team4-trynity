@@ -38,6 +38,8 @@ CGameplayState::CGameplayState(void)
 // Initialize everything
 void CGameplayState::Enter(void)
 {
+	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+
 	// Initialize stuff
 	WORLD->InitWorldEngine();
 
@@ -96,6 +98,12 @@ void CGameplayState::Enter(void)
 	//	TODO  Temporary, just to demonstrate that the options work
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
+
+
+
+	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+	GAME->ResetAmountLoaded();
+
 
 	///////////////////////////
 	//ARI EXTRA CODE
