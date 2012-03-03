@@ -3,27 +3,7 @@
 #include "..\CGame.h"
 #include "..\tinyxml\tinystr.h"
 #include "..\tinyxml\tinyxml.h"
-
-int RandomInt2( int a, int b )
-{
-	if( a > b )
-	{
-		int t = b;
-		b = a;
-		a = t;
-	}
-	return (int)(((float)rand() / ((float)RAND_MAX + 1.0f)) * (b - a)) + a;
-}
-float RandomFloat2( float a, float b )
-{
-	if( a > b )
-	{
-		float t = b;
-		b = a;
-		a = t;
-	}
-	return (float)(((float)rand() / ((float)RAND_MAX + 1.0)) * (b - a)) + a;
-}
+#include "..\Wrappers\SGD_Math.h"
 
 CWeatherManager::CWeatherManager()
 {
@@ -50,7 +30,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 	case 0:
 		{
 			weather.ShutDown();CWeatherManager::GetInstance()->SetIsOn( false );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case RAIN:
@@ -58,7 +38,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			weather.ShutDown();
 			LoadXML("Resource/data/Rain.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case SNOW:
@@ -66,7 +46,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			weather.ShutDown();
 			LoadXML("Resource/data/Snow.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case LEAVES:
@@ -74,7 +54,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			weather.ShutDown();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case SAND:
@@ -82,7 +62,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			weather.ShutDown();
 			LoadXML("Resource/data/SandStorm.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case EMBER:
@@ -90,7 +70,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			weather.ShutDown();
 			LoadXML("Resource/data/Embers.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat2( 0, 10 ) );
+			SetTimeToWait( RandomFloat( 0, 10 ) );
 		}
 		break;
 	case RAINSNOW:
