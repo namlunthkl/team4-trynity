@@ -191,3 +191,8 @@ void CBaseObject::SetCurrentAnimation (int anmCurrent)
 	if(anmCurrent < (int) m_vpAnimations.size())
 		m_anmCurrent = anmCurrent;
 }
+void CBaseObject::SetPreviousAnimation (int anmPrevious)
+{
+	if(anmPrevious < (int) m_vpAnimations.size())
+		m_anmPrevious = anmPrevious;
+}

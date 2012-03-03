@@ -65,9 +65,9 @@ void CPlayer::Update(float fElapsedTime)
 
 	// Fire the particle effect if the position changed
 	/*if(ptOldPosition != GetPosition())
-	{	
-		m_fxFootsteps.emitter.EmitterPosX = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + SCREEN_POS_X((float)GetPosX()) ;
-		m_fxFootsteps.emitter.EmitterPosY = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + SCREEN_POS_Y((float)GetPosY());
+	{
+		m_fxFootsteps.emitter.EmitterPosX = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().x + (float)GetPosX();
+		m_fxFootsteps.emitter.EmitterPosY = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().y + (float)GetPosY();
 		m_fxFootsteps.Fire();
 	}*/
 }
@@ -89,6 +89,7 @@ void CPlayer::Attack(CBaseCharacter* pTarget)
 
 void CPlayer::ChargedAttack(void)
 {
+	
 	m_vGameWeapons[m_uiCurrentWeapon]->ChargedAttack();
 	// TODO: Create charged attack effect in here
 	// TODO: Send any needed event
@@ -119,71 +120,75 @@ void CPlayer::Input(void)
 		case ANM_WALK_UP:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_UP);
 				break;
 			}
 		case ANM_WALK_DOWN:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_DOWN);
 				break;
 			}
 		case ANM_WALK_LEFT:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_LEFT);
 				break;
 			}
 		case ANM_WALK_RIGHT:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_RIGHT);
 				break;
 			}
 		case ANM_IDLE_UP:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_UP);
 				break;
 			}
 		case ANM_IDLE_DOWN:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_DOWN);
 				break;
 			}
 		case ANM_IDLE_LEFT:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_LEFT);
 				break;
 			}
 		case ANM_IDLE_RIGHT:
 			{
 				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
+				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_RIGHT);
 				break;
 			}
+		}
+		if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+		{
+			if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->GetIsPlaying() == true)
+				m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
 		}
 	}
 	else
 	{
-		switch (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())
+		//if(attacked == true)
+		//if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+		// m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
+		// Charged Attack();
+		//else
+		// Attack();
+		if (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_UP || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_DOWN ||
+			m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_LEFT || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
-		case ANM_ATK_UP:
-			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_UP);
-				break;
-			}
-		case ANM_ATK_DOWN:
-			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_DOWN);
-				break;
-			}
-		case ANM_ATK_LEFT:
-			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_LEFT);
-				break;
-			}
-		case ANM_ATK_RIGHT:
-			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_RIGHT);
-				break;
-			}
+			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(m_vGameWeapons[m_uiCurrentWeapon]->GetPreviousAnimation());
+			m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation());
 		}
-
+		
+		SetPrevVelX(GetVelX());
+		SetPrevVelY(GetVelY());
 		if(CInputManager::GetInstance()->GetUp())
 		{
 			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_UP);
@@ -195,7 +200,14 @@ void CPlayer::Input(void)
 			SetVelY((float)GetSpeed());
 		}
 		else
+		{
 			SetVelY(0);
+			if(GetPrevVelY() < 0)
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_UP);
+			else if(GetPrevVelY() > 0)
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_DOWN);
+		}
+			
 
 		if(CInputManager::GetInstance()->GetLeft())
 		{
@@ -208,7 +220,13 @@ void CPlayer::Input(void)
 			SetVelX((float)GetSpeed());
 		}
 		else
+		{
 			SetVelX(0);
+			if(GetPrevVelX() > 0)
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_RIGHT);
+			else if(GetPrevVelX() < 0)
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_LEFT);
+		}
 		
 	}
 }

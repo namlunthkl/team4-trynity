@@ -17,6 +17,13 @@ void CAnimationPlayer::Stop()
 {
 	m_bIsPlaying = false;
 }
+void CAnimationPlayer::Pause()
+{
+	if(m_bIsPlaying == true)
+		m_bIsPlaying = false;
+	else
+		m_bIsPlaying = true;
+}
 void CAnimationPlayer::Reset()
 {
 	this->m_nFrameNumber = 0;
