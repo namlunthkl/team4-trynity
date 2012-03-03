@@ -40,6 +40,8 @@ public:
 	RECT ReturnWeaponCollisionRect(void);
 
 	Point ReturnAnchorPoint(void);
+
+
 	bool GetIsPlaying() const { return m_bIsPlaying; }
 	//Point ReturnWeaponPoint(void);
 	//
