@@ -359,10 +359,10 @@ void CGame::ReadOptionsFromFile()
 			GAME->SetShowHUD( bTempShowHUD );
 		else
 			GAME->SetShowHUD( true );
-		if(cTempMapLocation == 0 || cTempMapLocation == 1 || cTempMapLocation == 2)
+		if(cTempMapLocation == 0 || cTempMapLocation == 1)
 			GAME->SetMapLocation( cTempMapLocation );
 		else
-			GAME->SetMapLocation( 2 );
+			GAME->SetMapLocation( 1 );
 		if(cTempMusicVolume >= 0 && cTempMusicVolume <= 100)
 			GAME->SetMusicVolume( cTempMusicVolume );
 		else

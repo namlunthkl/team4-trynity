@@ -251,7 +251,7 @@ void CNPC::Render(void)
 	CBaseCharacter::Render();
 
 	int nDrawLocationX;
-	if(GAME->GetMapLocation() == 2)
+	if(GAME->GetMapLocation() == 0)
 		nDrawLocationX = 5;
 	else
 		nDrawLocationX = 105;

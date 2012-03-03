@@ -80,11 +80,7 @@ bool CVideoOptionsState::Input()
 			}
 		case VDEO_MINIMAP:
 			{
-				GAME->SetMapLocation( GAME->GetMapLocation() + 1 );
-				if( GAME->GetMapLocation() == 3 )
-				{
-					GAME->SetMapLocation( 0 );
-				}
+				GAME->SetMapLocation( !GAME->GetMapLocation() );
 				break;
 			}
 		case VDEO_BACK:
@@ -131,15 +127,11 @@ void CVideoOptionsState::Render()
 	pFont->Write("Map Location", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(GAME->GetMapLocation() == 0)
 	{
-		pFont->Write("Top right", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Left side", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	else if(GAME->GetMapLocation() == 1)
 	{
-		pFont->Write("Bottom left", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	}
-	else if(GAME->GetMapLocation() == 2)
-	{
-		pFont->Write("Bottom right", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Right side", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	pFont->Write("Back", 32, 15 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 }

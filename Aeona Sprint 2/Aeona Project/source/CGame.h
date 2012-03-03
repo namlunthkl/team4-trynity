@@ -45,7 +45,7 @@ class CGame
 	bool			m_bIsWindowed;
 	bool			m_bShowHUD;
 	bool			m_bPaused;
-	char			m_cMapLocation;	//	0, 1, 2
+	bool			m_bMapLocation;	//	left and right
 	char			m_cMusicVolume;	//	0 thru 100
 	char			m_cSoundVolume;	//	0 thru 100
 
@@ -170,7 +170,7 @@ public:
 	inline short		GetScreenHeight(void)	{ return m_sScreenHeight; }
 	inline bool			GetIsWindowed(void)		{ return m_bIsWindowed; }
 	inline bool			GetShowHUD(void)		{ return m_bShowHUD; }
-	inline char			GetMapLocation(void)	{ return m_cMapLocation; }
+	inline bool			GetMapLocation(void)	{ return m_bMapLocation; }
 	inline char			GetMusicVolume(void)	{ return m_cMusicVolume; }
 	inline char			GetSoundVolume(void)	{ return m_cSoundVolume; }
 	inline bool			GetPaused(void)			{ return m_bPaused; }
@@ -184,7 +184,7 @@ public:
 	inline void SetScreenHeight	(short sScreenHeight)	{ m_sScreenHeight = sScreenHeight; }
 	inline void SetIsWindowed	(bool bIsWindowed)		{ m_bIsWindowed = bIsWindowed; }
 	inline void SetShowHUD		(bool bShowHUD)			{ m_bShowHUD = bShowHUD; }
-	inline void SetMapLocation	(char cMapLocation)		{ m_cMapLocation = cMapLocation; }
+	inline void SetMapLocation	(bool bMapLocation)		{ m_bMapLocation = bMapLocation; }
 	inline void SetMusicVolume	(char cMusicVolume)		{ m_cMusicVolume = cMusicVolume; }
 	inline void SetSoundVolume	(char cSoundVolume)		{ m_cSoundVolume = cSoundVolume; }
 	inline void SetPaused		(bool bPaused)			{ m_bPaused = bPaused; }
