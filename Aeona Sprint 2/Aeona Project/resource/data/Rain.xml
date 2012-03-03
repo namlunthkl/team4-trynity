@@ -3,9 +3,9 @@
   <ImageFile>particle.bmp</ImageFile>
   <Continuous>1</Continuous>
   <Reanimate>0</Reanimate>
-  <EmitterPosX>-50</EmitterPosX>
+  <EmitterPosX>0</EmitterPosX>
   <EmitterPosY>-50</EmitterPosY>
-  <MaxParticles>200</MaxParticles>
+  <MaxParticles>5000</MaxParticles>
   <Size>0.06</Size>
   <MaxLife>2</MaxLife>
   <SpawnWidth>800</SpawnWidth>

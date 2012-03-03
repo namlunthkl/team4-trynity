@@ -44,7 +44,11 @@ CPlayer* CPlayer::GetInstance(void)
 // Common routines - Overloaded methods
 
 void CPlayer::Update(float fElapsedTime)
-{
+{	
+	if( CCameraControl::GetInstance()->GetKillCam() == false )
+	{
+		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
+	}
 	// Store the old position of the player for future checks
 	PointD ptOldPosition = GetPosition();
 
@@ -57,10 +61,7 @@ void CPlayer::Update(float fElapsedTime)
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
 
-	if(!CCameraControl::GetInstance()->GetKillCam())
-	{
-		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
-	}
+
 	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
 	
 	//Point TempWepPoint;
