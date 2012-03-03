@@ -168,35 +168,20 @@ bool CGame::Input(void)
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
-		if( INPUT->KeyPressed( DIK_T ) )
-		{
-			CCameraControl::GetInstance()->SetKillCam(true);
-		}
-		if( INPUT->KeyDown( DIK_C ) )
-		{
-			m_fCharge += 1.0f * CGame::GetInstance()->GetTimer().m_fElapsedTime;
-		}
-		if( INPUT->KeyUp( DIK_C ) )
-		{
-			m_fCharge = 0.0f;
-			CCameraControl::GetInstance()->SetReleaseButton( true );
-		}
-		if( INPUT->KeyDown ( DIK_I ) )
-		{
-			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() + 0.5f );
-		}
-		if( INPUT->KeyDown ( DIK_K ) )
-		{
-			CCameraControl::GetInstance()->SetPositionY( CCameraControl::GetInstance()->GetPositionY() - 0.5f );
-		}
-		if( INPUT->KeyDown ( DIK_J ) )
-		{
-			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() + 0.5f );
-		}
-		if( INPUT->KeyDown ( DIK_L ) )
-		{
-			CCameraControl::GetInstance()->SetPositionX( CCameraControl::GetInstance()->GetPositionX() - 0.5f );
-		}
+	if( INPUT->KeyPressed( DIK_T ) )
+	{
+		CCameraControl::GetInstance()->SetKillCam(true);
+	}
+	if( INPUT->KeyDown( DIK_C ) )
+	{
+		m_fCharge += 1.0f * CGame::GetInstance()->GetTimer().m_fElapsedTime;
+	}
+	if( INPUT->KeyUp( DIK_C ) )
+	{
+		m_fCharge = 0.0f;
+		CCameraControl::GetInstance()->SetReleaseButton( true );
+	}
+
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
@@ -252,55 +237,36 @@ void CGame::Update(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Render(void)
 {
-	// This code is clearing the screen to a dark grey color
-	// When DirectX has a problem and is not rendering anything,
-	// the screen is just cleared as black, so we'll be able to
-	// differentiate
-	D3D->Clear(50,50,50);
-	D3D->DeviceBegin();
-	
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CCameraControl::GetInstance()->SetSpriteProjection();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-	
-	D3D->SpriteBegin();
-	
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
-	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
-	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
+
 
 	//TODO enhance when we have an actual inventory screen
 	/*if(m_bPaused == true)
 	{
 		//D3D->Clear(10,10,10);
 	}
-	else */if(m_pCurrentState != NULL)
+	else */
+
+
+	if(dynamic_cast<CGameplayState*>(m_pCurrentState))
 	{
 		m_pCurrentState->Render();
-
-		if(GAME->GetPaused() == true)
-		{
-			pFont1->Write("GAME IS PAUSED", 24, 2 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
-			pFont1->Write("Press ESC again to resume", 32, 3 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-			pFont1->Write("ESC brings up player inventory!", 32, 4 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-			pFont1->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-		}
 	}
+	else if(m_pCurrentState != nullptr)
+	{
+		// This code is clearing the screen to a dark grey color
+		// When DirectX has a problem and is not rendering anything,
+		// the screen is just cleared as black, so we'll be able to
+		// differentiate
+		D3D->Clear(50,50,50);
+		D3D->DeviceBegin();
+		D3D->SpriteBegin();
 
+		m_pCurrentState->Render();
 
-	D3D->SpriteEnd();
-	D3D->DeviceEnd();
-	D3D->Present();
+		D3D->SpriteEnd();
+		D3D->DeviceEnd();
+		D3D->Present();
+	}
 }
 
 

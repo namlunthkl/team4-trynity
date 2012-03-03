@@ -169,6 +169,7 @@ public:
 	inline char			GetMusicVolume(void)	{ return m_cMusicVolume; }
 	inline char			GetSoundVolume(void)	{ return m_cSoundVolume; }
 	inline bool			GetPaused(void)			{ return m_bPaused; }
+	inline CBitmapFont* GetFont(void)			{ return pFont1; }
 
 	inline IGameState*	GetCurrentState(void)	{ return m_pCurrentState; }
 	inline CTimer		GetTimer(void)			{ return m_Timer; }

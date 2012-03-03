@@ -171,43 +171,69 @@ void CGameplayState::Update(float fElapsedTime)
 	OBJECTS->UpdateObjects(fElapsedTime);
 	OBJECTS->CheckCollisions();
 
-	///////////////////
-	// Update camera
-	///////////////////
-	/*if(PLAYER)
-	{
-		int nNewCameraPosX = (int)PLAYER->GetPosX() - GAME->GetScreenWidth() / 2;
-		int nNewCameraPosY = (int)PLAYER->GetPosY() - GAME->GetScreenHeight() / 2;
+	double nNewCameraPosX = PLAYER->GetPosX() - GAME->GetScreenWidth()/2;
+	double nNewCameraPosY = PLAYER->GetPosY() - GAME->GetScreenHeight()/2;
 
-		m_nCameraPosX = nNewCameraPosX;
-		m_nCameraPosY = nNewCameraPosY;
+	if(nNewCameraPosX < 0)
+		nNewCameraPosX = 0;
+	if(nNewCameraPosY < 0)
+		nNewCameraPosY = 0;
+	if(nNewCameraPosX > WORLD->GetWorldWidth() - GAME->GetScreenWidth())
+		nNewCameraPosX = WORLD->GetWorldWidth() - GAME->GetScreenWidth();
+	if(nNewCameraPosY > WORLD->GetWorldHeight() - GAME->GetScreenHeight())
+		nNewCameraPosY = WORLD->GetWorldHeight() - GAME->GetScreenHeight();
 
-		if(m_nCameraPosX < 0)
-			m_nCameraPosX = 0;
-		if(m_nCameraPosY < 0)
-			m_nCameraPosY = 0;
-		if(m_nCameraPosX > WORLD->GetWorldWidth() - GAME->GetScreenWidth())
-			m_nCameraPosX = WORLD->GetWorldWidth() - GAME->GetScreenWidth();
-		if(m_nCameraPosY > WORLD->GetWorldHeight() - GAME->GetScreenHeight())
-			m_nCameraPosY = WORLD->GetWorldHeight() - GAME->GetScreenHeight();
-	}*/
+	CCameraControl::GetInstance()->SetPositionX((float)-nNewCameraPosX);
+	CCameraControl::GetInstance()->SetPositionY((float)-nNewCameraPosY);
+	
+	CCameraControl::GetInstance()->Update( fElapsedTime );
 }
 
 void CGameplayState::Render(void)
 {
-	//	Render the best world engine ever created
-	//	Daniel's just such a cool guy!
-	WORLD->RenderWorld();
+	///////////////////////////////////////////////////////////////////////////////////
+	////////////////////////// RENDER GAME OBJECTS AND WORLD //////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////
 
-	if(PW.GetFired())
-		PW.Render();
+	D3D->Clear(50,50,50);
+	D3D->DeviceBegin();
+	
+	//ARI EXTRA CODE
+	CCameraControl::GetInstance()->SetSpriteProjection();
+	//END ARI EXTRA CODE
+	
+	D3D->SpriteBegin();
+	
+	//ARI EXTRA CODE
+	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
+	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
+	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
+	//END ARI EXTRA CODE
+
+	{
+		WORLD->RenderWorld();
+
+		D3D->GetSprite()->Flush();
+
+		if(PW.GetFired())
+			PW.Render();
+
+		D3D->GetSprite()->Flush();
+
+		OBJECTS->RenderObjects();
+
+		D3D->GetSprite()->Flush();
+	}
 
 	D3D->GetSprite()->Flush();
 
-	if(PLAYER)
-		PLAYER->Render();
+	///////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////
 
-	OBJECTS->RenderObjects();
+	D3DXMATRIX identity;
+	D3DXMatrixIdentity(&identity);
+	D3D->GetSprite()->SetTransform(&identity);
 
 	if(CInputManager::GetInstance()->GetAttack())
 	{
@@ -217,16 +243,24 @@ void CGameplayState::Render(void)
 		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
 	}
 
-	D3D->GetSprite()->Flush();
-
 	//m_Rain.Render();
 	CWeatherManager::GetInstance()->Render();
 
 	//	Render a neato HUD
 	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
-	{
 		RenderHUD();
+
+	if(GAME->GetPaused() == true)
+	{
+		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
+		GAME->GetFont()->Write("Press ESC again to resume", 32, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		GAME->GetFont()->Write("ESC brings up player inventory!", 32, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		GAME->GetFont()->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
+
+	D3D->SpriteEnd();
+	D3D->DeviceEnd();
+	D3D->Present();
 }
 
 void CGameplayState::Exit(void)
@@ -300,7 +334,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 128;
 
 	//	Draw the amulet!
-	TEX_MNG->Draw(m_imgHUD, 0 - CAMERA->GetPositionX(), 0 - CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 0, 0, 1.0f, 1.0f, &r1);
 
 	r1.left = 0;
 	r1.top = 0;
@@ -308,7 +342,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 128;
 
 	//	Draw the weapon!
-	TEX_MNG->Draw(m_imgHUD, 800-39- CAMERA->GetPositionX(), 0- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
 
 	//	Draw some life hearts
 	unsigned int tempMaxH = 8;
@@ -339,7 +373,7 @@ void CGameplayState::RenderHUD()
 			r1.top = 32;
 			r1.bottom = 64;
 		}
-		TEX_MNG->Draw(m_imgHUD, 39+(i*32)- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
 	}
 
 	//	Draw the weapon XP bar background
@@ -348,7 +382,7 @@ void CGameplayState::RenderHUD()
 	r1.right = 110+320;
 	r1.bottom = 64;
 
-	TEX_MNG->Draw(m_imgHUD, 800-39-320- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39-320, 4, 1.0f, 1.0f, &r1);
 
 	//	Value for the actual current XP
 
@@ -359,7 +393,7 @@ void CGameplayState::RenderHUD()
 	r1.top = 0;
 	r1.bottom = 32;
 
-	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP)- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP), 4, 1.0f, 1.0f, &r1);
 
 	//	Define the potion spot
 	r1.left = 206;
@@ -368,7 +402,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 64+64;
 
 	//	Draw the potion spot
-	TEX_MNG->Draw(m_imgHUD, 800-400-32- CAMERA->GetPositionX(), 4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, 800-400-32, 4, 1.0f, 1.0f, &r1);
 
 	//	Define the minimap frame
 	r1.left = 110;
@@ -379,10 +413,10 @@ void CGameplayState::RenderHUD()
 	//	Draw the minimap frame
 	if(GAME->GetMapLocation() == 0)
 	{
-		TEX_MNG->Draw(m_imgHUD, 4- CAMERA->GetPositionX(), 600-96-4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &r1);
 	}
 	else
 	{
-		TEX_MNG->Draw(m_imgHUD, 800-96-4- CAMERA->GetPositionX(), 600-96-4- CAMERA->GetPositionY(), 1.0f, 1.0f, &r1);
+		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
 	}
 }
