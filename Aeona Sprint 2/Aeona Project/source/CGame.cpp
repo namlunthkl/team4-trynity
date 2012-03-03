@@ -493,9 +493,6 @@ void CGame::RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoad
 	D3D->Clear(0,0,0);
 	D3D->DeviceBegin();
 	D3D->SpriteBegin();
-	
-	char buffer[64] = {0};
-	sprintf_s(buffer, "%d", uiAmountLoaded);
 
 	//	Draw some loading screen background
 	TEX_MNG->Draw(m_imgLoadingBackground, 0, 0, 1.0f, 1.0f);
@@ -517,7 +514,12 @@ void CGame::RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoad
 			RECT r2;
 			r2.left = 128;
 			r2.top = 300-4;
-			r2.right = 128 + (544/8)*uiAmountLoaded;
+			r2.right = 128;
+			while(uiAmountLoaded > 0)
+			{
+				--uiAmountLoaded;
+				r2.right += ((800-r2.right-128) * 0.3f);
+			}
 			r2.bottom = 300+4;
 
 			D3D->DrawRect(r2, 160, 160, 160);
