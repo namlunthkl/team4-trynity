@@ -36,6 +36,11 @@ class CBaseObject : public IBaseInterface
 	// Every object should have a velocity and speed
 	unsigned int	m_uiSpeed;
 	tVector2D		m_vecVelocity;
+
+	//Bern Added This
+	tVector2D		m_vecPrevVelocity;
+	//
+	
 	// Every object should have a size
 	unsigned int	m_uiWidth;
 	unsigned int	m_uiHeight;
@@ -45,6 +50,10 @@ class CBaseObject : public IBaseInterface
 	// Every object can have multiple animations
 	vector<CAnimationPlayer*> m_vpAnimations;
 	int				m_anmCurrent;
+
+	//Bern Added This
+	int				m_anmPrevious;
+	//
 
 public:
 	// Constructor
@@ -77,10 +86,17 @@ public:
 	inline tVector2D		GetVelocity			(void)	const	{ return m_vecVelocity; }
 	inline float			GetVelX				(void)	const	{ return m_vecVelocity.fX; }
 	inline float			GetVelY				(void)	const	{ return m_vecVelocity.fY; }
+	//Bern added this
+	inline float			GetPrevVelX				(void)	const	{ return m_vecPrevVelocity.fX; }
+	inline float			GetPrevVelY				(void)	const	{ return m_vecPrevVelocity.fY; }
+	// to here.
 	inline int				GetImageID			(void)	const	{ return m_nImageID; }
 	inline unsigned int		GetWidth			(void)	const	{ return m_uiWidth; }
 	inline unsigned int		GetHeight			(void)	const	{ return m_uiHeight; }
 	inline int				GetCurrentAnimation (void)	const	{ return m_anmCurrent; }
+	//Bern added this
+	inline int				GetPreviousAnimation (void)	const	{ return m_anmPrevious; }
+	// to here.
 	inline Point			GetAnchorPoint		(void)	const	{ return m_ptAnchor; }
 	CAnimationPlayer*	GetAnimationPlayer	(unsigned int uiAnmIndex ) const;
 
@@ -92,12 +108,19 @@ public:
 	inline void SetSpeed		(unsigned int uiSpeed)		{ m_uiSpeed = uiSpeed; }
 	inline void SetVelX			(float fVelX)				{ m_vecVelocity.fX = fVelX; }
 	inline void SetVelY			(float fVelY)				{ m_vecVelocity.fY = fVelY; }
+	//Bern added this
+	inline void SetPrevVelX			(float fVelX)				{ m_vecPrevVelocity.fX = fVelX; }
+	inline void SetPrevVelY			(float fVelY)				{ m_vecPrevVelocity.fY = fVelY; }
+	// to here.
 	inline void SetImageID		(int nImageID)				{ m_nImageID = nImageID; }
 	inline void SetWidth		(unsigned int uiWidth)		{ m_uiWidth = uiWidth; }
 	inline void SetHeight		(unsigned int uiHeight)		{ m_uiHeight = uiHeight; }
 	inline void SetDebugMode	(bool bDebugMode)			{ m_bDebugMode = bDebugMode; }
 
 	void SetCurrentAnimation	(int anmCurrent);
+	//	Bern added this
+	void SetPreviousAnimation	(int anmPrevious);
+	// to here.
 	void PushAnimationPlayer	(CAnimationPlayer* pAnimation);
 	bool PopAnimationPlayer		(void);
 };

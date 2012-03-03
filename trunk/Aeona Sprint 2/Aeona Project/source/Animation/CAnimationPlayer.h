@@ -14,6 +14,8 @@ private:
 	int m_nAnimationId;
 	//float m_fDuration;
 	bool m_bIsPlaying, m_bIsLooping;
+
+
 	unsigned int m_nFrameNumber;
 	double m_fTimer;
 public:
@@ -27,6 +29,7 @@ public:
 	}
 	void Play();
 	void Stop();
+	void Pause();
 	void Reset();
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
@@ -37,7 +40,7 @@ public:
 	RECT ReturnWeaponCollisionRect(void);
 
 	Point ReturnAnchorPoint(void);
-
+	bool GetIsPlaying() const { return m_bIsPlaying; }
 	//Point ReturnWeaponPoint(void);
 	//
 	//float ReturnWeaponAngle(void);
