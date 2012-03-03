@@ -12,12 +12,12 @@ CCameraControl* CCameraControl::GetInstance(void)
 	return &instance;
 }
 CCameraControl::~CCameraControl(void){}
-void CCameraControl::InitializeCamera( int screenWidth, int screenHeight )
+void CCameraControl::InitializeCamera( int screenWidth, int screenHeight, float StartX, float StartY )
 {
 	D3DXMatrixPerspectiveOffCenterLH( &m_D3DProjection, (float)(screenWidth >> 1), (float)(screenWidth >> 1), (float)(screenHeight >> 1), (float)(screenHeight >> 1), 0.0f, 1.0f );
 	SetScale( 1.0f );
-	SetPositionX( 0.0f );
-	SetPositionY( 0.0f );
+	SetPositionX( 0 );
+	SetPositionY( 0 );
 	m_nScreenWidth = screenWidth;
 	m_nScreenHeight = screenHeight;
 
