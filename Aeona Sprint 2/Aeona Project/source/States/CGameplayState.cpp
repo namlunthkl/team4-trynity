@@ -20,6 +20,9 @@
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 
+// SINGLETON Weather Engine
+#include "../Weather System/WeatherManager.h"
+
 // Singleton Macros
 #define EVENTS CEventSystem::GetInstance()
 #define MESSAGES CMessageSystem::GetInstance()
@@ -38,29 +41,32 @@ void CGameplayState::Enter(void)
 {
 	// Initialize stuff
 	WORLD->InitWorldEngine();
-	
+
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
 	EVENTS->RegisterForEvent("LightTorch", this);
 
 	// Initialize our particle weapon
 	PW.Load("resource/data/FireFlicker.xml");
-	m_Rain.Load("resource/data/Rain.xml");
-	m_Rain.Fire();
+
+	//m_Rain.Load("resource/data/test.xml");
+	//m_Rain.Fire();
+	//CWeatherManager::GetInstance()->GetWeather()->Init();
+
 	MESSAGES->InitMessageSystem(MessageProc);
 
 	// Add enemies to the level
 	/*for(int i=0; i < 3; ++i)
 	{
-		for(int j = 0; j < 3; ++j)
-		{
-			CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
-			pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-			pEnemy->SetDebugMode(false);
-			pEnemy->LoadAnimations("resource/npc walk.xml");
-			OBJECTS->AddObject(pEnemy);
-			pEnemy->Release();
-		}
+	for(int j = 0; j < 3; ++j)
+	{
+	CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
+	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+	pEnemy->SetDebugMode(false);
+	pEnemy->LoadAnimations("resource/npc walk.xml");
+	OBJECTS->AddObject(pEnemy);
+	pEnemy->Release();
+	}
 	}*/
 
 	CBitmapFont* pFont = new CBitmapFont();
@@ -115,6 +121,37 @@ bool CGameplayState::Input(void)
 	// Get Input from all objects
 	CObjectManager::GetInstance()->InputFromObjects();
 
+	if( INPUT->KeyPressed( DIK_0 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 0 );
+		CWeatherManager::GetInstance()->SetIsOn( false );
+	}
+	if( INPUT->KeyPressed( DIK_1 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 1 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_2 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 2 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_3 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 3 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_4 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 4 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+	if( INPUT->KeyPressed( DIK_5 ) )
+	{
+		CWeatherManager::GetInstance()->LoadWeather( 5 );
+		CWeatherManager::GetInstance()->SetIsOn( true );
+	}
+
 	return true;
 }
 
@@ -123,7 +160,9 @@ void CGameplayState::Update(float fElapsedTime)
 	// Update the best world engine ever created
 	WORLD->UpdateWorld(fElapsedTime);
 	EVENTS->ProcessEvents();
-	m_Rain.Update(fElapsedTime);
+
+	//m_Rain.Update(fElapsedTime);
+	CWeatherManager::GetInstance()->Update( fElapsedTime );
 
 	if(PW.GetFired())
 		PW.Update(fElapsedTime);
@@ -162,7 +201,7 @@ void CGameplayState::Render(void)
 
 	if(PW.GetFired())
 		PW.Render();
-	
+
 	D3D->GetSprite()->Flush();
 
 	if(PLAYER)
@@ -180,7 +219,8 @@ void CGameplayState::Render(void)
 
 	D3D->GetSprite()->Flush();
 
-	m_Rain.Render();
+	//m_Rain.Render();
+	CWeatherManager::GetInstance()->Render();
 
 	//	Render a neato HUD
 	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
@@ -191,12 +231,16 @@ void CGameplayState::Render(void)
 
 void CGameplayState::Exit(void)
 {
+	
 	WORLD->ShutdownWorldEngine();
 	WORLD->DeleteInstance();
 	EVENTS->ShutdownEventSystem();
 	MESSAGES->ShutdownMessageSystem();
 	OBJECTS->RemoveAllObjects();
 	OBJECTS->DeleteInstance();
+	
+	//CWeatherManager::GetInstance()->SetTypeOfWeather( 0 );
+	CWeatherManager::GetInstance()->ShutDown();
 }
 
 CGameplayState* CGameplayState::GetInstance(void)
@@ -231,7 +275,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 {
 	switch(pMsg->GetMsgID())
 	{
-		case MSG_CREATE_PLAYER:
+	case MSG_CREATE_PLAYER:
 		{
 			//CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
 			//CGameplayState* pGameplay = CGameplayState::GetInstance();
@@ -274,7 +318,7 @@ void CGameplayState::RenderHUD()
 	r1.top = 0;
 	r1.right = 78+32;
 	r1.bottom = 32;
-	
+
 	for(unsigned int i = 0; i < 10; ++i)
 	{
 		if(i < tempCurH)
@@ -305,7 +349,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 64;
 
 	TEX_MNG->Draw(m_imgHUD, 800-39-320, 4, 1.0f, 1.0f, &r1);
-	
+
 	//	Value for the actual current XP
 
 	float tempXP = 0.7f;
@@ -316,7 +360,7 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 32;
 
 	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP), 4, 1.0f, 1.0f, &r1);
-	
+
 	//	Define the potion spot
 	r1.left = 206;
 	r1.top = 64;

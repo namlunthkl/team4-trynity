@@ -24,11 +24,17 @@ void ParticleWeapon::Fire()
 }
 void ParticleWeapon::Update(float DT)
 {
+	if( Fired )
+	{
 	emitter.Update(DT);
+	}
 }
 void ParticleWeapon::Render()
 {
+	if( Fired )
+	{
 	emitter.Render();
+	}
 }
 bool ParticleWeapon::Load(const char* szXMLFileName)
 {

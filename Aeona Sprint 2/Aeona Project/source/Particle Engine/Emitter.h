@@ -61,6 +61,7 @@ public:
 	void Update( float DT );
 	void Render();
 	void ReSpwn(Particle* P);
+	void ShutDown(void);
 
 };
 #endif

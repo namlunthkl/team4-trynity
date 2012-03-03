@@ -102,9 +102,6 @@
     <ClCompile Include="source\Particle Engine\Emitter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\Particle Engine\FlyWeight.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -144,6 +141,7 @@
     <ClCompile Include="source\Weapons\CDagger.cpp" />
     <ClCompile Include="source\Weapons\CHammer.cpp" />
     <ClCompile Include="source\Weapons\CSword.cpp" />
+    <ClCompile Include="source\Weather System\WeatherManager.cpp" />
     <ClCompile Include="source\WinMain.cpp" />
     <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -189,7 +187,6 @@
     <ClInclude Include="source\Messaging\IListener.h" />
     <ClInclude Include="source\Messaging\Messages.h" />
     <ClInclude Include="source\Particle Engine\Emitter.h" />
-    <ClInclude Include="source\Particle Engine\FlyWeight.h" />
     <ClInclude Include="source\Particle Engine\Particle.h" />
     <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
     <ClInclude Include="source\Puzzles\CPuzzle.h" />
@@ -221,6 +218,7 @@
     <ClInclude Include="source\Weapons\CHammer.h" />
     <ClInclude Include="source\Weapons\CSword.h" />
     <ClInclude Include="source\Weapons\IBaseWeapon.h" />
+    <ClInclude Include="source\Weather System\WeatherManager.h" />
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />
     <ClInclude Include="source\Wrappers\CSGD_TextureManager.h" />
