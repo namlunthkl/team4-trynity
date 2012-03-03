@@ -248,6 +248,9 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 			// Get a pointer to the current tile - for better readability
 			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
 
+			if(tileCurrent->GetEventID() == 2)
+				int x = 0;
+
 			// Check if the tile is collidable
 			if(TestBit(tileCurrent->GetInfo(), BIT_TILE_COLLISION))
 			{

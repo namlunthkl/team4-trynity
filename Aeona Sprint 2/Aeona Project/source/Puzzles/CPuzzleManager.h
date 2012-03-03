@@ -28,6 +28,7 @@ public:
 	void InitPuzzleManager(void);
 	static CPuzzleManager* GetInstance(void);
 	void UpdatePuzzles(float fElapsedTime);
+	void RenderPuzzles(void);
 	void ShutdownPuzzleManager(void);
 };
 

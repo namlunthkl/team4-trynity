@@ -149,10 +149,10 @@ void CWorldEngine::RenderWorld(void)
 	{
 		CMap* curMap = m_vpMaps[uiIndex];
 
-		if(curMap->GetPosX() >= m_rDrawArea.left &&
+		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
 			curMap->GetPosY() >= m_rDrawArea.top &&
 			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
-			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)
+			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
 		{
 			curMap->Render(m_nCullingMode);
 		}
@@ -171,10 +171,10 @@ bool CWorldEngine::CheckCollisions(IBaseInterface* pBase)
 	{
 		CMap* curMap = m_vpMaps[uiIndex];
 
-		if(curMap->GetPosX() >= m_rDrawArea.left &&
+		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
 			curMap->GetPosY() >= m_rDrawArea.top &&
 			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
-			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)
+			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
 		{
 			if(curMap->CheckCollisions(pBase, m_pStringTable))
 			{

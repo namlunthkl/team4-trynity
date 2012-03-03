@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue>
+  <SpeechNode text="Text A" name="A">
+    <Option text="Option A-1"/>
+    <Option text="Option A-2"/>
+    <Option text="Option A-3"/>
+  </SpeechNode>
+  <SpeechNode text="Text B" name="B">
+    <Option text="Option B-1"/>
+    <Option text="Option B-2"/>
+  </SpeechNode>
+  <SpeechNode text="Text C" name="C">
+    <Option text="Option C-1"/>
+    <Option text="Option C-2"/>
+  </SpeechNode>
+  <SpeechNode text="Text D" name="D">
+    <Option text="Option D-1" />
+    <Option text="Option D-2" />
+  </SpeechNode>
+  <SpeechNode text="Text E" name="E">
+    <Option text="Option E-1" />
+    <Option text="Option E-2" />
+  </SpeechNode>
+  <Connection speechA="A" option="1" speechB="C"></Connection>
+  <Connection speechA="A" option="2" speechB="B"></Connection>
+  <Connection speechA="A" option="3" speechB="D"></Connection>
+</Dialogue>
+
