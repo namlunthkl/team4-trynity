@@ -223,11 +223,11 @@ void CGame::Update(void)
 		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
 			///////////////////////////
 	//ARI EXTRA CODE
-	///////////////////////////
-		if( !CCameraControl::GetInstance()->GetKillCam() )
-		{
-			CCameraControl::GetInstance()->ChargeCamSequence( m_fCharge );
-		}
+	/////////////////////////////
+	//	if( !CCameraControl::GetInstance()->GetKillCam() )
+	//	{
+	//		CCameraControl::GetInstance()->ChargeCamSequence( m_fCharge );
+	//	}
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////

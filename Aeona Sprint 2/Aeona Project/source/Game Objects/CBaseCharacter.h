@@ -38,8 +38,8 @@ class CBaseCharacter : public CBaseObject
 public:
 	// Enum for animations
 	enum EAnimations { ANM_WALK_UP, ANM_WALK_DOWN, ANM_WALK_RIGHT, ANM_WALK_LEFT,
+		ANM_ATK_UP,ANM_ATK_DOWN,ANM_ATK_RIGHT,ANM_ATK_LEFT,
 		ANM_IDLE_UP,ANM_IDLE_DOWN,ANM_IDLE_RIGHT,ANM_IDLE_LEFT,
-		ANM_ATK_UP,ANM_ATK_DOWN,ANM_ATK_RIGHT,ANM_ATK_LEFT, 
 		ANM_MAX };
 
 	// Constructor
