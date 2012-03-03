@@ -2,6 +2,7 @@
 //	File	:	"SGD_Math.h"
 //
 //	Author	:	David Brown (DB)
+//				Ari Bodaghee
 //
 //	Purpose	:	To do lots of math for us.
 ///////////////////////////////////////////////////////////////////////////
@@ -80,3 +81,11 @@ bool FloatEquals(float fResult, float fExpected, float fEpsilon = 0.001f);
 
 //	Determines which way to turn (counter clockwise (+) or clockwise (-))
 float Steering(tVector2D vOrientation, tVector2D vToTarget);
+
+//  ARI BODAGHEE RANDOM VALUE
+// Returns Random int Value with a Min and a Max.
+int RandomInt( int a, int b );
+
+//  ARI BODAGHEE RANDOM VALUE
+// Returns Random Float Value with a Min and a Max.
+float RandomFloat( float a, float b );

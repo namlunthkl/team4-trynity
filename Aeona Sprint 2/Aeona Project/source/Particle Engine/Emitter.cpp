@@ -3,26 +3,7 @@
 #include "..\CGame.h"
 #include "..\Wrappers\SGD_Math.h"
 
-int RandomInt( int a, int b )
-{
-	if( a > b )
-	{
-		int t = b;
-		b = a;
-		a = t;
-	}
-	return (int)(((float)rand() / ((float)RAND_MAX + 1.0f)) * (b - a)) + a;
-}
-float RandomFloat( float a, float b )
-{
-	if( a > b )
-	{
-		float t = b;
-		b = a;
-		a = t;
-	}
-	return (float)(((float)rand() / ((float)RAND_MAX + 1.0)) * (b - a)) + a;
-}
+
 
 Emitter::Emitter()
 {

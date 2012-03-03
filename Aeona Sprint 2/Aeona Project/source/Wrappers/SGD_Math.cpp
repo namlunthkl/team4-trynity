@@ -5,7 +5,9 @@
 //
 //	Purpose	:	To do lots of math for us.
 ///////////////////////////////////////////////////////////////////////////
+
 #include "SGD_Math.h"
+#include <Windows.h>
 #include <math.h>	//	for sqrt()
 #include <float.h>	//	for fabs() and _isnan()
 
@@ -102,4 +104,30 @@ float Steering(tVector2D vOrientation, tVector2D vToTarget)
 {
 	//	Uses the Z-component of the cross product
 	return (vOrientation.fX * vToTarget.fY) - (vOrientation.fY * vToTarget.fX);
+}
+
+//  ARI BODAGHEE RANDOM VALUE
+// Returns Random int Value with a Min and a Max.
+int RandomInt( int a, int b )
+{
+	if( a > b )
+	{
+		int t = b;
+		b = a;
+		a = t;
+	}
+	return (int)(((float)rand() / ((float)RAND_MAX + 1.0f)) * (b - a)) + a;
+}
+
+//  ARI BODAGHEE RANDOM VALUE
+// Returns Random float Value with a Min and a Max.
+float RandomFloat( float a, float b )
+{
+	if( a > b )
+	{
+		float t = b;
+		b = a;
+		a = t;
+	}
+	return (float)(((float)rand() / ((float)RAND_MAX + 1.0)) * (b - a)) + a;
 }
