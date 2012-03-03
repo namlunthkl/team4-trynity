@@ -20,6 +20,7 @@
 
 #include "../Messaging/CEventSystem.h"
 #include "../Messaging/IListener.h"
+#include "../Particle Engine/ParticleWeapon.h"
 
 #include <vector>
 using std::vector;
@@ -41,7 +42,10 @@ class CPuzzle : public IListener
 	// Update function pointer
 	void(*m_pfUpdate)(CPuzzle*);
 
+	ParticleWeapon* m_pParticle;
+
 public:
+	CPuzzle(void);
 	void HandleEvent(CEvent* pEvent);
 	void Update(float fElapsedTime);
 	void Initialize(unsigned int uiArgCount, char* szEvent,
@@ -49,6 +53,7 @@ public:
 
 	inline unsigned int GetArgCount(void) const { return m_uiArgCount; }
 	inline vector<int>* GetArguments(void)  { return &m_vnArguments; }
+	inline ParticleWeapon* Particle(void) const { return m_pParticle; }
 };
 
 

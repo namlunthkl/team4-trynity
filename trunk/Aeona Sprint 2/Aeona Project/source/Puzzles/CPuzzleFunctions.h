@@ -13,6 +13,7 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 	unsigned int i;
 	string EventName = "";
 	int EventNumber = 0;
+	vector<int> Args = *pPuzzle->GetArguments();
 
 	for(i = 0; i < pEvent->GetEventID().size(); ++i)
 	{
@@ -22,15 +23,28 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 		EventName += pEvent->GetEventID()[i];
 	}
 
-	EventNumber = pEvent->GetEventID()[i++];
+	EventNumber = atoi(pEvent->GetEventID().c_str() + (i+1));
 
-	if(pEvent->GetEventID() == "LightTorch")
+	if(EventName == "LightTorch")
 	{
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
-		vector<int> vnArgs = *pPuzzle->GetArguments();
 
 		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
 		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
+
+		if(EventNumber < Args.size())
+		{
+			if(Args[EventNumber] == 1)
+			{
+				Args[EventNumber] = 0;
+
+			}
+			else
+			{
+				Args[EventNumber] = 1;
+			}
+		}
+
 	}
 }
 

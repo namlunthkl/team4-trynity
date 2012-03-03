@@ -12,6 +12,12 @@
 
 #include "CPuzzle.h"
 
+CPuzzle::CPuzzle(void)
+{
+	m_pParticle = nullptr;
+	m_uiArgCount = 0;
+}
+
 void CPuzzle::HandleEvent(CEvent* pEvent)
 {
 	// Call this puzzle's specific handle event
