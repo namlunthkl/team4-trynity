@@ -27,10 +27,11 @@ public:
 
 	void Attack(void);
 	void ChargedAttack(void);
-
-	void Render(void);
+	void Render(PointD nPosition);
+	void Update(float fElapsedTime);
+	//void Render(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_SWORD; }
-	void SetWeaponRotation(float fWeaponRotation);
+	//void SetWeaponRotation(float fWeaponRotation);
 };
 
 #endif

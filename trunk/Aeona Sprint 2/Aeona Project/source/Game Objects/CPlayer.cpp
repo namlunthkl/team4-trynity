@@ -22,10 +22,13 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiCurrentWeapon = WEAPON_SWORD;
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
+
 	m_vGameWeapons.push_back(new CDagger);
 	m_vGameWeapons.push_back(new CSword);
+	m_vGameWeapons.push_back(new CHammer);
+	m_vGameWeapons.push_back(new CCrossBow);
+	m_vGameWeapons[m_uiCurrentWeapon]->Activate();
 	Activate();
-	CBaseCharacter::LoadAnimations("resource/Char Walk2.xml");
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
 }
 
@@ -45,20 +48,20 @@ void CPlayer::Update(float fElapsedTime)
 	PointD ptOldPosition = GetPosition();
 
 	// Call Base Character's update method to move the player
+	
 	CBaseCharacter::Update(fElapsedTime);
+	
+	m_vGameWeapons[m_uiCurrentWeapon]->Update(fElapsedTime);
+	
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
 
-	unsigned int x = GetCurrentAnimation();
-
-	CAnimationPlayer* y = GetAnimationPlayer(x);
-
-	m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
+	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
 	
-	Point TempWepPoint;
-	TempWepPoint.x = GetPosX() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().x;
-	TempWepPoint.y = GetPosY() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().y;
-	m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
+	//Point TempWepPoint;
+	//TempWepPoint.x = GetPosX() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().x;
+	//TempWepPoint.y = GetPosY() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().y;
+	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
 
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
@@ -72,8 +75,8 @@ void CPlayer::Update(float fElapsedTime)
 void CPlayer::Render(void)
 {
 	// Render the player
-	CBaseCharacter::Render();
-	m_vGameWeapons[m_uiCurrentWeapon]->Render();
+	//CBaseCharacter::Render
+	m_vGameWeapons[m_uiCurrentWeapon]->Render(GetPosition());
 	// Render the particles
 	m_fxFootsteps.Render();
 }
@@ -81,10 +84,12 @@ void CPlayer::Render(void)
 void CPlayer::Attack(CBaseCharacter* pTarget)
 {
 	CBaseCharacter::Attack(pTarget);
+	m_vGameWeapons[m_uiCurrentWeapon]->Attack();
 }
 
 void CPlayer::ChargedAttack(void)
 {
+	m_vGameWeapons[m_uiCurrentWeapon]->ChargedAttack();
 	// TODO: Create charged attack effect in here
 	// TODO: Send any needed event
 }
@@ -98,31 +103,114 @@ void CPlayer::Die(void)
 // Get input for the player
 void CPlayer::Input(void)
 {
-	if(CInputManager::GetInstance()->GetUp())
+	if(CInputManager::GetInstance()->GetAttack())
 	{
-		SetCurrentAnimation(ANM_WALK_UP);
-		SetVelY(-(float)GetSpeed());
-	}
-	else if(CInputManager::GetInstance()->GetDown())
-	{
-		SetCurrentAnimation(ANM_WALK_DOWN);
-		SetVelY((float)GetSpeed());
+		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(true);
 	}
 	else
-		SetVelY(0);
+	{
+		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(false);
+	}
 
-	if(CInputManager::GetInstance()->GetLeft())
+	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAttacking())
 	{
-		SetCurrentAnimation(ANM_WALK_LEFT);
-		SetVelX(-(float)GetSpeed());
-	}
-	else if(CInputManager::GetInstance()->GetRight())
-	{
-		SetCurrentAnimation(ANM_WALK_RIGHT);
-		SetVelX((float)GetSpeed());
+		switch (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())
+		{
+		case ANM_WALK_UP:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
+				break;
+			}
+		case ANM_WALK_DOWN:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
+				break;
+			}
+		case ANM_WALK_LEFT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
+				break;
+			}
+		case ANM_WALK_RIGHT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
+				break;
+			}
+		case ANM_IDLE_UP:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
+				break;
+			}
+		case ANM_IDLE_DOWN:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
+				break;
+			}
+		case ANM_IDLE_LEFT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
+				break;
+			}
+		case ANM_IDLE_RIGHT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
+				break;
+			}
+		}
 	}
 	else
-		SetVelX(0);
+	{
+		switch (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())
+		{
+		case ANM_ATK_UP:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_UP);
+				break;
+			}
+		case ANM_ATK_DOWN:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_DOWN);
+				break;
+			}
+		case ANM_ATK_LEFT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_LEFT);
+				break;
+			}
+		case ANM_ATK_RIGHT:
+			{
+				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_RIGHT);
+				break;
+			}
+		}
+
+		if(CInputManager::GetInstance()->GetUp())
+		{
+			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_UP);
+			SetVelY(-(float)GetSpeed());
+		}
+		else if(CInputManager::GetInstance()->GetDown())
+		{
+			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_DOWN);
+			SetVelY((float)GetSpeed());
+		}
+		else
+			SetVelY(0);
+
+		if(CInputManager::GetInstance()->GetLeft())
+		{
+			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_LEFT);
+			SetVelX(-(float)GetSpeed());
+		}
+		else if(CInputManager::GetInstance()->GetRight())
+		{
+			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_RIGHT);
+			SetVelX((float)GetSpeed());
+		}
+		else
+			SetVelX(0);
+		
+	}
 }
 
 // Cycle through the weapons
@@ -141,6 +229,10 @@ void CPlayer::CycleWeapon(void)
 		// Keep looking
 		CycleWeapon();
 	}
+	else
+	{
+		m_vGameWeapons[m_uiCurrentWeapon]->Deactivate();
+	}	
 }
 
 // Cycle through the masks

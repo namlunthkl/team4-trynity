@@ -29,29 +29,18 @@ namespace Animation_Editor
             set { collision = value; }
         }
 
-        private Decimal weaponAngle;
-        public Decimal WeaponAngle
+        private Rectangle weaponHitRect;
+        public System.Drawing.Rectangle WeaponHitRect
         {
-            get { return weaponAngle; }
-            set { weaponAngle = value; }
+            get { return weaponHitRect; }
+            set { weaponHitRect = value; }
         }
+      
         private Point anchor;
         public System.Drawing.Point Anchor
         {
             get { return anchor; }
             set { anchor = value; }
-        }
-        private Point weaponPoint;
-        public System.Drawing.Point WeaponPoint
-        {
-            get { return weaponPoint; }
-            set { weaponPoint = value; }
-        }
-        private Point weaponAnchor;
-        public System.Drawing.Point WeaponAnchor
-        {
-            get { return weaponAnchor; }
-            set { weaponAnchor = value; }
         }
         private string triggerEvent;
         public string TriggerEvent

@@ -81,7 +81,7 @@ void CGameplayState::Enter(void)
 
 	for(int i=0; i < 5; ++i)
 	{
-		pNPC[i]->LoadAnimations("resource/npc walk2.xml");
+		pNPC[i]->LoadAnimations("resource/npc walk3.xml");
 		pNPC[i]->ChangeAIState(CRandomAIState::GetInstance());
 		pNPC[i]->SetDebugMode(false);
 		OBJECTS->AddObject(pNPC[i]);

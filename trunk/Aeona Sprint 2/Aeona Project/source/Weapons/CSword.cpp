@@ -10,24 +10,34 @@
 #include "../States/CGameplayState.h"
 CSword::CSword()
 {
-	SetImageID(TEX_MNG->LoadTexture("resource/sword.png",D3DCOLOR_XRGB(255,0,255)));
-
+	
+	//Load the Animation
+	CBaseCharacter::LoadAnimations("resource/Char Animations.xml");
+	SetAttacking(false);
 }
 void CSword::Attack(void)
 {
 	//
+	SetAttacking(true);
+
 }
-void CSword::Render()
+void CSword::Render(PointD nPos)
 {
-	float y = GetRotation();
-	float x = D3DXToRadian(-GetRotation());
-	TEX_MNG->Draw(GetImageID(),SCREEN_POS_X(GetWeaponAnchor().x-8),SCREEN_POS_Y(GetWeaponAnchor().y-57),1.0f,1.0f,0,8,57,x);
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
+	
+	CBaseCharacter::Render();
+}
+void CSword::Update(float fElapsedTime)
+{
+	CBaseCharacter::Update(fElapsedTime);
+	
 }
 void CSword::ChargedAttack(void)
 {
 	//
 }
-void CSword::SetWeaponRotation(float fWeaponRotation)
-{
-	SetRotation(fWeaponRotation);
-}
+//void CSword::SetWeaponRotation(float fWeaponRotation)
+//{
+//	SetRotation(fWeaponRotation);
+//}

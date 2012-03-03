@@ -22,11 +22,14 @@ class CCrossBow : public IBaseWeapon
 private:
 
 public:
+	CCrossBow();
 	~CCrossBow(void) {}
 	void Attack(void);
 	void ChargedAttack(void);
+	void Update(float fElapsedTime);
+	void Render(PointD nPosition);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
-	void SetWeaponRotation(float fWeaponRotation);
+	//void SetWeaponRotation(float fWeaponRotation);
 };
 
 #endif

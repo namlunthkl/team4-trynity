@@ -45,8 +45,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripExit = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxDraw = new System.Windows.Forms.GroupBox();
-            this.DrawWeaponAngle = new System.Windows.Forms.Button();
-            this.DrawWeaponPoint = new System.Windows.Forms.Button();
+            this.DrawWeaponCollisionRect = new System.Windows.Forms.Button();
             this.DrawAnchorPoint = new System.Windows.Forms.Button();
             this.DrawCollisionRect = new System.Windows.Forms.Button();
             this.DrawFrameRect = new System.Windows.Forms.Button();
@@ -106,18 +105,15 @@
             this.listBoxAnimations = new System.Windows.Forms.ListBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.groupBoxWeaponPoint = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.numericUpDownWeaponPointY = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownWeaponPointX = new System.Windows.Forms.NumericUpDown();
-            this.WeaponAngleGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.numericUpDownWeaponPointY2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownWeaponPointX2 = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.numericUpDownAngle = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.numericUpDownWeaponCollisionWidth = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownWeaponCollisionHeight = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownWeaponCollisionYPosition = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownWeaponCollisionXPosition = new System.Windows.Forms.NumericUpDown();
             this.graphicsPanelPlayer = new Animation_Editor.GraphicsPanel();
             this.MainPanel = new Animation_Editor.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
@@ -143,13 +139,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionYPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionXPosition)).BeginInit();
             this.groupBoxAllAnimations.SuspendLayout();
-            this.groupBoxWeaponPoint.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).BeginInit();
-            this.WeaponAngleGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionYPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionXPosition)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -278,8 +272,7 @@
             // 
             // GroupBoxDraw
             // 
-            this.GroupBoxDraw.Controls.Add(this.DrawWeaponAngle);
-            this.GroupBoxDraw.Controls.Add(this.DrawWeaponPoint);
+            this.GroupBoxDraw.Controls.Add(this.DrawWeaponCollisionRect);
             this.GroupBoxDraw.Controls.Add(this.DrawAnchorPoint);
             this.GroupBoxDraw.Controls.Add(this.DrawCollisionRect);
             this.GroupBoxDraw.Controls.Add(this.DrawFrameRect);
@@ -290,25 +283,15 @@
             this.GroupBoxDraw.TabStop = false;
             this.GroupBoxDraw.Text = "Draw";
             // 
-            // DrawWeaponAngle
+            // DrawWeaponCollisionRect
             // 
-            this.DrawWeaponAngle.Location = new System.Drawing.Point(7, 139);
-            this.DrawWeaponAngle.Name = "DrawWeaponAngle";
-            this.DrawWeaponAngle.Size = new System.Drawing.Size(149, 24);
-            this.DrawWeaponAngle.TabIndex = 4;
-            this.DrawWeaponAngle.Text = "Weapon Angle";
-            this.DrawWeaponAngle.UseVisualStyleBackColor = true;
-            this.DrawWeaponAngle.Click += new System.EventHandler(this.DrawWeaponAngle_Click);
-            // 
-            // DrawWeaponPoint
-            // 
-            this.DrawWeaponPoint.Location = new System.Drawing.Point(7, 110);
-            this.DrawWeaponPoint.Name = "DrawWeaponPoint";
-            this.DrawWeaponPoint.Size = new System.Drawing.Size(149, 23);
-            this.DrawWeaponPoint.TabIndex = 3;
-            this.DrawWeaponPoint.Text = "Weapon Anchor Point";
-            this.DrawWeaponPoint.UseVisualStyleBackColor = true;
-            this.DrawWeaponPoint.Click += new System.EventHandler(this.DrawWeaponPoint_Click);
+            this.DrawWeaponCollisionRect.Location = new System.Drawing.Point(7, 110);
+            this.DrawWeaponCollisionRect.Name = "DrawWeaponCollisionRect";
+            this.DrawWeaponCollisionRect.Size = new System.Drawing.Size(149, 23);
+            this.DrawWeaponCollisionRect.TabIndex = 3;
+            this.DrawWeaponCollisionRect.Text = "Weapon Collision Rectangle";
+            this.DrawWeaponCollisionRect.UseVisualStyleBackColor = true;
+            this.DrawWeaponCollisionRect.Click += new System.EventHandler(this.DrawWeaponCollisionRect_Click);
             // 
             // DrawAnchorPoint
             // 
@@ -971,144 +954,110 @@
             this.vScrollBar1.TabIndex = 12;
             this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
-            // groupBoxWeaponPoint
+            // groupBox1
             // 
-            this.groupBoxWeaponPoint.Controls.Add(this.label17);
-            this.groupBoxWeaponPoint.Controls.Add(this.label16);
-            this.groupBoxWeaponPoint.Controls.Add(this.numericUpDownWeaponPointY);
-            this.groupBoxWeaponPoint.Controls.Add(this.numericUpDownWeaponPointX);
-            this.groupBoxWeaponPoint.Location = new System.Drawing.Point(677, 204);
-            this.groupBoxWeaponPoint.Name = "groupBoxWeaponPoint";
-            this.groupBoxWeaponPoint.Size = new System.Drawing.Size(167, 72);
-            this.groupBoxWeaponPoint.TabIndex = 13;
-            this.groupBoxWeaponPoint.TabStop = false;
-            this.groupBoxWeaponPoint.Text = "Edit Weapon Anchor Point :";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(9, 41);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 13);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "X Position :";
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.numericUpDownWeaponCollisionWidth);
+            this.groupBox1.Controls.Add(this.numericUpDownWeaponCollisionHeight);
+            this.groupBox1.Controls.Add(this.numericUpDownWeaponCollisionYPosition);
+            this.groupBox1.Controls.Add(this.numericUpDownWeaponCollisionXPosition);
+            this.groupBox1.Location = new System.Drawing.Point(677, 238);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(167, 125);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Edit Weapon Collision Rect :";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(9, 16);
+            this.label16.Location = new System.Drawing.Point(25, 103);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 13);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Y Position :";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Width :";
             // 
-            // numericUpDownWeaponPointY
+            // label17
             // 
-            this.numericUpDownWeaponPointY.Location = new System.Drawing.Point(75, 13);
-            this.numericUpDownWeaponPointY.Maximum = new decimal(new int[] {
-            8192,
-            0,
-            0,
-            0});
-            this.numericUpDownWeaponPointY.Name = "numericUpDownWeaponPointY";
-            this.numericUpDownWeaponPointY.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownWeaponPointY.TabIndex = 1;
-            this.numericUpDownWeaponPointY.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointY_ValueChanged);
-            // 
-            // numericUpDownWeaponPointX
-            // 
-            this.numericUpDownWeaponPointX.Location = new System.Drawing.Point(75, 39);
-            this.numericUpDownWeaponPointX.Maximum = new decimal(new int[] {
-            8192,
-            0,
-            0,
-            0});
-            this.numericUpDownWeaponPointX.Name = "numericUpDownWeaponPointX";
-            this.numericUpDownWeaponPointX.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownWeaponPointX.TabIndex = 0;
-            this.numericUpDownWeaponPointX.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointX_ValueChanged);
-            // 
-            // WeaponAngleGroupBox1
-            // 
-            this.WeaponAngleGroupBox1.Controls.Add(this.label19);
-            this.WeaponAngleGroupBox1.Controls.Add(this.label20);
-            this.WeaponAngleGroupBox1.Controls.Add(this.numericUpDownWeaponPointY2);
-            this.WeaponAngleGroupBox1.Controls.Add(this.numericUpDownWeaponPointX2);
-            this.WeaponAngleGroupBox1.Controls.Add(this.label18);
-            this.WeaponAngleGroupBox1.Controls.Add(this.numericUpDownAngle);
-            this.WeaponAngleGroupBox1.Location = new System.Drawing.Point(677, 282);
-            this.WeaponAngleGroupBox1.Name = "WeaponAngleGroupBox1";
-            this.WeaponAngleGroupBox1.Size = new System.Drawing.Size(167, 100);
-            this.WeaponAngleGroupBox1.TabIndex = 14;
-            this.WeaponAngleGroupBox1.TabStop = false;
-            this.WeaponAngleGroupBox1.Text = "Edit Weapon Angle :";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(9, 46);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(60, 13);
-            this.label19.TabIndex = 9;
-            this.label19.Text = "Y Position :";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(9, 73);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(60, 13);
-            this.label20.TabIndex = 8;
-            this.label20.Text = "X Position :";
-            // 
-            // numericUpDownWeaponPointY2
-            // 
-            this.numericUpDownWeaponPointY2.Location = new System.Drawing.Point(75, 44);
-            this.numericUpDownWeaponPointY2.Maximum = new decimal(new int[] {
-            8192,
-            0,
-            0,
-            0});
-            this.numericUpDownWeaponPointY2.Name = "numericUpDownWeaponPointY2";
-            this.numericUpDownWeaponPointY2.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownWeaponPointY2.TabIndex = 7;
-            this.numericUpDownWeaponPointY2.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointY2_ValueChanged);
-            // 
-            // numericUpDownWeaponPointX2
-            // 
-            this.numericUpDownWeaponPointX2.Location = new System.Drawing.Point(75, 71);
-            this.numericUpDownWeaponPointX2.Maximum = new decimal(new int[] {
-            8192,
-            0,
-            0,
-            0});
-            this.numericUpDownWeaponPointX2.Name = "numericUpDownWeaponPointX2";
-            this.numericUpDownWeaponPointX2.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownWeaponPointX2.TabIndex = 6;
-            this.numericUpDownWeaponPointX2.ValueChanged += new System.EventHandler(this.numericUpDownWeaponPointX2_ValueChanged);
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 76);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 13);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Height :";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(9, 16);
+            this.label18.Location = new System.Drawing.Point(7, 22);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(40, 13);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "Angle :";
+            this.label18.Size = new System.Drawing.Size(60, 13);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Y Position :";
             // 
-            // numericUpDownAngle
+            // label19
             // 
-            this.numericUpDownAngle.Enabled = false;
-            this.numericUpDownAngle.Location = new System.Drawing.Point(75, 14);
-            this.numericUpDownAngle.Maximum = new decimal(new int[] {
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 49);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.TabIndex = 4;
+            this.label19.Text = "X Position :";
+            // 
+            // numericUpDownWeaponCollisionWidth
+            // 
+            this.numericUpDownWeaponCollisionWidth.Location = new System.Drawing.Point(73, 101);
+            this.numericUpDownWeaponCollisionWidth.Maximum = new decimal(new int[] {
             8192,
             0,
             0,
             0});
-            this.numericUpDownAngle.Name = "numericUpDownAngle";
-            this.numericUpDownAngle.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDownAngle.TabIndex = 3;
-            this.numericUpDownAngle.ValueChanged += new System.EventHandler(this.numericUpDownAngle_ValueChanged);
+            this.numericUpDownWeaponCollisionWidth.Name = "numericUpDownWeaponCollisionWidth";
+            this.numericUpDownWeaponCollisionWidth.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponCollisionWidth.TabIndex = 3;
+            this.numericUpDownWeaponCollisionWidth.ValueChanged += new System.EventHandler(this.numericUpDowWeaponCollisionWidth_ValueChanged);
+            // 
+            // numericUpDownWeaponCollisionHeight
+            // 
+            this.numericUpDownWeaponCollisionHeight.Location = new System.Drawing.Point(73, 74);
+            this.numericUpDownWeaponCollisionHeight.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownWeaponCollisionHeight.Name = "numericUpDownWeaponCollisionHeight";
+            this.numericUpDownWeaponCollisionHeight.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponCollisionHeight.TabIndex = 2;
+            this.numericUpDownWeaponCollisionHeight.ValueChanged += new System.EventHandler(this.numericUpDownWeaponCollisionHeight_ValueChanged);
+            // 
+            // numericUpDownWeaponCollisionYPosition
+            // 
+            this.numericUpDownWeaponCollisionYPosition.Location = new System.Drawing.Point(73, 19);
+            this.numericUpDownWeaponCollisionYPosition.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownWeaponCollisionYPosition.Name = "numericUpDownWeaponCollisionYPosition";
+            this.numericUpDownWeaponCollisionYPosition.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponCollisionYPosition.TabIndex = 1;
+            this.numericUpDownWeaponCollisionYPosition.ValueChanged += new System.EventHandler(this.numericUpDownWeaponCollisionYPosition_ValueChanged);
+            // 
+            // numericUpDownWeaponCollisionXPosition
+            // 
+            this.numericUpDownWeaponCollisionXPosition.Location = new System.Drawing.Point(73, 47);
+            this.numericUpDownWeaponCollisionXPosition.Maximum = new decimal(new int[] {
+            8192,
+            0,
+            0,
+            0});
+            this.numericUpDownWeaponCollisionXPosition.Name = "numericUpDownWeaponCollisionXPosition";
+            this.numericUpDownWeaponCollisionXPosition.Size = new System.Drawing.Size(81, 20);
+            this.numericUpDownWeaponCollisionXPosition.TabIndex = 0;
+            this.numericUpDownWeaponCollisionXPosition.ValueChanged += new System.EventHandler(this.numericUpDownWeaponCollisionXPosition_ValueChanged);
             // 
             // graphicsPanelPlayer
             // 
@@ -1134,8 +1083,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 769);
-            this.Controls.Add(this.WeaponAngleGroupBox1);
-            this.Controls.Add(this.groupBoxWeaponPoint);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.groupBoxAllAnimations);
@@ -1182,15 +1130,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionYPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCollisionXPosition)).EndInit();
             this.groupBoxAllAnimations.ResumeLayout(false);
-            this.groupBoxWeaponPoint.ResumeLayout(false);
-            this.groupBoxWeaponPoint.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX)).EndInit();
-            this.WeaponAngleGroupBox1.ResumeLayout(false);
-            this.WeaponAngleGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointY2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponPointX2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionYPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeaponCollisionXPosition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1275,20 +1220,16 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Button DeSelect;
-        private System.Windows.Forms.Button DrawWeaponPoint;
-        private System.Windows.Forms.GroupBox groupBoxWeaponPoint;
+        private System.Windows.Forms.Button DrawWeaponCollisionRect;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointY;
-        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointX;
-        private System.Windows.Forms.Button DrawWeaponAngle;
-        private System.Windows.Forms.GroupBox WeaponAngleGroupBox1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.NumericUpDown numericUpDownAngle;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointY2;
-        private System.Windows.Forms.NumericUpDown numericUpDownWeaponPointX2;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponCollisionWidth;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponCollisionHeight;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponCollisionYPosition;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeaponCollisionXPosition;
     }
 }
 
