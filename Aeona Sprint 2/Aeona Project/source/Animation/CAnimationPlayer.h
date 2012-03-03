@@ -34,11 +34,13 @@ public:
 
 	RectD ReturnCollisionRect(void);
 
+	RECT ReturnWeaponCollisionRect(void);
+
 	Point ReturnAnchorPoint(void);
 
-	Point ReturnWeaponPoint(void);
-
-	float ReturnWeaponAngle(void);
+	//Point ReturnWeaponPoint(void);
+	//
+	//float ReturnWeaponAngle(void);
 
 };
 #endif

@@ -41,7 +41,11 @@ bool CBaseCharacter::LoadAnimations(char const * const szFilename)
 
 	for(int i = *pnFirstAnmID; i <= *pnLastAnmID; ++i)
 	{
-		CAnimationPlayer* pAnmPlayer = new CAnimationPlayer(i, true);
+		CAnimationPlayer* pAnmPlayer;
+		if(i == ANM_ATK_UP && i <= ANM_ATK_LEFT)
+			pAnmPlayer = new CAnimationPlayer(i, false);
+		else
+			pAnmPlayer = new CAnimationPlayer(i, true);
 
 		PushAnimationPlayer(pAnmPlayer);
 		pAnmPlayer->Play();

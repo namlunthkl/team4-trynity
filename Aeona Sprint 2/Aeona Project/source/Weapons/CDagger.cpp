@@ -6,6 +6,10 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CDagger.h"
+CDagger::CDagger()
+{
+
+}
 void CDagger::Attack(void)
 {
 	//
@@ -14,7 +18,15 @@ void CDagger::ChargedAttack(void)
 {
 	//
 }
-void CDagger::SetWeaponRotation(float fWeaponRotation)
+void CDagger::Render(PointD nPosition)
 {
 
 }
+void CDagger::Update(float fElapsedTime)
+{
+
+}
+//void CDagger::SetWeaponRotation(float fWeaponRotation)
+//{
+//
+//}

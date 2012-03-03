@@ -154,26 +154,44 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 			{
 				tempAnchor.y = nTemp;
 			}
+			tempFrame.SetAnchorPoint(tempAnchor);
 
-			TiXmlElement* pWeapon = pDrawRect->NextSiblingElement("Weapon");
-
-			Point tempWeaponAnchor;
+			TiXmlElement* pWeapon = pAnchor->NextSiblingElement("WeaponCollisionRect");
+			RECT tempWeaponCollisionRect;
 			if(pWeapon->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempWeaponAnchor.x = nTemp;
+				tempWeaponCollisionRect.left = nTemp;
 			}
 			if(pWeapon->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempWeaponAnchor.y = nTemp;
+				tempWeaponCollisionRect.top = nTemp;
 			}
-			tempFrame.SetWeaponAnchorPoint(tempWeaponAnchor);
-
-			float tempWeaponAngle;
-			if(pWeapon->QueryDoubleAttribute("angle",&dTemp) != TIXML_NO_ATTRIBUTE)
+			if(pWeapon->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
-				tempWeaponAngle = dTemp;
+				tempWeaponCollisionRect.right = tempWeaponCollisionRect.left + nTemp;
 			}
-			tempFrame.SetWeaponAngle(tempWeaponAngle);
+			if(pWeapon->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
+			{
+				tempWeaponCollisionRect.bottom = tempWeaponCollisionRect.top + nTemp;
+			}
+			tempFrame.SetWeaponCollisionRect(tempWeaponCollisionRect);
+			//Point tempWeaponAnchor;
+			//if(pWeapon->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
+			//{
+			//	tempWeaponAnchor.x = nTemp;
+			//}
+			//if(pWeapon->QueryIntAttribute("y",&nTemp) != TIXML_NO_ATTRIBUTE)
+			//{
+			//	tempWeaponAnchor.y = nTemp;
+			//}
+			//tempFrame.SetWeaponAnchorPoint(tempWeaponAnchor);
+
+			//float tempWeaponAngle;
+			//if(pWeapon->QueryDoubleAttribute("angle",&dTemp) != TIXML_NO_ATTRIBUTE)
+			//{
+			//	tempWeaponAngle = dTemp;
+			//}
+			//tempFrame.SetWeaponAngle(tempWeaponAngle);
 			
 
 			tempAnimation->GetFrames()->push_back(tempFrame);

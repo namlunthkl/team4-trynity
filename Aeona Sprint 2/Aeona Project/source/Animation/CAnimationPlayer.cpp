@@ -77,11 +77,15 @@ Point CAnimationPlayer::ReturnAnchorPoint(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 }
-Point CAnimationPlayer::ReturnWeaponPoint(void)
+RECT CAnimationPlayer::ReturnWeaponCollisionRect(void)
 {
-	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAnchorPoint();
+	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponCollisionRect();
 }
-float CAnimationPlayer::ReturnWeaponAngle(void)
-{
-	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAngle();
-}
+//Point CAnimationPlayer::ReturnWeaponPoint(void)
+//{
+//	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAnchorPoint();
+//}
+//float CAnimationPlayer::ReturnWeaponAngle(void)
+//{
+//	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAngle();
+//}
