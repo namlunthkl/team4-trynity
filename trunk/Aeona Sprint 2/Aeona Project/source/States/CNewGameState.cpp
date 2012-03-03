@@ -114,20 +114,20 @@ void CNewGameState::Render()
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("New Slot 1", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 1", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(TestBit(GAME->m_cLoadedOrNot, 0))
-		pFont->Write("CONTAINS SAVED DATA", 250, 12, D3DCOLOR_XRGB(128, 192, 255));
+		pFont->Write("CONTAINS SAVED DATA", 250, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(128, 192, 255));
 	else
-		pFont->Write("Empty slot", 250, 12, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot 2", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Empty slot", 250, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 2", 32, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(TestBit(GAME->m_cLoadedOrNot, 1))
-		pFont->Write("CONTAINS SAVED DATA", 250, 13, D3DCOLOR_XRGB(128, 192, 255));
+		pFont->Write("CONTAINS SAVED DATA", 250, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(128, 192, 255));
 	else
-		pFont->Write("Empty slot", 250, 13, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("New Slot 3", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Empty slot", 250, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Slot 3", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(TestBit(GAME->m_cLoadedOrNot, 2))
-		pFont->Write("CONTAINS SAVED DATA", 250, 14, D3DCOLOR_XRGB(128, 192, 255));
+		pFont->Write("CONTAINS SAVED DATA", 250, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(128, 192, 255));
 	else
-		pFont->Write("Empty slot", 250, 14, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Empty slot", 250, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 15 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 }

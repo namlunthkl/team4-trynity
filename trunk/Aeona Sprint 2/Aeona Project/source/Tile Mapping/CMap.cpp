@@ -25,8 +25,10 @@
 
 #include "../Input Manager/CInputManager.h"
 #include "../States/CGameplayState.h"
+#include "../Camera/CCameraControl.h"
 
 #define GAMEPLAY CGameplayState::GetInstance()
+#define CAMERA CCameraControl::GetInstance()
 
 // Constructor
 // Sets all parameters to 0/NULL values
@@ -166,8 +168,6 @@ void CMap::Render(int nCullingMode)
 			// Get position to draw;
 			int nTileWorldPosX = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
 			int nTileWorldPosY = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
-			int nTileScreenPosX = GAMEPLAY->GetScreenPositionX(nTileWorldPosX);
-			int nTileScreenPosY = GAMEPLAY->GetScreenPositionY(nTileWorldPosY);
 			
 			bool bRender = false;
 			switch(nCullingMode)
@@ -176,13 +176,13 @@ void CMap::Render(int nCullingMode)
 				bRender = true;
 				break;
 			case CULLING_HALF_SCREEN:
-				if(nTileScreenPosX > 0 && nTileScreenPosX + GetTileset()->GetTileWidth() < GAME->GetScreenWidth()
-					&& nTileScreenPosY > 0 && nTileScreenPosY+ GetTileset()->GetTileHeight() < GAME->GetScreenHeight())
+				if(nTileWorldPosX  + CAMERA->GetPositionX() > 0 && nTileWorldPosX + GetTileset()->GetTileWidth()  + CAMERA->GetPositionX() < GAME->GetScreenWidth()
+					&& nTileWorldPosY + CAMERA->GetPositionY() > 0 && nTileWorldPosY+ GetTileset()->GetTileHeight()  + CAMERA->GetPositionY() < GAME->GetScreenHeight())
 					bRender = true;
 				break;
 			case CULLING_SCREEN:
-				if(nTileScreenPosX + GetTileset()->GetTileWidth() >= 0 && (nTileScreenPosX) <= GAME->GetScreenWidth()
-					&& nTileScreenPosY + GetTileset()->GetTileHeight() >= 0 && (nTileScreenPosY) <= GAME->GetScreenHeight())
+				if(nTileWorldPosX + GetTileset()->GetTileWidth() + CAMERA->GetPositionX() >= 0 && (nTileWorldPosX + CAMERA->GetPositionX()) <= GAME->GetScreenWidth()
+					&& nTileWorldPosY + GetTileset()->GetTileHeight() + CAMERA->GetPositionY() >= 0 && (nTileWorldPosY + CAMERA->GetPositionY()) <= GAME->GetScreenHeight())
 					bRender = true;
 				break;
 			}
@@ -193,7 +193,7 @@ void CMap::Render(int nCullingMode)
 				RECT rectSource = GetTileSourceRect(tileCurrent);
 
 				// Draw the tile using texture manager
-				TEX_MNG->Draw(GetTileset()->GetImageID(), nTileScreenPosX, nTileScreenPosY, 1.0f, 1.0f, &rectSource);
+				TEX_MNG->Draw(GetTileset()->GetImageID(), nTileWorldPosX, nTileWorldPosY, 1.0f, 1.0f, &rectSource);
 			}
 
 			// Since we're reading line by line, from left to right, we need

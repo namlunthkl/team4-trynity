@@ -23,6 +23,9 @@ private:
 public:
 	CBitmapFont();
 	void Write(const char* szTextToPrint, int nPosX, int nPosY, DWORD dwColor);
+
+	inline int GetCharWidth(void) const { return m_nCharWidth; }
+	inline int GetCharHeight(void) const { return m_nCharHeight; }
 };
 
 #endif

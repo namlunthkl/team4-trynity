@@ -137,6 +137,7 @@
     <ClCompile Include="source\Util\ByteUtil.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Util\CDialogueList.cpp" />
     <ClCompile Include="source\Weapons\CCrossBow.cpp" />
     <ClCompile Include="source\Weapons\CDagger.cpp" />
     <ClCompile Include="source\Weapons\CHammer.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="source\tinyxml\tinystr.h" />
     <ClInclude Include="source\tinyxml\tinyxml.h" />
     <ClInclude Include="source\Util\ByteUtil.h" />
+    <ClInclude Include="source\Util\CDialogueList.h" />
     <ClInclude Include="source\Util\CTimer.h" />
     <ClInclude Include="source\Util\UtilStructs.h" />
     <ClInclude Include="source\Weapons\CCrossBow.h" />

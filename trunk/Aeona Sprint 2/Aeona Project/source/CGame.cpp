@@ -56,7 +56,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
-
+	
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
 	
@@ -300,10 +300,10 @@ void CGame::Render(void)
 
 		if(GAME->GetPaused() == true)
 		{
-			pFont1->Write("GAME IS PAUSED", 24, 2, D3DCOLOR_XRGB(255, 0, 0));
-			pFont1->Write("Press ESC again to resume", 32, 3, D3DCOLOR_XRGB(255, 255, 255));
-			pFont1->Write("ESC brings up player inventory!", 32, 4, D3DCOLOR_XRGB(255, 255, 255));
-			pFont1->Write("PRESS DELETE FOR MAIN MENU", 32, 6, D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("GAME IS PAUSED", 24, 2 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
+			pFont1->Write("Press ESC again to resume", 32, 3 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("ESC brings up player inventory!", 32, 4 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+			pFont1->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * pFont1->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		}
 	}
 
