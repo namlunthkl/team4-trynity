@@ -115,7 +115,7 @@ void CPlayer::Input(void)
 	if(CInputManager::GetInstance()->GetAttack())
 	{
 		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(true);
-		//CCameraControl::GetInstance()->KillCamSequence(true);
+		CCameraControl::GetInstance()->SetKillCam(true);
 	}
 	else
 	{
@@ -176,12 +176,12 @@ void CPlayer::Input(void)
 			}
 		}
 		
-		if(CInputManager::GetInstance()->Timeheld() > 2.0f)
-		{
-			if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
-				m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
-			
-		}
+		//if(CInputManager::GetInstance()->Timeheld() > 2.0f)
+		//{
+		//	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
+		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
+		//	
+		//}
 	}
 	else
 	{
