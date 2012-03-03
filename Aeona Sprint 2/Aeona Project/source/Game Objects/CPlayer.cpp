@@ -64,12 +64,12 @@ void CPlayer::Update(float fElapsedTime)
 	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
 
 	// Fire the particle effect if the position changed
-	if(ptOldPosition != GetPosition())
+	/*if(ptOldPosition != GetPosition())
 	{	
 		m_fxFootsteps.emitter.EmitterPosX = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + SCREEN_POS_X((float)GetPosX()) ;
 		m_fxFootsteps.emitter.EmitterPosY = GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + SCREEN_POS_Y((float)GetPosY());
 		m_fxFootsteps.Fire();
-	}
+	}*/
 }
 
 void CPlayer::Render(void)

@@ -125,7 +125,7 @@ void CBitmapFont::Write(const char* szTextToPrint, int nPosX, int nPosY, DWORD d
 		}
 		int id = (int)(ch - m_cStartChar);
 		RECT rLetter = CellAlgorithm(id);
-		CSGD_TextureManager::GetInstance()->Draw(m_nImageID, nPosX, nPosY * m_nCharHeight, 1.0f, 1.0f, &rLetter, 0, 0, 0, dwColor);
+		CSGD_TextureManager::GetInstance()->Draw(m_nImageID, nPosX, nPosY, 1.0f, 1.0f, &rLetter, 0, 0, 0, dwColor);
 		nPosX += m_nCharWidth;
 	}
 }

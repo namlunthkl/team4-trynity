@@ -127,9 +127,9 @@ void CMainMenuState::Render()
 	//pFont->Write("abcdefghijklmnopqrstuvwxyz", 32, 10, D3DCOLOR_XRGB(255, 255, 255));
 
 	//	Draw this menu's stuff
-	pFont->Write("New Game", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Load Game", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Settings", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Credits", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Exit", 32, 16, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("New Game", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Load Game", 32, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Settings", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Credits", 32, 15 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Exit", 32, 16 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 }

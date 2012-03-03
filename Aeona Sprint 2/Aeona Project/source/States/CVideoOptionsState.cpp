@@ -110,36 +110,36 @@ void CVideoOptionsState::Render()
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("FullScreen", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("FullScreen", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(GAME->GetIsWindowed() == false)
 	{
-		pFont->Write("Enabled", 256, 12, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Enabled", 256, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	else
 	{
-		pFont->Write("Disabled", 256, 12, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Disabled", 256, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
-	pFont->Write("HUD", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("HUD", 32, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(GAME->GetShowHUD() == true)
 	{
-		pFont->Write("Enabled", 256, 13, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Enabled", 256, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	else
 	{
-		pFont->Write("Disabled", 256, 13, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Disabled", 256, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
-	pFont->Write("Map Location", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Map Location", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	if(GAME->GetMapLocation() == 0)
 	{
-		pFont->Write("Top right", 256, 14, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Top right", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	else if(GAME->GetMapLocation() == 1)
 	{
-		pFont->Write("Bottom left", 256, 14, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Bottom left", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 	else if(GAME->GetMapLocation() == 2)
 	{
-		pFont->Write("Bottom right", 256, 14, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->Write("Bottom right", 256, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
-	pFont->Write("Back", 32, 15, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 15 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 }

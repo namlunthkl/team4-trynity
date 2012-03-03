@@ -207,8 +207,8 @@
     <ClCompile Include="source\Weapons\CCrossBow.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
-    <ClCompile Include="source\Weather System\WeatherManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\Util\CDialogueList.cpp">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,8 +404,8 @@
     <ClInclude Include="source\Puzzles\CPuzzleFunctions.h">
       <Filter>Puzzles</Filter>
     </ClInclude>
-    <ClInclude Include="source\Weather System\WeatherManager.h">
-      <Filter>Weather System</Filter>
+    <ClInclude Include="source\Util\CDialogueList.h">
+      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

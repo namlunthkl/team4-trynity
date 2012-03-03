@@ -104,7 +104,7 @@ void COptionsState::Render()
 	CBaseMenu::Render();
 
 	//	Draw this menu's stuff
-	pFont->Write("Video Settings", 32, 12, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Audio Settings", 32, 13, D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Back", 32, 14, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Video Settings", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Audio Settings", 32, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Back", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 }

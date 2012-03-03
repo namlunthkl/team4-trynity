@@ -59,16 +59,14 @@ void CBaseObject::Render(void)
 {
 	if(!IsActive()) return;
 
-	Point ptAnchor(m_uiWidth / 2, m_uiHeight / 2);
-
 	// If there's no animation, render object's image in its position
 	if(m_vpAnimations.empty())
 	{
-		TEX_MNG->Draw(m_nImageID, SCREEN_POS_X((int)m_ptPosition.x) - ptAnchor.x, SCREEN_POS_Y((int)m_ptPosition.y) - ptAnchor.y);
+		TEX_MNG->Draw(m_nImageID, (int)m_ptPosition.x - m_ptAnchor.x, (int)m_ptPosition.y - m_ptAnchor.y);
 	}
 	else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
-		m_vpAnimations[m_anmCurrent]->Render(SCREEN_POS_X((int)m_ptPosition.x), SCREEN_POS_Y((int)m_ptPosition.y));
+		m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y);
 	}
 
 	if(m_bDebugMode)

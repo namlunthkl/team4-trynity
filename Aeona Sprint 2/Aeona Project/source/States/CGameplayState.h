@@ -28,10 +28,10 @@
 
 #include "../Game Objects/CEnemy.h"
 
-#define SCREEN_POS_X(X) CGameplayState::GetInstance()->GetScreenPositionX(X)
-#define SCREEN_POS_Y(Y) CGameplayState::GetInstance()->GetScreenPositionY(Y)
-#define WORLD_POS_X(X)	CGameplayState::GetInstance()->GetWorldPositionX(X)
-#define WORLD_POS_Y(Y)	CGameplayState::GetInstance()->GetWorldPositionY(Y)
+// #define SCREEN_POS_X(X) CGameplayState::GetInstance()->GetScreenPositionX(X)
+// #define SCREEN_POS_Y(Y) CGameplayState::GetInstance()->GetScreenPositionY(Y)
+// #define WORLD_POS_X(X)	CGameplayState::GetInstance()->GetWorldPositionX(X)
+// #define WORLD_POS_Y(Y)	CGameplayState::GetInstance()->GetWorldPositionY(Y)
 
 class CGameplayState : public IGameState , public IListener
 {
@@ -89,7 +89,7 @@ public:
 	// Those are going to be used by all objects so that
 	// they are placed in the screen in a position
 	// relative to the camera position
-	inline int GetScreenPositionX(int nPosX)
+	/*inline int GetScreenPositionX(int nPosX)
 	{ return nPosX - m_nCameraPosX; }
 
 	inline int GetScreenPositionY(int nPosY)
@@ -99,7 +99,7 @@ public:
 	{ return nPosX + m_nCameraPosX; }
 
 	inline int GetWorldPositionY(int nPosY)
-	{ return nPosY + m_nCameraPosY; }
+	{ return nPosY + m_nCameraPosY; }*/
 };
 
 #endif // CGAMEPLAYSTATE_H_

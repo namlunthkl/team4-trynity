@@ -11,11 +11,15 @@
 
 #include "CBaseCharacter.h"
 #include "../CBitmapFont.h"
+#include "../Util/CDialogueList.h"
 
 class CNPC : public CBaseCharacter
 {
 	//	NPC's speech
 	string			m_szText;
+	CDialogueList	m_Dialogue;
+	tSpeechNode*	m_pCurrentSpeech;
+	int				m_nCurrentOption;
 	//	Range for the NPC to say something
 	double			m_dRange;
 	//	Should the NPC be talking?
