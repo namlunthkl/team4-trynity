@@ -1,10 +1,6 @@
 #ifndef CPOSTPROCESS_H_
 #define CPOSTPROCESS_H_
 
-//	SGD Wrappers
-#include <Windows.h>
-#include "SGD Wrappers\CSGD_Direct3D.h"
-
 class CPostProcess
 {
 private:
