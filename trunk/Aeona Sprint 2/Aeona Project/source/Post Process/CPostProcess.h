@@ -27,7 +27,7 @@ public:
 	float						fBlue;
 	int							colChange;
 
-	const char* techs[6];
+	const char* techs[10];
 	int index;
 
 	void Initialize( void );
