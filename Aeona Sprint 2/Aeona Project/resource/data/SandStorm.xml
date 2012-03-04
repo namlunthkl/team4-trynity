@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Particle>
-  <ImageFile>particle.bmp</ImageFile>
+  <ImageFile>Puff2.png</ImageFile>
   <Continuous>1</Continuous>
-  <Reanimate>0</Reanimate>
-  <EmitterPosX>-100</EmitterPosX>
-  <EmitterPosY>0</EmitterPosY>
-  <MaxParticles>2000</MaxParticles>
-  <Size>0.5</Size>
-  <MaxLife>1</MaxLife>
-  <SpawnWidth>800</SpawnWidth>
+  <Reanimate>1</Reanimate>
+  <EmitterPosX>-200</EmitterPosX>
+  <EmitterPosY>-50</EmitterPosY>
+  <MaxParticles>800</MaxParticles>
+  <Size>5</Size>
+  <MaxLife>20</MaxLife>
+  <SpawnWidth>1</SpawnWidth>
   <SpawnHeight>600</SpawnHeight>
-  <ScaleStart>0.5</ScaleStart>
-  <ScaleEnd>0.5</ScaleEnd>
+  <ScaleStart>5</ScaleStart>
+  <ScaleEnd>5</ScaleEnd>
   <Rotation>0</Rotation>
   <MinVelX>0</MinVelX>
   <MaxVelX>500</MaxVelX>
   <MinVelY>0</MinVelY>
   <MaxVelY>0</MaxVelY>
-  <StartColorA>255</StartColorA>
+  <StartColorA>125</StartColorA>
   <StartColorR>128</StartColorR>
   <StartColorG>64</StartColorG>
   <StartColorB>0</StartColorB>
   <EndColorA>255</EndColorA>
-  <EndColorR>128</EndColorR>
-  <EndColorG>64</EndColorG>
-  <EndColorB>0</EndColorB>
-  <Source>14</Source>
-  <Dest>14</Dest>
+  <EndColorR>255</EndColorR>
+  <EndColorG>128</EndColorG>
+  <EndColorB>64</EndColorB>
+  <Source>12</Source>
+  <Dest>6</Dest>
   <GravPosX>0</GravPosX>
   <GravPosY>0</GravPosY>
   <GravPower>0</GravPower>
