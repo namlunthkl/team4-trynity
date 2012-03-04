@@ -1,6 +1,6 @@
-#include "CPostProcess.h"
-#include "CGame.h"
-#include "SGD Wrappers\CSGD_DirectInput.h"
+#include "StdAfx.h"
+#include "..\StdAfx.h"
+#include "..\Post Process\CPostProcess.h"
 
 CPostProcess::CPostProcess(void){}
 CPostProcess::~CPostProcess(void)
@@ -164,7 +164,7 @@ void CPostProcess::EndPostProcess( void )
 	{
 		postEffect->BeginPass(i);
 		postEffect->SetTexture( "gDiffuseTexture", renderTarget );
-		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetElapsedTime() );
+		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetTimer().m_fElapsedTime );
 		postEffect->SetFloat( "gRed" , fRed );
 		postEffect->SetFloat( "gGreen" , fGreen );
 		postEffect->SetFloat( "gBlue" , fBlue );
@@ -192,9 +192,9 @@ void CPostProcess::UpdateColor()
 	{
 	case 1 :
 		{
-			fRed   += CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fGreen -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fBlue  -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
+			fRed   += CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fGreen -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fBlue  -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
 
 			if( fBlue <= 0.0f )
 			{
@@ -213,9 +213,9 @@ void CPostProcess::UpdateColor()
 
 	case 2 :
 		{
-			fRed   -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fGreen += CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fBlue  -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
+			fRed   -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fGreen += CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fBlue  -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
 			if( fRed <= 0.0f )
 			{
 				fRed = 0;
@@ -233,9 +233,9 @@ void CPostProcess::UpdateColor()
 
 	case 3 :
 		{
-			fRed   -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fGreen -= CGame::GetInstance()->GetElapsedTime() * 1.0f;
-			fBlue  += CGame::GetInstance()->GetElapsedTime() * 1.0f;
+			fRed   -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fGreen -= CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
+			fBlue  += CGame::GetInstance()->GetTimer().m_fElapsedTime * 1.0f;
 			if( fRed <= 0.0f )
 			{
 				fRed = 0;

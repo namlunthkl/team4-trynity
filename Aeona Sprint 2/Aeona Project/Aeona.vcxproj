@@ -105,6 +105,7 @@
     <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Post Process\CPostProcess.cpp" />
     <ClCompile Include="source\Puzzles\CPuzzle.cpp" />
     <ClCompile Include="source\Puzzles\CPuzzleManager.cpp" />
     <ClCompile Include="source\States\CAudioOptionsState.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="source\Particle Engine\Emitter.h" />
     <ClInclude Include="source\Particle Engine\Particle.h" />
     <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
+    <ClInclude Include="source\Post Process\CPostProcess.h" />
     <ClInclude Include="source\Puzzles\CPuzzle.h" />
     <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
     <ClInclude Include="source\Puzzles\CPuzzleManager.h" />

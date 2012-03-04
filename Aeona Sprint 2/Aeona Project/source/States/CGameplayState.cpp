@@ -22,6 +22,7 @@
 #include "../Puzzles/CPuzzleManager.h"
 // SINGLETON Weather Engine
 #include "../Weather System/WeatherManager.h"
+#include "../Post Process/CPostProcess.h"
 
 // Singleton Macros
 #define EVENTS		CEventSystem::GetInstance()
@@ -80,30 +81,24 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
 
-
 	PLAYER->SetPosX(600);
 	PLAYER->SetPosY(200);
 	PLAYER->SetSpeed(100);
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
-
-
-
-
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	GAME->ResetAmountLoaded();
 
-
+	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
+	
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
-	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(),
-		(float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
+	CPostProcess::GetInstance()->Initialize();
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
-
 }
 
 bool CGameplayState::Input(void)
@@ -113,6 +108,14 @@ bool CGameplayState::Input(void)
 	{
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->Input();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 
 	// Get Input from all objects
 	CObjectManager::GetInstance()->InputFromObjects();
@@ -153,10 +156,26 @@ void CGameplayState::Update(float fElapsedTime)
 	CCameraControl::GetInstance()->SetPositionY((float)-nNewCameraPosY);
 	
 	CCameraControl::GetInstance()->Update( fElapsedTime );
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->Update();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 }
 
 void CGameplayState::Render(void)
 {
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->BeginPostProcess();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 	///////////////////////////////////////////////////////////////////////////////////
 	////////////////////////// RENDER GAME OBJECTS AND WORLD //////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
@@ -225,6 +244,14 @@ void CGameplayState::Render(void)
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->EndPostProcess();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 }
 
 void CGameplayState::RenderMessageBox(void)
@@ -261,8 +288,14 @@ void CGameplayState::Exit(void)
 	OBJECTS->RemoveAllObjects();
 	OBJECTS->DeleteInstance();
 	
-	//CWeatherManager::GetInstance()->SetTypeOfWeather( 0 );
 	CWeatherManager::GetInstance()->ShutDown();
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->ShutDown();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 }
 
 CGameplayState* CGameplayState::GetInstance(void)
