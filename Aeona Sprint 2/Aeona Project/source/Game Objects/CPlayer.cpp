@@ -73,8 +73,8 @@ void CPlayer::Update(float fElapsedTime)
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
 	{
-		m_fxFootsteps.emitter.EmitterPosX = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX();
-		m_fxFootsteps.emitter.EmitterPosY = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY();
+		m_fxFootsteps.emitter.EmitterPosX = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX());
+		m_fxFootsteps.emitter.EmitterPosY = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY());
 		m_fxFootsteps.Fire();
 	}
 }
@@ -321,10 +321,10 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 	{
 		RECT temp,temp2;
 		temp = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnWeaponCollisionRect();
-		temp.left += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().left;
-		temp.right += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().right;
-		temp.top += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().top;
-		temp.bottom += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().bottom;
+		temp.left	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().left);
+		temp.right	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().right);
+		temp.top	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().top);
+		temp.bottom +=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().bottom);
 
 		if(IntersectRect(&temp2,&temp,&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 		{

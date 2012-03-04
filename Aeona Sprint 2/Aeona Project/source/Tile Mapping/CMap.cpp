@@ -270,18 +270,18 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 					// ...we know that pBase collided with this tile
 					bCollided = true;
 
-					int nRectWidth = rectIntersection.right - rectIntersection.left;
-					int nRectHeight = rectIntersection.bottom - rectIntersection.top;
-					int nAnmHeight = pObject->GetCollisionRect().bottom - pObject->GetCollisionRect().top;
-					int nAnmWidth = pObject->GetCollisionRect().right - pObject->GetCollisionRect().left;
+					double dRectWidth = rectIntersection.right - rectIntersection.left;
+					double dRectHeight = rectIntersection.bottom - rectIntersection.top;
+					double dAnmHeight = pObject->GetCollisionRect().bottom - pObject->GetCollisionRect().top;
+					double dAnmWidth = pObject->GetCollisionRect().right - pObject->GetCollisionRect().left;
 					double dTilePosX = (rectTileCollision.right + rectTileCollision.left) / 2;
 					double dTilePosY = (rectTileCollision.bottom + rectTileCollision.top) / 2;
 
-					if(nRectWidth > nRectHeight)
+					if(dRectWidth > dRectHeight)
 					{
 						// Top/Down Collision
 						if(pObject->GetPosY() < dTilePosY)
-							pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - nAnmHeight);
+							pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - dAnmHeight);
 						else
 							pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
 					}
@@ -289,7 +289,7 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 					{
 						// Side Collision
 						if(pObject->GetPosX() < dTilePosX)
-							pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - nAnmWidth);
+							pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - dAnmWidth);
 						else
 							pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
 					}

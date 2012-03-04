@@ -35,23 +35,31 @@
 
 class CGameplayState : public IGameState , public IListener
 {
-	ParticleWeapon PW;
-	//ParticleWeapon m_Rain;
+	// ParticleWeapon PW;
 
 	//	Proper Singleton - needs trilogy of evil
 	//		Copy Constructor
-	CGameplayState(const CGameplayState&){}
+	CGameplayState(const CGameplayState&) {}
 	//		Assignment operator
-	CGameplayState& operator=(const CGameplayState&){}
+	CGameplayState& operator=(const CGameplayState&) {}
 	//		Destructor
-	~CGameplayState(void){}
+	~CGameplayState(void) {}
 
-	// Simple camera system
-	int m_nCameraPosX;
-	int m_nCameraPosY;
-
-	//	Assets
+	//	Image for the HUD
 	int m_imgHUD;
+
+	//	Variables used to draw the message box to the screen
+	bool			m_bNPCTalking;
+	int				m_imgMessageBox;
+	CBitmapFont*	m_pFont;
+	//		Name of the speaking NPC
+	string			m_szCharName;
+	//		Message the NPC is speaking
+	string			m_szCurrentMessage;
+	//		Selected option
+	string			m_szCurrentOption;
+	//		Function to actually render the message box
+	void RenderMessageBox(void);
 
 
 public:
@@ -86,20 +94,9 @@ public:
 	// Handle events
 	void HandleEvent(CEvent* pEvent);
 
-	// Those are going to be used by all objects so that
-	// they are placed in the screen in a position
-	// relative to the camera position
-	/*inline int GetScreenPositionX(int nPosX)
-	{ return nPosX - m_nCameraPosX; }
+	void SetMessageBox(bool bNPCTalking, string szCharName = "",
+		string szCurrentMessage = "", string szCurrentOption = "");
 
-	inline int GetScreenPositionY(int nPosY)
-	{ return nPosY - m_nCameraPosY; }
-
-	inline int GetWorldPositionX(int nPosX)
-	{ return nPosX + m_nCameraPosX; }
-
-	inline int GetWorldPositionY(int nPosY)
-	{ return nPosY + m_nCameraPosY; }*/
 };
 
 #endif // CGAMEPLAYSTATE_H_

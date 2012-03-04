@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dialogue>
-  <SpeechNode text="Text A" name="A">
-    <Option text="Option A-1"/>
-    <Option text="Option A-2"/>
-    <Option text="Option A-3"/>
+  <SpeechNode text="Hello. Welcome to the First Playable version of Aeona." name="Welcome">
+    <Option text="Continue..."/>
   </SpeechNode>
-  <SpeechNode text="Text B" name="B">
-    <Option text="Option B-1"/>
-    <Option text="Option B-2"/>
+  <SpeechNode text="This is a demo for the NPC's dynamic dialogue system. Do you like it?" name="Demo">
+    <Option text="Yes"/>
+    <Option text="No"/>
   </SpeechNode>
-  <SpeechNode text="Text C" name="C">
-    <Option text="Option C-1"/>
-    <Option text="Option C-2"/>
+  <SpeechNode text="Good. We like when people appreciate our game." name="Good">
   </SpeechNode>
-  <SpeechNode text="Text D" name="D">
-    <Option text="Option D-1" />
-    <Option text="Option D-2" />
+  <SpeechNode text="Why not?" name="Why not">
+    <Option text="I don't like the font style."/>
+    <Option text="I don't like the NPC dialogues."/>
   </SpeechNode>
-  <SpeechNode text="Text E" name="E">
-    <Option text="Option E-1" />
-    <Option text="Option E-2" />
+  <SpeechNode text="Don't worry. We will be improving the font on Sprint 3." name="Font">
   </SpeechNode>
-  <Connection speechA="A" option="1" speechB="C"></Connection>
-  <Connection speechA="A" option="2" speechB="B"></Connection>
-  <Connection speechA="A" option="3" speechB="D"></Connection>
+  <SpeechNode text="Those are just temporary dialogues." name="Dialogue">
+  </SpeechNode>
+  
+  
+  <Connection speechA="Welcome" option="1" speechB="Demo"/>
+  <Connection speechA="Demo" option="1" speechB="Good"/>
+  <Connection speechA="Demo" option="2" speechB="Why not"/>
+  <Connection speechA="Why not" option="1" speechB="Font"/>
+  <Connection speechA="Why not" option="2" speechB="Dialogue"/>
 </Dialogue>
+
 

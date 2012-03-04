@@ -29,10 +29,6 @@ class CNPC : public CBaseCharacter , public IListener
 	//		true	- speak whenever the player gets in range
 	bool			m_bActiveTalk;
 
-	// Font to speak
-	CBitmapFont*	m_pFont;
-	// Image for the message box
-	int				m_imgMsgBox;
 	// Sound that the NPC plays
 	int				m_sndNPC;
 
@@ -42,7 +38,7 @@ class CNPC : public CBaseCharacter , public IListener
 
 public:
 	// Constructor
-	CNPC(bool bActiveTalk = false, double dRange = 0, int sndNPC = -1, CBitmapFont* pFont = nullptr,
+	CNPC(bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
