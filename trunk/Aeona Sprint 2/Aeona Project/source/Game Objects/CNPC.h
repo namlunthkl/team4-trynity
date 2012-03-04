@@ -12,8 +12,8 @@
 #include "CBaseCharacter.h"
 #include "../CBitmapFont.h"
 #include "../Util/CDialogueList.h"
-
-class CNPC : public CBaseCharacter
+#include "../Messaging/IListener.h"
+class CNPC : public CBaseCharacter , public IListener
 {
 	//	NPC's speech
 	string			m_szText;
@@ -46,7 +46,7 @@ public:
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
-
+	~CNPC();
 	// Load NPC's speech
 	void LoadText(char* szFilename);
 
@@ -55,6 +55,7 @@ public:
 	void Render(void);
 	void Input(void);
 	inline unsigned int GetType(void) const { return TYPE_CHAR_NPC; }
+	void HandleEvent(CEvent* pEvent);
 };
 
 #endif // C_NPC_H_

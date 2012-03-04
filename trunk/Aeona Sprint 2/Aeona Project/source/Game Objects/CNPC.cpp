@@ -9,7 +9,8 @@
 #include "CNPC.h"
 #include "CPlayer.h"
 #include "../Input Manager/CInputManager.h"
-
+#include "../Messaging/CEventSystem.h"
+#include "../Messaging/CMessageSystem.h"
 // Constructor
 CNPC::CNPC(bool bActiveTalk, double dRange, int sndNPC, CBitmapFont* pFont,
 	double dPositionX, double dPositionY, unsigned int uiSpeed,
@@ -17,6 +18,7 @@ CNPC::CNPC(bool bActiveTalk, double dRange, int sndNPC, CBitmapFont* pFont,
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage)
 	: CBaseCharacter(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
+	CEventSystem::GetInstance()->RegisterForEvent("destroyenemy",this);
 	m_bActiveTalk = bActiveTalk;
 	m_sndNPC = sndNPC;
 	m_dRange = dRange;
@@ -29,7 +31,10 @@ CNPC::CNPC(bool bActiveTalk, double dRange, int sndNPC, CBitmapFont* pFont,
 	m_pCurrentSpeech = nullptr;
 	m_nCurrentOption = -1;
 }
-
+CNPC::~CNPC()
+{
+	CEventSystem::GetInstance()->RegisterForEvent("destroyenemy",this);
+}
 // Load NPC's speech
 void CNPC::LoadText(char* szFilename)
 {
@@ -191,42 +196,42 @@ void CNPC::Input(void)
 {
 	CBaseCharacter::Input();
 
-	if(CInputManager::GetInstance()->GetPressedA())
-	{
-		if(m_bTalk)
-		{
-			// If NPC is talking and Enter is pressed, answer him
-			if(m_uiTextIndex == m_pCurrentSpeech->GetText().size() && m_nCurrentOption != -1)
-			{
-				if(m_pCurrentSpeech->GetOption(m_nCurrentOption))
-					m_pCurrentSpeech = m_pCurrentSpeech->GetOption(m_nCurrentOption)->GetNextSpeech();
-				else
-				{
-					m_pCurrentSpeech = m_Dialogue[0];
-					m_bTalk = false;
-				}
-
-				m_uiTextIndex = 0;
-			}
-		}
-		// Else if NPC is not talking and he's a passive speaker, start the conversation
-		else if(!m_bActiveTalk)
-		{
-			// Get the distance between the player and the NPC
-			double dDistance;
-			dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
-
-			if(dDistance < m_dRange)
-				m_bTalk = true;
-			m_uiTextIndex = 0;
-		}
-	}
-
-	if(m_bTalk && CInputManager::GetInstance()->GetPressedB())
-	{
-		m_bTalk = false;
-		m_uiTextIndex = 0;
-	}
+	//if(CInputManager::GetInstance()->GetPressedA())
+	//{
+	//	if(m_bTalk)
+	//	{
+	//		// If NPC is talking and Enter is pressed, answer him
+	//		if(m_uiTextIndex == m_pCurrentSpeech->GetText().size() && m_nCurrentOption != -1)
+	//		{
+	//			if(m_pCurrentSpeech->GetOption(m_nCurrentOption))
+	//				m_pCurrentSpeech = m_pCurrentSpeech->GetOption(m_nCurrentOption)->GetNextSpeech();
+	//			else
+	//			{
+	//				m_pCurrentSpeech = m_Dialogue[0];
+	//				m_bTalk = false;
+	//			}
+	//
+	//			m_uiTextIndex = 0;
+	//		}
+	//	}
+	//	// Else if NPC is not talking and he's a passive speaker, start the conversation
+	//	else if(!m_bActiveTalk)
+	//	{
+	//		// Get the distance between the player and the NPC
+	//		double dDistance;
+	//		dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
+	//
+	//		if(dDistance < m_dRange)
+	//			m_bTalk = true;
+	//		m_uiTextIndex = 0;
+	//	}
+	//}
+	//
+	//if(m_bTalk && CInputManager::GetInstance()->GetPressedB())
+	//{
+	//	m_bTalk = false;
+	//	m_uiTextIndex = 0;
+	//}
 
 
 	if(m_pCurrentSpeech)
@@ -296,4 +301,11 @@ void CNPC::Render(void)
 		}
 
 	}
+}
+void CNPC::HandleEvent(CEvent* pEvent)
+{
+	if("destroyenemy" == pEvent->GetEventID())
+	{
+		CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage(this));
+	}	
 }

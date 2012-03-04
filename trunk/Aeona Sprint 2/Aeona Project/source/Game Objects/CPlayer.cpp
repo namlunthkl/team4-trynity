@@ -14,7 +14,8 @@
 #include "../Weapons/CHammer.h"
 #include "../Weapons/CCrossBow.h"
 #include "../Camera/CCameraControl.h"
-// Constructor
+#define WEAPON m_vGameWeapons[m_uiCurrentWeapon]
+// Constructor]
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
 	m_byteWeapons = 0;
@@ -28,7 +29,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_vGameWeapons.push_back(new CSword);
 	m_vGameWeapons.push_back(new CHammer);
 	m_vGameWeapons.push_back(new CCrossBow);
-	m_vGameWeapons[m_uiCurrentWeapon]->Activate();
+	WEAPON->Activate();
 	Activate();
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
 }
@@ -56,24 +57,24 @@ void CPlayer::Update(float fElapsedTime)
 	
 	CBaseCharacter::Update(fElapsedTime);
 	
-	m_vGameWeapons[m_uiCurrentWeapon]->Update(fElapsedTime);
+	WEAPON->Update(fElapsedTime);
 	
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
 
 
-	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
+	//WEAPON->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
 	
 	//Point TempWepPoint;
 	//TempWepPoint.x = GetPosX() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().x;
 	//TempWepPoint.y = GetPosY() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().y;
-	//m_vGameWeapons[m_uiCurrentWeapon]->SetWeaponAnchor(TempWepPoint);
+	//WEAPON->SetWeaponAnchor(TempWepPoint);
 
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
 	{
-		m_fxFootsteps.emitter.EmitterPosX = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX();
-		m_fxFootsteps.emitter.EmitterPosY = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY();
+		m_fxFootsteps.emitter.EmitterPosX = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX();
+		m_fxFootsteps.emitter.EmitterPosY = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY();
 		m_fxFootsteps.Fire();
 	}
 }
@@ -85,7 +86,7 @@ void CPlayer::Render(void)
 	// 
 
 	//CBaseCharacter::Render
-	m_vGameWeapons[m_uiCurrentWeapon]->Render(GetPosition());
+	WEAPON->Render(GetPosition());
 	// Render the particles
 	m_fxFootsteps.Render();
 }
@@ -93,13 +94,13 @@ void CPlayer::Render(void)
 void CPlayer::Attack(void)
 {
 	CBaseCharacter::Attack();
-	m_vGameWeapons[m_uiCurrentWeapon]->Attack();
+	WEAPON->Attack();
 }
 
 void CPlayer::ChargedAttack(void)
 {
 	
-	m_vGameWeapons[m_uiCurrentWeapon]->ChargedAttack();
+	WEAPON->ChargedAttack();
 	// TODO: Create charged attack effect in here
 	// TODO: Send any needed event
 }
@@ -115,73 +116,73 @@ void CPlayer::Input(void)
 {
 	if(CInputManager::GetInstance()->GetAttack())
 	{
-		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(true);
-		if(rand()%100 == 1)
-		CCameraControl::GetInstance()->SetKillCam(true);
+		WEAPON->SetAttacking(true);
+		//if(rand()%100 == 1)
+		//	CCameraControl::GetInstance()->SetKillCam(true);
 	}
 	else
 	{
-		m_vGameWeapons[m_uiCurrentWeapon]->SetAttacking(false);
+		WEAPON->SetAttacking(false);
 	}
 
-	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAttacking())
+	if(WEAPON->GetAttacking())
 	{
-		switch (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())
+		switch (WEAPON->GetCurrentAnimation())
 		{
 		case ANM_WALK_UP:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_UP);
+				WEAPON->SetCurrentAnimation(ANM_ATK_UP);
+				WEAPON->SetPreviousAnimation(ANM_WALK_UP);
 				break;
 			}
 		case ANM_WALK_DOWN:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_DOWN);
+				WEAPON->SetCurrentAnimation(ANM_ATK_DOWN);
+				WEAPON->SetPreviousAnimation(ANM_WALK_DOWN);
 				break;
 			}
 		case ANM_WALK_LEFT:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_LEFT);
+				WEAPON->SetCurrentAnimation(ANM_ATK_LEFT);
+				WEAPON->SetPreviousAnimation(ANM_WALK_LEFT);
 				break;
 			}
 		case ANM_WALK_RIGHT:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_WALK_RIGHT);
+				WEAPON->SetCurrentAnimation(ANM_ATK_RIGHT);
+				WEAPON->SetPreviousAnimation(ANM_WALK_RIGHT);
 				break;
 			}
 		case ANM_IDLE_UP:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_UP);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_UP);
+				WEAPON->SetCurrentAnimation(ANM_ATK_UP);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_UP);
 				break;
 			}
 		case ANM_IDLE_DOWN:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_DOWN);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_DOWN);
+				WEAPON->SetCurrentAnimation(ANM_ATK_DOWN);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_DOWN);
 				break;
 			}
 		case ANM_IDLE_LEFT:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_LEFT);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_LEFT);
+				WEAPON->SetCurrentAnimation(ANM_ATK_LEFT);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_LEFT);
 				break;
 			}
 		case ANM_IDLE_RIGHT:
 			{
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_ATK_RIGHT);
-				m_vGameWeapons[m_uiCurrentWeapon]->SetPreviousAnimation(ANM_IDLE_RIGHT);
+				WEAPON->SetCurrentAnimation(ANM_ATK_RIGHT);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_RIGHT);
 				break;
 			}
 		}
 		
 		//if(CInputManager::GetInstance()->Timeheld() > 2.0f)
 		//{
-		//	if(m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->GetPaused() != true)
-		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation())->Pause();
+		//	if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetPaused() != true)
+		//		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
 		//	
 		//}
 	}
@@ -191,7 +192,7 @@ void CPlayer::Input(void)
 		//{
 		//	if(CInputManager::GetInstance()->Timeheld() > 0.5f)
 		//	{
-		//		m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(GetCurrentAnimation())->Pause();
+		//		WEAPON->GetAnimationPlayer(GetCurrentAnimation())->Pause();
 		//		ChargedAttack();
 		//	}
 		//	else
@@ -200,51 +201,51 @@ void CPlayer::Input(void)
 		//	}
 		//}
 		
-		if (m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_UP || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_DOWN ||
-			m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_LEFT || m_vGameWeapons[m_uiCurrentWeapon]->GetCurrentAnimation() == ANM_ATK_RIGHT)
+		if (WEAPON->GetCurrentAnimation() == ANM_ATK_UP || WEAPON->GetCurrentAnimation() == ANM_ATK_DOWN ||
+			WEAPON->GetCurrentAnimation() == ANM_ATK_LEFT || WEAPON->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
-			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(m_vGameWeapons[m_uiCurrentWeapon]->GetPreviousAnimation());
+			WEAPON->SetCurrentAnimation(WEAPON->GetPreviousAnimation());
 		}
 		
 		SetPrevVelX(GetVelX());
 		SetPrevVelY(GetVelY());
 		if(CInputManager::GetInstance()->GetUp())
 		{
-			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_UP);
+			WEAPON->SetCurrentAnimation(ANM_WALK_UP);
 			SetVelY(-(float)GetSpeed());
 		}
 		else if(CInputManager::GetInstance()->GetDown())
 		{
-			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_DOWN);
+			WEAPON->SetCurrentAnimation(ANM_WALK_DOWN);
 			SetVelY((float)GetSpeed());
 		}
 		else
 		{
 			SetVelY(0);
 			if(GetPrevVelY() < 0)
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_UP);
+				WEAPON->SetCurrentAnimation(ANM_IDLE_UP);
 			else if(GetPrevVelY() > 0)
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_DOWN);
+				WEAPON->SetCurrentAnimation(ANM_IDLE_DOWN);
 		}
 			
 
 		if(CInputManager::GetInstance()->GetLeft())
 		{
-			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_LEFT);
+			WEAPON->SetCurrentAnimation(ANM_WALK_LEFT);
 			SetVelX(-(float)GetSpeed());
 		}
 		else if(CInputManager::GetInstance()->GetRight())
 		{
-			m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_WALK_RIGHT);
+			WEAPON->SetCurrentAnimation(ANM_WALK_RIGHT);
 			SetVelX((float)GetSpeed());
 		}
 		else
 		{
 			SetVelX(0);
 			if(GetPrevVelX() > 0)
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_RIGHT);
+				WEAPON->SetCurrentAnimation(ANM_IDLE_RIGHT);
 			else if(GetPrevVelX() < 0)
-				m_vGameWeapons[m_uiCurrentWeapon]->SetCurrentAnimation(ANM_IDLE_LEFT);
+				WEAPON->SetCurrentAnimation(ANM_IDLE_LEFT);
 		}
 		
 	}
@@ -268,7 +269,7 @@ void CPlayer::CycleWeapon(void)
 	}
 	else
 	{
-		m_vGameWeapons[m_uiCurrentWeapon]->Deactivate();
+		WEAPON->Deactivate();
 	}	
 }
 
@@ -313,7 +314,26 @@ void CPlayer::AquireHeartPiece(void)
 		m_bHeartPiece = false;
 	}
 }
+bool CPlayer::CheckCollision(IBaseInterface* pObject)
+{
 
+	if(pObject->GetType() == TYPE_CHAR_NPC)
+	{
+		RECT temp,temp2;
+		temp = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnWeaponCollisionRect();
+		temp.left += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().left;
+		temp.right += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().right;
+		temp.top += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().top;
+		temp.bottom += WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().bottom;
+
+		if(IntersectRect(&temp2,&temp,&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+		{
+			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
+		}
+	}
+	return CBaseObject::CheckCollision(pObject);
+
+}
 // Destructor
 CPlayer::~CPlayer(void)
 {

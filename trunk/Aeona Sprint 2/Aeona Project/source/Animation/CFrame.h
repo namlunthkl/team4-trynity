@@ -10,7 +10,7 @@
 class CFrame
 {
 private:
-	RECT m_DrawRect;
+	RectD m_DrawRect;
 	RectD m_CollisionRect;
 	RECT m_WeaponCollisionRect;
 	
@@ -23,7 +23,7 @@ private:
 	
 public:
 	//	Accessors
-	RECT GetDrawRect() const { return m_DrawRect; }
+	RectD GetDrawRect() const { return m_DrawRect; }
 	RectD GetCollisionRect() const { return m_CollisionRect; }
 	Point GetAnchorPoint() const { return m_AnchorPoint; }
 	double GetDuration() const { return m_fDuration; }
@@ -33,7 +33,7 @@ public:
 	//float GetWeaponAngle() const { return m_WeaponAngle; }
 	
 	//	Mutators
-	void SetDrawRect(RECT val) { m_DrawRect = val; }
+	void SetDrawRect(RectD val) { m_DrawRect = val; }
 	void SetCollisionRect(RectD val) { m_CollisionRect = val; }
 	void SetAnchorPoint(Point val) { m_AnchorPoint = val; }
 	void SetDuration(double val) { m_fDuration = val; }

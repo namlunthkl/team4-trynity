@@ -317,6 +317,11 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			//pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
 			//break;
 		}
+	case MSG_DESTROY_NPC:
+		{
+			CDestroyNPCMessage* pDEM = (CDestroyNPCMessage*)pMsg;
+			OBJECTS->RemoveObject(pDEM->GetEnemy());
+		}
 	}
 }
 

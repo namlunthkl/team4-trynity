@@ -99,7 +99,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 			//	Get the draw rect
 			TiXmlElement* pDrawRect = pFrame->FirstChildElement("DrawRect");
 
-			RECT tempDrawRect;
+			RectD tempDrawRect;
 			if(pDrawRect->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempDrawRect.left = nTemp;
@@ -134,10 +134,12 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 			if(pCollisionRect->QueryIntAttribute("width",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempCollisionRect.right = tempCollisionRect.left + nTemp;
+				tempCollisionRect.width = nTemp;
 			}
 			if(pCollisionRect->QueryIntAttribute("height",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempCollisionRect.bottom = tempCollisionRect.top + nTemp;
+				tempCollisionRect.height = nTemp;
 			}
 			//	Set the collision Rect
 			tempFrame.SetCollisionRect(tempCollisionRect);

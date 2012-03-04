@@ -1095,25 +1095,27 @@ namespace Animation_Editor
                        XAttribute dHeight = new XAttribute("height", tempF.FrameRect.Height);
                        DrawRect.Add(dHeight);
 
+                       XElement AnchorPoint = new XElement("Anchor");
+
+                       XAttribute pX = new XAttribute("x", tempF.Anchor.X - tempF.FrameRect.X);
+                       AnchorPoint.Add(pX);
+                       XAttribute pY = new XAttribute("y", tempF.Anchor.Y - tempF.FrameRect.Y);
+                       AnchorPoint.Add(pY);
+
                        XElement CollisionRect = new XElement("CollisionRect");
                        Frame.Add(CollisionRect);
 
-                       XAttribute cX = new XAttribute("x", tempF.Collision.X - tempF.FrameRect.X);
+                       XAttribute cX = new XAttribute("x", tempF.Anchor.X - tempF.Collision.Width *.5f);
                        CollisionRect.Add(cX);
-                       XAttribute cY = new XAttribute("y", tempF.Collision.Y - tempF.FrameRect.Y);
+                       XAttribute cY = new XAttribute("y", tempF.Anchor.Y - tempF.Collision.Height);
                        CollisionRect.Add(cY);
                        XAttribute cWidth = new XAttribute("width", tempF.Collision.Width);
                        CollisionRect.Add(cWidth);
                        XAttribute cHeight = new XAttribute("height", tempF.Collision.Height);
                        CollisionRect.Add(cHeight);
 
-                       XElement AnchorPoint = new XElement("Anchor");
+                       // Adding down here so i can still keep xml file format
                        Frame.Add(AnchorPoint);
-
-                       XAttribute pX = new XAttribute("x", tempF.Anchor.X - tempF.FrameRect.X);
-                       AnchorPoint.Add(pX);
-                       XAttribute pY = new XAttribute("y", tempF.Anchor.Y - tempF.FrameRect.Y);
-                       AnchorPoint.Add(pY);
 
                        XElement WeaponCollisionRect = new XElement("WeaponCollisionRect");
                        Frame.Add(WeaponCollisionRect);
@@ -1240,7 +1242,10 @@ namespace Animation_Editor
                             tempPoint.Y += TempFrame.FrameRect.Y;
                             TempFrame.Anchor = tempPoint;
                         }
-
+                        Rectangle COLLISION = new Rectangle(TempFrame.Collision.Left, TempFrame.Collision.Top,TempFrame.Collision.Width, TempFrame.Collision.Height);
+                        COLLISION.X = (int)(TempFrame.Anchor.X - TempFrame.Collision.Width * .5f);
+                        COLLISION.Y = (int)(TempFrame.Anchor.Y - TempFrame.Collision.Height);
+                        TempFrame.Collision = COLLISION;
                         XElement xWeaponCollisionRect = xFrame.Element("WeaponCollisionRect");
                         {
                             Rectangle tempWeaponCollision = new Rectangle();

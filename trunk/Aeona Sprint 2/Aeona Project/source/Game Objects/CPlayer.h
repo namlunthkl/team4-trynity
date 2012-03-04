@@ -65,7 +65,7 @@ public:
 	{
 		return m_vGameWeapons[m_uiCurrentWeapon]->GetCollisionRect();
 	}
-
+	bool CheckCollision(IBaseInterface* pObject);
 	// Destructor
 	~CPlayer(void);
 

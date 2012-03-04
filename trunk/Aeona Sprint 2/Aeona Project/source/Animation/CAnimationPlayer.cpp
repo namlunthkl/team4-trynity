@@ -65,13 +65,13 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 	if(m_bIsPlaying)
 	{
 		int nSheet = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetImageId();
-		RECT drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
+		RectD drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 		Point anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
-		TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect);
+		TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect.GetWindowsRECT());
 	}
 }
 
-RECT CAnimationPlayer::ReturnFrameRect(void)
+RectD CAnimationPlayer::ReturnFrameRect(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
 }
@@ -89,11 +89,3 @@ RECT CAnimationPlayer::ReturnWeaponCollisionRect(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponCollisionRect();
 }
-//Point CAnimationPlayer::ReturnWeaponPoint(void)
-//{
-//	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAnchorPoint();
-//}
-//float CAnimationPlayer::ReturnWeaponAngle(void)
-//{
-//	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponAngle();
-//}
