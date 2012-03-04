@@ -8,18 +8,15 @@
 #include "CSword.h"
 #include "../Game Objects/CPlayer.h"
 #include "../States/CGameplayState.h"
+#include "../Messaging/CMessageSystem.h"
+#include "../Game Objects/CObjectManager.h"
 CSword::CSword()
 {
 	
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/PlayerAnimations.xml");
+	CBaseCharacter::LoadAnimations("resource/PlayerAnimationsAnchorBased.xml");
 	SetAttacking(false);
-}
-void CSword::Attack(void)
-{
-	//
-	SetAttacking(true);
-
+	//CObjectManager::GetInstance()->AddObject(this);
 }
 void CSword::Render(PointD nPos)
 {
@@ -28,16 +25,21 @@ void CSword::Render(PointD nPos)
 	
 	CBaseCharacter::Render();
 }
+//void CSword::Render(void)
+//{
+//
+//}
 void CSword::Update(float fElapsedTime)
 {
 	CBaseCharacter::Update(fElapsedTime);
 	
 }
+void CSword::Attack(void)
+{
+	SetAttacking(true);
+
+}
 void CSword::ChargedAttack(void)
 {
-	//
+	
 }
-//void CSword::SetWeaponRotation(float fWeaponRotation)
-//{
-//	SetRotation(fWeaponRotation);
-//}

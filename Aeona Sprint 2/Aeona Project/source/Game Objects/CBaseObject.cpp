@@ -79,7 +79,7 @@ void CBaseObject::Render(void)
 RectD CBaseObject::GetCollisionRect(void)
 {
 	RectD rectCollision(0, 0, 0, 0);
-
+	RectD Temp(0, 0, 0, 0);
 	// If there's no animation use the width and height to get
 	// a collision rect
 	if(m_vpAnimations.empty())
@@ -96,13 +96,14 @@ RectD CBaseObject::GetCollisionRect(void)
 	// by the animation manager
 	else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
-		rectCollision = m_vpAnimations[m_anmCurrent]->ReturnCollisionRect();
+		RectD temp = m_vpAnimations[m_anmCurrent]->ReturnCollisionRect();
 		m_ptAnchor = m_vpAnimations[m_anmCurrent]->ReturnAnchorPoint();
 
-		rectCollision.left		+= m_ptPosition.x - m_ptAnchor.x;
-		rectCollision.top		+= m_ptPosition.y - m_ptAnchor.y;
-		rectCollision.right		+= m_ptPosition.x - m_ptAnchor.x;
-		rectCollision.bottom	+= m_ptPosition.y - m_ptAnchor.y;
+		rectCollision.left		+=  m_ptPosition.x - temp.width/2;
+		rectCollision.top		+=  m_ptPosition.y - temp.height;
+		rectCollision.right		+=  m_ptPosition.x + temp.width/2;
+		rectCollision.bottom	+=  m_ptPosition.y;
+		
 	}
 
 	return rectCollision;

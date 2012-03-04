@@ -33,7 +33,7 @@ public:
 	void Reset();
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
-	RECT ReturnFrameRect(void);
+	RectD ReturnFrameRect(void);
 
 	RectD ReturnCollisionRect(void);
 
