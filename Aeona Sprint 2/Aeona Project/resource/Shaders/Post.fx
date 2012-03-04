@@ -39,13 +39,13 @@ VS_OUTPUT ScreenSpaceQuad(VS_INPUT input)
 	return output;
 }
 // the pixel shader, each rasterized triangle's pixels will run through this 
-// TODO: Render the image without any effect
+//Render the image without any effect
 float4 PassAlong(VS_OUTPUT input) : COLOR
 {
 	// return texture color
 	return tex2D( gDiffuseSampler, input.transformed_norm);
 }
-// TODO: Create the Inversion effect
+//Create the Inversion effect
 float4 Inversion(VS_OUTPUT input) : COLOR
 {
 	// return texture color inverted
@@ -57,7 +57,7 @@ float4 Inversion(VS_OUTPUT input) : COLOR
 	color.a = 1;
 	return color;
 }
-// TODO: Create the Black and White effect
+//Create the Black and White effect
 float4 BlackAndWhite(VS_OUTPUT input) : COLOR
 {
 	// return texture color flattened
@@ -70,7 +70,7 @@ float4 BlackAndWhite(VS_OUTPUT input) : COLOR
 	color.b = value;
 	return color;
 }
-// TODO: Create the Sepia effect
+//Create the Sepia effect
 float4 SepiaScale(VS_OUTPUT input) : COLOR
 {
 	// return texture color scaled
@@ -84,7 +84,7 @@ float4 SepiaScale(VS_OUTPUT input) : COLOR
 	// return sepia
 	return outputColor;
 }
-// TODO: Create the ColorCycle effect
+//Create the ColorCycle effect
 float4 ColorCycle(VS_OUTPUT input) : COLOR
 {
 	// similar to the Black and White effect
@@ -102,7 +102,7 @@ float4 ColorCycle(VS_OUTPUT input) : COLOR
 	// return the new outcolor
 	return newColor;
 }
-// TODO: Create the TronLines effect
+//Create the TronLines effect
 float4 TronLines(VS_OUTPUT input) : COLOR
 {
 	// check for the magenta color of the texture (1,0,1)
@@ -123,25 +123,33 @@ float4 TronLines(VS_OUTPUT input) : COLOR
 	return color;
 }
 
-// TODO: Create the BlackHole effect
-float4 Destroy(VS_OUTPUT input) : COLOR
+//Create the EveningTime effect
+float4 EveningTime(VS_OUTPUT input) : COLOR
 {	
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm );
-		
-		if( color.r > 0.0f )
-		{
-		discard;
-		}
-		if( color.g > 0.0f )
-		{
-		discard;
-		}
-		if( color.b > 0.0f )
-		{
-		discard;
-		}
-			return color;
+	// return texture color scaled
+	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
 	
+	float4 outputColor = color;
+	outputColor.r = ( color.r * 0.10 ) + ( color.g * 0.10 ) + ( color.b * 0.10 );
+	outputColor.g = ( color.r * 0.10 ) + ( color.g * 0.10 ) + ( color.b * 0.10 );
+	outputColor.b = ( color.r * 0.05 ) + ( color.g * 0.05 ) + ( color.b * 0.05 );
+	
+	// return sepia
+	return outputColor;
+}
+
+//Create the NightTime effect
+float4 NightTime(VS_OUTPUT input) : COLOR
+{	
+	// return texture color scaled
+	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	
+	float4 outputColor = color;
+	outputColor.r = ( color.r * 0.05 ) + ( color.g * 0.05 ) + ( color.b * 0.05 );
+	outputColor.g = ( color.r * 0.05 ) + ( color.g * 0.05 ) + ( color.b * 0.05 );
+	outputColor.b = ( color.r * 0.15 ) + ( color.g * 0.15 ) + ( color.b * 0.15 );
+	// return sepia
+	return outputColor;
 }
 // Techniques are read in by the effect framework.
 // They allow one to add variation to how a particular shader might be executed.
@@ -209,13 +217,24 @@ technique TronEnergy
 		pixelShader = compile ps_2_0 TronLines();
     }
 }
-technique BlackHole
+technique EveningTimeEffect
 {
 	pass FirstPass
     {
 		// request what vertex and pixel shader are to be used, this can change for each pass.
         vertexShader = compile vs_2_0 ScreenSpaceQuad();
 		// TODO: Compile with the correct pixel shader
-		pixelShader = compile ps_2_0 Destroy();
+		pixelShader = compile ps_2_0 EveningTime();
+    }
+}
+
+technique NightTimeEffect
+{
+	pass FirstPass
+    {
+		// request what vertex and pixel shader are to be used, this can change for each pass.
+        vertexShader = compile vs_2_0 ScreenSpaceQuad();
+		// TODO: Compile with the correct pixel shader
+		pixelShader = compile ps_2_0 NightTime();
     }
 }

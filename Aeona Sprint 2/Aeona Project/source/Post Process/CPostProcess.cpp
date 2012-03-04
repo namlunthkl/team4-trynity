@@ -77,6 +77,10 @@ void CPostProcess::Initialize( void )
 	techs[3] = ( "Sepia" );
 	techs[4] = ( "ColorLoop" );
 	techs[5] = ( "TronEnergy" );
+	techs[6] = ( "MorningTimeEffect" );
+	techs[7] = ( "DayTimeEffect" );
+	techs[8] = ( "EveningTimeEffect" );
+	techs[9] = ( "NightTimeEffect" );
 	index = 0;
 
 	// COLOR
@@ -121,6 +125,18 @@ void CPostProcess::Input( void )
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) )
 	{
 		index = 6;
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) )
+	{
+		index = 7;
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
+	{
+		index = 8;
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_0 ) )
+	{
+		index = 9;
 	}
 }
 void CPostProcess::BeginPostProcess( void )
