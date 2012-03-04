@@ -360,7 +360,7 @@ void CGame::ReadOptionsFromFile()
 		else
 			GAME->SetShowHUD( true );
 		if(cTempMapLocation == 0 || cTempMapLocation == 1)
-			GAME->SetMapLocation( cTempMapLocation );
+			GAME->SetMapLocation( cTempMapLocation == 1 ? true : false );
 		else
 			GAME->SetMapLocation( 1 );
 		if(cTempMusicVolume >= 0 && cTempMusicVolume <= 100)
@@ -518,7 +518,7 @@ void CGame::RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoad
 			while(uiAmountLoaded > 0)
 			{
 				--uiAmountLoaded;
-				r2.right += ((800-r2.right-128) * 0.3f);
+				r2.right += (long)(((800-r2.right-128) * 0.3f));
 			}
 			r2.bottom = 300+4;
 

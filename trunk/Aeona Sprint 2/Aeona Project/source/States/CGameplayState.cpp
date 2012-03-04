@@ -24,15 +24,21 @@
 #include "../Weather System/WeatherManager.h"
 
 // Singleton Macros
-#define EVENTS CEventSystem::GetInstance()
-#define MESSAGES CMessageSystem::GetInstance()
-#define PLAYER CPlayer::GetInstance()
-#define OBJECTS CObjectManager::GetInstance()
-#define CAMERA CCameraControl::GetInstance()
-#define PUZZLES CPuzzleManager::GetInstance()
+#define EVENTS		CEventSystem::GetInstance()
+#define MESSAGES	CMessageSystem::GetInstance()
+#define PLAYER		CPlayer::GetInstance()
+#define OBJECTS		CObjectManager::GetInstance()
+#define CAMERA		CCameraControl::GetInstance()
+#define PUZZLES		CPuzzleManager::GetInstance()
 // Constructor
 CGameplayState::CGameplayState(void)
 {
+	m_bNPCTalking		= false;
+	m_imgMessageBox		= -1;
+	m_pFont				= nullptr;
+	m_szCharName		= "";
+	m_szCurrentMessage	= "";
+	m_szCurrentOption	= "";
 }
 
 // Initialize everything
@@ -40,8 +46,10 @@ void CGameplayState::Enter(void)
 {
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 
-	// Initialize stuff
+	MESSAGES->InitMessageSystem(MessageProc);
 	WORLD->InitWorldEngine();
+	PUZZLES->InitPuzzleManager();
+
 
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
@@ -53,48 +61,24 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("Teleport.Map", this);
 	EVENTS->RegisterForEvent("OpenDoor", this);
 
-	// Initialize our particle weapon
-	PW.Load("resource/data/FireFlicker.xml");
-
-	//m_Rain.Load("resource/data/test.xml");
-	//m_Rain.Fire();
 	//CWeatherManager::GetInstance()->GetWeather()->Init();
 
-	MESSAGES->InitMessageSystem(MessageProc);
-
-	// Add enemies to the level
-	/*for(int i=0; i < 3; ++i)
-	{
-	for(int j = 0; j < 3; ++j)
-	{
-	CEnemy* pEnemy = new CEnemy(100 * i, 100 * j, 50, -1, 0, 0, true, 100, 1);
-	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-	pEnemy->SetDebugMode(false);
-	pEnemy->LoadAnimations("resource/npc walk.xml");
-	OBJECTS->AddObject(pEnemy);
-	pEnemy->Release();
-	}
-	}*/
-	
-	PUZZLES->InitPuzzleManager();
+	// Load textures
+	m_imgMessageBox = TEX_MNG->LoadTexture("resource/MessageBox.png");
+	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
+	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
 
-	CBitmapFont* pFont = new CBitmapFont();
+	m_pFont = new CBitmapFont();
 
-	CNPC* pNPC[1];
-
-	pNPC[0] = new CNPC(false, 150, -1, pFont, 400, 200, 20, -1, 0, 0, true, 100, 0);
-
-	for(int i=0; i < 1; ++i)
-	{
-		pNPC[i]->LoadAnimations("resource/npc walk3.xml");
-		pNPC[i]->ChangeAIState(CRandomAIState::GetInstance());
-		pNPC[i]->SetDebugMode(false);
-		OBJECTS->AddObject(pNPC[i]);
-		pNPC[i]->Release();
-	}
-
-	pNPC[0]->LoadText("resource/NPC Dialogue/Example.xml");
+	CNPC* pNPC;
+	pNPC = new CNPC(false, 150, -1, 400, 200, 20, -1, 0, 0, true, 100, 0);
+	pNPC->LoadAnimations("resource/npc walk3.xml");
+	pNPC->ChangeAIState(CRandomAIState::GetInstance());
+	pNPC->SetDebugMode(false);
+	pNPC->LoadText("resource/NPC Dialogue/Example.xml");
+	OBJECTS->AddObject(pNPC);
+	pNPC->Release();
 
 
 	PLAYER->SetPosX(600);
@@ -104,9 +88,6 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 
-	//	TODO  Temporary, just to demonstrate that the options work
-	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
-	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
 
 
@@ -117,7 +98,8 @@ void CGameplayState::Enter(void)
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
-	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), PLAYER->GetPosX(), PLAYER->GetPosY() );
+	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(),
+		(float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
@@ -150,8 +132,6 @@ void CGameplayState::Update(float fElapsedTime)
 	//m_Rain.Update(fElapsedTime);
 	CWeatherManager::GetInstance()->Update( fElapsedTime );
 
-	if(PW.GetFired())
-		PW.Update(fElapsedTime);
 
 	MESSAGES->ProcessMessages();
 	OBJECTS->UpdateObjects(fElapsedTime);
@@ -231,6 +211,9 @@ void CGameplayState::Render(void)
 	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
 		RenderHUD();
 
+	// Render the message box
+	RenderMessageBox();
+
 	if(GAME->GetPaused() == true)
 	{
 		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
@@ -242,6 +225,30 @@ void CGameplayState::Render(void)
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();
+}
+
+void CGameplayState::RenderMessageBox(void)
+{
+	// Safe checks
+	if(m_bNPCTalking && m_pFont && m_imgMessageBox != -1 && m_szCurrentMessage != "")
+	{
+		int nDrawLocationX = GAME->GetMapLocation() ? 5 : 105;
+		int nDrawLocationY = 500;
+
+		// Draw the box
+		if(m_imgMessageBox != -1)
+			TEX_MNG->Draw(m_imgMessageBox, nDrawLocationX, nDrawLocationY);
+
+		// Flush it so that the box is already rendered on screen
+		D3D->GetSprite()->Flush();
+
+		// Write the text using the bitmap font
+		m_pFont->Write(m_szCurrentMessage.c_str(), nDrawLocationX + 15, nDrawLocationY + 10, D3DCOLOR_XRGB(255, 255, 255));
+
+		// If there's a current option
+		if(m_szCurrentOption != "")
+			m_pFont->Write(m_szCurrentOption.c_str(), nDrawLocationX + 30, nDrawLocationY + 50, D3DCOLOR_XRGB(255, 255, 255));
+	}
 }
 
 void CGameplayState::Exit(void)
@@ -269,20 +276,6 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	if(pEvent->GetEventID() == "SpawnMessageBox")
 	{
 		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
-	}
-	if(pEvent->GetEventID() == "LightTorch")
-	{
-		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
-
-		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
-		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
-
-		PosX += 15;
-		PosY -= 5;
-
-		PW.Fire();
-		PW.emitter.EmitterPosX = (float)PosX;
-		PW.emitter.EmitterPosY = (float)PosY;
 	}
 	if(pEvent->GetEventID() == "Teleport.Cave")
 	{
@@ -390,11 +383,11 @@ void CGameplayState::RenderHUD()
 	float tempXP = 0.7f;
 
 	//	Draw the weapon XP bar foreground
-	r1.left = 110 + (320 * (1.0f - tempXP));
+	r1.left = (long)(110 + (320 * (1.0f - tempXP)));
 	r1.top = 0;
 	r1.bottom = 32;
 
-	TEX_MNG->Draw(m_imgHUD, 800-39-(320*tempXP), 4, 1.0f, 1.0f, &r1);
+	TEX_MNG->Draw(m_imgHUD, (int)(800-39-(320*tempXP)), 4, 1.0f, 1.0f, &r1);
 
 	//	Define the potion spot
 	r1.left = 206;
@@ -420,4 +413,15 @@ void CGameplayState::RenderHUD()
 	{
 		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
 	}
+}
+
+
+// Set message box parameters
+void CGameplayState::SetMessageBox(bool bNPCTalking, string szCharName,
+	string szCurrentMessage, string szCurrentOption)
+{
+	m_bNPCTalking = bNPCTalking;
+	m_szCharName = szCharName;
+	m_szCurrentMessage = szCurrentMessage;
+	m_szCurrentOption = szCurrentOption;
 }

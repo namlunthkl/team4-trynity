@@ -144,7 +144,7 @@ void Emitter::Render()
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderState(D3DRS_SRCBLEND, Source);
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderState(D3DRS_DESTBLEND, Destination);
 
-	for (int i = 0; i < Particle_List.size(); i++ )
+	for (unsigned int i = 0; i < Particle_List.size(); i++ )
 	{
 		if ( Particle_List[i]->Life > 0)
 		{
@@ -154,7 +154,7 @@ void Emitter::Render()
 				int OffSetY = (int)((int)(CSGD_TextureManager::GetInstance()->GetTextureHeight( Image ) >> 1 ) * Particle_List[i]->Size_p );
 
 				CSGD_TextureManager::GetInstance()->Draw( Image, (int)Particle_List[i]->PosX,
-					(int)Particle_List[i]->PosY, Particle_List[i]->Size_p, Particle_List[i]->Size_p, NULL, OffSetX, OffSetY,
+					(int)Particle_List[i]->PosY, Particle_List[i]->Size_p, Particle_List[i]->Size_p, NULL, (float)OffSetX, (float)OffSetY,
 					Particle_List[i]->Rotation, 
 					D3DCOLOR_ARGB( Particle_List[i]->A, Particle_List[i]->R, Particle_List[i]->G, Particle_List[i]->B ) );
 			}

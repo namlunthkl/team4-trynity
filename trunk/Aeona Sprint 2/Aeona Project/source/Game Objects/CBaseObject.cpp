@@ -120,15 +120,15 @@ bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 	
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
-		int nRectWidth = rectCollisionResult.right - rectCollisionResult.left;
-		int nRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
-		int nAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
-		int nAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
-		if(nRectWidth > nRectHeight)
+		double dRectWidth = rectCollisionResult.right - rectCollisionResult.left;
+		double dRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
+		double dAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
+		double dAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
+		if(dRectWidth > dRectHeight)
 		{
 			// Top/Down Collision
 			if(GetPosY() < pBaseObject->GetPosY())
-				SetPosY(rectCollisionResult.top + m_ptAnchor.y - nAnmHeight);
+				SetPosY(rectCollisionResult.top + m_ptAnchor.y - dAnmHeight);
 			else
 				SetPosY(rectCollisionResult.bottom + m_ptAnchor.y);
 		}
@@ -136,7 +136,7 @@ bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 		{
 			// Side Collision
 			if(GetPosX() < pBaseObject->GetPosX())
-				SetPosX(rectCollisionResult.left + m_ptAnchor.x - nAnmWidth);
+				SetPosX(rectCollisionResult.left + m_ptAnchor.x - dAnmWidth);
 			else
 				SetPosX(rectCollisionResult.right + m_ptAnchor.x);
 		}		

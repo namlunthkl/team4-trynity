@@ -32,7 +32,7 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 		int PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
 		int PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
 
-		if(EventNumber < Args->size())
+		if(EventNumber < (int)Args->size())
 		{
 			if((*Args)[EventNumber] == 1)
 			{
@@ -44,8 +44,8 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 
 				if(pPuzzle->GetParticle(EventNumber))
 				{
-					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosX = PosX;
-					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosY = PosY;
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosX = (float)PosX;
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosY = (float)PosY;
 					pPuzzle->GetParticle(EventNumber)->Fire();
 				}
 			}
