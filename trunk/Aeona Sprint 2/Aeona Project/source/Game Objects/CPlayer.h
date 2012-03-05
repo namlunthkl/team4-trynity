@@ -61,10 +61,6 @@ public:
 	// Set bool for heart piece on or increase health
 	void AquireHeartPiece(void);
 
-	RectD GetCollisionRect(void)
-	{
-		return m_vGameWeapons[m_uiCurrentWeapon]->GetCollisionRect();
-	}
 	bool CheckCollision(IBaseInterface* pObject);
 	// Destructor
 	~CPlayer(void);

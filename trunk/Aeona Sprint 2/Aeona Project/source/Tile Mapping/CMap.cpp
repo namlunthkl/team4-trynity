@@ -248,9 +248,6 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 			// Get a pointer to the current tile - for better readability
 			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
 
-			if(tileCurrent->GetEventID() == 2)
-				int x = 0;
-
 			// Check if the tile is collidable
 			if(TestBit(tileCurrent->GetInfo(), BIT_TILE_COLLISION))
 			{
@@ -280,18 +277,30 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 					if(dRectWidth > dRectHeight)
 					{
 						// Top/Down Collision
-						if(pObject->GetPosY() < dTilePosY)
-							pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - dAnmHeight);
-						else
-							pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
+						if(pObject->GetCollisionRect().top < rectTileCollision.top)
+						{
+							if(pObject->GetVelY() > 0)
+								pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - dAnmHeight);
+						}
+						else if(pObject->GetCollisionRect().bottom > rectTileCollision.bottom)
+						{
+							if(pObject->GetVelY() < 0)
+								pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
+						}
 					}
-					else
+					if(dRectHeight > dRectWidth)
 					{
 						// Side Collision
-						if(pObject->GetPosX() < dTilePosX)
-							pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - dAnmWidth);
-						else
-							pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
+						if(pObject->GetCollisionRect().left < rectTileCollision.left)
+						{
+							if(pObject->GetVelX() > 0)
+								pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - dAnmWidth);
+						}
+						else if(pObject->GetCollisionRect().right > rectTileCollision.right)
+						{
+							if(pObject->GetVelX() < 0)
+								pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
+						}
 					}
 
 					// If this tile has an event...

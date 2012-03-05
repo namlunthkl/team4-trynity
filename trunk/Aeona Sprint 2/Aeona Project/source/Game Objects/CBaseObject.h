@@ -68,7 +68,8 @@ public:
 	virtual bool CheckCollision(IBaseInterface* pObject);
 
 	virtual inline unsigned int GetType(void) const { return TYPE_OBJ_BASE; }
-
+	virtual Point	GetAnchorPoint(void);
+	
 	// Add and release references
 	virtual void AddRef(void);
 	virtual void Release(void);
@@ -97,8 +98,7 @@ public:
 	//Bern added this
 	inline int				GetPreviousAnimation (void)	const	{ return m_anmPrevious; }
 	// to here.
-	inline Point			GetAnchorPoint		(void)	const	{ return m_ptAnchor; }
-	CAnimationPlayer*	GetAnimationPlayer	(unsigned int uiAnmIndex ) const;
+	CAnimationPlayer*		GetAnimationPlayer	(unsigned int uiAnmIndex ) const;
 
 	// Mutators
 	inline void Activate		(void)						{ m_bActive = true; }
