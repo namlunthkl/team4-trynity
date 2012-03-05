@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Animations FileName="054-Undead04.png">
+<Animation name="Move Up" looping="0" oslating="0" playing="0" speed="1" NumFrames="4">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="3" y="295" width="75" height="84"/>
+      <CollisionRect x="38" y="366" width="0" height="0"/>
+      <Anchor x="35" y="71"/>
+      <WeaponCollisionRect x="-3" y="-295" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="83" y="296" width="76" height="86"/>
+      <CollisionRect x="116" y="372" width="0" height="0"/>
+      <Anchor x="33" y="76"/>
+      <WeaponCollisionRect x="-83" y="-296" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="164" y="294" width="74" height="84"/>
+      <CollisionRect x="198" y="368" width="0" height="0"/>
+      <Anchor x="34" y="74"/>
+      <WeaponCollisionRect x="-164" y="-294" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="245" y="297" width="74" height="84"/>
+      <CollisionRect x="280" y="368" width="0" height="0"/>
+      <Anchor x="35" y="71"/>
+      <WeaponCollisionRect x="-245" y="-297" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Move Down" looping="1" oslating="0" playing="0" speed="1" NumFrames="4">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="1" y="8" width="75" height="83"/>
+      <CollisionRect x="27" y="45" width="24" height="36"/>
+      <Anchor x="38" y="73"/>
+      <WeaponCollisionRect x="-1" y="-8" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="80" y="8" width="76" height="85"/>
+      <CollisionRect x="118" y="84" width="0" height="0"/>
+      <Anchor x="38" y="76"/>
+      <WeaponCollisionRect x="-80" y="-8" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="161" y="8" width="75" height="83"/>
+      <CollisionRect x="198" y="82" width="0" height="0"/>
+      <Anchor x="37" y="74"/>
+      <WeaponCollisionRect x="-161" y="-8" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="241" y="10" width="75" height="83"/>
+      <CollisionRect x="280" y="83" width="0" height="0"/>
+      <Anchor x="39" y="73"/>
+      <WeaponCollisionRect x="-241" y="-10" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Move Right" looping="0" oslating="0" playing="0" speed="1" NumFrames="4">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="2" y="203" width="62" height="80"/>
+      <CollisionRect x="35" y="270" width="0" height="0"/>
+      <Anchor x="33" y="67"/>
+      <WeaponCollisionRect x="-2" y="-203" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="83" y="201" width="62" height="76"/>
+      <CollisionRect x="115" y="268" width="0" height="0"/>
+      <Anchor x="32" y="67"/>
+      <WeaponCollisionRect x="-83" y="-201" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="163" y="203" width="61" height="79"/>
+      <CollisionRect x="194" y="270" width="0" height="0"/>
+      <Anchor x="31" y="67"/>
+      <WeaponCollisionRect x="-163" y="-203" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="242" y="201" width="61" height="79"/>
+      <CollisionRect x="273" y="269" width="0" height="0"/>
+      <Anchor x="31" y="68"/>
+      <WeaponCollisionRect x="-242" y="-201" width="0" height="0"/>
+    </Frame>
+  </Animation>
+  <Animation name="Move Left" looping="0" oslating="0" playing="0" speed="1" NumFrames="4">
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="15" y="107" width="62" height="80"/>
+      <CollisionRect x="44" y="176" width="0" height="0"/>
+      <Anchor x="29" y="69"/>
+      <WeaponCollisionRect x="-15" y="-107" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="94" y="107" width="61" height="78"/>
+      <CollisionRect x="123" y="175" width="0" height="0"/>
+      <Anchor x="29" y="68"/>
+      <WeaponCollisionRect x="-94" y="-107" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="176" y="106" width="61" height="81"/>
+      <CollisionRect x="200" y="176" width="0" height="0"/>
+      <Anchor x="24" y="70"/>
+      <WeaponCollisionRect x="-176" y="-106" width="0" height="0"/>
+    </Frame>
+    <Frame duration="0.25" event="NONE">
+      <DrawRect x="255" y="105" width="63" height="81"/>
+      <CollisionRect x="282" y="175" width="0" height="0"/>
+      <Anchor x="27" y="70"/>
+      <WeaponCollisionRect x="-255" y="-105" width="0" height="0"/>
+    </Frame>
+  </Animation>
+</Animations>
+
