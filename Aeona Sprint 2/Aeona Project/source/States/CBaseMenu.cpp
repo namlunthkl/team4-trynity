@@ -203,7 +203,7 @@ void CBaseMenu::Render()
 	rectSourceTitle.right = rectSourceTitle.left + 400;
 	rectSourceTitle.bottom = 256 + m_uiPic*256;
 
-	if(m_fDerpScroll >= 624)	//	Please don't change this number it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
+	if(m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
 	{
 		++m_uiPic;
 		m_fDerpScroll = 0.0f;
