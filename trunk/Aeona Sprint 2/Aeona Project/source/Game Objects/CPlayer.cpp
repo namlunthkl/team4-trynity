@@ -21,6 +21,12 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_byteWeapons = 0;
 	m_byteMasks = 0;
 	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
+
+	//	Test the weapons!
+	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
+	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
+	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
+	//	IM 12 AND WHAT IS THIS?
 	TurnBitOn(m_byteMasks, MASK_NONE);
 
 	m_bHeartPiece = false;
