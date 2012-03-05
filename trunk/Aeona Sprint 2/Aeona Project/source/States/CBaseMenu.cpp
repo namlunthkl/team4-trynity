@@ -11,6 +11,19 @@
 #include "../Input Manager/CInputManager.h"
 CBaseMenu* CBaseMenu::m_pInstance = NULL;
 
+
+/////////////////////////////////////////////////////
+// Change between the two logo versions here
+
+// #define LOGO LOGO2
+#define LOGO LOGO2
+
+////////////////////////////////////////////////////
+
+
+#define LOGO1 "resource/Logo.png"
+#define LOGO2 "resource/Logo2.png"
+
 CBaseMenu::CBaseMenu()
 {
 	m_imgCursor = -1;
@@ -75,7 +88,7 @@ void CBaseMenu::Enter()
 
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Dramatic.xwm"));
 
-	m_imgTempTitle = TEX_MNG->LoadTexture("resource/Trinity.png");
+	m_imgTempTitle = TEX_MNG->LoadTexture(LOGO);
 
 	//	Members
 	m_fLoadTimer = 0.0f;
@@ -197,7 +210,8 @@ void CBaseMenu::Render()
 	}
 	
 	//	TODO Temp Title
-	TEX_MNG->Draw(m_imgTempTitle, 32, 32);
+	TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268,
+		GAME->GetScreenHeight()/2 - 243);
 
 	//	Draw a cursor at intervals of the text
 	//pFont->Write("XX", 0, 12 + m_uiCurSelected, D3DCOLOR_XRGB(255, 255, 255));
