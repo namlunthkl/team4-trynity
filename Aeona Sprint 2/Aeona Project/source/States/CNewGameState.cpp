@@ -45,7 +45,6 @@ void CNewGameState::Enter()
 
 	//	Members
 	m_uiMenuCount = NEWG_MAX;
-	m_fLoadTimer = 0.0f;
 
 	//	Check the existing save states, 'n crap
 	GAME->m_cLoadedOrNot = GAME->ReadSaveSlots();

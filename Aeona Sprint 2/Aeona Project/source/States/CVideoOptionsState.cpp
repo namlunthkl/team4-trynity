@@ -44,7 +44,6 @@ void CVideoOptionsState::Enter()
 
 	//	Members
 	m_uiMenuCount = VDEO_MAX;
-	m_fLoadTimer = 0.0f;
 
 	//	Imperfect..
 	m_uiCurSelected = 0;
