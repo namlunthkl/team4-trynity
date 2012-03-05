@@ -89,9 +89,9 @@ void CPostProcess::Initialize( void )
 	output = 0;
 
 	ambient.alpha = 1.0f;
-	ambient.red = 0.2f;
-	ambient.green = 0.2f;
-	ambient.blue = 0.2f;
+	ambient.red = 0.0f;
+	ambient.green = 1.0f;
+	ambient.blue = 0.0f;
 }
 void CPostProcess::Update( void )
 {

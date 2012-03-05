@@ -128,7 +128,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	
 	pointLightColor.a = 1.0f;
 	pointLightColor.r = 1.0f;
-	pointLightColor.g = 1.0f;
+	pointLightColor.g = 0.0f;
 	pointLightColor.b = 0.0f;
 	
 	pointLightRadius = .25f;
