@@ -89,8 +89,8 @@ void CPlayer::Update(float fElapsedTime)
 		// m_fxFootsteps.emitter.EmitterPosX = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX());
 		// m_fxFootsteps.emitter.EmitterPosY = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY());
 		
-		m_fxFootsteps.emitter.EmitterPosX = GetAnchorPoint().x + GetPosX();
-		m_fxFootsteps.emitter.EmitterPosY = GetAnchorPoint().y + GetPosY();
+		m_fxFootsteps.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX());
+		m_fxFootsteps.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY());
 		m_fxFootsteps.Fire();
 	}
 }
@@ -357,15 +357,15 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 	{
 		int nRectWidth = rectCollisionResult.right - rectCollisionResult.left;
 		int nRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
-		int nAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
-		int nAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
+		double dAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
+		double dAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
 		if(nRectWidth > nRectHeight)
 		{
 			// Top/Down Collision
 			if(GetCollisionRect().top < pBaseObject->GetCollisionRect().top)
 			{
 				if(GetVelY() > 0)
-					SetPosY(rectCollisionResult.top + GetAnchorPoint().y - nAnmHeight);
+					SetPosY(rectCollisionResult.top + GetAnchorPoint().y - dAnmHeight);
 			}
 			else if(GetCollisionRect().bottom > pBaseObject->GetCollisionRect().bottom)
 			{
@@ -379,7 +379,7 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 			if(GetCollisionRect().left < pBaseObject->GetCollisionRect().left)
 			{
 				if(GetVelX() > 0)
-					SetPosX(rectCollisionResult.left + GetAnchorPoint().x - nAnmWidth);
+					SetPosX(rectCollisionResult.left + GetAnchorPoint().x - dAnmWidth);
 			}
 			else if(GetCollisionRect().right > pBaseObject->GetCollisionRect().right)
 			{
