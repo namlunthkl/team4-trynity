@@ -112,7 +112,8 @@ namespace Tile_Editor
         //      Used so user can paint a lot of tiles by holding
         //      the mouse's left button
         bool m_bMousePainting;
-
+        bool m_bMousePaintingCollision = false;
+        bool m_bMousePaintingCollidableType = true;
         //  Other
         //      Clipboard 
         CTile m_tileClipboard;
@@ -436,27 +437,27 @@ namespace Tile_Editor
                    && ptOffset.Y >= 0 && ptOffset.Y < m_sizeMap.Height * SizeTile.Height
                 && tabLayers.SelectedIndex != -1)
             {
-                // If the left button was pressed, draw the selected image
-                // from the tileset on this specific tile
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                // Get the index of the tile selected on the map
+                int HorIndex = ptOffset.X / SizeTile.Width;
+                int VertIndex = ptOffset.Y / SizeTile.Height;
+
+                // Get the index of the first tile selected on the tileset
+                Point ptSelectedOnTileset = new Point();
+                ptSelectedOnTileset.X = m_rectMultiSelected.X / SizeTile.Width;
+                ptSelectedOnTileset.Y = m_rectMultiSelected.Y / SizeTile.Height;
+
+                // If view collision is checked, don't draw but toggle
+                // collision when clicking on the map
+                if (checkViewCollision.Checked == true && m_bMousePaintingCollision == false)
                 {
-                    // Get the index of the tile selected on the map
-                    int HorIndex = ptOffset.X / SizeTile.Width;
-                    int VertIndex = ptOffset.Y / SizeTile.Height;
-
-                    // Get the index of the first tile selected on the tileset
-                    Point ptSelectedOnTileset = new Point();
-                    ptSelectedOnTileset.X = m_rectMultiSelected.X / SizeTile.Width;
-                    ptSelectedOnTileset.Y = m_rectMultiSelected.Y / SizeTile.Height;
-
-                    // If view collision is checked, don't draw but toggle
-                    // collision when clicking on the map
-                    if (checkViewCollision.Checked == true)
-                    {
-                        CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex];
-                        curTile.TileInfo ^= (1 << 7);   // Toggle the first bit
-                    }
-                    else
+                    CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex];
+                    curTile.TileInfo ^= (1 << 7);   // Toggle the first bit
+                }
+                else
+                {
+                    // If the left button was pressed, draw the selected image
+                    // from the tileset on this specific tile
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
                     {
                         // Else, loop through the rectangle of selected tiles (on tileset)
                         for (int hIndex = m_rectMultiSelected.Left; hIndex < m_rectMultiSelected.Right; hIndex += SizeTile.Width)
@@ -484,6 +485,7 @@ namespace Tile_Editor
                         }
                     }
                 }
+
                 // If the right button was pressed, select
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
@@ -493,7 +495,7 @@ namespace Tile_Editor
                     CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y];
 
                     textBoxEvent.Text = curTile.Event;
-             
+
                     if ((curTile.TileInfo & (1 << 7)) == (1 << 7))
                         checkBoxCollidable.Checked = true;
                     else
@@ -519,33 +521,38 @@ namespace Tile_Editor
                     eventsCheckBox5.Checked = curCheckBoxes[4].Checked;
                     eventsCheckBox6.Checked = curCheckBoxes[5].Checked;
                     eventsCheckBox7.Checked = curCheckBoxes[6].Checked;
-
                 }
             }
         }
 
         private void mapPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (checkViewCollision.Checked == true)
             {
-                if (checkViewCollision.Checked == false)
-                {
+                m_bMousePaintingCollision = true;
+
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    m_bMousePaintingCollidableType = true;
+                else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                    m_bMousePaintingCollidableType = false;
+            }
+            else
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
                     m_bMousePainting = true;
-                }
             }
         }
 
         private void mapPanel_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
                 m_bMousePainting = false;
-            }
+            m_bMousePaintingCollision = false;
         }
 
         private void mapPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (m_bMousePainting == true)
+            if (m_bMousePainting == true || m_bMousePaintingCollision == true)
             {
                 // Mouse scroll bars offset
                 Point ptOffset = e.Location;
@@ -557,27 +564,45 @@ namespace Tile_Editor
                 ptPaintOffset.X -= hScrollBarMap.Value;
                 ptPaintOffset.Y -= vScrollBarMap.Value;
 
+                CTile selectedTile = new CTile();
+                int HorIndex = 0;
+                int VertIndex = 0;
+
                 if (ptOffset.X >= 0 && ptOffset.X < m_sizeMap.Width * SizeTile.Width
-                   && ptOffset.Y >= 0 && ptOffset.Y < m_sizeMap.Height * SizeTile.Height)
+                       && ptOffset.Y >= 0 && ptOffset.Y < m_sizeMap.Height * SizeTile.Height)
                 {
                     if (tabLayers.SelectedIndex != -1)
                     {
-                        int HorIndex = ptOffset.X / SizeTile.Width;
-                        int VertIndex = ptOffset.Y / SizeTile.Height;
+                        HorIndex = ptOffset.X / SizeTile.Width;
+                        VertIndex = ptOffset.Y / SizeTile.Height;
 
-                        CTile selectedTile = m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex];
-
-                        Point ptSelectedOnTileset = new Point();
-                        ptSelectedOnTileset.X = m_rectMultiSelected.X / SizeTile.Width;
-                        ptSelectedOnTileset.Y = m_rectMultiSelected.Y / SizeTile.Height;
-
-                        selectedTile.PosX = ptSelectedOnTileset.X;
-                        selectedTile.PosY = ptSelectedOnTileset.Y;
-
-                        m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex] = selectedTile;
-
+                        selectedTile = m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex];
                     }
                 }
+
+
+                if (m_bMousePaintingCollision == true)
+                {
+                    if (m_bMousePaintingCollidableType)
+                        selectedTile.TileInfo |= (1 << 7);
+                    else
+                    {
+                        byte X = (1 << 7);
+                        byte Y = (byte)~X;
+                        selectedTile.TileInfo &= Y;
+                    }
+                }
+                else if (m_bMousePainting == true)
+                {
+                    Point ptSelectedOnTileset = new Point();
+                    ptSelectedOnTileset.X = m_rectMultiSelected.X / SizeTile.Width;
+                    ptSelectedOnTileset.Y = m_rectMultiSelected.Y / SizeTile.Height;
+
+                    selectedTile.PosX = ptSelectedOnTileset.X;
+                    selectedTile.PosY = ptSelectedOnTileset.Y;
+                }
+
+                m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex] = selectedTile;
             }
 
         }
