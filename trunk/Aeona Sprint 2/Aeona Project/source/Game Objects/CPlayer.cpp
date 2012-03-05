@@ -20,6 +20,9 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 {
 	m_byteWeapons = 0;
 	m_byteMasks = 0;
+	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
+	TurnBitOn(m_byteMasks, MASK_NONE);
+
 	m_bHeartPiece = false;
 	m_uiCurrentWeapon = WEAPON_SWORD;
 	m_uiCurrentMask = MASK_NONE;
@@ -379,10 +382,10 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		}		
 	}
 
-	if(pObject->GetType() == TYPE_CHAR_NPC)
+	/*if(pObject->GetType() == TYPE_CHAR_NPC)
 	{
 		RECT temp,temp2;
-		temp = WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnWeaponCollisionRect();
+		temp = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnWeaponCollisionRect();
 		temp.left	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().left);
 		temp.right	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().right);
 		temp.top	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().top);
@@ -392,7 +395,7 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		{
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
 		}
-	}
+	}*/
 
 	return true;
 }
