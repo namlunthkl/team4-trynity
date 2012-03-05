@@ -20,6 +20,8 @@ CMainMenuState::CMainMenuState()// : CBaseMenu()
 	m_uiCurSelected = 0;
 	//	Call it here, not in Enter(), because I want to be able to specify a CurSelected
 	//	when exiting from another menu state.
+
+	m_imgTempTitle = -1;
 }
 
 CMainMenuState::~CMainMenuState()
@@ -46,6 +48,8 @@ void CMainMenuState::DeleteInstance()
 
 void CMainMenuState::Enter()
 {
+	m_imgTempTitle = TEX_MNG->LoadTexture("resource/Logo2.png");
+
 	CBaseMenu::Enter();
 
 	//	Members
@@ -119,7 +123,7 @@ void CMainMenuState::Render()
 	//	Draw the base menu's stuff
 	CBaseMenu::Render();
 
-	if(CBaseMenu::m_fLogoTimer >= 7.0f)
+	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
 		//	Draw this menu's stuff
 		pFont->Write("New Game", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
@@ -127,5 +131,11 @@ void CMainMenuState::Render()
 		pFont->Write("Settings", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		pFont->Write("Credits", 32, 15 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		pFont->Write("Exit", 32, 16 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	}
+
+	//	TODO Temp Title
+	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
+	{
+		TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268, GAME->GetScreenHeight()/2 - 243);
 	}
 }

@@ -32,20 +32,17 @@ private:
 	int m_sndMoveCursor;
 	int m_sndConfirm;
 
-	int m_imgTempTitle;
+	
 
 protected:
 	//	Members
 	bool bMenuConfirm;
-	float m_fLogoTimer;
 	float m_fCursorTime;
 	unsigned int m_uiCurSelected;
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;
 	
 	//	I AM STUPID AND HAVE NO IDEA HOW DANIEL DID HIS SCROLLING SO I'M DOING IT MY RETARDED WAY -PHIL
-	float m_fDerpScroll;
-	bool m_bDerpBool;
 	unsigned int m_uiPic;
 
 	// Variables for background scrolling

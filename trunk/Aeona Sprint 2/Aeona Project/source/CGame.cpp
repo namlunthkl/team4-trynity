@@ -56,6 +56,10 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
+
+	//phil logo
+	m_fLogoTimer = 0.0f;
+	m_fDerpScroll = 0.0f;
 	
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;

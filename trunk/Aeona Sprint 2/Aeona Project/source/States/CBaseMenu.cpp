@@ -33,8 +33,6 @@ CBaseMenu::CBaseMenu()
 	m_sndMoveCursor = -1;
 	m_sndConfirm = -1;
 
-	m_imgTempTitle = -1;
-
 	m_uiCurSelected = 0;
 	m_uiMenuCount = 0;
 	m_fCursorTime = 0.0f;
@@ -48,11 +46,7 @@ CBaseMenu::CBaseMenu()
 
 	bMenuConfirm = false;
 
-	//phil logo
-	m_fLogoTimer = 0.0f;
 	//phil scrolling
-	m_fDerpScroll = 0.0f;
-	m_bDerpBool = false;
 	m_uiPic = 0;
 	//phil
 
@@ -93,16 +87,11 @@ void CBaseMenu::Enter()
 
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Dramatic.xwm"));
 
-	m_imgTempTitle = TEX_MNG->LoadTexture(LOGO);
-
 	//	Members
 	m_fCursorTime = 0.0f;
 
 	//phil
-	m_fDerpScroll = 0.0f;
-	m_bDerpBool = false;
 	m_uiPic = 0;
-	//
 
 	//	Play Song
 	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
@@ -139,24 +128,21 @@ void CBaseMenu::Exit()
 
 bool CBaseMenu::Input()
 {	
-	if(m_fLogoTimer < 7.0f)
+	if(CGame::GetInstance()->m_fLogoTimer < 7.0f)
 	{
 		if(CInputManager::GetInstance()->GetPressedPause())
 		{
-			m_fLogoTimer = 7.0f;
+			CGame::GetInstance()->m_fLogoTimer = 7.0f;
+		}
+		else if(CInputManager::GetInstance()->GetPressedA())
+		{
+			CGame::GetInstance()->m_fLogoTimer = 7.0f;
 		}
 	}
-	if(CInputManager::GetInstance()->GetPressedA())
+	else if(CInputManager::GetInstance()->GetPressedA())
 	{
-		if(m_fLogoTimer < 7.0f)
-		{
-			m_fLogoTimer = 7.0f;
-		}
-		else
-		{
-			AUDIO->SFXPlaySound(m_sndConfirm, false);
-			bMenuConfirm = true;
-		}
+		AUDIO->SFXPlaySound(m_sndConfirm, false);
+		bMenuConfirm = true;
 	}
 	else if(CInputManager::GetInstance()->GetPressedDown())
 	{
@@ -187,14 +173,14 @@ bool CBaseMenu::Input()
 
 void CBaseMenu::Update(float fElapsedTime)
 {
-	if(m_fLogoTimer < 7.0f)
-		m_fLogoTimer += fElapsedTime;
-	if(m_fLogoTimer > 7.0f)
-		m_fLogoTimer = 7.0f;
+	if(CGame::GetInstance()->m_fLogoTimer < 7.0f)
+		CGame::GetInstance()->m_fLogoTimer += fElapsedTime;
+	if(CGame::GetInstance()->m_fLogoTimer > 7.0f)
+		CGame::GetInstance()->m_fLogoTimer = 7.0f;
 
-	if(m_fLogoTimer >= 7.0f)
+	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
-		m_fDerpScroll += (fElapsedTime * 25);
+		GAME->m_fDerpScroll += (fElapsedTime * 95);
 		m_fCursorTime += fElapsedTime;
 		if(m_fCursorTime >= 0.8f)
 		{
@@ -213,57 +199,57 @@ void CBaseMenu::Render()
 	
 	float alpha = 255.0f;
 	
-	if(m_fLogoTimer < 3.5f)
+	if(CGame::GetInstance()->m_fLogoTimer < 3.5f)
 	{
-		if(m_fLogoTimer < 0.5)
+		if(CGame::GetInstance()->m_fLogoTimer < 0.5)
 		{
-			alpha = (m_fLogoTimer) * (float)(255)*2;
+			alpha = (CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
-		else if(m_fLogoTimer >= 3.0f)
+		else if(CGame::GetInstance()->m_fLogoTimer >= 3.0f)
 		{
-			alpha = (3.5 - m_fLogoTimer) * (float)(255)*2;
+			alpha = (3.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
 		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
 	}
-	else if(m_fLogoTimer < 7.0f)
+	else if(CGame::GetInstance()->m_fLogoTimer < 7.0f)
 	{
-		if(m_fLogoTimer < 4.0f)
+		if(CGame::GetInstance()->m_fLogoTimer < 4.0f)
 		{
-			alpha = (m_fLogoTimer - 3) * (float)(255)*2;
+			alpha = (CGame::GetInstance()->m_fLogoTimer - 3) * (float)(255)*2;
 		}
-		else if(m_fLogoTimer >= 6.5f)
+		else if(CGame::GetInstance()->m_fLogoTimer >= 6.5f)
 		{
-			alpha = (7.5 - m_fLogoTimer) * (float)(255)*2;
+			alpha = (7.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
 		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 0, 0));
 	}
-	else if(m_fLogoTimer >= 7.0f)
+	else if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
 		// Draw Title Background Moving
 		RECT rectSourceTitle;
 		//rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
-		rectSourceTitle.left = (long)(m_fDerpScroll);
+		rectSourceTitle.left = (long)(GAME->m_fDerpScroll);
 		rectSourceTitle.top = 0 + m_uiPic*256;
 		rectSourceTitle.right = rectSourceTitle.left + 400;
 		rectSourceTitle.bottom = 256 + m_uiPic*256;
 
-		if(m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
+		if(GAME->m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
 		{
 			++m_uiPic;
-			m_fDerpScroll = 0.0f;
+			GAME->m_fDerpScroll = 0.0f;
 			if(m_uiPic == 3)
 				m_uiPic = 0;
 		}
 
-		if(m_fDerpScroll <= 100)
+		if(GAME->m_fDerpScroll <= 100)
 		{
-			alpha = (m_fDerpScroll) * (255.0f/100);
+			alpha = (GAME->m_fDerpScroll) * (255.0f/100);
 		}
-		else if(m_fDerpScroll >= 524)
+		else if(GAME->m_fDerpScroll >= 524)
 		{
-			alpha = (100 - (m_fDerpScroll - 524)) * (255.0f/100);
+			alpha = (100 - (GAME->m_fDerpScroll - 524)) * (255.0f/100);
 		}
 
 		D3D->Clear(0, 0, 0);
@@ -286,9 +272,7 @@ void CBaseMenu::Render()
 			m_dwTitleScrollStamp = timeGetTime();
 		}*/
 	
-		//	TODO Temp Title
-		TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268,
-			GAME->GetScreenHeight()/2 - 243);
+		
 
 		//	Draw a cursor at intervals of the text
 		RECT rCursor;
