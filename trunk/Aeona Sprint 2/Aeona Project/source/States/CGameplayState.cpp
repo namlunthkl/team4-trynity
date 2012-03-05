@@ -101,13 +101,13 @@ void CGameplayState::Enter(void)
 	}
 	*/
 
-	/*CEnemy* pEnemy = new CEnemy(760, 450, 40, -1, 50, 50, true, 100, 0);
-	pEnemy->LoadAnimations("CHANGE HERE BERN");
+	CEnemy* pEnemy = new CEnemy(760, 450, 40, -1, 50, 50, true, 100, 0);
+	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
 	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
-*/
+
 
 	CNPC* pNPC;
 	pNPC = new CNPC("Person 2", false, 150, -1, 290, 1000, 20, -1, 50, 50, true, 100, 0);

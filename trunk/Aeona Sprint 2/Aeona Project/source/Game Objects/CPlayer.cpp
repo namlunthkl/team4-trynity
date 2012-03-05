@@ -396,7 +396,7 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		}		
 	}
 
-	if(pObject->GetType() == TYPE_CHAR_NPC && WEAPON->GetAttacking() == true)
+	if(pObject->GetType() == TYPE_CHAR_ENEMY && WEAPON->GetAttacking() == true)
 	{
 		RectD temp;
 		RECT temp2;
