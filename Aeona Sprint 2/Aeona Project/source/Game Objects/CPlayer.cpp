@@ -90,6 +90,13 @@ void CPlayer::Render(void)
 	WEAPON->Render(GetPosition());
 	// Render the particles
 	m_fxFootsteps.Render();
+
+	
+	D3D->GetSprite()->Flush();
+	RectD rect = GetCollisionRect();
+	rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
+		CCameraControl::GetInstance()->GetPositionY());
+	D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
 }
 
 void CPlayer::Attack(void)
