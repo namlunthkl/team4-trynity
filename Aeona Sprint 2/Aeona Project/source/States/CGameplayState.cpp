@@ -69,11 +69,19 @@ void CGameplayState::Enter(void)
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
 	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 
+		PLAYER->SetPosX(600);
+	PLAYER->SetPosY(200);
+	PLAYER->SetSpeed(100);
+	PLAYER->SetWidth(30);
+	PLAYER->SetHeight(30);
+	PLAYER->SetDebugMode(false);
+	OBJECTS->AddObject(PLAYER);
+
 
 	m_pFont = new CBitmapFont();
 
 	CNPC* pNPC;
-	pNPC = new CNPC(false, 150, -1, 400, 200, 20, -1, 0, 0, true, 100, 0);
+	pNPC = new CNPC(false, 150, -1, 400, 200, 20, -1, 50, 50, true, 100, 0);
 	pNPC->LoadAnimations("resource/npc walk3.xml");
 	pNPC->ChangeAIState(CRandomAIState::GetInstance());
 	pNPC->SetDebugMode(false);
@@ -81,11 +89,6 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
 
-	PLAYER->SetPosX(600);
-	PLAYER->SetPosY(200);
-	PLAYER->SetSpeed(100);
-	PLAYER->SetDebugMode(false);
-	OBJECTS->AddObject(PLAYER);
 
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	GAME->ResetAmountLoaded();

@@ -14,7 +14,7 @@
 #include "CBaseObject.h"
 // For rendering using screen position
 #include "../States/CGameplayState.h"
-
+#include "../Camera/CCameraControl.h"
 
 // Constructor
 CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSpeed,
@@ -70,41 +70,26 @@ void CBaseObject::Render(void)
 		m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y);
 	}
 
+	D3D->GetSprite()->Flush();
+
 	if(m_bDebugMode)
 	{
-		D3D->DrawRect(GetCollisionRect().GetWindowsRECT(), 255, 0, 0);
+		RectD rect = GetCollisionRect();
+		rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
+			CCameraControl::GetInstance()->GetPositionY());
+		D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
 	}
 }
 
 RectD CBaseObject::GetCollisionRect(void)
 {
-	RectD rectCollision(0, 0, 0, 0);
-	RectD Temp(0, 0, 0, 0);
-	// If there's no animation use the width and height to get
-	// a collision rect
-	if(m_vpAnimations.empty())
-	{
-		m_ptAnchor.x = m_uiWidth / 2;
-		m_ptAnchor.y = m_uiHeight / 2;
+	RectD rectCollision;
 
-		rectCollision.left		= m_ptPosition.x - m_ptAnchor.x;
-		rectCollision.top		= m_ptPosition.y - m_ptAnchor.y;
-		rectCollision.right		= rectCollision.left + m_uiWidth;		
-		rectCollision.bottom	= rectCollision.top + m_uiHeight;
-	}
-	// Else if there's an animation playing use the rect returned
-	// by the animation manager
-	else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
-	{
-		RectD temp = m_vpAnimations[m_anmCurrent]->ReturnCollisionRect();
-		m_ptAnchor = m_vpAnimations[m_anmCurrent]->ReturnAnchorPoint();
+	rectCollision.left = GetPosX() - m_uiWidth/2;
+	rectCollision.top = GetPosY() - m_uiHeight/2;
+	rectCollision.right = rectCollision.left + GetWidth();
+	rectCollision.bottom = rectCollision.top + GetHeight();
 
-		rectCollision.left		+=  m_ptPosition.x - temp.width/2;
-		rectCollision.top		+=  m_ptPosition.y - temp.height;
-		rectCollision.right		+=  m_ptPosition.x + temp.width/2;
-		rectCollision.bottom	+=  m_ptPosition.y;
-		
-	}
 
 	return rectCollision;
 }
@@ -113,37 +98,71 @@ RectD CBaseObject::GetCollisionRect(void)
 // Return true if collided, false otherwise
 bool CBaseObject::CheckCollision(IBaseInterface* pObject)
 {
-	if(GetType() == TYPE_CHAR_ENEMY && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
+	// if(GetType() == TYPE_CHAR_ENEMY && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
+	// if(GetType() == TYPE_CHAR_NPC && pObject->GetType() == TYPE_CHAR_PLAYER) return false;
 
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
-	
+
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
-		double dRectWidth = rectCollisionResult.right - rectCollisionResult.left;
-		double dRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
+		int nRectWidth = rectCollisionResult.right - rectCollisionResult.left;
+		int nRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
 		double dAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
 		double dAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
-		if(dRectWidth > dRectHeight)
+		if(nRectWidth > nRectHeight)
 		{
 			// Top/Down Collision
-			if(GetPosY() < pBaseObject->GetPosY())
-				SetPosY(rectCollisionResult.top + m_ptAnchor.y - dAnmHeight);
-			else
-				SetPosY(rectCollisionResult.bottom + m_ptAnchor.y);
+			if(GetCollisionRect().top < pBaseObject->GetCollisionRect().top)
+			{
+				if(GetVelY() > 0)
+					SetPosY(rectCollisionResult.top + GetAnchorPoint().y - dAnmHeight);
+				//if(pBaseObject->GetVelY() < 0)
+				//	pBaseObject->SetPosY(rectCollisionResult.bottom + pBaseObject->GetAnchorPoint().y);
+			}
+			else if(GetCollisionRect().bottom > pBaseObject->GetCollisionRect().bottom)
+			{
+				if(GetVelY() < 0)
+					SetPosY(rectCollisionResult.bottom + GetAnchorPoint().y);
+				//if(pBaseObject->GetVelY() > 0)
+				//	pBaseObject->SetPosY(rectCollisionResult.top + pBaseObject->GetAnchorPoint().y - pBaseObject->GetHeight());
+			}
 		}
-		else
+		if(nRectHeight > nRectWidth)
 		{
 			// Side Collision
-			if(GetPosX() < pBaseObject->GetPosX())
-				SetPosX(rectCollisionResult.left + m_ptAnchor.x - dAnmWidth);
-			else
-				SetPosX(rectCollisionResult.right + m_ptAnchor.x);
+			if(GetCollisionRect().left < pBaseObject->GetCollisionRect().left && GetVelX() > 0)
+			{
+				SetPosX(rectCollisionResult.left + GetAnchorPoint().x - dAnmWidth);
+				//if(pBaseObject->GetVelX() <= 0)
+				//	pBaseObject->SetPosX(rectCollisionResult.right + pBaseObject->GetAnchorPoint().x);
+			}
+			else if(GetCollisionRect().right > pBaseObject->GetCollisionRect().right && GetVelX() < 0)
+			{
+				SetPosX(rectCollisionResult.right + GetAnchorPoint().x);
+				//if(pBaseObject->GetVelX() >= 0)
+				//	pBaseObject->SetPosX(rectCollisionResult.left + pBaseObject->GetAnchorPoint().x - pBaseObject->GetWidth());
+			}
 		}		
-
 		return true;
 	}
 	return false;
+}
+
+
+Point CBaseObject::GetAnchorPoint(void)
+{
+	//if(m_vpAnimations.empty())
+	//{
+		m_ptAnchor.x = m_uiWidth / 2;
+		m_ptAnchor.y = m_uiHeight / 2;
+	//}
+	//else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+	//{
+	//	m_ptAnchor = m_vpAnimations[m_anmCurrent]->ReturnAnchorPoint();
+	//}
+
+	return m_ptAnchor;
 }
 
 // Add and release references

@@ -73,8 +73,11 @@ void CPlayer::Update(float fElapsedTime)
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
 	{
-		m_fxFootsteps.emitter.EmitterPosX = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX());
-		m_fxFootsteps.emitter.EmitterPosY = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY());
+		// m_fxFootsteps.emitter.EmitterPosX = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX());
+		// m_fxFootsteps.emitter.EmitterPosY = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY());
+		
+		m_fxFootsteps.emitter.EmitterPosX = GetAnchorPoint().x + GetPosX();
+		m_fxFootsteps.emitter.EmitterPosY = GetAnchorPoint().y + GetPosY();
 		m_fxFootsteps.Fire();
 	}
 }
@@ -84,8 +87,6 @@ void CPlayer::Render(void)
 	// Render the player
 	// 
 	// 
-
-	//CBaseCharacter::Render
 	WEAPON->Render(GetPosition());
 	// Render the particles
 	m_fxFootsteps.Render();
@@ -314,8 +315,62 @@ void CPlayer::AquireHeartPiece(void)
 		m_bHeartPiece = false;
 	}
 }
+
+//RectD CPlayer::GetCollisionRect(void)
+//{
+//	// DANIEL ADDED CODE HERE //
+//	// Basically the problem in collision was that the collision rect
+//	// is calculated based on the object's position.
+//	// Weapon's position was always zero when it got here, so the rectangle
+//	// was always wrong
+//	//m_vGameWeapons[m_uiCurrentWeapon]->SetPosX(GetPosX());
+//	//m_vGameWeapons[m_uiCurrentWeapon]->SetPosY(GetPosY());
+//	/////////////////////////////
+//
+//	//return m_vGameWeapons[m_uiCurrentWeapon]->GetCollisionRect();
+//	
+//}
+
 bool CPlayer::CheckCollision(IBaseInterface* pObject)
 {
+	RECT rectCollisionResult = { 0, 0, 0, 0 };
+	CBaseObject* pBaseObject = (CBaseObject*)pObject;
+
+	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
+	{
+		int nRectWidth = rectCollisionResult.right - rectCollisionResult.left;
+		int nRectHeight = rectCollisionResult.bottom - rectCollisionResult.top;
+		int nAnmHeight = GetCollisionRect().bottom - GetCollisionRect().top;
+		int nAnmWidth = GetCollisionRect().right - GetCollisionRect().left;
+		if(nRectWidth > nRectHeight)
+		{
+			// Top/Down Collision
+			if(GetCollisionRect().top < pBaseObject->GetCollisionRect().top)
+			{
+				if(GetVelY() > 0)
+					SetPosY(rectCollisionResult.top + GetAnchorPoint().y - nAnmHeight);
+			}
+			else if(GetCollisionRect().bottom > pBaseObject->GetCollisionRect().bottom)
+			{
+				if(GetVelY() < 0)
+					SetPosY(rectCollisionResult.bottom + GetAnchorPoint().y);
+			}
+		}
+		if(nRectHeight > nRectWidth)
+		{
+			// Side Collision
+			if(GetCollisionRect().left < pBaseObject->GetCollisionRect().left)
+			{
+				if(GetVelX() > 0)
+					SetPosX(rectCollisionResult.left + GetAnchorPoint().x - nAnmWidth);
+			}
+			else if(GetCollisionRect().right > pBaseObject->GetCollisionRect().right)
+			{
+				if(GetVelX() < 0)
+					SetPosX(rectCollisionResult.right + GetAnchorPoint().x);
+			}
+		}		
+	}
 
 	if(pObject->GetType() == TYPE_CHAR_NPC)
 	{
@@ -331,8 +386,8 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
 		}
 	}
-	return CBaseObject::CheckCollision(pObject);
 
+	return true;
 }
 // Destructor
 CPlayer::~CPlayer(void)
