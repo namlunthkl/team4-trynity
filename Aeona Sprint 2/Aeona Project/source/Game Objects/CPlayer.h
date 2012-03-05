@@ -21,8 +21,12 @@ class CPlayer : public CBaseCharacter
 	Byte			m_byteWeapons;
 	Byte			m_byteMasks;
 	bool			m_bHeartPiece;
+	//TEMPORARY LOL TODO
+	public:
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
+	private:
+	//TEMPORARY LOL TODO
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
