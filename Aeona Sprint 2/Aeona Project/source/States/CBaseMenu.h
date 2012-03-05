@@ -46,6 +46,10 @@ protected:
 	CBitmapFont* pFont;
 
 	
+	//	I AM STUPID AND HAVE NO IDEA HOW DANIEL DID HIS SCROLLING SO I'M DOING IT MY RETARDED WAY -PHIL
+	float m_fDerpScroll;
+	bool m_bDerpBool;
+	unsigned int m_uiPic;
 
 	// Variables for background scrolling
 	int* m_pnTitleIndex;

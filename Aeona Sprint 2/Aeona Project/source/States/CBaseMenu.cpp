@@ -50,6 +50,12 @@ CBaseMenu::CBaseMenu()
 
 	bMenuConfirm = false;
 
+	//phil scrolling
+	m_fDerpScroll = 0.0f;
+	m_bDerpBool = false;
+	m_uiPic = 0;
+	//phil
+
 	CInputManager::GetInstance()->SetController(1);
 }
 
@@ -79,7 +85,7 @@ void CBaseMenu::Enter()
 {
 	//	Load Assets
 	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png", D3DCOLOR_XRGB(0,0,0));
-	m_imgTitle = TEX_MNG->LoadTexture("resource/TitleScreen2.png");
+	m_imgTitle = TEX_MNG->LoadTexture("resource/MenuHorizons.png");
 	m_imgSword = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_imgHammer = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_imgCrossbow = TEX_MNG->LoadTexture("resource/TempAsset2.png");
@@ -93,6 +99,12 @@ void CBaseMenu::Enter()
 	//	Members
 	m_fLoadTimer = 0.0f;
 	m_fCursorTime = 0.0f;
+
+	//phil
+	m_fDerpScroll = 0.0f;
+	m_bDerpBool = false;
+	m_uiPic = 0;
+	//
 
 	//	Play Song
 	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
@@ -170,8 +182,8 @@ void CBaseMenu::Update(float fElapsedTime)
 	{
 		m_fCursorTime = 0.0f;
 	}
-
 	
+	m_fDerpScroll += (fElapsedTime * 25);
 }
 
 void CBaseMenu::Render()
@@ -185,14 +197,36 @@ void CBaseMenu::Render()
 
 	// Draw Title Background Moving
 	RECT rectSourceTitle;
-	rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
-	rectSourceTitle.top = 0;
-	rectSourceTitle.right = rectSourceTitle.left + GAME->GetScreenWidth();
-	rectSourceTitle.bottom = GAME->GetScreenHeight();
+	//rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
+	rectSourceTitle.left = (long)(m_fDerpScroll);
+	rectSourceTitle.top = 0 + m_uiPic*256;
+	rectSourceTitle.right = rectSourceTitle.left + 400;
+	rectSourceTitle.bottom = 256 + m_uiPic*256;
 
-	TEX_MNG->Draw(m_imgTitle, 0, 0, 1.0f, 1.0f, &rectSourceTitle);
+	if(m_fDerpScroll >= 624)	//	Please don't change this number it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
+	{
+		++m_uiPic;
+		m_fDerpScroll = 0.0f;
+		if(m_uiPic == 3)
+			m_uiPic = 0;
+	}
 
-	if (timeGetTime() - m_dwTitleScrollStamp > 10)
+	float alpha = 0.0f;
+
+	if(m_fDerpScroll <= 100)
+	{
+		alpha = (m_fDerpScroll) * (255.0f/100);
+	}
+	else if(m_fDerpScroll >= 524)
+	{
+		alpha = (100 - (m_fDerpScroll - 524)) * (255.0f/100);
+	}
+	else
+		alpha = 255;
+	D3D->Clear(0, 0, 0);
+	TEX_MNG->Draw(m_imgTitle, 0, 0, 2.0f, 2.34375f, &rectSourceTitle, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));	//	2.34375 IS CORRECT!  Because the original height of panoram is 256, and it needs to be scaled to exactly 600.
+
+	/*if (timeGetTime() - m_dwTitleScrollStamp > 10)
 	{
 		if(*m_pbTitleScrollDir)
 		{
@@ -207,7 +241,7 @@ void CBaseMenu::Render()
 				*m_pbTitleScrollDir = true;
 		}
 		m_dwTitleScrollStamp = timeGetTime();
-	}
+	}*/
 	
 	//	TODO Temp Title
 	TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268,
