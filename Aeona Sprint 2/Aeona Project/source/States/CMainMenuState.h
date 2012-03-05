@@ -27,6 +27,7 @@ private:
 	//	Assets
 
 	//	Members
+	int m_imgTempTitle;
 
 public:
 	//	Singleton

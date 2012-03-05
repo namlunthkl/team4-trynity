@@ -56,6 +56,11 @@ class CGame
 
 	//	Game's current state
 	IGameState*		m_pCurrentState;
+public:
+	//logo timer..w/e it has to be here :D
+	float m_fLogoTimer;
+	float m_fDerpScroll;
+private:
 
 	//	Timer - FPS, Game Time, Elapsed Time
 	CTimer			m_Timer;
