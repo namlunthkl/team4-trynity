@@ -71,17 +71,13 @@ void CPostProcess::Initialize( void )
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->CreateVertexDeclaration(decl, &cubedecl);
 
 	// SHADER TYPE
-	techs[0] = ( "PassThrough" );
-	techs[1] = ( "Invert" );
-	techs[2] = ( "Monochrome" );
-	techs[3] = ( "Sepia" );
-	techs[4] = ( "ColorLoop" );
-	techs[5] = ( "TronEnergy" );
-	techs[6] = ( "MorningTimeEffect" );
-	techs[7] = ( "DayTimeEffect" );
-	techs[8] = ( "EveningTimeEffect" );
-	techs[9] = ( "NightTimeEffect" );
-	index = 0;
+	techs[0] = ( "Invert" );
+	techs[1] = ( "Monochrome" );
+	techs[2] = ( "Sepia" );
+	techs[3] = ( "ColorLoop" );
+	techs[4] = ( "TronEnergy" );
+	techs[5] = ( "DayCycleEffect" );
+	index = 5;
 
 	// COLOR
 	colChange = 1;
@@ -91,6 +87,11 @@ void CPostProcess::Initialize( void )
 
 	current = 0;
 	output = 0;
+
+	ambient.alpha = 1.0f;
+	ambient.red = 0.2f;
+	ambient.green = 0.2f;
+	ambient.blue = 0.2f;
 }
 void CPostProcess::Update( void )
 {
@@ -121,22 +122,6 @@ void CPostProcess::Input( void )
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
 	{
 		index = 5;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) )
-	{
-		index = 6;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) )
-	{
-		index = 7;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
-	{
-		index = 8;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_0 ) )
-	{
-		index = 9;
 	}
 }
 void CPostProcess::BeginPostProcess( void )
@@ -180,10 +165,17 @@ void CPostProcess::EndPostProcess( void )
 	{
 		postEffect->BeginPass(i);
 		postEffect->SetTexture( "gDiffuseTexture", renderTarget );
+
 		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetTimer().m_fElapsedTime );
 		postEffect->SetFloat( "gRed" , fRed );
 		postEffect->SetFloat( "gGreen" , fGreen );
 		postEffect->SetFloat( "gBlue" , fBlue );
+
+		postEffect->SetFloat( "gAmbientA", ambient.alpha );
+		postEffect->SetFloat( "gAmbientR", ambient.red );
+		postEffect->SetFloat( "gAmbientG", ambient.green );
+		postEffect->SetFloat( "gAmbientB", ambient.blue);
+
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetStreamSource(0,quadbuff,0,20);

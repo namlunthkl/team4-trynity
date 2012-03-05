@@ -1,6 +1,14 @@
 #ifndef CPOSTPROCESS_H_
 #define CPOSTPROCESS_H_
 
+struct AMBIENT_COLOR
+{
+	float alpha;
+	float red;
+	float green;
+	float blue;
+};
+
 class CPostProcess
 {
 private:
@@ -27,7 +35,9 @@ public:
 	float						fBlue;
 	int							colChange;
 
-	const char* techs[10];
+	AMBIENT_COLOR				ambient;
+
+	const char* techs[7];
 	int index;
 
 	void Initialize( void );
