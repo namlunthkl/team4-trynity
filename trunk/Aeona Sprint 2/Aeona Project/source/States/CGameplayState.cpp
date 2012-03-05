@@ -41,12 +41,16 @@ CGameplayState::CGameplayState(void)
 	m_szCharName		= "";
 	m_szCurrentMessage	= "";
 	m_szCurrentOption	= "";
+	m_fHeartTimer		= 0.0f;
 }
 
 // Initialize everything
 void CGameplayState::Enter(void)
 {
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+
+	//	HEART TIMER
+	m_fHeartTimer = 0.0f;
 
 	MESSAGES->InitMessageSystem(MessageProc);
 	WORLD->InitWorldEngine();
@@ -67,8 +71,8 @@ void CGameplayState::Enter(void)
 
 	// Load textures
 	m_imgMessageBox = TEX_MNG->LoadTexture("resource/MessageBox.png");
-	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.bmp", D3DCOLOR_XRGB(255, 0, 255));
-	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
+	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.png", D3DCOLOR_XRGB(255, 0, 255));
+	
 
 		PLAYER->SetPosX(600);
 	PLAYER->SetPosY(200);
@@ -79,7 +83,7 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 
-	m_pFont = new CBitmapFont();
+	/*m_pFont = new CBitmapFont();
 
 	for(int i=0; i < 2; ++i)
 	{
@@ -94,11 +98,8 @@ void CGameplayState::Enter(void)
 			OBJECTS->AddObject(pNPC);
 			pNPC->Release();
 		}
-	}
-
-
-	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
-	GAME->ResetAmountLoaded();
+	}*/
+	
 
 	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	
@@ -109,6 +110,13 @@ void CGameplayState::Enter(void)
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
+
+	//	This is the last call to the loading screen
+	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+	GAME->ResetAmountLoaded();
+
+	//	I'm making this the last thing, so that the music does not start playing while in the loading screen =)
+	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
 }
 
 bool CGameplayState::Input(void)
@@ -127,6 +135,23 @@ bool CGameplayState::Input(void)
 	//END ARI EXTRA CODE
 	///////////////////////////
 
+	//TEMPORARY CODE TO SHOW SWITCHING WEAPONS AND AMULETS AND STUFF TODO
+	if(INPUT->KeyPressed(DIK_Q))
+	{
+		//PLAYER->CycleMask();
+		PLAYER->m_uiCurrentMask++;
+		if(PLAYER->m_uiCurrentMask == 4)
+			PLAYER->m_uiCurrentMask = 0;
+	}
+	if(INPUT->KeyPressed(DIK_E))
+	{
+		//PLAYER->CycleWeapon();
+		PLAYER->m_uiCurrentWeapon++;
+		if(PLAYER->m_uiCurrentWeapon == 4)
+			PLAYER->m_uiCurrentWeapon = 0;
+	}
+	//	TEMPORARYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
 	// Get Input from all objects
 	CObjectManager::GetInstance()->InputFromObjects();
 	return true;
@@ -134,6 +159,11 @@ bool CGameplayState::Input(void)
 
 void CGameplayState::Update(float fElapsedTime)
 {
+	//	HEART TIMER FROM STUPID PHIL
+	m_fHeartTimer += fElapsedTime;
+	if(m_fHeartTimer >= 4.0f)
+		m_fHeartTimer = 0.0f;
+	
 	// Update the Camera
 	CCameraControl::GetInstance()->Update( fElapsedTime );
 
@@ -374,17 +404,17 @@ void CGameplayState::RenderHUD()
 	RECT r1;
 
 	r1.left = 39;
-	r1.top = 0;
+	r1.top = 0 + PLAYER->m_uiCurrentMask*128;
 	r1.right = 39+39;
-	r1.bottom = 128;
+	r1.bottom = 128 + PLAYER->m_uiCurrentMask*128;
 
 	//	Draw the amulet!
 	TEX_MNG->Draw(m_imgHUD, 0, 0, 1.0f, 1.0f, &r1);
 
 	r1.left = 0;
-	r1.top = 0;
+	r1.top = 0 + PLAYER->m_uiCurrentWeapon*128;
 	r1.right = 39;
-	r1.bottom = 128;
+	r1.bottom = 128 + PLAYER->m_uiCurrentWeapon*128;;
 
 	//	Draw the weapon!
 	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
@@ -403,20 +433,43 @@ void CGameplayState::RenderHUD()
 		if(i < tempCurH)
 		{
 			//	Define a solid heart
-			r1.top = 0;
-			r1.bottom = 32;
+			if(m_fHeartTimer < 3.68f)
+			{
+				r1.top = 0;
+				r1.bottom = 32;
+			}
+			else if(m_fHeartTimer < 3.76f)
+			{
+				r1.top = 32;
+				r1.bottom = 64;
+			}
+			else if(m_fHeartTimer < 3.84f)
+			{
+				r1.top = 64;
+				r1.bottom = 96;
+			}
+			else if(m_fHeartTimer < 3.92f)
+			{
+				r1.top = 96;
+				r1.bottom = 128;
+			}
+			else
+			{
+				r1.top = 128;
+				r1.bottom = 160;
+			}
 		}
 		else if(i >= tempMaxH)
 		{
 			//	Define an invisible heart
-			r1.top = 64;
-			r1.bottom = 96;
+			r1.top = 64+128;
+			r1.bottom = 96+128;
 		}
 		else
 		{
 			//	Define a broken heart
-			r1.top = 32;
-			r1.bottom = 64;
+			r1.top = 32+128;
+			r1.bottom = 64+128;
 		}
 		TEX_MNG->Draw(m_imgHUD, 39+(i*32), 4, 1.0f, 1.0f, &r1);
 	}

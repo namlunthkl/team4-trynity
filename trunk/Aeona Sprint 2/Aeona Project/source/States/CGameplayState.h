@@ -97,6 +97,9 @@ public:
 	void SetMessageBox(bool bNPCTalking, string szCharName = "",
 		string szCurrentMessage = "", string szCurrentOption = "");
 
+	//	HEART ANIMATION TIMER?!
+	float m_fHeartTimer;
+
 };
 
 #endif // CGAMEPLAYSTATE_H_
