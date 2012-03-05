@@ -302,7 +302,7 @@ void CGameplayState::Render(void)
 	D3D->GetSprite()->Flush();
 
 	char buffer[100];
-	sprintf(&buffer[0], "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
+	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
 	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
 
 	D3D->SpriteEnd();
