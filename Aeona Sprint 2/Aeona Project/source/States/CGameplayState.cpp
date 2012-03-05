@@ -74,7 +74,7 @@ void CGameplayState::Enter(void)
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.png", D3DCOLOR_XRGB(255, 0, 255));
 	
 
-		PLAYER->SetPosX(600);
+	PLAYER->SetPosX(600);
 	PLAYER->SetPosY(200);
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
@@ -85,7 +85,7 @@ void CGameplayState::Enter(void)
 
 	m_pFont = new CBitmapFont();
 
-	for(int i=0; i < 2; ++i)
+	/*for(int i=0; i < 2; ++i)
 	{
 		for(int j=0; j < 2; ++j)
 		{
@@ -99,7 +99,15 @@ void CGameplayState::Enter(void)
 			pNPC->Release();
 		}
 	}
-	
+	*/
+
+	/*CEnemy* pEnemy = new CEnemy(760, 450, 40, -1, 50, 50, true, 100, 0);
+	pEnemy->LoadAnimations("CHANGE HERE BERN");
+	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+	pEnemy->SetDebugMode(true);
+	OBJECTS->AddObject(pEnemy);
+	pEnemy->Release();
+*/
 
 	CNPC* pNPC;
 	pNPC = new CNPC("Person 2", false, 150, -1, 290, 1000, 20, -1, 50, 50, true, 100, 0);
