@@ -176,7 +176,6 @@ bool CInputManager::GetPressedBack(void)
 
 	return false;
 }
-
 bool CInputManager::GetDownBack(void)
 {
 	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK)

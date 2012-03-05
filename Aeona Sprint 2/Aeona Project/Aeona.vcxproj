@@ -96,6 +96,7 @@
     <ClCompile Include="source\Game Objects\CPlayer.cpp" />
     <ClCompile Include="source\Input Manager\CInputManager.cpp" />
     <ClCompile Include="source\Input Manager\CXboxController.cpp" />
+    <ClCompile Include="source\Items\CPotion.cpp" />
     <ClCompile Include="source\Messaging\CEventSystem.cpp" />
     <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
     <ClCompile Include="source\Messaging\CStringTable.cpp" />
@@ -182,6 +183,8 @@
     <ClInclude Include="source\Game Objects\IBaseInterface.h" />
     <ClInclude Include="source\Input Manager\CInputManager.h" />
     <ClInclude Include="source\Input Manager\CXboxController.h" />
+    <ClInclude Include="source\Items\CPotion.h" />
+    <ClInclude Include="source\Items\IBaseItem.h" />
     <ClInclude Include="source\Messaging\CEvent.h" />
     <ClInclude Include="source\Messaging\CEventSystem.h" />
     <ClInclude Include="source\Messaging\CMessageSystem.h" />
