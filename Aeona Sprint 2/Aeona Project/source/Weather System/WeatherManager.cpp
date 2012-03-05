@@ -83,11 +83,11 @@ void CWeatherManager::Update( float fTime )
 {
 	SetTime( GetTime() + fTime );
 
-	if( GetTime() > GetTimeToWait() )
-	{
-		LoadWeather( (short)RandomInt( 0, 3 ) );
-		SetTime( 0.0f );
-	}
+	//if( GetTime() > GetTimeToWait() )
+	//{
+	//	LoadWeather( (short)RandomInt( 0, 3 ) );
+	//	SetTime( 0.0f );
+	//}
 
 	if( GetIsOn() ) 
 	{ 
