@@ -167,8 +167,7 @@ float4 NightTime(VS_OUTPUT input) : COLOR
 	
 	pointLightRadius = .25f;
 	
-	//ratio = 1.0f - saturate( mag / pointLightRadius );
-	ratio = 1.0f -  mag / pointLightRadius ;
+	ratio = 1.0f - saturate( mag / pointLightRadius );
 	
 	pointLightColor *= ratio;
 	
