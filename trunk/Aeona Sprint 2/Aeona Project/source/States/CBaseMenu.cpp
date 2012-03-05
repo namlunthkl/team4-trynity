@@ -38,7 +38,6 @@ CBaseMenu::CBaseMenu()
 	m_uiCurSelected = 0;
 	m_uiMenuCount = 0;
 	m_fCursorTime = 0.0f;
-	m_fLogoTimer = 0.0f;
 
 	m_pnTitleIndex = new int;
 	m_pbTitleScrollDir = new bool;
@@ -97,7 +96,6 @@ void CBaseMenu::Enter()
 	m_imgTempTitle = TEX_MNG->LoadTexture(LOGO);
 
 	//	Members
-	m_fLogoTimer = 0.0f;
 	m_fCursorTime = 0.0f;
 
 	//phil
