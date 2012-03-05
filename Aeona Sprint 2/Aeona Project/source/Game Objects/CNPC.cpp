@@ -16,12 +16,13 @@
 #define GAMEPLAY CGameplayState::GetInstance()
 
 // Constructor
-CNPC::CNPC(bool bActiveTalk, double dRange, int sndNPC,
+CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 	double dPositionX, double dPositionY, unsigned int uiSpeed,
 	int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage)
 	: CBaseCharacter(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
+	m_szName = szName;
 	CEventSystem::GetInstance()->RegisterForEvent("destroyenemy",this);
 	m_bActiveTalk = bActiveTalk;
 	m_sndNPC = sndNPC;
@@ -159,7 +160,7 @@ void CNPC::Input(void)
 {
 	CBaseCharacter::Input();
 
-	if(INPUT->KeyPressed(DIK_E))
+	if(INPUT->KeyPressed(DIK_SPACE))
 	{
 		if(m_bTalk)
 		{
@@ -246,7 +247,7 @@ void CNPC::Render(void)
 		if(pCurrentOption)
 			szCurrentOption = pCurrentOption->GetText();
 
-		GAMEPLAY->SetMessageBox(m_bTalk, "", textToDraw, szCurrentOption);
+		GAMEPLAY->SetMessageBox(m_bTalk, m_szName, textToDraw, szCurrentOption);
 	}
 }
 void CNPC::HandleEvent(CEvent* pEvent)

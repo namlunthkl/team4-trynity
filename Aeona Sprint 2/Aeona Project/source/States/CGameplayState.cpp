@@ -83,14 +83,14 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 
-	/*m_pFont = new CBitmapFont();
+	m_pFont = new CBitmapFont();
 
 	for(int i=0; i < 2; ++i)
 	{
-		for(int j=0; j < 4; ++j)
+		for(int j=0; j < 2; ++j)
 		{
 			CNPC* pNPC;
-			pNPC = new CNPC(false, 150, -1, 760 + i*100, 450 + 50*j, 20, -1, 50, 50, true, 100, 0);
+			pNPC = new CNPC("Person", false, 150, -1, 760 + i*100, 450 + 50*j, 20, -1, 50, 50, true, 100, 0);
 			pNPC->LoadAnimations("resource/npc walk3.xml");
 			pNPC->ChangeAIState(CRandomAIState::GetInstance());
 			pNPC->SetDebugMode(true);
@@ -98,8 +98,18 @@ void CGameplayState::Enter(void)
 			OBJECTS->AddObject(pNPC);
 			pNPC->Release();
 		}
-	}*/
+	}
 	
+
+	CNPC* pNPC;
+	pNPC = new CNPC("Person 2", false, 150, -1, 290, 1000, 20, -1, 50, 50, true, 100, 0);
+	pNPC->LoadAnimations("resource/npc walk3.xml");
+	pNPC->LoadText("resource/NPC Dialogue/Example.xml");
+	OBJECTS->AddObject(pNPC);
+	pNPC->Release();
+
+	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+	GAME->ResetAmountLoaded();
 
 	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	
@@ -138,17 +148,17 @@ bool CGameplayState::Input(void)
 	//TEMPORARY CODE TO SHOW SWITCHING WEAPONS AND AMULETS AND STUFF TODO
 	if(INPUT->KeyPressed(DIK_Q))
 	{
-		//PLAYER->CycleMask();
-		PLAYER->m_uiCurrentMask++;
+		PLAYER->CycleMask();
+		/*PLAYER->m_uiCurrentMask++;
 		if(PLAYER->m_uiCurrentMask == 4)
-			PLAYER->m_uiCurrentMask = 0;
+			PLAYER->m_uiCurrentMask = 0;*/
 	}
 	if(INPUT->KeyPressed(DIK_E))
 	{
-		//PLAYER->CycleWeapon();
-		PLAYER->m_uiCurrentWeapon++;
+		PLAYER->CycleWeapon();
+		/*PLAYER->m_uiCurrentWeapon++;
 		if(PLAYER->m_uiCurrentWeapon == 4)
-			PLAYER->m_uiCurrentWeapon = 0;
+			PLAYER->m_uiCurrentWeapon = 0;*/
 	}
 	//	TEMPORARYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 
@@ -308,7 +318,7 @@ void CGameplayState::RenderMessageBox(void)
 	if(m_bNPCTalking && m_pFont && m_imgMessageBox != -1 && m_szCurrentMessage != "")
 	{
 		int nDrawLocationX = GAME->GetMapLocation() ? 5 : 105;
-		int nDrawLocationY = 500;
+		int nDrawLocationY = 468;
 
 		// Draw the box
 		if(m_imgMessageBox != -1)
@@ -318,11 +328,12 @@ void CGameplayState::RenderMessageBox(void)
 		D3D->GetSprite()->Flush();
 
 		// Write the text using the bitmap font
-		m_pFont->Write(m_szCurrentMessage.c_str(), nDrawLocationX + 15, nDrawLocationY + 10, D3DCOLOR_XRGB(255, 255, 255));
+		m_pFont->Write(m_szCharName.c_str(), nDrawLocationX + 30, nDrawLocationY + 15, D3DCOLOR_XRGB(255, 255, 255)); 
+		m_pFont->Write(m_szCurrentMessage.c_str(), nDrawLocationX + 8, nDrawLocationY + 51, D3DCOLOR_XRGB(255, 255, 255));
 
 		// If there's a current option
 		if(m_szCurrentOption != "")
-			m_pFont->Write(m_szCurrentOption.c_str(), nDrawLocationX + 30, nDrawLocationY + 50, D3DCOLOR_XRGB(255, 255, 255));
+			m_pFont->Write(m_szCurrentOption.c_str(), nDrawLocationX + 8, nDrawLocationY + 88, D3DCOLOR_XRGB(255, 0, 0));
 	}
 }
 

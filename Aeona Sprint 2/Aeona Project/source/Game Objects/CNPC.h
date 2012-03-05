@@ -15,6 +15,8 @@
 #include "../Messaging/IListener.h"
 class CNPC : public CBaseCharacter , public IListener
 {
+	const char*		m_szName;
+
 	//	NPC's speech
 	string			m_szText;
 	CDialogueList	m_Dialogue;
@@ -38,7 +40,7 @@ class CNPC : public CBaseCharacter , public IListener
 
 public:
 	// Constructor
-	CNPC(bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
+	CNPC(const char* szName = "noname", bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
