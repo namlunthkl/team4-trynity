@@ -85,7 +85,7 @@ Point CAnimationPlayer::ReturnAnchorPoint(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 }
-RECT CAnimationPlayer::ReturnWeaponCollisionRect(void)
+RectD CAnimationPlayer::ReturnWeaponCollisionRect(void)
 {
 	return CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetWeaponCollisionRect();
 }

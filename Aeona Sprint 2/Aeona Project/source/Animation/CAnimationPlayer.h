@@ -37,7 +37,7 @@ public:
 
 	RectD ReturnCollisionRect(void);
 
-	RECT ReturnWeaponCollisionRect(void);
+	RectD ReturnWeaponCollisionRect(void);
 
 	Point ReturnAnchorPoint(void);
 	bool GetPaused() const { return m_bPause; }

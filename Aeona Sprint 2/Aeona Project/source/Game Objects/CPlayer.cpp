@@ -110,6 +110,12 @@ void CPlayer::Render(void)
 	rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 		CCameraControl::GetInstance()->GetPositionY());
 	D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
+
+	RectD temp = WEAPON->GetCollisionRect();
+	temp.OffsetRect(GetPosX(),GetPosY());
+	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
+		CCameraControl::GetInstance()->GetPositionY());
+	D3D->DrawRect(temp.GetWindowsRECT(), 255, 0, 255);
 }
 
 void CPlayer::Attack(void)
@@ -154,6 +160,7 @@ void CPlayer::Input(void)
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_UP);
 				WEAPON->SetPreviousAnimation(ANM_WALK_UP);
+				//m_weaponRect.
 				break;
 			}
 		case ANM_WALK_DOWN:
@@ -389,22 +396,27 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		}		
 	}
 
-	/*if(pObject->GetType() == TYPE_CHAR_NPC)
+	if(pObject->GetType() == TYPE_CHAR_NPC && WEAPON->GetAttacking() == true)
 	{
-		RECT temp,temp2;
-		temp = m_vGameWeapons[m_uiCurrentWeapon]->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnWeaponCollisionRect();
-		temp.left	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().left);
-		temp.right	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().right);
-		temp.top	+=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().top);
-		temp.bottom +=	(long)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnFrameRect().bottom);
+		RectD temp;
+		RECT temp2;
+		temp = WEAPON->GetCollisionRect();
+		temp.OffsetRect(GetPosX(),GetPosY());
 
-		if(IntersectRect(&temp2,&temp,&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+		if(IntersectRect(&temp2,&temp.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 		{
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
 		}
-	}*/
 
+		
+	}
 	return true;
+}
+RectD CPlayer::GetWeaponRect(void)
+{
+	WEAPON->GetCollisionRect();
+	m_weaponRect.OffsetRect(GetPosX(),GetPosY());
+	return m_weaponRect;
 }
 // Destructor
 CPlayer::~CPlayer(void)

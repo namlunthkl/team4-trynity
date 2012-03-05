@@ -29,6 +29,7 @@ public:
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
+	RectD GetCollisionRect(void);
 	//void SetWeaponRotation(float fWeaponRotation);
 };
 
