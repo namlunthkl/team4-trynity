@@ -159,7 +159,7 @@ int CAnimationManager::LoadAnimation(const char* szFileName, int* pnFirstAnmID, 
 			tempFrame.SetAnchorPoint(tempAnchor);
 
 			TiXmlElement* pWeapon = pAnchor->NextSiblingElement("WeaponCollisionRect");
-			RECT tempWeaponCollisionRect;
+			RectD tempWeaponCollisionRect;
 			if(pWeapon->QueryIntAttribute("x",&nTemp) != TIXML_NO_ATTRIBUTE)
 			{
 				tempWeaponCollisionRect.left = nTemp;

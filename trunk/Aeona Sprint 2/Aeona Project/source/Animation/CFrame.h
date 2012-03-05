@@ -12,7 +12,7 @@ class CFrame
 private:
 	RectD m_DrawRect;
 	RectD m_CollisionRect;
-	RECT m_WeaponCollisionRect;
+	RectD m_WeaponCollisionRect;
 	
 	
 	Point m_AnchorPoint;
@@ -28,7 +28,7 @@ public:
 	Point GetAnchorPoint() const { return m_AnchorPoint; }
 	double GetDuration() const { return m_fDuration; }
 	string GetEvent() const { return m_szEvent; }
-	RECT GetWeaponCollisionRect() const { return m_WeaponCollisionRect; }
+	RectD GetWeaponCollisionRect() const { return m_WeaponCollisionRect; }
 	//Point GetWeaponAnchorPoint() const { return m_WeaponAnchorPoint; }
 	//float GetWeaponAngle() const { return m_WeaponAngle; }
 	
@@ -38,7 +38,7 @@ public:
 	void SetAnchorPoint(Point val) { m_AnchorPoint = val; }
 	void SetDuration(double val) { m_fDuration = val; }
 	void SetEvent(string val) { m_szEvent = val; }
-	void SetWeaponCollisionRect(RECT val) { m_WeaponCollisionRect = val; }
+	void SetWeaponCollisionRect(RectD val) { m_WeaponCollisionRect = val; }
 	//void SetWeaponAnchorPoint(Point val) { m_WeaponAnchorPoint = val; }
 	//void SetWeaponAngle(float val) { m_WeaponAngle = val; }
 };

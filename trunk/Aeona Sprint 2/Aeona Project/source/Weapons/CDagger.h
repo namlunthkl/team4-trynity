@@ -30,6 +30,7 @@ public:
 	void Render(PointD nPosition);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_DAGGER; }
 	//void SetWeaponRotation(float fWeaponRotation);
+	RectD GetCollisionRect(void);
 };
 
 #endif

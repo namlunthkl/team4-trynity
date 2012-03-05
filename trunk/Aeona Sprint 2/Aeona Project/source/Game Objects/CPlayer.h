@@ -30,7 +30,7 @@ class CPlayer : public CBaseCharacter
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
-
+	RectD			m_weaponRect;
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
 	CPlayer* operator=(const CPlayer&){}
@@ -66,6 +66,7 @@ public:
 	void AquireHeartPiece(void);
 
 	bool CheckCollision(IBaseInterface* pObject);
+	RectD GetWeaponRect(void);
 	// Destructor
 	~CPlayer(void);
 

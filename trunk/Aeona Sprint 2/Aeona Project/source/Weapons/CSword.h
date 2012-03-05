@@ -34,6 +34,7 @@ public:
 	//void Render(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_SWORD; }
 	//void SetWeaponRotation(float fWeaponRotation);
+	RectD CSword::GetCollisionRect(void);
 };
 
 #endif
