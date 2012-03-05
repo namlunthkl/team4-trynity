@@ -21,7 +21,7 @@
 
 const char* g_szWINDOW_CLASS_NAME	= "SGDWindowClass";			//	Window Class Name.
 
-const char* g_szWINDOW_TITLE		= "Trinity";				//	Window Title.
+const char* g_szWINDOW_TITLE		= "Aeona";				//	Window Title.
 const int	g_nWINDOW_WIDTH			= 800;						//	Window Width.
 const int	g_nWINDOW_HEIGHT		= 600;						//	Window Height.
 
