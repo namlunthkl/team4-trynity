@@ -11,6 +11,7 @@
 
 // Header file for this state
 #include "CGameplayState.h"
+#include "../States/CMainMenuState.h" 
 
 // Includes
 #include "../Input Manager/CInputManager.h"
@@ -80,14 +81,20 @@ void CGameplayState::Enter(void)
 
 	m_pFont = new CBitmapFont();
 
-	CNPC* pNPC;
-	pNPC = new CNPC(false, 150, -1, 400, 200, 20, -1, 50, 50, true, 100, 0);
-	pNPC->LoadAnimations("resource/npc walk3.xml");
-	pNPC->ChangeAIState(CRandomAIState::GetInstance());
-	pNPC->SetDebugMode(false);
-	pNPC->LoadText("resource/NPC Dialogue/Example.xml");
-	OBJECTS->AddObject(pNPC);
-	pNPC->Release();
+	for(int i=0; i < 2; ++i)
+	{
+		for(int j=0; j < 4; ++j)
+		{
+			CNPC* pNPC;
+			pNPC = new CNPC(false, 150, -1, 760 + i*100, 450 + 50*j, 20, -1, 50, 50, true, 100, 0);
+			pNPC->LoadAnimations("resource/npc walk3.xml");
+			pNPC->ChangeAIState(CRandomAIState::GetInstance());
+			pNPC->SetDebugMode(true);
+			pNPC->LoadText("resource/NPC Dialogue/Example.xml");
+			OBJECTS->AddObject(pNPC);
+			pNPC->Release();
+		}
+	}
 
 
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
@@ -210,6 +217,14 @@ void CGameplayState::Render(void)
 
 	D3D->GetSprite()->Flush();
 
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->EndPostProcess();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
+
 	///////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
@@ -244,17 +259,17 @@ void CGameplayState::Render(void)
 		GAME->GetFont()->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 	}
 
+	D3D->GetSprite()->Flush();
+
+	char buffer[100];
+	sprintf(&buffer[0], "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
+	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
+
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();
 
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->EndPostProcess();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
+	
 }
 
 void CGameplayState::RenderMessageBox(void)
@@ -326,7 +341,7 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	if(pEvent->GetEventID() == "OpenDoor")
 	{
 		MessageBox(GAME->GetWindowHandle(),"OpenDoor event was fired - You won the game!!!","You won",MB_OK);
-		GAME->ChangeState(NULL);
+		GAME->ChangeState(CMainMenuState::GetInstance());
 	}
 }
 

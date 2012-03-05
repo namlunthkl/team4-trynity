@@ -77,7 +77,7 @@ void CBaseObject::Render(void)
 		RectD rect = GetCollisionRect();
 		rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 			CCameraControl::GetInstance()->GetPositionY());
-		D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
+		D3D->DrawRect(rect.GetWindowsRECT(), 0, 0, 255);
 	}
 }
 
