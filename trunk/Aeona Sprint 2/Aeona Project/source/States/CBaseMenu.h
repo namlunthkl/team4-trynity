@@ -24,13 +24,11 @@ public:
 	CBaseMenu& operator=(const CBaseMenu&);
 	~CBaseMenu();
 private:
-	
 	//	Assets
 	int m_imgCursor;
 	int m_imgTitle;
-	int m_imgSword;
-	int m_imgHammer;
-	int m_imgCrossbow;
+	int m_imgTeamLogo;
+	int m_imgLeaderLogo;
 	int m_sndMoveCursor;
 	int m_sndConfirm;
 
@@ -39,12 +37,11 @@ private:
 protected:
 	//	Members
 	bool bMenuConfirm;
-	float m_fLoadTimer;
+	float m_fLogoTimer;
 	float m_fCursorTime;
 	unsigned int m_uiCurSelected;
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;
-
 	
 	//	I AM STUPID AND HAVE NO IDEA HOW DANIEL DID HIS SCROLLING SO I'M DOING IT MY RETARDED WAY -PHIL
 	float m_fDerpScroll;

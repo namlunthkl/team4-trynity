@@ -46,7 +46,6 @@ void COptionsState::Enter()
 
 	//	Members
 	m_uiMenuCount = OPTN_MAX;
-	m_fLoadTimer = 0.0f;
 
 	//	Imperfect..
 	m_uiCurSelected = 0;

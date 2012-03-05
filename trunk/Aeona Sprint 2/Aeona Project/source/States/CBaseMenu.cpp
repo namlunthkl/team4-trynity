@@ -28,9 +28,8 @@ CBaseMenu::CBaseMenu()
 {
 	m_imgCursor = -1;
 	m_imgTitle = -1;
-	m_imgSword = -1;
-	m_imgHammer = -1;
-	m_imgCrossbow = -1;
+	m_imgTeamLogo = -1;
+	m_imgLeaderLogo = -1;
 	m_sndMoveCursor = -1;
 	m_sndConfirm = -1;
 
@@ -39,7 +38,7 @@ CBaseMenu::CBaseMenu()
 	m_uiCurSelected = 0;
 	m_uiMenuCount = 0;
 	m_fCursorTime = 0.0f;
-	m_fLoadTimer = 0.0f;
+	m_fLogoTimer = 0.0f;
 
 	m_pnTitleIndex = new int;
 	m_pbTitleScrollDir = new bool;
@@ -50,6 +49,8 @@ CBaseMenu::CBaseMenu()
 
 	bMenuConfirm = false;
 
+	//phil logo
+	m_fLogoTimer = 0.0f;
 	//phil scrolling
 	m_fDerpScroll = 0.0f;
 	m_bDerpBool = false;
@@ -86,9 +87,8 @@ void CBaseMenu::Enter()
 	//	Load Assets
 	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png", D3DCOLOR_XRGB(0,0,0));
 	m_imgTitle = TEX_MNG->LoadTexture("resource/MenuHorizons.png");
-	m_imgSword = TEX_MNG->LoadTexture("resource/TempAsset2.png");
-	m_imgHammer = TEX_MNG->LoadTexture("resource/TempAsset2.png");
-	m_imgCrossbow = TEX_MNG->LoadTexture("resource/TempAsset2.png");
+	m_imgTeamLogo = TEX_MNG->LoadTexture("resource/Team4Logo.png");
+	m_imgLeaderLogo = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
 
@@ -97,7 +97,7 @@ void CBaseMenu::Enter()
 	m_imgTempTitle = TEX_MNG->LoadTexture(LOGO);
 
 	//	Members
-	m_fLoadTimer = 0.0f;
+	m_fLogoTimer = 0.0f;
 	m_fCursorTime = 0.0f;
 
 	//phil
@@ -121,15 +121,13 @@ void CBaseMenu::Exit()
 	//	Unload Assets
 	TEX_MNG->UnloadTexture(m_imgCursor);
 	TEX_MNG->UnloadTexture(m_imgTitle);
-	TEX_MNG->UnloadTexture(m_imgSword);
-	TEX_MNG->UnloadTexture(m_imgHammer);
-	TEX_MNG->UnloadTexture(m_imgCrossbow);
+	TEX_MNG->UnloadTexture(m_imgTeamLogo);
+	TEX_MNG->UnloadTexture(m_imgLeaderLogo);
 	//unloadsonghere
 	m_imgCursor = -1;
 	m_imgTitle = -1;
-	m_imgSword = -1;
-	m_imgHammer = -1;
-	m_imgCrossbow = -1;
+	m_imgTeamLogo = -1;
+	m_imgLeaderLogo = -1;
 	m_sndMoveCursor = -1;
 	m_sndConfirm = -1;
 
@@ -143,10 +141,24 @@ void CBaseMenu::Exit()
 
 bool CBaseMenu::Input()
 {	
+	if(m_fLogoTimer < 7.0f)
+	{
+		if(CInputManager::GetInstance()->GetPressedPause())
+		{
+			m_fLogoTimer = 7.0f;
+		}
+	}
 	if(CInputManager::GetInstance()->GetPressedA())
 	{
-		AUDIO->SFXPlaySound(m_sndConfirm, false);
-		bMenuConfirm = true;
+		if(m_fLogoTimer < 7.0f)
+		{
+			m_fLogoTimer = 7.0f;
+		}
+		else
+		{
+			AUDIO->SFXPlaySound(m_sndConfirm, false);
+			bMenuConfirm = true;
+		}
 	}
 	else if(CInputManager::GetInstance()->GetPressedDown())
 	{
@@ -177,13 +189,20 @@ bool CBaseMenu::Input()
 
 void CBaseMenu::Update(float fElapsedTime)
 {
-	m_fCursorTime += fElapsedTime;
-	if(m_fCursorTime >= 0.8f)
+	if(m_fLogoTimer < 7.0f)
+		m_fLogoTimer += fElapsedTime;
+	if(m_fLogoTimer > 7.0f)
+		m_fLogoTimer = 7.0f;
+
+	if(m_fLogoTimer >= 7.0f)
 	{
-		m_fCursorTime = 0.0f;
+		m_fDerpScroll += (fElapsedTime * 25);
+		m_fCursorTime += fElapsedTime;
+		if(m_fCursorTime >= 0.8f)
+		{
+			m_fCursorTime = 0.0f;
+		}
 	}
-	
-	m_fDerpScroll += (fElapsedTime * 25);
 }
 
 void CBaseMenu::Render()
@@ -193,119 +212,145 @@ void CBaseMenu::Render()
 	rCursor.top = 0;
 	rCursor.right = 16;
 	rCursor.bottom = 16;*/
-
-
-	// Draw Title Background Moving
-	RECT rectSourceTitle;
-	//rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
-	rectSourceTitle.left = (long)(m_fDerpScroll);
-	rectSourceTitle.top = 0 + m_uiPic*256;
-	rectSourceTitle.right = rectSourceTitle.left + 400;
-	rectSourceTitle.bottom = 256 + m_uiPic*256;
-
-	if(m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
+	
+	float alpha = 255.0f;
+	
+	if(m_fLogoTimer < 3.5f)
 	{
-		++m_uiPic;
-		m_fDerpScroll = 0.0f;
-		if(m_uiPic == 3)
-			m_uiPic = 0;
-	}
-
-	float alpha = 0.0f;
-
-	if(m_fDerpScroll <= 100)
-	{
-		alpha = (m_fDerpScroll) * (255.0f/100);
-	}
-	else if(m_fDerpScroll >= 524)
-	{
-		alpha = (100 - (m_fDerpScroll - 524)) * (255.0f/100);
-	}
-	else
-		alpha = 255;
-	D3D->Clear(0, 0, 0);
-	TEX_MNG->Draw(m_imgTitle, 0, 0, 2.0f, 2.34375f, &rectSourceTitle, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));	//	2.34375 IS CORRECT!  Because the original height of panoram is 256, and it needs to be scaled to exactly 600.
-
-	/*if (timeGetTime() - m_dwTitleScrollStamp > 10)
-	{
-		if(*m_pbTitleScrollDir)
+		if(m_fLogoTimer < 0.5)
 		{
-			(*m_pnTitleIndex)++;
-			if(GAME->GetScreenWidth() + (*m_pnTitleIndex) * 0.35 >= 1200)
-				*m_pbTitleScrollDir = false;
+			alpha = (m_fLogoTimer) * (float)(255)*2;
+		}
+		else if(m_fLogoTimer >= 3.0f)
+		{
+			alpha = (3.5 - m_fLogoTimer) * (float)(255)*2;
+		}
+		D3D->Clear(0, 0, 0);
+		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
+	}
+	else if(m_fLogoTimer < 7.0f)
+	{
+		if(m_fLogoTimer < 4.0f)
+		{
+			alpha = (m_fLogoTimer - 3) * (float)(255)*2;
+		}
+		else if(m_fLogoTimer >= 6.5f)
+		{
+			alpha = (7.5 - m_fLogoTimer) * (float)(255)*2;
+		}
+		D3D->Clear(0, 0, 0);
+		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 0, 0));
+	}
+	else if(m_fLogoTimer >= 7.0f)
+	{
+		// Draw Title Background Moving
+		RECT rectSourceTitle;
+		//rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
+		rectSourceTitle.left = (long)(m_fDerpScroll);
+		rectSourceTitle.top = 0 + m_uiPic*256;
+		rectSourceTitle.right = rectSourceTitle.left + 400;
+		rectSourceTitle.bottom = 256 + m_uiPic*256;
+
+		if(m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
+		{
+			++m_uiPic;
+			m_fDerpScroll = 0.0f;
+			if(m_uiPic == 3)
+				m_uiPic = 0;
+		}
+
+		if(m_fDerpScroll <= 100)
+		{
+			alpha = (m_fDerpScroll) * (255.0f/100);
+		}
+		else if(m_fDerpScroll >= 524)
+		{
+			alpha = (100 - (m_fDerpScroll - 524)) * (255.0f/100);
+		}
+
+		D3D->Clear(0, 0, 0);
+		TEX_MNG->Draw(m_imgTitle, 0, 0, 2.0f, 2.34375f, &rectSourceTitle, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));	//	2.34375 IS CORRECT!  Because the original height of panoram is 256, and it needs to be scaled to exactly 600.
+
+		/*if (timeGetTime() - m_dwTitleScrollStamp > 10)
+		{
+			if(*m_pbTitleScrollDir)
+			{
+				(*m_pnTitleIndex)++;
+				if(GAME->GetScreenWidth() + (*m_pnTitleIndex) * 0.35 >= 1200)
+					*m_pbTitleScrollDir = false;
+			}
+			else
+			{
+				(*m_pnTitleIndex)--;
+				if((*m_pnTitleIndex) == 0)
+					*m_pbTitleScrollDir = true;
+			}
+			m_dwTitleScrollStamp = timeGetTime();
+		}*/
+	
+		//	TODO Temp Title
+		TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268,
+			GAME->GetScreenHeight()/2 - 243);
+
+		//	Draw a cursor at intervals of the text
+		RECT rCursor;
+
+		if(m_fCursorTime <= 0.1f)
+		{
+			rCursor.left = 0;
+			rCursor.top = 0;
+			rCursor.right = 32;
+			rCursor.bottom = 32;
+		}
+		else if(m_fCursorTime <= 0.2f)
+		{
+			rCursor.left = 32;
+			rCursor.top = 0;
+			rCursor.right = 64;
+			rCursor.bottom = 32;
+		}
+		else if(m_fCursorTime <= 0.3f)
+		{
+			rCursor.left = 64;
+			rCursor.top = 0;
+			rCursor.right = 96;
+			rCursor.bottom = 32;
+		}
+		else if(m_fCursorTime <= 0.4f)
+		{
+			rCursor.left = 96;
+			rCursor.top = 0;
+			rCursor.right = 128;
+			rCursor.bottom = 32;
+		}
+		else if(m_fCursorTime <= 0.5f)
+		{
+			rCursor.left = 0;
+			rCursor.top = 32;
+			rCursor.right = 32;
+			rCursor.bottom = 64;
+		}
+		else if(m_fCursorTime <= 0.6f)
+		{
+			rCursor.left = 32;
+			rCursor.top = 32;
+			rCursor.right = 64;
+			rCursor.bottom = 64;
+		}
+		else if(m_fCursorTime <= 0.7f)
+		{
+			rCursor.left = 64;
+			rCursor.top = 32;
+			rCursor.right = 96;
+			rCursor.bottom = 64;
 		}
 		else
 		{
-			(*m_pnTitleIndex)--;
-			if((*m_pnTitleIndex) == 0)
-				*m_pbTitleScrollDir = true;
+			rCursor.left = 96;
+			rCursor.top = 32;
+			rCursor.right = 128;
+			rCursor.bottom = 64;
 		}
-		m_dwTitleScrollStamp = timeGetTime();
-	}*/
-	
-	//	TODO Temp Title
-	TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268,
-		GAME->GetScreenHeight()/2 - 243);
-
-	//	Draw a cursor at intervals of the text
-	//pFont->Write("XX", 0, 12 + m_uiCurSelected, D3DCOLOR_XRGB(255, 255, 255));
-	RECT rCursor;
-
-	if(m_fCursorTime <= 0.1f)
-	{
-		rCursor.left = 0;
-		rCursor.top = 0;
-		rCursor.right = 32;
-		rCursor.bottom = 32;
+		TEX_MNG->Draw(m_imgCursor, 0, 384+(m_uiCurSelected*32), 1.0f, 1.0f, &rCursor);
 	}
-	else if(m_fCursorTime <= 0.2f)
-	{
-		rCursor.left = 32;
-		rCursor.top = 0;
-		rCursor.right = 64;
-		rCursor.bottom = 32;
-	}
-	else if(m_fCursorTime <= 0.3f)
-	{
-		rCursor.left = 64;
-		rCursor.top = 0;
-		rCursor.right = 96;
-		rCursor.bottom = 32;
-	}
-	else if(m_fCursorTime <= 0.4f)
-	{
-		rCursor.left = 96;
-		rCursor.top = 0;
-		rCursor.right = 128;
-		rCursor.bottom = 32;
-	}
-	else if(m_fCursorTime <= 0.5f)
-	{
-		rCursor.left = 0;
-		rCursor.top = 32;
-		rCursor.right = 32;
-		rCursor.bottom = 64;
-	}
-	else if(m_fCursorTime <= 0.6f)
-	{
-		rCursor.left = 32;
-		rCursor.top = 32;
-		rCursor.right = 64;
-		rCursor.bottom = 64;
-	}
-	else if(m_fCursorTime <= 0.7f)
-	{
-		rCursor.left = 64;
-		rCursor.top = 32;
-		rCursor.right = 96;
-		rCursor.bottom = 64;
-	}
-	else
-	{
-		rCursor.left = 96;
-		rCursor.top = 32;
-		rCursor.right = 128;
-		rCursor.bottom = 64;
-	}
-	TEX_MNG->Draw(m_imgCursor, 0, 384+(m_uiCurSelected*32), 1.0f, 1.0f, &rCursor);
 }
