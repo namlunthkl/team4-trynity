@@ -15,6 +15,7 @@ float gRed;
 float gGreen;
 float gBlue;
 
+float4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
 
 // TODO: create vertex shader inputs (must match the vertex declaration in C++)
 struct VS_INPUT
@@ -25,16 +26,16 @@ struct VS_INPUT
 // TODO: create vertex shader outputs
 struct VS_OUTPUT
 {
-	float4 transformed_pos		: POSITION0;
-	float2 transformed_norm		: TEXCOORD0;
+	float4 pos		: POSITION0;
+	float2 uv		: TEXCOORD0;
 };
 // TODO: the vertex shader, run once for each vertex
 VS_OUTPUT ScreenSpaceQuad(VS_INPUT input)
 {
 	VS_OUTPUT output;
 	
-	output.transformed_pos  = float4( input.untransformed_pos, 1.0f );
-	output.transformed_norm 	= input.untransformed_uv;
+	output.pos  = float4( input.untransformed_pos, 1.0f );
+	output.uv 	= input.untransformed_uv;
 	
 	return output;
 }
@@ -43,14 +44,14 @@ VS_OUTPUT ScreenSpaceQuad(VS_INPUT input)
 float4 PassAlong(VS_OUTPUT input) : COLOR
 {
 	// return texture color
-	return tex2D( gDiffuseSampler, input.transformed_norm);
+	return tex2D( gDiffuseSampler, input.uv);
 }
 //Create the Inversion effect
 float4 Inversion(VS_OUTPUT input) : COLOR
 {
 	// return texture color inverted
 	
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	float4 color = tex2D( gDiffuseSampler, input.uv);
 	color.r = 1 - color.r;
 	color.g = 1 - color.g;
 	color.b = 1 - color.b;
@@ -63,7 +64,7 @@ float4 BlackAndWhite(VS_OUTPUT input) : COLOR
 	// return texture color flattened
 	// convert to greyscale
 	// return monochrome	
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	float4 color = tex2D( gDiffuseSampler, input.uv);
 	float value = ( color.r + color.g + color.b )/ 3;
 	color.r = value;
 	color.g = value;
@@ -74,7 +75,7 @@ float4 BlackAndWhite(VS_OUTPUT input) : COLOR
 float4 SepiaScale(VS_OUTPUT input) : COLOR
 {
 	// return texture color scaled
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	float4 color = tex2D( gDiffuseSampler, input.uv);
 	
 	float4 outputColor = color;
 	outputColor.r = ( color.r * 0.393 ) + ( color.g * 0.769 ) + ( color.b * 0.189 );
@@ -88,7 +89,7 @@ float4 SepiaScale(VS_OUTPUT input) : COLOR
 float4 ColorCycle(VS_OUTPUT input) : COLOR
 {
 	// similar to the Black and White effect
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm );
+	float4 color = tex2D( gDiffuseSampler, input.uv );
 	float value1 = (gRed * color.r ) + ( gRed * color.g ) + ( gRed * color.b );
 	float value2 = (gGreen * color.r ) + ( gGreen * color.g ) + ( gGreen * color.b );
 	float value3 = (gBlue * color.r ) + ( gBlue * color.g ) + ( gBlue * color.b );
@@ -107,16 +108,16 @@ float4 TronLines(VS_OUTPUT input) : COLOR
 {
 	// check for the magenta color of the texture (1,0,1)
 	
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm );
+	float4 color = tex2D( gDiffuseSampler, input.uv );
 	
-	input.transformed_norm.y -= gTime * 0.25f;
+	input.uv.y -= gTime * 0.25f;
 	
 	if( color.r >= 0.6f && color.b >= 0.6f && color.g <= 0.5f )
 	{
 	// convert to the passed in color values
-	color.r = cos( input.transformed_norm.y * 10 ) * gRed;
-	color.g = cos( input.transformed_norm.y * 10 ) * gGreen;
-	color.b = cos( input.transformed_norm.y * 10 ) * gBlue;
+	color.r = cos( input.uv.y * 10 ) * gRed;
+	color.g = cos( input.uv.y * 10 ) * gGreen;
+	color.b = cos( input.uv.y * 10 ) * gBlue;
 	color.a = 1.0f;
 	// return the new outcolor
 	}
@@ -127,7 +128,7 @@ float4 TronLines(VS_OUTPUT input) : COLOR
 float4 EveningTime(VS_OUTPUT input) : COLOR
 {	
 	// return texture color scaled
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	float4 color = tex2D( gDiffuseSampler, input.uv);
 	
 	float4 outputColor = color;
 	outputColor.r = ( color.r * 0.10 ) + ( color.g * 0.10 ) + ( color.b * 0.10 );
@@ -142,14 +143,36 @@ float4 EveningTime(VS_OUTPUT input) : COLOR
 float4 NightTime(VS_OUTPUT input) : COLOR
 {	
 	// return texture color scaled
-	float4 color = tex2D( gDiffuseSampler, input.transformed_norm);
+	float4 color = tex2D( gDiffuseSampler, input.uv);
 	
-	float4 outputColor = color;
-	outputColor.r = ( color.r * 0.05 ) + ( color.g * 0.05 ) + ( color.b * 0.05 );
-	outputColor.g = ( color.r * 0.05 ) + ( color.g * 0.05 ) + ( color.b * 0.05 );
-	outputColor.b = ( color.r * 0.15 ) + ( color.g * 0.15 ) + ( color.b * 0.15 );
-	// return sepia
-	return outputColor;
+	float2 pointLightPos;
+	float4 pointLightColor;
+	float  pointLightRadius;
+	
+	float2 vectorBetweenTwo;
+	float  mag;
+	float  ratio;
+	
+	pointLightPos.x = 0.5f;
+	pointLightPos.y = 0.5f;
+	
+	vectorBetweenTwo = input.uv - pointLightPos; 
+	
+	mag = length( vectorBetweenTwo );
+	
+	pointLightColor.a = 1.0f;
+	pointLightColor.r = 1.0f;
+	pointLightColor.g = 1.0f;
+	pointLightColor.b = 0.0f;
+	
+	pointLightRadius = .25f;
+	
+	//ratio = 1.0f - saturate( mag / pointLightRadius );
+	ratio = 1.0f -  mag / pointLightRadius ;
+	
+	pointLightColor *= ratio;
+	
+	return (color * pointLightColor) + ( color * ambient ) ;
 }
 // Techniques are read in by the effect framework.
 // They allow one to add variation to how a particular shader might be executed.
