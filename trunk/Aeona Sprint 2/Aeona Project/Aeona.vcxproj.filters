@@ -52,6 +52,9 @@
     <Filter Include="Weather System">
       <UniqueIdentifier>{476a5e86-d607-43e7-9ca0-d42e110d4e44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{11e72800-6746-4780-a3f4-e227b3905b4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\CGame.cpp">
@@ -215,6 +218,9 @@
     </ClCompile>
     <ClCompile Include="source\Post Process\CPostProcess.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Items\CPotion.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +424,12 @@
     </ClInclude>
     <ClInclude Include="source\Post Process\CPostProcess.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Items\IBaseItem.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Items\CPotion.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

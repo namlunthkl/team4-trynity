@@ -41,31 +41,31 @@ RectD CDagger::GetCollisionRect(void)
 	RectD rectCollision;
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
-		rectCollision.top = -35;
-		rectCollision.right = 30;
+		rectCollision.left = -20;
+		rectCollision.top = -25;
+		rectCollision.right = 20;
 		rectCollision.bottom = -5;
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
+		rectCollision.left = -20;
 		rectCollision.top = 5;
-		rectCollision.right = 30;
-		rectCollision.bottom = 35;
+		rectCollision.right = 20;
+		rectCollision.bottom = 25;
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -35;
-		rectCollision.top = -30;
+		rectCollision.left = -25;
+		rectCollision.top = -20;
 		rectCollision.right = -5;
-		rectCollision.bottom = 30;
+		rectCollision.bottom = 20;
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
 		rectCollision.left = 5;
-		rectCollision.top = -30;
-		rectCollision.right = 35;
-		rectCollision.bottom = 30;
+		rectCollision.top = -20;
+		rectCollision.right = 25;
+		rectCollision.bottom = 20;
 	}
 	return rectCollision;
 }

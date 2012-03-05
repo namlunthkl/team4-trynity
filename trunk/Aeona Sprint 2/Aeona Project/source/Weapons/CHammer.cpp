@@ -42,31 +42,31 @@ RectD CHammer::GetCollisionRect(void)
 	RectD rectCollision;
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
-		rectCollision.top = -35;
-		rectCollision.right = 30;
-		rectCollision.bottom = -5;
+		rectCollision.left = -15;
+		rectCollision.top = -60;
+		rectCollision.right = 15;
+		rectCollision.bottom = -30;
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
-		rectCollision.top = 5;
-		rectCollision.right = 30;
-		rectCollision.bottom = 35;
+		rectCollision.left = -15;
+		rectCollision.top = 30;
+		rectCollision.right = 15;
+		rectCollision.bottom = 60;
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -35;
-		rectCollision.top = -30;
-		rectCollision.right = -5;
-		rectCollision.bottom = 30;
+		rectCollision.left = -60;
+		rectCollision.top = -15;
+		rectCollision.right = -30;
+		rectCollision.bottom = 15;
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
-		rectCollision.left = 5;
-		rectCollision.top = -30;
-		rectCollision.right = 35;
-		rectCollision.bottom = 30;
+		rectCollision.left = 30;
+		rectCollision.top = -15;
+		rectCollision.right = 60;
+		rectCollision.bottom = 15;
 	}
 	return rectCollision;
 }
