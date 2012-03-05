@@ -24,15 +24,19 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteMasks, MASK_NONE);
 
 	m_bHeartPiece = false;
-	m_uiCurrentWeapon = WEAPON_SWORD;
+	m_uiCurrentWeapon = WEAPON_DAGGER;
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
 
 	m_vGameWeapons.push_back(new CDagger);
+	m_vGameWeapons[WEAPON_DAGGER]->Activate();
 	m_vGameWeapons.push_back(new CSword);
+	m_vGameWeapons[WEAPON_SWORD]->Activate();
 	m_vGameWeapons.push_back(new CHammer);
+	m_vGameWeapons[WEAPON_HAMMER]->Activate();
 	m_vGameWeapons.push_back(new CCrossBow);
-	WEAPON->Activate();
+	m_vGameWeapons[WEAPON_CROSSBOW]->Activate();
+	//WEAPON->Activate();
 	Activate();
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
 }
@@ -278,10 +282,7 @@ void CPlayer::CycleWeapon(void)
 		// Keep looking
 		CycleWeapon();
 	}
-	else
-	{
-		WEAPON->Deactivate();
-	}	
+
 }
 
 // Cycle through the masks

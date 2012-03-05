@@ -6,23 +6,33 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CHammer.h"
+#include "../Game Objects/CPlayer.h"
 CHammer::CHammer()
 {
-	//
+
+	//Load the Animation
+	CBaseCharacter::LoadAnimations("resource/PlayerWHammer.xml");
+	SetAttacking(false);
+}
+void CHammer::Render(PointD nPos)
+{
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
+
+	CBaseCharacter::Render();
+}
+
+void CHammer::Update(float fElapsedTime)
+{
+	CBaseCharacter::Update(fElapsedTime);
+
 }
 void CHammer::Attack(void)
 {
-	//
-}
-void CHammer::ChargedAttack(void)
-{
-	//
-}
-void CHammer::Render(PointD nPosition)
-{
+	SetAttacking(true);
 
 }
-void CHammer::Update(float fElapsedTime)
+void CHammer::ChargedAttack(void)
 {
 
 }
