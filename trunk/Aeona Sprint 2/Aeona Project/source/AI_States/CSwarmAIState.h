@@ -21,7 +21,7 @@ class CSwarmAIState : public IBaseAIState
 	~CSwarmAIState(void){}
 	CSwarmAIState(void){}
 
-	static CRandomAIState* sm_pInstance;
+	static CSwarmAIState* sm_pInstance;
 
 public:
 	static IBaseAIState* GetInstance(void);

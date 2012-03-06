@@ -1,99 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Animation Engine">
-      <UniqueIdentifier>{90e6df17-d975-4f0e-80c6-b43425644bc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="World Engine">
-      <UniqueIdentifier>{cfb7e3e0-c728-481d-9089-f55fa1ef9b83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Particles Engine">
-      <UniqueIdentifier>{908e0faa-78e1-43cc-9e82-aa8d9b8c29e7}</UniqueIdentifier>
+    <Filter Include="Object Hierarchy">
+      <UniqueIdentifier>{c5dc7121-f60b-44dc-82c4-e7e8b2dbc693}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game States">
-      <UniqueIdentifier>{c68bf4f5-5594-48f0-9602-860d70ec494a}</UniqueIdentifier>
+      <UniqueIdentifier>{a5c73f20-1ac9-45d8-b314-28f5f94c1819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities %28XML, Wrappers and Managers%29">
-      <UniqueIdentifier>{743ca7e5-b745-44c0-ae74-0280d7b4081f}</UniqueIdentifier>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{44ef65e5-4dcf-48d2-b375-93f87896b2bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Hierarchy">
-      <UniqueIdentifier>{29711864-b844-4d1f-a95d-06d8242b4e65}</UniqueIdentifier>
+    <Filter Include="Utility\Tiny XML">
+      <UniqueIdentifier>{f9627f44-7206-42aa-a3d9-c82c3fe88fe7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Messaging">
-      <UniqueIdentifier>{3611d60c-755b-4d7c-9a8a-a1ba8af0be83}</UniqueIdentifier>
+    <Filter Include="Utility\SGD Wrappers">
+      <UniqueIdentifier>{40ba1575-5dd3-451c-8e2a-6b4041f1a0be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{3590972f-52c1-4ff0-83da-34949aaa2654}</UniqueIdentifier>
     </Filter>
     <Filter Include="Artificial Intelligence">
-      <UniqueIdentifier>{d2fc8d23-5c6c-4c84-bc94-fb6e14d5b7ac}</UniqueIdentifier>
+      <UniqueIdentifier>{00b86c75-483c-4deb-b95e-fe85e3869e12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities %28XML, Wrappers and Managers%29\SGD Wrappers">
-      <UniqueIdentifier>{96572c12-e5ec-4852-822e-949742cec576}</UniqueIdentifier>
+    <Filter Include="Animation Engine">
+      <UniqueIdentifier>{78936815-3cdc-4352-8cb5-7cc149fa4803}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities %28XML, Wrappers and Managers%29\Tiny XML">
-      <UniqueIdentifier>{ade446a8-326a-4d80-a836-3a4d68696163}</UniqueIdentifier>
+    <Filter Include="World Engine">
+      <UniqueIdentifier>{a9ee595d-e362-47af-98b4-b637c3b566df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Puzzles">
-      <UniqueIdentifier>{ff0e6667-f151-4d7c-b772-c01a29c74070}</UniqueIdentifier>
+    <Filter Include="Particle Engine">
+      <UniqueIdentifier>{dc338739-8789-4ca1-8928-fd4e0b2e4da5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Weapons">
-      <UniqueIdentifier>{842e5745-6339-4b9b-98d2-2e3855347dca}</UniqueIdentifier>
+    <Filter Include="Puzzle Engine">
+      <UniqueIdentifier>{06c53854-a633-4afa-988c-5fbd221f250b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Weather System">
-      <UniqueIdentifier>{476a5e86-d607-43e7-9ca0-d42e110d4e44}</UniqueIdentifier>
+    <Filter Include="Messaging and Events">
+      <UniqueIdentifier>{29ea9943-2742-4b58-aa12-9223c122b41a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Items">
-      <UniqueIdentifier>{11e72800-6746-4780-a3f4-e227b3905b4d}</UniqueIdentifier>
+    <Filter Include="Input">
+      <UniqueIdentifier>{3ead914f-b9a7-4e44-b2df-ebec7c5cec97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Hierarchy\Objects">
+      <UniqueIdentifier>{f05ef43b-0776-4b78-82b4-b851d76b620d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Hierarchy\Characters">
+      <UniqueIdentifier>{8bd6da29-0e7d-4fac-a6d2-ea196a679729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Hierarchy\Weapons">
+      <UniqueIdentifier>{c55596c7-e4f8-4621-a5dd-8e5861c39fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Camera">
+      <UniqueIdentifier>{22ee740e-fec3-4619-b776-f5fd752905b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Weather">
+      <UniqueIdentifier>{b4b96eb6-461e-46fe-8b44-cd60e3b01728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Light">
+      <UniqueIdentifier>{0ee8d548-d905-420a-b979-763f0fe0d51e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\CGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Camera\CCameraControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Animation\CAnimation.cpp">
-      <Filter>Animation Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Animation\CAnimationPlayer.cpp">
-      <Filter>Animation Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Animation\CAnimationManager.cpp">
-      <Filter>Animation Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp">
-      <Filter>World Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Tile Mapping\CTileset.cpp">
-      <Filter>World Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Tile Mapping\CMap.cpp">
-      <Filter>World Engine</Filter>
+    <ClCompile Include="source\Game Objects\CObjectManager.cpp">
+      <Filter>Object Hierarchy</Filter>
     </ClCompile>
     <ClCompile Include="source\States\CAudioOptionsState.cpp">
       <Filter>Game States</Filter>
     </ClCompile>
     <ClCompile Include="source\States\CBaseMenu.cpp">
-      <Filter>Game States</Filter>
-    </ClCompile>
-    <ClCompile Include="source\CBitmapFont.cpp">
       <Filter>Game States</Filter>
     </ClCompile>
     <ClCompile Include="source\States\CCreditsState.cpp">
@@ -111,141 +84,163 @@
     <ClCompile Include="source\States\CNewGameState.cpp">
       <Filter>Game States</Filter>
     </ClCompile>
-    <ClCompile Include="source\States\CVideoOptionsState.cpp">
-      <Filter>Game States</Filter>
-    </ClCompile>
     <ClCompile Include="source\States\COptionsState.cpp">
       <Filter>Game States</Filter>
     </ClCompile>
+    <ClCompile Include="source\States\CVideoOptionsState.cpp">
+      <Filter>Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Util\ByteUtil.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Util\CDialogueList.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinystr.cpp">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxml.cpp">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\CSGD_XAudio2.cpp">
+      <Filter>Utility\SGD Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
+      <Filter>Utility\SGD Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CRandomAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CSwarmAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
     <ClCompile Include="source\Particle Engine\Emitter.cpp">
-      <Filter>Particles Engine</Filter>
+      <Filter>Particle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Particle Engine\FlyWeight.cpp">
+      <Filter>Particle Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
-      <Filter>Particles Engine</Filter>
+      <Filter>Particle Engine</Filter>
     </ClCompile>
-    <ClCompile Include="source\Input Manager\CInputManager.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    <ClCompile Include="source\Tile Mapping\CMap.cpp">
+      <Filter>World Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp">
+      <Filter>World Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp">
+      <Filter>World Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzle.cpp">
+      <Filter>Puzzle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp">
+      <Filter>Puzzle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimation.cpp">
+      <Filter>Animation Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimationManager.cpp">
+      <Filter>Animation Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimationPlayer.cpp">
+      <Filter>Animation Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Animation\CFrame.cpp">
       <Filter>Animation Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\Messaging\CEventSystem.cpp">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClCompile>
     <ClCompile Include="source\Messaging\CMessageSystem.cpp">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClCompile>
     <ClCompile Include="source\Messaging\CStringTable.cpp">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClCompile>
     <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\CSGD_DirectInput.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
+      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\Wrappers\CSGD_TextureManager.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\CSGD_XAudio2.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinystr.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxml.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
+      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\Input Manager\CXboxController.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Input Manager\CInputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CArrow.cpp">
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClCompile>
     <ClCompile Include="source\Game Objects\CBaseObject.cpp">
       <Filter>Object Hierarchy</Filter>
     </ClCompile>
     <ClCompile Include="source\Game Objects\CEnemy.cpp">
-      <Filter>Object Hierarchy</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClCompile>
     <ClCompile Include="source\Game Objects\CNPC.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Game Objects\CObjectManager.cpp">
-      <Filter>Object Hierarchy</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClCompile>
     <ClCompile Include="source\Game Objects\CPlayer.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClCompile>
     <ClCompile Include="source\Game Objects\CBaseCharacter.cpp">
-      <Filter>Object Hierarchy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Util\ByteUtil.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Puzzles\CPuzzle.cpp">
-      <Filter>Puzzles</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp">
-      <Filter>Puzzles</Filter>
-    </ClCompile>
-    <ClCompile Include="source\AI_States\CRandomAIState.cpp">
-      <Filter>Artificial Intelligence</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Weapons\CSword.cpp">
-      <Filter>Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Weapons\CDagger.cpp">
-      <Filter>Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Weapons\CHammer.cpp">
-      <Filter>Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Weapons\CCrossBow.cpp">
-      <Filter>Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Util\CDialogueList.cpp">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Weather System\WeatherManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Post Process\CPostProcess.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClCompile>
     <ClCompile Include="source\Items\CPotion.cpp">
-      <Filter>Items</Filter>
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClCompile>
-Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAIState.cpp">
-      <Filter>Artificial Intelligence</Filter>
-    </ClCompile
+    <ClCompile Include="source\Weapons\CCrossBow.cpp">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CDagger.cpp">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CHammer.cpp">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CSword.cpp">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClCompile>
     <ClCompile Include="source\Light System\LightEngine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Graphics\Light</Filter>
     </ClCompile>
-    <ClCompile Include="source\Game Objects\CArrow.cpp">
-      <Filter>Object Hierarchy</Filter>
+    <ClCompile Include="source\Post Process\CPostProcess.cpp">
+      <Filter>Graphics\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Camera\CCameraControl.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weather System\WeatherManager.cpp">
+      <Filter>Graphics\Weather</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBitmapFont.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\StdAfx.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\Wrappers\CSGD_DirectInput.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\CGame.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="source\Game Objects\CObjectManager.h">
+      <Filter>Object Hierarchy</Filter>
     </ClInclude>
-    <ClInclude Include="source\StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Camera\CCameraControl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Particle Engine\Emitter.h">
-      <Filter>Particles Engine</Filter>
+    <ClInclude Include="source\Game Objects\IBaseInterface.h">
+      <Filter>Object Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="source\States\CAudioOptionsState.h">
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="source\States\CBaseMenu.h">
       <Filter>Game States</Filter>
     </ClInclude>
     <ClInclude Include="source\States\CCreditsState.h">
@@ -260,32 +255,47 @@ Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAI
     <ClInclude Include="source\States\CMainMenuState.h">
       <Filter>Game States</Filter>
     </ClInclude>
-    <ClInclude Include="source\States\CVideoOptionsState.h">
+    <ClInclude Include="source\States\CNewGameState.h">
       <Filter>Game States</Filter>
     </ClInclude>
-    <ClInclude Include="source\Particle Engine\ParticleWeapon.h">
-      <Filter>Particles Engine</Filter>
+    <ClInclude Include="source\States\COptionsState.h">
+      <Filter>Game States</Filter>
     </ClInclude>
-    <ClInclude Include="source\Particle Engine\Particle.h">
-      <Filter>Particles Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Messaging\Messages.h">
-      <Filter>Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Messaging\IListener.h">
-      <Filter>Messaging</Filter>
+    <ClInclude Include="source\States\CVideoOptionsState.h">
+      <Filter>Game States</Filter>
     </ClInclude>
     <ClInclude Include="source\States\IGameState.h">
       <Filter>Game States</Filter>
     </ClInclude>
-    <ClInclude Include="source\Tile Mapping\CTile.h">
-      <Filter>World Engine</Filter>
+    <ClInclude Include="source\Util\ByteUtil.h">
+      <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="source\Tile Mapping\CTileset.h">
-      <Filter>World Engine</Filter>
+    <ClInclude Include="source\Util\CDialogueList.h">
+      <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="source\Tile Mapping\CWorldEngine.h">
-      <Filter>World Engine</Filter>
+    <ClInclude Include="source\Util\CTimer.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\UtilStructs.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tinyxml\tinystr.h">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tinyxml\tinyxml.h">
+      <Filter>Utility\Tiny XML</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Wrappers\CSGD_XAudio2.h">
+      <Filter>Utility\SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Wrappers\SGD_Math.h">
+      <Filter>Utility\SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Wrappers\SGD_Util.h">
+      <Filter>Utility\SGD Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CIdleAIState.h">
+      <Filter>Artificial Intelligence</Filter>
     </ClInclude>
     <ClInclude Include="source\AI_States\CRandomAIState.h">
       <Filter>Artificial Intelligence</Filter>
@@ -296,20 +306,41 @@ Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAI
     <ClInclude Include="source\AI_States\IBaseAIState.h">
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
-    <ClInclude Include="source\States\CNewGameState.h">
-      <Filter>Game States</Filter>
+    <ClInclude Include="source\Particle Engine\Emitter.h">
+      <Filter>Particle Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\Messaging\CStringTable.h">
-      <Filter>Messaging</Filter>
+    <ClInclude Include="source\Particle Engine\FlyWeight.h">
+      <Filter>Particle Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\Input Manager\CInputManager.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+    <ClInclude Include="source\Particle Engine\Particle.h">
+      <Filter>Particle Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\States\COptionsState.h">
-      <Filter>Game States</Filter>
+    <ClInclude Include="source\Particle Engine\ParticleWeapon.h">
+      <Filter>Particle Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\Animation\CFrame.h">
-      <Filter>Animation Engine</Filter>
+    <ClInclude Include="source\Tile Mapping\CLayer.h">
+      <Filter>World Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Tile Mapping\CMap.h">
+      <Filter>World Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Tile Mapping\CTile.h">
+      <Filter>World Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Tile Mapping\CTileset.h">
+      <Filter>World Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Tile Mapping\CWorldEngine.h">
+      <Filter>World Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzle.h">
+      <Filter>Puzzle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h">
+      <Filter>Puzzle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Puzzles\CPuzzleManager.h">
+      <Filter>Puzzle Engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Animation\CAnimation.h">
       <Filter>Animation Engine</Filter>
@@ -320,139 +351,95 @@ Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAI
     <ClInclude Include="source\Animation\CAnimationPlayer.h">
       <Filter>Animation Engine</Filter>
     </ClInclude>
-    <ClInclude Include="source\Tile Mapping\CLayer.h">
-      <Filter>World Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Tile Mapping\CMap.h">
-      <Filter>World Engine</Filter>
+    <ClInclude Include="source\Animation\CFrame.h">
+      <Filter>Animation Engine</Filter>
     </ClInclude>
     <ClInclude Include="source\Messaging\CEvent.h">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
     <ClInclude Include="source\Messaging\CEventSystem.h">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
     <ClInclude Include="source\Messaging\CMessageSystem.h">
-      <Filter>Messaging</Filter>
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
-    <ClInclude Include="source\CBitmapFont.h">
-      <Filter>Game States</Filter>
+    <ClInclude Include="source\Messaging\CStringTable.h">
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
-    <ClInclude Include="source\AI_States\CIdleAIState.h">
-      <Filter>Artificial Intelligence</Filter>
+    <ClInclude Include="source\Messaging\IListener.h">
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
-    <ClInclude Include="source\States\CBaseMenu.h">
-      <Filter>Game States</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Wrappers\CSGD_XAudio2.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
+    <ClInclude Include="source\Messaging\Messages.h">
+      <Filter>Messaging and Events</Filter>
     </ClInclude>
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Wrappers\CSGD_DirectInput.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
+      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="source\Wrappers\CSGD_TextureManager.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Wrappers\SGD_Util.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\SGD Wrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tinyxml\tinystr.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tinyxml\tinyxml.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29\Tiny XML</Filter>
+      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="source\Input Manager\CXboxController.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Input Manager\CInputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CArrow.h">
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClInclude>
     <ClInclude Include="source\Game Objects\CBaseObject.h">
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
-    <ClInclude Include="source\Game Objects\CEnemy.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
     <ClInclude Include="source\Game Objects\CNPC.h">
-      <Filter>Object Hierarchy</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="source\Game Objects\CObjectManager.h">
-      <Filter>Object Hierarchy</Filter>
+    <ClInclude Include="source\Game Objects\CEnemy.h">
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClInclude>
     <ClInclude Include="source\Game Objects\CPlayer.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Game Objects\IBaseInterface.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Wrappers\SGD_Math.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Util\UtilStructs.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClInclude>
     <ClInclude Include="source\Game Objects\CBaseCharacter.h">
-      <Filter>Object Hierarchy</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Util\ByteUtil.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Util\CTimer.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Puzzles\CPuzzle.h">
-      <Filter>Puzzles</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Puzzles\CPuzzleManager.h">
-      <Filter>Puzzles</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weapons\IBaseWeapon.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weapons\CSword.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weapons\CDagger.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weapons\CHammer.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weapons\CCrossBow.h">
-      <Filter>Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h">
-      <Filter>Puzzles</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Util\CDialogueList.h">
-      <Filter>Utilities %28XML, Wrappers and Managers%29</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Weather System\WeatherManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Post Process\CPostProcess.h">
-      <Filter>Header Files</Filter>
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClInclude>
     <ClInclude Include="source\Items\IBaseItem.h">
-      <Filter>Items</Filter>
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClInclude>
     <ClInclude Include="source\Items\CPotion.h">
-      <Filter>Items</Filter>
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="source\Game Objects\CArrow.h">
-      <Filter>Object Hierarchy</Filter>
+    <ClInclude Include="source\Weapons\CSword.h">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CCrossBow.h">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CDagger.h">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CHammer.h">
+      <Filter>Object Hierarchy\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\IBaseWeapon.h">
+      <Filter>Object Hierarchy\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="source\Light System\LightEngine.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphics\Light</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="source\States\TempAsset1.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="source\States\TempAsset2.png">
-      <Filter>Resource Files</Filter>
-    </None>
+    <ClInclude Include="source\Post Process\CPostProcess.h">
+      <Filter>Graphics\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Camera\CCameraControl.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weather System\WeatherManager.h">
+      <Filter>Graphics\Weather</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBitmapFont.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\StdAfx.h" />
+    <ClInclude Include="source\Wrappers\CSGD_DirectInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

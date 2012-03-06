@@ -10,6 +10,165 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\AI_States\CRandomAIState.cpp" />
+    <ClCompile Include="source\AI_States\CSwarmAIState.cpp" />
+    <ClCompile Include="source\Animation\CAnimation.cpp" />
+    <ClCompile Include="source\Animation\CAnimationManager.cpp" />
+    <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
+    <ClCompile Include="source\Animation\CFrame.cpp" />
+    <ClCompile Include="source\Camera\CCameraControl.cpp" />
+    <ClCompile Include="source\CBitmapFont.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\Game Objects\CArrow.cpp" />
+    <ClCompile Include="source\Game Objects\CBaseCharacter.cpp" />
+    <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
+    <ClCompile Include="source\Game Objects\CEnemy.cpp" />
+    <ClCompile Include="source\Game Objects\CNPC.cpp" />
+    <ClCompile Include="source\Game Objects\CObjectManager.cpp" />
+    <ClCompile Include="source\Game Objects\CPlayer.cpp" />
+    <ClCompile Include="source\Input Manager\CInputManager.cpp" />
+    <ClCompile Include="source\Input Manager\CXboxController.cpp" />
+    <ClCompile Include="source\Items\CPotion.cpp" />
+    <ClCompile Include="source\Light System\LightEngine.cpp" />
+    <ClCompile Include="source\Messaging\CEventSystem.cpp" />
+    <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
+    <ClCompile Include="source\Messaging\CStringTable.cpp" />
+    <ClCompile Include="source\Particle Engine\Emitter.cpp" />
+    <ClCompile Include="source\Particle Engine\FlyWeight.cpp" />
+    <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp" />
+    <ClCompile Include="source\Post Process\CPostProcess.cpp" />
+    <ClCompile Include="source\Puzzles\CPuzzle.cpp" />
+    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp" />
+    <ClCompile Include="source\States\CAudioOptionsState.cpp" />
+    <ClCompile Include="source\States\CBaseMenu.cpp" />
+    <ClCompile Include="source\States\CCreditsState.cpp" />
+    <ClCompile Include="source\States\CGameplayState.cpp" />
+    <ClCompile Include="source\States\CLoadGameState.cpp" />
+    <ClCompile Include="source\States\CMainMenuState.cpp" />
+    <ClCompile Include="source\States\CNewGameState.cpp" />
+    <ClCompile Include="source\States\COptionsState.cpp" />
+    <ClCompile Include="source\States\CVideoOptionsState.cpp" />
+    <ClCompile Include="source\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CMap.cpp" />
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
+    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
+    <ClCompile Include="source\tinyxml\tinystr.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxml.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Util\ByteUtil.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Util\CDialogueList.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CCrossBow.cpp" />
+    <ClCompile Include="source\Weapons\CDagger.cpp" />
+    <ClCompile Include="source\Weapons\CHammer.cpp" />
+    <ClCompile Include="source\Weapons\CSword.cpp" />
+    <ClCompile Include="source\Weather System\WeatherManager.cpp" />
+    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\CSGD_DirectInput.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\CSGD_TextureManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\CSGD_XAudio2.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\AI_States\CIdleAIState.h" />
+    <ClInclude Include="source\AI_States\CRandomAIState.h" />
+    <ClInclude Include="source\AI_States\CSwarmAIState.h" />
+    <ClInclude Include="source\AI_States\IBaseAIState.h" />
+    <ClInclude Include="source\Animation\CAnimation.h" />
+    <ClInclude Include="source\Animation\CAnimationManager.h" />
+    <ClInclude Include="source\Animation\CAnimationPlayer.h" />
+    <ClInclude Include="source\Animation\CFrame.h" />
+    <ClInclude Include="source\Camera\CCameraControl.h" />
+    <ClInclude Include="source\CBitmapFont.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\Game Objects\CArrow.h" />
+    <ClInclude Include="source\Game Objects\CBaseCharacter.h" />
+    <ClInclude Include="source\Game Objects\CBaseObject.h" />
+    <ClInclude Include="source\Game Objects\CEnemy.h" />
+    <ClInclude Include="source\Game Objects\CNPC.h" />
+    <ClInclude Include="source\Game Objects\CObjectManager.h" />
+    <ClInclude Include="source\Game Objects\CPlayer.h" />
+    <ClInclude Include="source\Game Objects\IBaseInterface.h" />
+    <ClInclude Include="source\Input Manager\CInputManager.h" />
+    <ClInclude Include="source\Input Manager\CXboxController.h" />
+    <ClInclude Include="source\Items\CPotion.h" />
+    <ClInclude Include="source\Items\IBaseItem.h" />
+    <ClInclude Include="source\Light System\LightEngine.h" />
+    <ClInclude Include="source\Messaging\CEvent.h" />
+    <ClInclude Include="source\Messaging\CEventSystem.h" />
+    <ClInclude Include="source\Messaging\CMessageSystem.h" />
+    <ClInclude Include="source\Messaging\CStringTable.h" />
+    <ClInclude Include="source\Messaging\IListener.h" />
+    <ClInclude Include="source\Messaging\Messages.h" />
+    <ClInclude Include="source\Particle Engine\Emitter.h" />
+    <ClInclude Include="source\Particle Engine\FlyWeight.h" />
+    <ClInclude Include="source\Particle Engine\Particle.h" />
+    <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
+    <ClInclude Include="source\Post Process\CPostProcess.h" />
+    <ClInclude Include="source\Puzzles\CPuzzle.h" />
+    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
+    <ClInclude Include="source\Puzzles\CPuzzleManager.h" />
+    <ClInclude Include="source\States\CAudioOptionsState.h" />
+    <ClInclude Include="source\States\CBaseMenu.h" />
+    <ClInclude Include="source\States\CCreditsState.h" />
+    <ClInclude Include="source\States\CGameplayState.h" />
+    <ClInclude Include="source\States\CLoadGameState.h" />
+    <ClInclude Include="source\States\CMainMenuState.h" />
+    <ClInclude Include="source\States\CNewGameState.h" />
+    <ClInclude Include="source\States\COptionsState.h" />
+    <ClInclude Include="source\States\CVideoOptionsState.h" />
+    <ClInclude Include="source\States\IGameState.h" />
+    <ClInclude Include="source\StdAfx.h" />
+    <ClInclude Include="source\Tile Mapping\CLayer.h" />
+    <ClInclude Include="source\Tile Mapping\CMap.h" />
+    <ClInclude Include="source\Tile Mapping\CTile.h" />
+    <ClInclude Include="source\Tile Mapping\CTileset.h" />
+    <ClInclude Include="source\Tile Mapping\CWorldEngine.h" />
+    <ClInclude Include="source\tinyxml\tinystr.h" />
+    <ClInclude Include="source\tinyxml\tinyxml.h" />
+    <ClInclude Include="source\Util\ByteUtil.h" />
+    <ClInclude Include="source\Util\CDialogueList.h" />
+    <ClInclude Include="source\Util\CTimer.h" />
+    <ClInclude Include="source\Util\UtilStructs.h" />
+    <ClInclude Include="source\Weapons\CCrossBow.h" />
+    <ClInclude Include="source\Weapons\CDagger.h" />
+    <ClInclude Include="source\Weapons\CHammer.h" />
+    <ClInclude Include="source\Weapons\CSword.h" />
+    <ClInclude Include="source\Weapons\IBaseWeapon.h" />
+    <ClInclude Include="source\Weather System\WeatherManager.h" />
+    <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
+    <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />
+    <ClInclude Include="source\Wrappers\CSGD_TextureManager.h" />
+    <ClInclude Include="source\Wrappers\CSGD_XAudio2.h" />
+    <ClInclude Include="source\Wrappers\SGD_Math.h" />
+    <ClInclude Include="source\Wrappers\SGD_Util.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F01D96CC-C230-4F34-8863-B37807081DF7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,171 +236,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAIState.cpp" />
-    <ClCompile Include="source\AI_States\CRandomAIState.cpp" />
-    <ClCompile Include="source\Animation\CAnimation.cpp" />
-    <ClCompile Include="source\Animation\CAnimationManager.cpp" />
-    <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
-    <ClCompile Include="source\Animation\CFrame.cpp" />
-    <ClCompile Include="source\Camera\CCameraControl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\CBitmapFont.cpp" />
-    <ClCompile Include="source\CGame.cpp" />
-    <ClCompile Include="source\Game Objects\CArrow.cpp" />
-    <ClCompile Include="source\Game Objects\CBaseCharacter.cpp" />
-    <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
-    <ClCompile Include="source\Game Objects\CEnemy.cpp" />
-    <ClCompile Include="source\Game Objects\CNPC.cpp" />
-    <ClCompile Include="source\Game Objects\CObjectManager.cpp" />
-    <ClCompile Include="source\Game Objects\CPlayer.cpp" />
-    <ClCompile Include="source\Input Manager\CInputManager.cpp" />
-    <ClCompile Include="source\Input Manager\CXboxController.cpp" />
-    <ClCompile Include="source\Items\CPotion.cpp" />
-    <ClCompile Include="source\Light System\LightEngine.cpp" />
-    <ClCompile Include="source\Messaging\CEventSystem.cpp" />
-    <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
-    <ClCompile Include="source\Messaging\CStringTable.cpp" />
-    <ClCompile Include="source\Particle Engine\Emitter.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Post Process\CPostProcess.cpp" />
-    <ClCompile Include="source\Puzzles\CPuzzle.cpp" />
-    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp" />
-    <ClCompile Include="source\States\CAudioOptionsState.cpp" />
-    <ClCompile Include="source\States\CBaseMenu.cpp" />
-    <ClCompile Include="source\States\CCreditsState.cpp" />
-    <ClCompile Include="source\States\CGameplayState.cpp" />
-    <ClCompile Include="source\States\CLoadGameState.cpp" />
-    <ClCompile Include="source\States\CMainMenuState.cpp" />
-    <ClCompile Include="source\States\CNewGameState.cpp" />
-    <ClCompile Include="source\States\COptionsState.cpp" />
-    <ClCompile Include="source\States\CVideoOptionsState.cpp" />
-    <ClCompile Include="source\StdAfx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Tile Mapping\CMap.cpp" />
-    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
-    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
-    <ClCompile Include="source\tinyxml\tinystr.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxml.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxmlerror.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\tinyxml\tinyxmlparser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Util\ByteUtil.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Util\CDialogueList.cpp" />
-    <ClCompile Include="source\Weapons\CCrossBow.cpp" />
-    <ClCompile Include="source\Weapons\CDagger.cpp" />
-    <ClCompile Include="source\Weapons\CHammer.cpp" />
-    <ClCompile Include="source\Weapons\CSword.cpp" />
-    <ClCompile Include="source\Weather System\WeatherManager.cpp" />
-    <ClCompile Include="source\WinMain.cpp" />
-    <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\CSGD_DirectInput.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\CSGD_TextureManager.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\CSGD_XAudio2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\Wrappers\SGD_Math.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\AI_States\CIdleAIState.h" />
-    <ClInclude Include="source\AI_States\CRandomAIState.h" />
-    <ClInclude Include="source\AI_States\CSwarmAIState.h" />
-    <ClInclude Include="source\AI_States\IBaseAIState.h" />
-    <ClInclude Include="source\Animation\CAnimation.h" />
-    <ClInclude Include="source\Animation\CAnimationManager.h" />
-    <ClInclude Include="source\Animation\CAnimationPlayer.h" />
-    <ClInclude Include="source\Animation\CFrame.h" />
-    <ClInclude Include="source\Camera\CCameraControl.h" />
-    <ClInclude Include="source\CBitmapFont.h" />
-    <ClInclude Include="source\CGame.h" />
-    <ClInclude Include="source\Game Objects\CArrow.h" />
-    <ClInclude Include="source\Game Objects\CBaseCharacter.h" />
-    <ClInclude Include="source\Game Objects\CBaseObject.h" />
-    <ClInclude Include="source\Game Objects\CEnemy.h" />
-    <ClInclude Include="source\Game Objects\CNPC.h" />
-    <ClInclude Include="source\Game Objects\CObjectManager.h" />
-    <ClInclude Include="source\Game Objects\CPlayer.h" />
-    <ClInclude Include="source\Game Objects\IBaseInterface.h" />
-    <ClInclude Include="source\Input Manager\CInputManager.h" />
-    <ClInclude Include="source\Input Manager\CXboxController.h" />
-    <ClInclude Include="source\Items\CPotion.h" />
-    <ClInclude Include="source\Items\IBaseItem.h" />
-    <ClInclude Include="source\Light System\LightEngine.h" />
-    <ClInclude Include="source\Messaging\CEvent.h" />
-    <ClInclude Include="source\Messaging\CEventSystem.h" />
-    <ClInclude Include="source\Messaging\CMessageSystem.h" />
-    <ClInclude Include="source\Messaging\CStringTable.h" />
-    <ClInclude Include="source\Messaging\IListener.h" />
-    <ClInclude Include="source\Messaging\Messages.h" />
-    <ClInclude Include="source\Particle Engine\Emitter.h" />
-    <ClInclude Include="source\Particle Engine\Particle.h" />
-    <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
-    <ClInclude Include="source\Post Process\CPostProcess.h" />
-    <ClInclude Include="source\Puzzles\CPuzzle.h" />
-    <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
-    <ClInclude Include="source\Puzzles\CPuzzleManager.h" />
-    <ClInclude Include="source\States\CAudioOptionsState.h" />
-    <ClInclude Include="source\States\CBaseMenu.h" />
-    <ClInclude Include="source\States\CCreditsState.h" />
-    <ClInclude Include="source\States\CGameplayState.h" />
-    <ClInclude Include="source\States\CLoadGameState.h" />
-    <ClInclude Include="source\States\CMainMenuState.h" />
-    <ClInclude Include="source\States\CNewGameState.h" />
-    <ClInclude Include="source\States\COptionsState.h" />
-    <ClInclude Include="source\States\CVideoOptionsState.h" />
-    <ClInclude Include="source\States\IGameState.h" />
-    <ClInclude Include="source\StdAfx.h" />
-    <ClInclude Include="source\Tile Mapping\CLayer.h" />
-    <ClInclude Include="source\Tile Mapping\CMap.h" />
-    <ClInclude Include="source\Tile Mapping\CTile.h" />
-    <ClInclude Include="source\Tile Mapping\CTileset.h" />
-    <ClInclude Include="source\Tile Mapping\CWorldEngine.h" />
-    <ClInclude Include="source\tinyxml\tinystr.h" />
-    <ClInclude Include="source\tinyxml\tinyxml.h" />
-    <ClInclude Include="source\Util\ByteUtil.h" />
-    <ClInclude Include="source\Util\CDialogueList.h" />
-    <ClInclude Include="source\Util\CTimer.h" />
-    <ClInclude Include="source\Util\UtilStructs.h" />
-    <ClInclude Include="source\Weapons\CCrossBow.h" />
-    <ClInclude Include="source\Weapons\CDagger.h" />
-    <ClInclude Include="source\Weapons\CHammer.h" />
-    <ClInclude Include="source\Weapons\CSword.h" />
-    <ClInclude Include="source\Weapons\IBaseWeapon.h" />
-    <ClInclude Include="source\Weather System\WeatherManager.h" />
-    <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
-    <ClInclude Include="source\Wrappers\CSGD_DirectInput.h" />
-    <ClInclude Include="source\Wrappers\CSGD_TextureManager.h" />
-    <ClInclude Include="source\Wrappers\CSGD_XAudio2.h" />
-    <ClInclude Include="source\Wrappers\SGD_Math.h" />
-    <ClInclude Include="source\Wrappers\SGD_Util.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="source\States\TempAsset1.png" />
-    <None Include="source\States\TempAsset2.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
