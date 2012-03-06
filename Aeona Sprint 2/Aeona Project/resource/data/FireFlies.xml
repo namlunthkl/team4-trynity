@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>particle.bmp</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>0</EmitterPosX>
+  <EmitterPosY>0</EmitterPosY>
+  <MaxParticles>10</MaxParticles>
+  <Size>0.2</Size>
+  <MaxLife>1</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>600</SpawnHeight>
+  <ScaleStart>0.2</ScaleStart>
+  <ScaleEnd>0.2</ScaleEnd>
+  <Rotation>1.2</Rotation>
+  <MinVelX>-20</MinVelX>
+  <MaxVelX>20</MaxVelX>
+  <MinVelY>-20</MinVelY>
+  <MaxVelY>20</MaxVelY>
+  <StartColorA>0</StartColorA>
+  <StartColorR>255</StartColorR>
+  <StartColorG>255</StartColorG>
+  <StartColorB>255</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>242</EndColorR>
+  <EndColorG>121</EndColorG>
+  <EndColorB>0</EndColorB>
+  <Source>6</Source>
+  <Dest>2</Dest>
+  <GravPosX>383</GravPosX>
+  <GravPosY>232</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>
