@@ -60,6 +60,7 @@ public:
 	//logo timer..w/e it has to be here :D
 	float m_fLogoTimer;
 	float m_fDerpScroll;
+	unsigned int m_uiPic;
 private:
 
 	//	Timer - FPS, Game Time, Elapsed Time
