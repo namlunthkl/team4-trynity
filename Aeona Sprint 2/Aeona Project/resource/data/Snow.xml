@@ -3,9 +3,9 @@
   <ImageFile>Corona.bmp</ImageFile>
   <Continuous>1</Continuous>
   <Reanimate>0</Reanimate>
-  <EmitterPosX>0</EmitterPosX>
-  <EmitterPosY>-10</EmitterPosY>
-  <MaxParticles>1000</MaxParticles>
+  <EmitterPosX>-50</EmitterPosX>
+  <EmitterPosY>-50</EmitterPosY>
+  <MaxParticles>300</MaxParticles>
   <Size>0.180802628</Size>
   <MaxLife>4</MaxLife>
   <SpawnWidth>800</SpawnWidth>
