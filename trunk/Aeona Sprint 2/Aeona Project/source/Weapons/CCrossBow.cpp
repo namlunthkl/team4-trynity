@@ -11,12 +11,13 @@
 #include "../Game Objects/CArrow.h"
 CCrossBow::CCrossBow()
 {
-
 	//Load the Animation
 	CBaseCharacter::LoadAnimations("resource/PlayerWCrossBow.xml");
 	SetAttacking(false);
 	m_pArrow = NULL;
 	m_fTime = 0;
+
+	SetSound(AUDIO->SFXLoadSound("resource/sound/Bow.wav"));
 }
 void CCrossBow::Render(PointD nPos)
 {
@@ -34,9 +35,10 @@ void CCrossBow::Update(float fElapsedTime)
 }
 void CCrossBow::Attack(void)
 {
-	SetAttacking(true);
 	if(m_fTime >= 0.5f)
 	{
+		SetAttacking(true);
+		AUDIO->SFXPlaySound(GetSound());
 		m_fTime = 0;
 		ShootArrow();
 	}
