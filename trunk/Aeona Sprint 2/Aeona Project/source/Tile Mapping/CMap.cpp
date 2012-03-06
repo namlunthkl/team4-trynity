@@ -226,12 +226,24 @@ void CMap::Render(int nCullingMode)
 //	Parameters	:	pBase - Object that we're checking collisions with
 //	Return		:	True if collided, false otherwise
 ////////////////////////////////////////////////////////////////////////
-bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
+bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable,
+	RectD* CollisionRect, unsigned int uiObjType)
 {
-	// TODO: Check collisions against all tiles on screen
 	bool bCollided = false;					// Basically what will be returned
-
-	CBaseObject* pObject = (CBaseObject*)pBase;
+	CBaseObject* pObject = nullptr;
+	RectD ObjCollisionRect;
+	unsigned int ObjType;
+	if(pBase)
+	{
+		pObject = (CBaseObject*)pBase;
+		ObjCollisionRect = pObject->GetCollisionRect();
+		ObjType = pObject->GetType();
+	}
+	else
+	{
+		ObjCollisionRect = *CollisionRect;
+		ObjType = uiObjType;
+	}
 
 	// Indexes we'll need for looping
 	unsigned int uiIndexLayer	= 0;		// Loop through layers
@@ -248,11 +260,7 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 			// Get a pointer to the current tile - for better readability
 			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
 
-			// Check if the tile is collidable
-			if(TestBit(tileCurrent->GetInfo(), BIT_TILE_COLLISION))
-			{
-				// Checking a collidable tile
-
+			
 				// Get the tile collision rect
 				RECT rectTileCollision;
 				rectTileCollision.left = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
@@ -262,44 +270,51 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 
 				RECT rectIntersection;
 				// If Base's collision rect intersects with this tile's collision rect...
-				if(IntersectRect(&rectIntersection, &rectTileCollision, &pBase->GetCollisionRect().GetWindowsRECT())) 
+				if(IntersectRect(&rectIntersection, &rectTileCollision, &ObjCollisionRect.GetWindowsRECT())) 
 				{
 					// ...we know that pBase collided with this tile
 					bCollided = true;
 
 					double dRectWidth = rectIntersection.right - rectIntersection.left;
 					double dRectHeight = rectIntersection.bottom - rectIntersection.top;
-					double dAnmHeight = pObject->GetCollisionRect().bottom - pObject->GetCollisionRect().top;
-					double dAnmWidth = pObject->GetCollisionRect().right - pObject->GetCollisionRect().left;
+					double dAnmHeight = ObjCollisionRect.bottom - ObjCollisionRect.top;
+					double dAnmWidth = ObjCollisionRect.right - ObjCollisionRect.left;
 					double dTilePosX = (rectTileCollision.right + rectTileCollision.left) / 2;
 					double dTilePosY = (rectTileCollision.bottom + rectTileCollision.top) / 2;
-
-					if(dRectWidth > dRectHeight)
+			
+					// Check if the tile is collidable
+					if(TestBit(tileCurrent->GetInfo(), BIT_TILE_COLLISION))
 					{
-						// Top/Down Collision
-						if(pObject->GetCollisionRect().top < rectTileCollision.top)
+						if(pObject)
 						{
-							if(pObject->GetVelY() > 0)
-								pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - dAnmHeight);
-						}
-						else if(pObject->GetCollisionRect().bottom > rectTileCollision.bottom)
-						{
-							if(pObject->GetVelY() < 0)
-								pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
-						}
-					}
-					if(dRectHeight > dRectWidth)
-					{
-						// Side Collision
-						if(pObject->GetCollisionRect().left < rectTileCollision.left)
-						{
-							if(pObject->GetVelX() > 0)
-								pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - dAnmWidth);
-						}
-						else if(pObject->GetCollisionRect().right > rectTileCollision.right)
-						{
-							if(pObject->GetVelX() < 0)
-								pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
+							if(dRectWidth > dRectHeight)
+							{
+								// Top/Down Collision
+								if(ObjCollisionRect.top < rectTileCollision.top)
+								{
+									if(pObject->GetVelY() > 0)
+										pObject->SetPosY(rectIntersection.top + pObject->GetAnchorPoint().y - dAnmHeight);
+								}
+								else if(ObjCollisionRect.bottom > rectTileCollision.bottom)
+								{
+									if(pObject->GetVelY() < 0)
+										pObject->SetPosY(rectIntersection.bottom + pObject->GetAnchorPoint().y);
+								}
+							}
+							if(dRectHeight > dRectWidth)
+							{
+								// Side Collision
+								if(ObjCollisionRect.left < rectTileCollision.left)
+								{
+									if(pObject->GetVelX() > 0)
+										pObject->SetPosX(rectIntersection.left + pObject->GetAnchorPoint().x - dAnmWidth);
+								}
+								else if(ObjCollisionRect.right > rectTileCollision.right)
+								{
+									if(pObject->GetVelX() < 0)
+										pObject->SetPosX(rectIntersection.right + pObject->GetAnchorPoint().x);
+								}
+							}
 						}
 					}
 
@@ -307,30 +322,32 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 					if(strcmp(pStringTable->GetString(tileCurrent->GetEventID()), "none") != 0)
 					{
 						char nConditionsMet = 0;
-						char nConditionsNeeded = GetNumberOfBitsOn(tileCurrent->GetInfo()) - 1;
+						Byte byteTemp = tileCurrent->GetInfo();
+						TurnBitOff(byteTemp, 0);
+						char nConditionsNeeded = GetNumberOfBitsOn(byteTemp);
 
 						// If this tile should send an event in any collision
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ANY_COLLISION))
-							nConditionsMet++;
+								nConditionsMet++;
 						// If this tile should send an event only when colliding with player
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_PLAYER_COLLISION))
 							// Check if pBase is the player and if it is, send event
-							if(pBase->GetType() == IBaseInterface::TYPE_CHAR_PLAYER)
+							if(ObjType == IBaseInterface::TYPE_CHAR_PLAYER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
 							if(CInputManager::GetInstance()->GetPressedA())
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_BASIC_ATTACK))
-							if(/* check if player attacked */false)
+							if(ObjType == IBaseInterface::TYPE_WEAPON_DAGGER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_FIRE_BLADE))
-							if(/* check if fire power was used */false)
+							if(ObjType == IBaseInterface::TYPE_WEAPON_SWORD)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_EARTH_HAMMER))
-							if(/* check if earth power was used */false)
+							if(ObjType == IBaseInterface::TYPE_WEAPON_HAMMER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_AIR_CROSSBOW))
-							if(/* check if air power was used */false)
+							if(ObjType == IBaseInterface::TYPE_WEAPON_ARROW)
 								nConditionsMet++;
 
 						if(nConditionsMet == nConditionsNeeded)
@@ -340,13 +357,12 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable)
 						}
 					}
 					// Continue checking
+
 				}
 
-			}
-
-			// Since we're reading line by line, from left to right, we need
-			// to increase the width index every time we draw a tile
-			++uiIndexWidth;
+				// Since we're reading line by line, from left to right, we need
+				// to increase the width index every time we draw a tile
+				++uiIndexWidth;
 
 			// Once we reach the end of a line, though, we need to reset the
 			// width index and increase the height index

@@ -33,6 +33,7 @@ public:
 	//bool CheckCollision(IBaseInterface* pObject);
 	//void Render(void);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_SWORD; }
+	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_SWORD; }
 	//void SetWeaponRotation(float fWeaponRotation);
 	RectD CSword::GetCollisionRect(void);
 };

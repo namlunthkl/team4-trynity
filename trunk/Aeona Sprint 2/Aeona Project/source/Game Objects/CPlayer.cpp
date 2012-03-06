@@ -14,6 +14,7 @@
 #include "../Weapons/CHammer.h"
 #include "../Weapons/CCrossBow.h"
 #include "../Camera/CCameraControl.h"
+#include "../Tile Mapping/CWorldEngine.h"
 #define WEAPON m_vGameWeapons[m_uiCurrentWeapon]
 // Constructor]
 CPlayer::CPlayer(void) : CBaseCharacter()
@@ -413,22 +414,33 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		}		
 	}
 
-	if(pObject->GetType() == TYPE_CHAR_ENEMY && WEAPON->GetAttacking() == true)
-	{
-		RectD temp;
-		RECT temp2;
-		temp = WEAPON->GetCollisionRect();
-		temp.OffsetRect(GetPosX(),GetPosY());
 
-		if(IntersectRect(&temp2,&temp.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+	if(WEAPON->GetAttacking() == true && pObject->GetType() == TYPE_CHAR_ENEMY)
+	{
+		RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
+		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
+		RECT temp2;
+
+		if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 		{
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
 		}
-
-		
 	}
 	return true;
 }
+
+bool CPlayer::CheckWorldCollision(void)
+{
+	if(WEAPON->GetAttacking() == true)
+	{
+		RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
+		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
+		unsigned int WeaponType = WEAPON->GetType();
+
+		return WORLD->CheckCollisions(nullptr, &WeaponCollisionRect, WeaponType);
+	}
+}
+
 RectD CPlayer::GetWeaponRect(void)
 {
 	WEAPON->GetCollisionRect();
