@@ -24,8 +24,8 @@ private:
 public:
 	~CPotion(void) {}
 	CPotion();
-	int Heal(void);
-	unsigned int GetWeaponType(void) const { return TYPE_ITEM_POTION; }
+	void Heal(void);
+	unsigned int GetItemType(void) const { return TYPE_ITEM_POTION; }
 };
 
 #endif
