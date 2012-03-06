@@ -56,6 +56,8 @@ public:
 	void Update( void );
 	void Input( void );
 	void ShutDown( void );
+
+	void SetPointPos( float fPosX, float fPosY );
 };
 
 #endif

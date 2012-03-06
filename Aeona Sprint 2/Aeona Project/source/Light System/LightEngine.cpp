@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "LightEngine.h"
-
+#include "..\Wrappers\CSGD_DirectInput.h"
+#include "..\CGame.h"
 
 LightEngine::LightEngine(void){}
 LightEngine::~LightEngine(void)
@@ -15,12 +16,12 @@ LightEngine* LightEngine::GetInstance(void)
 void LightEngine::Initialize( void )
 {
 	SetAmbientAlpha( 1.0f );
-	SetAmbientRed( 0.25f );
-	SetAmbientGreen(0.25f );
-	SetAmbientBlue( 0.25f );
-	
+	SetAmbientRed( 1.0f );
+	SetAmbientGreen(1.0f );
+	SetAmbientBlue( 1.0f );
+
 	SetPointAlpha( 1.0f );
-	SetPointRed( 1.0f );
+	SetPointRed( 2.0f );
 	SetPointGreen( 1.0f );
 	SetPointBlue( 1.0f );
 
@@ -33,7 +34,38 @@ void LightEngine::Update( void )
 }
 void LightEngine::Input( void )
 {
-
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
+	{
+		//Morning
+		SetAmbientAlpha( 1.0f );
+		SetAmbientRed(  1.0f );
+		SetAmbientGreen(1.0f );
+		SetAmbientBlue( 2.0f );
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) )
+	{
+		//DayTime
+		SetAmbientAlpha( 1.0f );
+		SetAmbientRed(  1.0f );
+		SetAmbientGreen(1.0f );
+		SetAmbientBlue( 1.0f );
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) )
+	{
+		//Evening
+		SetAmbientAlpha( 1.0f );
+		SetAmbientRed(  1.5f );
+		SetAmbientGreen(1.0f );
+		SetAmbientBlue( 1.0f );
+	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
+	{
+		//Night
+		SetAmbientAlpha( 1.0f );
+		SetAmbientRed(  0.2f );
+		SetAmbientGreen(0.2f );
+		SetAmbientBlue( 0.5f );
+	}
 }
 void LightEngine::ShutDown( void )
 {
@@ -41,7 +73,7 @@ void LightEngine::ShutDown( void )
 	SetAmbientRed( 0.0f );
 	SetAmbientGreen(0.0f );
 	SetAmbientBlue( 0.0f );
-	
+
 	SetPointAlpha( 0.0f );
 	SetPointRed( 0.0f );
 	SetPointGreen( 0.0f );
@@ -49,4 +81,10 @@ void LightEngine::ShutDown( void )
 
 	SetPointPosX( 0.0f );
 	SetPointPosY( 0.0f );
+}
+
+void LightEngine::SetPointPos( float fPosX, float fPosY )
+{
+	SetPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
+	SetPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
 }
