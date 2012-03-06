@@ -40,7 +40,7 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 		
 		if(pObject->GetType() != TYPE_CHAR_PLAYER)
 		{
-			//CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage((CBaseObject*)pObject));
+			//CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this);
 		}
 		return true;
 	}

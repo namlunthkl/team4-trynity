@@ -53,26 +53,26 @@ void CObjectManager::InputFromObjects()
 
 void CObjectManager::RenderObjects()
 {
-	vector<IBaseInterface*> m_vpRenderList = m_vpObjectList;
-	for(unsigned int i=0; i < m_vpRenderList.size(); ++i)
-	{
-		for(unsigned int j=i+1; j < m_vpRenderList.size(); ++j)
-		{
-			CBaseObject* pObjA = (CBaseObject*)m_vpRenderList[i];
-			CBaseObject* pObjB = (CBaseObject*)m_vpRenderList[j];
+	//vector<IBaseInterface*> m_vpRenderList = m_vpObjectList;
+	//for(unsigned int i=0; i < m_vpRenderList.size(); ++i)
+	//{
+	//	for(unsigned int j=i+1; j < m_vpRenderList.size(); ++j)
+	//	{
+	//		CBaseObject* pObjA = (CBaseObject*)m_vpRenderList[i];
+	//		CBaseObject* pObjB = (CBaseObject*)m_vpRenderList[j];
+	//
+	//		if(pObjA->GetPosY() > pObjB->GetPosY())
+	//		{
+	//			IBaseInterface* pTemp = m_vpRenderList[i];
+	//			m_vpRenderList[i] = m_vpRenderList[j];
+	//			m_vpRenderList[j] = pTemp;
+	//		}
+	//	}
+	//}
 
-			if(pObjA->GetPosY() > pObjB->GetPosY())
-			{
-				IBaseInterface* pTemp = m_vpRenderList[i];
-				m_vpRenderList[i] = m_vpRenderList[j];
-				m_vpRenderList[j] = pTemp;
-			}
-		}
-	}
-
-	for(unsigned int i = 0; i < m_vpRenderList.size(); ++i)
+	for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)
 	{
-		m_vpRenderList[i]->Render();
+		m_vpObjectList[i]->Render();
 	}
 }
 

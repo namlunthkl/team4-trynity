@@ -22,6 +22,7 @@ class CCrossBow : public IBaseWeapon
 {
 private:
 	CArrow* m_pArrow;
+	float m_fTime;
 public:
 	CCrossBow();
 	~CCrossBow(void) {}
