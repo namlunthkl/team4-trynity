@@ -23,6 +23,8 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_byteMasks = 0;
 	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
 
+	m_fOuchTimer = 0.0f;
+
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
@@ -59,7 +61,14 @@ CPlayer* CPlayer::GetInstance(void)
 // Common routines - Overloaded methods
 
 void CPlayer::Update(float fElapsedTime)
-{	
+{
+	if(m_fOuchTimer > 0.0f)
+		m_fOuchTimer -= fElapsedTime;
+	if( m_fOuchTimer < 0.0f )
+	{
+		m_fOuchTimer = 0.0f;
+	}
+
 	if( CCameraControl::GetInstance()->GetKillCam() == false )
 	{
 		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
@@ -99,9 +108,12 @@ void CPlayer::Update(float fElapsedTime)
 void CPlayer::Render(void)
 {
 	// Render the player
-	// 
-	// 
-	WEAPON->Render(GetPosition());
+	//
+	//
+	if( CPlayer::GetInstance()->m_fOuchTimer  == 0.0f )
+	{
+		WEAPON->Render(GetPosition());
+	}
 	// Render the particles
 	m_fxFootsteps.Render();
 
@@ -139,16 +151,21 @@ void CPlayer::Render(void)
 
 void CPlayer::Attack(void)
 {
-	CBaseCharacter::Attack();
-	WEAPON->Attack();
+	if( m_fOuchTimer == 0.0f )
+	{
+		CBaseCharacter::Attack();
+		WEAPON->Attack();
+	}
 }
 
 void CPlayer::ChargedAttack(void)
 {
-	
-	WEAPON->ChargedAttack();
-	// TODO: Create charged attack effect in here
-	// TODO: Send any needed event
+	if( m_fOuchTimer == 0.0f )
+	{
+		WEAPON->ChargedAttack();
+		// TODO: Create charged attack effect in here
+		// TODO: Send any needed event
+	}
 }
 
 void CPlayer::Die(void)
@@ -168,6 +185,10 @@ void CPlayer::Input(void)
 	{
 		WEAPON->SetAttacking(false);
 	}
+
+	//if i get hurt, stop my attack
+	if( m_fOuchTimer > 0.0f )
+		WEAPON->SetAttacking(false);
 
 	if(WEAPON->GetAttacking())
 	{
@@ -443,4 +464,14 @@ CPlayer::~CPlayer(void)
 const char* CPlayer::GetRegion(void) const
 {
 	return CWorldEngine::GetInstance()->GetMapWherePointIs(GetPosX(), GetPosY());
+}
+
+
+
+void CPlayer::SufferDamage(unsigned int uiDamage)
+{
+	if( m_fOuchTimer>0.0f == false)
+	{
+		CBaseCharacter::SufferDamage(uiDamage);
+	}
 }
