@@ -358,21 +358,6 @@ void CPlayer::AquireHeartPiece(void)
 	}
 }
 
-//RectD CPlayer::GetCollisionRect(void)
-//{
-//	// DANIEL ADDED CODE HERE //
-//	// Basically the problem in collision was that the collision rect
-//	// is calculated based on the object's position.
-//	// Weapon's position was always zero when it got here, so the rectangle
-//	// was always wrong
-//	//m_vGameWeapons[m_uiCurrentWeapon]->SetPosX(GetPosX());
-//	//m_vGameWeapons[m_uiCurrentWeapon]->SetPosY(GetPosY());
-//	/////////////////////////////
-//
-//	//return m_vGameWeapons[m_uiCurrentWeapon]->GetCollisionRect();
-//	
-//}
-
 bool CPlayer::CheckCollision(IBaseInterface* pObject)
 {
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
@@ -417,14 +402,16 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 
 	if(WEAPON->GetAttacking() == true && pObject->GetType() == TYPE_CHAR_ENEMY)
 	{
+		CEnemy* pEnemy = (CEnemy*)pObject;
 		RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
 		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
 		RECT temp2;
 
 		if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 		{
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage((CNPC*)pObject));
+			pEnemy->SufferDamage(GetAttackDamage());
 		}
+		int x = 0;
 	}
 	return true;
 }

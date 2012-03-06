@@ -25,6 +25,7 @@ public:
 	CArrow();
 	void Render(void);
 	bool CheckCollision(IBaseInterface* pObject);
+	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_ARROW; }
 protected:
 };
 #endif

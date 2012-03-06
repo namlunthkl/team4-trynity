@@ -81,6 +81,7 @@ void CGameplayState::Enter(void)
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
+	PLAYER->SetAttackDamage(20);
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
@@ -103,7 +104,7 @@ void CGameplayState::Enter(void)
 	}
 	*/
 
-	CEnemy* pEnemy = new CEnemy(30, 1600, 40, -1, 50, 50, true, 100, 0);
+	CEnemy* pEnemy = new CEnemy(30, 1600, 40, -1, 50, 50, true, 100, 1);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
 	pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
@@ -420,10 +421,10 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			//pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
 			//break;
 		}
-	case MSG_DESTROY_NPC:
+	case MSG_DESTROY_OBJECT:
 		{
-			CDestroyNPCMessage* pDEM = (CDestroyNPCMessage*)pMsg;
-			OBJECTS->RemoveObject(pDEM->GetEnemy());
+			CDestroyObjectMessage* pDEM = (CDestroyObjectMessage*)pMsg;
+			OBJECTS->RemoveObject(pDEM->GetObject());
 		}
 	}
 }

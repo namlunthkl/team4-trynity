@@ -23,7 +23,6 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 	: CBaseCharacter(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
 	m_szName = szName;
-	CEventSystem::GetInstance()->RegisterForEvent("destroyenemy",this);
 	m_bActiveTalk = bActiveTalk;
 	m_sndNPC = sndNPC;
 	m_dRange = dRange;
@@ -38,7 +37,6 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 }
 CNPC::~CNPC()
 {
-	CEventSystem::GetInstance()->RegisterForEvent("destroyenemy",this);
 }
 // Load NPC's speech
 void CNPC::LoadText(char* szFilename)
@@ -252,8 +250,4 @@ void CNPC::Render(void)
 }
 void CNPC::HandleEvent(CEvent* pEvent)
 {
-	if("destroyenemy" == pEvent->GetEventID())
-	{
-		CMessageSystem::GetInstance()->SendMsg(new CDestroyNPCMessage(this));
-	}	
 }
