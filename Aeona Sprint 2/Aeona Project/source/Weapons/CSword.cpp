@@ -9,10 +9,11 @@
 #include "../Game Objects/CPlayer.h"
 CSword::CSword()
 {
-	
 	//Load the Animation
 	CBaseCharacter::LoadAnimations("resource/PlayerWSword.xml");
 	SetAttacking(false);
+
+	SetSound(AUDIO->SFXLoadSound("resource/sound/Sword.wav"));
 }
 void CSword::Render(PointD nPos)
 {
@@ -30,7 +31,7 @@ void CSword::Update(float fElapsedTime)
 void CSword::Attack(void)
 {
 	SetAttacking(true);
-
+	AUDIO->SFXPlaySound(GetSound());
 }
 void CSword::ChargedAttack(void)
 {
