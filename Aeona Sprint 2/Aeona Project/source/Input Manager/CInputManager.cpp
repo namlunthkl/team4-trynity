@@ -138,7 +138,7 @@ bool CInputManager::GetSwapMask(void)
 
 	return false;
 }
-bool CInputManager::GetInventory(void)
+bool CInputManager::GetY(void)
 {
 	if(m_bControllerSet && INPUT->KeyPressed(DIK_TAB) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_Y)
 		&& INPUT->JoystickButtonPressed(6))

@@ -15,7 +15,7 @@
 
 #include "../Particle Engine/ParticleWeapon.h"
 #include "../Weapons/IBaseWeapon.h"
-
+#include "../Items/CPotion.h"
 class CPlayer : public CBaseCharacter
 {
 	Byte			m_byteWeapons;
@@ -33,6 +33,7 @@ class CPlayer : public CBaseCharacter
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
 	int				m_uiNumPotions;
+	CPotion*		m_Potion;
 
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
@@ -86,6 +87,7 @@ public:
 	// just did
 	unsigned int GetNumPotions() const { return m_uiNumPotions; }
 	void SetNumPotions(unsigned int val) { m_uiNumPotions = val; }
+	void UsePotion(void);
 };
 
 #endif // C_PLAYER_H_

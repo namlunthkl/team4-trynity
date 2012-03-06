@@ -59,7 +59,7 @@ public:
 	bool GetDownB(void);
 	bool GetSwapWeapon(void);
 	bool GetSwapMask(void);
-	bool GetInventory(void);
+	bool GetY(void);
 	bool GetAttack(void);
 	float Timeheld() const { return m_fTimeheld; }
 };

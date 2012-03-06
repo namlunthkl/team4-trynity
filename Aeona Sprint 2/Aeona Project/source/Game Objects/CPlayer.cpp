@@ -17,6 +17,7 @@
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../Light System/LightEngine.h"
 
+
 #define WEAPON m_vGameWeapons[m_uiCurrentWeapon]
 // Constructor]
 CPlayer::CPlayer(void) : CBaseCharacter()
@@ -26,7 +27,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
 
 	m_fOuchTimer = 0.0f;
-
+	m_Potion = new CPotion;
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
@@ -38,7 +39,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiCurrentWeapon = WEAPON_DAGGER;
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
-
+	SetNumPotions(0);
 	m_vGameWeapons.push_back(new CDagger);
 	m_vGameWeapons[WEAPON_DAGGER]->Activate();
 	m_vGameWeapons.push_back(new CSword);
@@ -187,7 +188,10 @@ void CPlayer::Input(void)
 	{
 		WEAPON->SetAttacking(false);
 	}
-
+	if(CInputManager::GetInstance()->GetY())
+	{
+		UsePotion();
+	}
 	//if i get hurt, stop my attack
 	if( m_fOuchTimer > 0.0f )
 		WEAPON->SetAttacking(false);
@@ -475,5 +479,13 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 	if( m_fOuchTimer > 0.0f == false)
 	{
 		CBaseCharacter::SufferDamage(uiDamage);
+	}
+}
+void CPlayer::UsePotion(void)
+{
+	if(GetNumPotions() > 0 && GetCurHealth() < GetMaxHealth())
+	{
+		m_Potion->Heal();
+		SetNumPotions(GetNumPotions()-1);
 	}
 }
