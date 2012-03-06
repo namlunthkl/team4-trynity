@@ -32,6 +32,8 @@ class CPlayer : public CBaseCharacter
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
+	int				m_nNumPotions;
+
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
 	CPlayer* operator=(const CPlayer&){}
@@ -72,7 +74,7 @@ public:
 	bool CheckCollision(IBaseInterface* pObject);
 	// Check Collision agains the world
 	bool CheckWorldCollision(void);
-
+	
 	RectD GetWeaponRect(void);
 	// Destructor
 	~CPlayer(void);
@@ -80,6 +82,9 @@ public:
 	const char* GetRegion(void) const;
 
 	inline bool HasHeartPiece(void) { return m_bHeartPiece; }
+	// Bern's STUFF DON'T TOUCH IT PHIL!!!!!!!!!!!!!!!!!!!!!!
+	int GetNumPotions() const { return m_nNumPotions; }
+	void SetNumPotions(int val) { m_nNumPotions = val; }
 };
 
 #endif // C_PLAYER_H_
