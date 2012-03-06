@@ -18,6 +18,14 @@ float gAmbientR;
 float gAmbientG;
 float gAmbientB;
 
+float gPointA;
+float gPointR;
+float gPointG;
+float gPointB;
+
+float gPointPosX;
+float gPointPosY;
+
 struct VS_INPUT
 {
 	float3 untransformed_pos	: POSITION0;
@@ -110,31 +118,25 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	gAmbientColor.g = gAmbientG;
 	gAmbientColor.b = gAmbientB;
 
-		
-	float2 pointLightPos;
-	float4 pointLightColor;
-	float  pointLightRadius;
+	float4 pointLightColor;	
+	pointLightColor.a = gPointA;
+	pointLightColor.r = gPointR;
+	pointLightColor.g = gPointG;
+	pointLightColor.b = gPointB;
 	
+	float2 pointLightPos;
+	pointLightPos.x = gPointPosX;
+	pointLightPos.y = gPointPosY;
+	
+	float  pointLightRadius;
 	float2 vectorBetweenTwo;
 	float  mag;
 	float  ratio;
-
-	pointLightPos.x = 0.5f;
-	pointLightPos.y = 0.5f;
-	
+ 
 	vectorBetweenTwo = input.uv - pointLightPos; 
-	
 	mag = length( vectorBetweenTwo );
-	
-	pointLightColor.a = 1.0f;
-	pointLightColor.r = 1.0f;
-	pointLightColor.g = 0.0f;
-	pointLightColor.b = 0.0f;
-	
 	pointLightRadius = .25f;
-	
 	ratio = 1.0f - saturate( mag / pointLightRadius );
-	
 	pointLightColor *= ratio;
 	
 	return (color * pointLightColor) + ( color * gAmbientColor) ;
