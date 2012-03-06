@@ -137,6 +137,7 @@ void CGameplayState::Enter(void)
 	pChest->LoadAnimations("resource/chest.xml");
 	//pChest->LoadText("resource/NPC Dialogue/Example.xml");
 	OBJECTS->AddObject(pChest);
+	pChest->Activate();
 	pChest->Release();
 
 	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );

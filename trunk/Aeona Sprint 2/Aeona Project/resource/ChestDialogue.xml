@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue>
+  <SpeechNode text="The Chest Contains a: Potion" name="ChestPotion">
+    <Option text="Yes"/>
+    <Option text="No"/>
+  </SpeechNode>
+  <SpeechNode text="The Chest Contains a: Speed Mask" name="ChestSpeedMask">
+    <Option text="Yes"/>
+    <Option text="No"/>
+  </SpeechNode>
+  <SpeechNode text="The Chest Contains a: Light Mask" name="ChestLightMask">
+    <Option text="Yes"/>
+    <Option text="No"/>
+  </SpeechNode>
+  <SpeechNode text="The Chest Contains a: Strength Mask" name="ChestStrengthMask">
+    <Option text="Yes"/>
+    <Option text="No"/>
+  </SpeechNode>
+  <SpeechNode text="The Chest Contains a: Endurance Mask" name="ChestEnduranceMask">
+    <Option text="Yes"/>
+    <Option text="No"/>
+  </SpeechNode>
+</Dialogue>
