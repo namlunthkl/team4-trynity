@@ -32,7 +32,7 @@ class CPlayer : public CBaseCharacter
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
-	int				m_nNumPotions;
+	int				m_uiNumPotions;
 
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
@@ -83,8 +83,9 @@ public:
 
 	inline bool HasHeartPiece(void) { return m_bHeartPiece; }
 	// Bern's STUFF DON'T TOUCH IT PHIL!!!!!!!!!!!!!!!!!!!!!!
-	int GetNumPotions() const { return m_nNumPotions; }
-	void SetNumPotions(int val) { m_nNumPotions = val; }
+	// just did
+	unsigned int GetNumPotions() const { return m_uiNumPotions; }
+	void SetNumPotions(unsigned int val) { m_uiNumPotions = val; }
 };
 
 #endif // C_PLAYER_H_
