@@ -102,7 +102,7 @@ void CGameplayState::Enter(void)
 	}
 	*/
 
-	CEnemy* pEnemy = new CEnemy(760, 450, 40, -1, 50, 50, true, 100, 0);
+	CEnemy* pEnemy = new CEnemy(30, 1600, 40, -1, 50, 50, true, 100, 0);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
 	pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
