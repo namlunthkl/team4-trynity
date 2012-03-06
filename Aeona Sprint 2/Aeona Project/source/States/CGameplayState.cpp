@@ -22,6 +22,7 @@
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
+#include "../Game Objects/CChest.h"
 // SINGLETON Weather Engine
 #include "../Weather System/WeatherManager.h"
 #include "../Post Process/CPostProcess.h"
@@ -130,6 +131,13 @@ void CGameplayState::Enter(void)
 	pNPC->LoadText("resource/NPC Dialogue/Example.xml");
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
+
+	CChest* pChest;
+	pChest = new CChest("PotionChest", false, 150, -1, 600, 230, 20, -1, 50, 50, true, 100, 0);
+	pChest->LoadAnimations("resource/chest.xml");
+	//pChest->LoadText("resource/NPC Dialogue/Example.xml");
+	OBJECTS->AddObject(pChest);
+	pChest->Release();
 
 	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	

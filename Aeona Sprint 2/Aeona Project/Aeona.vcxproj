@@ -23,6 +23,7 @@
     <ClCompile Include="source\Game Objects\CArrow.cpp" />
     <ClCompile Include="source\Game Objects\CBaseCharacter.cpp" />
     <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
+    <ClCompile Include="source\Game Objects\CChest.cpp" />
     <ClCompile Include="source\Game Objects\CEnemy.cpp" />
     <ClCompile Include="source\Game Objects\CNPC.cpp" />
     <ClCompile Include="source\Game Objects\CObjectManager.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="source\Game Objects\CArrow.h" />
     <ClInclude Include="source\Game Objects\CBaseCharacter.h" />
     <ClInclude Include="source\Game Objects\CBaseObject.h" />
+    <ClInclude Include="source\Game Objects\CChest.h" />
     <ClInclude Include="source\Game Objects\CEnemy.h" />
     <ClInclude Include="source\Game Objects\CNPC.h" />
     <ClInclude Include="source\Game Objects\CObjectManager.h" />

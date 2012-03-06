@@ -229,6 +229,9 @@
     <ClCompile Include="source\Wrappers\CSGD_DirectInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CChest.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -440,6 +443,9 @@
     <ClInclude Include="source\StdAfx.h" />
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CChest.h">
+      <Filter>Object Hierarchy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

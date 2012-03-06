@@ -37,6 +37,7 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 }
 CNPC::~CNPC()
 {
+	CEventSystem::GetInstance()->UnregisterFromEvent("destroyenemy",this);
 }
 // Load NPC's speech
 void CNPC::LoadText(char* szFilename)
