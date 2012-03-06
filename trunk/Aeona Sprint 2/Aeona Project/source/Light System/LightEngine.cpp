@@ -28,43 +28,24 @@ void LightEngine::Initialize( void )
 	SetPointPosX( 0.5f );
 	SetPointPosY( 0.5f );
 }
-void LightEngine::Update( void )
-{
-
-}
+void LightEngine::Update( void ){}
 void LightEngine::Input( void )
 {
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
 	{
-		//Morning
-		SetAmbientAlpha( 1.0f );
-		SetAmbientRed(  1.0f );
-		SetAmbientGreen(1.0f );
-		SetAmbientBlue( 2.0f );
+		Morning();
 	}
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) )
 	{
-		//DayTime
-		SetAmbientAlpha( 1.0f );
-		SetAmbientRed(  1.0f );
-		SetAmbientGreen(1.0f );
-		SetAmbientBlue( 1.0f );
+		Day();
 	}
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) )
 	{
-		//Evening
-		SetAmbientAlpha( 1.0f );
-		SetAmbientRed(  1.5f );
-		SetAmbientGreen(1.0f );
-		SetAmbientBlue( 1.0f );
+		Evening();
 	}
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
 	{
-		//Night
-		SetAmbientAlpha( 1.0f );
-		SetAmbientRed(  0.2f );
-		SetAmbientGreen(0.2f );
-		SetAmbientBlue( 0.5f );
+		Night();
 	}
 }
 void LightEngine::ShutDown( void )
@@ -87,4 +68,75 @@ void LightEngine::SetPointPos( float fPosX, float fPosY )
 {
 	SetPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
 	SetPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+}
+
+void LightEngine::Morning( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  1.0f );
+	SetAmbientGreen(1.0f );
+	SetAmbientBlue( 2.0f );
+}
+void LightEngine::Day( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  1.0f );
+	SetAmbientGreen(1.0f );
+	SetAmbientBlue( 1.0f );
+}
+void LightEngine::Evening( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  1.5f );
+	SetAmbientGreen(1.0f );
+	SetAmbientBlue( 1.0f );
+}
+void LightEngine::Night( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  0.2f );
+	SetAmbientGreen(0.2f );
+	SetAmbientBlue( 0.5f );
+}
+void LightEngine::Rain( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  0.6f );
+	SetAmbientGreen(0.6f );
+	SetAmbientBlue( 0.8f );
+}
+void LightEngine::Snow( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  0.6f );
+	SetAmbientGreen(0.7f );
+	SetAmbientBlue( 0.7f );
+}
+void LightEngine::Leaves( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  1.0f );
+	SetAmbientGreen(1.5f );
+	SetAmbientBlue( 1.2f );
+}
+void LightEngine::Sand( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  1.5f );
+	SetAmbientGreen(1.2f );
+	SetAmbientBlue( 1.2f );
+}
+void LightEngine::Ember( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  1.2f );
+	SetAmbientGreen(0.8f );
+	SetAmbientBlue( 0.8f );
+}
+void LightEngine::FireFlies( void )
+{
+	SetAmbientAlpha(1.0f );
+	SetAmbientRed(  0.5f );
+	SetAmbientGreen(0.3f );
+	SetAmbientBlue( 0.5f );
 }

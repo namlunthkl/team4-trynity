@@ -58,6 +58,18 @@ public:
 	void ShutDown( void );
 
 	void SetPointPos( float fPosX, float fPosY );
+	void Morning( void );
+	void Day( void );
+	void Evening( void );
+	void Night( void );
+
+	void Rain( void );
+	void Snow( void );
+	void Leaves( void );
+	void Sand( void );
+	void Ember( void );
+	void FireFlies( void );
+
 };
 
 #endif

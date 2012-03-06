@@ -31,55 +31,61 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 	case 0:
 		{
 			weather.ShutDown();CWeatherManager::GetInstance()->SetIsOn( false );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case RAIN:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->Rain();
 			LoadXML("Resource/data/Rain.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case SNOW:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->Snow();
 			LoadXML("Resource/data/Snow.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case LEAVES:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->Leaves();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case SAND:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->Sand();;
 			LoadXML("Resource/data/SandStorm.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case EMBER:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->Ember();
 			LoadXML("Resource/data/Embers.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case FIREFLIES:
 		{
 			weather.ShutDown();
+			LightEngine::GetInstance()->FireFlies();
 			LoadXML("Resource/data/FireFlies.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	}
