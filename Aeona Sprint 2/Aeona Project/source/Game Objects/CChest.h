@@ -28,6 +28,9 @@ public:
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
 	~CChest();
+	void Render(void);
+	void OpenChest(void);
+	void LoadAnimations(char const * const szFilename);
 	unsigned int GetType(void) const { return TYPE_CHAR_CHEST; }
 protected:
 

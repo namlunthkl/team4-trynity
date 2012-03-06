@@ -15,7 +15,6 @@ private:
 	//float m_fDuration;
 	bool m_bIsPlaying, m_bIsLooping, m_bPause;
 
-
 	unsigned int m_nFrameNumber;
 	double m_fTimer;
 public:
@@ -41,6 +40,8 @@ public:
 
 	Point ReturnAnchorPoint(void);
 	bool GetPaused() const { return m_bPause; }
+	bool GetLooping() const { return m_bIsLooping; }
+	void SetLooping(bool val) { m_bIsLooping = val; }
 	//Point ReturnWeaponPoint(void);
 	//
 	//float ReturnWeaponAngle(void);
