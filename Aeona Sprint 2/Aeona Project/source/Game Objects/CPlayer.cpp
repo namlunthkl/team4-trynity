@@ -87,7 +87,7 @@ void CPlayer::Update(float fElapsedTime)
 	
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
-	LightEngine::GetInstance()->SetPointPos( ( GetPosX() - ( -1 * CCameraControl::GetInstance()->GetPositionX() ) ), ( GetPosY() - ( -1 * CCameraControl::GetInstance()->GetPositionY() ) ) );
+	LightEngine::GetInstance()->SetPlayerPos( ( GetPosX() - ( -1 * CCameraControl::GetInstance()->GetPositionX() ) ), ( GetPosY() - ( -1 * CCameraControl::GetInstance()->GetPositionY() ) ) );
 
 	//WEAPON->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
 	

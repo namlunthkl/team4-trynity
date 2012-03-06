@@ -8,7 +8,7 @@
 
 CWeatherManager::CWeatherManager()
 {
-	SetTypeOfWeather( 0.0f );
+	SetTypeOfWeather( 0 );
 	SetTimeToWait( 5.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );

@@ -25,8 +25,8 @@ void LightEngine::Initialize( void )
 	SetPointGreen( 1.0f );
 	SetPointBlue( 1.0f );
 
-	SetPointPosX( 0.5f );
-	SetPointPosY( 0.5f );
+	SetPlayerPosX( 0.5f );
+	SetPlayerPosY( 0.5f );
 }
 void LightEngine::Update( void ){}
 void LightEngine::Input( void )
@@ -60,14 +60,14 @@ void LightEngine::ShutDown( void )
 	SetPointGreen( 0.0f );
 	SetPointBlue( 0.0f );
 
-	SetPointPosX( 0.0f );
-	SetPointPosY( 0.0f );
+	SetPlayerPosX( 0.0f );
+	SetPlayerPosY( 0.0f );
 }
 
-void LightEngine::SetPointPos( float fPosX, float fPosY )
+void LightEngine::SetPlayerPos( float fPosX, float fPosY )
 {
-	SetPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetPlayerPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
+	SetPlayerPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
 }
 
 void LightEngine::Morning( void )

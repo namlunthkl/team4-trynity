@@ -181,8 +181,8 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gPointG", LightEngine::GetInstance()->GetPointGreen() );
 		postEffect->SetFloat( "gPointB", LightEngine::GetInstance()->GetPointBlue() );
 
-		postEffect->SetFloat( "gPointPosX", LightEngine::GetInstance()->GetPointPosX() );
-		postEffect->SetFloat( "gPointPosY", LightEngine::GetInstance()->GetPointPosY() );
+		postEffect->SetFloat( "gPointPosX", LightEngine::GetInstance()->GetPlayerPosX() );
+		postEffect->SetFloat( "gPointPosY", LightEngine::GetInstance()->GetPlayerPosY() );
 
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
