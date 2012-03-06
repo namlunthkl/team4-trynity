@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Particle>
   <ImageFile>Leafy.png</ImageFile>
-  <Continuous>1</Continuous>
+  <Continuous>0</Continuous>
   <Reanimate>0</Reanimate>
   <EmitterPosX>415</EmitterPosX>
   <EmitterPosY>364</EmitterPosY>
