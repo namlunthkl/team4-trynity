@@ -17,10 +17,11 @@
 #define CCROSSBOW_H_
 
 #include "IBaseWeapon.h"
+#include "../Game Objects/CArrow.h"
 class CCrossBow : public IBaseWeapon
 {
 private:
-
+	CArrow* m_pArrow;
 public:
 	CCrossBow();
 	~CCrossBow(void) {}
@@ -29,7 +30,8 @@ public:
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
-	RectD GetCollisionRect(void);
+	void ShootArrow(void);
+	//RectD GetCollisionRect(void);
 	//void SetWeaponRotation(float fWeaponRotation);
 };
 

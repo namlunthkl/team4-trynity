@@ -110,12 +110,30 @@ void CPlayer::Render(void)
 	rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 		CCameraControl::GetInstance()->GetPositionY());
 	D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
-
+	
 	RectD temp = WEAPON->GetCollisionRect();
 	temp.OffsetRect(GetPosX(),GetPosY());
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 		CCameraControl::GetInstance()->GetPositionY());
-	D3D->DrawRect(temp.GetWindowsRECT(), 255, 0, 255);
+
+	if(m_uiCurrentWeapon == WEAPON_SWORD)
+	{
+		D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
+	}
+	else if(m_uiCurrentWeapon == WEAPON_DAGGER)
+	{
+		D3D->DrawRect(temp.GetWindowsRECT(), 255, 255, 0);
+	}
+	else if(m_uiCurrentWeapon == WEAPON_HAMMER)
+	{
+		D3D->DrawRect(temp.GetWindowsRECT(), 139, 69, 19);
+	}
+	else if(m_uiCurrentWeapon == WEAPON_CROSSBOW)
+	{
+		D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
+	}
+
+	
 }
 
 void CPlayer::Attack(void)
@@ -144,8 +162,6 @@ void CPlayer::Input(void)
 	if(CInputManager::GetInstance()->GetAttack())
 	{
 		WEAPON->SetAttacking(true);
-		//if(rand()%100 == 1)
-		//	CCameraControl::GetInstance()->SetKillCam(true);
 	}
 	else
 	{
@@ -154,13 +170,14 @@ void CPlayer::Input(void)
 
 	if(WEAPON->GetAttacking())
 	{
+		SetVelX(0);
+		SetVelY(0);
 		switch (WEAPON->GetCurrentAnimation())
 		{
 		case ANM_WALK_UP:
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_UP);
 				WEAPON->SetPreviousAnimation(ANM_WALK_UP);
-				//m_weaponRect.
 				break;
 			}
 		case ANM_WALK_DOWN:
@@ -206,7 +223,7 @@ void CPlayer::Input(void)
 				break;
 			}
 		}
-		
+		Attack();
 		//if(CInputManager::GetInstance()->Timeheld() > 2.0f)
 		//{
 		//	if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetPaused() != true)

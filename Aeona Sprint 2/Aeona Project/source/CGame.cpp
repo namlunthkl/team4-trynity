@@ -79,7 +79,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	// Initialize all the resource managers
 	D3D->InitDirect3D(hWnd, nScreenWidth, nScreenHeight, bIsWindowed, true);
 	TEX_MNG->InitTextureManager(D3D->GetDirect3DDevice(), D3D->GetSprite());
-	INPUT->InitDirectInput(hWnd, hInstance, DI_KEYBOARD | DI_MOUSE);
+	INPUT->InitDirectInput(hWnd, hInstance, DI_KEYBOARD | DI_MOUSE | DI_JOYSTICKS);
 	AUDIO->InitXAudio2();
 
 	//	Font

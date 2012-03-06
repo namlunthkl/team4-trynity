@@ -88,6 +88,7 @@
     </ClCompile>
     <ClCompile Include="source\CBitmapFont.cpp" />
     <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\Game Objects\CArrow.cpp" />
     <ClCompile Include="source\Game Objects\CBaseCharacter.cpp" />
     <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
     <ClCompile Include="source\Game Objects\CEnemy.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="source\Camera\CCameraControl.h" />
     <ClInclude Include="source\CBitmapFont.h" />
     <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\Game Objects\CArrow.h" />
     <ClInclude Include="source\Game Objects\CBaseCharacter.h" />
     <ClInclude Include="source\Game Objects\CBaseObject.h" />
     <ClInclude Include="source\Game Objects\CEnemy.h" />
