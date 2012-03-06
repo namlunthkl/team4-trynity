@@ -5,11 +5,11 @@
   <Reanimate>0</Reanimate>
   <EmitterPosX>0</EmitterPosX>
   <EmitterPosY>-50</EmitterPosY>
-  <MaxParticles>5000</MaxParticles>
+  <MaxParticles>500</MaxParticles>
   <Size>0.06</Size>
   <MaxLife>2</MaxLife>
   <SpawnWidth>800</SpawnWidth>
-  <SpawnHeight>600</SpawnHeight>
+  <SpawnHeight>400</SpawnHeight>
   <ScaleStart>0.06</ScaleStart>
   <ScaleEnd>0.06</ScaleEnd>
   <Rotation>0</Rotation>
