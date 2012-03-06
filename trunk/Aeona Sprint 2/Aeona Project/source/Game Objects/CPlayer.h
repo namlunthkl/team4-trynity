@@ -25,6 +25,7 @@ class CPlayer : public CBaseCharacter
 	public:
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
+	float			m_fOuchTimer;
 	private:
 	//TEMPORARY LOL TODO
 	vector<IBaseWeapon *>	m_vGameWeapons;
@@ -65,6 +66,7 @@ public:
 	// Set bool for heart piece on or increase health
 	void AquireHeartPiece(void);
 
+	void SufferDamage(unsigned int uiDamage);
 
 	// Check Collision against a specific object
 	bool CheckCollision(IBaseInterface* pObject);
