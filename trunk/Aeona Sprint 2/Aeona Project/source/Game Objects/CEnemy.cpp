@@ -38,6 +38,12 @@ bool CEnemy::CheckCollision(IBaseInterface* pObject)
 	return true;
 }
 
+void CEnemy::Die(void)
+{
+	CBaseCharacter::Die();
+	CEventSystem::GetInstance()->SendEvent("victory");
+}
+
 
 //
 //void CEnemy::Update(float fElapsedTime)

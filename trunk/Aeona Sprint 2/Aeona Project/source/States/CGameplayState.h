@@ -61,6 +61,11 @@ class CGameplayState : public IGameState , public IListener
 	//		Function to actually render the message box
 	void RenderMessageBox(void);
 
+	// Game over screens
+	bool	m_bVictory;
+	bool	m_bGameOver;
+	int		m_nGameOverID;
+	int		m_nVictoryID;
 
 public:
 
@@ -78,10 +83,10 @@ public:
 
 	// Render the world and the objects in the game
 	void Render(void);
-
+	
 	// Render the HUD in a separate function
 	void RenderHUD(void);
-
+	void RenderGameOverScreens(void);
 	// Shutdown everything
 	void Exit(void);
 

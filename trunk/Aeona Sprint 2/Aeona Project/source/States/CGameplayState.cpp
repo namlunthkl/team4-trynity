@@ -43,6 +43,11 @@ CGameplayState::CGameplayState(void)
 	m_szCurrentMessage	= "";
 	m_szCurrentOption	= "";
 	m_fHeartTimer		= 0.0f;
+
+	m_bGameOver = false;
+	m_bVictory = false;
+	m_nGameOverID = -1;
+	m_nVictoryID = -1;
 }
 
 // Initialize everything
@@ -57,6 +62,10 @@ void CGameplayState::Enter(void)
 	WORLD->InitWorldEngine();
 	PUZZLES->InitPuzzleManager();
 
+	m_bGameOver = false;
+	m_bVictory = false;
+
+	
 
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
@@ -68,6 +77,9 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("Teleport.Map", this);
 	EVENTS->RegisterForEvent("OpenDoor", this);
 	EVENTS->RegisterForEvent("destroy", this);
+	// Register events
+	EVENTS->RegisterForEvent("game.over", this);
+	EVENTS->RegisterForEvent("victory", this);
 
 	//CWeatherManager::GetInstance()->GetWeather()->Init();
 
@@ -129,6 +141,12 @@ void CGameplayState::Enter(void)
 	//END ARI EXTRA CODE
 	///////////////////////////
 
+	// Win / Lose conditions
+	m_nGameOverID = TEX_MNG->LoadTexture("resource/GameOver.png");
+	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
+
+
+
 	//	This is the last call to the loading screen
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	GAME->ResetAmountLoaded();
@@ -139,6 +157,9 @@ void CGameplayState::Enter(void)
 
 bool CGameplayState::Input(void)
 {
+	if(m_bGameOver || m_bVictory)
+		return true;
+
 	//	Pause
 	if(CInputManager::GetInstance()->GetPressedPause())
 	{
@@ -152,6 +173,19 @@ bool CGameplayState::Input(void)
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
+
+#if 1
+	if(INPUT->KeyPressed(DIK_V))
+	{
+		EVENTS->SendEvent("victory");
+	}
+	else if(INPUT->KeyPressed(DIK_B))
+	{
+		EVENTS->SendEvent("game.over");
+	}
+#endif // Victory/Lose keys
+
+
 
 	//TEMPORARY CODE TO SHOW SWITCHING WEAPONS AND AMULETS AND STUFF TODO
 	if(INPUT->KeyPressed(DIK_Q))
@@ -177,6 +211,9 @@ bool CGameplayState::Input(void)
 
 void CGameplayState::Update(float fElapsedTime)
 {
+	if(m_bGameOver || m_bVictory)
+		return;
+
 	//	HEART TIMER FROM STUPID PHIL
 	m_fHeartTimer += fElapsedTime;
 	if(m_fHeartTimer >= 4.0f)
@@ -312,6 +349,8 @@ void CGameplayState::Render(void)
 
 	D3D->GetSprite()->Flush();
 
+	RenderGameOverScreens();
+
 	char buffer[100];
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
 	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
@@ -319,8 +358,46 @@ void CGameplayState::Render(void)
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();
+}
 
-	
+void CGameplayState::RenderGameOverScreens(void)
+{
+	if(m_bGameOver)
+	{
+		static int fadein = 0;
+		
+		if(fadein < 255)
+			TEX_MNG->Draw(m_nGameOverID, 0, 0, 1.0f, 1.0f, nullptr, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(fadein,255,255,255));
+		else
+			TEX_MNG->Draw(m_nGameOverID, 0, 0, 1.0f, 1.0f, nullptr, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(255,255,255,255));
+
+		fadein++;
+
+		if(fadein > 500)
+		{
+			fadein = 0;
+			m_bGameOver = false;
+			CGame::GetInstance()->ChangeState(CMainMenuState::GetInstance());
+		}
+	}
+	else if(m_bVictory)
+	{
+		static int fadein = 0;
+		if(fadein < 255)
+			TEX_MNG->Draw(m_nVictoryID, 0, 0, 1.0f, 1.0f, nullptr, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(fadein,255,255,255));
+		else
+			TEX_MNG->Draw(m_nVictoryID, 0, 0, 1.0f, 1.0f, nullptr, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(255,255,255,255));
+
+		fadein++;
+
+		if(fadein > 500)
+		{
+			fadein = 0;
+			m_bVictory = false;
+			CGame::GetInstance()->ChangeState(CMainMenuState::GetInstance());
+		}
+	}
+
 }
 
 void CGameplayState::RenderMessageBox(void)
@@ -382,13 +459,13 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	}
 	if(pEvent->GetEventID() == "Teleport.Cave")
 	{
-		PLAYER->SetPosX(150);
-		PLAYER->SetPosY(1580);
+		PLAYER->SetPosX(300);
+		PLAYER->SetPosY(1830);
 	}
 	if(pEvent->GetEventID() == "Teleport.Map")
 	{
-		PLAYER->SetPosX(1000);
-		PLAYER->SetPosY(400);
+		PLAYER->SetPosX(1715);
+		PLAYER->SetPosY(340);
 	}
 	if(pEvent->GetEventID() == "OpenDoor")
 	{
@@ -402,6 +479,16 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetPosX(-1);
 		eventInfo->Tile->SetPosY(-1);
 		eventInfo->Tile->SetInfo(0);
+	}
+	if(pEvent->GetEventID() == "game.over")
+	{
+		//CSGD_XAudio2::GetInstance()->SFXPlaySound(m_nSFXGameOver);
+		m_bGameOver = true;
+	}
+	if(pEvent->GetEventID() == "victory")
+	{
+		//CSGD_XAudio2::GetInstance()->SFXPlaySound(m_nSFXVictory);
+		m_bVictory = true;
 	}
 }
 
