@@ -65,7 +65,12 @@ public:
 	// Set bool for heart piece on or increase health
 	void AquireHeartPiece(void);
 
+
+	// Check Collision against a specific object
 	bool CheckCollision(IBaseInterface* pObject);
+	// Check Collision agains the world
+	bool CheckWorldCollision(void);
+
 	RectD GetWeaponRect(void);
 	// Destructor
 	~CPlayer(void);

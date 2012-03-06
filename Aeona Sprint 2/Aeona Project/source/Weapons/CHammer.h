@@ -29,6 +29,7 @@ public:
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_HAMMER; }
+	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_HAMMER; }
 	RectD GetCollisionRect(void);
 	//void SetWeaponRotation(float fWeaponRotation);
 };

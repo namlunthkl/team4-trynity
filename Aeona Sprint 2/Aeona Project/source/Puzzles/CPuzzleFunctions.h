@@ -44,8 +44,8 @@ void PuzzleA_Torches_HandleEvent(CEvent* pEvent, CPuzzle* pPuzzle)
 
 				if(pPuzzle->GetParticle(EventNumber))
 				{
-					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosX = (float)PosX;
-					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosY = (float)PosY;
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosX = (float)PosX - 6;
+					pPuzzle->GetParticle(EventNumber)->emitter.EmitterPosY = (float)PosY - 36;
 					pPuzzle->GetParticle(EventNumber)->Fire();
 				}
 			}

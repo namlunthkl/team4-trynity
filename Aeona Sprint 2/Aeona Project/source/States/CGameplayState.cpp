@@ -60,13 +60,14 @@ void CGameplayState::Enter(void)
 
 	// Register for the event
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
-	EVENTS->RegisterForEvent("LightTorch.0", this);
+	/*EVENTS->RegisterForEvent("LightTorch.0", this);
 	EVENTS->RegisterForEvent("LightTorch.1", this);
 	EVENTS->RegisterForEvent("LightTorch.2", this);
-	EVENTS->RegisterForEvent("LightTorch.3", this);
+	EVENTS->RegisterForEvent("LightTorch.3", this);*/
 	EVENTS->RegisterForEvent("Teleport.Cave", this);
 	EVENTS->RegisterForEvent("Teleport.Map", this);
 	EVENTS->RegisterForEvent("OpenDoor", this);
+	EVENTS->RegisterForEvent("destroy", this);
 
 	//CWeatherManager::GetInstance()->GetWeather()->Init();
 
@@ -191,6 +192,9 @@ void CGameplayState::Update(float fElapsedTime)
 	//m_Rain.Update(fElapsedTime);
 	CWeatherManager::GetInstance()->Update( fElapsedTime );
 
+	// DANIEL CODE BEGIN
+	PLAYER->CheckWorldCollision();
+	// DANIEL CODE END
 
 	MESSAGES->ProcessMessages();
 	OBJECTS->UpdateObjects(fElapsedTime);
@@ -389,6 +393,14 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	{
 		MessageBox(GAME->GetWindowHandle(),"OpenDoor event was fired - You won the game!!!","You won",MB_OK);
 		GAME->ChangeState(CMainMenuState::GetInstance());
+	}
+	if(pEvent->GetEventID() == "destroy")
+	{
+		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
+
+		eventInfo->Tile->SetPosX(-1);
+		eventInfo->Tile->SetPosY(-1);
+		eventInfo->Tile->SetInfo(0);
 	}
 }
 

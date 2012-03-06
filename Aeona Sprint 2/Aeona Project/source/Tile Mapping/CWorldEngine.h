@@ -108,7 +108,7 @@ public:
 	//	Parameters	:	pBase - Object that we're checking collisions with
 	//	Return		:	True if collided, false otherwise
 	////////////////////////////////////////////////////////////////////////
-	bool CheckCollisions(IBaseInterface* pBase);
+	bool CheckCollisions(IBaseInterface* pBase, RectD* CollisionRect = nullptr, unsigned int uiObjType = 0U);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Unload files
