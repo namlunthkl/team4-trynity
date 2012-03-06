@@ -7,12 +7,15 @@
 #include "StdAfx.h"
 #include "CCrossBow.h"
 #include "../Game Objects/CPlayer.h"
+#include "../Game Objects/CObjectManager.h"
+#include "../Game Objects/CArrow.h"
 CCrossBow::CCrossBow()
 {
 
 	//Load the Animation
 	CBaseCharacter::LoadAnimations("resource/PlayerWCrossBow.xml");
 	SetAttacking(false);
+	m_pArrow = NULL;
 }
 void CCrossBow::Render(PointD nPos)
 {
@@ -30,42 +33,82 @@ void CCrossBow::Update(float fElapsedTime)
 void CCrossBow::Attack(void)
 {
 	SetAttacking(true);
-
+	if(m_pArrow == NULL)
+		ShootArrow();
 }
 void CCrossBow::ChargedAttack(void)
 {
 
 }
-RectD CCrossBow::GetCollisionRect(void)
+//RectD CCrossBow::GetCollisionRect(void)
+//{
+//	RectD rectCollision;
+//	if(ANM_ATK_UP == GetCurrentAnimation())
+//	{
+//		rectCollision.left = -30;
+//		rectCollision.top = -35;
+//		rectCollision.right = 30;
+//		rectCollision.bottom = -5;
+//	}
+//	else if(ANM_ATK_DOWN == GetCurrentAnimation())
+//	{
+//		rectCollision.left = -30;
+//		rectCollision.top = 5;
+//		rectCollision.right = 30;
+//		rectCollision.bottom = 35;
+//	}
+//	else if(ANM_ATK_LEFT == GetCurrentAnimation())
+//	{
+//		rectCollision.left = -35;
+//		rectCollision.top = -30;
+//		rectCollision.right = -5;
+//		rectCollision.bottom = 30;
+//	}
+//	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
+//	{
+//		rectCollision.left = 5;
+//		rectCollision.top = -30;
+//		rectCollision.right = 35;
+//		rectCollision.bottom = 30;
+//	}
+//	return rectCollision;
+//}
+void CCrossBow::ShootArrow(void)
 {
-	RectD rectCollision;
-	if(ANM_ATK_UP == GetCurrentAnimation())
+	m_pArrow = new CArrow();
+	m_pArrow->SetSpeed(40);
+	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BrS_Arrow.png"));
+	m_pArrow->SetHeight(18);
+	m_pArrow->SetWidth(4);
+	m_pArrow->Activate();
+	CObjectManager::GetInstance()->AddObject(m_pArrow);
+	PointD temp = CPlayer::GetInstance()->GetPosition();
+	if(GetCurrentAnimation() == ANM_ATK_UP)
 	{
-		rectCollision.left = -30;
-		rectCollision.top = -35;
-		rectCollision.right = 30;
-		rectCollision.bottom = -5;
+		m_pArrow->SetVelX(0*m_pArrow->GetSpeed());
+		m_pArrow->SetVelY(1*m_pArrow->GetSpeed());
+		m_pArrow->SetPosX(temp.x - 15);
+		m_pArrow->SetPosY(temp.y);
 	}
-	else if(ANM_ATK_DOWN == GetCurrentAnimation())
+	else if(GetCurrentAnimation() == ANM_ATK_DOWN)
 	{
-		rectCollision.left = -30;
-		rectCollision.top = 5;
-		rectCollision.right = 30;
-		rectCollision.bottom = 35;
+		m_pArrow->SetVelX(0*m_pArrow->GetSpeed());
+		m_pArrow->SetVelY(-1*m_pArrow->GetSpeed());
+		m_pArrow->SetPosX(temp.x);
+		m_pArrow->SetPosY(temp.y + 15);
 	}
-	else if(ANM_ATK_LEFT == GetCurrentAnimation())
+	else if(GetCurrentAnimation() == ANM_ATK_LEFT)
 	{
-		rectCollision.left = -35;
-		rectCollision.top = -30;
-		rectCollision.right = -5;
-		rectCollision.bottom = 30;
+		m_pArrow->SetVelX(-1*m_pArrow->GetSpeed());
+		m_pArrow->SetVelY(0*m_pArrow->GetSpeed());
+		m_pArrow->SetPosX(temp.x - 15);
+		m_pArrow->SetPosY(temp.y);
 	}
-	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
+	else if(GetCurrentAnimation() == ANM_ATK_RIGHT)
 	{
-		rectCollision.left = 5;
-		rectCollision.top = -30;
-		rectCollision.right = 35;
-		rectCollision.bottom = 30;
+		m_pArrow->SetVelX(1*m_pArrow->GetSpeed());
+		m_pArrow->SetVelY(0*m_pArrow->GetSpeed());
+		m_pArrow->SetPosX(temp.x + 15);
+		m_pArrow->SetPosY(temp.y);
 	}
-	return rectCollision;
-}
+} 

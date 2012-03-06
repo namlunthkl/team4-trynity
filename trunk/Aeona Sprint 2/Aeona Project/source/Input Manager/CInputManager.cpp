@@ -28,111 +28,128 @@ void CInputManager::SetController(int PlayerController)
 }
 bool CInputManager::GetPause(void)
 {
-	if(INPUT->KeyPressed(DIK_ESCAPE) || (m_bControllerSet && m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START))
+	if(INPUT->KeyPressed(DIK_ESCAPE) || (m_bControllerSet && m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START)
+		|| INPUT->JoystickButtonDown(6))
 		return true;
 							
 	return false;
 }
 bool CInputManager::GetUp(void)
 {
-	if(INPUT->KeyDown(DIK_W) || m_PlayerController->GetState().Gamepad.sThumbLY >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	if(INPUT->KeyDown(DIK_W) || m_PlayerController->GetState().Gamepad.sThumbLY >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+		|| INPUT->JoystickGetLStickYNormalized(0) > 0)
 		return true;
 
 	return false;
 }
 bool CInputManager::GetLeft(void)
 {
-	if(INPUT->KeyDown(DIK_A) || m_PlayerController->GetState().Gamepad.sThumbLX <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	if(INPUT->KeyDown(DIK_A) || m_PlayerController->GetState().Gamepad.sThumbLX <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+		|| INPUT->JoystickGetLStickXNormalized(0) < 0 && m_bLeft == false)
 		return true;
 								
 	return false;
 }
 bool CInputManager::GetRight(void)
 {
-	if(INPUT->KeyDown(DIK_D) || m_PlayerController->GetState().Gamepad.sThumbLX >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	if(INPUT->KeyDown(DIK_D) || m_PlayerController->GetState().Gamepad.sThumbLX >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+		|| INPUT->JoystickGetLStickXNormalized(0) > 0)
 		return true;
 								
 	return false;
 }
 bool CInputManager::GetDown(void)
 {
-	if(INPUT->KeyDown(DIK_S) || m_PlayerController->GetState().Gamepad.sThumbLY <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+	if(INPUT->KeyDown(DIK_S) || m_PlayerController->GetState().Gamepad.sThumbLY <= -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+		|| INPUT->JoystickGetLStickYNormalized(0) > 0)
 		return true;
 
 	return false;
 }
 bool CInputManager::GetPressedUp(void)
 {
-	if(INPUT->KeyPressed(DIK_UP) || (m_PlayerController->GetState().Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == false))
+	if(INPUT->KeyPressed(DIK_UP) || (m_PlayerController->GetState().Gamepad.sThumbLY > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == false)
+		|| (INPUT->JoystickGetLStickYNormalized(0) > 0 && m_bUp == false))
 	{
 		m_bUp = true;
 		return true;
 	}
-	else if(m_PlayerController->GetState().Gamepad.sThumbLY < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == true)
+	else if(m_PlayerController->GetState().Gamepad.sThumbLY < (XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bUp == true)
+		|| (INPUT->JoystickGetLStickYNormalized(0) > 0 && m_bUp == true))
 		m_bUp = false;
 
 	return false;
 }
 bool CInputManager::GetPressedLeft(void)
 {
-	if(INPUT->KeyPressed(DIK_LEFT) || (m_PlayerController->GetState().Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft == false))
+	if(INPUT->KeyPressed(DIK_LEFT) || (m_PlayerController->GetState().Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft == false)
+		|| (INPUT->JoystickGetLStickXNormalized(0) < 0 && m_bLeft == false))
 	{
 		m_bLeft = true;
 		return true;
 	}
-	else if(m_bControllerSet && m_PlayerController->GetState().Gamepad.sThumbLX > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft== true)
+	else if(m_bControllerSet && m_PlayerController->GetState().Gamepad.sThumbLX > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft== true
+		|| (INPUT->JoystickGetLStickXNormalized(0) < 0 && m_bLeft == true))
 		m_bLeft = false;
 
 	return false;
 }
 bool CInputManager::GetPressedRight(void)
 {
-	if(INPUT->KeyPressed(DIK_RIGHT) || (m_PlayerController->GetState().Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == false))
+	if(INPUT->KeyPressed(DIK_RIGHT) || (m_PlayerController->GetState().Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == false)
+		|| (INPUT->JoystickGetLStickXNormalized(0) > 0 && m_bRight == true))
 	{
 		m_bRight = true;
 		return true;
 	}
-	else if(m_PlayerController->GetState().Gamepad.sThumbLX < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == true)
+	else if(m_PlayerController->GetState().Gamepad.sThumbLX < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == true
+		|| (INPUT->JoystickGetLStickXNormalized(0) > 0 && m_bRight == true))
 		m_bRight = false;
 
 	return false;
 }
 bool CInputManager::GetPressedDown(void)
 {
-	if(INPUT->KeyPressed(DIK_DOWN) || (m_PlayerController->GetState().Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == false))
+	if(INPUT->KeyPressed(DIK_DOWN) || (m_PlayerController->GetState().Gamepad.sThumbLY < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == false)
+		|| (INPUT->JoystickGetLStickYNormalized(0) > 0 && m_bDown == false))
 	{
 		m_bDown = true;
 		return true;
 	}
-	else if(m_PlayerController->GetState().Gamepad.sThumbLY > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == true)
+	else if(m_PlayerController->GetState().Gamepad.sThumbLY > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bDown == true
+		|| (INPUT->JoystickGetLStickYNormalized(0) > 0 && m_bDown == true))
 		m_bDown = false;
 
 	return false;
 }
 bool CInputManager::GetSwapWeapon(void)
 {
-	if(INPUT->KeyPressed(DIK_Q) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER))
+	if(INPUT->KeyPressed(DIK_Q) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
+		&& INPUT->JoystickButtonPressed(2))
 		return true;
 
 	return false;
 }
 bool CInputManager::GetSwapMask(void)
 {
-	if(INPUT->KeyPressed(DIK_E) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER))
+	if(INPUT->KeyPressed(DIK_E) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
+		&& INPUT->JoystickButtonPressed(1))
 		return true;
 
 	return false;
 }
 bool CInputManager::GetInventory(void)
 {
-	if(m_bControllerSet && INPUT->KeyPressed(DIK_TAB) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_Y))
+	if(m_bControllerSet && INPUT->KeyPressed(DIK_TAB) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_Y)
+		&& INPUT->JoystickButtonPressed(6))
 		return true;
 
 	return false;
 }
 bool CInputManager::GetAttack(void)
 {
-	if(m_bControllerSet && INPUT->KeyDown(DIK_RETURN) || (m_PlayerController->GetState().Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD))
+	if(m_bControllerSet && INPUT->KeyDown(DIK_RETURN) || (m_PlayerController->GetState().Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) 
+		&& INPUT->JoystickButtonDown(0))
 	{	
 		m_fTimeheld += GAME->GetTimer().m_fElapsedTime;
 		return true;
@@ -142,7 +159,8 @@ bool CInputManager::GetAttack(void)
 }
 bool CInputManager::GetPressedA(void)
 {
-	if(INPUT->KeyPressed(DIK_RETURN) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false)
+	if(INPUT->KeyPressed(DIK_RETURN) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false 
+		&& INPUT->JoystickButtonPressed(0))
 	{
 		m_bA = true;
 		return true;
@@ -154,7 +172,8 @@ bool CInputManager::GetPressedA(void)
 }
 bool CInputManager::GetPressedPause(void)
 {
-	if(INPUT->KeyPressed(DIK_ESCAPE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START && m_bStart == false)
+	if(INPUT->KeyPressed(DIK_ESCAPE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_START && m_bStart == false
+		|| INPUT->JoystickButtonPressed(6))
 	{
 		m_bStart = true;
 		return true;
@@ -166,7 +185,8 @@ bool CInputManager::GetPressedPause(void)
 }
 bool CInputManager::GetPressedBack(void)
 {
-	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK && m_bBack == false)
+	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK && m_bBack == false
+		|| INPUT->JoystickButtonDown(4))
 	{
 		m_bBack = true;
 		return true;
@@ -178,7 +198,8 @@ bool CInputManager::GetPressedBack(void)
 }
 bool CInputManager::GetDownBack(void)
 {
-	if(INPUT->KeyPressed(DIK_DELETE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK)
+	if(INPUT->KeyPressed(DIK_DELETE) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK 
+		&& m_bBack) && INPUT->JoystickButtonDown(4))
 		return true;
 
 	return false;

@@ -225,6 +225,9 @@
     <ClCompile Include="source\Light System\LightEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CArrow.cpp">
+      <Filter>Object Hierarchy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="source\Items\CPotion.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CArrow.h">
+      <Filter>Object Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="source\Light System\LightEngine.h">
       <Filter>Header Files</Filter>
