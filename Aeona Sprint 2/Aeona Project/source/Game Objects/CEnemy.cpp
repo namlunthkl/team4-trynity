@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CEnemy.h"
+#include "CPlayer.h"
 #include "../States/CGameplayState.h"
 
 CEnemy::CEnemy(double dPositionX, double dPositionY, unsigned int uiSpeed,
@@ -20,6 +21,18 @@ CEnemy::CEnemy(double dPositionX, double dPositionY, unsigned int uiSpeed,
 CEnemy::~CEnemy(void)
 {
 
+}
+
+bool CEnemy::CheckCollision(IBaseInterface* pObject)
+{
+	if( CBaseCharacter::CheckCollision(pObject) == true)
+	{
+		if( pObject->GetType() == TYPE_CHAR_PLAYER )
+		{
+			CPlayer::GetInstance()->SufferDamage(1);
+		}
+	}
+	return true;
 }
 
 

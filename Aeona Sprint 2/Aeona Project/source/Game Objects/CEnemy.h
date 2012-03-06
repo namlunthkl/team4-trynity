@@ -26,6 +26,8 @@ public:
 
 	~CEnemy(void);
 
+	bool CEnemy::CheckCollision(IBaseInterface* pObject);
+
 	inline unsigned int GetType(void) const { return TYPE_CHAR_ENEMY; }
 };
 

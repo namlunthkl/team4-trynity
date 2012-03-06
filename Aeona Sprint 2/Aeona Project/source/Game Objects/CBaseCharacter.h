@@ -58,6 +58,8 @@ public:
 
 	inline unsigned int GetMaxHealth(void)	{ return m_uiMaxHealth; }
 	inline unsigned int GetCurHealth(void)	{ return m_uiCurHealth; }
+	inline void SetMaxHealth(unsigned int m)	{ m_uiMaxHealth = m; }
+	inline void SetCurHealth(unsigned int m)	{ m_uiCurHealth = m; }
 
 	void SufferDamage(unsigned int uiDamage);
 	void Heal(unsigned int uiHealAmount);
