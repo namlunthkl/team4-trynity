@@ -23,6 +23,7 @@ private:
 
 public:
 	CArrow();
+	void Render(void);
 	bool CheckCollision(IBaseInterface* pObject);
 protected:
 };
