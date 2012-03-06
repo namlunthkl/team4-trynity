@@ -133,7 +133,7 @@ void CGameplayState::Enter(void)
 	pNPC->Release();
 
 	CChest* pChest;
-	pChest = new CChest("PotionChest", false, 150, -1, 600, 230, 20, -1, 50, 50, true, 100, 0);
+	pChest = new CChest("PotionChest", false, 150, -1, 600, 250, 20, -1, 50, 50, true, 100, 0);
 	pChest->LoadAnimations("resource/chest.xml");
 	//pChest->LoadText("resource/NPC Dialogue/Example.xml");
 	OBJECTS->AddObject(pChest);

@@ -198,7 +198,7 @@ bool CInputManager::GetPressedBack(void)
 }
 bool CInputManager::GetDownBack(void)
 {
-	if(INPUT->KeyPressed(DIK_DELETE) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK 
+	if(INPUT->KeyDown(DIK_DELETE) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_BACK 
 		&& m_bBack) && INPUT->JoystickButtonDown(4))
 		return true;
 
@@ -206,7 +206,7 @@ bool CInputManager::GetDownBack(void)
 }
 bool CInputManager::GetPressedB(void)
 {
-	if(INPUT->KeyPressed(DIK_RSHIFT) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B && m_bB == false)
+	if(INPUT->KeyPressed(DIK_RSHIFT) || INPUT->KeyPressed(DIK_LSHIFT)|| m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B && m_bB == false)
 	{
 		m_bB = true;
 		return true;
@@ -216,9 +216,19 @@ bool CInputManager::GetPressedB(void)
 
 	return false;
 }
+bool CInputManager::GetDownB(void)
+{
+	if(INPUT->KeyDown(DIK_RSHIFT) || INPUT->KeyDown(DIK_LSHIFT)|| m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B)
+	{
+		m_bB = true;
+		return true;
+	}
+
+	return false;
+}
 bool CInputManager::DeleteGame(void)
 {
-	if(GetPressedB() && GetDownBack() )
+	if(GetDownB() && GetDownBack() )
 		return true;
 
 	return false;

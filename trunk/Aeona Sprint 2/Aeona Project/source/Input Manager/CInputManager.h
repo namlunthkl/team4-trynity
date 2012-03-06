@@ -56,6 +56,7 @@ public:
 	bool DeleteGame(void);
 	bool GetPressedBack(void);
 	bool GetPressedB(void);
+	bool GetDownB(void);
 	bool GetSwapWeapon(void);
 	bool GetSwapMask(void);
 	bool GetInventory(void);
