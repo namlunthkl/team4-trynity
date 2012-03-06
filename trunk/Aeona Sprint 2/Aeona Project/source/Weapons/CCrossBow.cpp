@@ -93,7 +93,7 @@ void CCrossBow::ShootArrow(void)
 		m_pArrow->SetVelX(0*m_pArrow->GetSpeed());
 		m_pArrow->SetVelY(-1*(int)m_pArrow->GetSpeed());
 		m_pArrow->SetPosX(temp.x);
-		m_pArrow->SetPosY(temp.y- 20);
+		m_pArrow->SetPosY(temp.y- 40);
 	}
 	else if(GetCurrentAnimation() == ANM_ATK_DOWN)
 	{
@@ -107,13 +107,13 @@ void CCrossBow::ShootArrow(void)
 		m_pArrow->SetVelX(-1*(int)m_pArrow->GetSpeed());
 		m_pArrow->SetVelY(0*m_pArrow->GetSpeed());
 		m_pArrow->SetPosX(temp.x - 20);
-		m_pArrow->SetPosY(temp.y);
+		m_pArrow->SetPosY(temp.y-20);
 	}
 	else if(GetCurrentAnimation() == ANM_ATK_RIGHT)
 	{
 		m_pArrow->SetVelX(1*m_pArrow->GetSpeed());
 		m_pArrow->SetVelY(0*m_pArrow->GetSpeed());
 		m_pArrow->SetPosX(temp.x + 20);
-		m_pArrow->SetPosY(temp.y);
+		m_pArrow->SetPosY(temp.y-20);
 	}
 } 
