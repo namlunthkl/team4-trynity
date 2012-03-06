@@ -173,7 +173,7 @@ void CPlayer::ChargedAttack(void)
 void CPlayer::Die(void)
 {
 	CBaseCharacter::Die();
-	CEventSystem::GetInstance()->SendEvent("GameOver");
+	CEventSystem::GetInstance()->SendEvent("game.over");
 }
 
 // Get input for the player
