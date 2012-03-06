@@ -119,6 +119,7 @@ void CPostProcess::Input( void )
 	{
 		index = 5;
 	}
+	LightEngine::GetInstance()->Input();
 }
 void CPostProcess::BeginPostProcess( void )
 {
@@ -191,6 +192,7 @@ void CPostProcess::EndPostProcess( void )
 }
 void CPostProcess::ShutDown( void )
 {
+	LightEngine::GetInstance()->ShutDown();
 	SAFE_RELEASE( quadbuff );
 	SAFE_RELEASE( quadindex );
 	SAFE_RELEASE( cubedecl );
