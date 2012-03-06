@@ -115,7 +115,10 @@ void CPostProcess::Input( void )
 	{
 		index = 4;
 	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) ||
+		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) ||
+		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) ||
+		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
 	{
 		index = 5;
 	}
