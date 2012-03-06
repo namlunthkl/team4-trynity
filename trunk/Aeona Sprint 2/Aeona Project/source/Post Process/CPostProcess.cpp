@@ -1,6 +1,6 @@
 #include "StdAfx.h"
-#include "..\StdAfx.h"
 #include "..\Post Process\CPostProcess.h"
+#include "..\Light System\LightEngine.h"
 
 CPostProcess::CPostProcess(void){}
 CPostProcess::~CPostProcess(void)
@@ -80,6 +80,7 @@ void CPostProcess::Initialize( void )
 	index = 5;
 
 	// COLOR
+	LightEngine::GetInstance()->Initialize();
 	colChange = 1;
 	fRed = 0;
 	fGreen = 0;
@@ -87,11 +88,6 @@ void CPostProcess::Initialize( void )
 
 	current = 0;
 	output = 0;
-
-	ambient.alpha = 1.0f;
-	ambient.red = 0.0f;
-	ambient.green = 1.0f;
-	ambient.blue = 0.0f;
 }
 void CPostProcess::Update( void )
 {
@@ -171,10 +167,18 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gGreen" , fGreen );
 		postEffect->SetFloat( "gBlue" , fBlue );
 
-		postEffect->SetFloat( "gAmbientA", ambient.alpha );
-		postEffect->SetFloat( "gAmbientR", ambient.red );
-		postEffect->SetFloat( "gAmbientG", ambient.green );
-		postEffect->SetFloat( "gAmbientB", ambient.blue);
+		postEffect->SetFloat( "gAmbientA", LightEngine::GetInstance()->GetAmbientAlpha() );
+		postEffect->SetFloat( "gAmbientR", LightEngine::GetInstance()->GetAmbientRed() );
+		postEffect->SetFloat( "gAmbientG", LightEngine::GetInstance()->GetAmbientGreen() );
+		postEffect->SetFloat( "gAmbientB", LightEngine::GetInstance()->GetAmbientBlue() );
+
+		postEffect->SetFloat( "gPointA", LightEngine::GetInstance()->GetPointAlpha() );
+		postEffect->SetFloat( "gPointR", LightEngine::GetInstance()->GetPointRed() );
+		postEffect->SetFloat( "gPointG", LightEngine::GetInstance()->GetPointGreen() );
+		postEffect->SetFloat( "gPointB", LightEngine::GetInstance()->GetPointBlue() );
+
+		postEffect->SetFloat( "gPointPosX", LightEngine::GetInstance()->GetPointPosX() );
+		postEffect->SetFloat( "gPointPosY", LightEngine::GetInstance()->GetPointPosY() );
 
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
