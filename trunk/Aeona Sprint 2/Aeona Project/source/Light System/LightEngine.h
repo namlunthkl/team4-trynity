@@ -3,8 +3,7 @@
 
 class LightEngine
 {
-	private:	
-		
+private:			
 	float m_fAmbientAlpha;
 	float m_fAmbientRed;
 	float m_fAmbientGeen;
@@ -15,8 +14,8 @@ class LightEngine
 	float m_fPointGeen;
 	float m_fPointBlue;
 
-	float m_fPointPosX;
-	float m_fPointPosY;
+	float m_fPlayerPosX;
+	float m_fPlayerPosY;
 
 	LightEngine(void);
 	LightEngine(const LightEngine&){}
@@ -36,28 +35,28 @@ public:
 	void SetPointGreen( float fPointGreen )		{ m_fPointGeen = fPointGreen; }
 	void SetPointBlue( float fPointBlue )		{ m_fPointBlue = fPointBlue; }
 
-	void SetPointPosX( float fPointPosX )		{ m_fPointPosX = fPointPosX; }
-	void SetPointPosY( float fPointPosY )		{ m_fPointPosY = fPointPosY; }
+	void SetPlayerPosX( float fPlayerPosX )		{ m_fPlayerPosX = fPlayerPosX; }
+	void SetPlayerPosY( float fPlayerPosY )		{ m_fPlayerPosY = fPlayerPosY; }
 
-	float GetAmbientAlpha(void)				{ return m_fAmbientAlpha; }
-	float GetAmbientRed(void)				{ return m_fAmbientRed; }
-	float GetAmbientGreen(void)				{ return m_fAmbientGeen; }
-	float GetAmbientBlue(void)				{ return m_fAmbientBlue; }
+	float GetAmbientAlpha(void)	{ return m_fAmbientAlpha; }
+	float GetAmbientRed(void)	{ return m_fAmbientRed; }
+	float GetAmbientGreen(void)	{ return m_fAmbientGeen; }
+	float GetAmbientBlue(void)	{ return m_fAmbientBlue; }
 
-	float GetPointAlpha(void)				{ return m_fPointAlpha; }
-	float GetPointRed(void)					{ return m_fPointRed; }
-	float GetPointGreen(void)				{ return m_fPointGeen; }
-	float GetPointBlue(void)				{ return m_fPointBlue; }
+	float GetPointAlpha(void)	{ return m_fPointAlpha; }
+	float GetPointRed(void)		{ return m_fPointRed; }
+	float GetPointGreen(void)	{ return m_fPointGeen; }
+	float GetPointBlue(void)	{ return m_fPointBlue; }
 
-	float GetPointPosX(void)				{ return m_fPointPosX; }
-	float GetPointPosY(void)				{ return m_fPointPosY; }
+	float GetPlayerPosX(void)	{ return m_fPlayerPosX; }
+	float GetPlayerPosY(void)	{ return m_fPlayerPosY; }
 
 	void Initialize( void );
 	void Update( void );
 	void Input( void );
 	void ShutDown( void );
 
-	void SetPointPos( float fPosX, float fPosY );
+	void SetPlayerPos( float fPosX, float fPosY );
 	void Morning( void );
 	void Day( void );
 	void Evening( void );
@@ -69,7 +68,6 @@ public:
 	void Sand( void );
 	void Ember( void );
 	void FireFlies( void );
-
 };
 
 #endif
