@@ -60,7 +60,8 @@ public:
 	inline unsigned int GetCurHealth(void)	{ return m_uiCurHealth; }
 	inline void SetMaxHealth(unsigned int m)	{ m_uiMaxHealth = m; }
 	inline void SetCurHealth(unsigned int m)	{ m_uiCurHealth = m; }
-
+	inline unsigned int GetAttackDamage(void) { return m_uiAttackDamage; }
+	inline void SetAttackDamage(unsigned int uiDamage) { m_uiAttackDamage = uiDamage; }
 	void SufferDamage(unsigned int uiDamage);
 	void Heal(unsigned int uiHealAmount);
 

@@ -25,11 +25,13 @@ CEnemy::~CEnemy(void)
 
 bool CEnemy::CheckCollision(IBaseInterface* pObject)
 {
+	if(pObject->GetType() == TYPE_WEAPON_ARROW) return false;
+
 	if( CBaseCharacter::CheckCollision(pObject) == true)
 	{
 		if( pObject->GetType() == TYPE_CHAR_PLAYER )
 		{
-			CPlayer::GetInstance()->SufferDamage(1);
+			CPlayer::GetInstance()->SufferDamage(GetAttackDamage());
 		}
 	}
 	return true;

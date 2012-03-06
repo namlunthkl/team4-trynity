@@ -9,7 +9,7 @@
 #define MESSAGES_H_
 #include "../Game Objects/CNPC.h"
 typedef int MSGID;
-enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER,MSG_CREATE_NPC, MSG_DESTROY_NPC, MSG_MAX };
+enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER,MSG_CREATE_NPC, MSG_DESTROY_OBJECT, MSG_MAX };
 
 class CBaseMessage
 {
@@ -43,21 +43,21 @@ public:
 	~CCreateNPCMessage();
 };
 
-class CDestroyNPCMessage : public CBaseMessage
+class CDestroyObjectMessage : public CBaseMessage
 {
 private:
-	CNPC* m_pNPC;
+	CBaseObject* m_pObject;
 public:
-	CDestroyNPCMessage(CNPC* pNPC) : CBaseMessage(MSG_DESTROY_NPC)
+	CDestroyObjectMessage (CBaseObject* pObject) : CBaseMessage(MSG_DESTROY_OBJECT)
 	{
-		m_pNPC = pNPC;
-		m_pNPC->AddRef();
+		m_pObject = pObject;
+		m_pObject->AddRef();
 	}
-	~CDestroyNPCMessage()
+	~CDestroyObjectMessage ()
 	{
-		m_pNPC->Release();	
+		m_pObject->Release();	
 	}
-	CNPC* GetEnemy(void) {return m_pNPC;}
+	CBaseObject* GetObject(void) {return m_pObject;}
 };
 
 

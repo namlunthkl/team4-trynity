@@ -14,6 +14,7 @@
 #include "CBaseCharacter.h"
 
 #include "../AI_States/IBaseAIState.h"
+#include "../Messaging/CMessageSystem.h"
 
 // Constructor
 CBaseCharacter::CBaseCharacter(double dPositionX, double dPositionY, unsigned int uiSpeed,
@@ -75,6 +76,7 @@ void CBaseCharacter::Die(void)
 	// TODO: Play die animation
 	// TODO: Send a message to spawn an item here
 	// TODO: Send a message to delete this object
+	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
 }
 
 void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)

@@ -9,7 +9,6 @@
 #include "../Game Objects/CPlayer.h"
 CDagger::CDagger()
 {
-
 	//Load the Animation
 	CBaseCharacter::LoadAnimations("resource/PlayerWDagger.xml");
 	SetAttacking(false);
