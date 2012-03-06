@@ -41,9 +41,6 @@ protected:
 	unsigned int m_uiCurSelected;
 	unsigned int m_uiMenuCount;
 	CBitmapFont* pFont;
-	
-	//	I AM STUPID AND HAVE NO IDEA HOW DANIEL DID HIS SCROLLING SO I'M DOING IT MY RETARDED WAY -PHIL
-	unsigned int m_uiPic;
 
 	// Variables for background scrolling
 	int* m_pnTitleIndex;

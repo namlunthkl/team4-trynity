@@ -46,10 +46,6 @@ CBaseMenu::CBaseMenu()
 
 	bMenuConfirm = false;
 
-	//phil scrolling
-	m_uiPic = 0;
-	//phil
-
 	CInputManager::GetInstance()->SetController(1);
 }
 
@@ -89,9 +85,6 @@ void CBaseMenu::Enter()
 
 	//	Members
 	m_fCursorTime = 0.0f;
-
-	//phil
-	m_uiPic = 0;
 
 	//	Play Song
 	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
@@ -231,16 +224,16 @@ void CBaseMenu::Render()
 		RECT rectSourceTitle;
 		//rectSourceTitle.left = (long)((*m_pnTitleIndex) * 0.35);
 		rectSourceTitle.left = (long)(GAME->m_fDerpScroll);
-		rectSourceTitle.top = 0 + m_uiPic*256;
+		rectSourceTitle.top = 0 + GAME->m_uiPic*256;
 		rectSourceTitle.right = rectSourceTitle.left + 400;
-		rectSourceTitle.bottom = 256 + m_uiPic*256;
+		rectSourceTitle.bottom = 256 + GAME->m_uiPic*256;
 
 		if(GAME->m_fDerpScroll >= 624)	//	Please don't change this number, it's an exact relation of image size/scale and game width/resolution so that the image can perfectly reach the end before swapping images
 		{
-			++m_uiPic;
+			++GAME->m_uiPic;
 			GAME->m_fDerpScroll = 0.0f;
-			if(m_uiPic == 3)
-				m_uiPic = 0;
+			if(GAME->m_uiPic == 3)
+				GAME->m_uiPic = 0;
 		}
 
 		if(GAME->m_fDerpScroll <= 100)
