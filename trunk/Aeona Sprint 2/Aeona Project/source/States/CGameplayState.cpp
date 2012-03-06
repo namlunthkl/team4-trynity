@@ -8,7 +8,7 @@
 // Precompiled header
 #include "StdAfx.h"
 #include "..\StdAfx.h"
-a
+
 // Header file for this state
 #include "CGameplayState.h"
 #include "../States/CMainMenuState.h" 
