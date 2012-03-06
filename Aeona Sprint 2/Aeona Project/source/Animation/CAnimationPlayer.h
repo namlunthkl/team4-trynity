@@ -16,6 +16,7 @@ private:
 	bool m_bIsPlaying, m_bIsLooping, m_bPause;
 
 	unsigned int m_nFrameNumber;
+
 	double m_fTimer;
 public:
 	inline CAnimationPlayer(int nAnimationID, bool bIsLooping) 
@@ -42,6 +43,8 @@ public:
 	bool GetPaused() const { return m_bPause; }
 	bool GetLooping() const { return m_bIsLooping; }
 	void SetLooping(bool val) { m_bIsLooping = val; }
+	unsigned int GetFrameNumber() const { return m_nFrameNumber; }
+	void SetFrameNumber(unsigned int val) { m_nFrameNumber = val; }
 	//Point ReturnWeaponPoint(void);
 	//
 	//float ReturnWeaponAngle(void);

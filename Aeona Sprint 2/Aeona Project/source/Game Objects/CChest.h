@@ -22,6 +22,7 @@ class CChest : public CNPC
 {
 private:
 	IBaseItem * m_pItem;
+	bool m_bOpened;
 public:
 	CChest(const char* szName = "noname", bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
@@ -30,6 +31,7 @@ public:
 	~CChest();
 	void Render(void);
 	void OpenChest(void);
+	void Input(void);
 	void LoadAnimations(char const * const szFilename);
 	unsigned int GetType(void) const { return TYPE_CHAR_CHEST; }
 protected:
