@@ -16,6 +16,7 @@ CCrossBow::CCrossBow()
 	CBaseCharacter::LoadAnimations("resource/PlayerWCrossBow.xml");
 	SetAttacking(false);
 	m_pArrow = NULL;
+	m_fTime = 0;
 }
 void CCrossBow::Render(PointD nPos)
 {
@@ -27,14 +28,18 @@ void CCrossBow::Render(PointD nPos)
 
 void CCrossBow::Update(float fElapsedTime)
 {
+	m_fTime += fElapsedTime;
 	CBaseCharacter::Update(fElapsedTime);
 
 }
 void CCrossBow::Attack(void)
 {
 	SetAttacking(true);
-	//if(m_pArrow == NULL)
+	if(m_fTime >= 0.5f)
+	{
+		m_fTime = 0;
 		ShootArrow();
+	}
 }
 void CCrossBow::ChargedAttack(void)
 {
@@ -76,7 +81,7 @@ void CCrossBow::ChargedAttack(void)
 void CCrossBow::ShootArrow(void)
 {
 	m_pArrow = new CArrow();
-	m_pArrow->SetSpeed(40);
+	m_pArrow->SetSpeed(CPlayer::GetInstance()->GetSpeed()*2);
 	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BrS_Arrow.png", D3DCOLOR_XRGB(0,0,0)));
 	m_pArrow->SetHeight(18);
 	m_pArrow->SetWidth(4);
