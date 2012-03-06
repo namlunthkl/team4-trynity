@@ -65,8 +65,8 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 		{
 			weather.ShutDown();
 			LightEngine::GetInstance()->Sand();;
-			LoadXML("Resource/data/SandStorm.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
+			//LoadXML("Resource/data/SandStorm.xml");
+			//CWeatherManager::GetInstance()->SetIsOn( true );
 			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
