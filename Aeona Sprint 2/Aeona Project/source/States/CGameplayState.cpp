@@ -116,9 +116,6 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
 
-	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
-	GAME->ResetAmountLoaded();
-
 	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	
 	///////////////////////////
