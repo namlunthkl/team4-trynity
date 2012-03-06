@@ -19,6 +19,7 @@
 #include "../Game Objects/CPlayer.h"
 #include "../AI_States/CRandomAIState.h"
 #include "../AI_States/CSwarmAIState.h"
+#include "../AI_States/CJumperAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
@@ -117,9 +118,9 @@ void CGameplayState::Enter(void)
 	}
 	*/
 
-	CEnemy* pEnemy = new CEnemy(30, 1600, 40, -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy = new CEnemy(700, 600, 40, -1, 50, 50, true, 100, 1);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-	pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
+	pEnemy->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
