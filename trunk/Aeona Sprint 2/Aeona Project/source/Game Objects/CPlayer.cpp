@@ -449,6 +449,7 @@ bool CPlayer::CheckWorldCollision(void)
 
 		return WORLD->CheckCollisions(nullptr, &WeaponCollisionRect, WeaponType);
 	}
+	return false;
 }
 
 RectD CPlayer::GetWeaponRect(void)
@@ -460,7 +461,6 @@ RectD CPlayer::GetWeaponRect(void)
 // Destructor
 CPlayer::~CPlayer(void)
 {
-
 }
 
 const char* CPlayer::GetRegion(void) const
@@ -472,7 +472,7 @@ const char* CPlayer::GetRegion(void) const
 
 void CPlayer::SufferDamage(unsigned int uiDamage)
 {
-	if( m_fOuchTimer>0.0f == false)
+	if( m_fOuchTimer > 0.0f == false)
 	{
 		CBaseCharacter::SufferDamage(uiDamage);
 	}
