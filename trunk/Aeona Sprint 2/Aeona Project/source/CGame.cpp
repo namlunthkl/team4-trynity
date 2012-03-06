@@ -17,6 +17,7 @@
 #include "States\CGameplayState.h"
 #include "Animation\CAnimationManager.h"
 #include "Input Manager/CInputManager.h"
+#include "Game Objects\CPlayer.h"
 
 #include "Util/ByteUtil.h"
 
@@ -64,7 +65,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
-
+	//for the loading bar
 	m_uiAmountLoaded = 0;
 	
 	// Set window variables
@@ -96,6 +97,9 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 
 	AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
 	AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
+
+	CPlayer::GetInstance()->SetMaxHealth(5);
+	CPlayer::GetInstance()->SetCurHealth(4);
 
 	// Change state to Main Menu
 	ChangeState(CMainMenuState::GetInstance());

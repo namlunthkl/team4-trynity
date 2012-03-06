@@ -222,6 +222,9 @@
     <ClCompile Include="source\Items\CPotion.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+Include="..\..\..\March01\Aeona Sprint 2\Aeona Project\source\AI_States\CSwarmAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile
     <ClCompile Include="source\Light System\LightEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

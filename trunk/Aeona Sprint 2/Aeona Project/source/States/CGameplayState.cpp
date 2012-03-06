@@ -18,6 +18,7 @@
 #include "../Camera/CCameraControl.h"
 #include "../Game Objects/CPlayer.h"
 #include "../AI_States/CRandomAIState.h"
+#include "../AI_States/CSwarmAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
@@ -103,7 +104,7 @@ void CGameplayState::Enter(void)
 
 	CEnemy* pEnemy = new CEnemy(760, 450, 40, -1, 50, 50, true, 100, 0);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+	pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
@@ -436,8 +437,8 @@ void CGameplayState::RenderHUD()
 	TEX_MNG->Draw(m_imgHUD, 800-39, 0, 1.0f, 1.0f, &r1);
 
 	//	Draw some life hearts
-	unsigned int tempMaxH = 8;
-	unsigned int tempCurH = 6;
+	unsigned int tempMaxH = PLAYER->GetMaxHealth();
+	unsigned int tempCurH = PLAYER->GetCurHealth();
 
 	r1.left = 78;
 	r1.top = 0;

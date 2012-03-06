@@ -19,11 +19,16 @@ class CSwarmAIState : public IBaseAIState
 	CSwarmAIState(const CSwarmAIState&){}
 	CSwarmAIState* operator=(const CSwarmAIState&){}
 	~CSwarmAIState(void){}
+	CSwarmAIState(void){}
+
+	static CRandomAIState* sm_pInstance;
+
 public:
-	static CSwarmAIState* GetInstance(void);
+	static IBaseAIState* GetInstance(void);
 	void Enter(CBaseCharacter* pCharacter);
 	void Update(CBaseCharacter* pCharacter, float fElapsedTime);
 	void Exit(CBaseCharacter* pCharacter);
+	static void DeleteInstance(void);
 };
 
 #endif // C_SWARM_AI_STATE_H_
