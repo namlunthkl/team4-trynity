@@ -3,7 +3,7 @@
 
 #include "..\Particle Engine\Emitter.h"
 
-enum WEATHER{ RAIN = 1, SNOW, LEAVES, SAND, EMBER, BUTTERFLIES };
+enum WEATHER{ RAIN = 1, SNOW, LEAVES, SAND, EMBER, FIREFLIES };
 
 class CWeatherManager
 {
