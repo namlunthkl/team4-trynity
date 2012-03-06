@@ -206,7 +206,7 @@ bool CInputManager::GetDownBack(void)
 }
 bool CInputManager::GetPressedB(void)
 {
-	if(INPUT->KeyPressed(DIK_RSHIFT) || INPUT->KeyPressed(DIK_LSHIFT)|| m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B && m_bB == false)
+	if(INPUT->KeyPressed(DIK_RSHIFT) || INPUT->KeyPressed(DIK_LSHIFT) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B && m_bB == false)
 	{
 		m_bB = true;
 		return true;
@@ -218,7 +218,7 @@ bool CInputManager::GetPressedB(void)
 }
 bool CInputManager::GetDownB(void)
 {
-	if(INPUT->KeyDown(DIK_RSHIFT) || INPUT->KeyDown(DIK_LSHIFT)|| m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B)
+	if(INPUT->KeyDown(DIK_RSHIFT) || INPUT->KeyDown(DIK_LSHIFT) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_B)
 	{
 		m_bB = true;
 		return true;
@@ -228,8 +228,9 @@ bool CInputManager::GetDownB(void)
 }
 bool CInputManager::DeleteGame(void)
 {
-	if(GetDownB() && GetDownBack() )
-		return true;
+	if(GetDownB()  )
+		if(GetDownBack())
+			return true;
 
 	return false;
 }

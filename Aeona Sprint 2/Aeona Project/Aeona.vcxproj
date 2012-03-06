@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AI_States\CJumperAIState.cpp" />
     <ClCompile Include="source\AI_States\CRandomAIState.cpp" />
     <ClCompile Include="source\AI_States\CSwarmAIState.cpp" />
     <ClCompile Include="source\Animation\CAnimation.cpp" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
+    <ClInclude Include="source\AI_States\CJumperAIState.h" />
     <ClInclude Include="source\AI_States\CRandomAIState.h" />
     <ClInclude Include="source\AI_States\CSwarmAIState.h" />
     <ClInclude Include="source\AI_States\IBaseAIState.h" />
