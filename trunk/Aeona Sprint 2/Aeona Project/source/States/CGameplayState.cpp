@@ -240,7 +240,6 @@ void CGameplayState::Update(float fElapsedTime)
 
 void CGameplayState::Render(void)
 {
-
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -470,6 +469,30 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CDestroyObjectMessage* pDEM = (CDestroyObjectMessage*)pMsg;
 			OBJECTS->RemoveObject(pDEM->GetObject());
+		}
+	case MSG_CREATE_NPC:
+		{
+			CCreateNPCMessage* pMsgNPC = (CCreateNPCMessage*)pMsg;
+
+			if(pMsgNPC->GetType() == CCreateNPCMessage::NPC_DEMO)
+			{
+				CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
+					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+				pNPC->LoadAnimations("resource/npc walk3.xml");
+				pNPC->LoadText("resource/NPC Dialogue/Example.xml");
+				OBJECTS->AddObject(pNPC);
+				pNPC->Release();
+			}
+		}
+	case MSG_CREATE_ENEMY:
+		{
+			//// Initialize Enemies
+			//CEnemy* pEnemy = new CEnemy(700, 600, 40,  -1, 50, 50, true, 100, 1);
+			//pEnemy->LoadAnimations("resource/Enemy Animation.xml");
+			//pEnemy->ChangeAIState(CJumperAIState::GetInstance());
+			//pEnemy->SetDebugMode(true);
+			//OBJECTS->AddObject(pEnemy);
+			//pEnemy->Release();
 		}
 	}
 }
