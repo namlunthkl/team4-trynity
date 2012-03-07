@@ -120,65 +120,84 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 {	
 	float4 color = tex2D( gDiffuseSampler, input.uv);
 
+	// AMBIENT POINT LIGHT
 	float4 gAmbientColor;
 	gAmbientColor.a = gAmbientA;
 	gAmbientColor.r = gAmbientR;
 	gAmbientColor.g = gAmbientG;
 	gAmbientColor.b = gAmbientB;
+	
+	
+	
+	////////////////////////////////////////////////////////
+	// PLAYER POINT LIGHT
+	////////////////////////////////////////////////////////
+	float4 PlayerPointLightColor;	
 	if( gPlayerPointLight )
 	{
-		float4 PlayerPointLightColor;	
-		PlayerPointLightColor.a = gPlayerPointA;
-		PlayerPointLightColor.r = gPlayerPointR;
-		PlayerPointLightColor.g = gPlayerPointG;
-		PlayerPointLightColor.b = gPlayerPointB;
-		
-		float2 PlayerPointLightPos;
-		PlayerPointLightPos.x = gPlayerPointPosX;
-		PlayerPointLightPos.y = gPlayerPointPosY;
-		
-		float  PlayerPointLightRadius;
-		float2 vectorBetweenTwo;
-		float  mag;
-		float  ratio;
-	 
-		vectorBetweenTwo = input.uv - PlayerPointLightPos; 
-		mag = length( vectorBetweenTwo );
-		PlayerPointLightRadius = .3f;
-		ratio = 1.0f - saturate( mag / PlayerPointLightRadius );
-		PlayerPointLightColor *= ratio;
+	PlayerPointLightColor.a = gPlayerPointA;
+	PlayerPointLightColor.r = gPlayerPointR;
+	PlayerPointLightColor.g = gPlayerPointG;
+	PlayerPointLightColor.b = gPlayerPointB;
 	
-		return (color * PlayerPointLightColor) + ( color * gAmbientColor) ;
-	}
-	else if( gItem1PointLight )
-	{
-		float4 Item1PointLightColor;	
-		Item1PointLightColor.a = gItem1PointA;
-		Item1PointLightColor.r = gItem1PointR;
-		Item1PointLightColor.g = gItem1PointG;
-		Item1PointLightColor.b = gItem1PointB;
-		
-		float2 Item1PointLightPos;
-		Item1PointLightPos.x = gItem1PointPosX;
-		Item1PointLightPos.y = gItem1PointPosY;
-		
-		float  Item1PointLightRadius;
-		float2 vectorBetweenTwo;
-		float  mag;
-		float  ratio;
-	 
-		vectorBetweenTwo = input.uv - Item1PointLightPos; 
-		mag = length( vectorBetweenTwo );
-		Item1PointLightRadius = .3f;
-		ratio = 1.0f - saturate( mag / Item1PointLightRadius );
-		Item1PointLightColor *= ratio;
+	float2 PlayerPointLightPos;
+	PlayerPointLightPos.x = gPlayerPointPosX;
+	PlayerPointLightPos.y = gPlayerPointPosY;
 	
-		return (color * Item1PointLightColor) + ( color * gAmbientColor) ;
+	float  PlayerPointLightRadius;
+	float2 PlayerVectorBetweenTwo;
+	float  PlayerMag;
+	float  PlayerRatio;
+	
+	
+	PlayerVectorBetweenTwo = input.uv - PlayerPointLightPos; 
+	PlayerMag = length( PlayerVectorBetweenTwo );
+	PlayerPointLightRadius = .3f;
+	PlayerRatio = 1.0f - saturate( PlayerMag / PlayerPointLightRadius );
+	PlayerPointLightColor *= PlayerRatio;
 	}
-	else
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+	
+	
+	
+	////////////////////////////////////////////////////////
+	// ITEM1 POINT LIGHT
+	////////////////////////////////////////////////////////
+	float4 Item1PointLightColor;	
+	if( gItem1PointLight )
 	{
-		return color * gAmbientColor;
+	Item1PointLightColor.a = gItem1PointA;
+	Item1PointLightColor.r = gItem1PointR;
+	Item1PointLightColor.g = gItem1PointG;
+	Item1PointLightColor.b = gItem1PointB;
+	
+	float2 Item1PointLightPos;
+	Item1PointLightPos.x = gItem1PointPosX;
+	Item1PointLightPos.y = gItem1PointPosY;
+	
+	float  Item1PointLightRadius;
+	float2 Item1VectorBetweenTwo;
+	float  Item1Mag;
+	float  Item1Ratio;
+	
+	
+	Item1VectorBetweenTwo = input.uv - Item1PointLightPos; 
+	Item1Mag = length( Item1VectorBetweenTwo );
+	Item1PointLightRadius = .2f;
+	Item1Ratio = 1.0f - saturate( Item1Mag / Item1PointLightRadius );
+	Item1PointLightColor *= Item1Ratio;
 	}
+	
+	
+	////////////////////////////////////////
+	// RENDER EVERYTHING
+	////////////////////////////////////////
+	return (color * Item1PointLightColor) + (color * PlayerPointLightColor) + ( color * gAmbientColor ) ;
+	////////////////////////////////////////
+	////////////////////////////////////////
+	////////////////////////////////////////
 }
 
 technique Invert
