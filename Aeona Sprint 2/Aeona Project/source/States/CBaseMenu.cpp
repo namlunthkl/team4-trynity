@@ -196,11 +196,11 @@ void CBaseMenu::Render()
 	{
 		if(CGame::GetInstance()->m_fLogoTimer < 0.5)
 		{
-			alpha = (CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
+			alpha = (float)(CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		else if(CGame::GetInstance()->m_fLogoTimer >= 3.0f)
 		{
-			alpha = (3.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
+			alpha = (float)(3.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
 		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
@@ -213,7 +213,7 @@ void CBaseMenu::Render()
 		}
 		else if(CGame::GetInstance()->m_fLogoTimer >= 6.5f)
 		{
-			alpha = (7.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
+			alpha = (float)(7.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
 		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 0, 0));

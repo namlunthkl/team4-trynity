@@ -34,8 +34,8 @@ void CSwarmAIState::DeleteInstance(void)
 
 void CSwarmAIState::Enter(CBaseCharacter* pCharacter)
 {
-	pCharacter->SetVelY(0 * pCharacter->GetSpeed());
-	pCharacter->SetVelX(0 * pCharacter->GetSpeed());
+	pCharacter->SetVelY(0.0f);
+	pCharacter->SetVelX(0.0f);
 	pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_RIGHT);
 }
 
