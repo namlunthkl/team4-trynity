@@ -75,7 +75,7 @@ void CBaseMenu::Enter()
 {
 	//	Load Assets
 	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png", D3DCOLOR_XRGB(0,0,0));
-	m_imgTitle = TEX_MNG->LoadTexture("resource/MenuHorizons.png");
+	m_imgTitle = TEX_MNG->LoadTexture("resource/MenuHorizons3.png");
 	m_imgTeamLogo = TEX_MNG->LoadTexture("resource/Team4Logo.png");
 	m_imgLeaderLogo = TEX_MNG->LoadTexture("resource/TempAsset2.png");
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
@@ -173,7 +173,7 @@ void CBaseMenu::Update(float fElapsedTime)
 
 	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
-		GAME->m_fDerpScroll += (fElapsedTime * 95);
+		GAME->m_fDerpScroll += (fElapsedTime * 40);
 		m_fCursorTime += fElapsedTime;
 		if(m_fCursorTime >= 0.8f)
 		{
@@ -245,8 +245,8 @@ void CBaseMenu::Render()
 			alpha = (100 - (GAME->m_fDerpScroll - 524)) * (255.0f/100);
 		}
 
-		D3D->Clear(0, 0, 0);
-		TEX_MNG->Draw(m_imgTitle, 0, 0, 2.0f, 2.34375f, &rectSourceTitle, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));	//	2.34375 IS CORRECT!  Because the original height of panoram is 256, and it needs to be scaled to exactly 600.
+		D3D->Clear(160-90, 150-90, 140-90);
+		TEX_MNG->Draw(m_imgTitle, 0, 0, 2.0f, 2.34375f, &rectSourceTitle, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 130, 130, 130));	//	2.34375 IS CORRECT!  Because the original height of panoram is 256, and it needs to be scaled to exactly 600.
 
 		/*if (timeGetTime() - m_dwTitleScrollStamp > 10)
 		{
