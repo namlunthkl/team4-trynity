@@ -42,6 +42,7 @@
     <ClCompile Include="source\Post Process\CPostProcess.cpp" />
     <ClCompile Include="source\Puzzles\CPuzzle.cpp" />
     <ClCompile Include="source\Puzzles\CPuzzleManager.cpp" />
+    <ClCompile Include="source\Puzzles\CTorchPuzzle.cpp" />
     <ClCompile Include="source\States\CAudioOptionsState.cpp" />
     <ClCompile Include="source\States\CBaseMenu.cpp" />
     <ClCompile Include="source\States\CCreditsState.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="source\Puzzles\CPuzzle.h" />
     <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
     <ClInclude Include="source\Puzzles\CPuzzleManager.h" />
+    <ClInclude Include="source\Puzzles\CTorchPuzzle.h" />
     <ClInclude Include="source\States\CAudioOptionsState.h" />
     <ClInclude Include="source\States\CBaseMenu.h" />
     <ClInclude Include="source\States\CCreditsState.h" />

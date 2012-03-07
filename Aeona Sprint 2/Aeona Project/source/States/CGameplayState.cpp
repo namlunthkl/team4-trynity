@@ -70,7 +70,6 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
 	EVENTS->RegisterForEvent("Teleport.Cave", this);
 	EVENTS->RegisterForEvent("Teleport.Map", this);
-	EVENTS->RegisterForEvent("OpenDoor", this);
 	EVENTS->RegisterForEvent("destroy", this);
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
@@ -448,11 +447,6 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	{
 		PLAYER->SetPosX(1715);
 		PLAYER->SetPosY(340);
-	}
-	if(pEvent->GetEventID() == "OpenDoor")
-	{
-		MessageBox(GAME->GetWindowHandle(),"OpenDoor event was fired - You won the game!!!","You won",MB_OK);
-		GAME->ChangeState(CMainMenuState::GetInstance());
 	}
 	if(pEvent->GetEventID() == "destroy")
 	{
