@@ -35,6 +35,11 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	//	IM 12 AND WHAT IS THIS?
 	TurnBitOn(m_byteMasks, MASK_NONE);
 
+	TurnBitOn(m_byteMasks, 0);
+	TurnBitOn(m_byteMasks, 1);
+	TurnBitOn(m_byteMasks, 2);
+	TurnBitOn(m_byteMasks, 3);
+
 	m_bHeartPiece = false;
 	m_uiCurrentWeapon = WEAPON_DAGGER;
 	m_uiCurrentMask = MASK_NONE;
@@ -113,13 +118,12 @@ void CPlayer::Render(void)
 	// Render the player
 	//
 	//
-	if( CPlayer::GetInstance()->m_fOuchTimer  == 0.0f )
+	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
 	{
 		WEAPON->Render(GetPosition());
 	}
 	// Render the particles
 	m_fxFootsteps.Render();
-
 	
 	D3D->GetSprite()->Flush();
 	RectD rect = GetCollisionRect();
@@ -148,8 +152,6 @@ void CPlayer::Render(void)
 	{
 		D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
 	}
-
-	
 }
 
 void CPlayer::Attack(void)

@@ -610,7 +610,9 @@ void CGameplayState::RenderHUD()
 
 	//	Value for the actual current XP
 
-	float tempXP = 0.7f;
+	float tempXP = CInputManager::GetInstance()->Timeheld();
+	if(tempXP > 1.0f)
+		tempXP = 1.0f;
 
 	//	Draw the weapon XP bar foreground
 	r1.left = (long)(110 + (320 * (1.0f - tempXP)));
@@ -627,6 +629,16 @@ void CGameplayState::RenderHUD()
 
 	//	Draw the potion spot
 	TEX_MNG->Draw(m_imgHUD, 800-400-32, 4, 1.0f, 1.0f, &r1);
+
+	r1.left = 78;
+	r1.top = 224;
+	r1.right = 78+32;
+	r1.bottom = 224+32;
+
+	if(PLAYER->GetNumPotions() > 0)
+	{
+		TEX_MNG->Draw(m_imgHUD, 800-400-16, 4+16, 1.0f, 1.0f, &r1);
+	}
 
 	//	Define the minimap frame
 	r1.left = 110;
