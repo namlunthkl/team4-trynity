@@ -79,5 +79,8 @@ void CTorchPuzzle::Destroy(void)
 
 	m_vParticle.clear();
 
+	AUDIO->SFXStopSound(m_sndFireSound);
+	AUDIO->SFXUnloadSound(m_sndFireSound);
+
 	IBasePuzzle::Destroy();
 }

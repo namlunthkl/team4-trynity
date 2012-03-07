@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarTileset = new System.Windows.Forms.HScrollBar();
             this.vScrollBarTileset = new System.Windows.Forms.VScrollBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,7 +63,6 @@
             this.tabLayers = new System.Windows.Forms.TabControl();
             this.tabLayer0 = new System.Windows.Forms.TabPage();
             this.checkBoxVisible = new System.Windows.Forms.CheckBox();
-            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarMap = new System.Windows.Forms.HScrollBar();
             this.vScrollBarMap = new System.Windows.Forms.VScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -113,6 +111,10 @@
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.numObjLayer = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
+            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -143,10 +145,13 @@
             this.tabLayers.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numObjLayer)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.numObjLayer);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.statusStrip1);
             this.panel1.Controls.Add(this.toolStrip1);
@@ -362,19 +367,6 @@
             this.splitContainer3.SplitterDistance = 365;
             this.splitContainer3.TabIndex = 0;
             // 
-            // tilesetPanel
-            // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
-            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
-            this.tilesetPanel.Name = "tilesetPanel";
-            this.tilesetPanel.Size = new System.Drawing.Size(228, 344);
-            this.tilesetPanel.TabIndex = 0;
-            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
-            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
-            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
-            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
-            // 
             // hScrollBarTileset
             // 
             this.hScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -561,7 +553,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.checkBoxVisible);
             this.splitContainer5.Size = new System.Drawing.Size(696, 26);
-            this.splitContainer5.SplitterDistance = 572;
+            this.splitContainer5.SplitterDistance = 464;
             this.splitContainer5.TabIndex = 0;
             // 
             // tabLayers
@@ -571,7 +563,7 @@
             this.tabLayers.Location = new System.Drawing.Point(0, 0);
             this.tabLayers.Name = "tabLayers";
             this.tabLayers.SelectedIndex = 0;
-            this.tabLayers.Size = new System.Drawing.Size(572, 26);
+            this.tabLayers.Size = new System.Drawing.Size(464, 26);
             this.tabLayers.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabLayers.TabIndex = 1;
             this.tabLayers.SelectedIndexChanged += new System.EventHandler(this.tabLayers_SelectedIndexChanged);
@@ -581,7 +573,7 @@
             this.tabLayer0.Location = new System.Drawing.Point(4, 25);
             this.tabLayer0.Name = "tabLayer0";
             this.tabLayer0.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLayer0.Size = new System.Drawing.Size(564, 0);
+            this.tabLayer0.Size = new System.Drawing.Size(456, 0);
             this.tabLayer0.TabIndex = 0;
             this.tabLayer0.Text = "Layer 0";
             this.tabLayer0.UseVisualStyleBackColor = true;
@@ -589,28 +581,14 @@
             // checkBoxVisible
             // 
             this.checkBoxVisible.AutoSize = true;
-            this.checkBoxVisible.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxVisible.Dock = System.Windows.Forms.DockStyle.Left;
             this.checkBoxVisible.Location = new System.Drawing.Point(0, 0);
             this.checkBoxVisible.Name = "checkBoxVisible";
-            this.checkBoxVisible.Size = new System.Drawing.Size(120, 26);
+            this.checkBoxVisible.Size = new System.Drawing.Size(71, 26);
             this.checkBoxVisible.TabIndex = 0;
             this.checkBoxVisible.Text = "Visible";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
             this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
-            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPanel.Location = new System.Drawing.Point(0, 0);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(675, 585);
-            this.mapPanel.TabIndex = 1;
-            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
-            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
-            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
-            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
-            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // hScrollBarMap
             // 
@@ -1035,6 +1013,49 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.aboutToolStripMenuItem1.Text = "&About...";
             // 
+            // numObjLayer
+            // 
+            this.numObjLayer.Location = new System.Drawing.Point(893, 28);
+            this.numObjLayer.Name = "numObjLayer";
+            this.numObjLayer.Size = new System.Drawing.Size(56, 22);
+            this.numObjLayer.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(798, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Object Layer";
+            // 
+            // tilesetPanel
+            // 
+            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
+            this.tilesetPanel.Name = "tilesetPanel";
+            this.tilesetPanel.Size = new System.Drawing.Size(228, 344);
+            this.tilesetPanel.TabIndex = 0;
+            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
+            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
+            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
+            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(675, 585);
+            this.mapPanel.TabIndex = 1;
+            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
+            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
+            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
+            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
+            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
+            // 
             // CTileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1082,6 +1103,7 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numObjLayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1172,6 +1194,8 @@
         private System.Windows.Forms.CheckBox eventsCheckBox2;
         private System.Windows.Forms.CheckBox eventsCheckBox4;
         private System.Windows.Forms.CheckBox eventsCheckBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numObjLayer;
 
     }
 }

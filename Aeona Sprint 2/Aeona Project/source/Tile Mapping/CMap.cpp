@@ -39,6 +39,7 @@ CMap::CMap(void)
 	SetWidth(0);
 	SetHeight(0);
 	SetTileset(NULL);
+	m_uiObjectLayer = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -66,6 +67,7 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 	int nHeight = 0;
 	int nPosX = 0;
 	int nPosY = 0;
+	int nObjectLayer = 0;
 	int nTileType = 0;
 	int nTilePosX = 0;
 	int nTilePosY = 0;
@@ -88,12 +90,14 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 	pMap->Attribute("height", &nHeight);
 	pMap->Attribute("posX", &nPosX);
 	pMap->Attribute("posY", &nPosY);
+	pMap->Attribute("objectlayer", &nObjectLayer);
 
 	// Set the map members
 	SetWidth(nWidth);
 	SetHeight(nHeight);
 	SetPosX(nPosX);
 	SetPosY(nPosY);
+	m_uiObjectLayer = nObjectLayer;
 
 	// First Layer in the map
 	TiXmlElement* pLayer = pMap->FirstChildElement("Layer");
@@ -150,74 +154,89 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 //	Purpose		:	Draw the map's tiles that are inside the window's
 //					space
 ////////////////////////////////////////////////////////////////////////
-void CMap::Render(int nCullingMode)
+void CMap::RenderLayer(unsigned int uiIndexLayer, int nCullingMode)
 {
 	// Indexes we'll need for looping
-	unsigned int uiIndexLayer	= 0;		// Loop through layers
 	unsigned int uiIndexWidth	= 0;		// Loop through the map width / columns
 	unsigned int uiIndexHeight	= 0;		// Loop through the map height / lines
 	unsigned int uiIndexTile	= 0;		// Keep track of the tile we're looking in the array
 
-	// First loop through all the layers
-	for(uiIndexLayer = 0; uiIndexLayer < m_vLayers.size(); ++uiIndexLayer)
+	// For each layer, loop through all the tiles
+	for(uiIndexTile = 0; uiIndexTile < m_vLayers[uiIndexLayer].GetSize(); ++uiIndexTile)
 	{
-		// For each layer, loop through all the tiles
-		for(uiIndexTile = 0; uiIndexTile < m_vLayers[uiIndexLayer].GetSize(); ++uiIndexTile)
+		// Get a pointer to the current tile - for better readability
+		CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
+
+		// Get position to draw;
+		int nTileWorldPosX = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
+		int nTileWorldPosY = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
+
+		bool bRender = false;
+		switch(nCullingMode)
 		{
-			// Get a pointer to the current tile - for better readability
-			CTile* tileCurrent = m_vLayers[uiIndexLayer].GetTile(uiIndexTile);
-
-			// Get position to draw;
-			int nTileWorldPosX = GetPosX() + GetTileset()->GetTileWidth() * uiIndexWidth;
-			int nTileWorldPosY = GetPosY() + GetTileset()->GetTileHeight() * uiIndexHeight;
-			
-			bool bRender = false;
-			switch(nCullingMode)
-			{
-			case CULLING_NONE:
+		case CULLING_NONE:
+			bRender = true;
+			break;
+		case CULLING_HALF_SCREEN:
+			if(nTileWorldPosX  + CAMERA->GetPositionX() > 0 && nTileWorldPosX + GetTileset()->GetTileWidth()  + CAMERA->GetPositionX() < GAME->GetScreenWidth()
+				&& nTileWorldPosY + CAMERA->GetPositionY() > 0 && nTileWorldPosY+ GetTileset()->GetTileHeight()  + CAMERA->GetPositionY() < GAME->GetScreenHeight())
 				bRender = true;
-				break;
-			case CULLING_HALF_SCREEN:
-				if(nTileWorldPosX  + CAMERA->GetPositionX() > 0 && nTileWorldPosX + GetTileset()->GetTileWidth()  + CAMERA->GetPositionX() < GAME->GetScreenWidth()
-					&& nTileWorldPosY + CAMERA->GetPositionY() > 0 && nTileWorldPosY+ GetTileset()->GetTileHeight()  + CAMERA->GetPositionY() < GAME->GetScreenHeight())
-					bRender = true;
-				break;
-			case CULLING_SCREEN:
-				if(nTileWorldPosX + GetTileset()->GetTileWidth() + CAMERA->GetPositionX() >= 0 && (nTileWorldPosX + CAMERA->GetPositionX()) <= GAME->GetScreenWidth()
-					&& nTileWorldPosY + GetTileset()->GetTileHeight() + CAMERA->GetPositionY() >= 0 && (nTileWorldPosY + CAMERA->GetPositionY()) <= GAME->GetScreenHeight())
-					bRender = true;
-				break;
-			}
-
-			if(bRender)
-			{
-				// Get the source rect of that tile
-				RECT rectSource = GetTileSourceRect(tileCurrent);
-
-				// Draw the tile using texture manager
-				TEX_MNG->Draw(GetTileset()->GetImageID(), nTileWorldPosX, nTileWorldPosY, 1.0f, 1.0f, &rectSource);
-			}
-
-			// Since we're reading line by line, from left to right, we need
-			// to increase the width index every time we draw a tile
-			++uiIndexWidth;
-
-			// Once we reach the end of a line, though, we need to reset the
-			// width index and increase the height index
-			if((int)uiIndexWidth >= GetWidth())
-			{
-				// Reset width index
-				uiIndexWidth = 0;
-
-				// Increase height index
-				++uiIndexHeight;
-			}
+			break;
+		case CULLING_SCREEN:
+			if(nTileWorldPosX + GetTileset()->GetTileWidth() + CAMERA->GetPositionX() >= 0 && (nTileWorldPosX + CAMERA->GetPositionX()) <= GAME->GetScreenWidth()
+				&& nTileWorldPosY + GetTileset()->GetTileHeight() + CAMERA->GetPositionY() >= 0 && (nTileWorldPosY + CAMERA->GetPositionY()) <= GAME->GetScreenHeight())
+				bRender = true;
+			break;
 		}
 
-		// Once we're done loading a layer, we should reset the width and height
-		// indexes, so that the next layer is rendered above this one
-		uiIndexWidth = 0;
-		uiIndexHeight = 0;
+		if(bRender)
+		{
+			// Get the source rect of that tile
+			RECT rectSource = GetTileSourceRect(tileCurrent);
+
+			// Draw the tile using texture manager
+			TEX_MNG->Draw(GetTileset()->GetImageID(), nTileWorldPosX, nTileWorldPosY, 1.0f, 1.0f, &rectSource);
+		}
+
+		// Since we're reading line by line, from left to right, we need
+		// to increase the width index every time we draw a tile
+		++uiIndexWidth;
+
+		// Once we reach the end of a line, though, we need to reset the
+		// width index and increase the height index
+		if((int)uiIndexWidth >= GetWidth())
+		{
+			// Reset width index
+			uiIndexWidth = 0;
+
+			// Increase height index
+			++uiIndexHeight;
+		}
+	}
+}
+
+void CMap::RenderFirstLayers(int nCullingMode)
+{
+	if(m_uiObjectLayer >= m_vLayers.size()) return;
+
+	unsigned int uiIndexLayer	= 0;		// Loop through layers
+	
+	// First loop through all the layers
+	for(uiIndexLayer = 0; uiIndexLayer <= m_uiObjectLayer; ++uiIndexLayer)
+	{
+		// Call render on those
+		RenderLayer(uiIndexLayer, nCullingMode);
+	}
+}
+void CMap::RenderLastLayers(int nCullingMode)
+{
+	unsigned int uiIndexLayer	= 0;		// Loop through layers
+	
+	// First loop through all the layers
+	for(uiIndexLayer = m_uiObjectLayer + 1; uiIndexLayer < m_vLayers.size(); ++uiIndexLayer)
+	{
+		// Call render on those
+		RenderLayer(uiIndexLayer, nCullingMode);
 	}
 }
 
