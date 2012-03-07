@@ -133,28 +133,27 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	// PLAYER POINT LIGHT
 	////////////////////////////////////////////////////////
 	float4 PlayerPointLightColor;	
-	if( gPlayerPointLight )
+	if( gPlayerPointLight == true )
 	{
-	PlayerPointLightColor.a = gPlayerPointA;
-	PlayerPointLightColor.r = gPlayerPointR;
-	PlayerPointLightColor.g = gPlayerPointG;
-	PlayerPointLightColor.b = gPlayerPointB;
-	
-	float2 PlayerPointLightPos;
-	PlayerPointLightPos.x = gPlayerPointPosX;
-	PlayerPointLightPos.y = gPlayerPointPosY;
-	
-	float  PlayerPointLightRadius;
-	float2 PlayerVectorBetweenTwo;
-	float  PlayerMag;
-	float  PlayerRatio;
-	
-	
-	PlayerVectorBetweenTwo = input.uv - PlayerPointLightPos; 
-	PlayerMag = length( PlayerVectorBetweenTwo );
-	PlayerPointLightRadius = .3f;
-	PlayerRatio = 1.0f - saturate( PlayerMag / PlayerPointLightRadius );
-	PlayerPointLightColor *= PlayerRatio;
+		PlayerPointLightColor.a = gPlayerPointA;
+		PlayerPointLightColor.r = gPlayerPointR;
+		PlayerPointLightColor.g = gPlayerPointG;
+		PlayerPointLightColor.b = gPlayerPointB;
+		
+		float2 PlayerPointLightPos;
+		PlayerPointLightPos.x = gPlayerPointPosX;
+		PlayerPointLightPos.y = gPlayerPointPosY;
+		
+		float  PlayerPointLightRadius;
+		float2 PlayerVectorBetweenTwo;
+		float  PlayerMag;
+		float  PlayerRatio;
+		
+		PlayerVectorBetweenTwo = input.uv - PlayerPointLightPos; 
+		PlayerMag = length( PlayerVectorBetweenTwo );
+		PlayerPointLightRadius = .3f;
+		PlayerRatio = 1.0f - saturate( PlayerMag / PlayerPointLightRadius );
+		PlayerPointLightColor *= PlayerRatio;
 	}
 	////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
@@ -166,28 +165,27 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	// ITEM1 POINT LIGHT
 	////////////////////////////////////////////////////////
 	float4 Item1PointLightColor;	
-	if( gItem1PointLight )
+	if( gItem1PointLight == true )
 	{
-	Item1PointLightColor.a = gItem1PointA;
-	Item1PointLightColor.r = gItem1PointR;
-	Item1PointLightColor.g = gItem1PointG;
-	Item1PointLightColor.b = gItem1PointB;
-	
-	float2 Item1PointLightPos;
-	Item1PointLightPos.x = gItem1PointPosX;
-	Item1PointLightPos.y = gItem1PointPosY;
-	
-	float  Item1PointLightRadius;
-	float2 Item1VectorBetweenTwo;
-	float  Item1Mag;
-	float  Item1Ratio;
-	
-	
-	Item1VectorBetweenTwo = input.uv - Item1PointLightPos; 
-	Item1Mag = length( Item1VectorBetweenTwo );
-	Item1PointLightRadius = .2f;
-	Item1Ratio = 1.0f - saturate( Item1Mag / Item1PointLightRadius );
-	Item1PointLightColor *= Item1Ratio;
+		Item1PointLightColor.a = gItem1PointA;
+		Item1PointLightColor.r = gItem1PointR;
+		Item1PointLightColor.g = gItem1PointG;
+		Item1PointLightColor.b = gItem1PointB;
+		
+		float2 Item1PointLightPos;
+		Item1PointLightPos.x = gItem1PointPosX;
+		Item1PointLightPos.y = gItem1PointPosY;
+		
+		float  Item1PointLightRadius;
+		float2 Item1VectorBetweenTwo;
+		float  Item1Mag;
+		float  Item1Ratio;
+		
+		Item1VectorBetweenTwo = input.uv - Item1PointLightPos; 
+		Item1Mag = length( Item1VectorBetweenTwo );
+		Item1PointLightRadius = .2f;
+		Item1Ratio = 1.0f - saturate( Item1Mag / Item1PointLightRadius );
+		Item1PointLightColor *= Item1Ratio;
 	}
 	
 	
@@ -204,47 +202,47 @@ technique Invert
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 Inversion();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 Inversion();
     }
 } 
 technique Monochrome
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 BlackAndWhite();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 BlackAndWhite();
     }
 }
 technique Sepia
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 SepiaScale();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 SepiaScale();
     }
 }
 technique ColorLoop
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 ColorCycle();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 ColorCycle();
     }
 } 
 technique TronEnergy
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 TronLines();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 TronLines();
     }
 }
 technique DayCycleEffect
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 DayCycle();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 DayCycle();
     }
 }

@@ -21,22 +21,45 @@ void LightEngine::Initialize( void )
 	SetAmbientBlue( 1.0f );
 
 	SetPlayerPointLight( false );
-	SetPlayerPointAlpha( 1.0f );
-	SetPlayerPointRed( 2.0f );
-	SetPlayerPointGreen( 1.0f );
-	SetPlayerPointBlue( 1.0f );
 	SetPlayerPointPosX( 0.5f );
 	SetPlayerPointPosY( 0.5f );
 
 	SetItem1PointLight( false );
-	SetItem1PointAlpha( 1.0f );
-	SetItem1PointRed( 2.0f );
-	SetItem1PointGreen( 1.0f );
-	SetItem1PointBlue( 1.0f );
 	SetItem1PointPosX( 0.75f );
 	SetItem1PointPosY( 0.75f );
 }
-void LightEngine::Update( void ){}
+void LightEngine::Update( void )
+{
+	if( GetPlayerPointLight() )
+	{
+		SetPlayerPointAlpha( 1.0f );
+		SetPlayerPointRed( 1.0f );
+		SetPlayerPointGreen( 1.0f );
+		SetPlayerPointBlue( 1.0f );
+	}
+	else
+	{
+		SetPlayerPointAlpha( 0.0f );
+		SetPlayerPointRed( 0.0f );
+		SetPlayerPointGreen( 0.0f );
+		SetPlayerPointBlue( 0.0f );
+	}
+
+	if( GetItem1PointLight() )
+	{
+		SetItem1PointAlpha( 1.0f );
+		SetItem1PointRed( 1.0f );
+		SetItem1PointGreen( 1.0f );
+		SetItem1PointBlue( 1.0f );
+	}
+	else
+	{
+		SetItem1PointAlpha( 0.0f );
+		SetItem1PointRed( 0.0f );
+		SetItem1PointGreen( 0.0f );
+		SetItem1PointBlue( 0.0f );
+	}
+}
 void LightEngine::Input( void )
 {
 	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
@@ -63,7 +86,6 @@ void LightEngine::Input( void )
 	{
 		SetItem1PointLight( !GetItem1PointLight() );
 	}
-
 }
 void LightEngine::ShutDown( void )
 {

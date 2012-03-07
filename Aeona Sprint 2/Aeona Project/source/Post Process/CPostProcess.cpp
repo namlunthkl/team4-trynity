@@ -91,6 +91,7 @@ void CPostProcess::Initialize( void )
 }
 void CPostProcess::Update( void )
 {
+	LightEngine::GetInstance()->Update();
 	UpdateColor();
 }
 void CPostProcess::Input( void )
@@ -175,8 +176,6 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gAmbientR", LightEngine::GetInstance()->GetAmbientRed() );
 		postEffect->SetFloat( "gAmbientG", LightEngine::GetInstance()->GetAmbientGreen() );
 		postEffect->SetFloat( "gAmbientB", LightEngine::GetInstance()->GetAmbientBlue() );
-
-		
 
 		postEffect->SetBool(  "gPlayerPointLight", LightEngine::GetInstance()->GetPlayerPointLight() );
 		postEffect->SetFloat( "gPlayerPointA", LightEngine::GetInstance()->GetPlayerPointAlpha() );
