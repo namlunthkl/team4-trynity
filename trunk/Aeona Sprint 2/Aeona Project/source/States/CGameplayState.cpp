@@ -274,11 +274,11 @@ void CGameplayState::Render(void)
 
 	D3D->GetSprite()->Flush();
 
-	PUZZLES->RenderPuzzles();
+	OBJECTS->RenderObjects();
 
 	D3D->GetSprite()->Flush();
 
-	OBJECTS->RenderObjects();
+	PUZZLES->RenderPuzzles();
 
 	D3D->GetSprite()->Flush();
 
