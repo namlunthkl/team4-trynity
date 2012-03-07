@@ -7,12 +7,9 @@
 
 // Precompiled header
 #include "StdAfx.h"
-#include "..\StdAfx.h"
-
 // Header file for this state
 #include "CGameplayState.h"
 #include "../States/CMainMenuState.h" 
-
 // Includes
 #include "../Input Manager/CInputManager.h"
 #include "../Camera/CCameraControl.h"
@@ -24,7 +21,6 @@
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
 #include "../Game Objects/CChest.h"
-// SINGLETON Weather Engine
 #include "../Weather System/WeatherManager.h"
 #include "../Post Process/CPostProcess.h"
 
@@ -35,6 +31,8 @@
 #define OBJECTS		CObjectManager::GetInstance()
 #define CAMERA		CCameraControl::GetInstance()
 #define PUZZLES		CPuzzleManager::GetInstance()
+#define POSTPROCESS CPostProcess::GetInstance()
+#define WEATHER		CWeatherManager::GetInstance()
 // Constructor
 CGameplayState::CGameplayState(void)
 {
@@ -45,51 +43,50 @@ CGameplayState::CGameplayState(void)
 	m_szCurrentMessage	= "";
 	m_szCurrentOption	= "";
 	m_fHeartTimer		= 0.0f;
-
 	m_bGameOver = false;
 	m_bVictory = false;
 	m_nGameOverID = -1;
 	m_nVictoryID = -1;
+	m_pFont = new CBitmapFont();
 }
 
 // Initialize everything
 void CGameplayState::Enter(void)
 {
+	// Render the loading screen
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 
-	//	HEART TIMER
-	m_fHeartTimer = 0.0f;
-
+	// Initialize systems
 	MESSAGES->InitMessageSystem(MessageProc);
 	WORLD->InitWorldEngine();
 	PUZZLES->InitPuzzleManager();
 
+	// Reset variables
+	m_fHeartTimer = 0.0f;
 	m_bGameOver = false;
 	m_bVictory = false;
-
 	
-
-	// Register for the event
+	// Register for events
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
-	/*EVENTS->RegisterForEvent("LightTorch.0", this);
-	EVENTS->RegisterForEvent("LightTorch.1", this);
-	EVENTS->RegisterForEvent("LightTorch.2", this);
-	EVENTS->RegisterForEvent("LightTorch.3", this);*/
 	EVENTS->RegisterForEvent("Teleport.Cave", this);
 	EVENTS->RegisterForEvent("Teleport.Map", this);
 	EVENTS->RegisterForEvent("OpenDoor", this);
 	EVENTS->RegisterForEvent("destroy", this);
-	// Register events
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
 
-	//CWeatherManager::GetInstance()->GetWeather()->Init();
+	// CWeatherManager::GetInstance()->GetWeather()->Init();
 
-	// Load textures
+	//	Load all assets
+	//		Textures
 	m_imgMessageBox = TEX_MNG->LoadTexture("resource/MessageBox.png");
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.png", D3DCOLOR_XRGB(255, 0, 255));
-	
+	m_nGameOverID = TEX_MNG->LoadTexture("resource/GameOver.png");
+	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
+	//		Sounds
+	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
+	// Initialize Player
 	PLAYER->SetPosX(600);
 	PLAYER->SetPosY(200);
 	PLAYER->SetSpeed(100);
@@ -99,33 +96,15 @@ void CGameplayState::Enter(void)
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
-
-	m_pFont = new CBitmapFont();
-
-	/*for(int i=0; i < 2; ++i)
-	{
-		for(int j=0; j < 2; ++j)
-		{
-			CNPC* pNPC;
-			pNPC = new CNPC("Person", false, 150, -1, 760 + i*100, 450 + 50*j, 20, -1, 50, 50, true, 100, 0);
-			pNPC->LoadAnimations("resource/npc walk3.xml");
-			pNPC->ChangeAIState(CRandomAIState::GetInstance());
-			pNPC->SetDebugMode(true);
-			pNPC->LoadText("resource/NPC Dialogue/Example.xml");
-			OBJECTS->AddObject(pNPC);
-			pNPC->Release();
-		}
-	}
-	*/
-
-	CEnemy* pEnemy = new CEnemy(700, 600, 40, -1, 50, 50, true, 100, 1);
+	// Initialize Enemies
+	CEnemy* pEnemy = new CEnemy(700, 600, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
 	pEnemy->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
 
-
+	// Initialize NPCs
 	CNPC* pNPC;
 	pNPC = new CNPC("Person 2", false, 150, -1, 290, 1000, 20, -1, 50, 50, true, 100, 0);
 	pNPC->LoadAnimations("resource/npc walk3.xml");
@@ -133,35 +112,24 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
 
+	// Initialize chests
 	CChest* pChest;
 	pChest = new CChest("PotionChest", false, 150, -1, 600, 250, 20, -1, 32,32, true, 100, 0);
 	pChest->LoadAnimations("resource/chest.xml");
-	//pChest->LoadText("resource/NPC Dialogue/Example.xml");
 	OBJECTS->AddObject(pChest);
-	pChest->Activate();
 	pChest->Release();
-	CCameraControl::GetInstance()->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(), (float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
-	
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->Initialize();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
 
-	// Win / Lose conditions
-	m_nGameOverID = TEX_MNG->LoadTexture("resource/GameOver.png");
-	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
-
-
+	// Initialize Camera and post process
+	CAMERA->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(),
+		(float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
+	POSTPROCESS->Initialize();
 
 	//	This is the last call to the loading screen
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	GAME->ResetAmountLoaded();
 
 	//	I'm making this the last thing, so that the music does not start playing while in the loading screen =)
-	AUDIO->MusicPlaySong( AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"),true );
+	AUDIO->MusicPlaySong(GetBGMusic(), true);
 }
 
 bool CGameplayState::Input(void)
@@ -263,6 +231,7 @@ void CGameplayState::Update(float fElapsedTime)
 	CCameraControl::GetInstance()->SetPositionY((float)-nNewCameraPosY);
 	
 	CCameraControl::GetInstance()->Update( fElapsedTime );
+
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -436,22 +405,26 @@ void CGameplayState::RenderMessageBox(void)
 
 void CGameplayState::Exit(void)
 {
+	AUDIO->MusicStopSong(GetBGMusic());
+
+	POSTPROCESS->ShutDown();
+	WEATHER->ShutDown();
+	OBJECTS->RemoveAllObjects();
+	OBJECTS->DeleteInstance();
+
+	TEX_MNG->UnloadTexture(m_imgMessageBox);
+	TEX_MNG->UnloadTexture(m_imgHUD);
+	TEX_MNG->UnloadTexture(m_nGameOverID);
+	TEX_MNG->UnloadTexture(m_nVictoryID);
+	AUDIO->MusicUnloadSong(GetBGMusic());
+
+	EVENTS->UnregisterEveryone(this);
+	EVENTS->ShutdownEventSystem();
+	
 	PUZZLES->ShutdownPuzzleManager();
 	WORLD->ShutdownWorldEngine();
 	WORLD->DeleteInstance();
-	EVENTS->ShutdownEventSystem();
 	MESSAGES->ShutdownMessageSystem();
-	OBJECTS->RemoveAllObjects();
-	OBJECTS->DeleteInstance();
-	
-	CWeatherManager::GetInstance()->ShutDown();
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->ShutDown();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
 }
 
 CGameplayState* CGameplayState::GetInstance(void)
@@ -489,34 +462,17 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetPosY(-1);
 		eventInfo->Tile->SetInfo(0);
 	}
+
 	if(pEvent->GetEventID() == "game.over")
-	{
-		//CSGD_XAudio2::GetInstance()->SFXPlaySound(m_nSFXGameOver);
 		m_bGameOver = true;
-	}
 	if(pEvent->GetEventID() == "victory")
-	{
-		//CSGD_XAudio2::GetInstance()->SFXPlaySound(m_nSFXVictory);
 		m_bVictory = true;
-	}
 }
 
 void CGameplayState::MessageProc(CBaseMessage* pMsg)
 {
 	switch(pMsg->GetMsgID())
 	{
-	case MSG_CREATE_PLAYER:
-		{
-			//CCreatePlayerMessage* pCPM = (CCreatePlayerMessage*)pMsg;
-			//CGameplayState* pGameplay = CGameplayState::GetInstance();
-
-			//// TODO: Add code here
-			//pGameplay->pPlayer = new TestPlayer();
-			//pGameplay->pPlayer->Enter();
-			//pGameplay->pPlayer->SetPosX(pCPM->GetPosX());
-			//pGameplay->pPlayer->SetPosY(pCPM->GetPosY());
-			//break;
-		}
 	case MSG_DESTROY_OBJECT:
 		{
 			CDestroyObjectMessage* pDEM = (CDestroyObjectMessage*)pMsg;

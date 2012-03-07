@@ -13,7 +13,7 @@ CSword::CSword()
 	CBaseCharacter::LoadAnimations("resource/PlayerWSword.xml");
 	SetAttacking(false);
 
-	SetSound(AUDIO->SFXLoadSound("resource/sound/Sword.wav"));
+	SetSound(new Sound("resource/sound/Sword.wav"));
 }
 void CSword::Render(PointD nPos)
 {
@@ -31,8 +31,9 @@ void CSword::Update(float fElapsedTime)
 void CSword::Attack(void)
 {
 	SetAttacking(true);
-	AUDIO->SFXPlaySound(GetSound());
+	GetSound()->Play();
 }
+
 void CSword::ChargedAttack(void)
 {
 	

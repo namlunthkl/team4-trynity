@@ -5,6 +5,7 @@
 //    Purpose				:	Game player character class definitions
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
+#include "../StdAfx.h"
 #include "CPlayer.h"
 #include "../Messaging/CEventSystem.h"
 #include "../Input Manager/CInputManager.h"
@@ -56,6 +57,8 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	//WEAPON->Activate();
 	Activate();
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
+
+	m_sndHit = AUDIO->SFXLoadSound("resource/sound/Hit.wav");
 }
 
 CPlayer* CPlayer::GetInstance(void)
@@ -125,19 +128,19 @@ void CPlayer::Render(void)
 	// Render the particles
 	m_fxFootsteps.Render();
 	
-	D3D->GetSprite()->Flush();
-	RectD rect = GetCollisionRect();
-	rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
-		CCameraControl::GetInstance()->GetPositionY());
-	D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
-	
+	//D3D->GetSprite()->Flush();
+	//RectD rect = GetCollisionRect();
+	//rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
+	//	CCameraControl::GetInstance()->GetPositionY());
+	//D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
+	//
 	RectD temp = WEAPON->GetCollisionRect();
 	temp.OffsetRect(GetPosX(),GetPosY());
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 		CCameraControl::GetInstance()->GetPositionY());
 
 	if(m_uiCurrentWeapon == WEAPON_SWORD)
-	{
+	{\
 		D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
 	}
 	else if(m_uiCurrentWeapon == WEAPON_DAGGER)
@@ -481,6 +484,9 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 	if( m_fOuchTimer > 0.0f == false)
 	{
 		CBaseCharacter::SufferDamage(uiDamage);
+
+		if(m_sndHit != -1)
+				AUDIO->SFXPlaySound(m_sndHit);
 	}
 }
 void CPlayer::UsePotion(void)
