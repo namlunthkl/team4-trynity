@@ -232,11 +232,12 @@
     <ClCompile Include="source\Game Objects\CChest.cpp">
       <Filter>Object Hierarchy</Filter>
     </ClCompile>
-
- <ClCompile Include="source\AI_States\CJumperAIState.cpp">
+    <ClCompile Include="source\AI_States\CJumperAIState.cpp">
       <Filter>Artificial Intelligence</Filter>
     </ClCompile>
-
+    <ClCompile Include="source\Puzzles\CTorchPuzzle.cpp">
+      <Filter>Puzzle Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -449,13 +450,14 @@
     <ClInclude Include="source\Wrappers\CSGD_DirectInput.h">
       <Filter>Input</Filter>
     </ClInclude>
-   <ClInclude Include="source\Game Objects\CChest.h">
+    <ClInclude Include="source\Game Objects\CChest.h">
       <Filter>Object Hierarchy</Filter>
     </ClInclude>
-
- <ClInclude Include="source\AI_States\CJumperAIState.h">
+    <ClInclude Include="source\AI_States\CJumperAIState.h">
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
-
+    <ClInclude Include="source\Puzzles\CTorchPuzzle.h">
+      <Filter>Puzzle Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

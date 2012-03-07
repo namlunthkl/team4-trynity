@@ -234,14 +234,13 @@ struct Sound
 	void Load(char const * const szFile)
 	{
 		m_nSoundID = AUDIO->SFXLoadSound(szFile);
-		m_dwTimeStamp = 0;
+		m_dwTimeStamp = timeGetTime();
 	}
 	void Play(void)
 	{
 		if(m_nSoundID != -1)
 		{
-			unsigned int x = timeGetTime() - m_dwTimeStamp;
-			if(x > m_dwDelta)
+			if(timeGetTime() - m_dwTimeStamp > m_dwDelta)
 			{
 				AUDIO->SFXPlaySound(m_nSoundID);
 				m_dwTimeStamp = timeGetTime();

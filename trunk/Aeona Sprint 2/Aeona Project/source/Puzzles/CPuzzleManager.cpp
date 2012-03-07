@@ -16,33 +16,25 @@
 #include "StdAfx.h"
 
 #include "CPuzzleManager.h"
-#include "CPuzzleFunctions.h"
+#include "CTorchPuzzle.h"
 
 void CPuzzleManager::InitPuzzleManager(void)
 {
-	CPuzzle* TorchPuzzle = new CPuzzle();
-	vector<char*> m_vpEvents;
-	m_vpEvents.push_back("TorchLit.0");
-	m_vpEvents.push_back("TorchLit.1");
-	m_vpEvents.push_back("TorchLit.2");
-	m_vpEvents.push_back("TorchLit.3");
-
-	TorchPuzzle->Initialize(4, "OpenDoor", m_vpEvents, PuzzleA_Torches_HandleEvent, PuzzleA_Torched_Update, "resource/data/FireFlicker.xml");
-
+	// Push all puzzles
+	CTorchPuzzle* TorchPuzzle = new CTorchPuzzle;
+	TorchPuzzle->Create(4, "victory", "TorchLit", true);
 	m_vpPuzzles.push_back(TorchPuzzle);
 }
 
 void CPuzzleManager::ShutdownPuzzleManager(void)
 {
-
-}
-
-unsigned int CPuzzleManager::PushPuzzle(CPuzzle* pPuzzle)
-{
-	if(pPuzzle)
-		m_vpPuzzles.push_back(pPuzzle);
-
-	return m_vpPuzzles.size() - 1;
+	// Destroy all puzzles
+	for(unsigned int i=0; i < m_vpPuzzles.size(); ++i)
+	{
+		m_vpPuzzles[i]->Destroy();
+		delete m_vpPuzzles[i];
+	}
+	m_vpPuzzles.clear();
 }
 
 CPuzzleManager* CPuzzleManager::GetInstance(void)

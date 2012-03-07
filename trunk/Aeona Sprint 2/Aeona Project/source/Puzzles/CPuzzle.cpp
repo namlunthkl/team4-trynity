@@ -12,51 +12,109 @@
 
 #include "CPuzzle.h"
 
-CPuzzle::CPuzzle(void)
+
+
+void IBasePuzzle::Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential)
 {
-	m_uiArgCount = 0;
-}
-
-void CPuzzle::HandleEvent(CEvent* pEvent)
-{
-	// Call this puzzle's specific handle event
-
-	m_pfHandleEvent(pEvent, this);
-}
-
-void CPuzzle::Update(float fElapsedTime)
-{
-	// Call this puzzle's specific update
-	m_pfUpdate(this);
-
-	for(unsigned int i=0; i < m_vParticle.size(); ++i)
-			m_vParticle[i]->Update(fElapsedTime);
-}
-
-void CPuzzle::Initialize(unsigned int uiArgCount, char* szEvent, vector<char*> m_szEventsToListen,
-	void(*pfHandleEvent)(CEvent*, CPuzzle*), void(*pfUpdate)(CPuzzle*), char const * const szParticleFile)
-{
+	// Set the argument count
 	m_uiArgCount = uiArgCount;
-	m_szEvent = szEvent;
-	m_pfHandleEvent = pfHandleEvent;
-	m_pfUpdate = pfUpdate;
+	m_szEventToFire = szEventToFire;
+	m_szEventToListenTo = szEventToListenTo;
+	m_bSequential = bSequential;
 
-	for(unsigned int i=0; i < m_szEventsToListen.size(); ++i)
-		CEventSystem::GetInstance()->RegisterForEvent(m_szEventsToListen[i], this);
-
-	for(unsigned int i=0; i < uiArgCount; ++i)
+	// Initialize the arguments vector
+	for(unsigned int i=0; i < m_uiArgCount; ++i)
 		m_vnArguments.push_back(0);
 
-	for(unsigned int i=0; i < uiArgCount; ++i)
+	string szEventToRegister = szEventToListenTo;
+	szEventToRegister += ".";
+	// Register client for events
+	for(char i = '0'; i < '0' + uiArgCount; ++i)
+		CEventSystem::GetInstance()->RegisterForEvent(szEventToRegister + i, this);
+
+	m_dwTimeStamp = timeGetTime();
+}
+
+void IBasePuzzle::HandleEvent(CEvent* pEvent)
+{
+	if(timeGetTime() - m_dwTimeStamp < 100)
+		return;
+
+	unsigned int i;
+	string EventName = "";
+	int EventNumber = 0;
+
+	// Get event name and number
+	for(i = 0; i < pEvent->GetEventID().size(); ++i)
 	{
-		ParticleWeapon* p = new ParticleWeapon();
-		p->Load(szParticleFile);
-		m_vParticle.push_back(p);
+		if(pEvent->GetEventID()[i] == '.')
+			break;
+		EventName += pEvent->GetEventID()[i];
+	}
+	EventNumber = atoi(pEvent->GetEventID().c_str() + (i+1));
+
+	// Check if event name is the one we're listening to
+	if(EventName == m_szEventToListenTo)
+	{
+		if(EventNumber < m_uiArgCount)
+			EventReceived(EventNumber, pEvent->GetParam());
+	}
+
+	TryFiringEvent();
+	m_dwTimeStamp = timeGetTime();
+}
+
+void IBasePuzzle::EventReceived(int ArgumentNumber, void* EventData)
+{
+	if(m_vnArguments[ArgumentNumber] == 0)
+		m_vnArguments[ArgumentNumber] = 1;
+	else
+		m_vnArguments[ArgumentNumber] = 0;
+
+	// If the puzzle should be completed in the right order
+	if(m_bSequential && m_vnArguments[ArgumentNumber] == 1)
+	{
+		// If the puzzle is sequential and this torch was just lit
+
+		// Turn off all the ones that should come after this
+		for(int i = ArgumentNumber + 1; i < m_uiArgCount; ++i)
+			m_vnArguments[i] = 0;
+
+		// And if the one before this was off
+		if(ArgumentNumber > 0)
+		{
+			if(m_vnArguments[ArgumentNumber - 1] == 0)
+			{
+				// Turn off all the ones that came before it
+				for(int i = ArgumentNumber - 1; i >= 0; --i)
+					m_vnArguments[i] = 0;
+			}
+		}
 	}
 }
 
-void CPuzzle::Render(void)
+void IBasePuzzle::TryFiringEvent(void)
 {
-	for(unsigned int i=0; i < m_vParticle.size(); ++i)
-			m_vParticle[i]->Render();
+	for(unsigned int i=0; i < m_vnArguments.size(); ++i)
+	{
+		if(m_vnArguments[i] == 0)
+			break;
+
+		if(m_vnArguments[i] == 1 && i == m_vnArguments.size() - 1)
+			CEventSystem::GetInstance()->SendEvent(m_szEventToFire);
+	}
+}
+
+void IBasePuzzle::Destroy(void)
+{
+	m_uiArgCount = 0;
+	m_vnArguments.clear();
+}
+
+int IBasePuzzle::GetNumberOfArgumentsOn(void)
+{
+	int n = 0;
+	for(int i=0; i < m_uiArgCount; ++i)
+		if(m_vnArguments[i] == 1) n++;
+	return n;
 }

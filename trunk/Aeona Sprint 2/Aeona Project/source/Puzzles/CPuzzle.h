@@ -21,42 +21,43 @@
 #include "../Messaging/CEventSystem.h"
 #include "../Messaging/IListener.h"
 #include "../Particle Engine/ParticleWeapon.h"
-
+#include "../Tile Mapping/CWorldEngine.h"
 #include <vector>
 using std::vector;
 
-class CPuzzle : public IListener
+class IBasePuzzle : public IListener
 {
-	// Number of arguments needed for the puzzle
+protected:
+	// Number of arguments this puzzle is using
 	unsigned int m_uiArgCount;
-
-	// Arguments used by the puzzle
+	// Vector of those arguments
 	vector<int> m_vnArguments;
 
-	// Event the puzzle is going to send
-	char* m_szEvent;
+	// Event the puzzle will fire when complete
+	char* m_szEventToFire;
+	// Prefix name for all the events this puzzle is listening to
+	char* m_szEventToListenTo;
 
-	// Handle Event function pointer
-	void(*m_pfHandleEvent)(CEvent*, CPuzzle*);
+	// Timer
+	// When a torch is lit, there should be a little time
+	// before the player is able to unlit it.
+	DWORD m_dwTimeStamp;
 
-	// Update function pointer
-	void(*m_pfUpdate)(CPuzzle*);
-
-	vector<ParticleWeapon*> m_vParticle;
+	// Sequential
+	// Should the puzzle only be complete when all the actions
+	// are done in a right order?
+	bool m_bSequential;
 
 public:
-	CPuzzle(void);
+	IBasePuzzle(void){};
+	virtual void Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential);
+	virtual void Update(float fElapsedTime) = 0;
+	virtual void Render(void) = 0;
+	virtual void Destroy(void) = 0;
+	virtual void EventReceived(int ArgumentNumber, void* EventData);
 	void HandleEvent(CEvent* pEvent);
-	void Update(float fElapsedTime);
-	void Initialize(unsigned int uiArgCount, char* szEvent,
-		 vector<char*> m_szEventsToListen, void(*pfHandleEvent)(CEvent*, CPuzzle*), void(*pfUpdate)(CPuzzle*),
-		 char const * const szParticleFile);
-	void Render(void);
-	inline unsigned int GetArgCount(void) const { return m_uiArgCount; }
-	inline vector<int>* GetArguments(void)  { return &m_vnArguments; }
-	inline const char* GetEvent(void) const { return m_szEvent; }
-	inline ParticleWeapon* GetParticle(int index) { return m_vParticle[index]; }
+	virtual void TryFiringEvent(void);
+	int GetNumberOfArgumentsOn(void);
 };
-
 
 #endif // CPUZZLE_H_

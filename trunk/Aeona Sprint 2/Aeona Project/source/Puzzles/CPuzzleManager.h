@@ -21,8 +21,7 @@
 
 class CPuzzleManager
 {
-	vector<CPuzzle*> m_vpPuzzles;
-	unsigned int PushPuzzle(CPuzzle* pPuzzle);
+	vector<IBasePuzzle*> m_vpPuzzles;
 
 public:
 	void InitPuzzleManager(void);
