@@ -299,13 +299,13 @@ void CGameplayState::Render(void)
 	D3DXMatrixIdentity(&identity);
 	D3D->GetSprite()->SetTransform(&identity);
 
-	//if(CInputManager::GetInstance()->GetAttack())
-	//{
-	//	D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
-	//	char buffer[100];
-	//	sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
-	//	D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
-	//}
+	if(CInputManager::GetInstance()->GetAttack())
+	{
+		D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
+		char buffer[100];
+		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
+		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
+	}
 
 	//m_Rain.Render();
 	CWeatherManager::GetInstance()->Render();
