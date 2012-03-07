@@ -232,7 +232,7 @@ void CBaseMenu::Render()
 		{
 			++GAME->m_uiPic;
 			GAME->m_fDerpScroll = 0.0f;
-			if(GAME->m_uiPic == 3)
+			if(GAME->m_uiPic == 4)
 				GAME->m_uiPic = 0;
 		}
 

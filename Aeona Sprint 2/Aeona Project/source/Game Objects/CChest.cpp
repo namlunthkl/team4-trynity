@@ -47,4 +47,7 @@ CChest::~CChest()
 void CChest::OpenChest(void)
 {
 	GetAnimationPlayer(GetCurrentAnimation())->Play();
+
+	//TEMPORARY EFFECT TODO
+	CPlayer::GetInstance()->SetNumPotions( CPlayer::GetInstance()->GetNumPotions() + 1 );
 }
