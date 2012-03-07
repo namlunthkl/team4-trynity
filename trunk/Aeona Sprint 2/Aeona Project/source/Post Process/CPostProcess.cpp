@@ -193,6 +193,30 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gItem1PointPosX", LightEngine::GetInstance()->GetItem1PointPosX() );
 		postEffect->SetFloat( "gItem1PointPosY", LightEngine::GetInstance()->GetItem1PointPosY() );
 
+		postEffect->SetBool(  "gItem2PointLight", LightEngine::GetInstance()->GetItem2PointLight() );
+		postEffect->SetFloat( "gItem2PointA", LightEngine::GetInstance()->GetItem2PointAlpha() );
+		postEffect->SetFloat( "gItem2PointR", LightEngine::GetInstance()->GetItem2PointRed() );
+		postEffect->SetFloat( "gItem2PointG", LightEngine::GetInstance()->GetItem2PointGreen() );
+		postEffect->SetFloat( "gItem2PointB", LightEngine::GetInstance()->GetItem2PointBlue() );
+		postEffect->SetFloat( "gItem2PointPosX", LightEngine::GetInstance()->GetItem2PointPosX() );
+		postEffect->SetFloat( "gItem2PointPosY", LightEngine::GetInstance()->GetItem2PointPosY() );
+
+		postEffect->SetBool(  "gItem3PointLight", LightEngine::GetInstance()->GetItem3PointLight() );
+		postEffect->SetFloat( "gItem3PointA", LightEngine::GetInstance()->GetItem3PointAlpha() );
+		postEffect->SetFloat( "gItem3PointR", LightEngine::GetInstance()->GetItem3PointRed() );
+		postEffect->SetFloat( "gItem3PointG", LightEngine::GetInstance()->GetItem3PointGreen() );
+		postEffect->SetFloat( "gItem3PointB", LightEngine::GetInstance()->GetItem3PointBlue() );
+		postEffect->SetFloat( "gItem3PointPosX", LightEngine::GetInstance()->GetItem3PointPosX() );
+		postEffect->SetFloat( "gItem3PointPosY", LightEngine::GetInstance()->GetItem3PointPosY() );
+
+		postEffect->SetBool(  "gItem4PointLight", LightEngine::GetInstance()->GetItem4PointLight() );
+		postEffect->SetFloat( "gItem4PointA", LightEngine::GetInstance()->GetItem4PointAlpha() );
+		postEffect->SetFloat( "gItem4PointR", LightEngine::GetInstance()->GetItem4PointRed() );
+		postEffect->SetFloat( "gItem4PointG", LightEngine::GetInstance()->GetItem4PointGreen() );
+		postEffect->SetFloat( "gItem4PointB", LightEngine::GetInstance()->GetItem4PointBlue() );
+		postEffect->SetFloat( "gItem4PointPosX", LightEngine::GetInstance()->GetItem4PointPosX() );
+		postEffect->SetFloat( "gItem4PointPosY", LightEngine::GetInstance()->GetItem4PointPosY() );
+
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetStreamSource(0,quadbuff,0,20);
