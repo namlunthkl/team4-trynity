@@ -302,47 +302,47 @@ technique Invert
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 Inversion();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 Inversion();
     }
 } 
 technique Monochrome
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 BlackAndWhite();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 BlackAndWhite();
     }
 }
 technique Sepia
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 SepiaScale();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 SepiaScale();
     }
 }
 technique ColorLoop
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 ColorCycle();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 ColorCycle();
     }
 } 
 technique TronEnergy
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 TronLines();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 TronLines();
     }
 }
 technique DayCycleEffect
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_3_0 ScreenSpaceQuad();
-	pixelShader = compile ps_3_0 DayCycle();
+	vertexShader = compile vs_2_0 ScreenSpaceQuad();
+	pixelShader = compile ps_2_0 DayCycle();
     }
 }
