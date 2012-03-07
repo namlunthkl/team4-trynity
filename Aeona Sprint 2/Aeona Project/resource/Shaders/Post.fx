@@ -34,6 +34,30 @@ float gItem1PointB;
 float gItem1PointPosX;
 float gItem1PointPosY;
 
+bool  gItem2PointLight;
+float gItem2PointA;
+float gItem2PointR;
+float gItem2PointG;
+float gItem2PointB;
+float gItem2PointPosX;
+float gItem2PointPosY;
+
+bool  gItem3PointLight;
+float gItem3PointA;
+float gItem3PointR;
+float gItem3PointG;
+float gItem3PointB;
+float gItem3PointPosX;
+float gItem3PointPosY;
+
+bool  gItem4PointLight;
+float gItem4PointA;
+float gItem4PointR;
+float gItem4PointG;
+float gItem4PointB;
+float gItem4PointPosX;
+float gItem4PointPosY;
+
 struct VS_INPUT
 {
 	float3 untransformed_pos	: POSITION0;
@@ -127,8 +151,6 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	gAmbientColor.g = gAmbientG;
 	gAmbientColor.b = gAmbientB;
 	
-	
-	
 	////////////////////////////////////////////////////////
 	// PLAYER POINT LIGHT
 	////////////////////////////////////////////////////////
@@ -159,8 +181,6 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 	
-	
-	
 	////////////////////////////////////////////////////////
 	// ITEM1 POINT LIGHT
 	////////////////////////////////////////////////////////
@@ -188,11 +208,91 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item1PointLightColor *= Item1Ratio;
 	}
 	
+	////////////////////////////////////////////////////////
+	// ITEM2 POINT LIGHT
+	////////////////////////////////////////////////////////
+	float4 Item2PointLightColor;	
+	if( gItem2PointLight == true )
+	{
+		Item2PointLightColor.a = gItem2PointA;
+		Item2PointLightColor.r = gItem2PointR;
+		Item2PointLightColor.g = gItem2PointG;
+		Item2PointLightColor.b = gItem2PointB;
+		
+		float2 Item2PointLightPos;
+		Item2PointLightPos.x = gItem2PointPosX;
+		Item2PointLightPos.y = gItem2PointPosY;
+		
+		float  Item2PointLightRadius;
+		float2 Item2VectorBetweenTwo;
+		float  Item2Mag;
+		float  Item2Ratio;
+		
+		Item2VectorBetweenTwo = input.uv - Item2PointLightPos; 
+		Item2Mag = length( Item2VectorBetweenTwo );
+		Item2PointLightRadius = .2f;
+		Item2Ratio = 1.0f - saturate( Item2Mag / Item2PointLightRadius );
+		Item2PointLightColor *= Item2Ratio;
+	}
+	
+	////////////////////////////////////////////////////////
+	// ITEM3 POINT LIGHT
+	////////////////////////////////////////////////////////
+	float4 Item3PointLightColor;	
+	if( gItem3PointLight == true )
+	{
+		Item3PointLightColor.a = gItem3PointA;
+		Item3PointLightColor.r = gItem3PointR;
+		Item3PointLightColor.g = gItem3PointG;
+		Item3PointLightColor.b = gItem3PointB;
+		
+		float2 Item3PointLightPos;
+		Item3PointLightPos.x = gItem3PointPosX;
+		Item3PointLightPos.y = gItem3PointPosY;
+		
+		float  Item3PointLightRadius;
+		float2 Item3VectorBetweenTwo;
+		float  Item3Mag;
+		float  Item3Ratio;
+		
+		Item3VectorBetweenTwo = input.uv - Item3PointLightPos; 
+		Item3Mag = length( Item3VectorBetweenTwo );
+		Item3PointLightRadius = .2f;
+		Item3Ratio = 1.0f - saturate( Item3Mag / Item3PointLightRadius );
+		Item3PointLightColor *= Item3Ratio;
+	}
+	
+	////////////////////////////////////////////////////////
+	// ITEM4 POINT LIGHT
+	////////////////////////////////////////////////////////
+	float4 Item4PointLightColor;	
+	if( gItem4PointLight == true )
+	{
+		Item4PointLightColor.a = gItem4PointA;
+		Item4PointLightColor.r = gItem4PointR;
+		Item4PointLightColor.g = gItem4PointG;
+		Item4PointLightColor.b = gItem4PointB;
+		
+		float2 Item4PointLightPos;
+		Item4PointLightPos.x = gItem4PointPosX;
+		Item4PointLightPos.y = gItem4PointPosY;
+		
+		float  Item4PointLightRadius;
+		float2 Item4VectorBetweenTwo;
+		float  Item4Mag;
+		float  Item4Ratio;
+		
+		Item4VectorBetweenTwo = input.uv - Item4PointLightPos; 
+		Item4Mag = length( Item4VectorBetweenTwo );
+		Item4PointLightRadius = .2f;
+		Item4Ratio = 1.0f - saturate( Item4Mag / Item4PointLightRadius );
+		Item4PointLightColor *= Item4Ratio;
+	}
 	
 	////////////////////////////////////////
 	// RENDER EVERYTHING
 	////////////////////////////////////////
-	return (color * Item1PointLightColor) + (color * PlayerPointLightColor) + ( color * gAmbientColor ) ;
+	return (color * Item1PointLightColor) + (color * Item2PointLightColor) + (color * Item3PointLightColor) + (color * Item4PointLightColor) + (color * PlayerPointLightColor) + ( color * gAmbientColor );
 	////////////////////////////////////////
 	////////////////////////////////////////
 	////////////////////////////////////////
