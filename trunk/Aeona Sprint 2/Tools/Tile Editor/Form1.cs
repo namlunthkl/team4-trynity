@@ -734,12 +734,14 @@ namespace Tile_Editor
                 XAttribute attrWidth = new XAttribute("width", m_sizeMap.Width);
                 //      Map Height - height
                 XAttribute attrHeight = new XAttribute("height", m_sizeMap.Height);
+                //      Layer where objects are rendered - objectlayer
+                XAttribute attrObjLayer = new XAttribute("objectlayer", (int)numObjLayer.Value);
                 //  Add attributes
                 xMap.Add(attrPosX);
                 xMap.Add(attrPosY);
                 xMap.Add(attrWidth);
                 xMap.Add(attrHeight);
-
+                xMap.Add(attrObjLayer);
 
                 //  Every Layer
                 for (int nLayerIndex = 0; nLayerIndex < tabLayers.TabCount; nLayerIndex++)
@@ -827,14 +829,17 @@ namespace Tile_Editor
             XAttribute attrWidth = xMap.Attribute("width");
             //      Map Height - height
             XAttribute attrHeight = xMap.Attribute("height");
+            //      Layer where objects are rendered - objectlayer
+            XAttribute attrObjLayer = xMap.Attribute("objectlayer");
+            
             //  Add attributes
             mapPosX.Value = int.Parse(attrPosX.Value);
             mapPosY.Value = int.Parse(attrPosY.Value);
-
             int Width = int.Parse(attrWidth.Value);
             int Height = int.Parse(attrHeight.Value);
             m_sizeMap.Width = Width;
             m_sizeMap.Height = Height;
+            numObjLayer.Value = int.Parse(attrObjLayer.Value);
 
             //  Get All Layers
             IEnumerable<XElement> xLayers = xMap.Elements("Layer");

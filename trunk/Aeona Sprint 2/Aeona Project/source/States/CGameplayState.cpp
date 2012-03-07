@@ -270,12 +270,13 @@ void CGameplayState::Render(void)
 	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
 	//END ARI EXTRA CODE
 
-	WORLD->RenderWorld();
-
+	WORLD->RenderWorldBelowObjects();
 	D3D->GetSprite()->Flush();
 
 	OBJECTS->RenderObjects();
+	D3D->GetSprite()->Flush();
 
+	WORLD->RenderWorldAboveObjects();
 	D3D->GetSprite()->Flush();
 
 	PUZZLES->RenderPuzzles();

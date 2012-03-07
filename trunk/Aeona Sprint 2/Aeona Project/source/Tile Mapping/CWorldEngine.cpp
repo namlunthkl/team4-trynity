@@ -143,7 +143,7 @@ void CWorldEngine::Input(void)
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Render all maps
 ////////////////////////////////////////////////////////////////////////
-void CWorldEngine::RenderWorld(void)
+void CWorldEngine::RenderWorldBelowObjects(void)
 {
 	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
 	{
@@ -154,7 +154,23 @@ void CWorldEngine::RenderWorld(void)
 			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
 			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
 		{
-			curMap->Render(m_nCullingMode);
+			curMap->RenderFirstLayers(m_nCullingMode);
+		}
+	}
+}
+
+void CWorldEngine::RenderWorldAboveObjects(void)
+{
+	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
+	{
+		CMap* curMap = m_vpMaps[uiIndex];
+
+		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
+			curMap->GetPosY() >= m_rDrawArea.top &&
+			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
+			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
+		{
+			curMap->RenderLastLayers(m_nCullingMode);
 		}
 	}
 }

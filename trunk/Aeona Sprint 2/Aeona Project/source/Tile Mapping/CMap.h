@@ -52,6 +52,9 @@ class CMap
 	int				m_nWidth;
 	int				m_nHeight;
 
+	// Layer in which the objects should be drawn
+	unsigned int	m_uiObjectLayer;
+
 	// Pointer to this map's tileset
 	CTileset*		m_pTileset;
 
@@ -73,6 +76,8 @@ class CMap
 	//	Return		:	The source RECT
 	////////////////////////////////////////////////////////////////////////
 	RECT GetTileSourceRect(CTile* tileCurrent);
+
+	void RenderLayer(unsigned int uiIndexLayer, int nCullingMode);
 
 public:
 
@@ -109,7 +114,8 @@ public:
 	//	Purpose		:	Draw the map's tiles that are inside the window's
 	//					space
 	////////////////////////////////////////////////////////////////////////
-	void Render(int nCullingMode);
+	void RenderFirstLayers(int nCullingMode);
+	void RenderLastLayers(int nCullingMode);
 
 	////////////////////////////////////////////////////////////////////////
 	//	Purpose		:	Check collisions against all tiles on screen
