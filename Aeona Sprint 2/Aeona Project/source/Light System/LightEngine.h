@@ -3,19 +3,30 @@
 
 class LightEngine
 {
-private:			
+private:		
+	// AMBIENT LIGHT
 	float m_fAmbientAlpha;
 	float m_fAmbientRed;
 	float m_fAmbientGeen;
 	float m_fAmbientBlue;
 	
-	float m_fPointAlpha;
-	float m_fPointRed;
-	float m_fPointGeen;
-	float m_fPointBlue;
+	// PLAYER POINT LIGHT
+	bool  m_bPlayerPointLight;
+	float m_fPlayerPointAlpha;
+	float m_fPlayerPointRed;
+	float m_fPlayerPointGeen;
+	float m_fPlayerPointBlue;
+	float m_fPlayerPointPosX;
+	float m_fPlayerPointPosY;
 
-	float m_fPlayerPosX;
-	float m_fPlayerPosY;
+	// ITEM 1 POINT LIGHT
+	bool  m_bItem1PointLight;
+	float m_fItem1PointAlpha;
+	float m_fItem1PointRed;
+	float m_fItem1PointGeen;
+	float m_fItem1PointBlue;
+	float m_fItem1PointPosX;
+	float m_fItem1PointPosY;
 
 	LightEngine(void);
 	LightEngine(const LightEngine&){}
@@ -25,38 +36,59 @@ private:
 public:
 	static LightEngine* GetInstance(void);
 
-	void SetAmbientAlpha( float fAmbientAlpha )	{ m_fAmbientAlpha = fAmbientAlpha; }
-	void SetAmbientRed( float fAmbientRed )		{ m_fAmbientRed = fAmbientRed; }
-	void SetAmbientGreen( float fAmbientGreen )	{ m_fAmbientGeen = fAmbientGreen; }
-	void SetAmbientBlue(float fAmbientBlue )	{ m_fAmbientBlue = fAmbientBlue; }
+	//AMBIENT LIGHT
+	void SetAmbientAlpha( float fAmbientAlpha )		{ m_fAmbientAlpha = fAmbientAlpha; }
+	void SetAmbientRed( float fAmbientRed )			{ m_fAmbientRed = fAmbientRed; }
+	void SetAmbientGreen( float fAmbientGreen )		{ m_fAmbientGeen = fAmbientGreen; }
+	void SetAmbientBlue(float fAmbientBlue )		{ m_fAmbientBlue = fAmbientBlue; }
+	float GetAmbientAlpha(void)						{ return m_fAmbientAlpha; }
+	float GetAmbientRed(void)						{ return m_fAmbientRed; }
+	float GetAmbientGreen(void)						{ return m_fAmbientGeen; }
+	float GetAmbientBlue(void)						{ return m_fAmbientBlue; }
 
-	void SetPointAlpha( float fPointAlpha )		{ m_fPointAlpha = fPointAlpha; }
-	void SetPointRed( float fPointRed )			{ m_fPointRed = fPointRed; }
-	void SetPointGreen( float fPointGreen )		{ m_fPointGeen = fPointGreen; }
-	void SetPointBlue( float fPointBlue )		{ m_fPointBlue = fPointBlue; }
+	//PLAYER POINT LIGHT
+	void SetPlayerPointLight( bool bPlayerPoint)	{ m_bPlayerPointLight = bPlayerPoint; }
+	void SetPlayerPointAlpha( float fPointAlpha )	{ m_fPlayerPointAlpha = fPointAlpha; }
+	void SetPlayerPointRed( float fPointRed )		{ m_fPlayerPointRed = fPointRed; }
+	void SetPlayerPointGreen( float fPointGreen )	{ m_fPlayerPointGeen = fPointGreen; }
+	void SetPlayerPointBlue( float fPointBlue )		{ m_fPlayerPointBlue = fPointBlue; }
+	void SetPlayerPointPosX( float fPlayerPosX )	{ m_fPlayerPointPosX = fPlayerPosX; }
+	void SetPlayerPointPosY( float fPlayerPosY )	{ m_fPlayerPointPosY = fPlayerPosY; }
+	bool  GetPlayerPointLight(void)					{ return m_bPlayerPointLight; }
+	float GetPlayerPointAlpha(void)					{ return m_fPlayerPointAlpha; }
+	float GetPlayerPointRed(void)					{ return m_fPlayerPointRed; }
+	float GetPlayerPointGreen(void)					{ return m_fPlayerPointGeen; }
+	float GetPlayerPointBlue(void)					{ return m_fPlayerPointBlue; }
+	float GetPlayerPointPosX(void)					{ return m_fPlayerPointPosX; }
+	float GetPlayerPointPosY(void)					{ return m_fPlayerPointPosY; }
 
-	void SetPlayerPosX( float fPlayerPosX )		{ m_fPlayerPosX = fPlayerPosX; }
-	void SetPlayerPosY( float fPlayerPosY )		{ m_fPlayerPosY = fPlayerPosY; }
+	//ITEM1 POINT LIGHT
+	void SetItem1PointLight( bool bItem1Point)		{ m_bItem1PointLight = bItem1Point; }
+	void SetItem1PointAlpha( float fPointAlpha )	{ m_fItem1PointAlpha = fPointAlpha; }
+	void SetItem1PointRed( float fPointRed )		{ m_fItem1PointRed = fPointRed; }
+	void SetItem1PointGreen( float fPointGreen )	{ m_fItem1PointGeen = fPointGreen; }
+	void SetItem1PointBlue( float fPointBlue )		{ m_fItem1PointBlue = fPointBlue; }
+	void SetItem1PointPosX( float fItem1PosX )		{ m_fItem1PointPosX = fItem1PosX; }
+	void SetItem1PointPosY( float fItem1PosY )		{ m_fItem1PointPosY = fItem1PosY; }
+	bool  GetItem1PointLight(void)					{ return m_bItem1PointLight; }
+	float GetItem1PointAlpha(void)					{ return m_fItem1PointAlpha; }
+	float GetItem1PointRed(void)					{ return m_fItem1PointRed; }
+	float GetItem1PointGreen(void)					{ return m_fItem1PointGeen; }
+	float GetItem1PointBlue(void)					{ return m_fItem1PointBlue; }
+	float GetItem1PointPosX(void)					{ return m_fItem1PointPosX; }
+	float GetItem1PointPosY(void)					{ return m_fItem1PointPosY; }
 
-	float GetAmbientAlpha(void)	{ return m_fAmbientAlpha; }
-	float GetAmbientRed(void)	{ return m_fAmbientRed; }
-	float GetAmbientGreen(void)	{ return m_fAmbientGeen; }
-	float GetAmbientBlue(void)	{ return m_fAmbientBlue; }
 
-	float GetPointAlpha(void)	{ return m_fPointAlpha; }
-	float GetPointRed(void)		{ return m_fPointRed; }
-	float GetPointGreen(void)	{ return m_fPointGeen; }
-	float GetPointBlue(void)	{ return m_fPointBlue; }
 
-	float GetPlayerPosX(void)	{ return m_fPlayerPosX; }
-	float GetPlayerPosY(void)	{ return m_fPlayerPosY; }
+
+
 
 	void Initialize( void );
 	void Update( void );
 	void Input( void );
 	void ShutDown( void );
 
-	void SetPlayerPos( float fPosX, float fPosY );
+	void SetPlayerPointPos( float fPosX, float fPosY );
 	void Morning( void );
 	void Day( void );
 	void Evening( void );

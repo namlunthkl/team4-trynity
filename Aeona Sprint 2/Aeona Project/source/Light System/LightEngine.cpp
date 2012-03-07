@@ -20,13 +20,21 @@ void LightEngine::Initialize( void )
 	SetAmbientGreen(1.0f );
 	SetAmbientBlue( 1.0f );
 
-	SetPointAlpha( 1.0f );
-	SetPointRed( 2.0f );
-	SetPointGreen( 1.0f );
-	SetPointBlue( 1.0f );
+	SetPlayerPointLight( false );
+	SetPlayerPointAlpha( 1.0f );
+	SetPlayerPointRed( 2.0f );
+	SetPlayerPointGreen( 1.0f );
+	SetPlayerPointBlue( 1.0f );
+	SetPlayerPointPosX( 0.5f );
+	SetPlayerPointPosY( 0.5f );
 
-	SetPlayerPosX( 0.5f );
-	SetPlayerPosY( 0.5f );
+	SetItem1PointLight( false );
+	SetItem1PointAlpha( 1.0f );
+	SetItem1PointRed( 2.0f );
+	SetItem1PointGreen( 1.0f );
+	SetItem1PointBlue( 1.0f );
+	SetItem1PointPosX( 0.5f );
+	SetItem1PointPosY( 0.5f );
 }
 void LightEngine::Update( void ){}
 void LightEngine::Input( void )
@@ -47,6 +55,10 @@ void LightEngine::Input( void )
 	{
 		Night();
 	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_0 ) )
+	{
+		SetPlayerPointLight( !GetPlayerPointLight() );
+	}
 }
 void LightEngine::ShutDown( void )
 {
@@ -55,19 +67,27 @@ void LightEngine::ShutDown( void )
 	SetAmbientGreen(0.0f );
 	SetAmbientBlue( 0.0f );
 
-	SetPointAlpha( 0.0f );
-	SetPointRed( 0.0f );
-	SetPointGreen( 0.0f );
-	SetPointBlue( 0.0f );
+	SetPlayerPointLight( false );
+	SetPlayerPointAlpha( 0.0f );
+	SetPlayerPointRed( 0.0f );
+	SetPlayerPointGreen( 0.0f );
+	SetPlayerPointBlue( 0.0f );
+	SetPlayerPointPosX( 0.0f );
+	SetPlayerPointPosY( 0.0f );
 
-	SetPlayerPosX( 0.0f );
-	SetPlayerPosY( 0.0f );
+	SetItem1PointLight( false );
+	SetItem1PointAlpha( 1.0f );
+	SetItem1PointRed( 2.0f );
+	SetItem1PointGreen( 1.0f );
+	SetItem1PointBlue( 1.0f );
+	SetItem1PointPosX( 0.5f );
+	SetItem1PointPosY( 0.5f );
 }
 
-void LightEngine::SetPlayerPos( float fPosX, float fPosY )
+void LightEngine::SetPlayerPointPos( float fPosX, float fPosY )
 {
-	SetPlayerPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetPlayerPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetPlayerPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
+	SetPlayerPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
 }
 
 void LightEngine::Morning( void )

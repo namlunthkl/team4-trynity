@@ -18,13 +18,21 @@ float gAmbientR;
 float gAmbientG;
 float gAmbientB;
 
-float gPointA;
-float gPointR;
-float gPointG;
-float gPointB;
+bool  gPlayerPointLight;
+float gPlayerPointA;
+float gPlayerPointR;
+float gPlayerPointG;
+float gPlayerPointB;
+float gPlayerPointPosX;
+float gPlayerPointPosY;
 
-float gPointPosX;
-float gPointPosY;
+bool  gItem1PointLight;
+float gItem1PointA;
+float gItem1PointR;
+float gItem1PointG;
+float gItem1PointB;
+float gItem1PointPosX;
+float gItem1PointPosY;
 
 struct VS_INPUT
 {
@@ -117,30 +125,37 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	gAmbientColor.r = gAmbientR;
 	gAmbientColor.g = gAmbientG;
 	gAmbientColor.b = gAmbientB;
-
-	float4 pointLightColor;	
-	pointLightColor.a = gPointA;
-	pointLightColor.r = gPointR;
-	pointLightColor.g = gPointG;
-	pointLightColor.b = gPointB;
+	if( gPlayerPointLight )
+	{
+		float4 PlayerPointLightColor;	
+		PlayerPointLightColor.a = gPlayerPointA;
+		PlayerPointLightColor.r = gPlayerPointR;
+		PlayerPointLightColor.g = gPlayerPointG;
+		PlayerPointLightColor.b = gPlayerPointB;
+		
+		float2 PlayerPointLightPos;
+		PlayerPointLightPos.x = gPlayerPointPosX;
+		PlayerPointLightPos.y = gPlayerPointPosY;
+		
+		float  PlayerPointLightRadius;
+		float2 vectorBetweenTwo;
+		float  mag;
+		float  ratio;
+	 
+		vectorBetweenTwo = input.uv - PlayerPointLightPos; 
+		mag = length( vectorBetweenTwo );
+		PlayerPointLightRadius = .3f;
+		ratio = 1.0f - saturate( mag / PlayerPointLightRadius );
+		PlayerPointLightColor *= ratio;
 	
-	float2 pointLightPos;
-	pointLightPos.x = gPointPosX;
-	pointLightPos.y = gPointPosY;
-	
-	float  pointLightRadius;
-	float2 vectorBetweenTwo;
-	float  mag;
-	float  ratio;
- 
-	vectorBetweenTwo = input.uv - pointLightPos; 
-	mag = length( vectorBetweenTwo );
-	pointLightRadius = .25f;
-	ratio = 1.0f - saturate( mag / pointLightRadius );
-	pointLightColor *= ratio;
-	
-	return (color * pointLightColor) + ( color * gAmbientColor) ;
+		return (color * PlayerPointLightColor) + ( color * gAmbientColor) ;
+	}
+	else
+	{
+		return color * gAmbientColor;
+	}
 }
+
 technique Invert
 {
 	pass FirstPass

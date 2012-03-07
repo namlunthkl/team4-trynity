@@ -176,13 +176,21 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gAmbientG", LightEngine::GetInstance()->GetAmbientGreen() );
 		postEffect->SetFloat( "gAmbientB", LightEngine::GetInstance()->GetAmbientBlue() );
 
-		postEffect->SetFloat( "gPointA", LightEngine::GetInstance()->GetPointAlpha() );
-		postEffect->SetFloat( "gPointR", LightEngine::GetInstance()->GetPointRed() );
-		postEffect->SetFloat( "gPointG", LightEngine::GetInstance()->GetPointGreen() );
-		postEffect->SetFloat( "gPointB", LightEngine::GetInstance()->GetPointBlue() );
+		postEffect->SetBool(  "gPlayerPointLight", LightEngine::GetInstance()->GetPlayerPointLight() );
+		postEffect->SetFloat( "gPlayerPointA", LightEngine::GetInstance()->GetPlayerPointAlpha() );
+		postEffect->SetFloat( "gPlayerPointR", LightEngine::GetInstance()->GetPlayerPointRed() );
+		postEffect->SetFloat( "gPlayerPointG", LightEngine::GetInstance()->GetPlayerPointGreen() );
+		postEffect->SetFloat( "gPlayerPointB", LightEngine::GetInstance()->GetPlayerPointBlue() );
+		postEffect->SetFloat( "gPlayerPointPosX", LightEngine::GetInstance()->GetPlayerPointPosX() );
+		postEffect->SetFloat( "gPlayerPointPosY", LightEngine::GetInstance()->GetPlayerPointPosY() );
 
-		postEffect->SetFloat( "gPointPosX", LightEngine::GetInstance()->GetPlayerPosX() );
-		postEffect->SetFloat( "gPointPosY", LightEngine::GetInstance()->GetPlayerPosY() );
+		postEffect->SetBool(  "gItem1PointLight", LightEngine::GetInstance()->GetItem1PointLight() );
+		postEffect->SetFloat( "gItem1PointA", LightEngine::GetInstance()->GetItem1PointAlpha() );
+		postEffect->SetFloat( "gItem1PointR", LightEngine::GetInstance()->GetItem1PointRed() );
+		postEffect->SetFloat( "gItem1PointG", LightEngine::GetInstance()->GetItem1PointGreen() );
+		postEffect->SetFloat( "gItem1PointB", LightEngine::GetInstance()->GetItem1PointBlue() );
+		postEffect->SetFloat( "gItem1PointPosX", LightEngine::GetInstance()->GetItem1PointPosX() );
+		postEffect->SetFloat( "gItem1PointPosY", LightEngine::GetInstance()->GetItem1PointPosY() );
 
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
