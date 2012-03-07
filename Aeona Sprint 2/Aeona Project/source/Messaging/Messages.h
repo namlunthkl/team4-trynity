@@ -9,7 +9,8 @@
 #define MESSAGES_H_
 #include "../Game Objects/CNPC.h"
 typedef int MSGID;
-enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER,MSG_CREATE_NPC, MSG_DESTROY_OBJECT, MSG_MAX };
+enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER,MSG_CREATE_NPC, MSG_CREATE_ENEMY,
+	MSG_DESTROY_OBJECT, MSG_MAX };
 
 class CBaseMessage
 {
@@ -37,12 +38,51 @@ public:
 class CCreateNPCMessage : public CBaseMessage
 {
 private:
-	//None
+	string	m_szName;
+	double	m_dPosX;
+	double	m_dPosY;
+	int		m_nType;
+
 public:
-	CCreateNPCMessage() : CBaseMessage(MSG_CREATE_NPC){;}
+	enum ENPCType { NPC_DEMO, NPC_MAX };
+
+	CCreateNPCMessage(string szName, double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_NPC)
+	{
+		m_szName = szName;
+		m_dPosX = dPosX;
+		m_dPosY = dPosY;
+		m_nType = nType;
+	}
+	
+	inline string	GetName(void) const { return m_szName; }
+	inline double	GetPosX(void) const { return m_dPosX; }
+	inline double	GetPosY(void) const { return m_dPosY; }
+	inline int		GetType(void) const { return m_nType; }
 	~CCreateNPCMessage();
 };
+class CCreateEnemyMessage : public CBaseMessage
+{
+private:
+	double	m_dPosX;
+	double	m_dPosY;
+	int		m_nType;
 
+public:
+	enum EEnemyType { ENEMY_JUMPER, ENEMY_SWARM, ENEMY_RANDOM, ENEMY_MAX };
+
+	CCreateEnemyMessage(double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_ENEMY)
+	{
+		m_dPosX = dPosX;
+		m_dPosY = dPosY;
+		m_nType = nType;
+	}
+	
+	inline double	GetPosX(void) const { return m_dPosX; }
+	inline double	GetPosY(void) const { return m_dPosY; }
+	inline int		GetType(void) const { return m_nType; }
+
+	~CCreateEnemyMessage();
+};
 class CDestroyObjectMessage : public CBaseMessage
 {
 private:

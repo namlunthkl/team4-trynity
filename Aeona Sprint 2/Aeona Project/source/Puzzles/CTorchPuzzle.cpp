@@ -2,6 +2,7 @@
 #include "CTorchPuzzle.h"
 #include "../Game Objects/CPlayer.h"
 #include "../Light System/LightEngine.h"
+#include "../Camera/CCameraControl.h"
 
 void CTorchPuzzle::Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential)
 {
@@ -58,6 +59,31 @@ void CTorchPuzzle::EventReceived(int ArgumentNumber, void* EventData)
 
 		m_vParticle[ArgumentNumber]->Fire();
 	}
+
+	float ScreenPosX = PosX - (-1*CCameraControl::GetInstance()->GetPositionX());
+	float ScreenPosY = PosY - (-1*CCameraControl::GetInstance()->GetPositionY());
+
+	switch(ArgumentNumber)
+	{
+	case 0:
+		// This is hit when the first torch (top left) is lit or unlit
+		LightEngine::GetInstance()->SetItem1PointPos(ScreenPosX, ScreenPosY);
+		LightEngine::GetInstance()->SetItem1PointLight(m_vnArguments[0] == 1 ? true : false);
+		break;
+	case 1:
+		LightEngine::GetInstance()->SetItem2PointPos(ScreenPosX, ScreenPosY);
+		LightEngine::GetInstance()->SetItem2PointLight(m_vnArguments[1] == 1 ? true : false);
+		break;
+	case 2:
+		LightEngine::GetInstance()->SetItem3PointPos(ScreenPosX, ScreenPosY);
+		LightEngine::GetInstance()->SetItem3PointLight(m_vnArguments[2] == 1 ? true : false);
+		break;
+	case 3:
+		LightEngine::GetInstance()->SetItem4PointPos(ScreenPosX, ScreenPosY);
+		LightEngine::GetInstance()->SetItem4PointLight(m_vnArguments[3] == 1 ? true : false);
+		break;
+	};
+
 
 	// Get the distance between this tile and the player
 	if(GetNumberOfArgumentsOn() == 0)
