@@ -176,6 +176,8 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gAmbientG", LightEngine::GetInstance()->GetAmbientGreen() );
 		postEffect->SetFloat( "gAmbientB", LightEngine::GetInstance()->GetAmbientBlue() );
 
+		
+
 		postEffect->SetBool(  "gPlayerPointLight", LightEngine::GetInstance()->GetPlayerPointLight() );
 		postEffect->SetFloat( "gPlayerPointA", LightEngine::GetInstance()->GetPlayerPointAlpha() );
 		postEffect->SetFloat( "gPlayerPointR", LightEngine::GetInstance()->GetPlayerPointRed() );
