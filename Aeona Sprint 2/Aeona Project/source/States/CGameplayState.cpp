@@ -299,13 +299,13 @@ void CGameplayState::Render(void)
 	D3DXMatrixIdentity(&identity);
 	D3D->GetSprite()->SetTransform(&identity);
 
-	if(CInputManager::GetInstance()->GetAttack())
-	{
-		D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
-		char buffer[100];
-		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
-		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
-	}
+	//if(CInputManager::GetInstance()->GetAttack())
+	//{
+	//	D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
+	//	char buffer[100];
+	//	sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
+	//	D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
+	//}
 
 	//m_Rain.Render();
 	CWeatherManager::GetInstance()->Render();
@@ -481,9 +481,9 @@ void CGameplayState::RenderHUD()
 	RECT r1;
 
 	r1.left = 39;
-	r1.top = 0 + PLAYER->m_uiCurrentMask*128;
+	r1.top = 0 + (PLAYER->m_uiCurrentMask-1)*128;
 	r1.right = 39+39;
-	r1.bottom = 128 + PLAYER->m_uiCurrentMask*128;
+	r1.bottom = 128 + (PLAYER->m_uiCurrentMask-1)*128;
 
 	//	Draw the amulet!
 	TEX_MNG->Draw(m_imgHUD, 0, 0, 1.0f, 1.0f, &r1);
