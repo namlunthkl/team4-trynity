@@ -116,10 +116,6 @@ void CPlayer::Update(float fElapsedTime)
 	if(m_uiCurrentMask == MASK_LIGHT)
 	{
 		LightEngine::GetInstance()->SetPlayerPointLight(true);
-		LightEngine::GetInstance()->SetItem1PointLight(true);
-		LightEngine::GetInstance()->SetItem2PointLight(true);
-		LightEngine::GetInstance()->SetItem3PointLight(true);
-		LightEngine::GetInstance()->SetItem4PointLight(true);
 	}
 	else
 	{
