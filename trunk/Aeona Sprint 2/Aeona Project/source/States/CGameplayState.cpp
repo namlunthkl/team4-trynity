@@ -74,8 +74,6 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
 
-	// CWeatherManager::GetInstance()->GetWeather()->Init();
-
 	//	Load all assets
 	//		Textures
 	m_imgMessageBox = TEX_MNG->LoadTexture("resource/MessageBox.png");
@@ -203,7 +201,7 @@ void CGameplayState::Update(float fElapsedTime)
 	EVENTS->ProcessEvents();
 	PUZZLES->UpdatePuzzles(fElapsedTime);
 
-	//m_Rain.Update(fElapsedTime);
+	// Update the Weather
 	CWeatherManager::GetInstance()->Update( fElapsedTime );
 
 	// DANIEL CODE BEGIN
@@ -307,7 +305,7 @@ void CGameplayState::Render(void)
 		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
 	}
 
-	//m_Rain.Render();
+	// Render the Weather
 	CWeatherManager::GetInstance()->Render();
 
 	//	Render a neato HUD

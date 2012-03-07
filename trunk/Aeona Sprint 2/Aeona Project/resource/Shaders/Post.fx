@@ -272,16 +272,16 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item4PointLightColor.r = gItem4PointR;
 		Item4PointLightColor.g = gItem4PointG;
 		Item4PointLightColor.b = gItem4PointB;
-		
+	
 		float2 Item4PointLightPos;
 		Item4PointLightPos.x = gItem4PointPosX;
 		Item4PointLightPos.y = gItem4PointPosY;
-		
+	
 		float  Item4PointLightRadius;
 		float2 Item4VectorBetweenTwo;
 		float  Item4Mag;
 		float  Item4Ratio;
-		
+	
 		Item4VectorBetweenTwo = input.uv - Item4PointLightPos; 
 		Item4Mag = length( Item4VectorBetweenTwo );
 		Item4PointLightRadius = .2f;
@@ -342,7 +342,7 @@ technique DayCycleEffect
 {
 	pass FirstPass
     {
-	vertexShader = compile vs_2_0 ScreenSpaceQuad();
-	pixelShader = compile ps_2_0 DayCycle();
+	vertexShader = compile vs_3_0 ScreenSpaceQuad();
+	pixelShader = compile ps_3_0 DayCycle();
     }
 }

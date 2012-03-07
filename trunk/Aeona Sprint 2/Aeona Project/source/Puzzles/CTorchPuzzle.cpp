@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "CTorchPuzzle.h"
 #include "../Game Objects/CPlayer.h"
+#include "../Light System/LightEngine.h"
 
 void CTorchPuzzle::Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential)
 {
