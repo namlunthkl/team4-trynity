@@ -1,5 +1,9 @@
 // Precompiled Header - Includes that every file needs
 
+#ifndef STDAFX_H__
+#define STDAFX_H__
+
+
 // Lean and Mean - Exclude rarely-used stuff from Windows headers
 #define WIN32_LEAN_AND_MEAN
 // Windows.h - Has a lot of stuff we need for Windows applications
@@ -58,3 +62,5 @@ using std::queue;
 #define INPUT		CSGD_DirectInput::GetInstance()
 #define AUDIO		CSGD_XAudio2::GetInstance()
 #define GAME		CGame::GetInstance()
+
+#endif

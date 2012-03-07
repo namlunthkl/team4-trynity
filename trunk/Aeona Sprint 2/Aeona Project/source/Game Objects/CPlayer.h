@@ -35,6 +35,9 @@ class CPlayer : public CBaseCharacter
 	int				m_uiNumPotions;
 	CPotion*		m_Potion;
 	int				m_sndHit;
+	bool			m_bDamageDecrease;
+	int				m_nDamageIncrease;
+	int				m_nSpeedIncrease;
 
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}

@@ -11,53 +11,139 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\AI_States\CJumperAIState.cpp" />
-    <ClCompile Include="source\AI_States\CRandomAIState.cpp" />
-    <ClCompile Include="source\AI_States\CSwarmAIState.cpp" />
-    <ClCompile Include="source\Animation\CAnimation.cpp" />
-    <ClCompile Include="source\Animation\CAnimationManager.cpp" />
-    <ClCompile Include="source\Animation\CAnimationPlayer.cpp" />
-    <ClCompile Include="source\Animation\CFrame.cpp" />
-    <ClCompile Include="source\Camera\CCameraControl.cpp" />
-    <ClCompile Include="source\CBitmapFont.cpp" />
+    <ClCompile Include="source\AI_States\CJumperAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CRandomAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CSwarmAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimationManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CAnimationPlayer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Animation\CFrame.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Camera\CCameraControl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\CBitmapFont.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\CGame.cpp" />
-    <ClCompile Include="source\Game Objects\CArrow.cpp" />
-    <ClCompile Include="source\Game Objects\CBaseCharacter.cpp" />
-    <ClCompile Include="source\Game Objects\CBaseObject.cpp" />
-    <ClCompile Include="source\Game Objects\CChest.cpp" />
-    <ClCompile Include="source\Game Objects\CEnemy.cpp" />
-    <ClCompile Include="source\Game Objects\CNPC.cpp" />
-    <ClCompile Include="source\Game Objects\CObjectManager.cpp" />
-    <ClCompile Include="source\Game Objects\CPlayer.cpp" />
-    <ClCompile Include="source\Input Manager\CInputManager.cpp" />
-    <ClCompile Include="source\Input Manager\CXboxController.cpp" />
-    <ClCompile Include="source\Items\CPotion.cpp" />
-    <ClCompile Include="source\Light System\LightEngine.cpp" />
-    <ClCompile Include="source\Messaging\CEventSystem.cpp" />
-    <ClCompile Include="source\Messaging\CMessageSystem.cpp" />
-    <ClCompile Include="source\Messaging\CStringTable.cpp" />
-    <ClCompile Include="source\Particle Engine\Emitter.cpp" />
-    <ClCompile Include="source\Particle Engine\FlyWeight.cpp" />
-    <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp" />
-    <ClCompile Include="source\Post Process\CPostProcess.cpp" />
-    <ClCompile Include="source\Puzzles\CPuzzle.cpp" />
-    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp" />
-    <ClCompile Include="source\Puzzles\CTorchPuzzle.cpp" />
-    <ClCompile Include="source\States\CAudioOptionsState.cpp" />
-    <ClCompile Include="source\States\CBaseMenu.cpp" />
-    <ClCompile Include="source\States\CCreditsState.cpp" />
-    <ClCompile Include="source\States\CGameplayState.cpp" />
-    <ClCompile Include="source\States\CLoadGameState.cpp" />
-    <ClCompile Include="source\States\CMainMenuState.cpp" />
-    <ClCompile Include="source\States\CNewGameState.cpp" />
-    <ClCompile Include="source\States\COptionsState.cpp" />
-    <ClCompile Include="source\States\CVideoOptionsState.cpp" />
+    <ClCompile Include="source\Game Objects\CArrow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CBaseCharacter.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CBaseObject.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CChest.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CEnemy.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CNPC.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CObjectManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Game Objects\CPlayer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Input Manager\CInputManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Input Manager\CXboxController.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Items\CPotion.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Light System\LightEngine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Messaging\CEventSystem.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Messaging\CMessageSystem.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Messaging\CStringTable.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Particle Engine\Emitter.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Particle Engine\FlyWeight.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Particle Engine\ParticleWeapon.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Post Process\CPostProcess.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CPuzzleManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Puzzles\CTorchPuzzle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CAudioOptionsState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CBaseMenu.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CCreditsState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CGameplayState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CLoadGameState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CMainMenuState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CNewGameState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\COptionsState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\States\CVideoOptionsState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\Tile Mapping\CMap.cpp" />
-    <ClCompile Include="source\Tile Mapping\CTileset.cpp" />
-    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp" />
+    <ClCompile Include="source\Tile Mapping\CMap.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CTileset.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Tile Mapping\CWorldEngine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\tinyxml\tinystr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -75,13 +161,26 @@
     </ClCompile>
     <ClCompile Include="source\Util\CDialogueList.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\Weapons\CCrossBow.cpp" />
-    <ClCompile Include="source\Weapons\CDagger.cpp" />
-    <ClCompile Include="source\Weapons\CHammer.cpp" />
-    <ClCompile Include="source\Weapons\CSword.cpp" />
-    <ClCompile Include="source\Weather System\WeatherManager.cpp" />
-    <ClCompile Include="source\WinMain.cpp" />
+    <ClCompile Include="source\Weapons\CCrossBow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CDagger.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CHammer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CSword.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Weather System\WeatherManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\WinMain.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\Wrappers\CSGD_Direct3D.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -228,12 +327,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

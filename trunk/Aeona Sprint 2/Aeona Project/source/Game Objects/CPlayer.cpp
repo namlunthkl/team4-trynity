@@ -33,6 +33,11 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
+
+	TurnBitOn(m_byteMasks,MASK_SPEED);
+	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
+	TurnBitOn(m_byteMasks,MASK_STRENGHT);
+	TurnBitOn(m_byteMasks,MASK_LIGHT);
 	//	IM 12 AND WHAT IS THIS?
 	TurnBitOn(m_byteMasks, MASK_NONE);
 
@@ -79,6 +84,43 @@ void CPlayer::Update(float fElapsedTime)
 	{
 		m_fOuchTimer = 0.0f;
 	}
+	
+	if(m_uiCurrentMask == MASK_SPEED)
+	{
+		m_nSpeedIncrease = 2;
+		
+	}
+	else
+	{
+		m_nSpeedIncrease = 1;
+	}
+	
+	if(m_uiCurrentMask == MASK_STRENGHT)
+	{
+		m_nDamageIncrease = 2;
+	}
+	else
+	{
+		m_nDamageIncrease = 1;
+	}
+
+	if(m_uiCurrentMask == MASK_ENDURANCE)
+	{
+		m_bDamageDecrease = true;
+	}
+	else
+	{
+		m_bDamageDecrease = false;
+	}
+
+	if(m_uiCurrentMask == MASK_LIGHT)
+	{
+		LightEngine::GetInstance()->SetPlayerPointLight(true);
+	}
+	else
+	{
+		LightEngine::GetInstance()->SetPlayerPointLight(false);
+	}
 
 	if( CCameraControl::GetInstance()->GetKillCam() == false )
 	{
@@ -98,21 +140,11 @@ void CPlayer::Update(float fElapsedTime)
 	LightEngine::GetInstance()->SetPlayerPointPos((float)(GetPosX()-( -1 * CCameraControl::GetInstance()->GetPositionX())),
 		(float)(GetPosY()-( -1 * CCameraControl::GetInstance()->GetPositionY())));
 
-	//WEAPON->SetWeaponRotation(GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponAngle());
-	
-	//Point TempWepPoint;
-	//TempWepPoint.x = GetPosX() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().x + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().x;
-	//TempWepPoint.y = GetPosY() - GetAnimationPlayer(GetCurrentAnimation())->ReturnAnchorPoint().y + GetAnimationPlayer(GetCurrentAnimation())->ReturnWeaponPoint().y;
-	//WEAPON->SetWeaponAnchor(TempWepPoint);
-
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
 	{
-		// m_fxFootsteps.emitter.EmitterPosX = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().x + GetPosX());
-		// m_fxFootsteps.emitter.EmitterPosY = (float)(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->ReturnAnchorPoint().y + GetPosY());
-		
-		m_fxFootsteps.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX());
-		m_fxFootsteps.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY());
+		m_fxFootsteps.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX()-25);
+		m_fxFootsteps.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY()-16);
 		m_fxFootsteps.Fire();
 	}
 }
@@ -134,7 +166,7 @@ void CPlayer::Render(void)
 	//rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 	//	CCameraControl::GetInstance()->GetPositionY());
 	//D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
-	//
+
 	RectD temp = WEAPON->GetCollisionRect();
 	temp.OffsetRect(GetPosX(),GetPosY());
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
@@ -162,7 +194,7 @@ void CPlayer::Attack(void)
 {
 	if( m_fOuchTimer == 0.0f )
 	{
-		CBaseCharacter::Attack();
+		//CBaseCharacter::Attack();
 		WEAPON->Attack();
 	}
 }
@@ -194,10 +226,12 @@ void CPlayer::Input(void)
 	{
 		WEAPON->SetAttacking(false);
 	}
+
 	if(CInputManager::GetInstance()->GetY())
 	{
 		UsePotion();
 	}
+
 	//if i get hurt, stop my attack
 	if( m_fOuchTimer > 0.0f )
 		WEAPON->SetAttacking(false);
@@ -291,12 +325,12 @@ void CPlayer::Input(void)
 		if(CInputManager::GetInstance()->GetUp())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_UP);
-			SetVelY(-(float)GetSpeed());
+			SetVelY(-(float)GetSpeed()*m_nSpeedIncrease);
 		}
 		else if(CInputManager::GetInstance()->GetDown())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_DOWN);
-			SetVelY((float)GetSpeed());
+			SetVelY((float)GetSpeed()*m_nSpeedIncrease);
 		}
 		else
 		{
@@ -311,12 +345,12 @@ void CPlayer::Input(void)
 		if(CInputManager::GetInstance()->GetLeft())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_LEFT);
-			SetVelX(-(float)GetSpeed());
+			SetVelX(-(float)GetSpeed() * m_nSpeedIncrease);
 		}
 		else if(CInputManager::GetInstance()->GetRight())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_RIGHT);
-			SetVelX((float)GetSpeed());
+			SetVelX((float)GetSpeed() * m_nSpeedIncrease);
 		}
 		else
 		{
@@ -442,7 +476,7 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 
 		if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 		{
-			pEnemy->SufferDamage(GetAttackDamage());
+			pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
 		}
 		int x = 0;
 	}
@@ -484,8 +518,22 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 {
 	if( m_fOuchTimer > 0.0f == false)
 	{
-		CBaseCharacter::SufferDamage(uiDamage);
-
+		if(m_bDamageDecrease == true)
+		{
+			if(uiDamage > 1)
+				CBaseCharacter::SufferDamage(uiDamage-1);
+			else
+			{
+				if(rand()%2 == 0)
+					CBaseCharacter::SufferDamage(0);
+				else
+					CBaseCharacter::SufferDamage(1);
+			}
+		}
+		else
+		{
+			CBaseCharacter::SufferDamage(uiDamage);
+		}
 		if(m_sndHit != -1)
 				AUDIO->SFXPlaySound(m_sndHit);
 	}
