@@ -21,13 +21,13 @@ void CArrow::Render(void)
 {
 	RectD temp(0,0,GetWidth(),GetHeight());
 	if(GetVelX() == 0 && GetVelY() > 0)
-		TEX_MNG->Draw(GetImageID(), GetPosX(), GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*2.0f);
+		TEX_MNG->Draw(GetImageID(), (int)GetPosX(), (int)GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*2.0f);
 	else if(GetVelX() == 0 && GetVelY() < 0)
-		TEX_MNG->Draw(GetImageID(), GetPosX(), GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*1.0f);
+		TEX_MNG->Draw(GetImageID(), (int)GetPosX(), (int)GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*1.0f);
 	else if(GetVelX() < 0 && GetVelY() == 0)
-		TEX_MNG->Draw(GetImageID(), GetPosX(), GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*0.5f);
+		TEX_MNG->Draw(GetImageID(), (int)GetPosX(), (int)GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,3.14f*0.5f);
 	else if(GetVelX() > 0 && GetVelY() == 0)
-		TEX_MNG->Draw(GetImageID(), GetPosX(), GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,-3.14f*0.5f);
+		TEX_MNG->Draw(GetImageID(), (int)GetPosX(), (int)GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,-3.14f*0.5f);
 }
 bool CArrow::CheckCollision(IBaseInterface* pObject)
 {

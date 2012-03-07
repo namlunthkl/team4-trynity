@@ -42,6 +42,7 @@
       <Tile PosX="0" PosY="0" Type="128" Event="none" />
       <Tile PosX="0" PosY="0" Type="128" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
+      <Tile PosX="0" PosY="0" Type="0" Event="Enemy" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
@@ -55,8 +56,7 @@
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
-      <Tile PosX="0" PosY="0" Type="0" Event="none" />
-      <Tile PosX="0" PosY="0" Type="0" Event="none" />
+      <Tile PosX="0" PosY="0" Type="0" Event="Enemy" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="128" Event="none" />
       <Tile PosX="0" PosY="0" Type="128" Event="none" />
@@ -370,7 +370,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="2" Type="128" Event="none" />
+      <Tile PosX="1" PosY="2" Type="132" Event="TorchLit.0" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -378,7 +378,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="2" Type="128" Event="none" />
+      <Tile PosX="1" PosY="2" Type="132" Event="TorchLit.1" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -389,7 +389,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="3" Type="132" Event="TorchLit.0" />
+      <Tile PosX="1" PosY="3" Type="128" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -397,7 +397,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="3" Type="132" Event="TorchLit.1" />
+      <Tile PosX="1" PosY="3" Type="128" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -465,7 +465,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="2" Type="128" Event="none" />
+      <Tile PosX="1" PosY="2" Type="132" Event="TorchLit.2" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -473,7 +473,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="2" Type="128" Event="none" />
+      <Tile PosX="1" PosY="2" Type="132" Event="TorchLit.3" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -484,7 +484,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="3" Type="132" Event="TorchLit.2" />
+      <Tile PosX="1" PosY="3" Type="128" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
@@ -492,7 +492,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
-      <Tile PosX="1" PosY="3" Type="132" Event="TorchLit.3" />
+      <Tile PosX="1" PosY="3" Type="128" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />

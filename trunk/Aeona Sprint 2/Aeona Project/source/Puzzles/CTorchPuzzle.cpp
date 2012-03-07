@@ -43,14 +43,17 @@ void CTorchPuzzle::EventReceived(int ArgumentNumber, void* EventData)
 	IBasePuzzle::EventReceived(ArgumentNumber, EventData);
 
 	CMap::TileInfo* eventInfo = (CMap::TileInfo*)EventData;
-	double PosX = eventInfo->Map->GetPosX() + eventInfo->Map->GetTileset()->GetTileWidth() * eventInfo->sMapPosX;
-	double PosY = eventInfo->Map->GetPosY() + eventInfo->Map->GetTileset()->GetTileHeight() * eventInfo->sMapPosY;
+	unsigned char cTileWidth = eventInfo->Map->GetTileset()->GetTileWidth();
+	unsigned char cTileHeight = eventInfo->Map->GetTileset()->GetTileHeight();
+
+	double PosX = eventInfo->Map->GetPosX() + cTileWidth * eventInfo->sMapPosX - 5;//- cTileWidth/2;
+	double PosY = eventInfo->Map->GetPosY() + cTileHeight * eventInfo->sMapPosY - cTileHeight/2;
 	m_ptLastLitTorchPosition = PointD(PosX, PosY);
 
 	if(m_vnArguments[ArgumentNumber] == 1)
 	{
-		m_vParticle[ArgumentNumber]->emitter.EmitterPosX = (float)PosX - 6;
-		m_vParticle[ArgumentNumber]->emitter.EmitterPosY = (float)PosY - 36;
+		m_vParticle[ArgumentNumber]->emitter.EmitterPosX = (float)PosX;
+		m_vParticle[ArgumentNumber]->emitter.EmitterPosY = (float)PosY;
 
 		m_vParticle[ArgumentNumber]->Fire();
 	}

@@ -29,7 +29,7 @@ void IBasePuzzle::Create(unsigned int uiArgCount, char* szEventToFire, char* szE
 	string szEventToRegister = szEventToListenTo;
 	szEventToRegister += ".";
 	// Register client for events
-	for(char i = '0'; i < '0' + uiArgCount; ++i)
+	for(char i = '0'; i < '0' + (int)uiArgCount; ++i)
 		CEventSystem::GetInstance()->RegisterForEvent(szEventToRegister + i, this);
 
 	m_dwTimeStamp = timeGetTime();
@@ -56,7 +56,7 @@ void IBasePuzzle::HandleEvent(CEvent* pEvent)
 	// Check if event name is the one we're listening to
 	if(EventName == m_szEventToListenTo)
 	{
-		if(EventNumber < m_uiArgCount)
+		if(EventNumber < (int)m_uiArgCount)
 			EventReceived(EventNumber, pEvent->GetParam());
 	}
 
@@ -77,7 +77,7 @@ void IBasePuzzle::EventReceived(int ArgumentNumber, void* EventData)
 		// If the puzzle is sequential and this torch was just lit
 
 		// Turn off all the ones that should come after this
-		for(int i = ArgumentNumber + 1; i < m_uiArgCount; ++i)
+		for(unsigned int i = ArgumentNumber + 1; i < m_uiArgCount; ++i)
 			m_vnArguments[i] = 0;
 
 		// And if the one before this was off
@@ -114,7 +114,7 @@ void IBasePuzzle::Destroy(void)
 int IBasePuzzle::GetNumberOfArgumentsOn(void)
 {
 	int n = 0;
-	for(int i=0; i < m_uiArgCount; ++i)
+	for(unsigned int i=0; i < m_uiArgCount; ++i)
 		if(m_vnArguments[i] == 1) n++;
 	return n;
 }
