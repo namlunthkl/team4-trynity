@@ -150,6 +150,31 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	
 		return (color * PlayerPointLightColor) + ( color * gAmbientColor) ;
 	}
+	else if( gItem1PointLight )
+	{
+		float4 Item1PointLightColor;	
+		Item1PointLightColor.a = gItem1PointA;
+		Item1PointLightColor.r = gItem1PointR;
+		Item1PointLightColor.g = gItem1PointG;
+		Item1PointLightColor.b = gItem1PointB;
+		
+		float2 Item1PointLightPos;
+		Item1PointLightPos.x = gItem1PointPosX;
+		Item1PointLightPos.y = gItem1PointPosY;
+		
+		float  Item1PointLightRadius;
+		float2 vectorBetweenTwo;
+		float  mag;
+		float  ratio;
+	 
+		vectorBetweenTwo = input.uv - Item1PointLightPos; 
+		mag = length( vectorBetweenTwo );
+		Item1PointLightRadius = .3f;
+		ratio = 1.0f - saturate( mag / Item1PointLightRadius );
+		Item1PointLightColor *= ratio;
+	
+		return (color * Item1PointLightColor) + ( color * gAmbientColor) ;
+	}
 	else
 	{
 		return color * gAmbientColor;

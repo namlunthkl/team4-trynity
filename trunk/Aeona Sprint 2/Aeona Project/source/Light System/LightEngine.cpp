@@ -33,8 +33,8 @@ void LightEngine::Initialize( void )
 	SetItem1PointRed( 2.0f );
 	SetItem1PointGreen( 1.0f );
 	SetItem1PointBlue( 1.0f );
-	SetItem1PointPosX( 0.5f );
-	SetItem1PointPosY( 0.5f );
+	SetItem1PointPosX( 0.75f );
+	SetItem1PointPosY( 0.75f );
 }
 void LightEngine::Update( void ){}
 void LightEngine::Input( void )
@@ -59,6 +59,11 @@ void LightEngine::Input( void )
 	{
 		SetPlayerPointLight( !GetPlayerPointLight() );
 	}
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_P ) )
+	{
+		SetItem1PointLight( !GetItem1PointLight() );
+	}
+
 }
 void LightEngine::ShutDown( void )
 {
@@ -88,6 +93,11 @@ void LightEngine::SetPlayerPointPos( float fPosX, float fPosY )
 {
 	SetPlayerPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
 	SetPlayerPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+}
+void LightEngine::SetItem1PointPos( float fPosX, float fPosY )
+{
+	SetItem1PointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
+	SetItem1PointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
 }
 
 void LightEngine::Morning( void )
