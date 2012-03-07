@@ -6,7 +6,9 @@
 class CTorchPuzzle : public IBasePuzzle
 {
 	vector<ParticleWeapon*> m_vParticle;
-
+	int m_sndFireSound;
+	PointD m_ptLastLitTorchPosition;
+	bool m_bPlaySound;
 public:
 	CTorchPuzzle(void){};
 	void Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential);
