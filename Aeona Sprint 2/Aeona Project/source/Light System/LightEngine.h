@@ -89,6 +89,7 @@ public:
 	void ShutDown( void );
 
 	void SetPlayerPointPos( float fPosX, float fPosY );
+	void SetItem1PointPos( float fPosX, float fPosY );
 	void Morning( void );
 	void Day( void );
 	void Evening( void );
