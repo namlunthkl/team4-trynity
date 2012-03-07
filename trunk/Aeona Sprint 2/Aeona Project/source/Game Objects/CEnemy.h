@@ -14,10 +14,6 @@
 
 class CEnemy : public CBaseCharacter
 {
-private:
-	// Sound that plays when the enemy is moving
-	int				m_sndEnemy;
-
 public:
 	// Constructor
 	CEnemy(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,

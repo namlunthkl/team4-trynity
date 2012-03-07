@@ -13,7 +13,7 @@ CDagger::CDagger()
 	CBaseCharacter::LoadAnimations("resource/PlayerWDagger.xml");
 	SetAttacking(false);
 
-	SetSound(AUDIO->SFXLoadSound("resource/sound/Dagger.wav"));
+	SetSound(new Sound("resource/sound/Dagger.wav"));
 }
 void CDagger::Render(PointD nPos)
 {
@@ -31,7 +31,7 @@ void CDagger::Update(float fElapsedTime)
 void CDagger::Attack(void)
 {
 	SetAttacking(true);
-	AUDIO->SFXPlaySound(GetSound());
+	GetSound()->Play();
 }
 void CDagger::ChargedAttack(void)
 {

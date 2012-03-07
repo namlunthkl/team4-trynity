@@ -1,6 +1,9 @@
 #ifndef UTIL_STRUCTS_H_
 #define UTIL_STRUCTS_H_
 
+#include "../Wrappers/CSGD_XAudio2.h"
+#define AUDIO CSGD_XAudio2::GetInstance()
+
 struct Point
 {
 	int x;
@@ -218,7 +221,39 @@ struct RectD
 	}
 };
 
-
+struct Sound
+{
+	DWORD	m_dwTimeStamp;
+	DWORD	m_dwDelta;
+	int		m_nSoundID;
+	Sound(char const * const szFile = nullptr, DWORD dwDelta = 200)
+	{
+		Load(szFile);
+		m_dwDelta = dwDelta;
+	}
+	void Load(char const * const szFile)
+	{
+		m_nSoundID = AUDIO->SFXLoadSound(szFile);
+		m_dwTimeStamp = 0;
+	}
+	void Play(void)
+	{
+		if(m_nSoundID != -1)
+		{
+			unsigned int x = timeGetTime() - m_dwTimeStamp;
+			if(x > m_dwDelta)
+			{
+				AUDIO->SFXPlaySound(m_nSoundID);
+				m_dwTimeStamp = timeGetTime();
+			}
+		}
+	}
+	void Unload(void)
+	{
+		if(m_nSoundID != -1)
+			AUDIO->SFXUnloadSound(m_nSoundID);
+	}
+};
 
 
 

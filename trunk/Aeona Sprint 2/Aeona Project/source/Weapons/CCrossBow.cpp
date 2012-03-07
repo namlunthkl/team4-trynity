@@ -17,7 +17,7 @@ CCrossBow::CCrossBow()
 	m_pArrow = NULL;
 	m_fTime = 0;
 
-	SetSound(AUDIO->SFXLoadSound("resource/sound/Bow.wav"));
+	SetSound(new Sound("resource/sound/Bow.wav"));
 }
 void CCrossBow::Render(PointD nPos)
 {
@@ -38,7 +38,7 @@ void CCrossBow::Attack(void)
 	if(m_fTime >= 0.5f)
 	{
 		SetAttacking(true);
-		AUDIO->SFXPlaySound(GetSound());
+		GetSound()->Play();
 		m_fTime = 0;
 		ShootArrow();
 	}

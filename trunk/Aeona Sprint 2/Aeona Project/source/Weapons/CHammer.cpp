@@ -13,7 +13,7 @@ CHammer::CHammer()
 	CBaseCharacter::LoadAnimations("resource/PlayerWHammer.xml");
 	SetAttacking(false);
 
-	SetSound(AUDIO->SFXLoadSound("resource/sound/Hammer.wav"));
+	SetSound(new Sound("resource/sound/Hammer.wav"));
 }
 void CHammer::Render(PointD nPos)
 {
@@ -31,7 +31,7 @@ void CHammer::Update(float fElapsedTime)
 void CHammer::Attack(void)
 {
 	SetAttacking(true);
-	AUDIO->SFXPlaySound(GetSound());
+	GetSound()->Play();
 }
 void CHammer::ChargedAttack(void)
 {

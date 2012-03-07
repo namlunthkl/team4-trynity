@@ -28,7 +28,7 @@ private:
 	//Point m_weaponAnchor;
 	int m_nDamage;
 	bool m_nattacking;
-	int m_sndAttack;
+	Sound* m_sndAttack;
 	
 public:
 	enum WeaponType { TYPE_WEAPON_BASE = 0, TYPE_WEAPON_DAGGER, TYPE_WEAPON_SWORD, TYPE_WEAPON_HAMMER, TYPE_WEAPON_CROSSBOW, TYPE_MAX };
@@ -44,8 +44,8 @@ public:
 
 	void SetDamage(int val) { m_nDamage = val; }
 	void SetAttacking(bool val) { m_nattacking = val; }
-	inline void SetSound(int Sound) { m_sndAttack = Sound; }
-	inline int GetSound(void) { return m_sndAttack; }
+	inline void SetSound(Sound* sndAttack) { m_sndAttack = sndAttack; }
+	inline Sound* GetSound(void) { return m_sndAttack; }
 	//virtual void SetWeaponRotation(float fWeaponRotation) = 0;
 	//float GetRotation() const { return m_frotation; }
 	//void SetRotation(float val) { m_frotation = val; }
