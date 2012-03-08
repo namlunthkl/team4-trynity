@@ -17,6 +17,13 @@ CArrow::CArrow()
 {
 
 }
+void CArrow::Update(float fElapsedTime)
+{
+	CBaseObject::Update(fElapsedTime);
+	timeout += fElapsedTime;
+	if(timeout > 2.0f)
+		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+}
 void CArrow::Render(void)
 {
 	RectD temp(0,0,GetWidth(),GetHeight());
@@ -33,7 +40,6 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 {
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
-
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
 		if(pObject->GetType() == TYPE_CHAR_ENEMY)
