@@ -76,8 +76,8 @@ void CBaseMenu::Enter()
 	//	Load Assets
 	m_imgCursor = TEX_MNG->LoadTexture("resource/MenuCursor.png", D3DCOLOR_XRGB(0,0,0));
 	m_imgTitle = TEX_MNG->LoadTexture("resource/MenuHorizons3.png");
-	m_imgTeamLogo = TEX_MNG->LoadTexture("resource/Team4Logo.png");
-	m_imgLeaderLogo = TEX_MNG->LoadTexture("resource/TempAsset2.png");
+	m_imgTeamLogo = TEX_MNG->LoadTexture("resource/Team4Logo.png", D3DCOLOR_XRGB(255, 0, 255));
+	m_imgLeaderLogo = TEX_MNG->LoadTexture("resource/LeaderLogo.png", D3DCOLOR_XRGB(255, 0, 255));
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
 
@@ -203,7 +203,7 @@ void CBaseMenu::Render()
 			alpha = (float)(3.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
-		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
+		TEX_MNG->Draw(m_imgTeamLogo, 0 - (512-400), 300-64, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
 	}
 	else if(CGame::GetInstance()->m_fLogoTimer < 7.0f)
 	{
@@ -216,7 +216,7 @@ void CBaseMenu::Render()
 			alpha = (float)(7.5 - CGame::GetInstance()->m_fLogoTimer) * (float)(255)*2;
 		}
 		D3D->Clear(0, 0, 0);
-		TEX_MNG->Draw(m_imgTeamLogo, 400-128, 300-32, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 0, 0));
+		TEX_MNG->Draw(m_imgLeaderLogo, 0 - (512-400), 300-64, 1.0f, 1.0f, NULL, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB((unsigned int)alpha, 255, 255, 255));
 	}
 	else if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
