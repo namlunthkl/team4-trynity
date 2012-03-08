@@ -32,7 +32,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
-	//TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
+	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
