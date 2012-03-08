@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root tileset="Desert">
-  <Map posX="1240" posY="1400" width="10" height="10" objectlayer="1">
+  <Map posX="1245" posY="1400" width="10" height="10" objectlayer="1">
     <Layer>
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -11,6 +21,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -20,6 +31,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -29,6 +41,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -38,6 +51,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -47,6 +61,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -56,6 +71,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -65,6 +81,7 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
@@ -74,34 +91,17 @@
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
       <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
-      <Tile PosX="1" PosY="0" Type="0" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
+      <Tile PosX="1" PosY="0" Type="128" Event="none" />
     </Layer>
     <Layer>
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
@@ -169,7 +169,7 @@
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="0" PosY="8" Type="128" Event="none" />
       <Tile PosX="1" PosY="8" Type="128" Event="none" />
-      <Tile PosX="2" PosY="8" Type="0" Event="none" />
+      <Tile PosX="2" PosY="8" Type="128" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
@@ -177,9 +177,9 @@
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
-      <Tile PosX="0" PosY="9" Type="0" Event="none" />
-      <Tile PosX="1" PosY="9" Type="0" Event="none" />
-      <Tile PosX="2" PosY="9" Type="0" Event="none" />
+      <Tile PosX="0" PosY="9" Type="128" Event="none" />
+      <Tile PosX="1" PosY="9" Type="128" Event="none" />
+      <Tile PosX="2" PosY="9" Type="128" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
       <Tile PosX="6" PosY="11" Type="0" Event="none" />
