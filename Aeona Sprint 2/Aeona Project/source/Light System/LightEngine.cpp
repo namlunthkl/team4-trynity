@@ -242,8 +242,8 @@ void LightEngine::Leaves( void )
 {
 	SetAmbientAlpha(1.0f );
 	SetAmbientRed(  1.0f );
-	SetAmbientGreen(1.5f );
-	SetAmbientBlue( 1.2f );
+	SetAmbientGreen(1.25f );
+	SetAmbientBlue( 1.0f );
 }
 void LightEngine::Sand( void )
 {
