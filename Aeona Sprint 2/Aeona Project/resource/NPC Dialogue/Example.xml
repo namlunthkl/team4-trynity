@@ -3,15 +3,21 @@
 
 
 <SpeechNode text="GHOST! I swear it!" name="Ghosts">
-<Option text="Ahm? Ghosts?"/>
-<Option text="Haha... stay well man..."/>
+            <Option text="Ahm? Ghosts?"/>
+            <Option text="Haha... stay well man..."/>
 </SpeechNode>
-<SpeechNode text="Over there! In the cave! PLEASE DO SOMETHING!" name="There"/>
-<SpeechNode text="Why won't anyone believe me? T_T" name="Unbelievable"/>
+
+
+<SpeechNode text="Over there! In the cave! PLEASE DO SOMETHING!" name="There">
+</SpeechNode>
+
+<SpeechNode text="Why won't anyone believe me? T_T" name="Unbelievable">
+</SpeechNode>
 
 <Connection speechA="Ghosts" option="1" speechB="There"/>
 <Connection speechA="Ghosts" option="2" speechB="Unbelievable"/>
 
 </Dialogue>
+
 
 
