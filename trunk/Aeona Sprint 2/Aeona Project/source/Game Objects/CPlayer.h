@@ -18,16 +18,18 @@
 #include "../Items/CPotion.h"
 class CPlayer : public CBaseCharacter
 {
-	Byte			m_byteWeapons;
-	Byte			m_byteMasks;
+public:
+	Byte			m_byteWeapons;	//HACK
+	Byte			m_byteMasks;	//HACK
+private:
 	bool			m_bHeartPiece;
-	//TEMPORARY LOL TODO
+	//TEMPORARY LOL TODO hack
 	public:
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
 	float			m_fOuchTimer;
 	private:
-	//TEMPORARY LOL TODO
+	//TEMPORARY LOL TODO hack
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
