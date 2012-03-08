@@ -159,7 +159,7 @@ void CNPC::Input(void)
 {
 	CBaseCharacter::Input();
 
-	if(INPUT->KeyPressed(DIK_SPACE))
+	if(CInputManager::GetInstance()->GetPressedA())
 	{
 		if(m_bTalk)
 		{

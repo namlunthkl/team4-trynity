@@ -506,14 +506,10 @@ RectD CPlayer::GetWeaponRect(void)
 CPlayer::~CPlayer(void)
 {
 }
-
 const char* CPlayer::GetRegion(void) const
 {
 	return CWorldEngine::GetInstance()->GetMapWherePointIs(GetPosX(), GetPosY());
 }
-
-
-
 void CPlayer::SufferDamage(unsigned int uiDamage)
 {
 	if( m_fOuchTimer > 0.0f == false)
