@@ -14,6 +14,7 @@ CChest::CChest(const char* szName, bool bActiveTalk, double dRange, int sndNPC,d
 	: CNPC(szName,bActiveTalk,dRange,sndNPC,dPositionX,dPositionY,uiSpeed,nImageID,uiWidth,uiHeight,bActive,uiMaxHealth,uiAttackDamage)
 {
 	m_bOpened = false;
+	m_sndChest = AUDIO->SFXLoadSound("resource/sound/Chest.wav");
 }
 void CChest::LoadAnimations(char const * const szFilename)
 {
@@ -46,10 +47,14 @@ void CChest::Input(void)
 }
 CChest::~CChest()
 {
-
+	AUDIO->SFXStopSound(m_sndChest);
+	AUDIO->SFXUnloadSound(m_sndChest);
 }
 void CChest::OpenChest(void)
 {
+	if(!AUDIO->SFXIsSoundPlaying(m_sndChest))
+		AUDIO->SFXPlaySound(m_sndChest);
+
 	GetAnimationPlayer(GetCurrentAnimation())->Play();
 
 	//TEMPORARY EFFECT TODO

@@ -23,6 +23,7 @@ class CChest : public CNPC
 private:
 	IBaseItem * m_pItem;
 	bool m_bOpened;
+	int m_sndChest;
 public:
 	CChest(const char* szName = "noname", bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,

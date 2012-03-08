@@ -34,6 +34,7 @@ private:
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
+	Sound*			m_sndPotion;
 public:	//	hack
 	int				m_uiNumPotions;
 private:

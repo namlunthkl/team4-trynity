@@ -364,7 +364,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="6" PosY="1" Type="130" Event="destroy" />
-      <Tile PosX="6" PosY="1" Type="128" Event="none" />
+      <Tile PosX="6" PosY="1" Type="130" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="none" />
