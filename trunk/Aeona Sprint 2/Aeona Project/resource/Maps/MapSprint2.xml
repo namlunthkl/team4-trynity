@@ -548,7 +548,7 @@
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="78" Type="0" Event="none" />
       <Tile PosX="0" PosY="78" Type="0" Event="none" />
-      <Tile PosX="0" PosY="0" Type="0" Event="none" />
+      <Tile PosX="0" PosY="0" Type="0" Event="NPC" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
@@ -832,7 +832,7 @@
       <Tile PosX="8" PosY="3" Type="128" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
-      <Tile PosX="0" PosY="0" Type="0" Event="NPC" />
+      <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
       <Tile PosX="0" PosY="0" Type="0" Event="none" />
