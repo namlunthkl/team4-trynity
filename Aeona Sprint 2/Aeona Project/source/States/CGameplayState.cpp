@@ -95,19 +95,26 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(PLAYER);
 
 	// Initialize Enemies
-	CEnemy* pEnemy = new CEnemy(700, 600, 40,  -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy = new CEnemy(1180, 720, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-	pEnemy->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
 	pEnemy->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
 
-	CEnemy* pEnemy2 = new CEnemy(800, 700, 40,  -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy2 = new CEnemy(1660, 900, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy2->ChangeAIState(CSwarmAIState::GetInstance());
 	pEnemy2->SetDebugMode(true);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
+
+	CEnemy* pEnemy3 = new CEnemy(1673, 395, 40,  -1, 50, 50, true, 100, 1);
+	pEnemy3->LoadAnimations("resource/Red Enemy Animation.xml");
+	pEnemy3->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy3->SetDebugMode(true);
+	OBJECTS->AddObject(pEnemy3);
+	pEnemy3->Release();
 
 	// Initialize NPCs
 	CNPC* pNPC;
