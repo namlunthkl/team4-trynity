@@ -42,31 +42,31 @@ RectD CDagger::GetCollisionRect(void)
 	RectD rectCollision;
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		rectCollision.left = -20;
-		rectCollision.top = -25;
-		rectCollision.right = 20;
-		rectCollision.bottom = -5;
+		rectCollision.left = -32;
+		rectCollision.top = -50;
+		rectCollision.right = 32;
+		rectCollision.bottom = 0;
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		rectCollision.left = -20;
-		rectCollision.top = 5;
-		rectCollision.right = 20;
-		rectCollision.bottom = 25;
+		rectCollision.left = -32;
+		rectCollision.top = 0;
+		rectCollision.right = 32;
+		rectCollision.bottom = 50;
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -25;
-		rectCollision.top = -20;
-		rectCollision.right = -5;
-		rectCollision.bottom = 20;
+		rectCollision.left = -50;
+		rectCollision.top = -32;
+		rectCollision.right = 0;
+		rectCollision.bottom = 32;
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
-		rectCollision.left = 5;
-		rectCollision.top = -20;
-		rectCollision.right = 25;
-		rectCollision.bottom = 20;
+		rectCollision.left = 0;
+		rectCollision.top = -32;
+		rectCollision.right = 50;
+		rectCollision.bottom = 32;
 	}
 	return rectCollision;
 }

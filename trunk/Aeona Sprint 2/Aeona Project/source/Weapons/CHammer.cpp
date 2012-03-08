@@ -44,29 +44,29 @@ RectD CHammer::GetCollisionRect(void)
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
 		rectCollision.left = -15;
-		rectCollision.top = -60;
+		rectCollision.top = -62;
 		rectCollision.right = 15;
-		rectCollision.bottom = -30;
+		rectCollision.bottom = -32;
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
 		rectCollision.left = -15;
-		rectCollision.top = 30;
+		rectCollision.top = 32;
 		rectCollision.right = 15;
-		rectCollision.bottom = 60;
+		rectCollision.bottom = 62;
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -60;
+		rectCollision.left = -62;
 		rectCollision.top = -15;
-		rectCollision.right = -30;
+		rectCollision.right = -32;
 		rectCollision.bottom = 15;
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
-		rectCollision.left = 30;
+		rectCollision.left = 32;
 		rectCollision.top = -15;
-		rectCollision.right = 60;
+		rectCollision.right = 62;
 		rectCollision.bottom = 15;
 	}
 	return rectCollision;
