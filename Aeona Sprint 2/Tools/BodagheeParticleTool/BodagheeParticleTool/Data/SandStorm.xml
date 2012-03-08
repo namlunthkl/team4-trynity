@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Puff2.png</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>1</Reanimate>
+  <EmitterPosX>-200</EmitterPosX>
+  <EmitterPosY>-50</EmitterPosY>
+  <MaxParticles>800</MaxParticles>
+  <Size>5</Size>
+  <MaxLife>20</MaxLife>
+  <SpawnWidth>1</SpawnWidth>
+  <SpawnHeight>600</SpawnHeight>
+  <ScaleStart>5</ScaleStart>
+  <ScaleEnd>5</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>0</MinVelX>
+  <MaxVelX>500</MaxVelX>
+  <MinVelY>0</MinVelY>
+  <MaxVelY>0</MaxVelY>
+  <StartColorA>125</StartColorA>
+  <StartColorR>128</StartColorR>
+  <StartColorG>64</StartColorG>
+  <StartColorB>0</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>255</EndColorR>
+  <EndColorG>128</EndColorG>
+  <EndColorB>64</EndColorB>
+  <Source>12</Source>
+  <Dest>6</Dest>
+  <GravPosX>0</GravPosX>
+  <GravPosY>0</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Fire.bmp</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>314</EmitterPosX>
+  <EmitterPosY>244</EmitterPosY>
+  <MaxParticles>20</MaxParticles>
+  <Size>0.8</Size>
+  <MaxLife>1</MaxLife>
+  <SpawnWidth>1</SpawnWidth>
+  <SpawnHeight>1</SpawnHeight>
+  <ScaleStart>0.8</ScaleStart>
+  <ScaleEnd>0.8</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>-5</MinVelX>
+  <MaxVelX>5</MaxVelX>
+  <MinVelY>-50</MinVelY>
+  <MaxVelY>0</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>255</StartColorR>
+  <StartColorG>255</StartColorG>
+  <StartColorB>255</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>255</EndColorR>
+  <EndColorG>255</EndColorG>
+  <EndColorB>255</EndColorB>
+  <Source>2</Source>
+  <Dest>4</Dest>
+  <GravPosX>0</GravPosX>
+  <GravPosY>0</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>

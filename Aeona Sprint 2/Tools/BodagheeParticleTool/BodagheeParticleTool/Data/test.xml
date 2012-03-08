@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Leafy.png</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>-15</EmitterPosX>
+  <EmitterPosY>-15</EmitterPosY>
+  <MaxParticles>300</MaxParticles>
+  <Size>0.5</Size>
+  <MaxLife>10</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>300</SpawnHeight>
+  <ScaleStart>0.5</ScaleStart>
+  <ScaleEnd>0.5</ScaleEnd>
+  <Rotation>-0.6</Rotation>
+  <MinVelX>-100</MinVelX>
+  <MaxVelX>0</MaxVelX>
+  <MinVelY>0</MinVelY>
+  <MaxVelY>100</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>37</StartColorR>
+  <StartColorG>128</StartColorG>
+  <StartColorB>64</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>171</EndColorR>
+  <EndColorG>199</EndColorG>
+  <EndColorB>158</EndColorB>
+  <Source>12</Source>
+  <Dest>13</Dest>
+  <GravPosX>25</GravPosX>
+  <GravPosY>24</GravPosY>
+  <GravPower>0.3</GravPower>
+  <GravDistX>0.0821168348</GravDistX>
+  <GravDistY>0.288542628</GravDistY>
+</Particle>
