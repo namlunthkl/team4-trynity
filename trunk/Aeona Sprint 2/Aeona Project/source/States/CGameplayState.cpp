@@ -104,9 +104,9 @@ void CGameplayState::Enter(void)
 
 	// Initialize NPCs
 	CNPC* pNPC;
-	pNPC = new CNPC("Person 2", false, 150, -1, 290, 1000, 20, -1, 50, 50, true, 100, 0);
-	pNPC->LoadAnimations("resource/npc walk3.xml");
-	pNPC->LoadText("resource/NPC Dialogue/Example.xml");
+	pNPC = new CNPC("Mini Guy", false, 150, -1, 290, 1000, 20, -1, 20, 20, true, 100, 0);
+	pNPC->LoadAnimations("resource/UglySquirelyGirl.xml");
+	pNPC->LoadText("resource/NPC Dialogue/Squirrel.xml");
 	OBJECTS->AddObject(pNPC);
 	pNPC->Release();
 
