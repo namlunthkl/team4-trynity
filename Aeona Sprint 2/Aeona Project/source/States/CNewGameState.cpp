@@ -74,21 +74,24 @@ bool CNewGameState::Input()
 		case NEWG_SLOT1:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
-				GAME->SaveSlot1();
+				GAME->m_uiYoManWhichSlotAreWePlayingInBro = 1;
+				GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 0;
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT2:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
-				GAME->SaveSlot2();
+				GAME->m_uiYoManWhichSlotAreWePlayingInBro = 2;
+				GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 0;
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}
 		case NEWG_SLOT3:
 			{
 				AUDIO->MusicStopSong(GetBGMusic());
-				GAME->SaveSlot3();
+				GAME->m_uiYoManWhichSlotAreWePlayingInBro = 3;
+				GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 0;
 				GAME->ChangeState(CGameplayState::GetInstance());
 				break;
 			}

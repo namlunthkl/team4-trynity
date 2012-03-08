@@ -65,6 +65,8 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
+	m_uiWhichSlotAreWeLoadingDawgQuestionMark = 0;
+	m_uiYoManWhichSlotAreWePlayingInBro = 0;
 	//for the loading bar
 	m_uiAmountLoaded = 0;
 	
@@ -99,7 +101,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
 
 	CPlayer::GetInstance()->SetMaxHealth(5);
-	CPlayer::GetInstance()->SetCurHealth(4);
+	CPlayer::GetInstance()->SetCurHealth(1);
 
 	// Change state to Main Menu
 	ChangeState(CMainMenuState::GetInstance());
@@ -211,6 +213,19 @@ bool CGame::Input(void)
 			{
 				AUDIO->SilenceAll();
 				m_bPaused = false;
+				if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 1 )
+				{
+					SaveSlot1();
+				}
+				else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 2 )
+				{
+					SaveSlot2();
+				}
+				else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 3 )
+				{
+					SaveSlot3();
+				}
+
 				GAME->ChangeState(CMainMenuState::GetInstance());
 			}
 		}
@@ -385,6 +400,55 @@ void CGame::ReadOptionsFromFile()
 	}
 }
 
+void CGame::LoadSlot1()
+{
+	ifstream finStuff("save1.txt", ios_base::in);
+	if(finStuff.is_open())
+	{
+		bool nope;
+		finStuff >> nope;
+		finStuff >> CPlayer::GetInstance()->m_byteWeapons;
+		finStuff >> CPlayer::GetInstance()->m_byteMasks;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentWeapon;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentMask;
+		finStuff >> CPlayer::GetInstance()->m_uiNumPotions;
+
+		finStuff.close();
+	}
+}
+void CGame::LoadSlot2()
+{
+	ifstream finStuff("save2.txt", ios_base::in);
+	if(finStuff.is_open())
+	{
+		bool nope;
+		finStuff >> nope;
+		finStuff >> CPlayer::GetInstance()->m_byteWeapons;
+		finStuff >> CPlayer::GetInstance()->m_byteMasks;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentWeapon;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentMask;
+		finStuff >> CPlayer::GetInstance()->m_uiNumPotions;
+
+		finStuff.close();
+	}
+}
+void CGame::LoadSlot3()
+{
+	ifstream finStuff("save3.txt", ios_base::in);
+	if(finStuff.is_open())
+	{
+		bool nope;
+		finStuff >> nope;
+		finStuff >> CPlayer::GetInstance()->m_byteWeapons;
+		finStuff >> CPlayer::GetInstance()->m_byteMasks;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentWeapon;
+		finStuff >> CPlayer::GetInstance()->m_uiCurrentMask;
+		finStuff >> CPlayer::GetInstance()->m_uiNumPotions;
+
+		finStuff.close();
+	}
+}
+
 char CGame::ReadSaveSlots()
 {
 	Byte cLoadedOrNot = 0;
@@ -421,6 +485,10 @@ char CGame::ReadSaveSlots()
 		else
 			TurnBitOff(cLoadedOrNot, 2);
 	}
+
+	finSlot1.close();
+	finSlot2.close();
+	finSlot3.close();
 
 	return cLoadedOrNot;
 }
@@ -468,7 +536,12 @@ void CGame::SaveSlot1()
 
 	if(fout.is_open())
 	{
-		fout << 1;
+		fout << 1;											fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteWeapons;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteMasks;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentWeapon;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentMask;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiNumPotions;
 		
 		fout.close();
 	}
@@ -480,7 +553,12 @@ void CGame::SaveSlot2()
 
 	if(fout.is_open())
 	{
-		fout << 1;
+		fout << 1;											fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteWeapons;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteMasks;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentWeapon;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentMask;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiNumPotions;
 		
 		fout.close();
 	}
@@ -492,7 +570,12 @@ void CGame::SaveSlot3()
 
 	if(fout.is_open())
 	{
-		fout << 1;
+		fout << 1;											fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteWeapons;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_byteMasks;		fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentWeapon;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiCurrentMask;	fout << '\n';
+		fout << CPlayer::GetInstance()->m_uiNumPotions;
 		
 		fout.close();
 	}

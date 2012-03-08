@@ -34,7 +34,9 @@ private:
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
+public:	//	hack
 	int				m_uiNumPotions;
+private:
 	CPotion*		m_Potion;
 	int				m_sndHit;
 	bool			m_bDamageDecrease;

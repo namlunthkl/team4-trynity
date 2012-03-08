@@ -107,6 +107,8 @@ private:
 public:
 
 	Byte m_cLoadedOrNot;
+	unsigned int m_uiYoManWhichSlotAreWePlayingInBro;	//	should only be 1 2 or 3
+	unsigned int m_uiWhichSlotAreWeLoadingDawgQuestionMark;	//	0 is dont load, 1,2,3 are load slots
 
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
@@ -165,6 +167,9 @@ public:
 	void DeleteSlot1();
 	void DeleteSlot2();
 	void DeleteSlot3();
+	void LoadSlot1();
+	void LoadSlot2();
+	void LoadSlot3();
 
 	//////////////////////////////////////////////////////////////////////////
 	//	------------------------------------------------------------------	//
