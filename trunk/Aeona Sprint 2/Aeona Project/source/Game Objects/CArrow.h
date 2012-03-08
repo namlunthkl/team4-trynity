@@ -20,11 +20,12 @@
 class CArrow : public CBaseObject
 {
 private:
-
+	float timeout;
 public:
 	CArrow();
 	void Render(void);
 	bool CheckCollision(IBaseInterface* pObject);
+	void Update(float fElapsedTime);
 	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_ARROW; }
 protected:
 };
