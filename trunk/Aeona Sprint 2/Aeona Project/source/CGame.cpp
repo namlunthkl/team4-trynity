@@ -101,7 +101,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
 
 	CPlayer::GetInstance()->SetMaxHealth(5);
-	CPlayer::GetInstance()->SetCurHealth(1);
+	CPlayer::GetInstance()->SetCurHealth(5);
 
 	// Change state to Main Menu
 	ChangeState(CMainMenuState::GetInstance());
@@ -213,17 +213,21 @@ bool CGame::Input(void)
 			{
 				AUDIO->SilenceAll();
 				m_bPaused = false;
-				if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 1 )
+				
+				if( CPlayer::GetInstance()->GetCurHealth() > 0 )
 				{
-					SaveSlot1();
-				}
-				else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 2 )
-				{
-					SaveSlot2();
-				}
-				else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 3 )
-				{
-					SaveSlot3();
+					if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 1 )
+					{
+						SaveSlot1();
+					}
+					else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 2 )
+					{
+						SaveSlot2();
+					}
+					else if( GAME->m_uiYoManWhichSlotAreWePlayingInBro == 3 )
+					{
+						SaveSlot3();
+					}
 				}
 
 				GAME->ChangeState(CMainMenuState::GetInstance());

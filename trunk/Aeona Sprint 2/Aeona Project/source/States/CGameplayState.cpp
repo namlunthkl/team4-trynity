@@ -357,36 +357,60 @@ void CGameplayState::Render(void)
 		e.bottom = 128 + (i*128);
 
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if(i == 0)
+		{
 		if( TestBit( PLAYER->m_byteWeapons, 0 ) )
-			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*0), 240+8, 1.0f, 1.0f, &e);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if(i == 1)
+		{
 		if( TestBit( PLAYER->m_byteWeapons, 1 ) )
-			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*1), 240+8, 1.0f, 1.0f, &e);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if(i == 2)
+		{
 		if( TestBit( PLAYER->m_byteWeapons, 2 ) )
-			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*2), 240+8, 1.0f, 1.0f, &e);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if(i == 3)
+		{
 		if( TestBit( PLAYER->m_byteWeapons, 3 ) )
-			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*3), 240+8, 1.0f, 1.0f, &e);
+		}
 
 		RECT f;
-		e.left = 39;
-		e.top = 0 + (i*128);
-		e.right = 39+39;
-		e.bottom = 128 + (i*128);
+		f.left = 39;
+		f.top = 0 + (i*128);
+		f.right = 39+39;
+		f.bottom = 128 + (i*128);
 
 		TEX_MNG->Draw(m_imgHUD, 80, 240+128+16+8, 1.0f, 1.0f, &w);
+		if(i == 0)
+		{
 		if( TestBit( PLAYER->m_byteMasks, 0) )
-			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*0), 240+128+16+8, 1.0f, 1.0f, &f);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*1), 240+128+16+8, 1.0f, 1.0f, &w);
+		if(i == 1)
+		{
 		if( TestBit( PLAYER->m_byteMasks, 1) )
-			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*1), 240+128+16+8, 1.0f, 1.0f, &f);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*2), 240+128+16+8, 1.0f, 1.0f, &w);
+		if(i == 2)
+		{
 		if( TestBit( PLAYER->m_byteMasks, 2) )
-			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*2), 240+128+16+8, 1.0f, 1.0f, &f);
+		}
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*3), 240+128+16+8, 1.0f, 1.0f, &w);
+		if(i == 3)
+		{
 		if( TestBit( PLAYER->m_byteMasks, 3) )
-			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*3), 240+128+16+8, 1.0f, 1.0f, &f);
+		}
 		}
 	}
 
