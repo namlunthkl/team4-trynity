@@ -591,7 +591,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			{
 				CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
 					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
-				pNPC->LoadAnimations("resource/npc walk3.xml");
+				pNPC->LoadAnimations("resource/NPCAnimationsAnchorBased.xml");
 				pNPC->ChangeAIState(CRandomAIState::GetInstance());
 				pNPC->LoadText("resource/NPC Dialogue/Example.xml");
 				OBJECTS->AddObject(pNPC);
