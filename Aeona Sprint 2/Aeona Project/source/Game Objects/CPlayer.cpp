@@ -173,7 +173,7 @@ void CPlayer::Render(void)
 		CCameraControl::GetInstance()->GetPositionY());
 
 	if(m_uiCurrentWeapon == WEAPON_SWORD)
-	{\
+	{
 		D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
 	}
 	else if(m_uiCurrentWeapon == WEAPON_DAGGER)

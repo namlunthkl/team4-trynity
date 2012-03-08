@@ -43,30 +43,30 @@ RectD CSword::GetCollisionRect(void)
 	RectD rectCollision;
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
-		rectCollision.top = -35;
-		rectCollision.right = 30;
+		rectCollision.left = -36;
+		rectCollision.top = -66;
+		rectCollision.right = 36;
 		rectCollision.bottom = -5;
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		rectCollision.left = -30;
+		rectCollision.left = -36;
 		rectCollision.top = 5;
-		rectCollision.right = 30;
-		rectCollision.bottom = 35;
+		rectCollision.right = 36;
+		rectCollision.bottom = 66;
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -35;
-		rectCollision.top = -30;
+		rectCollision.left = -66;
+		rectCollision.top = -36;
 		rectCollision.right = -5;
 		rectCollision.bottom = 30;
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
 		rectCollision.left = 5;
-		rectCollision.top = -30;
-		rectCollision.right = 35;
+		rectCollision.top = -36;
+		rectCollision.right = 66;
 		rectCollision.bottom = 30;
 	}
 	return rectCollision;
