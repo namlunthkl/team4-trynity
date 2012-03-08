@@ -15,7 +15,7 @@
 #include "../Messaging/IListener.h"
 class CNPC : public CBaseCharacter , public IListener
 {
-	const char*		m_szName;
+	string			m_szName;
 
 	//	NPC's speech
 	string			m_szText;

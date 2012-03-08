@@ -266,9 +266,6 @@ void CGame::Update(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Render(void)
 {
-
-
-
 	//TODO enhance when we have an actual inventory screen
 	/*if(m_bPaused == true)
 	{

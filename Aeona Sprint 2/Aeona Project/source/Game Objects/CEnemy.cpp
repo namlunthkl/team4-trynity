@@ -40,5 +40,4 @@ bool CEnemy::CheckCollision(IBaseInterface* pObject)
 void CEnemy::Die(void)
 {
 	CBaseCharacter::Die();
-	CEventSystem::GetInstance()->SendEvent("victory");
 }

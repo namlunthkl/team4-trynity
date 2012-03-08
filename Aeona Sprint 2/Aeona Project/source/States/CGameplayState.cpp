@@ -165,7 +165,7 @@ bool CGameplayState::Input(void)
 	//END ARI EXTRA CODE
 	///////////////////////////
 
-#if 1
+#if 0
 	if(INPUT->KeyPressed(DIK_V))
 	{
 		EVENTS->SendEvent("victory");
@@ -554,6 +554,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
 					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
 				pNPC->LoadAnimations("resource/npc walk3.xml");
+				pNPC->ChangeAIState(CRandomAIState::GetInstance());
 				pNPC->LoadText("resource/NPC Dialogue/Example.xml");
 				OBJECTS->AddObject(pNPC);
 				pNPC->Release();
@@ -561,13 +562,17 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		}
 	case MSG_CREATE_ENEMY:
 		{
-			//// Initialize Enemies
-			//CEnemy* pEnemy = new CEnemy(700, 600, 40,  -1, 50, 50, true, 100, 1);
-			//pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-			//pEnemy->ChangeAIState(CJumperAIState::GetInstance());
-			//pEnemy->SetDebugMode(true);
-			//OBJECTS->AddObject(pEnemy);
-			//pEnemy->Release();
+			CCreateEnemyMessage* pMsgEnemy = (CCreateEnemyMessage*)pMsg;
+
+			if(pMsgEnemy->GetType() == CCreateEnemyMessage::ENEMY_SWARM)
+			{
+				CEnemy* pEnemy = new CEnemy(pMsgEnemy->GetPosX(), pMsgEnemy->GetPosY(),
+					40, -1, 50, 50, true, 100, 1);
+				pEnemy->LoadAnimations("resource/Enemy Animation.xml");
+				pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
+				OBJECTS->AddObject(pEnemy);
+				pEnemy->Release();
+			}
 		}
 	}
 }

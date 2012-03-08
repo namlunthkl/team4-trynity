@@ -37,7 +37,10 @@ void CChest::Input(void)
 
 	if(CInputManager::GetInstance()->GetPressedA() && m_bOpened == false)
 	{
-		OpenChest();
+		double distance = CPlayer::GetInstance()->GetPosition().GetDistanceUntil(GetPosition());
+
+		if(distance < 75)
+			OpenChest();
 	}
 
 }
