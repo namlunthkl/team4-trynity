@@ -120,7 +120,7 @@ bool CInputManager::GetPressedDown(void)
 }
 bool CInputManager::GetSwapWeapon(void)
 {
-	if(INPUT->KeyPressed(DIK_Q) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
+	if(INPUT->KeyPressed(DIK_E) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
 		|| INPUT->JoystickButtonPressed(1,0))
 		return true;
 
@@ -128,7 +128,7 @@ bool CInputManager::GetSwapWeapon(void)
 }
 bool CInputManager::GetSwapMask(void)
 {
-	if(INPUT->KeyPressed(DIK_E) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
+	if(INPUT->KeyPressed(DIK_Q) || (m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
 		|| INPUT->JoystickButtonPressed(2,0))
 		return true;
 
@@ -155,7 +155,7 @@ bool CInputManager::GetAttack(void)
 }
 bool CInputManager::GetPressedA(void)
 {
-	if(INPUT->KeyPressed(DIK_SPACE) || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false 
+	if(INPUT->KeyPressed(DIK_RETURN)|| INPUT->KeyPressed(DIK_SPACE)  || m_PlayerController->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A && m_bA == false 
 		|| INPUT->JoystickButtonPressed(0,0))
 	{
 		m_bA = true;
