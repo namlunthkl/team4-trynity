@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dialogue>
-  <SpeechNode text="Hello. Welcome to the First Playable version of Aeona." name="Welcome">
-    <Option text="Continue..."/>
-  </SpeechNode>
-  <SpeechNode text="This is a demo for the NPC's dynamic dialogue system. Do you like it?" name="Demo">
-    <Option text="Yes"/>
-    <Option text="No"/>
-  </SpeechNode>
-  <SpeechNode text="Good. We like when people appreciate our game." name="Good">
-  </SpeechNode>
-  <SpeechNode text="Why not?" name="Why not">
-    <Option text="I don't like the font style."/>
-    <Option text="I don't like the NPC dialogues."/>
-  </SpeechNode>
-  <SpeechNode text="Don't worry. We will be improving the font on Sprint 3." name="Font">
-  </SpeechNode>
-  <SpeechNode text="Those are just temporary dialogues." name="Dialogue">
-  </SpeechNode>
-  
-  
-  <Connection speechA="Welcome" option="1" speechB="Demo"/>
-  <Connection speechA="Demo" option="1" speechB="Good"/>
-  <Connection speechA="Demo" option="2" speechB="Why not"/>
-  <Connection speechA="Why not" option="1" speechB="Font"/>
-  <Connection speechA="Why not" option="2" speechB="Dialogue"/>
+
+
+<SpeechNode text="GHOST! I swear it!" name="Ghosts">
+<Option text="Ahm? Ghosts?"/>
+<Option text="Haha... stay well man..."/>
+</SpeechNode>
+<SpeechNode text="Over there! In the cave! PLEASE DO SOMETHING!" name="There"/>
+<SpeechNode text="Why won't anyone believe me? T_T" name="Unbelievable"/>
+
+<Connection speechA="Ghosts" option="1" speechB="There"/>
+<Connection speechA="Ghosts" option="2" speechB="Unbelievable"/>
+
 </Dialogue>
 
 
