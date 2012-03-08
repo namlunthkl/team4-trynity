@@ -7,6 +7,7 @@
 
 // Precompiled header
 #include "StdAfx.h"
+#include "../StdAfx.h"
 // Header file for this state
 #include "CGameplayState.h"
 #include "../States/CMainMenuState.h" 
@@ -309,17 +310,65 @@ void CGameplayState::Render(void)
 
 	//	Render a neato HUD
 	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
-		RenderHUD();
+		if(GAME->GetPaused() == false)
+			RenderHUD();
 
 	// Render the message box
 	RenderMessageBox();
 
 	if(GAME->GetPaused() == true)
 	{
+		D3D->Clear(160, 160, 160);
 		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
 		GAME->GetFont()->Write("Press ESC again to resume", 32, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		GAME->GetFont()->Write("ESC brings up player inventory!", 32, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		GAME->GetFont()->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		
+		RECT w;
+		w.left = 270;
+		w.top = 64;
+		w.right = 270+39+16;
+		w.bottom = 64+128+16;
+
+
+		for(unsigned int i=0; i<4; ++i)
+		{
+
+		RECT e;
+		e.left = 0;
+		e.top = 0 + (i*128);
+		e.right = 39;
+		e.bottom = 128 + (i*128);
+
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		//if( TestBit( PLAYER->m_byteWeapons, 0 )
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
+
+		RECT f;
+		e.left = 39;
+		e.top = 0 + (i*128);
+		e.right = 39+39;
+		e.bottom = 128 + (i*128);
+
+		TEX_MNG->Draw(m_imgHUD, 80, 240+128+16+8, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteMasks, 0) )
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*1), 240+128+16+8, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteMasks, 1) )
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*2), 240+128+16+8, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteMasks, 2) )
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*3), 240+128+16+8, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteMasks, 3) )
+			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240+128+16+8, 1.0f, 1.0f, &f);
+		}
 	}
 
 	D3D->GetSprite()->Flush();
