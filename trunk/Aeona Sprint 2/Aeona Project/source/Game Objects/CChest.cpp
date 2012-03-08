@@ -8,6 +8,7 @@
 #include "CChest.h"
 #include "../Messaging/CMessageSystem.h"
 #include "../Game Objects/CPlayer.h"
+#include "../Input Manager/CInputManager.h"
 CChest::CChest(const char* szName, bool bActiveTalk, double dRange, int sndNPC,double dPositionX, double dPositionY, unsigned int uiSpeed,
 	int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,unsigned int uiMaxHealth, unsigned int uiAttackDamage) 
 	: CNPC(szName,bActiveTalk,dRange,sndNPC,dPositionX,dPositionY,uiSpeed,nImageID,uiWidth,uiHeight,bActive,uiMaxHealth,uiAttackDamage)
@@ -34,7 +35,7 @@ void CChest::Input(void)
 {
 	CBaseCharacter::Input();
 
-	if(INPUT->KeyPressed(DIK_SPACE) && m_bOpened == false)
+	if(CInputManager::GetInstance()->GetPressedA() && m_bOpened == false)
 	{
 		OpenChest();
 	}

@@ -162,14 +162,14 @@ bool CGameplayState::Input(void)
 
 
 	//TEMPORARY CODE TO SHOW SWITCHING WEAPONS AND AMULETS AND STUFF TODO
-	if(INPUT->KeyPressed(DIK_Q))
+	if(CInputManager::GetInstance()->GetSwapMask())
 	{
 		PLAYER->CycleMask();
 		/*PLAYER->m_uiCurrentMask++;
 		if(PLAYER->m_uiCurrentMask == 4)
 			PLAYER->m_uiCurrentMask = 0;*/
 	}
-	if(INPUT->KeyPressed(DIK_E))
+	if(CInputManager::GetInstance()->GetSwapWeapon())
 	{
 		PLAYER->CycleWeapon();
 		/*PLAYER->m_uiCurrentWeapon++;
