@@ -4,6 +4,14 @@
            <Map file="resource/Maps/MapSprint2.xml"/>
 	   <Tileset file="resource/Tilesets/TilesetCave.xml"/>
 	   <Map file="resource/Maps/MapCave.xml"/>
+
+<Tileset file="resource/Tilesets/TilesetDesert.xml"/>
+<Map file="resource/Maps/MapDesert.xml"/>
+<Tileset file="resource/Tilesets/TilesetSnow.xml"/>
+<Map file="resource/Maps/MapSnow.xml"/>
+<Tileset file="resource/Tilesets/TilesetForest.xml"/>
+<Map file="resource/Maps/MapForest.xml"/>
+
 </WorldEngine>
 
 
