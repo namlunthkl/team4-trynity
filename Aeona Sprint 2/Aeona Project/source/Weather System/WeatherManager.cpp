@@ -95,7 +95,8 @@ void CWeatherManager::Update( float fTime )
 {
 	SetTime( GetTime() + fTime );
 
-	if( GetTime() > GetTimeToWait() )
+	const char* Region = CPlayer::GetInstance()->GetRegion();
+	if( GetTime() > GetTimeToWait()  && Region != NULL)
 	{		
 		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest") == 0 )
 		{
