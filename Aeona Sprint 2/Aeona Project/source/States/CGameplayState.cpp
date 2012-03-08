@@ -329,7 +329,13 @@ void CGameplayState::Render(void)
 	char buffer[100];
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
 	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
-
+	
+	const char* szRegion = PLAYER->GetRegion();
+	if(szRegion)
+	{
+		strcpy_s(buffer, 100, szRegion);
+		D3D->DrawTextA(&buffer[0], 120, 570, 255, 0, 0);
+	}
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();
