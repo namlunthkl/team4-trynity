@@ -2,6 +2,7 @@
 #include "LightEngine.h"
 #include "..\Wrappers\CSGD_DirectInput.h"
 #include "..\CGame.h"
+#include "..\Camera\CCameraControl.h"
 
 LightEngine::LightEngine(void){}
 LightEngine::~LightEngine(void)
@@ -172,28 +173,28 @@ void LightEngine::ShutDown( void )
 
 void LightEngine::SetPlayerPointPos( float fPosX, float fPosY )
 {
-	SetPlayerPointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetPlayerPointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetPlayerPointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
+	SetPlayerPointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
 }
 void LightEngine::SetItem1PointPos( float fPosX, float fPosY )
 {
-	SetItem1PointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetItem1PointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetItem1PointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
+	SetItem1PointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
 }
 void LightEngine::SetItem2PointPos( float fPosX, float fPosY )
 {
-	SetItem2PointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetItem2PointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetItem2PointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
+	SetItem2PointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
 }
 void LightEngine::SetItem3PointPos( float fPosX, float fPosY )
 {
-	SetItem3PointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetItem3PointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetItem3PointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
+	SetItem3PointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
 }
 void LightEngine::SetItem4PointPos( float fPosX, float fPosY )
 {
-	SetItem4PointPosX( fPosX / CGame::GetInstance()->GetScreenWidth() );
-	SetItem4PointPosY( fPosY / CGame::GetInstance()->GetScreenHeight());
+	SetItem4PointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
+	SetItem4PointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
 }
 
 void LightEngine::Morning( void )

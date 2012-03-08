@@ -137,8 +137,7 @@ void CPlayer::Update(float fElapsedTime)
 	
 	// Update the particles
 	m_fxFootsteps.Update(fElapsedTime);
-	LightEngine::GetInstance()->SetPlayerPointPos((float)(GetPosX()-( -1 * CCameraControl::GetInstance()->GetPositionX())),
-		(float)(GetPosY()-( -1 * CCameraControl::GetInstance()->GetPositionY())));
+	LightEngine::GetInstance()->SetPlayerPointPos( (float)GetPosX(), (float)GetPosY() );
 
 	// Fire the particle effect if the position changed
 	if(ptOldPosition != GetPosition())
