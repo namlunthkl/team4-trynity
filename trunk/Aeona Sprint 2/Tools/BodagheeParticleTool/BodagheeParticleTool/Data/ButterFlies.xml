@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>BFly.png</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>0</EmitterPosX>
+  <EmitterPosY>0</EmitterPosY>
+  <MaxParticles>20</MaxParticles>
+  <Size>0.5</Size>
+  <MaxLife>50</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>600</SpawnHeight>
+  <ScaleStart>0.5</ScaleStart>
+  <ScaleEnd>0.5</ScaleEnd>
+  <Rotation>1.2</Rotation>
+  <MinVelX>-5</MinVelX>
+  <MaxVelX>5</MaxVelX>
+  <MinVelY>-5</MinVelY>
+  <MaxVelY>5</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>255</StartColorR>
+  <StartColorG>0</StartColorG>
+  <StartColorB>128</StartColorB>
+  <EndColorA>255</EndColorA>
+  <EndColorR>255</EndColorR>
+  <EndColorG>255</EndColorG>
+  <EndColorB>0</EndColorB>
+  <Source>3</Source>
+  <Dest>7</Dest>
+  <GravPosX>369</GravPosX>
+  <GravPosY>21</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>

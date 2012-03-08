@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Particle>
+  <ImageFile>Smoky.png</ImageFile>
+  <Continuous>1</Continuous>
+  <Reanimate>0</Reanimate>
+  <EmitterPosX>-64</EmitterPosX>
+  <EmitterPosY>386</EmitterPosY>
+  <MaxParticles>2000</MaxParticles>
+  <Size>1</Size>
+  <MaxLife>15</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
+  <SpawnHeight>1</SpawnHeight>
+  <ScaleStart>1</ScaleStart>
+  <ScaleEnd>1</ScaleEnd>
+  <Rotation>0</Rotation>
+  <MinVelX>0</MinVelX>
+  <MaxVelX>0</MaxVelX>
+  <MinVelY>-20</MinVelY>
+  <MaxVelY>0</MaxVelY>
+  <StartColorA>255</StartColorA>
+  <StartColorR>0</StartColorR>
+  <StartColorG>0</StartColorG>
+  <StartColorB>0</StartColorB>
+  <EndColorA>0</EndColorA>
+  <EndColorR>255</EndColorR>
+  <EndColorG>255</EndColorG>
+  <EndColorB>255</EndColorB>
+  <Source>1</Source>
+  <Dest>6</Dest>
+  <GravPosX>359</GravPosX>
+  <GravPosY>63</GravPosY>
+  <GravPower>0</GravPower>
+  <GravDistX>-0</GravDistX>
+  <GravDistY>-0</GravDistY>
+</Particle>
