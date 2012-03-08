@@ -73,17 +73,44 @@ bool CLoadGameState::Input()
 		{
 		case LODG_SLOT1:
 			{
-				GAME->ChangeState(CGameplayState::GetInstance());
+				if(TestBit(GAME->m_cLoadedOrNot, 0))
+				{
+					GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 1;
+					GAME->m_uiYoManWhichSlotAreWePlayingInBro = 1;
+					GAME->ChangeState(CGameplayState::GetInstance());
+				}
+				else
+				{
+					//	TODO play a no-no sound!
+				}
 				break;
 			}
 		case LODG_SLOT2:
 			{
-				GAME->ChangeState(CGameplayState::GetInstance());
+				if(TestBit(GAME->m_cLoadedOrNot, 1))
+				{
+					GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 2;
+					GAME->m_uiYoManWhichSlotAreWePlayingInBro = 2;
+					GAME->ChangeState(CGameplayState::GetInstance());
+				}
+				else
+				{
+					//	TODO play a no-no sound!
+				}
 				break;
 			}
 		case LODG_SLOT3:
 			{
-				GAME->ChangeState(CGameplayState::GetInstance());
+				if(TestBit(GAME->m_cLoadedOrNot, 2))
+				{
+					GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark = 3;
+					GAME->m_uiYoManWhichSlotAreWePlayingInBro = 3;
+					GAME->ChangeState(CGameplayState::GetInstance());
+				}
+				else
+				{
+					//	 TODO play a no-no sound!
+				}
 				break;
 			}
 		case LODG_BACK:

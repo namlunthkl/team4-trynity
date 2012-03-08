@@ -122,6 +122,22 @@ void CGameplayState::Enter(void)
 		(float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
 	POSTPROCESS->Initialize();
 
+	if(GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark != 0)
+	{
+		if(GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark == 1)
+		{
+			GAME->LoadSlot1();
+		}
+		else if(GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark == 2)
+		{
+			GAME->LoadSlot2();
+		}
+		else if(GAME->m_uiWhichSlotAreWeLoadingDawgQuestionMark == 3)
+		{
+			GAME->LoadSlot3();
+		}
+	}
+
 	//	This is the last call to the loading screen
 	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	GAME->ResetAmountLoaded();
@@ -341,13 +357,16 @@ void CGameplayState::Render(void)
 		e.bottom = 128 + (i*128);
 
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
-		//if( TestBit( PLAYER->m_byteWeapons, 0 )
+		if( TestBit( PLAYER->m_byteWeapons, 0 ) )
 			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteWeapons, 1 ) )
 			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteWeapons, 2 ) )
 			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
 		TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*i), 240, 1.0f, 1.0f, &w);
+		if( TestBit( PLAYER->m_byteWeapons, 3 ) )
 			TEX_MNG->Draw(m_imgHUD, 80+8+((39+16+8)*i), 240+8, 1.0f, 1.0f, &e);
 
 		RECT f;
@@ -424,6 +443,7 @@ void CGameplayState::RenderGameOverScreens(void)
 		{
 			fadein = 0;
 			m_bVictory = false;
+
 			CGame::GetInstance()->ChangeState(CMainMenuState::GetInstance());
 		}
 	}

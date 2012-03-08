@@ -32,7 +32,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
-	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
+	//TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
@@ -535,9 +535,13 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 }
 void CPlayer::UsePotion(void)
 {
-	if(GetNumPotions() > 0 && GetCurHealth() < GetMaxHealth())
+	if(GetNumPotions() > 0 )
 	{
-		m_Potion->Heal();
-		SetNumPotions(GetNumPotions()-1);
+		if(GetCurHealth() < GetMaxHealth())
+		{
+			//m_Potion->Heal();
+			SetCurHealth( GetCurHealth() + 1 );
+			SetNumPotions(GetNumPotions()-1);
+		}
 	}
 }
