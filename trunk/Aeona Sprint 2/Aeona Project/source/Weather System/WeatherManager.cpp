@@ -31,7 +31,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 	case 0:
 		{
 			weather.ShutDown();CWeatherManager::GetInstance()->SetIsOn( false );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case RAIN:
@@ -40,7 +40,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Rain();
 			LoadXML("Resource/data/Rain.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case SNOW:
@@ -49,7 +49,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Snow();
 			LoadXML("Resource/data/Snow.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case LEAVES:
@@ -58,7 +58,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Leaves();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case SAND:
@@ -67,7 +67,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Sand();;
 			//LoadXML("Resource/data/SandStorm.xml");
 			//CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case EMBER:
@@ -76,7 +76,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Ember();
 			LoadXML("Resource/data/Embers.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	case FIREFLIES:
@@ -85,7 +85,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->FireFlies();
 			LoadXML("Resource/data/FireFlies.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
 		}
 		break;
 	}
