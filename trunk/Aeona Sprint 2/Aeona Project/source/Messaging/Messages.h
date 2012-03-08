@@ -58,7 +58,7 @@ public:
 	inline double	GetPosX(void) const { return m_dPosX; }
 	inline double	GetPosY(void) const { return m_dPosY; }
 	inline int		GetType(void) const { return m_nType; }
-	~CCreateNPCMessage();
+	~CCreateNPCMessage() {};
 };
 class CCreateEnemyMessage : public CBaseMessage
 {
@@ -81,7 +81,7 @@ public:
 	inline double	GetPosY(void) const { return m_dPosY; }
 	inline int		GetType(void) const { return m_nType; }
 
-	~CCreateEnemyMessage();
+	~CCreateEnemyMessage() {};
 };
 class CDestroyObjectMessage : public CBaseMessage
 {

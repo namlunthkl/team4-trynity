@@ -23,6 +23,7 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 	: CBaseCharacter(dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
 	m_szName = szName;
+	
 	m_bActiveTalk = bActiveTalk;
 	m_sndNPC = sndNPC;
 	m_dRange = dRange;
