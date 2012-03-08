@@ -5,6 +5,7 @@
 #include "..\tinyxml\tinyxml.h"
 #include "..\Wrappers\SGD_Math.h"
 #include "..\Light System\LightEngine.h"
+#include "..\Game Objects\CPlayer.h"
 
 CWeatherManager::CWeatherManager()
 {
@@ -31,7 +32,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 	case 0:
 		{
 			weather.ShutDown();CWeatherManager::GetInstance()->SetIsOn( false );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case RAIN:
@@ -40,7 +41,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Rain();
 			LoadXML("Resource/data/Rain.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case SNOW:
@@ -49,7 +50,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Snow();
 			LoadXML("Resource/data/Snow.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case LEAVES:
@@ -58,7 +59,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Leaves();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case SAND:
@@ -67,7 +68,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Sand();;
 			//LoadXML("Resource/data/SandStorm.xml");
 			//CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case EMBER:
@@ -76,7 +77,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->Ember();
 			LoadXML("Resource/data/Embers.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	case FIREFLIES:
@@ -85,7 +86,7 @@ void CWeatherManager::LoadWeather( short TypeOfWeather )
 			LightEngine::GetInstance()->FireFlies();
 			LoadXML("Resource/data/FireFlies.xml");
 			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 5.0, 50.0f ) );
+			SetTimeToWait( RandomFloat( 5.0, 5.0f ) );
 		}
 		break;
 	}
@@ -95,10 +96,27 @@ void CWeatherManager::Update( float fTime )
 	SetTime( GetTime() + fTime );
 
 	if( GetTime() > GetTimeToWait() )
-	{
-		LoadWeather( (short)RandomInt( 0, 7 ) );
+	{		
+		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest") == 0 )
+		{
+			LoadWeather( 3 );
+		}
+		else if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Snow" ) == 0 )
+		{
+			LoadWeather( 2 );
+		}
+		else if( strcmp(CPlayer::GetInstance()->GetRegion(), "Desert" ) == 0 )
+		{
+			LoadWeather( 4 );
+		}
+		else
+		{
+			LoadWeather( (short)RandomInt( 0, 7 ) );
+		}
 		SetTime( 0.0f );
 	}
+
+
 
 	if( GetIsOn() ) 
 	{ 
