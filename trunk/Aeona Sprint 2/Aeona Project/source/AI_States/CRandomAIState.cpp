@@ -36,6 +36,8 @@ void CRandomAIState::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetVelY(1.0f * (float)pCharacter->GetSpeed());
 	pCharacter->SetVelX(1.0f * (float)pCharacter->GetSpeed());
 	pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_RIGHT);
+
+	pCharacter->SetSpeed(10);
 }
 
 void CRandomAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
