@@ -98,21 +98,21 @@ void CGameplayState::Enter(void)
 	CEnemy* pEnemy = new CEnemy(1180, 720, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
 	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-	pEnemy->SetDebugMode(true);
+	pEnemy->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
 
 	CEnemy* pEnemy2 = new CEnemy(1660, 900, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
 	pEnemy2->ChangeAIState(CSwarmAIState::GetInstance());
-	pEnemy2->SetDebugMode(true);
+	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
 
 	CEnemy* pEnemy3 = new CEnemy(1673, 395, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy3->LoadAnimations("resource/Red Enemy Animation.xml");
 	pEnemy3->ChangeAIState(CJumperAIState::GetInstance());
-	pEnemy3->SetDebugMode(true);
+	pEnemy3->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy3);
 	pEnemy3->Release();
 
