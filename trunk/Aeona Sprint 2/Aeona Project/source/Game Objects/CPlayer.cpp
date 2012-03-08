@@ -291,14 +291,18 @@ void CPlayer::Input(void)
 			}
 		}
 		Attack();
-		//if(CInputManager::GetInstance()->Timeheld() > 2.0f)
-		//{
-		//	if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetPaused() != true)
-		//		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
-		//	
-		//}
+		if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+		{
+			if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetPaused() != true)
+				WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
+			
+		}
 	}
-	else
+	else if(CInputManager::GetInstance()->Timeheld() > 0.5f)
+	{
+		WEAPON->GetAnimationPlayer(GetCurrentAnimation())->Pause();
+				ChargedAttack();
+	}
 	{
 		//if(attacked == true)
 		//{

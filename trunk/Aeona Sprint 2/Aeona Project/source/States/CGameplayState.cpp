@@ -102,6 +102,13 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
 
+	CEnemy* pEnemy2 = new CEnemy(800, 700, 40,  -1, 50, 50, true, 100, 1);
+	pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	pEnemy2->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy2->SetDebugMode(true);
+	OBJECTS->AddObject(pEnemy2);
+	pEnemy2->Release();
+
 	// Initialize NPCs
 	CNPC* pNPC;
 	pNPC = new CNPC("Mini Guy", false, 150, -1, 290, 1000, 20, -1, 20, 20, true, 100, 0);
