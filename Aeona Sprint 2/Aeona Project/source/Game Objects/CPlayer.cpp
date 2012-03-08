@@ -64,6 +64,9 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
 
 	m_sndHit = AUDIO->SFXLoadSound("resource/sound/Hit.wav");
+
+	m_sndPotion = new Sound();
+	m_sndPotion->Load("resource/sound/potion.wav");
 }
 
 CPlayer* CPlayer::GetInstance(void)
@@ -542,6 +545,8 @@ void CPlayer::UsePotion(void)
 			//m_Potion->Heal();
 			SetCurHealth( GetCurHealth() + 1 );
 			SetNumPotions(GetNumPotions()-1);
+			
+			m_sndPotion->Play();
 		}
 	}
 }
