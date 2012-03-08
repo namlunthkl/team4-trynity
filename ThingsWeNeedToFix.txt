@@ -1,0 +1,26 @@
+can break collision in debug mode using the speed boost
+
+crash when you killed an enemy while you were up on ledge
+
+NPC pushed too far when he shot an arrow and moved into him at the same time
+
+No point light in the scene for debug
+
+charge doesn't work
+
+enemy out of collision box
+
+exploitable apples / save which chests have been opened.
+
+It's hard to see GameOver when the scene is dark.
+
+He starts with zero hearts.  Even in new game.
+
+Player can get pushed by charging enemy.
+
+Arrow can be stuck continue shooting forward when you shoot another arrow.
+
+
+Not enough enemy types, with AI paths.
+
+We need more gameplay.
