@@ -48,7 +48,7 @@ void CSwarmAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 	if(pCharacter->GetVelX() != 0 && pCharacter->GetVelY() != 0)	//	If we are moving
 	{
 		fMoveTimer += fElapsedTime;
-		if(fMoveTimer >= 3.0f)
+		if(fMoveTimer >= 0.8f)
 		{
 			fMoveTimer = 0.0f;			//	Stop us now
 			pCharacter->SetVelX(0);
@@ -58,7 +58,7 @@ void CSwarmAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 	else		//	but if we are NOT moving...
 	{
 		fMoveTimer += fElapsedTime;	//	use the same timer, but now we're waiting for a bigger time
-		if(fMoveTimer >= 0.6f)
+		if(fMoveTimer >= 0.5f)
 		{
 			fMoveTimer = 0.0f;
 
