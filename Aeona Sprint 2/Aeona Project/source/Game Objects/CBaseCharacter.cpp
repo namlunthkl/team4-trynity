@@ -59,10 +59,10 @@ bool CBaseCharacter::LoadAnimations(char const * const szFilename)
 
 void CBaseCharacter::Update(float fElapsedTime)
 {
-	CBaseObject::Update(fElapsedTime);
-
 	if(m_pAIState)
 		m_pAIState->Update(this, fElapsedTime);
+
+	CBaseObject::Update(fElapsedTime);
 }
 
 void CBaseCharacter::Attack()

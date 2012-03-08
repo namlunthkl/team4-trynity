@@ -12,6 +12,13 @@ class CJumperAIState : public IBaseAIState
 	CJumperAIState(void){}
 
 	static CJumperAIState* sm_pInstance;
+
+	//	0 - hurt
+	//	1 - hurt knocked back
+	//	2 - wander
+	//	3 - pause-before
+	//	4 - leaping
+	//	5 - pause-after
 	
 public:
 	static IBaseAIState* GetInstance(void);

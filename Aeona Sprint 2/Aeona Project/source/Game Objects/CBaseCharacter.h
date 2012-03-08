@@ -31,6 +31,7 @@ class CBaseCharacter : public CBaseObject
 
 	// Every character needs an AI State
 	IBaseAIState*	m_pAIState;
+	unsigned int m_uiMiniState;
 
 	// Used by AI States
 	float			m_fMoveTimer;
@@ -72,6 +73,9 @@ public:
 	inline void GainHeart(void) { m_uiMaxHealth++; }
 	inline float GetMoveTimer(void) const { return m_fMoveTimer; }
 	inline void SetMoveTimer(float fMoveTimer) { m_fMoveTimer = fMoveTimer; }
+
+	inline unsigned int GetMiniState(void)	{ return m_uiMiniState; }
+	inline void SetMiniState(unsigned int m)	{ m_uiMiniState = m; }
 };
 
 #endif // C_BASE_CHARACTER_H_
