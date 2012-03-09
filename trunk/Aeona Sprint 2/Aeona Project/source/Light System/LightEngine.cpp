@@ -19,7 +19,7 @@ LightEngine* LightEngine::GetInstance(void)
 void LightEngine::Initialize( void )
 {
 	SetCurrentCycle( 0 );
-	SetCurrentTime( 0.0f );
+	SetCurrentLTime( 0.0f );
 	SetTimeToWait( 0.0f );
 
 	SetAmbientAlpha( 1.0f );
@@ -53,7 +53,7 @@ void LightEngine::Initialize( void )
 }
 void LightEngine::Update( void )
 {
-	SetCurrentTime( GetCurrentTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
+	SetCurrentLTime( GetCurrentLTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
 	Cycle();
 	// PLAYER LIGHT
 	if( GetPlayerPointLight() )
@@ -148,7 +148,7 @@ void LightEngine::Input( void ){}
 void LightEngine::ShutDown( void )
 {
 	SetCurrentCycle( 0 );
-	SetCurrentTime( 0.0f );
+	SetCurrentLTime( 0.0f );
 	SetTimeToWait( 0.0f );
 
 	SetAmbientAlpha( 0.0f );
@@ -255,15 +255,15 @@ void LightEngine::Day( void )
 void LightEngine::Evening( void )
 {
 	SetAmbientAlpha( 1.0f );
-	SetAmbientRed(  1.5f );
-	SetAmbientGreen(1.0f );
-	SetAmbientBlue( 1.0f );
+	SetAmbientRed(  1.1f );
+	SetAmbientGreen(0.7f );
+	SetAmbientBlue( 0.7f );
 }
 void LightEngine::Dusk( void )
 {
 	SetAmbientAlpha( 1.0f );
-	SetAmbientRed(  0.9f );
-	SetAmbientGreen(0.5f );
+	SetAmbientRed(  0.75f );
+	SetAmbientGreen(0.4f );
 	SetAmbientBlue( 0.5f );
 }
 void LightEngine::Night( void )
@@ -283,7 +283,7 @@ void LightEngine::Dawn( void )
 
 void LightEngine::Cycle( void )
 {
-	if( GetCurrentTime() >= GetTimeToWait() )
+	if( GetCurrentLTime() >= GetTimeToWait() )
 	{
 		SetCurrentCycle( GetCurrentCycle() + 1 );
 		if( GetCurrentCycle() > 7 )
@@ -295,50 +295,50 @@ void LightEngine::Cycle( void )
 		case 1:
 			{
 				Morning();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 2:
 			{
 				Afternoon();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 3:
 			{
 				Day();
-				SetCurrentTime( 50.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 4:
 			{
 				Evening();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 5:
 			{
 				Dusk();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 6:
 			{
 				Night();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		case 7:
 			{
 				Dawn();
-				SetCurrentTime( 0.0f );
-				SetTimeToWait( 60.0f );
+				SetCurrentLTime( 0.0f );
+				SetTimeToWait( 90.0f );
 			}
 			break;
 		}

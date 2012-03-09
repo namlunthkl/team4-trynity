@@ -7,8 +7,8 @@ private:
 	// CURRENT CYCLE
 	enum CYCLE{ MORNING = 1, AFTERNOON, DAY, EVENING, DUSK, NIGHT, DAWN };
 
-	unsigned short m_sCurrentCycle;
-	float m_fCurrentTime;
+	int m_sCurrentCycle;
+	float m_fCurrentLTime;
 	float m_fTimeToWait;
 	
 	// AMBIENT LIGHT
@@ -76,14 +76,14 @@ public:
 	static LightEngine* GetInstance(void);
 
 	// CYCLE
-	void SetCurrentCycle( unsigned short cycle )	{ m_sCurrentCycle = cycle; }
-	unsigned short GetCurrentCycle(void)			{ return m_sCurrentCycle; }
+	void SetCurrentCycle( int cycle )				{ m_sCurrentCycle = cycle; }
+	int GetCurrentCycle(void)						{ return m_sCurrentCycle; }
 
-	void SetCurrentTime( float fTime )				{ m_fCurrentTime = fTime; }
-	float GetCurrentTime(void)						{ return m_fCurrentTime; }
+	void SetCurrentLTime( float fTime )				{ m_fCurrentLTime = fTime; }
+	float GetCurrentLTime(void)						{ return m_fCurrentLTime; }
 
 	void SetTimeToWait( float fTimeToWait )			{ m_fTimeToWait = fTimeToWait; }
-	unsigned short GetTimeToWait(void)				{ return m_fTimeToWait; }
+	float GetTimeToWait(void)						{ return m_fTimeToWait; }
 
 	//AMBIENT LIGHT
 	void SetAmbientAlpha( float fAmbientAlpha )		{ m_fAmbientAlpha = fAmbientAlpha; }
