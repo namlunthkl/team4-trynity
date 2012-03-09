@@ -9,7 +9,7 @@ private:
 	float m_fAmbientRed;
 	float m_fAmbientGeen;
 	float m_fAmbientBlue;
-	
+
 	// PLAYER POINT LIGHT
 	bool  m_bPlayerPointLight;
 	float m_fPlayerPointAlpha;
@@ -54,6 +54,11 @@ private:
 	float m_fItem4PointBlue;
 	float m_fItem4PointPosX;
 	float m_fItem4PointPosY;
+
+	// PLAYER POINT LIGHT
+	float m_fPlayerPointRadius;
+	// ITEMS POINT LIGHT
+	float m_fItemPointRadius;
 
 	LightEngine(void);
 	LightEngine(const LightEngine&){}
@@ -153,6 +158,13 @@ public:
 	float GetItem4PointPosX(void)					{ return m_fItem4PointPosX; }
 	float GetItem4PointPosY(void)					{ return m_fItem4PointPosY; }
 
+	// PLAYER POINT LIGHT
+	void SetPointRadius( float bPointRadius)		{ m_fPlayerPointRadius = bPointRadius; }
+	float GetPointRadius(void)						{ return m_fPlayerPointRadius; }
+	// ITEMS POINT LIGHT
+	void SetItemRadius( float bItemRadius)			{ m_fItemPointRadius = bItemRadius; }
+	float GetItemRadius(void)						{ return m_fItemPointRadius; }
+
 	void Initialize( void );
 	void Update( void );
 	void Input( void );
@@ -163,6 +175,8 @@ public:
 	void SetItem2PointPos( float fPosX, float fPosY );
 	void SetItem3PointPos( float fPosX, float fPosY );
 	void SetItem4PointPos( float fPosX, float fPosY );
+
+	void Flicker(void);
 
 	void Morning( void );
 	void Day( void );

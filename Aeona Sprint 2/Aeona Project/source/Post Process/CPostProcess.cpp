@@ -15,6 +15,7 @@ CPostProcess* CPostProcess::GetInstance(void)
 
 void CPostProcess::Initialize( void )
 {
+	LightEngine::GetInstance()->Initialize();
 	// GRAB THE ACTUAL DISPLAY WIDTH
 	IDirect3DSurface9* bBuffer = 0;
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->GetBackBuffer( 0, 0, D3DBACKBUFFER_TYPE_MONO, &bBuffer );
@@ -80,7 +81,6 @@ void CPostProcess::Initialize( void )
 	index = 5;
 
 	// COLOR
-	LightEngine::GetInstance()->Initialize();
 	colChange = 1;
 	fRed = 0;
 	fGreen = 0;
@@ -216,6 +216,8 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gItem4PointB", LightEngine::GetInstance()->GetItem4PointBlue() );
 		postEffect->SetFloat( "gItem4PointPosX", LightEngine::GetInstance()->GetItem4PointPosX() );
 		postEffect->SetFloat( "gItem4PointPosY", LightEngine::GetInstance()->GetItem4PointPosY() );
+		postEffect->SetFloat( "gPlayerPointRadius", LightEngine::GetInstance()->GetPointRadius() );
+		postEffect->SetFloat( "gItemPointRadius", LightEngine::GetInstance()->GetItemRadius() );
 
 		postEffect->CommitChanges();
 		CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetVertexDeclaration(cubedecl);
