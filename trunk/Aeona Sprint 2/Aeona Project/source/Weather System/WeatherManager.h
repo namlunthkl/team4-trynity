@@ -3,7 +3,8 @@
 
 #include "..\Particle Engine\Emitter.h"
 
-enum WEATHER{ RAIN = 1, SNOW, LEAVES, SAND, EMBER, FIREFLIES };
+enum WEATHER{ CLEAR, RAIN, FIREFLIES, LEAVES, SNOW, SAND, EMBER, FOG };
+enum REGION { FOREST, MOUNTAIN, DESERT, VOLCANO, CAVE, LAKE };
 
 class CWeatherManager
 {
@@ -13,6 +14,8 @@ private:
 	float m_fTimeToWait;
 	float m_fTime;
 	short m_sTypeOfWeather;
+
+	int m_nCurrRegion;
 
 	CWeatherManager();
 	CWeatherManager( const CWeatherManager& ){}
@@ -31,8 +34,11 @@ public:
 	float GetTimeToWait(void)				{ return m_fTimeToWait; }
 	float GetTime(void)						{ return m_fTime; }
 	short GetTypeOfWeather(void)			{ return m_sTypeOfWeather; }
+	
+	void CheckRegion(void);
+	void LoadWeather(void);
+	void SetWeatherPattern(void);
 
-	void LoadWeather( short TypeOfWeather);
 	void Update( float fTime );
 	void Render();
 	bool LoadXML(const char* szXMLFileName);

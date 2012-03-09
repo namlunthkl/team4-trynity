@@ -203,7 +203,7 @@ public:
 	void Night( void );
 	void Dawn( void );
 
-	void Cycle( void );
+	void DayNightCycle( void );
 };
 
 #endif
