@@ -200,7 +200,7 @@ void LightEngine::ShutDown( void )
 	SetItemRadius( 0.0f );
 }
 
-void LightEngine::SetPlayerPointPos( float fPosX, float fPosY )
+void LightEngine::SetPlayerPointPos(float fPosX, float fPosY )
 {
 	SetPlayerPointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
 	SetPlayerPointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
