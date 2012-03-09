@@ -12,7 +12,7 @@ private:
 	bool m_bIsOn;
 	float m_fTimeToWait;
 	float m_fTime;
-	short m_usTypeOfWeather;
+	short m_sTypeOfWeather;
 
 	CWeatherManager();
 	CWeatherManager( const CWeatherManager& ){}
@@ -24,13 +24,13 @@ public:
 	void SetIsOn( bool bOn )				{ m_bIsOn = bOn; }
 	void SetTimeToWait( float fTimeToWait )	{ m_fTimeToWait = fTimeToWait; }
 	void SetTime( float fTime )				{ m_fTime = fTime; }
-	void SetTypeOfWeather( short sType )	{ m_usTypeOfWeather = sType; }
+	void SetTypeOfWeather( short sType )	{ m_sTypeOfWeather = sType; }
 	
 	Emitter* GetWeather(void)				{ return &weather; }
 	bool GetIsOn(void)						{ return m_bIsOn; }
 	float GetTimeToWait(void)				{ return m_fTimeToWait; }
 	float GetTime(void)						{ return m_fTime; }
-	short GetTypeOfWeather(void)			{ return m_usTypeOfWeather; }
+	short GetTypeOfWeather(void)			{ return m_sTypeOfWeather; }
 
 	void LoadWeather( short TypeOfWeather);
 	void Update( float fTime );
