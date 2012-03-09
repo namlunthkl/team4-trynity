@@ -1,8 +1,10 @@
 #include "StdAfx.h"
 #include "LightEngine.h"
 #include "..\Wrappers\CSGD_DirectInput.h"
+#include "..\Wrappers\SGD_Math.h"
 #include "..\CGame.h"
 #include "..\Camera\CCameraControl.h"
+
 
 LightEngine::LightEngine(void){}
 LightEngine::~LightEngine(void)
@@ -40,6 +42,10 @@ void LightEngine::Initialize( void )
 	SetItem4PointLight( false );
 	SetItem4PointPosX( 0.25f );
 	SetItem4PointPosY( 0.75f );
+
+	SetPointRadius( 0.3f );
+	SetItemRadius( 0.2f );
+
 }
 void LightEngine::Update( void )
 {
@@ -50,6 +56,7 @@ void LightEngine::Update( void )
 		SetPlayerPointRed( 1.0f );
 		SetPlayerPointGreen( 1.0f );
 		SetPlayerPointBlue( 1.0f );
+		SetPointRadius( 0.3f );
 	}
 	else
 	{
@@ -57,6 +64,7 @@ void LightEngine::Update( void )
 		SetPlayerPointRed( 0.0f );
 		SetPlayerPointGreen( 0.0f );
 		SetPlayerPointBlue( 0.0f );
+		SetPointRadius( 0.0f );
 	}
 
 	// ITEM1 LIGHT
@@ -66,6 +74,7 @@ void LightEngine::Update( void )
 		SetItem1PointRed( 1.0f );
 		SetItem1PointGreen( 1.0f );
 		SetItem1PointBlue( 1.0f );
+		Flicker();
 	}
 	else
 	{
@@ -73,6 +82,7 @@ void LightEngine::Update( void )
 		SetItem1PointRed( 0.0f );
 		SetItem1PointGreen( 0.0f );
 		SetItem1PointBlue( 0.0f );
+		SetItemRadius( 0.0f );
 	}
 
 	// Item2 LIGHT
@@ -82,6 +92,7 @@ void LightEngine::Update( void )
 		SetItem2PointRed( 1.0f );
 		SetItem2PointGreen( 1.0f );
 		SetItem2PointBlue( 1.0f );
+		Flicker();
 	}
 	else
 	{
@@ -89,6 +100,7 @@ void LightEngine::Update( void )
 		SetItem2PointRed( 0.0f );
 		SetItem2PointGreen( 0.0f );
 		SetItem2PointBlue( 0.0f );
+		SetItemRadius( 0.0f );
 	}
 
 	// Item3 LIGHT
@@ -98,6 +110,7 @@ void LightEngine::Update( void )
 		SetItem3PointRed( 1.0f );
 		SetItem3PointGreen( 1.0f );
 		SetItem3PointBlue( 1.0f );
+		Flicker();
 	}
 	else
 	{
@@ -105,9 +118,8 @@ void LightEngine::Update( void )
 		SetItem3PointRed( 0.0f );
 		SetItem3PointGreen( 0.0f );
 		SetItem3PointBlue( 0.0f );
+		SetItemRadius( 0.0f );
 	}
-
-
 	// Item4 LIGHT
 	if( GetItem4PointLight() )
 	{
@@ -115,6 +127,7 @@ void LightEngine::Update( void )
 		SetItem4PointRed( 1.0f );
 		SetItem4PointGreen( 1.0f );
 		SetItem4PointBlue( 1.0f );
+		Flicker();
 	}
 	else
 	{
@@ -122,31 +135,10 @@ void LightEngine::Update( void )
 		SetItem4PointRed( 0.0f );
 		SetItem4PointGreen( 0.0f );
 		SetItem4PointBlue( 0.0f );
+		SetItemRadius( 0.0f );
 	}
 }
-void LightEngine::Input( void )
-{
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) )
-	{
-		Morning();
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) )
-	{
-		Day();
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) )
-	{
-		Evening();
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
-	{
-		Night();
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_0 ) )
-	{
-		SetPlayerPointLight( !GetPlayerPointLight() );
-	}
-}
+void LightEngine::Input( void ){}
 void LightEngine::ShutDown( void )
 {
 	SetAmbientAlpha( 0.0f );
@@ -169,6 +161,33 @@ void LightEngine::ShutDown( void )
 	SetItem1PointBlue( 1.0f );
 	SetItem1PointPosX( 0.5f );
 	SetItem1PointPosY( 0.5f );
+
+	SetItem2PointLight( false );
+	SetItem2PointAlpha( 1.0f );
+	SetItem2PointRed( 2.0f );
+	SetItem2PointGreen( 1.0f );
+	SetItem2PointBlue( 1.0f );
+	SetItem2PointPosX( 0.5f );
+	SetItem2PointPosY( 0.5f );
+
+	SetItem3PointLight( false );
+	SetItem3PointAlpha( 1.0f );
+	SetItem3PointRed( 2.0f );
+	SetItem3PointGreen( 1.0f );
+	SetItem3PointBlue( 1.0f );
+	SetItem3PointPosX( 0.5f );
+	SetItem3PointPosY( 0.5f );
+
+	SetItem4PointLight( false );
+	SetItem4PointAlpha( 1.0f );
+	SetItem4PointRed( 2.0f );
+	SetItem4PointGreen( 1.0f );
+	SetItem4PointBlue( 1.0f );
+	SetItem4PointPosX( 0.5f );
+	SetItem4PointPosY( 0.5f );
+
+	SetPointRadius( 0.0f );
+	SetItemRadius( 0.0f );
 }
 
 void LightEngine::SetPlayerPointPos( float fPosX, float fPosY )
@@ -195,6 +214,11 @@ void LightEngine::SetItem4PointPos( float fPosX, float fPosY )
 {
 	SetItem4PointPosX( ( fPosX - ( -CCameraControl::GetInstance()->GetPositionX() ) ) / CGame::GetInstance()->GetScreenWidth() );
 	SetItem4PointPosY( ( fPosY - ( -CCameraControl::GetInstance()->GetPositionY() ) ) / CGame::GetInstance()->GetScreenHeight());
+}
+
+void LightEngine::Flicker(void)
+{
+	SetItemRadius( RandomFloat( 0.15f, 0.17f ) );
 }
 
 void LightEngine::Morning( void )

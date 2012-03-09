@@ -58,6 +58,9 @@ float gItem4PointB;
 float gItem4PointPosX;
 float gItem4PointPosY;
 
+float gPlayerPointRadius;
+float gItemPointRadius;
+
 struct VS_INPUT
 {
 	float3 untransformed_pos	: POSITION0;
@@ -173,7 +176,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		
 		PlayerVectorBetweenTwo = input.uv - PlayerPointLightPos; 
 		PlayerMag = length( PlayerVectorBetweenTwo );
-		PlayerPointLightRadius = .3f;
+		PlayerPointLightRadius = gPlayerPointRadius;
 		PlayerRatio = 1.0f - saturate( PlayerMag / PlayerPointLightRadius );
 		PlayerPointLightColor *= PlayerRatio;
 	}
@@ -203,7 +206,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		
 		Item1VectorBetweenTwo = input.uv - Item1PointLightPos; 
 		Item1Mag = length( Item1VectorBetweenTwo );
-		Item1PointLightRadius = .2f;
+		Item1PointLightRadius = gItemPointRadius;
 		Item1Ratio = 1.0f - saturate( Item1Mag / Item1PointLightRadius );
 		Item1PointLightColor *= Item1Ratio;
 	}
@@ -230,7 +233,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		
 		Item2VectorBetweenTwo = input.uv - Item2PointLightPos; 
 		Item2Mag = length( Item2VectorBetweenTwo );
-		Item2PointLightRadius = .2f;
+		Item2PointLightRadius = gItemPointRadius;
 		Item2Ratio = 1.0f - saturate( Item2Mag / Item2PointLightRadius );
 		Item2PointLightColor *= Item2Ratio;
 	}
@@ -257,7 +260,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		
 		Item3VectorBetweenTwo = input.uv - Item3PointLightPos; 
 		Item3Mag = length( Item3VectorBetweenTwo );
-		Item3PointLightRadius = .2f;
+		Item3PointLightRadius = gItemPointRadius;
 		Item3Ratio = 1.0f - saturate( Item3Mag / Item3PointLightRadius );
 		Item3PointLightColor *= Item3Ratio;
 	}
@@ -284,7 +287,7 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	
 		Item4VectorBetweenTwo = input.uv - Item4PointLightPos; 
 		Item4Mag = length( Item4VectorBetweenTwo );
-		Item4PointLightRadius = .2f;
+		Item4PointLightRadius = gItemPointRadius;
 		Item4Ratio = 1.0f - saturate( Item4Mag / Item4PointLightRadius );
 		Item4PointLightColor *= Item4Ratio;
 	}
