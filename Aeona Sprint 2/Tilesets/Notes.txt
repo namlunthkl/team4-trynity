@@ -1,0 +1,9 @@
+Most of the tilesets were gotten from the site
+http://www.reinorpg.com/resources/
+The first word in their filenames is the username of the person who made the tileset.
+The site requires everybody to give the right credits to those who make tilesets, and I actually want to do that, since some are definetely really good and I've grown up supporting the RPG Maker community.
+So I think that in the credits we should have "Tileset Graphics" and name the sites we use and all the user names.
+
+Tiles made by "REFMAP" were gotten from this japanese website:
+http://www.tekepon.net/fsm/
+Give credit too.
