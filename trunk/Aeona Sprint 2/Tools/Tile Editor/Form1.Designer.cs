@@ -46,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarTileset = new System.Windows.Forms.HScrollBar();
             this.vScrollBarTileset = new System.Windows.Forms.VScrollBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -66,7 +65,6 @@
             this.tabLayers = new System.Windows.Forms.TabControl();
             this.tabLayer0 = new System.Windows.Forms.TabPage();
             this.checkBoxVisible = new System.Windows.Forms.CheckBox();
-            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.hScrollBarMap = new System.Windows.Forms.HScrollBar();
             this.vScrollBarMap = new System.Windows.Forms.VScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -115,6 +113,9 @@
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkTilesetGrid = new System.Windows.Forms.CheckBox();
+            this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
+            this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numObjLayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -158,34 +159,33 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 617);
+            this.panel1.Size = new System.Drawing.Size(949, 759);
             this.panel1.TabIndex = 2;
             // 
             // numObjLayer
             // 
-            this.numObjLayer.Location = new System.Drawing.Point(670, 23);
-            this.numObjLayer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numObjLayer.Location = new System.Drawing.Point(893, 28);
+            this.numObjLayer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numObjLayer.Name = "numObjLayer";
-            this.numObjLayer.Size = new System.Drawing.Size(42, 20);
+            this.numObjLayer.Size = new System.Drawing.Size(56, 22);
             this.numObjLayer.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(598, 23);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(797, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.Size = new System.Drawing.Size(89, 17);
             this.label6.TabIndex = 2;
             this.label6.Text = "Object Layer";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 53);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -193,6 +193,7 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.checkBoxTransparency);
             this.splitContainer1.Panel1.Controls.Add(this.checkViewCollision);
+            this.splitContainer1.Panel1.Controls.Add(this.checkTilesetGrid);
             this.splitContainer1.Panel1.Controls.Add(this.checkViewGrid);
             this.splitContainer1.Panel1.Controls.Add(this.numMapHeight);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -206,9 +207,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(712, 546);
-            this.splitContainer1.SplitterDistance = 35;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(949, 684);
+            this.splitContainer1.SplitterDistance = 34;
             this.splitContainer1.TabIndex = 3;
             // 
             // checkBoxTransparency
@@ -216,10 +216,10 @@
             this.checkBoxTransparency.AutoSize = true;
             this.checkBoxTransparency.Checked = true;
             this.checkBoxTransparency.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxTransparency.Location = new System.Drawing.Point(592, 7);
-            this.checkBoxTransparency.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxTransparency.Location = new System.Drawing.Point(829, 8);
+            this.checkBoxTransparency.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxTransparency.Name = "checkBoxTransparency";
-            this.checkBoxTransparency.Size = new System.Drawing.Size(91, 17);
+            this.checkBoxTransparency.Size = new System.Drawing.Size(118, 21);
             this.checkBoxTransparency.TabIndex = 6;
             this.checkBoxTransparency.Text = "Transparency";
             this.checkBoxTransparency.UseVisualStyleBackColor = true;
@@ -227,12 +227,12 @@
             // checkViewCollision
             // 
             this.checkViewCollision.AutoSize = true;
-            this.checkViewCollision.Location = new System.Drawing.Point(502, 7);
-            this.checkViewCollision.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkViewCollision.Location = new System.Drawing.Point(720, 8);
+            this.checkViewCollision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkViewCollision.Name = "checkViewCollision";
-            this.checkViewCollision.Size = new System.Drawing.Size(90, 17);
+            this.checkViewCollision.Size = new System.Drawing.Size(110, 21);
             this.checkViewCollision.TabIndex = 5;
-            this.checkViewCollision.Text = "View Collision";
+            this.checkViewCollision.Text = "Edit Collision";
             this.checkViewCollision.UseVisualStyleBackColor = true;
             // 
             // checkViewGrid
@@ -240,25 +240,25 @@
             this.checkViewGrid.AutoSize = true;
             this.checkViewGrid.Checked = true;
             this.checkViewGrid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkViewGrid.Location = new System.Drawing.Point(430, 7);
-            this.checkViewGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkViewGrid.Location = new System.Drawing.Point(527, 8);
+            this.checkViewGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkViewGrid.Name = "checkViewGrid";
-            this.checkViewGrid.Size = new System.Drawing.Size(71, 17);
+            this.checkViewGrid.Size = new System.Drawing.Size(88, 21);
             this.checkViewGrid.TabIndex = 4;
-            this.checkViewGrid.Text = "View Grid";
+            this.checkViewGrid.Text = "Map Grid";
             this.checkViewGrid.UseVisualStyleBackColor = true;
             // 
             // numMapHeight
             // 
-            this.numMapHeight.Location = new System.Drawing.Point(386, 6);
-            this.numMapHeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numMapHeight.Location = new System.Drawing.Point(469, 7);
+            this.numMapHeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numMapHeight.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numMapHeight.Name = "numMapHeight";
-            this.numMapHeight.Size = new System.Drawing.Size(39, 20);
+            this.numMapHeight.Size = new System.Drawing.Size(52, 22);
             this.numMapHeight.TabIndex = 3;
             this.numMapHeight.Value = new decimal(new int[] {
             10,
@@ -270,24 +270,23 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(345, 6);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(414, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Height";
             // 
             // numMapWidth
             // 
-            this.numMapWidth.Location = new System.Drawing.Point(302, 6);
-            this.numMapWidth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numMapWidth.Location = new System.Drawing.Point(357, 7);
+            this.numMapWidth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numMapWidth.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numMapWidth.Name = "numMapWidth";
-            this.numMapWidth.Size = new System.Drawing.Size(39, 20);
+            this.numMapWidth.Size = new System.Drawing.Size(52, 22);
             this.numMapWidth.TabIndex = 2;
             this.numMapWidth.Value = new decimal(new int[] {
             10,
@@ -299,10 +298,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(264, 6);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(306, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Width";
             // 
@@ -313,26 +311,25 @@
             0,
             0,
             0});
-            this.mapPosY.Location = new System.Drawing.Point(196, 6);
-            this.mapPosY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mapPosY.Location = new System.Drawing.Point(214, 7);
+            this.mapPosY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mapPosY.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
             this.mapPosY.Name = "mapPosY";
-            this.mapPosY.Size = new System.Drawing.Size(63, 20);
+            this.mapPosY.Size = new System.Drawing.Size(86, 22);
             this.mapPosY.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(160, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Position Y";
+            this.label2.Text = "Map Y";
             // 
             // mapPosX
             // 
@@ -341,32 +338,31 @@
             0,
             0,
             0});
-            this.mapPosX.Location = new System.Drawing.Point(68, 6);
-            this.mapPosX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mapPosX.Location = new System.Drawing.Point(67, 5);
+            this.mapPosX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mapPosX.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
             this.mapPosX.Name = "mapPosX";
-            this.mapPosX.Size = new System.Drawing.Size(63, 20);
+            this.mapPosX.Size = new System.Drawing.Size(87, 22);
             this.mapPosX.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(13, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Position X";
+            this.label1.Text = "Map X";
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -376,16 +372,15 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(712, 508);
-            this.splitContainer2.SplitterDistance = 186;
-            this.splitContainer2.SplitterWidth = 3;
+            this.splitContainer2.Size = new System.Drawing.Size(949, 646);
+            this.splitContainer2.SplitterDistance = 247;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -398,39 +393,24 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer3.Size = new System.Drawing.Size(186, 508);
-            this.splitContainer3.SplitterDistance = 291;
-            this.splitContainer3.SplitterWidth = 3;
+            this.splitContainer3.Size = new System.Drawing.Size(247, 646);
+            this.splitContainer3.SplitterDistance = 370;
             this.splitContainer3.TabIndex = 0;
-            // 
-            // tilesetPanel
-            // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
-            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
-            this.tilesetPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tilesetPanel.Name = "tilesetPanel";
-            this.tilesetPanel.Size = new System.Drawing.Size(165, 270);
-            this.tilesetPanel.TabIndex = 0;
-            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
-            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
-            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
-            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
             // 
             // hScrollBarTileset
             // 
             this.hScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBarTileset.Location = new System.Drawing.Point(0, 270);
+            this.hScrollBarTileset.Location = new System.Drawing.Point(0, 349);
             this.hScrollBarTileset.Name = "hScrollBarTileset";
-            this.hScrollBarTileset.Size = new System.Drawing.Size(165, 21);
+            this.hScrollBarTileset.Size = new System.Drawing.Size(226, 21);
             this.hScrollBarTileset.TabIndex = 0;
             // 
             // vScrollBarTileset
             // 
             this.vScrollBarTileset.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBarTileset.Location = new System.Drawing.Point(165, 0);
+            this.vScrollBarTileset.Location = new System.Drawing.Point(226, 0);
             this.vScrollBarTileset.Name = "vScrollBarTileset";
-            this.vScrollBarTileset.Size = new System.Drawing.Size(21, 291);
+            this.vScrollBarTileset.Size = new System.Drawing.Size(21, 370);
             this.vScrollBarTileset.TabIndex = 3;
             // 
             // groupBox1
@@ -441,10 +421,10 @@
             this.groupBox1.Controls.Add(this.textBoxEvent);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(186, 214);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(247, 272);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Tile";
@@ -459,11 +439,11 @@
             this.groupBox2.Controls.Add(this.eventsCheckBox4);
             this.groupBox2.Controls.Add(this.eventsCheckBox3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(2, 64);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(3, 88);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(182, 148);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(241, 182);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Event Firing Conditions";
@@ -471,10 +451,10 @@
             // eventsCheckBox7
             // 
             this.eventsCheckBox7.AutoSize = true;
-            this.eventsCheckBox7.Location = new System.Drawing.Point(16, 117);
-            this.eventsCheckBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox7.Location = new System.Drawing.Point(21, 144);
+            this.eventsCheckBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox7.Name = "eventsCheckBox7";
-            this.eventsCheckBox7.Size = new System.Drawing.Size(65, 14);
+            this.eventsCheckBox7.Size = new System.Drawing.Size(112, 21);
             this.eventsCheckBox7.TabIndex = 0;
             this.eventsCheckBox7.Text = "Air Crossbow";
             this.eventsCheckBox7.UseVisualStyleBackColor = true;
@@ -483,10 +463,10 @@
             // eventsCheckBox6
             // 
             this.eventsCheckBox6.AutoSize = true;
-            this.eventsCheckBox6.Location = new System.Drawing.Point(16, 102);
-            this.eventsCheckBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox6.Location = new System.Drawing.Point(21, 126);
+            this.eventsCheckBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox6.Name = "eventsCheckBox6";
-            this.eventsCheckBox6.Size = new System.Drawing.Size(70, 14);
+            this.eventsCheckBox6.Size = new System.Drawing.Size(121, 21);
             this.eventsCheckBox6.TabIndex = 0;
             this.eventsCheckBox6.Text = "Earth Hammer";
             this.eventsCheckBox6.UseVisualStyleBackColor = true;
@@ -495,10 +475,10 @@
             // eventsCheckBox1
             // 
             this.eventsCheckBox1.AutoSize = true;
-            this.eventsCheckBox1.Location = new System.Drawing.Point(16, 24);
-            this.eventsCheckBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox1.Location = new System.Drawing.Point(21, 30);
+            this.eventsCheckBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox1.Name = "eventsCheckBox1";
-            this.eventsCheckBox1.Size = new System.Drawing.Size(63, 14);
+            this.eventsCheckBox1.Size = new System.Drawing.Size(108, 21);
             this.eventsCheckBox1.TabIndex = 0;
             this.eventsCheckBox1.Text = "Any collision";
             this.eventsCheckBox1.UseVisualStyleBackColor = true;
@@ -507,10 +487,10 @@
             // eventsCheckBox5
             // 
             this.eventsCheckBox5.AutoSize = true;
-            this.eventsCheckBox5.Location = new System.Drawing.Point(16, 86);
-            this.eventsCheckBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox5.Location = new System.Drawing.Point(21, 106);
+            this.eventsCheckBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox5.Name = "eventsCheckBox5";
-            this.eventsCheckBox5.Size = new System.Drawing.Size(55, 14);
+            this.eventsCheckBox5.Size = new System.Drawing.Size(94, 21);
             this.eventsCheckBox5.TabIndex = 0;
             this.eventsCheckBox5.Text = "Fire Blade";
             this.eventsCheckBox5.UseVisualStyleBackColor = true;
@@ -519,10 +499,10 @@
             // eventsCheckBox2
             // 
             this.eventsCheckBox2.AutoSize = true;
-            this.eventsCheckBox2.Location = new System.Drawing.Point(16, 40);
-            this.eventsCheckBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox2.Location = new System.Drawing.Point(21, 49);
+            this.eventsCheckBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox2.Name = "eventsCheckBox2";
-            this.eventsCheckBox2.Size = new System.Drawing.Size(71, 14);
+            this.eventsCheckBox2.Size = new System.Drawing.Size(124, 21);
             this.eventsCheckBox2.TabIndex = 0;
             this.eventsCheckBox2.Text = "Player collision";
             this.eventsCheckBox2.UseVisualStyleBackColor = true;
@@ -531,10 +511,10 @@
             // eventsCheckBox4
             // 
             this.eventsCheckBox4.AutoSize = true;
-            this.eventsCheckBox4.Location = new System.Drawing.Point(16, 71);
-            this.eventsCheckBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox4.Location = new System.Drawing.Point(21, 87);
+            this.eventsCheckBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox4.Name = "eventsCheckBox4";
-            this.eventsCheckBox4.Size = new System.Drawing.Size(64, 14);
+            this.eventsCheckBox4.Size = new System.Drawing.Size(106, 21);
             this.eventsCheckBox4.TabIndex = 0;
             this.eventsCheckBox4.Text = "Basic attack";
             this.eventsCheckBox4.UseVisualStyleBackColor = true;
@@ -543,10 +523,10 @@
             // eventsCheckBox3
             // 
             this.eventsCheckBox3.AutoSize = true;
-            this.eventsCheckBox3.Location = new System.Drawing.Point(16, 55);
-            this.eventsCheckBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.eventsCheckBox3.Location = new System.Drawing.Point(21, 68);
+            this.eventsCheckBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.eventsCheckBox3.Name = "eventsCheckBox3";
-            this.eventsCheckBox3.Size = new System.Drawing.Size(67, 14);
+            this.eventsCheckBox3.Size = new System.Drawing.Size(113, 21);
             this.eventsCheckBox3.TabIndex = 0;
             this.eventsCheckBox3.Text = "Action button";
             this.eventsCheckBox3.UseVisualStyleBackColor = true;
@@ -555,10 +535,10 @@
             // checkBoxCollidable
             // 
             this.checkBoxCollidable.AutoSize = true;
-            this.checkBoxCollidable.Location = new System.Drawing.Point(18, 17);
-            this.checkBoxCollidable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxCollidable.Location = new System.Drawing.Point(24, 21);
+            this.checkBoxCollidable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxCollidable.Name = "checkBoxCollidable";
-            this.checkBoxCollidable.Size = new System.Drawing.Size(98, 17);
+            this.checkBoxCollidable.Size = new System.Drawing.Size(127, 21);
             this.checkBoxCollidable.TabIndex = 1;
             this.checkBoxCollidable.Text = "Physic Collision";
             this.checkBoxCollidable.UseVisualStyleBackColor = true;
@@ -567,19 +547,18 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 42);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(21, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(85, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Event Name";
             // 
             // textBoxEvent
             // 
-            this.textBoxEvent.Location = new System.Drawing.Point(84, 40);
-            this.textBoxEvent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxEvent.Location = new System.Drawing.Point(112, 49);
+            this.textBoxEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxEvent.Name = "textBoxEvent";
-            this.textBoxEvent.Size = new System.Drawing.Size(90, 20);
+            this.textBoxEvent.Size = new System.Drawing.Size(119, 22);
             this.textBoxEvent.TabIndex = 5;
             this.textBoxEvent.TextChanged += new System.EventHandler(this.textEvent_TextChanged);
             // 
@@ -587,7 +566,7 @@
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -600,16 +579,15 @@
             this.splitContainer4.Panel2.Controls.Add(this.mapPanel);
             this.splitContainer4.Panel2.Controls.Add(this.hScrollBarMap);
             this.splitContainer4.Panel2.Controls.Add(this.vScrollBarMap);
-            this.splitContainer4.Size = new System.Drawing.Size(523, 508);
-            this.splitContainer4.SplitterDistance = 25;
-            this.splitContainer4.SplitterWidth = 3;
+            this.splitContainer4.Size = new System.Drawing.Size(698, 646);
+            this.splitContainer4.SplitterDistance = 31;
             this.splitContainer4.TabIndex = 1;
             // 
             // splitContainer5
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer5.Name = "splitContainer5";
             // 
             // splitContainer5.Panel1
@@ -619,9 +597,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.checkBoxVisible);
-            this.splitContainer5.Size = new System.Drawing.Size(523, 25);
-            this.splitContainer5.SplitterDistance = 348;
-            this.splitContainer5.SplitterWidth = 3;
+            this.splitContainer5.Size = new System.Drawing.Size(698, 31);
+            this.splitContainer5.SplitterDistance = 464;
             this.splitContainer5.TabIndex = 0;
             // 
             // tabLayers
@@ -629,21 +606,21 @@
             this.tabLayers.Controls.Add(this.tabLayer0);
             this.tabLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabLayers.Location = new System.Drawing.Point(0, 0);
-            this.tabLayers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabLayers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabLayers.Name = "tabLayers";
             this.tabLayers.SelectedIndex = 0;
-            this.tabLayers.Size = new System.Drawing.Size(348, 25);
+            this.tabLayers.Size = new System.Drawing.Size(464, 31);
             this.tabLayers.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabLayers.TabIndex = 1;
             this.tabLayers.SelectedIndexChanged += new System.EventHandler(this.tabLayers_SelectedIndexChanged);
             // 
             // tabLayer0
             // 
-            this.tabLayer0.Location = new System.Drawing.Point(4, 22);
-            this.tabLayer0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabLayer0.Location = new System.Drawing.Point(4, 25);
+            this.tabLayer0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabLayer0.Name = "tabLayer0";
-            this.tabLayer0.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabLayer0.Size = new System.Drawing.Size(340, 0);
+            this.tabLayer0.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabLayer0.Size = new System.Drawing.Size(456, 2);
             this.tabLayer0.TabIndex = 0;
             this.tabLayer0.Text = "Layer 0";
             this.tabLayer0.UseVisualStyleBackColor = true;
@@ -653,51 +630,36 @@
             this.checkBoxVisible.AutoSize = true;
             this.checkBoxVisible.Dock = System.Windows.Forms.DockStyle.Left;
             this.checkBoxVisible.Location = new System.Drawing.Point(0, 0);
-            this.checkBoxVisible.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxVisible.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxVisible.Name = "checkBoxVisible";
-            this.checkBoxVisible.Size = new System.Drawing.Size(56, 25);
+            this.checkBoxVisible.Size = new System.Drawing.Size(71, 31);
             this.checkBoxVisible.TabIndex = 0;
             this.checkBoxVisible.Text = "Visible";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
             this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
             // 
-            // mapPanel
-            // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
-            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPanel.Location = new System.Drawing.Point(0, 0);
-            this.mapPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(502, 459);
-            this.mapPanel.TabIndex = 1;
-            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
-            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
-            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
-            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
-            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
-            // 
             // hScrollBarMap
             // 
             this.hScrollBarMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBarMap.Location = new System.Drawing.Point(0, 459);
+            this.hScrollBarMap.Location = new System.Drawing.Point(0, 590);
             this.hScrollBarMap.Name = "hScrollBarMap";
-            this.hScrollBarMap.Size = new System.Drawing.Size(502, 21);
+            this.hScrollBarMap.Size = new System.Drawing.Size(677, 21);
             this.hScrollBarMap.TabIndex = 1;
             // 
             // vScrollBarMap
             // 
             this.vScrollBarMap.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBarMap.Location = new System.Drawing.Point(502, 0);
+            this.vScrollBarMap.Location = new System.Drawing.Point(677, 0);
             this.vScrollBarMap.Name = "vScrollBarMap";
-            this.vScrollBarMap.Size = new System.Drawing.Size(21, 480);
+            this.vScrollBarMap.Size = new System.Drawing.Size(21, 611);
             this.vScrollBarMap.TabIndex = 2;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 595);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 737);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(949, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -717,9 +679,9 @@
             this.removeToolStripButton,
             this.toolStripSeparator12,
             this.helpToolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(712, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(949, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -848,8 +810,8 @@
             this.helpToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(949, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -865,7 +827,7 @@
             this.toolStripSeparator9,
             this.exitToolStripMenuItem1});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem1.Text = "&File";
             // 
             // newToolStripMenuItem1
@@ -874,7 +836,7 @@
             this.newToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(219, 24);
             this.newToolStripMenuItem1.Text = "&New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
@@ -884,19 +846,19 @@
             this.openToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
             this.openToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(219, 24);
             this.openToolStripMenuItem1.Text = "&Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(185, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(216, 6);
             // 
             // setPathToolStripMenuItem
             // 
             this.setPathToolStripMenuItem.Name = "setPathToolStripMenuItem";
-            this.setPathToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.setPathToolStripMenuItem.Size = new System.Drawing.Size(219, 24);
             this.setPathToolStripMenuItem.Text = "Set Environment Path";
             this.setPathToolStripMenuItem.Click += new System.EventHandler(this.setPathToolStripMenuItem_Click);
             // 
@@ -907,7 +869,7 @@
             this.saveToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
             this.saveToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(219, 24);
             this.saveToolStripMenuItem1.Text = "&Save";
             // 
             // saveAsToolStripMenuItem1
@@ -915,19 +877,19 @@
             this.saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
             this.saveAsToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.saveAsToolStripMenuItem1.Size = new System.Drawing.Size(219, 24);
             this.saveAsToolStripMenuItem1.Text = "Save &As";
             this.saveAsToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(185, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(216, 6);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(219, 24);
             this.exitToolStripMenuItem1.Text = "E&xit";
             // 
             // editToolStripMenuItem1
@@ -941,27 +903,27 @@
             this.pasteToolStripMenuItem1,
             this.deleteToolStripMenuItem1});
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem1.Text = "&Edit";
             // 
             // undoToolStripMenuItem1
             // 
             this.undoToolStripMenuItem1.Enabled = false;
             this.undoToolStripMenuItem1.Name = "undoToolStripMenuItem1";
-            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.undoToolStripMenuItem1.Text = "&Undo";
             // 
             // redoToolStripMenuItem1
             // 
             this.redoToolStripMenuItem1.Enabled = false;
             this.redoToolStripMenuItem1.Name = "redoToolStripMenuItem1";
-            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.redoToolStripMenuItem1.Text = "&Redo";
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(161, 6);
             // 
             // cutToolStripMenuItem1
             // 
@@ -969,7 +931,7 @@
             this.cutToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem1.Name = "cutToolStripMenuItem1";
             this.cutToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.cutToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.cutToolStripMenuItem1.Text = "Cu&t";
             this.cutToolStripMenuItem1.Click += new System.EventHandler(this.cutToolStripButton_Click);
             // 
@@ -979,7 +941,7 @@
             this.copyToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
             this.copyToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.copyToolStripMenuItem1.Text = "&Copy";
             this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripButton_Click);
             // 
@@ -989,7 +951,7 @@
             this.pasteToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
             this.pasteToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.pasteToolStripMenuItem1.Text = "&Paste";
             this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripButton_Click);
             // 
@@ -997,7 +959,7 @@
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
             this.deleteToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(164, 24);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToopStripButton_Click);
             // 
@@ -1007,20 +969,20 @@
             this.importToolStripMenuItem1,
             this.exportToolStripMenuItem1});
             this.tilesetToolStripMenuItem1.Name = "tilesetToolStripMenuItem1";
-            this.tilesetToolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
+            this.tilesetToolStripMenuItem1.Size = new System.Drawing.Size(64, 24);
             this.tilesetToolStripMenuItem1.Text = "&Tileset";
             // 
             // importToolStripMenuItem1
             // 
             this.importToolStripMenuItem1.Name = "importToolStripMenuItem1";
-            this.importToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.importToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
             this.importToolStripMenuItem1.Text = "&Import XML File";
             this.importToolStripMenuItem1.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem1
             // 
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
             this.exportToolStripMenuItem1.Text = "&Export XML File";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -1031,20 +993,20 @@
             this.removeToolStripMenuItem,
             this.renameToolStripMenuItem1});
             this.layersToolStripMenuItem.Name = "layersToolStripMenuItem";
-            this.layersToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.layersToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.layersToolStripMenuItem.Text = "&Layers";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.addToolStripMenuItem.Text = "&Add Layer";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.newLayerToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.removeToolStripMenuItem.Text = "&Remove Layer";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.deleteLayerToolStripMenuItem_Click);
             // 
@@ -1052,7 +1014,7 @@
             // 
             this.renameToolStripMenuItem1.Enabled = false;
             this.renameToolStripMenuItem1.Name = "renameToolStripMenuItem1";
-            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.renameToolStripMenuItem1.Size = new System.Drawing.Size(171, 24);
             this.renameToolStripMenuItem1.Text = "Re&name";
             // 
             // helpToolStripMenuItem1
@@ -1065,49 +1027,91 @@
             this.aboutToolStripMenuItem1});
             this.helpToolStripMenuItem1.Enabled = false;
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem1.Text = "&Help";
             // 
             // contentsToolStripMenuItem1
             // 
             this.contentsToolStripMenuItem1.Enabled = false;
             this.contentsToolStripMenuItem1.Name = "contentsToolStripMenuItem1";
-            this.contentsToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.contentsToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.contentsToolStripMenuItem1.Text = "&Contents";
             // 
             // indexToolStripMenuItem1
             // 
             this.indexToolStripMenuItem1.Enabled = false;
             this.indexToolStripMenuItem1.Name = "indexToolStripMenuItem1";
-            this.indexToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.indexToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.indexToolStripMenuItem1.Text = "&Index";
             // 
             // searchToolStripMenuItem1
             // 
             this.searchToolStripMenuItem1.Enabled = false;
             this.searchToolStripMenuItem1.Name = "searchToolStripMenuItem1";
-            this.searchToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.searchToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.searchToolStripMenuItem1.Text = "&Search";
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(133, 6);
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Enabled = false;
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.aboutToolStripMenuItem1.Text = "&About...";
+            // 
+            // checkTilesetGrid
+            // 
+            this.checkTilesetGrid.AutoSize = true;
+            this.checkTilesetGrid.Checked = true;
+            this.checkTilesetGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkTilesetGrid.Location = new System.Drawing.Point(612, 8);
+            this.checkTilesetGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkTilesetGrid.Name = "checkTilesetGrid";
+            this.checkTilesetGrid.Size = new System.Drawing.Size(103, 21);
+            this.checkTilesetGrid.TabIndex = 4;
+            this.checkTilesetGrid.Text = "Tileset Grid";
+            this.checkTilesetGrid.UseVisualStyleBackColor = true;
+            // 
+            // tilesetPanel
+            // 
+            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
+            this.tilesetPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tilesetPanel.Name = "tilesetPanel";
+            this.tilesetPanel.Size = new System.Drawing.Size(226, 349);
+            this.tilesetPanel.TabIndex = 0;
+            this.tilesetPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarTileset_Scroll);
+            this.tilesetPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseDown);
+            this.tilesetPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseMove);
+            this.tilesetPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tilesetPanel_MouseUp);
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPanel.Location = new System.Drawing.Point(0, 0);
+            this.mapPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(677, 590);
+            this.mapPanel.TabIndex = 1;
+            this.mapPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarMap_Scroll);
+            this.mapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseClick);
+            this.mapPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseDown);
+            this.mapPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseMove);
+            this.mapPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapPanel_MouseUp);
             // 
             // CTileEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 617);
+            this.ClientSize = new System.Drawing.Size(949, 759);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CTileEditor";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CTileEditor_FormClosing);
@@ -1242,6 +1246,7 @@
         private System.Windows.Forms.CheckBox eventsCheckBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numObjLayer;
+        private System.Windows.Forms.CheckBox checkTilesetGrid;
 
     }
 }
