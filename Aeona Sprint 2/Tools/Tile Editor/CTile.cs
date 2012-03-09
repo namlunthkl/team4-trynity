@@ -5,6 +5,14 @@ using System.Text;
 
 namespace Tile_Editor
 {
+    public enum ETileByte
+    {
+        BIT_TILE_COLLISION = 0, BIT_EVENT_ANY_COLLISION,
+        BIT_EVENT_PLAYER_COLLISION, BIT_EVENT_ACTION_BUTTON,
+        BIT_EVENT_BASIC_ATTACK, BIT_EVENT_FIRE_BLADE,
+        BIT_EVENT_EARTH_HAMMER, BIT_EVENT_AIR_CROSSBOW
+    };
+
     class CTile
     {
         int nPosX;
@@ -28,7 +36,6 @@ namespace Tile_Editor
             set { byteTileInfo = value; }
         }
 
-       
         string szEvent;
         public string Event
         {
@@ -41,7 +48,7 @@ namespace Tile_Editor
             nPosX = -1;
             nPosY = -1;
             byteTileInfo = 0;
-            szEvent = "none";
+            szEvent = "";
         }
     }
 

@@ -287,38 +287,104 @@ namespace Tile_Editor
                                 D3D.Sprite.Flush();
                             }
 
-                            // If "View IDs" is selected, draw IDs for all tiles
-                            if (nLayerIndex == tabLayers.SelectedIndex && checkViewCollision.Checked)
-                            {
-                                char cCollisionID;
-                                // Test first bit (collision)
-                                if ((curTile.TileInfo & (1 << 7)) == (1 << 7))
-                                    cCollisionID = 'X';
-                                else
-                                    cCollisionID = 'O';
-
-                                // e.Graphics.DrawString(szID, SystemFonts.DefaultFont, Brushes.Black, ptPosition);
-                                D3D.DrawText(cCollisionID.ToString(), ptPosition.X, ptPosition.Y, Color.Black);
-                            }
+                            
                             // If "View Grid" is selected, draw grid using the offset
                             if (checkViewGrid.Checked)
                                 // e.Graphics.DrawEmptyRectangle(Pens.Black, new Rectangle(ptPosition, SizeTile));
                                 D3D.DrawEmptyRect(new Rectangle(ptPosition, SizeTile), Color.Black,  1.0f);
+
+                            // If this tile has an event, let's mark it with an "E"
+                            if (curTile.Event != "" && curTile.Event != "none")
+                            {
+                                Color col = Color.Black;
+                                string symbol = "A";
+
+                                if (curTile.Event == "Enemy")
+                                {
+                                    col = Color.Purple;
+                                    symbol = "E";
+                                }
+                                else if (curTile.Event == "NPC")
+                                {
+                                    col = Color.DeepPink;
+                                    symbol = "N";
+                                }
+                                else if (curTile.Event == "Chest")
+                                {
+                                    col = Color.SaddleBrown;
+                                    symbol = "C";
+                                }
+                                else
+                                {
+                                    if ((curTile.TileInfo & (1 << (7 - (int)ETileByte.BIT_EVENT_BASIC_ATTACK))) != 0)
+                                    {
+                                        col = Color.Silver;
+                                        symbol = "W";
+                                    }
+                                    else if ((curTile.TileInfo & (1 << (7 - (int)ETileByte.BIT_EVENT_FIRE_BLADE))) != 0)
+                                    {
+                                        col = Color.Red;
+                                        symbol = "W";
+                                    }
+                                    else if ((curTile.TileInfo & (1 << (7 - (int)ETileByte.BIT_EVENT_EARTH_HAMMER))) != 0)
+                                    {
+                                        col = Color.DarkGreen;
+                                        symbol = "W";
+                                    }
+                                    else if ((curTile.TileInfo & (1 << (7 - (int)ETileByte.BIT_EVENT_AIR_CROSSBOW))) != 0)
+                                    {
+                                        col = Color.Navy;
+                                        symbol = "W";
+                                    }
+                                }
+
+                                D3D.DrawText(symbol, ptPosition.X, ptPosition.Y, col);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // If "View IDs" is selected, draw IDs for all tiles
+            if (checkViewCollision.Checked && m_listLayers.Count > 0)
+            {
+                for (int nHorIndex = 0; nHorIndex < m_sizeMap.Width; nHorIndex++)
+                {
+                    for (int nVertIndex = 0; nVertIndex < m_sizeMap.Height; nVertIndex++)
+                    {
+                        // Get the destination and source rects based on tile data
+                        Point ptPosition = new Point(
+                            nHorIndex * m_sizeTile.Width + ptOffset.X,
+                            nVertIndex * m_sizeTile.Height + ptOffset.Y);
+
+                        // Culling - Only draw the tile if it's on screen right now
+                        if (ptPosition.X + SizeTile.Width >= 0 && ptPosition.X < mapPanel.Right &&
+                            ptPosition.Y + SizeTile.Height >= 0 && ptPosition.Y < mapPanel.Bottom)
+                        {
+                            char cCollisionID;
+                            CTile curTile = m_listLayers[0].TileMap[nHorIndex, nVertIndex];
+
+                            // Test first bit (collision)
+                            if ((curTile.TileInfo & (1 << 7)) == (1 << 7))
+                                cCollisionID = 'X';
+                            else
+                                cCollisionID = 'O';
+
+                            // e.Graphics.DrawString(szID, SystemFonts.DefaultFont, Brushes.Black, ptPosition);
+                            D3D.DrawText(cCollisionID.ToString(), ptPosition.X, ptPosition.Y, Color.Black);
                         }
                     }
                 }
             }
 
             // 4. Mark the selected tile with a thick rectangle
-            if (checkViewGrid.Checked)
-            {
-                Point ptSelectedPosition = new Point(
-                    m_ptSelectedOnMap.X * m_sizeTile.Width + ptOffset.X,
-                    m_ptSelectedOnMap.Y * m_sizeTile.Height + ptOffset.Y);
+            Point ptSelectedPosition = new Point(
+                m_ptSelectedOnMap.X * m_sizeTile.Width + ptOffset.X,
+                m_ptSelectedOnMap.Y * m_sizeTile.Height + ptOffset.Y);
 
-                // e.Graphics.DrawEmptyRectangle(new Pen(Color.Black, 3.0f), new Rectangle(ptSelectedPosition, SizeTile));
-                D3D.DrawEmptyRect(new Rectangle(ptSelectedPosition, SizeTile), Color.Red, 2.5f);
-            }
+            // e.Graphics.DrawEmptyRectangle(new Pen(Color.Black, 3.0f), new Rectangle(ptSelectedPosition, SizeTile));
+            D3D.DrawEmptyRect(new Rectangle(ptSelectedPosition, SizeTile), Color.Red, 2.5f);
         }
 
         //  Recreates the map with the size gotten from the UI
@@ -403,7 +469,7 @@ namespace Tile_Editor
                         nHorIndex * m_sizeTile.Width + ptOffset.X,
                         nVertIndex * m_sizeTile.Height + ptOffset.Y);
 
-                    if(checkViewGrid.Checked == true)
+                    if(checkTilesetGrid.Checked == true)
                         D3D.DrawEmptyRect(new Rectangle(ptPosition, SizeTile), Color.Black, 1.0f);
                     
                 }
@@ -448,17 +514,24 @@ namespace Tile_Editor
 
                 // If view collision is checked, don't draw but toggle
                 // collision when clicking on the map
-                if (checkViewCollision.Checked == true && m_bMousePaintingCollision == false)
+                if (m_bMousePaintingCollision == false)
                 {
-                    CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[HorIndex, VertIndex];
-                    curTile.TileInfo ^= (1 << 7);   // Toggle the first bit
-                }
-                else
-                {
-                    // If the left button was pressed, draw the selected image
-                    // from the tileset on this specific tile
-                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    Point ptSelected = new Point();
+                    ptSelected.X = ptOffset.X / SizeTile.Width;
+                    ptSelected.Y = ptOffset.Y / SizeTile.Height;
+                    CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[ptSelected.X, ptSelected.Y];
+
+                    // If the right button was pressed, select
+                    if (e.Button == System.Windows.Forms.MouseButtons.Right)
                     {
+                        m_ptSelectedOnMap.X = ptSelected.X;
+                        m_ptSelectedOnMap.Y = ptSelected.Y;
+                        GetTileInfoOnBoxes(curTile);
+                    }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        // If the left button was pressed, draw the selected image
+                        // from the tileset on this specific tile
                         // Else, loop through the rectangle of selected tiles (on tileset)
                         for (int hIndex = m_rectMultiSelected.Left; hIndex < m_rectMultiSelected.Right; hIndex += SizeTile.Width)
                         {
@@ -485,45 +558,40 @@ namespace Tile_Editor
                         }
                     }
                 }
-
-                // If the right button was pressed, select
-                if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                {
-                    m_ptSelectedOnMap.X = ptOffset.X / SizeTile.Width;
-                    m_ptSelectedOnMap.Y = ptOffset.Y / SizeTile.Height;
-
-                    CTile curTile = m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y];
-
-                    textBoxEvent.Text = curTile.Event;
-
-                    if ((curTile.TileInfo & (1 << 7)) == (1 << 7))
-                        checkBoxCollidable.Checked = true;
-                    else
-                        checkBoxCollidable.Checked = false;
-
-                    CheckBox[] curCheckBoxes = new CheckBox[7];
-
-                    int indexEvent = 0;
-                    for (int bitID = 6; bitID >= 0; bitID--, indexEvent++)
-                    {
-                        curCheckBoxes[indexEvent] = new CheckBox();
-
-                        if ((curTile.TileInfo & (1 << bitID)) != 0)
-                            curCheckBoxes[indexEvent].Checked = true;
-                        else
-                            curCheckBoxes[indexEvent].Checked = false;
-                    }
-
-                    eventsCheckBox1.Checked = curCheckBoxes[0].Checked;
-                    eventsCheckBox2.Checked = curCheckBoxes[1].Checked;
-                    eventsCheckBox3.Checked = curCheckBoxes[2].Checked;
-                    eventsCheckBox4.Checked = curCheckBoxes[3].Checked;
-                    eventsCheckBox5.Checked = curCheckBoxes[4].Checked;
-                    eventsCheckBox6.Checked = curCheckBoxes[5].Checked;
-                    eventsCheckBox7.Checked = curCheckBoxes[6].Checked;
-                }
             }
         }
+
+        private void GetTileInfoOnBoxes(CTile curTile)
+        {
+            textBoxEvent.Text = curTile.Event;
+
+            if ((curTile.TileInfo & (1 << 7)) == (1 << 7))
+                checkBoxCollidable.Checked = true;
+            else
+                checkBoxCollidable.Checked = false;
+
+            CheckBox[] curCheckBoxes = new CheckBox[7];
+
+            int indexEvent = 0;
+            for (int bitID = 6; bitID >= 0; bitID--, indexEvent++)
+            {
+                curCheckBoxes[indexEvent] = new CheckBox();
+
+                if ((curTile.TileInfo & (1 << bitID)) != 0)
+                    curCheckBoxes[indexEvent].Checked = true;
+                else
+                    curCheckBoxes[indexEvent].Checked = false;
+            }
+
+            eventsCheckBox1.Checked = curCheckBoxes[0].Checked;
+            eventsCheckBox2.Checked = curCheckBoxes[1].Checked;
+            eventsCheckBox3.Checked = curCheckBoxes[2].Checked;
+            eventsCheckBox4.Checked = curCheckBoxes[3].Checked;
+            eventsCheckBox5.Checked = curCheckBoxes[4].Checked;
+            eventsCheckBox6.Checked = curCheckBoxes[5].Checked;
+            eventsCheckBox7.Checked = curCheckBoxes[6].Checked;
+        }
+
 
         private void mapPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -552,13 +620,15 @@ namespace Tile_Editor
 
         private void mapPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (m_bMousePainting == true || m_bMousePaintingCollision == true)
-            {
-                // Mouse scroll bars offset
-                Point ptOffset = e.Location;
-                ptOffset.X += hScrollBarMap.Value;
-                ptOffset.Y += vScrollBarMap.Value;
+            // Mouse scroll bars offset
+            Point ptOffset = e.Location;
+            ptOffset.X += hScrollBarMap.Value;
+            ptOffset.Y += vScrollBarMap.Value;
 
+            if (ptOffset.X >= 0 && ptOffset.X < m_sizeMap.Width * SizeTile.Width
+                   && ptOffset.Y >= 0 && ptOffset.Y < m_sizeMap.Height * SizeTile.Height
+                && tabLayers.SelectedIndex != -1 && (m_bMousePainting == true || m_bMousePaintingCollision == true))
+            {
                 // Paint scroll bars offsets
                 Point ptPaintOffset = Point.Empty;
                 ptPaintOffset.X -= hScrollBarMap.Value;
@@ -583,16 +653,18 @@ namespace Tile_Editor
 
                 if (m_bMousePaintingCollision == true)
                 {
+                    CTile collisionTile = m_listLayers[0].TileMap[HorIndex, VertIndex];
+
                     if (m_bMousePaintingCollidableType)
-                        selectedTile.TileInfo |= (1 << 7);
+                        collisionTile.TileInfo |= (1 << 7);
                     else
                     {
                         byte X = (1 << 7);
                         byte Y = (byte)~X;
-                        selectedTile.TileInfo &= Y;
+                        collisionTile.TileInfo &= Y;
                     }
                 }
-                else if (m_bMousePainting == true)
+                else
                 {
                     Point ptSelectedOnTileset = new Point();
                     ptSelectedOnTileset.X = m_rectMultiSelected.X / SizeTile.Width;
@@ -624,8 +696,9 @@ namespace Tile_Editor
             ptPaintOffset.X -= hScrollBarMap.Value;
             ptPaintOffset.Y -= vScrollBarMap.Value;
 
-
             m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y] = m_tileClipboard;
+
+            GetTileInfoOnBoxes(m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y]);
 
         }
 
@@ -638,7 +711,7 @@ namespace Tile_Editor
 
             m_tileClipboard = m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y];
             m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y] = new CTile();
-
+            GetTileInfoOnBoxes(m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y]);
         }
 
         private void deleteToopStripButton_Click(object sender, EventArgs e)
@@ -649,7 +722,7 @@ namespace Tile_Editor
             ptPaintOffset.Y -= vScrollBarMap.Value;
 
             m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y] = new CTile();
-
+            GetTileInfoOnBoxes(m_listLayers[tabLayers.SelectedIndex].TileMap[m_ptSelectedOnMap.X, m_ptSelectedOnMap.Y]);
         }
 
         private void newLayerToolStripMenuItem_Click(object sender, EventArgs e)
