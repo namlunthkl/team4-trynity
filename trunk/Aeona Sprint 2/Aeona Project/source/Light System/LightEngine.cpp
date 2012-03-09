@@ -18,6 +18,10 @@ LightEngine* LightEngine::GetInstance(void)
 }
 void LightEngine::Initialize( void )
 {
+	SetCurrentCycle( 0 );
+	SetCurrentTime( 0.0f );
+	SetTimeToWait( 0.0f );
+
 	SetAmbientAlpha( 1.0f );
 	SetAmbientRed( 1.0f );
 	SetAmbientGreen(1.0f );
@@ -49,6 +53,8 @@ void LightEngine::Initialize( void )
 }
 void LightEngine::Update( void )
 {
+	SetCurrentTime( GetCurrentTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
+	Cycle();
 	// PLAYER LIGHT
 	if( GetPlayerPointLight() )
 	{
@@ -141,6 +147,10 @@ void LightEngine::Update( void )
 void LightEngine::Input( void ){}
 void LightEngine::ShutDown( void )
 {
+	SetCurrentCycle( 0 );
+	SetCurrentTime( 0.0f );
+	SetTimeToWait( 0.0f );
+
 	SetAmbientAlpha( 0.0f );
 	SetAmbientRed( 0.0f );
 	SetAmbientGreen(0.0f );
@@ -228,6 +238,13 @@ void LightEngine::Morning( void )
 	SetAmbientGreen(1.0f );
 	SetAmbientBlue( 2.0f );
 }
+void LightEngine::Afternoon( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  1.0f );
+	SetAmbientGreen(1.0f );
+	SetAmbientBlue( 1.5f );
+}
 void LightEngine::Day( void )
 {
 	SetAmbientAlpha( 1.0f );
@@ -242,6 +259,13 @@ void LightEngine::Evening( void )
 	SetAmbientGreen(1.0f );
 	SetAmbientBlue( 1.0f );
 }
+void LightEngine::Dusk( void )
+{
+	SetAmbientAlpha( 1.0f );
+	SetAmbientRed(  0.9f );
+	SetAmbientGreen(0.5f );
+	SetAmbientBlue( 0.5f );
+}
 void LightEngine::Night( void )
 {
 	SetAmbientAlpha( 1.0f );
@@ -249,45 +273,74 @@ void LightEngine::Night( void )
 	SetAmbientGreen(0.2f );
 	SetAmbientBlue( 0.5f );
 }
-void LightEngine::Rain( void )
+void LightEngine::Dawn( void )
 {
-	SetAmbientAlpha(1.0f );
+	SetAmbientAlpha( 1.0f );
 	SetAmbientRed(  0.6f );
 	SetAmbientGreen(0.6f );
-	SetAmbientBlue( 0.8f );
-}
-void LightEngine::Snow( void )
-{
-	SetAmbientAlpha(1.0f );
-	SetAmbientRed(  0.6f );
-	SetAmbientGreen(0.7f );
-	SetAmbientBlue( 0.7f );
-}
-void LightEngine::Leaves( void )
-{
-	SetAmbientAlpha(1.0f );
-	SetAmbientRed(  1.0f );
-	SetAmbientGreen(1.25f );
 	SetAmbientBlue( 1.0f );
 }
-void LightEngine::Sand( void )
+
+void LightEngine::Cycle( void )
 {
-	SetAmbientAlpha(1.0f );
-	SetAmbientRed(  1.5f );
-	SetAmbientGreen(1.2f );
-	SetAmbientBlue( 1.2f );
-}
-void LightEngine::Ember( void )
-{
-	SetAmbientAlpha(1.0f );
-	SetAmbientRed(  1.2f );
-	SetAmbientGreen(0.8f );
-	SetAmbientBlue( 0.8f );
-}
-void LightEngine::FireFlies( void )
-{
-	SetAmbientAlpha(1.0f );
-	SetAmbientRed(  0.5f );
-	SetAmbientGreen(0.3f );
-	SetAmbientBlue( 0.5f );
+	if( GetCurrentTime() >= GetTimeToWait() )
+	{
+		SetCurrentCycle( GetCurrentCycle() + 1 );
+		if( GetCurrentCycle() > 7 )
+		{
+			SetCurrentCycle( 1 );
+		}
+		switch( GetCurrentCycle() )
+		{
+		case 1:
+			{
+				Morning();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 2:
+			{
+				Afternoon();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 3:
+			{
+				Day();
+				SetCurrentTime( 50.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 4:
+			{
+				Evening();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 5:
+			{
+				Dusk();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 6:
+			{
+				Night();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		case 7:
+			{
+				Dawn();
+				SetCurrentTime( 0.0f );
+				SetTimeToWait( 60.0f );
+			}
+			break;
+		}
+	}
 }

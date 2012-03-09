@@ -4,6 +4,13 @@
 class LightEngine
 {
 private:		
+	// CURRENT CYCLE
+	enum CYCLE{ MORNING = 1, AFTERNOON, DAY, EVENING, DUSK, NIGHT, DAWN };
+
+	unsigned short m_sCurrentCycle;
+	float m_fCurrentTime;
+	float m_fTimeToWait;
+	
 	// AMBIENT LIGHT
 	float m_fAmbientAlpha;
 	float m_fAmbientRed;
@@ -67,6 +74,16 @@ private:
 
 public:
 	static LightEngine* GetInstance(void);
+
+	// CYCLE
+	void SetCurrentCycle( unsigned short cycle )	{ m_sCurrentCycle = cycle; }
+	unsigned short GetCurrentCycle(void)			{ return m_sCurrentCycle; }
+
+	void SetCurrentTime( float fTime )				{ m_fCurrentTime = fTime; }
+	float GetCurrentTime(void)						{ return m_fCurrentTime; }
+
+	void SetTimeToWait( float fTimeToWait )			{ m_fTimeToWait = fTimeToWait; }
+	unsigned short GetTimeToWait(void)				{ return m_fTimeToWait; }
 
 	//AMBIENT LIGHT
 	void SetAmbientAlpha( float fAmbientAlpha )		{ m_fAmbientAlpha = fAmbientAlpha; }
@@ -179,16 +196,14 @@ public:
 	void Flicker(void);
 
 	void Morning( void );
+	void Afternoon( void );
 	void Day( void );
 	void Evening( void );
+	void Dusk( void );
 	void Night( void );
+	void Dawn( void );
 
-	void Rain( void );
-	void Snow( void );
-	void Leaves( void );
-	void Sand( void );
-	void Ember( void );
-	void FireFlies( void );
+	void Cycle( void );
 };
 
 #endif
