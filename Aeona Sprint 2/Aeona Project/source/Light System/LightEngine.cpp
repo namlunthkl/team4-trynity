@@ -54,7 +54,7 @@ void LightEngine::Initialize( void )
 void LightEngine::Update( void )
 {
 	SetCurrentLTime( GetCurrentLTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
-	Cycle();
+	DayNightCycle();
 	// PLAYER LIGHT
 	if( GetPlayerPointLight() )
 	{
@@ -281,7 +281,7 @@ void LightEngine::Dawn( void )
 	SetAmbientBlue( 1.0f );
 }
 
-void LightEngine::Cycle( void )
+void LightEngine::DayNightCycle( void )
 {
 	if( GetCurrentLTime() >= GetTimeToWait() )
 	{
@@ -296,49 +296,49 @@ void LightEngine::Cycle( void )
 			{
 				Morning();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 2:
 			{
 				Afternoon();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 3:
 			{
 				Day();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 4:
 			{
 				Evening();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 5:
 			{
 				Dusk();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 6:
 			{
 				Night();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		case 7:
 			{
 				Dawn();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 90.0f );
+				SetTimeToWait( 10.0f );
 			}
 			break;
 		}

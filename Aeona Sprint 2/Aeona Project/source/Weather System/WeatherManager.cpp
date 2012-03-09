@@ -10,7 +10,7 @@
 CWeatherManager::CWeatherManager()
 {
 	SetTypeOfWeather( 0 );
-	SetTimeToWait( 5.0f );
+	SetTimeToWait( 0.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );
 }
@@ -24,94 +24,285 @@ CWeatherManager* CWeatherManager::GetInstance(void)
 	static CWeatherManager instance;
 	return &instance;
 }
-void CWeatherManager::LoadWeather( short TypeOfWeather )
+
+void CWeatherManager::CheckRegion(void)
 {
-	SetTypeOfWeather( TypeOfWeather );
+	const char* m_szRegion = CPlayer::GetInstance()->GetRegion();
+
+	if( m_szRegion != NULL)
+	{		
+		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest" ) == 0 )
+		{
+			m_nCurrRegion = 0;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Snow" ) == 0 )
+		{
+			m_nCurrRegion = 1;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Desert" ) == 0 )
+		{
+			m_nCurrRegion = 2;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Volcano" ) == 0 )
+		{
+			m_nCurrRegion = 3;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Cave" ) == 0 )
+		{
+			m_nCurrRegion = 4;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Lake" ) == 0 )
+		{
+			m_nCurrRegion = 5;
+		}
+	}
+}
+void CWeatherManager::LoadWeather(void)
+{
 	switch( GetTypeOfWeather() )
 	{
-	case 0:
+	case CLEAR:
 		{
-			weather.ShutDown();CWeatherManager::GetInstance()->SetIsOn( false );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
+			weather.ShutDown();
+			SetIsOn( false );
 		}
-		break;
+		break;	
 	case RAIN:
 		{
 			weather.ShutDown();
 			LoadXML("Resource/data/Rain.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
-		}
-		break;
-	case SNOW:
-		{
-			weather.ShutDown();
-			LoadXML("Resource/data/Snow.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
-		}
-		break;
-	case LEAVES:
-		{
-			weather.ShutDown();
-			LoadXML("Resource/data/FallingLeaves.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
-		}
-		break;
-	case SAND:
-		{
-			weather.ShutDown();
-			LoadXML("Resource/data/SandStorm.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
-		}
-		break;
-	case EMBER:
-		{
-			weather.ShutDown();
-			LoadXML("Resource/data/Embers.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
+			SetIsOn( true );
 		}
 		break;
 	case FIREFLIES:
 		{
 			weather.ShutDown();
 			LoadXML("Resource/data/FireFlies.xml");
-			CWeatherManager::GetInstance()->SetIsOn( true );
-			SetTimeToWait( RandomFloat( 30.0f, 60.0f ) );
+			SetIsOn( true );
+		}
+		break;	
+	case LEAVES:
+		{
+			weather.ShutDown();
+			LoadXML("Resource/data/FallingLeaves.xml");
+			SetIsOn( true );
+		}
+		break;
+	case SNOW:
+		{
+			weather.ShutDown();
+			LoadXML("Resource/data/Snow.xml");
+			SetIsOn( true );
+		}
+		break;
+	case SAND:
+		{
+			weather.ShutDown();
+			LoadXML("Resource/data/SandStorm.xml");
+			SetIsOn( true );
+		}
+		break;
+	case EMBER:
+		{
+			weather.ShutDown();
+			LoadXML("Resource/data/Embers.xml");
+			SetIsOn( true );
 		}
 		break;
 	}
 }
+void CWeatherManager::SetWeatherPattern(void)
+{
+	if( GetTime() > GetTimeToWait() )
+	{
+		switch( m_nCurrRegion )
+		{
+		case FOREST:
+			{
+				int nForest = RandomInt( 1, 5 );
+				switch( nForest )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( CLEAR );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( RAIN );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 3:
+					{
+						SetTypeOfWeather( FIREFLIES );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 4:
+					{
+						SetTypeOfWeather( LEAVES );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 5:
+					{
+						SetTypeOfWeather( FOG );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+				break;
+			}
+		case MOUNTAIN:
+			{
+				int nMountain = RandomInt( 1, 3 );
+				switch( nMountain )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( CLEAR );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( SNOW );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 3:
+					{
+						SetTypeOfWeather( FOG );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+			}
+			break;
+		case DESERT:
+			{
+				int nDesert = RandomInt( 1, 2 );
+				switch( nDesert )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( CLEAR );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( SAND );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+			}
+			break;
+		case VOLCANO:
+			{
+				SetTypeOfWeather( EMBER );
+				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				LoadWeather();
+				SetTime( 0.0f );
+			}
+			break;
+		case CAVE:
+			{
+				int nCave = RandomInt( 1, 2 );
+				switch( nCave )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( FIREFLIES );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( FOG );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+			}
+			break;
+		case LAKE:
+			{
+				int nLake = RandomInt( 1, 4 );
+				switch( nLake )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( CLEAR );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( RAIN );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 3:
+					{
+						SetTypeOfWeather( FIREFLIES );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 4:
+					{
+						SetTypeOfWeather( FOG );
+						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+			}
+			break;
+		}
+	}
+}
+
 void CWeatherManager::Update( float fTime )
 {
 	SetTime( GetTime() + fTime );
 
-	const char* Region = CPlayer::GetInstance()->GetRegion();
-	if( GetTime() > GetTimeToWait()  && Region != NULL)
-	{		
-		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest") == 0 )
-		{
-			LoadWeather( 3 );
-		}
-		else if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Snow" ) == 0 )
-		{
-			LoadWeather( 2 );
-		}
-		else if( strcmp(CPlayer::GetInstance()->GetRegion(), "Desert" ) == 0 )
-		{
-			LoadWeather( 4 );
-		}
-		else
-		{
-			LoadWeather( (short)RandomInt( 0, 7 ) );
-		}
-		SetTime( 0.0f );
-	}
-
-
+	CheckRegion();
+	SetWeatherPattern();
 
 	if( GetIsOn() ) 
 	{ 
