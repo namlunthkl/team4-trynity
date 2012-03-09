@@ -21,7 +21,6 @@ private:
 public:
 	static CWeatherManager* GetInstance(void);
 
-	
 	void SetIsOn( bool bOn )				{ m_bIsOn = bOn; }
 	void SetTimeToWait( float fTimeToWait )	{ m_fTimeToWait = fTimeToWait; }
 	void SetTime( float fTime )				{ m_fTime = fTime; }
