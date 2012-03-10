@@ -17,7 +17,7 @@ namespace GraphicsNamespace
         {
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-            this.BackColor = Color.White;
+            this.BackColor = Color.DarkGray;
         }
     }
 }
