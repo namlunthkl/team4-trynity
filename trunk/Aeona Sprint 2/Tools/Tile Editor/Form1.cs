@@ -201,7 +201,7 @@ namespace Tile_Editor
             {
                 D3D.DeviceBegin();
                 D3D.SpriteBegin();
-                D3D.Clear(Color.White);
+                D3D.Clear(Color.DarkGray);
 
                 RenderTileset();
 
@@ -214,7 +214,7 @@ namespace Tile_Editor
             {
                 D3D.DeviceBegin();
                 D3D.SpriteBegin();
-                D3D.Clear(Color.White);
+                D3D.Clear(Color.DarkGray);
 
                 RenderMap();
 
@@ -227,7 +227,7 @@ namespace Tile_Editor
             {
                 D3D.DeviceBegin();
                 D3D.SpriteBegin();
-                D3D.Clear(Color.White);
+                D3D.Clear(Color.DarkGray);
 
                 m_toolTileset.Render(TM, D3D);
 
@@ -481,7 +481,7 @@ namespace Tile_Editor
                 m_rectMultiSelected.Y + ptOffset.Y);
 
             // e.Graphics.DrawEmptyRectangle(new Pen(Color.White, 3.0f), new Rectangle(ptSelectedPosition, m_rectMultiSelected.Size));
-            D3D.DrawEmptyRect(new Rectangle(ptSelectedPosition, m_rectMultiSelected.Size), Color.White, 2.5f);
+            D3D.DrawEmptyRect(new Rectangle(ptSelectedPosition, m_rectMultiSelected.Size), Color.Red, 2.5f);
         }
 
         ////////////////////////////////////////////////////////////////////////

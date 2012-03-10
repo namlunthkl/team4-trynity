@@ -35,6 +35,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.checkBoxTransparency = new System.Windows.Forms.CheckBox();
             this.checkViewCollision = new System.Windows.Forms.CheckBox();
+            this.checkTilesetGrid = new System.Windows.Forms.CheckBox();
             this.checkViewGrid = new System.Windows.Forms.CheckBox();
             this.numMapHeight = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -113,7 +114,6 @@
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkTilesetGrid = new System.Windows.Forms.CheckBox();
             this.tilesetPanel = new GraphicsNamespace.GraphicsPanel();
             this.mapPanel = new GraphicsNamespace.GraphicsPanel();
             this.panel1.SuspendLayout();
@@ -234,6 +234,19 @@
             this.checkViewCollision.TabIndex = 5;
             this.checkViewCollision.Text = "Edit Collision";
             this.checkViewCollision.UseVisualStyleBackColor = true;
+            // 
+            // checkTilesetGrid
+            // 
+            this.checkTilesetGrid.AutoSize = true;
+            this.checkTilesetGrid.Checked = true;
+            this.checkTilesetGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkTilesetGrid.Location = new System.Drawing.Point(612, 8);
+            this.checkTilesetGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkTilesetGrid.Name = "checkTilesetGrid";
+            this.checkTilesetGrid.Size = new System.Drawing.Size(103, 21);
+            this.checkTilesetGrid.TabIndex = 4;
+            this.checkTilesetGrid.Text = "Tileset Grid";
+            this.checkTilesetGrid.UseVisualStyleBackColor = true;
             // 
             // checkViewGrid
             // 
@@ -1063,22 +1076,9 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 24);
             this.aboutToolStripMenuItem1.Text = "&About...";
             // 
-            // checkTilesetGrid
-            // 
-            this.checkTilesetGrid.AutoSize = true;
-            this.checkTilesetGrid.Checked = true;
-            this.checkTilesetGrid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkTilesetGrid.Location = new System.Drawing.Point(612, 8);
-            this.checkTilesetGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkTilesetGrid.Name = "checkTilesetGrid";
-            this.checkTilesetGrid.Size = new System.Drawing.Size(103, 21);
-            this.checkTilesetGrid.TabIndex = 4;
-            this.checkTilesetGrid.Text = "Tileset Grid";
-            this.checkTilesetGrid.UseVisualStyleBackColor = true;
-            // 
             // tilesetPanel
             // 
-            this.tilesetPanel.BackColor = System.Drawing.Color.White;
+            this.tilesetPanel.BackColor = System.Drawing.Color.DimGray;
             this.tilesetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tilesetPanel.Location = new System.Drawing.Point(0, 0);
             this.tilesetPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1092,7 +1092,7 @@
             // 
             // mapPanel
             // 
-            this.mapPanel.BackColor = System.Drawing.Color.White;
+            this.mapPanel.BackColor = System.Drawing.Color.DimGray;
             this.mapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mapPanel.Location = new System.Drawing.Point(0, 0);
             this.mapPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
