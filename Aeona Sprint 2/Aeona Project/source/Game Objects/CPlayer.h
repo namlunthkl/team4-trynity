@@ -31,7 +31,10 @@ private:
 	float			m_fOuchTimer;
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
-	ParticleWeapon	m_fxFootsteps;
+
+	// PARTICLE WEAPONS
+	ParticleWeapon	m_fxElementalWeapon;
+
 	RectD			m_weaponRect;
 	Sound*			m_sndPotion;
 	Sound*			m_sndSwitchAmulet;
