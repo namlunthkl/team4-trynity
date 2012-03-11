@@ -87,7 +87,13 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 
 	//	Font
 	pFont1 = new CBitmapFont;
+
 	m_imgLoadingBackground = TEX_MNG->LoadTexture("resource/LoadingRiver.jpg");
+	m_imgEnemies = TEX_MNG->LoadTexture("resource/Enemies.png", D3DCOLOR_XRGB(255, 0, 255));
+	m_imgEnemiesDeath = TEX_MNG->LoadTexture("resource/EnemiesDeath.png", D3DCOLOR_XRGB(255, 0, 255));
+
+	m_sndFleshHit = AUDIO->SFXLoadSound("resource/sound/FleshHit.wav");
+	m_sndDeathSplat = AUDIO->SFXLoadSound("resource/sound/DeathSplat.wav");
 
 	// Set gameplay variables
 	//SetShowHUD(true);
@@ -317,6 +323,11 @@ void CGame::Shutdown(void)
 		delete pFont1;
 		pFont1 = NULL;
 	}
+
+	AUDIO->SFXUnloadSound(m_sndFleshHit);
+	AUDIO->SFXUnloadSound(m_sndDeathSplat);
+	TEX_MNG->UnloadTexture(m_imgEnemies);
+	TEX_MNG->UnloadTexture(m_imgEnemiesDeath);
 
 	CAnimationManager::GetInstance()->UnloadAll();
 

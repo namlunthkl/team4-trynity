@@ -18,6 +18,7 @@
 #include "../AI_States/CRandomAIState.h"
 #include "../AI_States/CSwarmAIState.h"
 #include "../AI_States/CJumperAIState.h"
+#include "../AI_States/CLarvaAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
@@ -81,12 +82,13 @@ void CGameplayState::Enter(void)
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.png", D3DCOLOR_XRGB(255, 0, 255));
 	m_nGameOverID = TEX_MNG->LoadTexture("resource/GameOver.png");
 	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
+	
 	//		Sounds
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(743); //743
-	PLAYER->SetPosY(4992); //4992
+	PLAYER->SetPosX(600); //743
+	PLAYER->SetPosY(200); //4992
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -102,9 +104,9 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();
 
-	CEnemy* pEnemy2 = new CEnemy(1660, 900, 40,  -1, 50, 50, true, 100, 1);
-	pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CSwarmAIState::GetInstance());
+	CEnemy* pEnemy2 = new CEnemy(850, 560, 40,  -1, 50, 50, true, 100, 1);
+	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	pEnemy2->ChangeAIState(CLarvaAIState::GetInstance());
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
@@ -531,6 +533,7 @@ void CGameplayState::Exit(void)
 	TEX_MNG->UnloadTexture(m_imgHUD);
 	TEX_MNG->UnloadTexture(m_nGameOverID);
 	TEX_MNG->UnloadTexture(m_nVictoryID);
+	
 	AUDIO->MusicUnloadSong(GetBGMusic());
 
 	EVENTS->UnregisterEveryone(this);

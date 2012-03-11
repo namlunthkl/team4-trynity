@@ -52,6 +52,14 @@ class CGame
 	unsigned int	m_uiAmountLoaded;	//	for loading screen
 	int				m_imgLoadingBackground;	//	for loading screen
 
+public:
+	int      m_imgEnemies;	//phil
+	int      m_imgEnemiesDeath;
+	int      m_sndFleshHit;	//whatever lul
+	int      m_sndDeathSplat;
+private:
+
+
 	CBitmapFont*	pFont1;
 
 	//	Game's current state

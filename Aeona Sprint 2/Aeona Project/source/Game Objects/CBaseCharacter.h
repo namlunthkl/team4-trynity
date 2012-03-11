@@ -31,7 +31,6 @@ class CBaseCharacter : public CBaseObject
 
 	// Every character needs an AI State
 	IBaseAIState*	m_pAIState;
-	unsigned int m_uiMiniState;
 
 	// Used by AI States
 	float			m_fMoveTimer;
@@ -42,6 +41,7 @@ public:
 		ANM_IDLE_UP,ANM_IDLE_DOWN,ANM_IDLE_RIGHT,ANM_IDLE_LEFT,
 		ANM_ATK_UP,ANM_ATK_DOWN,ANM_ATK_RIGHT,ANM_ATK_LEFT,
 		ANM_MAX };
+
 
 	// Constructor
 	CBaseCharacter(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
@@ -76,6 +76,10 @@ public:
 
 	inline unsigned int GetMiniState(void)	{ return m_uiMiniState; }
 	inline void SetMiniState(unsigned int m)	{ m_uiMiniState = m; }
+	inline void SetBehavior(unsigned int m)		{ m_uiEnemyBehavior = m; }
+
+	void SetPhilDirection(void);	//	Super cool direction check! 0 = left, 1 = up, 2 = right, 3 = down
+	//inline unsigned int GetPhilDirection(void)	{ return m_uiPhilDirection; }
 };
 
 #endif // C_BASE_CHARACTER_H_

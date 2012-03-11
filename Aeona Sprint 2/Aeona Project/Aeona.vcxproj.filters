@@ -238,6 +238,9 @@
     <ClCompile Include="source\Puzzles\CTorchPuzzle.cpp">
       <Filter>Puzzle Engine</Filter>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CLarvaAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -458,6 +461,9 @@
     </ClInclude>
     <ClInclude Include="source\Puzzles\CTorchPuzzle.h">
       <Filter>Puzzle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CLarvaAIState.h">
+      <Filter>Artificial Intelligence</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

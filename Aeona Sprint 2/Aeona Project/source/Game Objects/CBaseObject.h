@@ -56,6 +56,24 @@ class CBaseObject : public IBaseInterface
 	//
 
 public:
+
+	//	Phil's derp Bestiary - this actually relates to the Y-offset in Phil's sprite sheet.
+	//	For example, the Larva is the first sprite, so simply set my enemy's frames at 0*192
+	//	offsetted downward.
+	//	The second enemy, will be offsetted on the Y by 1*192.  The third enemy would be
+	//	offsetted by 2*192 down on the spritesheet.  I suck and only understand simple things!
+	enum { BEVAIOR_0_NULL = 0, BEHAVIOR_LARVA = 1 };
+	unsigned int m_uiEnemyBehavior;	//	to get Phil's AI and rendering work properly, because he's a stoopid, derpf!1
+	unsigned int m_uiMiniState;		//	Phil's mini-state machine
+	unsigned int m_uiPhilDirection;	//	Phil's object direction...only matters on enemies.
+	DWORD philEnemyColor;			//	Phil's color so we can change da coluh' n shiiiet.
+	bool		m_bWalkCycle;
+	bool        m_bDying;
+	bool		m_bTrulyDead;
+	float       m_fDeathAnim;
+
+
+
 	// Constructor
 	CBaseObject(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0, bool bActive = false);
