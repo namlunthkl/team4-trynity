@@ -14,8 +14,16 @@ private:
 	float m_fTimeToWait;
 	float m_fTime;
 	short m_sTypeOfWeather;
-
 	int m_nCurrRegion;
+
+	// SOUND
+	int m_nRainSound;
+	//int m_nFireFliesSound;
+	//int m_nLeavesSound;
+	//int m_nSnowSound;
+	int m_nSandStormSound;
+	//int m_nEmberSound;
+	//int m_nFogSound;
 
 	CWeatherManager();
 	CWeatherManager( const CWeatherManager& ){}
