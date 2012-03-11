@@ -13,6 +13,14 @@ CWeatherManager::CWeatherManager()
 	SetTimeToWait( 0.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );
+
+	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/Rain.wav");
+	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
+	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
+	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");
+	m_nSandStormSound = AUDIO->SFXLoadSound("resource/sound/SandStorm.wav");
+	//m_nEmberSound = AUDIO->SFXLoadSound("resource/sound/Ember.wav");
+	//m_nFogSound = AUDIO->SFXLoadSound("resource/sound/Fog.wav");
 }
 CWeatherManager::~CWeatherManager()
 {
@@ -63,52 +71,65 @@ void CWeatherManager::LoadWeather(void)
 	{
 	case CLEAR:
 		{
-			weather.ShutDown();
-			SetIsOn( false );
+			ShutDown();
 		}
 		break;	
 	case RAIN:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/Rain.xml");
+			AUDIO->SFXPlaySound( m_nRainSound, true );
 			SetIsOn( true );
 		}
 		break;
 	case FIREFLIES:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/FireFlies.xml");
+			//AUDIO->SFXPlaySound( m_nFireFliesSound, true );
 			SetIsOn( true );
 		}
 		break;	
 	case LEAVES:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/FallingLeaves.xml");
+			//AUDIO->SFXPlaySound( m_nLeavesSound, true );
 			SetIsOn( true );
 		}
 		break;
 	case SNOW:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/Snow.xml");
+			//AUDIO->SFXPlaySound( m_nSnowSound, true );
 			SetIsOn( true );
 		}
 		break;
 	case SAND:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/SandStorm.xml");
+			AUDIO->SFXPlaySound( m_nSandStormSound, true );
 			SetIsOn( true );
 		}
 		break;
 	case EMBER:
 		{
-			weather.ShutDown();
+			ShutDown();
 			LoadXML("Resource/data/Embers.xml");
+			//AUDIO->SFXPlaySound( m_nEmberSound, true );
 			SetIsOn( true );
 		}
 		break;
+	//case FOG:
+	//	{
+	//		ShutDown();
+	//		LoadXML("Resource/data/Fog.xml");
+	//		AUDIO->SFXPlaySound( m_nFogSound, true );
+	//		SetIsOn( true );
+	//	}
+	//	break;
 	}
 }
 void CWeatherManager::SetWeatherPattern(void)
@@ -478,8 +499,14 @@ void CWeatherManager::ShutDown(void)
 {
 	weather.ShutDown();
 
-	SetTypeOfWeather( 0 );
-	SetTimeToWait( 0.0f );
+	AUDIO->SFXStopSound( m_nRainSound );
+	//AUDIO->SFXStopSound( m_nFireFliesSound );
+	//AUDIO->SFXStopSound( m_nLeavesSound );
+	//AUDIO->SFXStopSound( m_nSnowSound );
+	AUDIO->SFXStopSound( m_nSandStormSound );
+	//AUDIO->SFXStopSound( m_nEmberSound );
+	//AUDIO->SFXStopSound( m_nFogSound );
+
 	SetIsOn( false );
-	SetTime( 0.0f );
+
 }
