@@ -81,7 +81,7 @@ bool CInputManager::GetPressedUp(void)
 }
 bool CInputManager::GetPressedLeft(void)
 {
-	if(INPUT->KeyPressed(DIK_LEFT) || INPUT->JoystickGetLStickDirPressed(DIR_LEFT,0) 
+	if(INPUT->KeyPressed(DIK_A) || INPUT->JoystickGetLStickDirPressed(DIR_LEFT,0) 
 		|| (m_PlayerController->GetState().Gamepad.sThumbLX < -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bLeft == false))
 	{
 		m_bLeft = true;
@@ -94,7 +94,7 @@ bool CInputManager::GetPressedLeft(void)
 }
 bool CInputManager::GetPressedRight(void)
 {
-	if(INPUT->KeyPressed(DIK_RIGHT) || INPUT->JoystickGetLStickDirPressed(DIR_RIGHT,0) 
+	if(INPUT->KeyPressed(DIK_D) || INPUT->JoystickGetLStickDirPressed(DIR_RIGHT,0) 
 		|| (m_PlayerController->GetState().Gamepad.sThumbLX > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE && m_bRight == false))
 	{
 		m_bRight = true;

@@ -10,6 +10,8 @@
 #ifndef BYTEUTIL_H_
 #define BYTEUTIL_H_
 
+#include "../Camera/CCameraControl.h"
+
 typedef signed char Byte;
 typedef signed char BitIndex;
 
@@ -20,5 +22,8 @@ bool TestBit(Byte byteArgument, BitIndex bitToTest);
 void ToggleBit(Byte& byteArgument, BitIndex bitToSet);
 char GetNumberOfBitsOn(Byte byteArgument);
 char GetNumberOfBitsOff(Byte byteArgument);
+
+double GetScreenPosX(double pos);
+double GetScreenPosY(double pos);
 
 #endif // BYTEUTIL_H_

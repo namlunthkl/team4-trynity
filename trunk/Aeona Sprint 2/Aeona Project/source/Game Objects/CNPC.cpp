@@ -146,12 +146,14 @@ void CNPC::Update(float fElapsedTime)
 	if(dDistance < m_dRange)
 	{
 		if(m_bActiveTalk)
-			m_bTalk = true;
+			if(CPlayer::GetInstance()->Lock())
+				m_bTalk = true;
 	}
 	else
 	{
 		m_bTalk = false;
 		m_uiTextIndex = 0;
+		/*CPlayer::GetInstance()->Unlock();*/
 		GAMEPLAY->SetMessageBox(false);
 	}
 }
@@ -173,28 +175,35 @@ void CNPC::Input(void)
 				{
 					m_pCurrentSpeech = m_Dialogue[0];
 					m_bTalk = false;
+					CPlayer::GetInstance()->Unlock();
 					GAMEPLAY->SetMessageBox(false);
 				}
 	
 				m_uiTextIndex = 0;
 			}
+			else
+				m_uiTextIndex = m_pCurrentSpeech->GetText().size();
 		}
 		// Else if NPC is not talking and he's a passive speaker, start the conversation
 		else if(!m_bActiveTalk)
 		{
-			// Get the distance between the player and the NPC
-			double dDistance;
-			dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
-	
-			if(dDistance < m_dRange)
-				m_bTalk = true;
-			m_uiTextIndex = 0;
+				// Get the distance between the player and the NPC
+				double dDistance;
+				dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
+
+				if(dDistance < m_dRange)
+				{
+					if(CPlayer::GetInstance()->Lock())
+						m_bTalk = true;
+				}
+				m_uiTextIndex = 0;
 		}
 	}
 	
 	if(m_bTalk && CInputManager::GetInstance()->GetPressedB())
 	{
 		m_bTalk = false;
+		CPlayer::GetInstance()->Unlock();
 		GAMEPLAY->SetMessageBox(false);
 		m_uiTextIndex = 0;
 	}

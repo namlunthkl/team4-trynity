@@ -59,6 +59,9 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_vGameWeapons[WEAPON_HAMMER]->Activate();
 	m_vGameWeapons.push_back(new CCrossBow);
 	m_vGameWeapons[WEAPON_CROSSBOW]->Activate();
+
+	m_bBusy = false;
+
 	//WEAPON->Activate();
 	Activate();
 	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
@@ -67,6 +70,10 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	m_sndPotion = new Sound();
 	m_sndPotion->Load("resource/sound/potion.wav");
+	m_sndSwitchAmulet = new Sound();
+	m_sndSwitchAmulet->Load("resource/sound/select.wav");
+	m_sndSwitchWeapon = new Sound();
+	m_sndSwitchWeapon->Load("resource/sound/selectweapon.wav");
 }
 
 CPlayer* CPlayer::GetInstance(void)
@@ -194,6 +201,9 @@ void CPlayer::Render(void)
 
 void CPlayer::Attack(void)
 {
+	if(IsBusy())
+		return;
+
 	if( m_fOuchTimer == 0.0f )
 	{
 		//CBaseCharacter::Attack();
@@ -220,6 +230,9 @@ void CPlayer::Die(void)
 // Get input for the player
 void CPlayer::Input(void)
 {
+	if(IsBusy())
+		return;
+
 	if(CInputManager::GetInstance()->GetAttack())
 	{
 		WEAPON->SetAttacking(true);
@@ -383,6 +396,7 @@ void CPlayer::CycleWeapon(void)
 		CycleWeapon();
 	}
 
+	m_sndSwitchWeapon->Play();
 }
 
 // Cycle through the masks
@@ -401,6 +415,8 @@ void CPlayer::CycleMask(void)
 		// Keep looking
 		CycleMask();
 	}
+
+	m_sndSwitchAmulet->Play();
 }
 
 // Set the bit for a weapon on
@@ -510,7 +526,7 @@ CPlayer::~CPlayer(void)
 }
 const char* CPlayer::GetRegion(void) const
 {
-	return CWorldEngine::GetInstance()->GetMapWherePointIs(GetPosX(), GetPosY());
+	return CWorldEngine::GetInstance()->GetRegionName(GetPosX(), GetPosY());
 }
 void CPlayer::SufferDamage(unsigned int uiDamage)
 {

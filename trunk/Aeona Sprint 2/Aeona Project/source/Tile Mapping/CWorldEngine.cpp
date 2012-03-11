@@ -13,6 +13,7 @@
 #include "../tinyxml/tinyxml.h"
 #include "../Messaging/CStringTable.h"
 #include "../Input Manager/CInputManager.h"
+#include "../Game Objects/CBaseObject.h"
 
 // Singleton's instance
 CWorldEngine* CWorldEngine::sm_pInstance = NULL;
@@ -86,9 +87,9 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 
 		// Move on to the next sibling
 		pTileset = pTileset->NextSiblingElement("Tileset");
-
-		GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	}
+
+	GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 
 	// Get a pointer to the first Map
 	TiXmlElement* pMap = pRoot->FirstChildElement("Map");
@@ -96,6 +97,7 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 	if(!pMap)
 		return false;
 	
+
 	// Load all the maps
 	while(pMap)
 	{
@@ -111,7 +113,7 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 		// Move on to the next sibling
 		pMap = pMap->NextSiblingElement("Map");
 
-		GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+		//GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
 	}
 
 	// Succeeded
@@ -149,13 +151,15 @@ void CWorldEngine::RenderWorldBelowObjects(void)
 	{
 		CMap* curMap = m_vpMaps[uiIndex];
 
-		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
-			curMap->GetPosY() >= m_rDrawArea.top &&
-			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
-			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
-		{
+		// If the map is not on screen, don't even bother calling render on it
+		double left = GetScreenPosX(curMap->GetPosX());
+		double right = GetScreenPosX(curMap->GetPosX() + curMap->GetWidth() * curMap->GetTileset()->GetTileWidth());
+		double top = GetScreenPosY(curMap->GetPosY());
+		double bottom = GetScreenPosY(curMap->GetPosY() + curMap->GetHeight() * curMap->GetTileset()->GetTileHeight());
+
+		if(right > 0 &&	left < GAME->GetScreenWidth() &&
+			bottom > 0 && top < GAME->GetScreenHeight())
 			curMap->RenderFirstLayers(m_nCullingMode);
-		}
 	}
 }
 
@@ -165,13 +169,15 @@ void CWorldEngine::RenderWorldAboveObjects(void)
 	{
 		CMap* curMap = m_vpMaps[uiIndex];
 
-		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
-			curMap->GetPosY() >= m_rDrawArea.top &&
-			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
-			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
-		{
-			curMap->RenderLastLayers(m_nCullingMode);
-		}
+		// If the map is not on screen, don't even bother calling render on it
+		double left = GetScreenPosX(curMap->GetPosX());
+		double right = GetScreenPosX(curMap->GetPosX() + curMap->GetWidth() * curMap->GetTileset()->GetTileWidth());
+		double top = GetScreenPosY(curMap->GetPosY());
+		double bottom = GetScreenPosY(curMap->GetPosY() + curMap->GetHeight() * curMap->GetTileset()->GetTileHeight());
+
+		if(right > 0 &&	left < GAME->GetScreenWidth() &&
+			bottom > 0 && top < GAME->GetScreenHeight())
+				curMap->RenderLastLayers(m_nCullingMode);
 	}
 }
 
@@ -183,28 +189,41 @@ void CWorldEngine::RenderWorldAboveObjects(void)
 bool CWorldEngine::CheckCollisions(IBaseInterface* pBase,
 	RectD* CollisionRect, unsigned int uiObjType)
 {
-	// TODO: Call check collision on all maps that are on screen
-	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
-	{
-		CMap* curMap = m_vpMaps[uiIndex];
+	double posx = 0;
+	double posy = 0;
 
-		/*if(curMap->GetPosX() >= m_rDrawArea.left &&
-			curMap->GetPosY() >= m_rDrawArea.top &&
-			curMap->GetPosX() + curMap->GetWidth() <= m_rDrawArea.right &&
-			curMap->GetPosY() + curMap->GetHeight() <= m_rDrawArea.bottom)*/
-		{
-			if(curMap->CheckCollisions(pBase, m_pStringTable, CollisionRect, uiObjType))
-			{
-				// If collided in this map, return true
-				return true;
-			}
-			// Else continue checking
-		}
+	if(pBase)
+	{
+		posx = ((CBaseObject*)pBase)->GetPosX();
+		posy = ((CBaseObject*)pBase)->GetPosY();
+	}
+	else
+	{
+		posx = (CollisionRect->right + CollisionRect->left) / 2;
+		posy = (CollisionRect->bottom + CollisionRect->top) / 2;
 	}
 
-	// If it looped through all the maps and didn't return
-	// true for any of them, there was no collision at all
-	return nullptr;
+	// Only check collision on the map where pBase is
+	CMap* curMap = GetMapWherePointIs(posx, posy);
+
+	// If the object is in no map, something is wrong, so GTFO!
+	if(!curMap)
+		return false;
+
+	// If the map is not on screen, don't even bother calling check collisions on it
+	double left = GetScreenPosX(curMap->GetPosX());
+	double right = GetScreenPosX(curMap->GetPosX() + curMap->GetWidth() * curMap->GetTileset()->GetTileWidth());
+	double top = GetScreenPosY(curMap->GetPosY());
+	double bottom = GetScreenPosY(curMap->GetPosY() + curMap->GetHeight() * curMap->GetTileset()->GetTileHeight());
+
+	if(right > 0 &&	left < GAME->GetScreenWidth() &&
+		bottom > 0 && top < GAME->GetScreenHeight())
+	{
+		if(curMap->CheckCollisions(pBase, m_pStringTable, CollisionRect, uiObjType))
+			// If collided in this map, return true
+			return true;
+	}
+	return false;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -261,7 +280,17 @@ CTileset* CWorldEngine::GetTileset(unsigned char ucID)
 }
 
 
-const char* CWorldEngine::GetMapWherePointIs(double dPositionX, double dPositionY)
+const char* CWorldEngine::GetRegionName(double dPositionX, double dPositionY)
+{
+	CMap* map = GetMapWherePointIs(dPositionX, dPositionY);
+
+	if(map)
+		return m_pStringTable->GetString(map->GetTileset()->GetID());
+	else
+		return nullptr;
+}
+
+CMap* CWorldEngine::GetMapWherePointIs(double dPositionX, double dPositionY)
 {
 	for(unsigned int uiIndex = 0; uiIndex < m_vpMaps.size(); ++uiIndex)
 	{
@@ -272,7 +301,7 @@ const char* CWorldEngine::GetMapWherePointIs(double dPositionX, double dPosition
 			dPositionY > curMap->GetPosY() &&
 			dPositionY < curMap->GetPosY() + curMap->GetHeight() * curMap->GetTileset()->GetTileHeight())
 		{
-			return m_pStringTable->GetString(curMap->GetTileset()->GetID());
+			return curMap;
 		}
 	}
 

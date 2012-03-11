@@ -59,8 +59,8 @@ void CGameplayState::Enter(void)
 
 	// Initialize systems
 	MESSAGES->InitMessageSystem(MessageProc);
-	WORLD->InitWorldEngine();
 	PUZZLES->InitPuzzleManager();
+	WORLD->InitWorldEngine();
 
 	// Reset variables
 	m_fHeartTimer = 0.0f;
@@ -85,8 +85,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(600);
-	PLAYER->SetPosY(200);
+	PLAYER->SetPosX(743); //743
+	PLAYER->SetPosY(4992); //4992
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -436,6 +436,11 @@ void CGameplayState::Render(void)
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
 	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
 	
+	
+	sprintf_s(buffer, 100, "FPS: %i", GAME->GetTimer().m_nFPS);
+	D3D->DrawTextA(&buffer[0], 0, 0, 255, 0, 0);
+
+
 	const char* szRegion = PLAYER->GetRegion();
 	if(szRegion)
 	{
@@ -566,6 +571,12 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetPosX(-1);
 		eventInfo->Tile->SetPosY(-1);
 		eventInfo->Tile->SetInfo(0);
+		eventInfo->Tile->SetEventID(0);
+
+		// TODO: find the matching tile on layer 0 and set its collision
+		// type to not collidable
+		eventInfo->Map->TurnOffCollisionOnTile(eventInfo->sMapPosX, eventInfo->sMapPosY);
+
 	}
 
 	if(pEvent->GetEventID() == "game.over")
@@ -582,6 +593,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CDestroyObjectMessage* pDEM = (CDestroyObjectMessage*)pMsg;
 			OBJECTS->RemoveObject(pDEM->GetObject());
+			break;
 		}
 	case MSG_CREATE_NPC:
 		{
@@ -597,6 +609,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				OBJECTS->AddObject(pNPC);
 				pNPC->Release();
 			}
+			break;
 		}
 	case MSG_CREATE_ENEMY:
 		{
@@ -611,6 +624,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				OBJECTS->AddObject(pEnemy);
 				pEnemy->Release();
 			}
+			break;
 		}
 	}
 }

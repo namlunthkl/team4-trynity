@@ -15,7 +15,7 @@
 #include "CEnemy.h"
 CArrow::CArrow()
 {
-
+	timeout = 0;
 }
 void CArrow::Update(float fElapsedTime)
 {

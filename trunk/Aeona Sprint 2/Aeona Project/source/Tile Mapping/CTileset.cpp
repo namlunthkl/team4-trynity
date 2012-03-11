@@ -65,7 +65,7 @@ bool CTileset::Load(const char * const szFilename, CStringTable* pStringTable)
 	SetHeight(nHeight);
 	SetTileWidth(nTileWidth);
 	SetTileHeight(nTileHeight);
-	SetID(pStringTable->LoadString(szTilesetName));
+	SetID(pStringTable->LoadStringOnTable(szTilesetName));
 
 	// Success!
 	return true;

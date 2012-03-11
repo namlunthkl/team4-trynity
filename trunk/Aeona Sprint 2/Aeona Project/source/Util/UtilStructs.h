@@ -3,6 +3,7 @@
 
 #include "../Wrappers/CSGD_XAudio2.h"
 #define AUDIO CSGD_XAudio2::GetInstance()
+#include "../Camera/CCameraControl.h"
 
 struct Point
 {
@@ -253,6 +254,9 @@ struct Sound
 			AUDIO->SFXUnloadSound(m_nSoundID);
 	}
 };
+
+
+
 
 
 

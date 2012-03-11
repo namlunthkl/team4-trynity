@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CObjectManager.h"
-
 #include "CBaseObject.h"
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../States/CGameplayState.h"
@@ -34,12 +33,20 @@ void CObjectManager::DeleteInstance()
 
 void CObjectManager::UpdateObjects(float fElapsedTime)
 {
-	vector<IBaseInterface*>::iterator iter = m_vpObjectList.begin();
-
-	while(iter != m_vpObjectList.end())
+	for(unsigned int i=0; i < m_vpObjectList.size(); ++i)
 	{
-		(*iter)->Update(fElapsedTime);
-		iter++;
+		CBaseObject* pObj = (CBaseObject*)m_vpObjectList[i];
+
+		double left = GetScreenPosX(pObj->GetCollisionRect().left);
+		double right = GetScreenPosX(pObj->GetCollisionRect().right);
+		double top = GetScreenPosY(pObj->GetCollisionRect().top);
+		double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
+
+		// If object is inside the screen, update it
+		if(right > 0 &&	left < GAME->GetScreenWidth() &&
+			bottom > 0 && top < GAME->GetScreenHeight())
+			pObj->Update(fElapsedTime);
+
 	}
 }
 
@@ -53,27 +60,65 @@ void CObjectManager::InputFromObjects()
 
 void CObjectManager::RenderObjects()
 {
-	//vector<IBaseInterface*> m_vpRenderList = m_vpObjectList;
-	//for(unsigned int i=0; i < m_vpRenderList.size(); ++i)
-	//{
-	//	for(unsigned int j=i+1; j < m_vpRenderList.size(); ++j)
-	//	{
-	//		CBaseObject* pObjA = (CBaseObject*)m_vpRenderList[i];
-	//		CBaseObject* pObjB = (CBaseObject*)m_vpRenderList[j];
-	//
-	//		if(pObjA->GetPosY() > pObjB->GetPosY())
-	//		{
-	//			IBaseInterface* pTemp = m_vpRenderList[i];
-	//			m_vpRenderList[i] = m_vpRenderList[j];
-	//			m_vpRenderList[j] = pTemp;
-	//		}
-	//	}
-	//}
+	// -- NOTE FROM DANIEL TO BERN -- //
+	// Yes, Bryan, I know that QuickSort was your user story,
+	// but I was changing a lot of things in this class and I
+	// ended up doing it... However, it's not really good yet.
+	// The problem in here is that I create a render list and just
+	// copy everything from object list into it, then I sort it,
+	// then I render what's on screen. This means that if there
+	// are 100 objects in the game, which is really possible,
+	// all of them will be sorted, which is not good >.<
+	// The "render list" vector should have only the objects
+	// that are inside the screen, before the quick sort being
+	// applied to it. If you can do this and decrease the
+	// frame rate, I will let you check off this user story =P
 
-	for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)
+	vector<IBaseInterface*> m_vpRenderList = m_vpObjectList;
+	QuickSort(m_vpRenderList, 0, m_vpRenderList.size() - 1);
+	
+	for(unsigned int i = 0; i < m_vpRenderList.size(); ++i)
 	{
-		m_vpObjectList[i]->Render();
+		CBaseObject* pObj = (CBaseObject*)m_vpRenderList[i];
+
+		double left = GetScreenPosX(pObj->GetCollisionRect().left);
+		double right = GetScreenPosX(pObj->GetCollisionRect().right);
+		double top = GetScreenPosY(pObj->GetCollisionRect().top);
+		double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
+
+		// If object is inside the screen, render it
+		if(right > 0 &&	left < GAME->GetScreenWidth() &&
+			bottom > 0 && top < GAME->GetScreenHeight())
+			m_vpRenderList[i]->Render();
 	}
+}
+
+void CObjectManager::QuickSort(vector<IBaseInterface*>& arr, int left, int right)
+{
+	int i = left, j = right;
+	CBaseObject* tmp;
+	CBaseObject* pivot = (CBaseObject*)arr[(left + right) / 2];
+
+	while (i <= j)
+	{
+		while (((CBaseObject*)arr[i])->GetPosY() < ((CBaseObject*)pivot)->GetPosY())
+			i++;
+		while (((CBaseObject*)arr[j])->GetPosY() > ((CBaseObject*)pivot)->GetPosY())
+			j--;
+		if (i <= j)
+		{
+			tmp = (CBaseObject*)arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+			i++;
+			j--;
+		}
+	};
+
+	if (left < j)
+		QuickSort(arr, left, j);
+	if (i < right)
+		QuickSort(arr, i, right);
 }
 
 bool CObjectManager::AddObject(IBaseInterface* pObject)
@@ -130,26 +175,50 @@ void CObjectManager::CheckCollisions()
 {
 	// Loop through all the objects and check collisions in all of them
 	for(unsigned int i = 0; i < m_vpObjectList.size(); i++)
-	 {
-		 WORLD->CheckCollisions(m_vpObjectList[i]);
+	{
+		CBaseObject* pObj = (CBaseObject*)m_vpObjectList[i];
 
-		 for(unsigned int j = 0; j < m_vpObjectList.size(); j++)
-		 {
-			 if(i != j)
-			 {
-				 // Check Collision between object i and j
-				 if(((CBaseObject*)m_vpObjectList[i])->IsActive() && ((CBaseObject*)m_vpObjectList[j])->IsActive())
-				 {
-					 if(m_vpObjectList[i]->CheckCollision(m_vpObjectList[j]))
-					 {
-						 // If object i collided with object j stop checking
-						 // object i and go on to the next object i
-						 continue;
-					 }
-				 }
-			 }
-		 }
+		// If the object is not active, check another one..
+		if(pObj->IsActive() == false) continue;
 
-	 }
+		double left = GetScreenPosX(pObj->GetCollisionRect().left);
+		double right = GetScreenPosX(pObj->GetCollisionRect().right);
+		double top = GetScreenPosY(pObj->GetCollisionRect().top);
+		double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
 
+		// If object is inside the screen, check collisions for it
+		if(right > 0 &&	left < GAME->GetScreenWidth() &&
+			bottom > 0 && top < GAME->GetScreenHeight())
+		{
+			WORLD->CheckCollisions(pObj);
+
+			for(unsigned int j = 0; j < m_vpObjectList.size(); j++)
+			{
+				if(i != j)
+				{
+					CBaseObject* pSecObj = (CBaseObject*)m_vpObjectList[j];
+
+					// If the object is not active, check another one..
+					if(pSecObj->IsActive() == false) continue;
+
+					left = GetScreenPosX(pSecObj->GetCollisionRect().left);
+					right = GetScreenPosX(pSecObj->GetCollisionRect().right);
+					top = GetScreenPosY(pSecObj->GetCollisionRect().top);
+					bottom = GetScreenPosY(pSecObj->GetCollisionRect().bottom);
+
+					// If object is inside the screen, check collisions for it
+					if(right > 0 &&	left < GAME->GetScreenWidth() &&
+						bottom > 0 && top < GAME->GetScreenHeight())
+					{
+						// Check Collision between object i and j
+						if(pObj->CheckCollision(pSecObj))
+						{
+							continue;
+						}
+					}
+				}
+			}
+		}
+
+	}
 }

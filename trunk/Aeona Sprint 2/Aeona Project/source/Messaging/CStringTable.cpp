@@ -17,7 +17,7 @@ CStringTable::CStringTable(unsigned int uiCapacity)
 	m_uiCapacity = uiCapacity;
 }
 
-int CStringTable::LoadString(char const * const szString)
+int CStringTable::LoadStringOnTable(char const * const szString)
 {
 	// Check if the string is already in the array
 	for(unsigned int i = 0; i < m_vszStringArray.size(); ++i)

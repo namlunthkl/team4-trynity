@@ -19,30 +19,34 @@
 class CPlayer : public CBaseCharacter
 {
 public:
-	Byte			m_byteWeapons;	//HACK
-	Byte			m_byteMasks;	//HACK
-private:
-	bool			m_bHeartPiece;
-	//TEMPORARY LOL TODO hack
-	public:
+	// PHIL'S HACKS...
+	Byte			m_byteWeapons;
+	Byte			m_byteMasks;
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
+	unsigned int 	m_uiNumPotions;
+
+private:
+	bool			m_bHeartPiece;
 	float			m_fOuchTimer;
-	private:
-	//TEMPORARY LOL TODO hack
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 	ParticleWeapon	m_fxFootsteps;
 	RectD			m_weaponRect;
 	Sound*			m_sndPotion;
-public:	//	hack
-	int				m_uiNumPotions;
-private:
+	Sound*			m_sndSwitchAmulet;
+	Sound*			m_sndSwitchWeapon;
 	CPotion*		m_Potion;
 	int				m_sndHit;
 	bool			m_bDamageDecrease;
 	int				m_nDamageIncrease;
 	int				m_nSpeedIncrease;
+
+	// Bool to indicate if the player is busy
+	// talking with an NPC or doing something that
+	// would not allow him to attack or move
+	bool m_bBusy;
+
 
 	// Singleton needs trilogy
 	CPlayer(const CPlayer&){}
@@ -97,6 +101,27 @@ public:
 	unsigned int GetNumPotions() const { return m_uiNumPotions; }
 	void SetNumPotions(unsigned int val) { m_uiNumPotions = val; }
 	void UsePotion(void);
+
+	// Accessors
+	inline bool IsBusy(void) const { return m_bBusy; }
+	inline bool Lock(void)
+	{
+		if(!m_bBusy)
+		{
+			m_bBusy = true;
+			return true;
+		}
+		return false;
+	}
+	inline void Unlock(void) { if(m_bBusy) m_bBusy = false; }
+
+	Byte GetWeaponsByte(void) { return m_byteWeapons; }
+	Byte GetAmuletsByte(void) { return m_byteMasks; }
+	inline unsigned int GetCurrentWeapon(void) const { return m_uiCurrentWeapon; }
+	inline unsigned int GetCurrentAmulet(void) const { return m_uiCurrentMask; }
+	inline float GetOuchTimer(void) const { return m_fOuchTimer; }
+	inline void SetOuchTimer(float fOuchTimer) { m_fOuchTimer = fOuchTimer; }
+
 };
 
 #endif // C_PLAYER_H_

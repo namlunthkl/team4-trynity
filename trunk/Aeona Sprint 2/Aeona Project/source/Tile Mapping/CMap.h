@@ -149,6 +149,8 @@ public:
 	inline void SetWidth(int nWidth)			{ m_nWidth = nWidth; }
 	inline void SetHeight(int nHeight)			{ m_nHeight = nHeight; }
 	inline void SetTileset(CTileset* pTileset)	{ m_pTileset = pTileset; }
+
+	void TurnOffCollisionOnTile(unsigned int uiX, unsigned int uiY);
 };
 
 
