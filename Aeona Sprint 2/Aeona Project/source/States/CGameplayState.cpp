@@ -19,6 +19,8 @@
 #include "../AI_States/CSwarmAIState.h"
 #include "../AI_States/CJumperAIState.h"
 #include "../AI_States/CLarvaAIState.h"
+#include "../AI_States/CGolemAIState.h"
+#include "../AI_States/CSlimeAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
@@ -110,6 +112,20 @@ void CGameplayState::Enter(void)
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
+
+	CEnemy* pEnemy2a = new CEnemy(950, 660, 40,  -1, 50, 50, true, 180, 1);
+	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	pEnemy2a->ChangeAIState(CGolemAIState::GetInstance());
+	pEnemy2a->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy2a);
+	pEnemy2a->Release();
+
+	CEnemy* pEnemy2b = new CEnemy(1050, 560, 40,  -1, 50, 50, true, 180, 1);
+	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	pEnemy2b->ChangeAIState(CSlimeAIState::GetInstance());
+	pEnemy2b->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy2b);
+	pEnemy2b->Release();
 
 	CEnemy* pEnemy3 = new CEnemy(1673, 395, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy3->LoadAnimations("resource/Red Enemy Animation.xml");

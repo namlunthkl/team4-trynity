@@ -108,7 +108,7 @@ void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
 
 void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 {
-	if( m_uiEnemyBehavior != 0 )
+	if( m_uiEnemyBehavior != 0 && this->m_uiMiniState != 0 )
 	{
 		AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );
 		philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	// render in red
@@ -123,10 +123,20 @@ void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 	else
 	{
 		m_uiCurHealth = 0;
-		if(m_uiEnemyBehavior == BEHAVIOR_LARVA)
+		if(m_uiEnemyBehavior == BEHAVIOR_LARVA && this->m_bDying == false )
 		{
 			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
 			philEnemyColor = D3DCOLOR_XRGB(0, 255, 0);
+		}
+		else if(m_uiEnemyBehavior == BEHAVIOR_GOLEM && this->m_bDying == false )
+		{
+			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+			philEnemyColor = D3DCOLOR_XRGB(180, 180, 180);
+		}
+		else if(m_uiEnemyBehavior == BEHAVIOR_SLIME && this->m_bDying == false )
+		{
+			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+			philEnemyColor = D3DCOLOR_XRGB(255, 160, 0);
 		}
 		Die();
 	}

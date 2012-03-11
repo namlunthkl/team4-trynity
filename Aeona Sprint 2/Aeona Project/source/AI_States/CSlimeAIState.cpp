@@ -1,19 +1,19 @@
 #include "StdAfx.h"
 #include "../StdAfx.h"
-#include "CLarvaAIState.h"
+#include "CSlimeAIState.h"
 #include "../Game Objects/CPlayer.h"
 
 // Singleton's instance
-CLarvaAIState* CLarvaAIState::sm_pInstance = NULL;
+CSlimeAIState* CSlimeAIState::sm_pInstance = NULL;
 
-IBaseAIState* CLarvaAIState::GetInstance(void)
+IBaseAIState* CSlimeAIState::GetInstance(void)
 {
 	if(!sm_pInstance)
-		sm_pInstance = new CLarvaAIState();
+		sm_pInstance = new CSlimeAIState();
 	return sm_pInstance;
 }
 
-void CLarvaAIState::DeleteInstance(void)
+void CSlimeAIState::DeleteInstance(void)
 {
 	if(sm_pInstance != NULL)
 	{
@@ -22,7 +22,7 @@ void CLarvaAIState::DeleteInstance(void)
 	}
 }
 
-void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
+void CSlimeAIState::Enter(CBaseCharacter* pCharacter)
 {
 	pCharacter->SetVelY( 0 );
 	pCharacter->SetVelX( 0 );
@@ -31,21 +31,21 @@ void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
 
 	pCharacter->SetMoveTimer( 0.0f );
 	pCharacter->SetMiniState(2);
-	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_LARVA);
+	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_SLIME);
 	
-	pCharacter->SetSpeed(100);
+	pCharacter->SetSpeed(190);
 
 	//	0 - GetWhacked
 	//	1 - WhackedPause
-	//	2 - SittingStill
+	//	2 - PassiveWander =)
 	//	3 - SquirmForward
 	//	4 - SquirmPause
 	//	5 - Lunge
 
-	m_sndLarvaHiss = AUDIO->SFXLoadSound("resource/sound/LarvaHiss.wav");
+	m_sndSlimeBlurb = AUDIO->SFXLoadSound("resource/sound/SlimeBlurb.wav");
 }
 
-void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
+void CSlimeAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 {
 	switch( pCharacter->GetMiniState() )
 	{
@@ -89,35 +89,49 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
+				pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 160, 0);
 				pCharacter->SetMiniState( 3 );	// Immediately squirm forward.
 			}
 			break;
 		}
-		case 2:	// 2 - Sitting still because the player is not near.
+		case 2:	// 2 - Random wander =D
 		{
 			//	NEARBY PLAYER CHECK!!
-			if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
-			{
-				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 3 );	// set to crouching, ready to pounce, when we find player
-				break;	// i don't want to continue 'stopped' if the player is instantly nearby.
-			}
+			//if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
+			//{
+			//	pCharacter->SetMoveTimer( 0.0f );
+			//	pCharacter->SetMiniState( 3 );	// set to crouching, ready to pounce, when we find player
+			//	break;	// i don't want to continue 'stopped' if the player is instantly nearby.
+			//}
 			//	NEARBY PLAYER CHECK!!
-			else if( pCharacter->GetMoveTimer() == 0.0f )
+			if( pCharacter->GetMoveTimer() == 0.0f )	//	Move around aimlessly, passively
+			{
+				AUDIO->SFXPlaySound(m_sndSlimeBlurb);
+				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
+				pCharacter->philEnemyColor = D3DCOLOR_XRGB(0, 96, 255);
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment time
+				float RandVelY = (float)(rand() % 3 - 1);								//	Move in a random way
+				pCharacter->SetVelY(RandVelY * pCharacter->GetSpeed() * 0.125f);		//	Actually set the vel (also, move slowly. looks really passive then)
+				pCharacter->SetPrevVelY( pCharacter->GetVelY() );						//	Set the previous vel
+				float RandVelX = (float)(rand() % 3 - 1);
+				pCharacter->SetVelX(RandVelX * pCharacter->GetSpeed() * 0.125f);
+				pCharacter->SetPrevVelX( pCharacter->GetVelX() );
+				pCharacter->SetPhilDirection();											//	Use my cool direction check for sprite display
+			}
+			else if( pCharacter->GetMoveTimer() < 1.2f )
+			{
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );
+			}
+			else if( pCharacter->GetMoveTimer() < 3.0f )
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );
 				pCharacter->SetVelX( 0.0f );
 				pCharacter->SetVelY( 0.0f );
 			}
-			else if( pCharacter->GetMoveTimer() < 2.0f )
-			{
-				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );
-			}
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 2 );
+				pCharacter->SetMiniState( 2 );	//	Endlessly be passive, until the bad player hurts me
 			}
 			break;
 		}
@@ -125,11 +139,12 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 		{
 			if( pCharacter->GetMoveTimer() == 0.0f )
 			{
+				AUDIO->SFXPlaySound(m_sndSlimeBlurb);
 				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 				//	HACK directly check whether the player is nearby or not, below.
-				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
-				{
+				/*if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
+				{*/
 					//pCharacter->m_bWalkCycle = 0;	//	Set to the one that looks most like an attack.
 					//find the player direction!
 					float temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
@@ -167,7 +182,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						pCharacter->SetPrevVelY( 0.0f );
 					}
 					pCharacter->SetPhilDirection();	//	Fix our direction, for animation purpose, here.
-				}
+				//}
 			}
 			else if( pCharacter->GetMoveTimer() < 0.1f )
 			{
@@ -176,16 +191,16 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				//	Before leaving, let's see if the player is close enough for us to lunge at him!
-				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 128 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 128) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 128 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 128) )
-				{
+				/*if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 128 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 128) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 128 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 128) )
+				{*/
 					pCharacter->SetMoveTimer( 0.0f );
-					pCharacter->SetMiniState( 5 );
-				}
+					pCharacter->SetMiniState( 4 );
+				/*}
 				else
 				{
 					pCharacter->SetMoveTimer( 0.0f );
 					pCharacter->SetMiniState( 4 );
-				}
+				}*/
 			}
 			break;
 		}
@@ -197,7 +212,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				pCharacter->SetVelX( 0.0f );
 				pCharacter->SetVelY( 0.0f );
 			}
-			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will take a break for this long.
+			else if( pCharacter->GetMoveTimer() < 0.1f )	//	I will take a break for this long.
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 			}
@@ -210,23 +225,23 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 		}
 		case 5:		// LUNGE OF DEATH
 		{
-			if( pCharacter->GetMoveTimer() == 0.0f )
-			{
-				AUDIO->SFXPlaySound(m_sndLarvaHiss);
-				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
-				pCharacter->SetVelX( pCharacter->GetVelX() * 2.0f );
-				pCharacter->SetVelY( pCharacter->GetVelY() * 2.0f );
-				pCharacter->m_bWalkCycle = 0;	//	Looks the most like an attack.
-			}
-			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will lunge for this long
-			{
-				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
-			}
-			else
-			{
-				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 4 );	// Immediately squirm forward.
-			}
+			//if( pCharacter->GetMoveTimer() == 0.0f )
+			//{
+			//	AUDIO->SFXPlaySound(m_sndLarvaHiss);
+			//	pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+			//	pCharacter->SetVelX( pCharacter->GetVelX() * 2.0f );
+			//	pCharacter->SetVelY( pCharacter->GetVelY() * 2.0f );
+			//	pCharacter->m_bWalkCycle = 0;	//	Looks the most like an attack.
+			//}
+			//else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will lunge for this long
+			//{
+			//	pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+			//}
+			//else
+			//{
+			//	pCharacter->SetMoveTimer( 0.0f );
+			//	pCharacter->SetMiniState( 4 );	// Immediately squirm forward.
+			//}
 			break;
 		}
 	}
@@ -462,7 +477,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 	//pCharacter->SetMoveTimer(fMoveTimer);
 }
 
-void CLarvaAIState::Exit(CBaseCharacter* pCharacter)
+void CSlimeAIState::Exit(CBaseCharacter* pCharacter)
 {
 
 }

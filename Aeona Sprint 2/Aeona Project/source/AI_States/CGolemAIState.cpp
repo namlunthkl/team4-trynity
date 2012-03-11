@@ -1,19 +1,19 @@
 #include "StdAfx.h"
 #include "../StdAfx.h"
-#include "CLarvaAIState.h"
+#include "CGolemAIState.h"
 #include "../Game Objects/CPlayer.h"
 
 // Singleton's instance
-CLarvaAIState* CLarvaAIState::sm_pInstance = NULL;
+CGolemAIState* CGolemAIState::sm_pInstance = NULL;
 
-IBaseAIState* CLarvaAIState::GetInstance(void)
+IBaseAIState* CGolemAIState::GetInstance(void)
 {
 	if(!sm_pInstance)
-		sm_pInstance = new CLarvaAIState();
+		sm_pInstance = new CGolemAIState();
 	return sm_pInstance;
 }
 
-void CLarvaAIState::DeleteInstance(void)
+void CGolemAIState::DeleteInstance(void)
 {
 	if(sm_pInstance != NULL)
 	{
@@ -22,7 +22,7 @@ void CLarvaAIState::DeleteInstance(void)
 	}
 }
 
-void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
+void CGolemAIState::Enter(CBaseCharacter* pCharacter)
 {
 	pCharacter->SetVelY( 0 );
 	pCharacter->SetVelX( 0 );
@@ -31,9 +31,9 @@ void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
 
 	pCharacter->SetMoveTimer( 0.0f );
 	pCharacter->SetMiniState(2);
-	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_LARVA);
+	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_GOLEM);
 	
-	pCharacter->SetSpeed(100);
+	pCharacter->SetSpeed(60);
 
 	//	0 - GetWhacked
 	//	1 - WhackedPause
@@ -42,10 +42,10 @@ void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
 	//	4 - SquirmPause
 	//	5 - Lunge
 
-	m_sndLarvaHiss = AUDIO->SFXLoadSound("resource/sound/LarvaHiss.wav");
+	m_sndRockRoll = AUDIO->SFXLoadSound("resource/sound/RockRoll.wav");
 }
 
-void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
+void CGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 {
 	switch( pCharacter->GetMiniState() )
 	{
@@ -212,7 +212,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 		{
 			if( pCharacter->GetMoveTimer() == 0.0f )
 			{
-				AUDIO->SFXPlaySound(m_sndLarvaHiss);
+				AUDIO->SFXPlaySound(m_sndRockRoll);
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 				pCharacter->SetVelX( pCharacter->GetVelX() * 2.0f );
 				pCharacter->SetVelY( pCharacter->GetVelY() * 2.0f );
@@ -462,7 +462,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 	//pCharacter->SetMoveTimer(fMoveTimer);
 }
 
-void CLarvaAIState::Exit(CBaseCharacter* pCharacter)
+void CGolemAIState::Exit(CBaseCharacter* pCharacter)
 {
 
 }
