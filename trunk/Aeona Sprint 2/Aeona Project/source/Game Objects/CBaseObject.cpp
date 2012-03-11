@@ -119,7 +119,17 @@ void CBaseObject::Render(void)
 			}
 			else
 			{
-				CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+				// DANIEL CODE BEGIN
+				// That's where the enemy is finally killed,
+				// when the death animation has finished playing
+
+				// We won't do this anymore..
+				// CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+
+				// Instead...
+				Deactivate();
+				m_bTrulyDead = true;
+				// DANIEL CODE END
 			}
 		}
 	}

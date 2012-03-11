@@ -83,14 +83,16 @@ void CBaseCharacter::Die(void)
 	// TODO: Send a message to delete this object
 	if(m_uiEnemyBehavior == 0)
 	{
-		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		// CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		Deactivate();
 	}
 	else
 	{
 		m_bDying = true;
-		
-	}
 
+		if(m_pAIState)
+			m_pAIState->Exit(this);
+	}
 }
 
 void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
@@ -109,7 +111,7 @@ void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
 void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 {
 	if( m_uiEnemyBehavior != 0 && this->m_uiMiniState != 0 )
-	{
+	{*-
 		AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );
 		philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	// render in red
 		SetMoveTimer( 0.0f );
@@ -202,4 +204,16 @@ void CBaseCharacter::SetPhilDirection(void)
 		}
 	}
 	m_uiPhilDirection = 0;	//	If we somehow fail, we're facing left by default.
+}
+
+void CBaseCharacter::Ressurect(void)
+{
+	CBaseObject::Ressurect();
+
+	if(m_pAIState)
+		m_pAIState->Enter(this);
+
+	m_uiCurHealth = m_uiMaxHealth;
+	m_uiMiniState = 0;
+	m_uiPhilDirection = 0;
 }

@@ -79,6 +79,9 @@ public:
 	inline void SetBehavior(unsigned int m)		{ m_uiEnemyBehavior = m; }
 
 	void SetPhilDirection(void);	//	Super cool direction check! 0 = left, 1 = up, 2 = right, 3 = down
+
+	void Ressurect(void);
+
 	//inline unsigned int GetPhilDirection(void)	{ return m_uiPhilDirection; }
 };
 
