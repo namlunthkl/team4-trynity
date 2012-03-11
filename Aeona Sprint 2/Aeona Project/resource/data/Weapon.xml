@@ -5,18 +5,18 @@
   <Reanimate>0</Reanimate>
   <EmitterPosX>437</EmitterPosX>
   <EmitterPosY>336</EmitterPosY>
-  <MaxParticles>10</MaxParticles>
+  <MaxParticles>5</MaxParticles>
   <Size>-0.680666745</Size>
-  <MaxLife>1</MaxLife>
+  <MaxLife>0.25</MaxLife>
   <SpawnWidth>1</SpawnWidth>
   <SpawnHeight>1</SpawnHeight>
-  <ScaleStart>0.2</ScaleStart>
-  <ScaleEnd>0.1</ScaleEnd>
+  <ScaleStart>0.3</ScaleStart>
+  <ScaleEnd>0.3</ScaleEnd>
   <Rotation>0</Rotation>
-  <MinVelX>-100</MinVelX>
-  <MaxVelX>100</MaxVelX>
-  <MinVelY>-100</MinVelY>
-  <MaxVelY>100</MaxVelY>
+  <MinVelX>-500</MinVelX>
+  <MaxVelX>500</MaxVelX>
+  <MinVelY>0</MinVelY>
+  <MaxVelY>0</MaxVelY>
   <StartColorA>255</StartColorA>
   <StartColorR>0</StartColorR>
   <StartColorG>0</StartColorG>
