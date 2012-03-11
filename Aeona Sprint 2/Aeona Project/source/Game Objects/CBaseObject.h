@@ -73,7 +73,6 @@ public:
 	float       m_fDeathAnim;
 
 
-
 	// Constructor
 	CBaseObject(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0, bool bActive = false);
@@ -141,6 +140,15 @@ public:
 	// to here.
 	void PushAnimationPlayer	(CAnimationPlayer* pAnimation);
 	bool PopAnimationPlayer		(void);
+
+	inline bool IsDead(void) const { return m_bTrulyDead; }
+	
+	virtual void Ressurect(void)
+	{
+		m_bTrulyDead = false;
+		m_bDying = false;
+		Activate();
+	}
 };
 
 #endif // C_BASE_OBJECT_H_

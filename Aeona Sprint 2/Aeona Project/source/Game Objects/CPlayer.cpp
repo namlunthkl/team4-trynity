@@ -525,7 +525,6 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		{
 			pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
 		}
-		int x = 0;
 	}
 	return true;
 }
