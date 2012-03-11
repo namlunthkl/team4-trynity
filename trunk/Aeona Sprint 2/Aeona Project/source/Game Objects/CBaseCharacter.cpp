@@ -111,7 +111,7 @@ void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
 void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 {
 	if( m_uiEnemyBehavior != 0 && this->m_uiMiniState != 0 )
-	{*-
+	{
 		AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );
 		philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	// render in red
 		SetMoveTimer( 0.0f );
