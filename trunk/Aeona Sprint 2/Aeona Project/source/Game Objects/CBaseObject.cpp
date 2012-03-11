@@ -87,7 +87,7 @@ void CBaseObject::Render(void)
 			m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y);
 		}
 	}
-	else	//	Else, if we are an enemy, let's render a different way, since I need more control for AI and stuff
+	else	//	Else, if we are an enemy, let's render a different way, for more control for AI and stuff
 	{
 		if( m_bDying == false )
 		{
@@ -97,7 +97,13 @@ void CBaseObject::Render(void)
 			enemy.right = 96 + (m_uiPhilDirection*96);
 			enemy.bottom = 96 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
 
-			TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - 48, (int)m_ptPosition.y - 48, 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			float scale = 1.0f;
+
+			if(m_uiEnemyBehavior == BEHAVIOR_GOLEM)
+				scale = 2.0f;
+
+			//TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*1), (int)m_ptPosition.y - (48*1), 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*scale), (int)m_ptPosition.y - (48*scale), scale, scale, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
 		}
 		else
 		{
