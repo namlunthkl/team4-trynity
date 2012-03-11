@@ -294,6 +294,11 @@ void CGame::Render(void)
 
 		m_pCurrentState->Render();
 
+		D3D->GetSprite()->Flush();
+		char buffer[100];
+		sprintf_s(buffer, 100, "FPS: %i", m_Timer.m_nFPS);
+		D3D->DrawTextA(&buffer[0], 0, 0, 255, 0, 0);
+
 		D3D->SpriteEnd();
 		D3D->DeviceEnd();
 		D3D->Present();
@@ -613,7 +618,7 @@ void CGame::RenderLoadingScreen(unsigned int uiAmountLoaded, unsigned int uiLoad
 			while(uiAmountLoaded > 0)
 			{
 				--uiAmountLoaded;
-				r2.right += (long)(((800-r2.right-128) * 0.3f));
+				r2.right += (long)(((800-r2.right-128) * 0.175f));
 			}
 			r2.bottom = 300+4;
 

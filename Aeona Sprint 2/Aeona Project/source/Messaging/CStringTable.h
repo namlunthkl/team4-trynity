@@ -24,7 +24,7 @@ class CStringTable
 public:
 	CStringTable(unsigned int uiCapacity);
 
-	int LoadString(char const * const szString);
+	int LoadStringOnTable(char const * const szString);
 
 	const char* GetString(unsigned int uiIndex) const;
 	int GetStringIndex(char const * const szString) const;

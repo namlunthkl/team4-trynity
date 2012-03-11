@@ -75,6 +75,10 @@ class CWorldEngine
 	////////////////////////////////////////////////////////////////////////
 	void Input(void);
 
+
+	CMap* GetMapWherePointIs(double dPositionX, double dPositionY);
+
+
 public:
 
 	//////////////////////////////////////////////////////////////////////////
@@ -127,7 +131,9 @@ public:
 	////////////////////////////////////////////////////////////////////////
 	CTileset* GetTileset(unsigned char ucID);
 
-	const char* GetMapWherePointIs(double dPositionX, double dPositionY);
+
+	const char* GetRegionName(double dPositionX, double dPositionY);
+	
 
 	///////////
 	// HACK

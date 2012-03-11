@@ -47,3 +47,18 @@ char GetNumberOfBitsff(Byte byteArgument)
 		if(!TestBit(byteArgument, i)) cReturn += 1;
 	return cReturn;
 }
+
+
+double GetScreenPosX(double pos)
+{
+	if(CCameraControl::GetInstance())
+		return pos - (-1 * CCameraControl::GetInstance()->GetPositionX());
+	return 0;
+}
+
+double GetScreenPosY(double pos)
+{
+	if(CCameraControl::GetInstance())
+		return pos - (-1 * CCameraControl::GetInstance()->GetPositionY());
+	return 0;
+}

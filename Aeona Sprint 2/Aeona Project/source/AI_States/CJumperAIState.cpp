@@ -96,12 +96,12 @@ void CJumperAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				if( tempDir == 0 )
 				{
 					pCharacter->SetVelX( 0.0f );
-					pCharacter->SetVelY( -1.0 * pCharacter->GetSpeed() );
+					pCharacter->SetVelY( -1.0f * pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_UP);
 				}
 				else if( tempDir == 1 )
 				{
-					pCharacter->SetVelX( pCharacter->GetSpeed() );
+					pCharacter->SetVelX((float) pCharacter->GetSpeed() );
 					pCharacter->SetVelY( -1.0f * pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_UP);
 					float meh = pCharacter->GetVelX();
@@ -110,26 +110,26 @@ void CJumperAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				}
 				else if( tempDir == 2 )
 				{
-					pCharacter->SetVelX( pCharacter->GetSpeed() );
+					pCharacter->SetVelX((float) pCharacter->GetSpeed() );
 					pCharacter->SetVelY( 0.0f );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_RIGHT);
 				}
 				else if( tempDir == 3 )
 				{
-					pCharacter->SetVelX( pCharacter->GetSpeed() );
-					pCharacter->SetVelY( pCharacter->GetSpeed() );
+					pCharacter->SetVelX((float) pCharacter->GetSpeed() );
+					pCharacter->SetVelY((float) pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_DOWN);
 				}
 				else if( tempDir == 4 )
 				{
 					pCharacter->SetVelX( 0.0f );
-					pCharacter->SetVelY( pCharacter->GetSpeed() );
+					pCharacter->SetVelY((float) pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_DOWN);
 				}
 				else if( tempDir == 5 )
 				{
 					pCharacter->SetVelX( -1.0f * pCharacter->GetSpeed() );
-					pCharacter->SetVelY( pCharacter->GetSpeed() );
+					pCharacter->SetVelY((float) pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_DOWN);
 				}
 				else if( tempDir == 6 )
@@ -140,8 +140,8 @@ void CJumperAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				}
 				else if( tempDir == 7 )
 				{
-					pCharacter->SetVelX( -1.0 * pCharacter->GetSpeed() );
-					pCharacter->SetVelY( -1.0 * pCharacter->GetSpeed() );
+					pCharacter->SetVelX( -1.0f * pCharacter->GetSpeed() );
+					pCharacter->SetVelY( -1.0f * pCharacter->GetSpeed() );
 					pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_UP);
 				}
 			}
@@ -164,8 +164,8 @@ void CJumperAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );
 				//find the player direction!
-				int temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
-				int temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+				double temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+				double temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
 				if(abs(temp_y_dist) < abs(temp_x_dist))
 				{
 					//then we are going north-south
@@ -212,8 +212,8 @@ void CJumperAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );
 				//find the player direction!
-				int temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
-				int temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+				double temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+				double temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
 				if(abs(temp_y_dist) > abs(temp_x_dist))
 				{
 					//then we are going north-south

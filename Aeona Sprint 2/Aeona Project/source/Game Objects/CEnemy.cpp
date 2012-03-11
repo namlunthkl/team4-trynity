@@ -31,7 +31,7 @@ bool CEnemy::CheckCollision(IBaseInterface* pObject)
 		if( pObject->GetType() == TYPE_CHAR_PLAYER )
 		{
 			CPlayer::GetInstance()->SufferDamage(GetAttackDamage());
-			CPlayer::GetInstance()->m_fOuchTimer = 0.8f;
+			CPlayer::GetInstance()->SetOuchTimer(0.8f);
 		}
 	}
 	return true;

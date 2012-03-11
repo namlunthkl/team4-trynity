@@ -83,7 +83,7 @@ void CCrossBow::ChargedAttack(void)
 void CCrossBow::ShootArrow(void)
 {
 	m_pArrow = new CArrow();
-	m_pArrow->SetSpeed(CPlayer::GetInstance()->GetSpeed()*2);
+	m_pArrow->SetSpeed(300);
 	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BrS_Arrow.png", D3DCOLOR_XRGB(0,0,0)));
 	m_pArrow->SetHeight(18);
 	m_pArrow->SetWidth(4);

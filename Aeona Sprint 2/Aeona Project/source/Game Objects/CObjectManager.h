@@ -20,6 +20,8 @@ public:
 	CObjectManager(void) {}
 	~CObjectManager(void) {}
 
+	void QuickSort(vector<IBaseInterface*>& arr, int left, int right);
+
 	//	Instance
 	static CObjectManager* GetInstance();
 	static void DeleteInstance();
