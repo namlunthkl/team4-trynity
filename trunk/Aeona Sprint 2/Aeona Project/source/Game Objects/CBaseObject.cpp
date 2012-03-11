@@ -10,6 +10,7 @@
 
 // Precompiled header
 #include "StdAfx.h"
+#include "../StdAfx.h"
 // Include header file
 #include "CBaseObject.h"
 // For rendering using screen position
@@ -17,8 +18,7 @@
 #include "../Camera/CCameraControl.h"
 
 // Constructor
-CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSpeed,
-	int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive)
+CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSpeed, int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive)
 {
 	m_ptPosition.x		= dPositionX;
 	m_ptPosition.y		= dPositionY;
@@ -34,6 +34,15 @@ CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSp
 	m_vecVelocity.fY	= 0.0f;
 	m_uiRefCount		= 1;
 	m_bDebugMode		= false;
+
+	m_uiEnemyBehavior = 0;
+	m_uiMiniState = 0;
+	m_uiPhilDirection = 0;
+	philEnemyColor = D3DCOLOR_ARGB(255, 255, 255, 255);
+	m_bWalkCycle = 0;
+	m_bDying = false;
+	m_bTrulyDead = false;
+	m_fDeathAnim = 0.0f;
 }
 
 // Common routines
@@ -42,13 +51,19 @@ void CBaseObject::Update(float fElapsedTime)
 	if(!IsActive()) return;
 
 	// Update position based on velocity
-	m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
-	m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
+	if(m_uiEnemyBehavior == 0 || (m_uiEnemyBehavior != 0 && m_bDying == false))
+	{
+		m_ptPosition.x = (m_ptPosition.x + m_vecVelocity.fX * fElapsedTime);
+		m_ptPosition.y = (m_ptPosition.y + m_vecVelocity.fY * fElapsedTime);
+	}
 
 	if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
 	{
 		m_vpAnimations[m_anmCurrent]->Update(fElapsedTime);
 	}
+
+	if(m_bDying == true)
+		m_fDeathAnim += fElapsedTime*7.0f;
 }
 
 void CBaseObject::Input(void)
@@ -60,14 +75,47 @@ void CBaseObject::Render(void)
 {
 	if(!IsActive()) return;
 
-	// If there's no animation, render object's image in its position
-	if(m_vpAnimations.empty())
+	if( m_uiEnemyBehavior == 0)	//	use the animation editor here, if this value is 0
 	{
-		TEX_MNG->Draw(m_nImageID, (int)m_ptPosition.x - m_ptAnchor.x, (int)m_ptPosition.y - m_ptAnchor.y);
+		// If there's no animation, render object's image in its position
+		if(m_vpAnimations.empty())
+		{
+			TEX_MNG->Draw(m_nImageID, (int)m_ptPosition.x - m_ptAnchor.x, (int)m_ptPosition.y - m_ptAnchor.y);
+		}
+		else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+		{
+			m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y);
+		}
 	}
-	else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+	else	//	Else, if we are an enemy, let's render a different way, since I need more control for AI and stuff
 	{
-		m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y);
+		if( m_bDying == false )
+		{
+			RECT enemy;
+			enemy.left = 0 + (m_uiPhilDirection*96);
+			enemy.top = 0 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
+			enemy.right = 96 + (m_uiPhilDirection*96);
+			enemy.bottom = 96 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
+
+			TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - 48, (int)m_ptPosition.y - 48, 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+		}
+		else
+		{
+			if(m_fDeathAnim < 4.0f )
+			{
+				RECT enemy;
+				enemy.left = 0 + ((int)m_fDeathAnim * 96);
+				enemy.top = 0;
+				enemy.right = 96 + ((int)m_fDeathAnim * 96);
+				enemy.bottom = 96;
+
+				TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)m_ptPosition.x - 48, (int)m_ptPosition.y - 48, 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			}
+			else
+			{
+				CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+			}
+		}
 	}
 
 	D3D->GetSprite()->Flush();

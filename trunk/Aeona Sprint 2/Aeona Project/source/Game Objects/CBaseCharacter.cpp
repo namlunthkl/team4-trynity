@@ -10,6 +10,7 @@
 
 // Precompiled header
 #include "StdAfx.h"
+#include "../StdAfx.h"
 // Include header file
 #include "CBaseCharacter.h"
 
@@ -25,6 +26,9 @@ CBaseCharacter::CBaseCharacter(double dPositionX, double dPositionY, unsigned in
 	m_uiMaxHealth = uiMaxHealth;
 	m_uiCurHealth = uiMaxHealth;
 	m_uiAttackDamage = uiAttackDamage;
+
+	m_uiMiniState = 0;
+	m_uiPhilDirection = 0;
 
 	m_pAIState = nullptr;
 }
@@ -59,7 +63,7 @@ bool CBaseCharacter::LoadAnimations(char const * const szFilename)
 
 void CBaseCharacter::Update(float fElapsedTime)
 {
-	if(m_pAIState)
+	if(m_pAIState && m_bDying == false)
 		m_pAIState->Update(this, fElapsedTime);
 
 	CBaseObject::Update(fElapsedTime);
@@ -74,9 +78,19 @@ void CBaseCharacter::Attack()
 void CBaseCharacter::Die(void)
 {
 	// TODO: Play die animation
+
 	// TODO: Send a message to spawn an item here
 	// TODO: Send a message to delete this object
-	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	if(m_uiEnemyBehavior == 0)
+	{
+		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	}
+	else
+	{
+		m_bDying = true;
+		
+	}
+
 }
 
 void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
@@ -94,6 +108,14 @@ void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
 
 void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 {
+	if( m_uiEnemyBehavior != 0 )
+	{
+		AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );
+		philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	// render in red
+		SetMoveTimer( 0.0f );
+		m_uiMiniState = 0;	//	it's an enemy, and set me to 'ow'
+	}
+
 	if(uiDamage < m_uiCurHealth)
 	{
 		m_uiCurHealth -= uiDamage;
@@ -101,6 +123,11 @@ void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 	else
 	{
 		m_uiCurHealth = 0;
+		if(m_uiEnemyBehavior == BEHAVIOR_LARVA)
+		{
+			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+			philEnemyColor = D3DCOLOR_XRGB(0, 255, 0);
+		}
 		Die();
 	}
 }
@@ -120,4 +147,49 @@ void CBaseCharacter::Heal(unsigned int uiHealAmount)
 // Destructor
 CBaseCharacter::~CBaseCharacter(void)
 {
+}
+
+void CBaseCharacter::SetPhilDirection(void)
+{
+	if( GetVelX() < 0 )
+	{
+		// Possibly left
+		if( fabs( GetVelX() ) > fabs( GetVelY() ) )
+		{
+			//	Definitely left!
+			m_uiPhilDirection = 0;
+			return;
+		}
+	}
+	else if( GetVelY() < 0 )
+	{
+		//	Possibly up
+		if( fabs( GetVelY() ) >= fabs( GetVelX() ) )
+		{
+			//	Definitely up, or perfectly diagonal.
+			m_uiPhilDirection = 1;
+			return;
+		}
+	}
+	else if( GetVelX() > 0 )
+	{
+		//	Possibly right
+		if( fabs( GetVelX() ) > fabs( GetVelY() ) )
+		{
+			//	Definitely right!
+			m_uiPhilDirection = 2;
+			return;
+		}
+	}
+	else if( GetVelY() > 0 )
+	{
+		//	Possibly down
+		if( fabs( GetVelY() ) >= fabs( GetVelX() ) )
+		{
+			//	Definitely down, or perfectly diagonal.
+			m_uiPhilDirection = 3;
+			return;
+		}
+	}
+	m_uiPhilDirection = 0;	//	If we somehow fail, we're facing left by default.
 }

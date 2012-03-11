@@ -14,6 +14,7 @@
     <ClCompile Include="source\AI_States\CJumperAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CLarvaAIState.cpp" />
     <ClCompile Include="source\AI_States\CRandomAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -200,6 +201,7 @@
   <ItemGroup>
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
     <ClInclude Include="source\AI_States\CJumperAIState.h" />
+    <ClInclude Include="source\AI_States\CLarvaAIState.h" />
     <ClInclude Include="source\AI_States\CRandomAIState.h" />
     <ClInclude Include="source\AI_States\CSwarmAIState.h" />
     <ClInclude Include="source\AI_States\IBaseAIState.h" />
