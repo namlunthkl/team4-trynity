@@ -62,9 +62,10 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	m_bBusy = false;
 
-	//WEAPON->Activate();
 	Activate();
-	m_fxFootsteps.Load("Resource/data/DustFromFeet.xml");
+
+	// PARTICLE WEAPON
+	m_fxElementalWeapon.Load("Resource/data/Weapon.xml");
 
 	m_sndHit = AUDIO->SFXLoadSound("resource/sound/Hit.wav");
 
@@ -146,16 +147,9 @@ void CPlayer::Update(float fElapsedTime)
 	WEAPON->Update(fElapsedTime);
 	
 	// Update the particles
-	m_fxFootsteps.Update(fElapsedTime);
+	m_fxElementalWeapon.Update(fElapsedTime);
 	LightEngine::GetInstance()->SetPlayerPointPos( (float)GetPosX(), (float)GetPosY() );
 
-	// Fire the particle effect if the position changed
-	if(ptOldPosition != GetPosition())
-	{
-		m_fxFootsteps.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX()-25);
-		m_fxFootsteps.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY()-16);
-		m_fxFootsteps.Fire();
-	}
 }
 
 void CPlayer::Render(void)
@@ -168,7 +162,7 @@ void CPlayer::Render(void)
 		WEAPON->Render(GetPosition());
 	}
 	// Render the particles
-	m_fxFootsteps.Render();
+	m_fxElementalWeapon.Render();
 	
 	//D3D->GetSprite()->Flush();
 	//RectD rect = GetCollisionRect();
@@ -206,7 +200,42 @@ void CPlayer::Attack(void)
 
 	if( m_fOuchTimer == 0.0f )
 	{
-		//CBaseCharacter::Attack();
+		if( m_uiCurrentWeapon == WEAPON_SWORD )
+	{
+		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+		m_fxElementalWeapon.emitter.ColorStartR = 255;
+		m_fxElementalWeapon.emitter.ColorStartG = 0;
+		m_fxElementalWeapon.emitter.ColorStartB = 0;
+		m_fxElementalWeapon.emitter.ColorEndR = 255;
+		m_fxElementalWeapon.emitter.ColorEndG = 0;
+		m_fxElementalWeapon.emitter.ColorEndB = 0;
+		m_fxElementalWeapon.Fire();
+	}
+	if( m_uiCurrentWeapon == WEAPON_HAMMER )
+	{
+		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+		m_fxElementalWeapon.emitter.ColorStartR = 0;
+		m_fxElementalWeapon.emitter.ColorStartG = 255;
+		m_fxElementalWeapon.emitter.ColorStartB = 0;
+		m_fxElementalWeapon.emitter.ColorEndR = 0;
+		m_fxElementalWeapon.emitter.ColorEndG = 255;
+		m_fxElementalWeapon.emitter.ColorEndB = 0;
+		m_fxElementalWeapon.Fire();
+	}
+	if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
+	{
+		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+		m_fxElementalWeapon.emitter.ColorStartR = 0;
+		m_fxElementalWeapon.emitter.ColorStartG = 0;
+		m_fxElementalWeapon.emitter.ColorStartB = 255;
+		m_fxElementalWeapon.emitter.ColorEndR = 0;
+		m_fxElementalWeapon.emitter.ColorEndG = 0;
+		m_fxElementalWeapon.emitter.ColorEndB = 255;
+		m_fxElementalWeapon.Fire();
+	}
 		WEAPON->Attack();
 	}
 }
