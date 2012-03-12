@@ -7,6 +7,7 @@
 
 <Tileset file="resource/Tilesets/SnowTileset.xml"/>
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
+<Map file="resource/Maps/SnowMapFinal2.xml"/>
 
 <COMMENT>
 <Tileset file="resource/Tilesets/DesertTileset.xml"/>

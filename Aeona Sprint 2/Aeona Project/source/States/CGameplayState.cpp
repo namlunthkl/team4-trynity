@@ -89,8 +89,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(600); //743
-	PLAYER->SetPosY(200); //4992
+	PLAYER->SetPosX(743); //743
+	PLAYER->SetPosY(4992); //4992
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
