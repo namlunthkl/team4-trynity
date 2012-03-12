@@ -74,23 +74,7 @@ void CObjectManager::RenderObjects()
 	// applied to it. If you can do this and decrease the
 	// frame rate, I will let you check off this user story =P
 
-	//vector<IBaseInterface*> m_vpRenderList = m_vpObjectList;
-	//QuickSort(m_vpRenderList, 0, m_vpRenderList.size() - 1);
-	//
-	//for(unsigned int i = 0; i < m_vpRenderList.size(); ++i)
-	//{
-	//	CBaseObject* pObj = (CBaseObject*)m_vpRenderList[i];
-
-	//	double left = GetScreenPosX(pObj->GetCollisionRect().left);
-	//	double right = GetScreenPosX(pObj->GetCollisionRect().right);
-	//	double top = GetScreenPosY(pObj->GetCollisionRect().top);
-	//	double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
-
-	//	// If object is inside the screen, render it
-	//	if(right > 0 &&	left < GAME->GetScreenWidth() &&
-	//		bottom > 0 && top < GAME->GetScreenHeight())
-	//		m_vpRenderList[i]->Render();
-	//}
+	vector<IBaseInterface*> m_vpRenderList /*= m_vpObjectList*/;
 
 	for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)
 	{
@@ -102,10 +86,31 @@ void CObjectManager::RenderObjects()
 		double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
 
 		// If object is inside the screen, render it
-		if(right > 0 &&	left < GAME->GetScreenWidth() &&
-			bottom > 0 && top < GAME->GetScreenHeight())
-			m_vpObjectList[i]->Render();
+		if(right > 0 &&	left < GAME->GetScreenWidth() && bottom > 0 && top < GAME->GetScreenHeight())
+			m_vpRenderList.push_back(pObj);
 	}
+
+	QuickSort(m_vpRenderList, 0, m_vpRenderList.size() - 1);
+	
+	for(unsigned int i = 0; i < m_vpRenderList.size(); ++i)
+	{
+		m_vpRenderList[i]->Render();
+	}
+
+	//for(unsigned int i = 0; i < m_vpObjectList.size(); ++i)
+	//{
+	//	CBaseObject* pObj = (CBaseObject*)m_vpObjectList[i];
+	//
+	//	double left = GetScreenPosX(pObj->GetCollisionRect().left);
+	//	double right = GetScreenPosX(pObj->GetCollisionRect().right);
+	//	double top = GetScreenPosY(pObj->GetCollisionRect().top);
+	//	double bottom = GetScreenPosY(pObj->GetCollisionRect().bottom);
+	//
+	//	// If object is inside the screen, render it
+	//	if(right > 0 &&	left < GAME->GetScreenWidth() &&
+	//		bottom > 0 && top < GAME->GetScreenHeight())
+	//		m_vpObjectList[i]->Render();
+	//}
 
 }
 
