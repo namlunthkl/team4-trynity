@@ -11,6 +11,7 @@
 <Map file="resource/Maps/SnowMapFinal3.xml"/>
 <Map file="resource/Maps/SnowMapFinal4.xml"/>
 <Map file="resource/Maps/SnowMapFinal5.xml"/>
+<Map file="resource/Maps/SnowMapFinal6.xml"/>
 
 <COMMENT>
 <Tileset file="resource/Tilesets/DesertTileset.xml"/>

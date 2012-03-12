@@ -1,6 +1,6 @@
 can break collision in debug mode using the speed boost
 
-crash when you killed an enemy while you were up on ledge
+crash when you killed an enemy while you were up on ledge - FIXED by Mr. Lima
 
 NPC pushed too far when he shot an arrow and moved into him at the same time
 
