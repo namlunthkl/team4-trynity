@@ -32,6 +32,7 @@ void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetMoveTimer( 0.0f );
 	pCharacter->SetMiniState(2);
 	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_LARVA);
+	pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
 	
 	pCharacter->SetSpeed(100);
 

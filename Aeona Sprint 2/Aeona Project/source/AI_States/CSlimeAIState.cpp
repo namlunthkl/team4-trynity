@@ -32,6 +32,7 @@ void CSlimeAIState::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetMoveTimer( 0.0f );
 	pCharacter->SetMiniState(2);
 	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_SLIME);
+	pCharacter->philEnemyColor = D3DCOLOR_XRGB(0, 96, 255);
 	
 	pCharacter->SetSpeed(190);
 

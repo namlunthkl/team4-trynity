@@ -214,6 +214,6 @@ void CBaseCharacter::Ressurect(void)
 		m_pAIState->Enter(this);
 
 	m_uiCurHealth = m_uiMaxHealth;
-	m_uiMiniState = 0;
-	m_uiPhilDirection = 0;
+	//m_uiMiniState = 2;
+	m_uiPhilDirection = 3;
 }

@@ -134,7 +134,7 @@ void CBaseObject::Render(void)
 		}
 	}
 
-	D3D->GetSprite()->Flush();
+	//D3D->GetSprite()->Flush();
 
 	if(m_bDebugMode)
 	{

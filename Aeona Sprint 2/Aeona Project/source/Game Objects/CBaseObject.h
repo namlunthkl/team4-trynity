@@ -147,6 +147,8 @@ public:
 	{
 		m_bTrulyDead = false;
 		m_bDying = false;
+		m_bWalkCycle = 0;
+		m_fDeathAnim = 0.0f;
 		Activate();
 	}
 };
