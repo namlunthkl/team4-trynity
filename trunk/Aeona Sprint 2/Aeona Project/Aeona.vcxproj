@@ -209,6 +209,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="source\AI_States\CGolemAIState.h" />
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
     <ClInclude Include="source\AI_States\CJumperAIState.h" />
@@ -289,6 +290,12 @@
     <ClInclude Include="source\Wrappers\CSGD_XAudio2.h" />
     <ClInclude Include="source\Wrappers\SGD_Math.h" />
     <ClInclude Include="source\Wrappers\SGD_Util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Aeona.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Aeona Icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F01D96CC-C230-4F34-8863-B37807081DF7}</ProjectGuid>

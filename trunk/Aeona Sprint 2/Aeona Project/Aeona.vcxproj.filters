@@ -58,6 +58,9 @@
     <Filter Include="Graphics\Light">
       <UniqueIdentifier>{0ee8d548-d905-420a-b979-763f0fe0d51e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{226f1af6-cd17-474b-8aad-bacd8ebc43e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game Objects\CObjectManager.cpp">
@@ -489,5 +492,18 @@
     <ClInclude Include="source\AI_States\CSpiderAIState.h">
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Aeona Icon.ico">
+      <Filter>Resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Aeona.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

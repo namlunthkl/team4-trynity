@@ -223,10 +223,10 @@ namespace Animation_Editor
                 if (animationList.Count > 0 && listBoxAnimations.SelectedIndex != -1)
                 {
                     Animation temp = (Animation)animationList[listBoxAnimations.SelectedIndex];
-                    if (temp.NumFrames >= m_nFrameNumber-1)
-                    {
-                        m_nFrameNumber = 0;
-                    }
+                    //if (temp.NumFrames >= m_nFrameNumber-1)
+                    //{
+                    //    m_nFrameNumber = 0;
+                    //}
                         System.DateTime StartTimeStamp = System.DateTime.Now;
                         System.TimeSpan ElapsedTime = StartTimeStamp - PreviousTimeStamp;
                         PreviousTimeStamp = StartTimeStamp;

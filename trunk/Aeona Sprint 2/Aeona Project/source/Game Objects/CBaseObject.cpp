@@ -233,7 +233,7 @@ Point CBaseObject::GetAnchorPoint(void)
 	//{
 	//	m_ptAnchor = m_vpAnimations[m_anmCurrent]->ReturnAnchorPoint();
 	//}
-
+	//
 	return m_ptAnchor;
 }
 

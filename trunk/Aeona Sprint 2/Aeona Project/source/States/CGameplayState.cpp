@@ -150,6 +150,27 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy3);
 	//pEnemy3->Release();
 
+	CEnemy* pEnemy4 = new CEnemy(743, 5032, 40,  -1, 50, 50, true, 100, 1);
+	pEnemy4->LoadAnimations("resource/Air Enemy.xml");
+	pEnemy4->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy4->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy4);
+	pEnemy4->Release();
+
+	CEnemy* pEnemy5 = new CEnemy(743, 4952, 40,  -1, 50, 50, true, 100, 1);
+	pEnemy5->LoadAnimations("resource/Earth Enemy.xml");
+	pEnemy5->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy5->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy5);
+	pEnemy5->Release();
+
+	CEnemy* pEnemy6 = new CEnemy(723, 4992, 40,  -1, 50, 50, true, 100, 1);
+	pEnemy6->LoadAnimations("resource/Fire Enemy.xml");
+	pEnemy6->ChangeAIState(CJumperAIState::GetInstance());
+	pEnemy6->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy6);
+	pEnemy6->Release();
+
 	// Initialize NPCs
 	/*CNPC* pNPC;
 	pNPC = new CNPC("Mini Guy", false, 150, -1, 290, 1000, 20, -1, 20, 20, true, 100, 0);
@@ -305,13 +326,7 @@ void CGameplayState::Update(float fElapsedTime)
 
 void CGameplayState::Render(void)
 {
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->BeginPostProcess();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
+
 
 	///////////////////////////////////////////////////////////////////////////////////
 	////////////////////////// RENDER GAME OBJECTS AND WORLD //////////////////////////
@@ -319,6 +334,14 @@ void CGameplayState::Render(void)
 
 	D3D->Clear(50,50,50);
 	D3D->DeviceBegin();
+
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	CPostProcess::GetInstance()->BeginPostProcess();
+	///////////////////////////
+	//END ARI EXTRA CODE
+	///////////////////////////
 	
 	//ARI EXTRA CODE
 	CCameraControl::GetInstance()->SetSpriteProjection();
@@ -366,7 +389,7 @@ void CGameplayState::Render(void)
 		D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
 		char buffer[100];
 		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
-		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20));
+		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
 	}
 
 	// Render the Weather

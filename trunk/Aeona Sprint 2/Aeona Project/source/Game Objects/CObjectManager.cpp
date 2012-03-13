@@ -90,12 +90,12 @@ void CObjectManager::RenderObjects()
 			m_vpRenderList.push_back(pObj);
 	}
 	
-	if(update == true)
-	{
+	//if(update == true)
+	//{
 		QuickSort(m_vpRenderList, 0, m_vpRenderList.size() - 1);
-	}
-	
-	update = !update;
+	//}
+	//
+	//update = !update;
 	
 	
 	for(unsigned int i = 0; i < m_vpRenderList.size(); ++i)

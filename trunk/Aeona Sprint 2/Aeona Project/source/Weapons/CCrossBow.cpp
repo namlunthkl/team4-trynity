@@ -93,7 +93,7 @@ void CCrossBow::ShootArrow(void)
 	if(GetCurrentAnimation() == ANM_ATK_UP)
 	{
 		m_pArrow->SetVelX(0.0f);
-		m_pArrow->SetVelY(-1.0f *(int)m_pArrow->GetSpeed());
+		m_pArrow->SetVelY(-1.0f *m_pArrow->GetSpeed());
 		m_pArrow->SetPosX(temp.x);
 		m_pArrow->SetPosY(temp.y- 40);
 	}
