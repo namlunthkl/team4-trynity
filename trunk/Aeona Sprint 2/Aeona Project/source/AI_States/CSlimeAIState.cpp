@@ -34,6 +34,8 @@ void CSlimeAIState::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_SLIME);
 	pCharacter->philEnemyColor = D3DCOLOR_XRGB(0, 96, 255);
 	
+	pCharacter->m_bSpecial = false;
+	pCharacter->m_uiSpecialCounter = 0;
 	pCharacter->SetSpeed(190);
 
 	//	0 - GetWhacked

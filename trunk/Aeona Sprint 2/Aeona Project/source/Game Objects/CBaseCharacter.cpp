@@ -110,37 +110,64 @@ void CBaseCharacter::ChangeAIState(IBaseAIState* pAIState)
 
 void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 {
-	if( m_uiEnemyBehavior != 0 && this->m_uiMiniState != 0 )
-	{
-		AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );
-		philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	// render in red
-		SetMoveTimer( 0.0f );
-		m_uiMiniState = 0;	//	it's an enemy, and set me to 'ow'
-	}
+	AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndFleshHit );	//	We probably want to play this hit sound, whether it's an AnimationManager-controlled enemy or not.
 
-	if(uiDamage < m_uiCurHealth)
+	if( m_uiEnemyBehavior != 0 )	//	If we are using phil's enemy thing
 	{
-		m_uiCurHealth -= uiDamage;
+		if(m_uiMiniState > 1)	//	States 0 and 1 are "Ow+knockedback" and "I'm still hurting, ow", so don't allow him to take damage again while he's already hurt
+		{
+			philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);	//	Send a red color, because he got hit
+			SetMoveTimer( 0.0f );	//	Required for my ai thing
+			m_uiMiniState = 0;		//	State 0 is "ouch+knockedback"
+
+			if(uiDamage < m_uiCurHealth)
+			{
+				m_uiCurHealth -= uiDamage;
+			}
+			else
+			{
+				m_uiCurHealth = 0;
+
+				if(m_uiEnemyBehavior == BEHAVIOR_LARVA && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(0, 255, 0);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_GOLEM && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(180, 180, 180);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_SLIME && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(255, 160, 0);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_LILBASTARD && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(0, 0, 0);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_SPIDER && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);
+				}
+				Die();
+			}
+		}
 	}
-	else
+	else			//	Else, if we are using the AnimationEditor-style enemy
 	{
-		m_uiCurHealth = 0;
-		if(m_uiEnemyBehavior == BEHAVIOR_LARVA && this->m_bDying == false )
+		if(uiDamage < m_uiCurHealth)
 		{
-			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
-			philEnemyColor = D3DCOLOR_XRGB(0, 255, 0);
+			m_uiCurHealth -= uiDamage;
 		}
-		else if(m_uiEnemyBehavior == BEHAVIOR_GOLEM && this->m_bDying == false )
+		else
 		{
-			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
-			philEnemyColor = D3DCOLOR_XRGB(180, 180, 180);
+			m_uiCurHealth = 0;
+			Die();
 		}
-		else if(m_uiEnemyBehavior == BEHAVIOR_SLIME && this->m_bDying == false )
-		{
-			AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
-			philEnemyColor = D3DCOLOR_XRGB(255, 160, 0);
-		}
-		Die();
 	}
 }
 
@@ -173,7 +200,7 @@ void CBaseCharacter::SetPhilDirection(void)
 			return;
 		}
 	}
-	else if( GetVelY() < 0 )
+	if( GetVelY() < 0 )
 	{
 		//	Possibly up
 		if( fabs( GetVelY() ) >= fabs( GetVelX() ) )
@@ -183,7 +210,7 @@ void CBaseCharacter::SetPhilDirection(void)
 			return;
 		}
 	}
-	else if( GetVelX() > 0 )
+	if( GetVelX() > 0 )
 	{
 		//	Possibly right
 		if( fabs( GetVelX() ) > fabs( GetVelY() ) )
@@ -193,7 +220,7 @@ void CBaseCharacter::SetPhilDirection(void)
 			return;
 		}
 	}
-	else if( GetVelY() > 0 )
+	if( GetVelY() > 0 )
 	{
 		//	Possibly down
 		if( fabs( GetVelY() ) >= fabs( GetVelX() ) )

@@ -43,6 +43,8 @@ CBaseObject::CBaseObject(double dPositionX, double dPositionY, unsigned int uiSp
 	m_bDying = false;
 	m_bTrulyDead = false;
 	m_fDeathAnim = 0.0f;
+	m_bSpecial = false;
+	m_uiSpecialCounter = 0;
 }
 
 // Common routines
@@ -96,6 +98,12 @@ void CBaseObject::Render(void)
 			enemy.top = 0 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
 			enemy.right = 96 + (m_uiPhilDirection*96);
 			enemy.bottom = 96 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
+
+			if( m_bSpecial == true )
+			{
+				enemy.left = 384;
+				enemy.right = 384+96;
+			}
 
 			float scale = 1.0f;
 
