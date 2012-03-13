@@ -26,6 +26,14 @@ float gPlayerPointB;
 float gPlayerPointPosX;
 float gPlayerPointPosY;
 
+bool  gItem4PointLight;
+float gItem4PointA;
+float gItem4PointR;
+float gItem4PointG;
+float gItem4PointB;
+float gItem4PointPosX;
+float gItem4PointPosY;
+
 bool  gItem1PointLight;
 float gItem1PointA;
 float gItem1PointR;
@@ -49,14 +57,6 @@ float gItem3PointG;
 float gItem3PointB;
 float gItem3PointPosX;
 float gItem3PointPosY;
-
-bool  gItem4PointLight;
-float gItem4PointA;
-float gItem4PointR;
-float gItem4PointG;
-float gItem4PointB;
-float gItem4PointPosX;
-float gItem4PointPosY;
 
 float gPlayerPointRadius;
 float gItemPointRadius;
@@ -187,9 +187,8 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 	////////////////////////////////////////////////////////
 	// ITEM1 POINT LIGHT
 	////////////////////////////////////////////////////////
-	float4 Item1PointLightColor;	
-	if( gItem1PointLight == true )
-	{
+	float4 Item1PointLightColor = { 0, 0, 0, 0 };	
+	
 		Item1PointLightColor.a = gItem1PointA;
 		Item1PointLightColor.r = gItem1PointR;
 		Item1PointLightColor.g = gItem1PointG;
@@ -209,14 +208,13 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item1PointLightRadius = gItemPointRadius;
 		Item1Ratio = 1.0f - saturate( Item1Mag / Item1PointLightRadius );
 		Item1PointLightColor *= Item1Ratio;
-	}
+
 	
 	////////////////////////////////////////////////////////
 	// ITEM2 POINT LIGHT
 	////////////////////////////////////////////////////////
-	float4 Item2PointLightColor;	
-	if( gItem2PointLight == true )
-	{
+	float4 Item2PointLightColor = { 0, 0, 0, 0 };	
+
 		Item2PointLightColor.a = gItem2PointA;
 		Item2PointLightColor.r = gItem2PointR;
 		Item2PointLightColor.g = gItem2PointG;
@@ -236,14 +234,13 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item2PointLightRadius = gItemPointRadius;
 		Item2Ratio = 1.0f - saturate( Item2Mag / Item2PointLightRadius );
 		Item2PointLightColor *= Item2Ratio;
-	}
+
 	
 	////////////////////////////////////////////////////////
 	// ITEM3 POINT LIGHT
 	////////////////////////////////////////////////////////
-	float4 Item3PointLightColor;	
-	if( gItem3PointLight == true )
-	{
+	float4 Item3PointLightColor = { 0, 0, 0, 0 };	
+
 		Item3PointLightColor.a = gItem3PointA;
 		Item3PointLightColor.r = gItem3PointR;
 		Item3PointLightColor.g = gItem3PointG;
@@ -263,14 +260,12 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item3PointLightRadius = gItemPointRadius;
 		Item3Ratio = 1.0f - saturate( Item3Mag / Item3PointLightRadius );
 		Item3PointLightColor *= Item3Ratio;
-	}
 	
 	////////////////////////////////////////////////////////
 	// ITEM4 POINT LIGHT
 	////////////////////////////////////////////////////////
-	float4 Item4PointLightColor;	
-	if( gItem4PointLight == true )
-	{
+	float4 Item4PointLightColor = { 0, 0, 0, 0 };
+
 		Item4PointLightColor.a = gItem4PointA;
 		Item4PointLightColor.r = gItem4PointR;
 		Item4PointLightColor.g = gItem4PointG;
@@ -290,12 +285,11 @@ float4 DayCycle(VS_OUTPUT input) : COLOR
 		Item4PointLightRadius = gItemPointRadius;
 		Item4Ratio = 1.0f - saturate( Item4Mag / Item4PointLightRadius );
 		Item4PointLightColor *= Item4Ratio;
-	}
 	
 	////////////////////////////////////////
 	// RENDER EVERYTHING
 	////////////////////////////////////////
-	return (color * Item1PointLightColor) + (color * Item2PointLightColor) + (color * Item3PointLightColor) + (color * Item4PointLightColor) + (color * PlayerPointLightColor) + ( color * gAmbientColor );
+	return (color * Item4PointLightColor) + (color * Item1PointLightColor) + (color * Item2PointLightColor) + (color * Item3PointLightColor) + (color * PlayerPointLightColor) + ( color * gAmbientColor );
 	////////////////////////////////////////
 	////////////////////////////////////////
 	////////////////////////////////////////

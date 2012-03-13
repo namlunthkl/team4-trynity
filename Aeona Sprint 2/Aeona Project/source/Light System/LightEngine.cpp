@@ -71,7 +71,7 @@ void LightEngine::Update( void )
 		SetPlayerPointRed( 0.0f );
 		SetPlayerPointGreen( 0.0f );
 		SetPlayerPointBlue( 0.0f );
-		SetPointRadius( 0.0f );
+
 	}
 
 	// ITEM1 LIGHT
@@ -89,7 +89,7 @@ void LightEngine::Update( void )
 		SetItem1PointRed( 0.0f );
 		SetItem1PointGreen( 0.0f );
 		SetItem1PointBlue( 0.0f );
-		SetItemRadius( 0.0f );
+
 	}
 
 	// Item2 LIGHT
@@ -107,7 +107,7 @@ void LightEngine::Update( void )
 		SetItem2PointRed( 0.0f );
 		SetItem2PointGreen( 0.0f );
 		SetItem2PointBlue( 0.0f );
-		SetItemRadius( 0.0f );
+;
 	}
 
 	// Item3 LIGHT
@@ -125,7 +125,7 @@ void LightEngine::Update( void )
 		SetItem3PointRed( 0.0f );
 		SetItem3PointGreen( 0.0f );
 		SetItem3PointBlue( 0.0f );
-		SetItemRadius( 0.0f );
+		
 	}
 	// Item4 LIGHT
 	if( GetItem4PointLight() )
@@ -142,31 +142,9 @@ void LightEngine::Update( void )
 		SetItem4PointRed( 0.0f );
 		SetItem4PointGreen( 0.0f );
 		SetItem4PointBlue( 0.0f );
-		SetItemRadius( 0.0f );
 	}
 }
-void LightEngine::Input( void )
-{
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_U ) )
-	{
-	SetItem1PointLight( !GetItem1PointLight() );
-	}
-
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_I ) )
-	{
-	SetItem2PointLight( !GetItem2PointLight() );
-	}
-
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_O ) )
-	{
-	SetItem3PointLight( !GetItem3PointLight() );
-	}
-
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_P ) )
-	{
-	SetItem4PointLight( !GetItem4PointLight() );
-	}
-}
+void LightEngine::Input( void ){}
 void LightEngine::ShutDown( void )
 {
 	SetCurrentCycle( 0 );
