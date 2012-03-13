@@ -175,6 +175,7 @@ void CPlayer::Render(void)
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 		CCameraControl::GetInstance()->GetPositionY());
 
+#ifdef _DEBUG
 	if(m_uiCurrentWeapon == WEAPON_SWORD)
 	{
 		D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
@@ -191,6 +192,7 @@ void CPlayer::Render(void)
 	{
 		D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
 	}
+#endif
 }
 
 void CPlayer::Attack(void)
@@ -361,6 +363,7 @@ void CPlayer::Input(void)
 		if (WEAPON->GetCurrentAnimation() == ANM_ATK_UP || WEAPON->GetCurrentAnimation() == ANM_ATK_DOWN ||
 			WEAPON->GetCurrentAnimation() == ANM_ATK_LEFT || WEAPON->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
+			WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Reset();
 			WEAPON->SetCurrentAnimation(WEAPON->GetPreviousAnimation());
 		}
 		

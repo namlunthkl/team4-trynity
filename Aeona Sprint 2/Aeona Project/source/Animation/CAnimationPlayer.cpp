@@ -28,7 +28,6 @@ void CAnimationPlayer::Reset()
 {
 	this->m_nFrameNumber = 0;
 	this->m_fTimer = 0;
-	this->m_fTimer = 0;
 	this->m_bPause = false;
 }
 void CAnimationPlayer::Update(float fElapsedTime)

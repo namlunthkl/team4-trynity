@@ -16,7 +16,7 @@
 #include "StdAfx.h"
 
 #include <dbghelp.h>	//	Used for Dump File
-
+#include "../resource.h"
 #pragma comment(lib, "dbghelp.lib")
 
 const char* g_szWINDOW_CLASS_NAME	= "SGDWindowClass";			//	Window Class Name.
@@ -177,8 +177,8 @@ BOOL RegisterWindowClass(HINSTANCE hInstance)
 	winClassEx.cbClsExtra		= 0;
 	winClassEx.cbWndExtra		= 0;
 	winClassEx.hInstance		= hInstance;
-	winClassEx.hIcon			= LoadIcon(hInstance, NULL);
-	winClassEx.hIconSm			= NULL;
+	winClassEx.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+	winClassEx.hIconSm			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
 	winClassEx.hCursor			= LoadCursor(NULL, IDC_ARROW);
 	winClassEx.hbrBackground	= (HBRUSH)GetStockObject(BLACK_BRUSH);
 	winClassEx.lpszMenuName		= NULL; 

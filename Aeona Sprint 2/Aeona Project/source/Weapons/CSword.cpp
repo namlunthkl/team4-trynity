@@ -10,9 +10,8 @@
 CSword::CSword()
 {
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/PlayerWSword.xml");
+	CBaseCharacter::LoadAnimations("resource/AeonaFireSword.xml");
 	SetAttacking(false);
-
 	SetSound(new Sound("resource/sound/Sword.wav"));
 }
 void CSword::Render(PointD nPos)
