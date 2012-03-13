@@ -14,6 +14,8 @@ CDagger::CDagger()
 	SetAttacking(false);
 
 	SetSound(new Sound("resource/sound/Dagger.wav"));
+
+	m_fSlashTimer = 0.0f;
 }
 void CDagger::Render(PointD nPos)
 {
@@ -27,46 +29,137 @@ void CDagger::Update(float fElapsedTime)
 {
 	CBaseCharacter::Update(fElapsedTime);
 
+	if( GetAttacking() == true )
+		m_fSlashTimer += fElapsedTime;
 }
 void CDagger::Attack(void)
 {
 	SetAttacking(true);
-	GetSound()->Play();
+	if(m_fSlashTimer == 0.0f)
+		GetSound()->Play();
 }
 void CDagger::ChargedAttack(void)
 {
 
 }
 RectD CDagger::GetCollisionRect(void)
-{
+{	
 	RectD rectCollision;
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		rectCollision.left = -32;
-		rectCollision.top = -50;
-		rectCollision.right = 32;
-		rectCollision.bottom = 0;
+		rectCollision.top = -15 - 68;
+		rectCollision.bottom = -15;
+		if(m_fSlashTimer < 0.1f)
+		{
+			rectCollision.left = -32;
+			rectCollision.right = 0;
+		}
+		else if(m_fSlashTimer < 0.2f)
+		{
+			rectCollision.left = -22;
+			rectCollision.right = 22;
+		}
+		else if(m_fSlashTimer < 0.3f)
+		{
+			rectCollision.left = 0;
+			rectCollision.right = 32;
+		}
+		else
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+		}
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		rectCollision.left = -32;
-		rectCollision.top = 0;
-		rectCollision.right = 32;
-		rectCollision.bottom = 50;
+		rectCollision.top = 15;
+		rectCollision.bottom = 15 + 68;
+		if(m_fSlashTimer < 0.1f)
+		{
+			rectCollision.left = 0;
+			rectCollision.right = 32;
+		}
+		else if(m_fSlashTimer < 0.2f)
+		{
+			rectCollision.left = -22;
+			rectCollision.right = 22;
+		}
+		else if(m_fSlashTimer < 0.3f)
+		{
+			rectCollision.left = -32;
+			rectCollision.right = 0;
+		}
+		else
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+		}
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		rectCollision.left = -50;
-		rectCollision.top = -32;
-		rectCollision.right = 0;
-		rectCollision.bottom = 32;
+		rectCollision.left = -15 - 68;
+		rectCollision.right = -15;
+		if(m_fSlashTimer < 0.1f)
+		{
+			rectCollision.top = 0;
+			rectCollision.bottom = 32;
+		}
+		else if(m_fSlashTimer < 0.2f)
+		{
+			rectCollision.top = -22;
+			rectCollision.bottom = 22;
+		}
+		else if(m_fSlashTimer < 0.3f)
+		{
+			rectCollision.top = -32;
+			rectCollision.bottom = 0;
+		}
+		else
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+		}
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
-		rectCollision.left = 0;
-		rectCollision.top = -32;
-		rectCollision.right = 50;
-		rectCollision.bottom = 32;
+		rectCollision.left = 15;
+		rectCollision.right = 15 + 68;
+		if(m_fSlashTimer < 0.1f)
+		{
+			rectCollision.top = -32;
+			rectCollision.bottom = 0;
+		}
+		else if(m_fSlashTimer < 0.2f)
+		{
+			rectCollision.top = -22;
+			rectCollision.bottom = 22;
+		}
+		else if(m_fSlashTimer < 0.3f)
+		{
+			rectCollision.top = 0;
+			rectCollision.bottom = 32;
+		}
+		else
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+		}
 	}
 	return rectCollision;
 }

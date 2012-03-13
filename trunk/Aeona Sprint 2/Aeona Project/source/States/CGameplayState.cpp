@@ -92,7 +92,7 @@ void CGameplayState::Enter(void)
 
 	// Initialize Player
 	PLAYER->SetPosX(600); //743
-	PLAYER->SetPosY(300); //4992
+	PLAYER->SetPosY(400); //4992
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -110,24 +110,24 @@ void CGameplayState::Enter(void)
 
 	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CLarvaAIState::GetInstance());
+	pEnemy2->ChangeAIState(CSpiderAIState::GetInstance());
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
 
 	CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2a->ChangeAIState(CGolemAIState::GetInstance());
+	pEnemy2a->ChangeAIState(CLilBastardAIState::GetInstance());
 	pEnemy2a->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2a);
 	pEnemy2a->Release();
 
-	CEnemy* pEnemy2b = new CEnemy(1250, 570, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2b->ChangeAIState(CSlimeAIState::GetInstance());
-	pEnemy2b->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2b);
-	pEnemy2b->Release();
+	//CEnemy* pEnemy2b = new CEnemy(1250, 570, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2b->ChangeAIState(CSlimeAIState::GetInstance());
+	//pEnemy2b->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2b);
+	//pEnemy2b->Release();
 
 	//CEnemy* pEnemy2c = new CEnemy(1480, 570, 40,  -1, 50, 50, true, 75, 1);
 	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
@@ -136,12 +136,12 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy2c);
 	//pEnemy2c->Release();
 
-	CEnemy* pEnemy2d = new CEnemy(1580, 570, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2d->ChangeAIState(CSpiderAIState::GetInstance());
-	pEnemy2d->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2d);
-	pEnemy2d->Release();
+	//CEnemy* pEnemy2d = new CEnemy(1580, 570, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2d->ChangeAIState(CSpiderAIState::GetInstance());
+	//pEnemy2d->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2d);
+	//pEnemy2d->Release();
 
 	//CEnemy* pEnemy3 = new CEnemy(1673, 395, 40,  -1, 50, 50, true, 100, 1);
 	//pEnemy3->LoadAnimations("resource/Red Enemy Animation.xml");

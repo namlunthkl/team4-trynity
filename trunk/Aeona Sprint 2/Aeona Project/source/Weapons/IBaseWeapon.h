@@ -31,6 +31,9 @@ private:
 	Sound* m_sndAttack;
 	
 public:
+	//	Phil is dumb
+	float m_fSlashTimer;
+
 	enum WeaponType { TYPE_WEAPON_BASE = 0, TYPE_WEAPON_DAGGER, TYPE_WEAPON_SWORD, TYPE_WEAPON_HAMMER, TYPE_WEAPON_CROSSBOW, TYPE_MAX };
 
 	virtual void Attack(void) = 0;

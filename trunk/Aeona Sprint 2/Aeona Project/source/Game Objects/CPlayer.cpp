@@ -92,51 +92,30 @@ void CPlayer::Update(float fElapsedTime)
 	if(m_fOuchTimer > 0.0f)
 		m_fOuchTimer -= fElapsedTime;
 	if( m_fOuchTimer < 0.0f )
-	{
 		m_fOuchTimer = 0.0f;
-	}
 	
 	if(m_uiCurrentMask == MASK_SPEED)
-	{
 		m_nSpeedIncrease = 2;
-		
-	}
 	else
-	{
 		m_nSpeedIncrease = 1;
-	}
 	
 	if(m_uiCurrentMask == MASK_STRENGHT)
-	{
 		m_nDamageIncrease = 2;
-	}
 	else
-	{
 		m_nDamageIncrease = 1;
-	}
 
 	if(m_uiCurrentMask == MASK_ENDURANCE)
-	{
 		m_bDamageDecrease = true;
-	}
 	else
-	{
 		m_bDamageDecrease = false;
-	}
 
 	if(m_uiCurrentMask == MASK_LIGHT)
-	{
 		LightEngine::GetInstance()->SetPlayerPointLight(true);
-	}
 	else
-	{
 		LightEngine::GetInstance()->SetPlayerPointLight(false);
-	}
 
 	if( CCameraControl::GetInstance()->GetKillCam() == false )
-	{
 		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
-	}
 	// Store the old position of the player for future checks
 	PointD ptOldPosition = GetPosition();
 
@@ -149,7 +128,6 @@ void CPlayer::Update(float fElapsedTime)
 	// Update the particles
 	m_fxElementalWeapon.Update(fElapsedTime);
 	LightEngine::GetInstance()->SetPlayerPointPos( (float)GetPosX(), (float)GetPosY() );
-
 }
 
 void CPlayer::Render(void)
@@ -158,9 +136,7 @@ void CPlayer::Render(void)
 	//
 	//
 	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
-	{
 		WEAPON->Render(GetPosition());
-	}
 	// Render the particles
 	m_fxElementalWeapon.Render();
 	
@@ -172,8 +148,7 @@ void CPlayer::Render(void)
 
 	RectD temp = WEAPON->GetCollisionRect();
 	temp.OffsetRect(GetPosX(),GetPosY());
-	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
-		CCameraControl::GetInstance()->GetPositionY());
+	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 
 #ifdef _DEBUG
 	if(m_uiCurrentWeapon == WEAPON_SWORD)
@@ -203,41 +178,41 @@ void CPlayer::Attack(void)
 	if( m_fOuchTimer == 0.0f )
 	{
 		if( m_uiCurrentWeapon == WEAPON_SWORD )
-	{
-		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-		m_fxElementalWeapon.emitter.ColorStartR = 255;
-		m_fxElementalWeapon.emitter.ColorStartG = 0;
-		m_fxElementalWeapon.emitter.ColorStartB = 0;
-		m_fxElementalWeapon.emitter.ColorEndR = 255;
-		m_fxElementalWeapon.emitter.ColorEndG = 0;
-		m_fxElementalWeapon.emitter.ColorEndB = 0;
-		m_fxElementalWeapon.Fire();
-	}
-	if( m_uiCurrentWeapon == WEAPON_HAMMER )
-	{
-		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-		m_fxElementalWeapon.emitter.ColorStartR = 0;
-		m_fxElementalWeapon.emitter.ColorStartG = 255;
-		m_fxElementalWeapon.emitter.ColorStartB = 0;
-		m_fxElementalWeapon.emitter.ColorEndR = 0;
-		m_fxElementalWeapon.emitter.ColorEndG = 255;
-		m_fxElementalWeapon.emitter.ColorEndB = 0;
-		m_fxElementalWeapon.Fire();
-	}
-	if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
-	{
-		m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-		m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-		m_fxElementalWeapon.emitter.ColorStartR = 0;
-		m_fxElementalWeapon.emitter.ColorStartG = 0;
-		m_fxElementalWeapon.emitter.ColorStartB = 255;
-		m_fxElementalWeapon.emitter.ColorEndR = 0;
-		m_fxElementalWeapon.emitter.ColorEndG = 0;
-		m_fxElementalWeapon.emitter.ColorEndB = 255;
-		m_fxElementalWeapon.Fire();
-	}
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 255;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 255;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_HAMMER )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 255;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 255;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 255;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 255;
+			m_fxElementalWeapon.Fire();
+		}
 		WEAPON->Attack();
 	}
 }
@@ -264,13 +239,16 @@ void CPlayer::Input(void)
 	if(IsBusy())
 		return;
 
-	if(CInputManager::GetInstance()->GetAttack())
+	if(WEAPON->GetAttacking() == false)
 	{
-		WEAPON->SetAttacking(true);
-	}
-	else
-	{
-		WEAPON->SetAttacking(false);
+		if(CInputManager::GetInstance()->GetAttack())
+		{
+			WEAPON->SetAttacking(true);
+		}
+		else
+		{
+			WEAPON->SetAttacking(false);
+		}
 	}
 
 	if(CInputManager::GetInstance()->GetY())
@@ -524,9 +502,22 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
 		RECT temp2;
 
-		if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+		if(pEnemy->m_uiEnemyBehavior != 0)
 		{
-			pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
+			if(pEnemy->m_uiMiniState > 1 )
+			{
+				if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+				{
+					pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
+				}
+			}
+		}
+		else
+		{
+			if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+			{
+				pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
+			}
 		}
 	}
 	return true;
