@@ -492,13 +492,12 @@
     <ClInclude Include="source\AI_States\CSpiderAIState.h">
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Aeona.rc">
-      <Filter>Resource</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="Aeona.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\Aeona Icon.ico" />
   </ItemGroup>
 </Project>

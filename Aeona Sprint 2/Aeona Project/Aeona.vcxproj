@@ -298,6 +298,9 @@
   <ItemGroup>
     <ResourceCompile Include="Aeona.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\Aeona Icon.ico" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F01D96CC-C230-4F34-8863-B37807081DF7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
