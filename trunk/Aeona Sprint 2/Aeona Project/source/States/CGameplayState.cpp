@@ -332,8 +332,8 @@ void CGameplayState::Render(void)
 	////////////////////////// RENDER GAME OBJECTS AND WORLD //////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
-	D3D->Clear(50,50,50);
-	D3D->DeviceBegin();
+	
+	//D3D->DeviceBegin();
 
 //#ifdef _DEBUG
 //	if(PLAYER->GetAnimationPlayer(PLAYER->GetCurrentAnimation()))
@@ -352,7 +352,7 @@ void CGameplayState::Render(void)
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
-	
+	D3D->Clear(50,50,50);
 	//ARI EXTRA CODE
 	CCameraControl::GetInstance()->SetSpriteProjection();
 	//END ARI EXTRA CODE
@@ -378,6 +378,8 @@ void CGameplayState::Render(void)
 
 	D3D->GetSprite()->Flush();
 
+
+	D3D->SpriteEnd();
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -385,6 +387,11 @@ void CGameplayState::Render(void)
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
+
+
+
+	D3D->DeviceBegin();
+	D3D->SpriteBegin();
 
 	///////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
