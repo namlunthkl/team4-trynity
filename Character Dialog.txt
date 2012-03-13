@@ -377,6 +377,65 @@ your return Aeona!						with you already!  I fair thee well sweet BERN!
 ==========================================================================================================================================================================
 
 
+-Gungnir-
+
+Yes?
+
+< I seek the Hammer of Kromos >					< Nevermind> 
+
+East.								Farewell.
+	
+< You are a man a few words. >
+
+Words mean nothing.  Action means everything.
+
+< Choice words. Who are you? >					< You are an odd man. Goodbye. >
+
+Gungnir.							Farewell.
+
+< Isn't that some kind of weapon? >
+
+Aye.
+
+< You are named after a weapon? >
+
+Nay.
+
+< WHAT RELATION DO YOU HAVE WITH GUNGNIR? >
+
+Relation?
+
+< YES! >
+
+No relation, Weapon named after me.
+
+< You are Gungnir!? >
+
+Yes.
+
+< Your Grace, I have so many questions!->
+
+Seek and discover answers throughout your journey.
+I cannot interfere with your life.  
+
+< I don't get it, why are you here if you can't help? >
+
+I wish to see Kromos give his power to the worthy.  I have
+waited for an eternity...
+
+<  I have the Ryza Sword >  
+
+True. Kromos wants a Champion to rebuild Valest.
+I hope he chooses well.
+
+< I seek the Hammer >
+
+Then good luck to you Aeona.
+
+< how did you know my name? >
+
+I have waited for an eternity...
+
 
 
 
