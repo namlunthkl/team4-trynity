@@ -91,8 +91,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(600); //743
-	PLAYER->SetPosY(400); //4992
+	PLAYER->SetPosX(743); //743
+	PLAYER->SetPosY(4992); //4992
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -150,21 +150,21 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy3);
 	//pEnemy3->Release();
 
-	CEnemy* pEnemy4 = new CEnemy(743, 5032, 40,  -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy4 = new CEnemy(743, 5082, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy4->LoadAnimations("resource/Air Enemy.xml");
 	pEnemy4->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy4->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy4);
 	pEnemy4->Release();
 
-	CEnemy* pEnemy5 = new CEnemy(743, 4952, 40,  -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy5 = new CEnemy(743, 4922, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy5->LoadAnimations("resource/Earth Enemy.xml");
 	pEnemy5->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy5->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy5);
 	pEnemy5->Release();
 
-	CEnemy* pEnemy6 = new CEnemy(723, 4992, 40,  -1, 50, 50, true, 100, 1);
+	CEnemy* pEnemy6 = new CEnemy(673, 4992, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy6->LoadAnimations("resource/Fire Enemy.xml");
 	pEnemy6->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy6->SetDebugMode(false);
@@ -335,6 +335,16 @@ void CGameplayState::Render(void)
 	D3D->Clear(50,50,50);
 	D3D->DeviceBegin();
 
+//#ifdef _DEBUG
+//	if(PLAYER->GetAnimationPlayer(PLAYER->GetCurrentAnimation()))
+//	{
+//		D3D->DrawText("Frame Info",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
+//		char buffer2[100];
+//		sprintf_s(&buffer2[0],100,"Time %f, FrameNumber %f ",PLAYER->GetAnimationPlayer(PLAYER->GetCurrentAnimation())->m_fTimer,PLAYER->GetAnimationPlayer(PLAYER->GetCurrentAnimation())->m_nFrameNumber);
+//		D3D->DrawText(buffer2,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
+//	}
+//#endif
+
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -383,7 +393,7 @@ void CGameplayState::Render(void)
 	D3DXMATRIX identity;
 	D3DXMatrixIdentity(&identity);
 	D3D->GetSprite()->SetTransform(&identity);
-
+#ifdef _DEBUG
 	if(CInputManager::GetInstance()->GetAttack())
 	{
 		D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
@@ -391,7 +401,7 @@ void CGameplayState::Render(void)
 		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
 		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
 	}
-
+#endif
 	// Render the Weather
 	CWeatherManager::GetInstance()->Render();
 
@@ -488,15 +498,14 @@ void CGameplayState::Render(void)
 	D3D->GetSprite()->Flush();
 
 	RenderGameOverScreens();
-
+#ifdef _DEBUG
 	char buffer[100];
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
 	D3D->DrawTextA(&buffer[0], 120, 550, 255, 0, 0);
-	
+
 	
 	sprintf_s(buffer, 100, "FPS: %i", GAME->GetTimer().m_nFPS);
 	D3D->DrawTextA(&buffer[0], 0, 0, 255, 0, 0);
-
 
 	const char* szRegion = PLAYER->GetRegion();
 	if(szRegion)
@@ -504,6 +513,7 @@ void CGameplayState::Render(void)
 		strcpy_s(buffer, 100, szRegion);
 		D3D->DrawTextA(&buffer[0], 120, 570, 255, 0, 0);
 	}
+#endif
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
 	D3D->Present();

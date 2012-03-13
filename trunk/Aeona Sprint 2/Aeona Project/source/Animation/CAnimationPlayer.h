@@ -14,7 +14,7 @@ private:
 	int m_nAnimationId;
 	//float m_fDuration;
 	bool m_bIsPlaying, m_bIsLooping, m_bPause;
-
+public:
 	unsigned int m_nFrameNumber;
 
 	double m_fTimer;

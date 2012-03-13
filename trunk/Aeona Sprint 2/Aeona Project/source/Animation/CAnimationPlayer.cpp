@@ -68,6 +68,7 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 		Point anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
 		TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect.GetWindowsRECT());
 	}
+
 }
 
 RectD CAnimationPlayer::ReturnFrameRect(void)
