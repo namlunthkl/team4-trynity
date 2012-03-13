@@ -22,8 +22,8 @@
 const char* g_szWINDOW_CLASS_NAME	= "SGDWindowClass";			//	Window Class Name.
 
 const char* g_szWINDOW_TITLE		= "Aeona";				//	Window Title.
-const int	g_nWINDOW_WIDTH			= 1280;						//	Window Width.
-const int	g_nWINDOW_HEIGHT		= 800;						//	Window Height.
+const int	g_nWINDOW_WIDTH			= 800;						//	Window Width.
+const int	g_nWINDOW_HEIGHT		= 600;						//	Window Height.
 
 //	Windowed or Full screen depending on project setting
 #ifdef _DEBUG

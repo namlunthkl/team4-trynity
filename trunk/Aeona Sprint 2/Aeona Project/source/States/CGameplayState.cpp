@@ -135,19 +135,19 @@ void CGameplayState::Enter(void)
 	pEnemy3->Release();
 
 	// Initialize NPCs
-	CNPC* pNPC;
+	/*CNPC* pNPC;
 	pNPC = new CNPC("Mini Guy", false, 150, -1, 290, 1000, 20, -1, 20, 20, true, 100, 0);
 	pNPC->LoadAnimations("resource/UglySquirelyGirl.xml");
 	pNPC->LoadText("resource/NPC Dialogue/Squirrel.xml");
 	OBJECTS->AddObject(pNPC);
-	pNPC->Release();
+	pNPC->Release();*/
 
 	// Initialize chests
-	CChest* pChest;
-	pChest = new CChest("PotionChest", false, 150, -1, 600, 250, 20, -1, 32,32, true, 100, 0);
+	/*CChest* pChest;
+	pChest = new CChest("PotionChest", false, 150, -1, 700, 500, 20, -1, 32,32, true, 100, 0);
 	pChest->LoadAnimations("resource/chest.xml");
 	OBJECTS->AddObject(pChest);
-	pChest->Release();
+	pChest->Release();*/
 
 	// Initialize Camera and post process
 	CAMERA->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(),
@@ -642,6 +642,20 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
 				OBJECTS->AddObject(pEnemy);
 				pEnemy->Release();
+			}
+			break;
+		}
+	case MSG_CREATE_CHEST:
+		{
+			CCreateChestMessage* pMsgChest = (CCreateChestMessage*)pMsg;
+
+			if(pMsgChest->GetType() == CCreateChestMessage::CHEST_POTION)
+			{
+				CChest* pChest = new CChest("PotionChest", false, 150, -1,
+					pMsgChest->GetPosX(), pMsgChest->GetPosY(), 20, -1, 32,32, true, 100, 0);
+				pChest->LoadAnimations("resource/chest.xml");
+				OBJECTS->AddObject(pChest);
+				pChest->Release();
 			}
 			break;
 		}
