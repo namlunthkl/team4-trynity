@@ -15,7 +15,7 @@ class CObjectManager
 private:
 	static CObjectManager* sm_pInstance;
 	vector<IBaseInterface*> m_vpObjectList;
-
+	bool update;
 public:
 	CObjectManager(void) {}
 	~CObjectManager(void) {}
