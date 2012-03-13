@@ -14,7 +14,7 @@ CChest::CChest(const char* szName, bool bActiveTalk, double dRange, int sndNPC,d
 	: CNPC(szName,bActiveTalk,dRange,sndNPC,dPositionX,dPositionY,uiSpeed,nImageID,uiWidth,uiHeight,bActive,uiMaxHealth,uiAttackDamage)
 {
 	m_bOpened = false;
-	m_sndChest = AUDIO->SFXLoadSound("resource/sound/Chest.wav");
+	m_sndChest = AUDIO->SFXLoadSound("resource/sound/GetItem.wav");
 }
 void CChest::LoadAnimations(char const * const szFilename)
 {

@@ -67,6 +67,7 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 	// so we don't need to do strcmps
 	unsigned char ucEnemyID = pStringTable->LoadStringOnTable("Enemy");
 	unsigned char ucNPCID = pStringTable->LoadStringOnTable("NPC");
+	unsigned char ucChestID = pStringTable->LoadStringOnTable("Chest");
 
 	// Temporary variables to store the data we'll read
 	const char* szTileset = "";
@@ -142,7 +143,7 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
 						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
 						CCreateEnemyMessage::ENEMY_SWARM));
-					szEvent = "";
+					ucEventID = pStringTable->GetStringIndex("");
 				}
 				else if(ucEventID == ucNPCID)
 				{
@@ -150,7 +151,15 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
 						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
 						CCreateNPCMessage::NPC_DEMO));
-					szEvent = "";
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CCreateChestMessage::CHEST_POTION));
+					ucEventID = pStringTable->GetStringIndex("");
 				}
 			}
 

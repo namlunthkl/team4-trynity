@@ -10,7 +10,7 @@
 #include "../Game Objects/CNPC.h"
 typedef int MSGID;
 enum eMsgTypes { MSG_NULL = 0, MSG_CREATE_PLAYER,MSG_CREATE_NPC, MSG_CREATE_ENEMY,
-	MSG_DESTROY_OBJECT, MSG_MAX };
+	MSG_CREATE_CHEST, MSG_DESTROY_OBJECT, MSG_MAX };
 
 class CBaseMessage
 {
@@ -58,7 +58,7 @@ public:
 	inline double	GetPosX(void) const { return m_dPosX; }
 	inline double	GetPosY(void) const { return m_dPosY; }
 	inline int		GetType(void) const { return m_nType; }
-	~CCreateNPCMessage() {};
+	~CCreateNPCMessage() {}
 };
 class CCreateEnemyMessage : public CBaseMessage
 {
@@ -81,8 +81,32 @@ public:
 	inline double	GetPosY(void) const { return m_dPosY; }
 	inline int		GetType(void) const { return m_nType; }
 
-	~CCreateEnemyMessage() {};
+	~CCreateEnemyMessage() {}
 };
+
+class CCreateChestMessage : public CBaseMessage
+{
+	double	m_dPosX;
+	double	m_dPosY;
+	int		m_nType;
+
+public:
+	enum EChestType { CHEST_POTION, CHEST_HEARTPIECE, CHEST_MAX };
+
+	CCreateChestMessage(double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_CHEST)
+	{
+		m_dPosX = dPosX;
+		m_dPosY = dPosY;
+		m_nType = nType;
+	}
+
+	inline double	GetPosX(void) const { return m_dPosX; }
+	inline double	GetPosY(void) const { return m_dPosY; }
+	inline int		GetType(void) const { return m_nType; }
+
+	~CCreateChestMessage() {}
+};
+
 class CDestroyObjectMessage : public CBaseMessage
 {
 private:
