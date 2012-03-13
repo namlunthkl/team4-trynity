@@ -14,6 +14,8 @@ CHammer::CHammer()
 	SetAttacking(false);
 
 	SetSound(new Sound("resource/sound/Hammer.wav"));
+
+	m_fSlashTimer = 0.0f;
 }
 void CHammer::Render(PointD nPos)
 {

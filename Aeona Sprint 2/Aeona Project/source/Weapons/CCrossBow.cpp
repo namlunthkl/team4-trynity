@@ -18,6 +18,8 @@ CCrossBow::CCrossBow()
 	m_fTime = 0;
 
 	SetSound(new Sound("resource/sound/Bow.wav"));
+
+	m_fSlashTimer = 0.0f;
 }
 void CCrossBow::Render(PointD nPos)
 {

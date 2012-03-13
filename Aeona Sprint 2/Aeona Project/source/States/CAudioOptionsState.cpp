@@ -9,6 +9,7 @@
 #include "../StdAfx.h"
 #include "CAudioOptionsState.h"
 #include "COptionsState.h"
+#include "../Input Manager/CInputManager.h"
 
 CAudioOptionsState* CAudioOptionsState::m_pInstance = NULL;
 
@@ -59,7 +60,59 @@ bool CAudioOptionsState::Input()
 	CBaseMenu::Input();
 	//	ABOVE?
 
-	if(bMenuConfirm == true)
+	if(CInputManager::GetInstance()->GetPressedLeft()  ||  INPUT->KeyPressed(DIK_LEFTARROW))
+	{
+		switch(m_uiCurSelected)
+		{
+		case ADIO_MUSIC:
+			{
+				GAME->SetMusicVolume( GAME->GetMusicVolume() - 10 );
+				if(GAME->GetMusicVolume() == -10)
+				{
+					GAME->SetMusicVolume(100);
+				}
+				AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
+				break;
+			}
+		case ADIO_SOUND:
+			{
+				GAME->SetSoundVolume( GAME->GetSoundVolume() - 10 );
+				if(GAME->GetSoundVolume() == -10)
+				{
+					GAME->SetSoundVolume(100);
+				}
+				AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
+				break;
+			}
+		}
+	}
+	else if(CInputManager::GetInstance()->GetPressedRight()  ||  INPUT->KeyPressed(DIK_RIGHTARROW))
+	{
+		switch(m_uiCurSelected)
+		{
+		case ADIO_MUSIC:
+			{
+				GAME->SetMusicVolume( GAME->GetMusicVolume() + 10 );
+				if(GAME->GetMusicVolume() == 110)
+				{
+					GAME->SetMusicVolume(0);
+				}
+				AUDIO->MusicSetMasterVolume( GAME->GetMusicVolume()/100.0f );
+				break;
+			}
+		case ADIO_SOUND:
+			{
+				GAME->SetSoundVolume( GAME->GetSoundVolume() + 10 );
+				if(GAME->GetSoundVolume() == 110)
+				{
+					GAME->SetSoundVolume(0);
+				}
+				AUDIO->SFXSetMasterVolume( GAME->GetSoundVolume()/100.0f );
+				break;
+			}
+		}
+	}
+	else if(bMenuConfirm == true)
 	{
 		//	Set it back to false
 		bMenuConfirm = false;

@@ -24,7 +24,7 @@ public:
 	Byte			m_byteMasks;
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
-	unsigned int 	m_uiNumPotions;
+	unsigned int	m_uiNumPotions;
 
 private:
 	bool			m_bHeartPiece;
