@@ -247,6 +247,12 @@
     <ClCompile Include="source\AI_States\CGolemAIState.cpp">
       <Filter>Artificial Intelligence</Filter>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CLilBastardAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CSpiderAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -475,6 +481,12 @@
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
     <ClInclude Include="source\AI_States\CGolemAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CLilBastardAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CSpiderAIState.h">
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
   </ItemGroup>

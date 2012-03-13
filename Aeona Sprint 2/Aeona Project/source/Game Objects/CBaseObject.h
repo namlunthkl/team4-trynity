@@ -62,12 +62,14 @@ public:
 	//	offsetted downward.
 	//	The second enemy, will be offsetted on the Y by 1*192.  The third enemy would be
 	//	offsetted by 2*192 down on the spritesheet.  I suck and only understand simple things!
-	enum { BEVAIOR_0_NULL = 0, BEHAVIOR_LARVA = 1 , BEHAVIOR_GOLEM = 2 , BEHAVIOR_SLIME = 3 };
+	enum { BEVAIOR_0_NULL = 0, BEHAVIOR_LARVA = 1 , BEHAVIOR_GOLEM = 2 , BEHAVIOR_SLIME = 3 , BEHAVIOR_LILBASTARD = 4 , BEHAVIOR_SPIDER };
 	unsigned int m_uiEnemyBehavior;	//	to get Phil's AI and rendering work properly, because he's a stoopid, derpf!1
 	unsigned int m_uiMiniState;		//	Phil's mini-state machine
 	unsigned int m_uiPhilDirection;	//	Phil's object direction...only matters on enemies.
 	DWORD philEnemyColor;			//	Phil's color so we can change da coluh' n shiiiet.
 	bool		m_bWalkCycle;
+	bool		m_bSpecial;
+	unsigned int m_uiSpecialCounter;
 	bool        m_bDying;
 	bool		m_bTrulyDead;
 	float       m_fDeathAnim;
@@ -148,6 +150,8 @@ public:
 		m_bTrulyDead = false;
 		m_bDying = false;
 		m_bWalkCycle = 0;
+		m_bSpecial = 0;
+		m_uiSpecialCounter = 0;
 		m_fDeathAnim = 0.0f;
 		Activate();
 	}

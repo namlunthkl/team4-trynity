@@ -1,19 +1,19 @@
 #include "StdAfx.h"
 #include "../StdAfx.h"
-#include "CLarvaAIState.h"
+#include "CSpiderAIState.h"
 #include "../Game Objects/CPlayer.h"
 
 // Singleton's instance
-CLarvaAIState* CLarvaAIState::sm_pInstance = NULL;
+CSpiderAIState* CSpiderAIState::sm_pInstance = NULL;
 
-IBaseAIState* CLarvaAIState::GetInstance(void)
+IBaseAIState* CSpiderAIState::GetInstance(void)
 {
 	if(!sm_pInstance)
-		sm_pInstance = new CLarvaAIState();
+		sm_pInstance = new CSpiderAIState();
 	return sm_pInstance;
 }
 
-void CLarvaAIState::DeleteInstance(void)
+void CSpiderAIState::DeleteInstance(void)
 {
 	if(sm_pInstance != NULL)
 	{
@@ -22,21 +22,21 @@ void CLarvaAIState::DeleteInstance(void)
 	}
 }
 
-void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
+void CSpiderAIState::Enter(CBaseCharacter* pCharacter)
 {
 	pCharacter->SetVelY( 0 );
 	pCharacter->SetVelX( 0 );
 	pCharacter->SetPrevVelX( 0 );
-	pCharacter->SetPrevVelY( 0 );
+	pCharacter->SetPrevVelY( 1 );
 
 	pCharacter->SetMoveTimer( 0.0f );
 	pCharacter->SetMiniState(2);
-	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_LARVA);
+	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_SPIDER);
 	pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
 	
 	pCharacter->m_bSpecial = false;
 	pCharacter->m_uiSpecialCounter = 0;
-	pCharacter->SetSpeed(100);
+	pCharacter->SetSpeed(160);
 
 	//	0 - GetWhacked
 	//	1 - WhackedPause
@@ -48,7 +48,7 @@ void CLarvaAIState::Enter(CBaseCharacter* pCharacter)
 	m_sndLarvaHiss = AUDIO->SFXLoadSound("resource/sound/LarvaHiss.wav");
 }
 
-void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
+void CSpiderAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 {
 	switch( pCharacter->GetMiniState() )
 	{
@@ -100,7 +100,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 		case 2:	// 2 - Sitting still because the player is not near.
 		{
 			//	NEARBY PLAYER CHECK!!
-			if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
+			if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 256 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 256) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 256 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 256) )
 			{
 				pCharacter->SetMoveTimer( 0.0f );
 				pCharacter->SetMiniState( 3 );	// set to crouching, ready to pounce, when we find player
@@ -172,14 +172,14 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 					pCharacter->SetPhilDirection();	//	Fix our direction, for animation purpose, here.
 				}
 			}
-			else if( pCharacter->GetMoveTimer() < 0.1f )
+			else if( pCharacter->GetMoveTimer() < 0.06f )
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 			}
 			else
 			{
 				//	Before leaving, let's see if the player is close enough for us to lunge at him!
-				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 128 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 128) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 128 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 128) )
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 150 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 150) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 150 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 150) )
 				{
 					pCharacter->SetMoveTimer( 0.0f );
 					pCharacter->SetMiniState( 5 );
@@ -200,7 +200,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				pCharacter->SetVelX( 0.0f );
 				pCharacter->SetVelY( 0.0f );
 			}
-			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will take a break for this long.
+			else if( pCharacter->GetMoveTimer() < 0.3f )	//	I will take a break for this long.
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 			}
@@ -217,11 +217,11 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			{
 				AUDIO->SFXPlaySound(m_sndLarvaHiss);
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
-				pCharacter->SetVelX( pCharacter->GetVelX() * 2.0f );
-				pCharacter->SetVelY( pCharacter->GetVelY() * 2.0f );
-				pCharacter->m_bWalkCycle = 0;	//	Looks the most like an attack.
+				pCharacter->SetVelX( pCharacter->GetVelX() * 1.8f );
+				pCharacter->SetVelY( pCharacter->GetVelY() * 1.8f );
+				pCharacter->m_bWalkCycle = 1;	//	Looks the most like an attack.
 			}
-			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will lunge for this long
+			else if( pCharacter->GetMoveTimer() < 0.29f )	//	I will lunge for this long
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 			}
@@ -465,7 +465,7 @@ void CLarvaAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 	//pCharacter->SetMoveTimer(fMoveTimer);
 }
 
-void CLarvaAIState::Exit(CBaseCharacter* pCharacter)
+void CSpiderAIState::Exit(CBaseCharacter* pCharacter)
 {
 
 }

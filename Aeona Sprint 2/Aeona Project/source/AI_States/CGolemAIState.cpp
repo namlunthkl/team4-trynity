@@ -34,6 +34,8 @@ void CGolemAIState::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetBehavior(CBaseCharacter::BEHAVIOR_GOLEM);
 	pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
 	
+	pCharacter->m_bSpecial = false;
+	pCharacter->m_uiSpecialCounter = 0;
 	pCharacter->SetSpeed(60);
 
 	//	0 - GetWhacked
@@ -90,8 +92,10 @@ void CGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->m_bSpecial = false;
+				pCharacter->m_uiSpecialCounter = 0;
 				pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
-				pCharacter->SetMiniState( 3 );	// Immediately squirm forward.
+				pCharacter->SetMiniState( 2 );	// Go to stationary-searching
 			}
 			break;
 		}
@@ -177,7 +181,7 @@ void CGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				//	Before leaving, let's see if the player is close enough for us to lunge at him!
-				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 128 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 128) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 128 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 128) )
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 24 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 24) || (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 24 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 24) )
 				{
 					pCharacter->SetMoveTimer( 0.0f );
 					pCharacter->SetMiniState( 5 );
@@ -209,24 +213,34 @@ void CGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			break;
 		}
-		case 5:		// LUNGE OF DEATH
+		case 5:		// ARE YOU READY TO ROCK AND ROLLLLLL!!!??!
 		{
 			if( pCharacter->GetMoveTimer() == 0.0f )
 			{
 				AUDIO->SFXPlaySound(m_sndRockRoll);
+				pCharacter->m_uiSpecialCounter += 1;
+				if(pCharacter->m_uiSpecialCounter == 6)
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->m_bSpecial = false;
+					pCharacter->m_uiSpecialCounter = 0;
+					pCharacter->SetMiniState( 2 );
+					break;
+				}
+				pCharacter->m_bSpecial = true;	//	All this does is make him render the 'special' frames, not normal walk cycles.
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
-				pCharacter->SetVelX( pCharacter->GetVelX() * 2.0f );
-				pCharacter->SetVelY( pCharacter->GetVelY() * 2.0f );
-				pCharacter->m_bWalkCycle = 0;	//	Looks the most like an attack.
+				pCharacter->SetVelX( pCharacter->GetVelX() * 1.4f );
+				pCharacter->SetVelY( pCharacter->GetVelY() * 1.4f );
+				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;	//	Cycle the rolling rock animation
 			}
-			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will lunge for this long
+			else if( pCharacter->GetMoveTimer() < 0.25f )	//	Short roll for this long
 			{
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 			}
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 4 );	// Immediately squirm forward.
+				pCharacter->SetMiniState( 5 );	// WE AREN'T DONE MAN ROCK AND ROLLLLLLLL
 			}
 			break;
 		}
