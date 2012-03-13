@@ -216,6 +216,7 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->SetFloat( "gItem4PointB", LightEngine::GetInstance()->GetItem4PointBlue() );
 		postEffect->SetFloat( "gItem4PointPosX", LightEngine::GetInstance()->GetItem4PointPosX() );
 		postEffect->SetFloat( "gItem4PointPosY", LightEngine::GetInstance()->GetItem4PointPosY() );
+
 		postEffect->SetFloat( "gPlayerPointRadius", LightEngine::GetInstance()->GetPointRadius() );
 		postEffect->SetFloat( "gItemPointRadius", LightEngine::GetInstance()->GetItemRadius() );
 

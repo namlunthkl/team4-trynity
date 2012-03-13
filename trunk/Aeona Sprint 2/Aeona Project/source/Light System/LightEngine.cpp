@@ -40,11 +40,11 @@ void LightEngine::Initialize( void )
 	SetItem2PointPosY( 0.25f );
 
 	SetItem3PointLight( false );
-	SetItem3PointPosX( 0.75f );
+	SetItem3PointPosX( 0.25f );
 	SetItem3PointPosY( 0.75f );
 
 	SetItem4PointLight( false );
-	SetItem4PointPosX( 0.25f );
+	SetItem4PointPosX( 0.75f );
 	SetItem4PointPosY( 0.75f );
 
 	SetPointRadius( 0.3f );
@@ -55,6 +55,7 @@ void LightEngine::Update( void )
 {
 	SetCurrentLTime( GetCurrentLTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
 	DayNightCycle();
+
 	// PLAYER LIGHT
 	if( GetPlayerPointLight() )
 	{
@@ -144,7 +145,28 @@ void LightEngine::Update( void )
 		SetItemRadius( 0.0f );
 	}
 }
-void LightEngine::Input( void ){}
+void LightEngine::Input( void )
+{
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_U ) )
+	{
+	SetItem1PointLight( !GetItem1PointLight() );
+	}
+
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_I ) )
+	{
+	SetItem2PointLight( !GetItem2PointLight() );
+	}
+
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_O ) )
+	{
+	SetItem3PointLight( !GetItem3PointLight() );
+	}
+
+	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_P ) )
+	{
+	SetItem4PointLight( !GetItem4PointLight() );
+	}
+}
 void LightEngine::ShutDown( void )
 {
 	SetCurrentCycle( 0 );
