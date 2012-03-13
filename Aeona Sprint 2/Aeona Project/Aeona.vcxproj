@@ -20,14 +20,18 @@
     <ClCompile Include="source\AI_States\CLarvaAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\AI_States\CLilBastardAIState.cpp" />
+    <ClCompile Include="source\AI_States\CLilBastardAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\AI_States\CRandomAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\AI_States\CSlimeAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\AI_States\CSpiderAIState.cpp" />
+    <ClCompile Include="source\AI_States\CSpiderAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\AI_States\CSwarmAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -293,9 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Aeona.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\Aeona Icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F01D96CC-C230-4F34-8863-B37807081DF7}</ProjectGuid>

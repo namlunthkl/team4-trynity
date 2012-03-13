@@ -497,11 +497,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Aeona Icon.ico">
-      <Filter>Resource</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Aeona.rc">
       <Filter>Resource</Filter>
     </ResourceCompile>
