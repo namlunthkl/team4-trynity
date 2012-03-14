@@ -184,24 +184,4 @@
       <WeaponCollisionRect x="-267" y="-153" width="0" height="0" />
     </Frame>
   </Animation>
-  <Animation name="Attack Up" looping="1" oslating="0" playing="0" speed="1" NumFrames="3">
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="443" y="625" width="78" height="69" />
-      <CollisionRect x="507" y="688" width="0" height="0" />
-      <Anchor x="64" y="63" />
-      <WeaponCollisionRect x="-443" y="-625" width="0" height="0" />
-    </Frame>
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="527" y="568" width="83" height="126" />
-      <CollisionRect x="600" y="688" width="0" height="0" />
-      <Anchor x="73" y="120" />
-      <WeaponCollisionRect x="-527" y="-568" width="0" height="0" />
-    </Frame>
-    <Frame duration="0.25" event="NONE">
-      <DrawRect x="620" y="602" width="96" height="94" />
-      <CollisionRect x="639" y="688" width="0" height="0" />
-      <Anchor x="19" y="86" />
-      <WeaponCollisionRect x="-620" y="-602" width="0" height="0" />
-    </Frame>
-  </Animation>
 </Animations>
