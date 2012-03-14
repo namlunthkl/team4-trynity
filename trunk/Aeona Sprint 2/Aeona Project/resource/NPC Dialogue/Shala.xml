@@ -1,60 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Dialogue name="Hanz">
+<Dialogue name="Shala">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Hey there Aeona!"name="Shala1">
+<Option text="Hi Shala!"/>
+<Option text="Not now, Shala..."/>
 </SpeechNode>
 
 
-<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
-<Option text="How is that even possible?"/>
+<SpeechNode text="How's your GrandFather?" name="Shala2">
+<Option text="He's great!"/>
+<Option text="He's a bit concerned..."/>
 </SpeechNode>
 
-<SpeechNode text="Gunho!  Well, you see it is actually pretty sad.  Though our culture nurture's and protects all forms of life, Nature does not adhere to our same form of tolerance."name="Braht3">
-<Option text="You mean there are no children?!"/>
+<SpeechNode text="That man has always been an inspiration to all of us.  I can't think of what might happen if he were to leave us."name="Shala3">
+<Option text="I'm sure everything will be alright"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous."name="Braht4">
-<Option text="I guess I can understand that"/>
+<SpeechNode text="I know it will dear, because despite what others say, I've seen you grow into a strong young lady.  There is a light within you that I'm sure will manifest into something Legendary!  'Til then, enjoy the rest of your day."name="Shala4">
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader."name="Braht5">
-<Option text="You want me to come back and marry you?"/>
+<SpeechNode text="Someone's a little snooty today, tell your GrandFather I said 'Hi!'"name="ShalaA">
 </SpeechNode>
 
-<SpeechNode text="GUNGHO! GUNGHO! GUNGHO!  YES PLEASE! ABSOLUTELY!"name="Braht6">
-<Option text="!?"/>
+<SpeechNode text="So I've heard, I bet it has something to do with the evil that's emerging from the volcano."name="ShalaB">
+<Option text="You know about it too?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I see you are paralyzed with love.  I know what I ask of you is much, but you have to understand that I have never seen a woman so slender and beautiful!  Listen, you don't have to answer now, but maybe one day you'll come back and give me an answer.  So long for now, peculiar stranger.  Wait, what is your name!?"name="Braht7">
-<Option text="Aeona"/>
-<Option text="BERN"/>
+<SpeechNode text="Why of course, Dear!  All people of Valest know the story of the God Weapons and how one day, a true warrior will wield them to defeat Rann.  I'm too busy to worry about such Legends- I'll stick to picking flowers in the meadow with my two children."name="ShalaC">
 </SpeechNode>
 
-<SpeechNode text="Gungho!? A fascinating name. Weak, but nice, I await your return Aeona!"name="Braht8">
-</SpeechNode>
 
-<SpeechNode text="Oh I'm sorry, I'm just very curious!  Gungho!  Sorry."name="BrahtA">
+<Connection speechA="Shala1" option="1" speechB="Shala2"/>
+<Connection speechA="Shala1" option="2" speechB="ShalaA"/>
 
-<SpeechNode text="Gungho!!!! A strong and Gorgeous name!  I am in love with you already!  I fair thee well sweet BERN!"name="BrahtB">
+<Connection speechA="Shala2" option="1" speechB="Shala3"/>
+<Connection speechA="Shala2" option="2" speechB="ShalaB"/>
 
-</SpeechNode>
+<Connection speechA="Shala3" option="1" speechB="Shala4"/>
 
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
-
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
-
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
-
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
-
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
-
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<Connection speechA="ShalaB" option="1" speechB="ShalaC"/>
 
 </Dialogue>
 
