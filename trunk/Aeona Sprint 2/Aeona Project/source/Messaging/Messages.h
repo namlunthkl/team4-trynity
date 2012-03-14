@@ -60,26 +60,25 @@ public:
 	inline int		GetType(void) const { return m_nType; }
 	~CCreateNPCMessage() {}
 };
+
 class CCreateEnemyMessage : public CBaseMessage
 {
 private:
 	double	m_dPosX;
 	double	m_dPosY;
-	int		m_nType;
+	string	m_szRegion;
 
 public:
-	enum EEnemyType { ENEMY_JUMPER, ENEMY_SWARM, ENEMY_RANDOM, ENEMY_MAX };
-
-	CCreateEnemyMessage(double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_ENEMY)
+	CCreateEnemyMessage(double dPosX, double dPosY, string szRegion) : CBaseMessage(MSG_CREATE_ENEMY)
 	{
 		m_dPosX = dPosX;
 		m_dPosY = dPosY;
-		m_nType = nType;
+		m_szRegion = szRegion;
 	}
 	
 	inline double	GetPosX(void) const { return m_dPosX; }
 	inline double	GetPosY(void) const { return m_dPosY; }
-	inline int		GetType(void) const { return m_nType; }
+	inline string	GetRegion(void) const { return m_szRegion; }
 
 	~CCreateEnemyMessage() {}
 };
