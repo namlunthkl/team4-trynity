@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue name="Hanz">
+
+
+<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
+<Option text="Why here?"/>
+<Option text="Intersting... well, bye!"/>
+</SpeechNode>
+
+<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
+<Option text="I want to hear it!"/>
+<Option text="Intersting... well, bye!"/>
+</SpeechNode>
+
+<SpeechNode text="Long ago, Valest was ripped apart when a meteor from the heavens streaked through the skies!  Valest was powerless from the impact and exploded.  All was not lost, however, because from the ashes Kromos came from the shattered rock and undid the damage with one fell swoop.  I should probably emphasize "fell swoop" as the biggest under- statement of the century!  This was no mere swoop Gungho- it was a quake of rage that pieced the world back together!  Kromos had single handedly built the world back with his powerful hammer.  "name="Hanz3">
+<Option text="Fascinating.. is that why you guys are so cheery?"/>
+</SpeechNode>
+
+<SpeechNode text="Gungho!  That is the very nature of our spirit!  We believe that Kromos gave us another chance to live again.  We are so gracious we spend every moment of our existance respecting everyone and everything.  Life is something to protect.  Though this is stuff of Legend, we have begun to manifest it into something more than story.  We believe our calling is to protect life.  And it all started from a Hammer strike.  Isn't that amazing!?"name="Hanz4">
+<Option text="It sure is!  But what of the Hammer?"/>
+</SpeechNode>
+
+<SpeechNode text="The Hammer?  Gungho! It's furtherEast shrouded by the Cliff.  
+We protect it and wait for when a Hero will claim it.  Gungho!"name="Hanz5">
+</SpeechNode>
+
+</SpeechNode>
+
+<Connection speechA="Braht1" option="1" speechB="Braht2"/>
+<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
+
+<Connection speechA="Braht2" option="1" speechB="Braht3"/>
+
+<Connection speechA="Braht3" option="1" speechB="Braht4"/>
+
+<Connection speechA="Braht5" option="1" speechB="Braht6"/>
+
+<Connection speechA="Braht6" option="1" speechB="Braht7"/>
+
+<Connection speechA="Braht7" option="1" speechB="Braht8"/>
+<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+
+</Dialogue>
+
+
+
