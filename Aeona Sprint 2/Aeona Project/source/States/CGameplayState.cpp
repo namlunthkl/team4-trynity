@@ -225,15 +225,6 @@ bool CGameplayState::Input(void)
 	{
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
-
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->Input();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-
 #if 0
 	if(INPUT->KeyPressed(DIK_V))
 	{

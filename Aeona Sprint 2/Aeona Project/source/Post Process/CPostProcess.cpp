@@ -94,37 +94,7 @@ void CPostProcess::Update( void )
 	LightEngine::GetInstance()->Update();
 	UpdateColor();
 }
-void CPostProcess::Input( void )
-{
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_1 ) )
-	{
-		index = 0;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_2 ) )
-	{
-		index = 1;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_3 ) )
-	{
-		index = 2;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_4 ) )
-	{
-		index = 3;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_5 ) )
-	{
-		index = 4;
-	}
-	if( CSGD_DirectInput::GetInstance()->KeyPressed( DIK_6 ) ||
-		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_7 ) ||
-		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_8 ) ||
-		CSGD_DirectInput::GetInstance()->KeyPressed( DIK_9 ) )
-	{
-		index = 5;
-	}
-	LightEngine::GetInstance()->Input();
-}
+void CPostProcess::Input( void ){}
 void CPostProcess::BeginPostProcess( void )
 {
 	// STORE BACKBUFFER
