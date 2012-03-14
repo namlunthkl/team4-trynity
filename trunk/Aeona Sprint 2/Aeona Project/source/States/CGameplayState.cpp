@@ -74,8 +74,6 @@ void CGameplayState::Enter(void)
 	
 	// Register for events
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
-	EVENTS->RegisterForEvent("Teleport.Cave", this);
-	EVENTS->RegisterForEvent("Teleport.Map", this);
 	EVENTS->RegisterForEvent("destroy", this);
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
@@ -100,17 +98,17 @@ void CGameplayState::Enter(void)
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
-	// Initialize Enemies
-	/*CEnemy* pEnemy = new CEnemy(1180, 720, 40,  -1, 50, 50, true, 100, 1);
-	pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-	pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-	pEnemy->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy);
-	pEnemy->Release();*/
+	//// Initialize Enemies
+	//CEnemy* pEnemy = new CEnemy(1180, 720, 40,  -1, 50, 50, true, 100, 1);
+	////pEnemy->LoadAnimations("resource/Enemy Animation.xml");
+	//pEnemy->ChangeAIState(CRandomAIState::GetInstance());
+	//pEnemy->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy);
+	//pEnemy->Release();
 
 	//CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2->ChangeAIState(CSpiderAIState::GetInstance());
+	//pEnemy2->ChangeAIState(CGolemAIState::GetInstance());
 	//pEnemy2->SetDebugMode(false);
 	//OBJECTS->AddObject(pEnemy2);
 	//pEnemy2->Release();
@@ -655,6 +653,9 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			{
 				CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
 					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+
+
+
 				pNPC->LoadAnimations("resource/NPCAnimationsAnchorBased.xml");
 				pNPC->ChangeAIState(CRandomAIState::GetInstance());
 				pNPC->LoadText("resource/NPC Dialogue/Example.xml");
