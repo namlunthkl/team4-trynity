@@ -2,20 +2,40 @@
 <Dialogue>
 
 
-<SpeechNode text="GHOST! I swear it!" name="Ghosts">
-            <Option text="Ahm? Ghosts?"/>
-            <Option text="Haha... stay well man..."/>
+<SpeechNode text="Gungho!  Welcome to our peak! " name="Vlid1">
+            <Option text="Where am I ?"/>
+            <Option text="Thanks!"/>
 </SpeechNode>
 
 
-<SpeechNode text="Over there! In the cave! PLEASE DO SOMETHING!" name="There">
+<SpeechNode text="Gungho?!  You're at the pinnacle of Valest!  The most prominent land, the place of rebirth and power!  Gungho!  You are at the peak!" name="Vlid2">
+		<Option text="Why do you keep calling me Gungho?"/>
+            	<Option text="Tell me about the peak."/>
 </SpeechNode>
 
-<SpeechNode text="Why won't anyone believe me? T_T" name="Unbelievable">
+<SpeechNode text="Gungho?  Ah, yes!  Gungho is our word for triumph, friend, sibling, lover, and cheer!  We use it to establish our happiness, our gratitude for all forms of life, and our well being.  Gungho is a sacred word- a word we use so much because we just can't say it
+enough!  Chant with me... <3> <2> <1>.."name="Vlid3">
+		<Option text="GUNGHO!!!!!"/>
+            	<Option text="...gungooo?..."/>
 </SpeechNode>
 
-<Connection speechA="Ghosts" option="1" speechB="There"/>
-<Connection speechA="Ghosts" option="2" speechB="Unbelievable"/>
+<SpeechNode text="GUNGHO GUNGHO GUNGHOOOOOO!  HAHAHA!!  Very nice!  Gungho indeed!  Please enjoy your stay at the peak.  And do visit the resting place of Kromos- located east of the mountain.  GUNGHO!"name="Vlid4">
+</SpeechNode>
+
+<SpeechNode text="The peak houses a special power known only to our tribe and a few people still faithful enough to remember the past!  Gungho!  We protect the Hammer of Kromos and await the
+eradication of Rann.  We have lived on this peak for many thousand years and feel honored to be near Valest's champion- Kromos!  Gungho!"name="VlidA">
+</SpeechNode>
+
+<SpeechNode text="GUNG-AYE!  Not enough spirit little person!  But that's okay, Gungho!  You will learn soon enough that life is a celebration!  HAHAHA  Gungho! It is a great day to be Alive!  HAHAHA GUNGHO!"name="VlidB">
+</SpeechNode>
+
+<Connection speechA="Vlid1" option="1" speechB="Vlid2"/>
+
+<Connection speechA="Vlid2" option="1" speechB="Vlid3"/>
+<Connection speechA="Vlid2" option="2" speechB="VlidA"/>
+
+<Connection speechA="Vlid3" option="1" speechB="Vlid4"/>
+<Connection speechA="Vlid3" option="2" speechB="VlidB"/>
 
 </Dialogue>
 
