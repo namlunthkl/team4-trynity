@@ -238,9 +238,9 @@ void CPlayer::Input(void)
 {
 	if(IsBusy())
 		return;
-
-	if(WEAPON->GetAttacking() == false)
-	{
+	// This If Check is breaking the attacks for bow and hammer fyi
+	//if(WEAPON->GetAttacking() == false)
+	//{
 		if(CInputManager::GetInstance()->GetAttack())
 		{
 			WEAPON->SetAttacking(true);
@@ -249,7 +249,7 @@ void CPlayer::Input(void)
 		{
 			WEAPON->SetAttacking(false);
 		}
-	}
+	//}
 
 	if(CInputManager::GetInstance()->GetY())
 	{
@@ -343,6 +343,7 @@ void CPlayer::Input(void)
 		{
 			WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Reset();
 			WEAPON->SetCurrentAnimation(WEAPON->GetPreviousAnimation());
+			WEAPON->SetAttacking(false);
 		}
 		
 		SetPrevVelX(GetVelX());
