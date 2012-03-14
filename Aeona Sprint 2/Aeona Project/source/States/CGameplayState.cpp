@@ -616,20 +616,6 @@ CGameplayState* CGameplayState::GetInstance(void)
 
 void CGameplayState::HandleEvent(CEvent* pEvent)
 {
-	if(pEvent->GetEventID() == "SpawnMessageBox")
-	{
-		MessageBox(GAME->GetWindowHandle(),"I Punched You","Program Name: PUNCH!",MB_OK);
-	}
-	if(pEvent->GetEventID() == "Teleport.Cave")
-	{
-		PLAYER->SetPosX(300);
-		PLAYER->SetPosY(1830);
-	}
-	if(pEvent->GetEventID() == "Teleport.Map")
-	{
-		PLAYER->SetPosX(1715);
-		PLAYER->SetPosY(340);
-	}
 	if(pEvent->GetEventID() == "destroy")
 	{
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
