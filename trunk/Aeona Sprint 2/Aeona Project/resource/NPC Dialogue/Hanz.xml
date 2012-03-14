@@ -26,19 +26,10 @@ We protect it and wait for when a Hero will claim it.  Gungho!"name="Hanz5">
 
 </SpeechNode>
 
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
-
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
-
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
-
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
-
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
-
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<Connection speechA="Hanz1" option="1" speechB="Hanz2"/>
+<Connection speechA="Hanz2" option="1" speechB="Hanz3"/>
+<Connection speechA="Hanz3" option="1" speechB="Hanz4"/>
+<Connection speechA="Hanz4" option="1" speechB="Hanz5"/>
 
 </Dialogue>
 
