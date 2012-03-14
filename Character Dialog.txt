@@ -52,7 +52,7 @@ And don't forget to explore!
 < How come? >						< It's not like that.. I->
 
 Well, you never know what you might come across out 	..Listen, always remember to attack any hostile enemy out
-in Valest.  Why, justyesterday some poor shlum left	in the wilderness.  They've been acting a bit hostile 
+in Valest.  Why, just yesterday some poor shlum left	in the wilderness.  They've been acting a bit hostile 
 an apple in a chest for me to pick up.  It was so	lately because of some unusual activity near the Volcano.
 delicious that I felt invigorated immediately!		One thing to consider is exploring your surroundings and always 
 							look for useful items.
@@ -108,120 +108,10 @@ I'll borrow that ship near the Lake.  I heard it can	should just remain dreams. 
 take you to a far away place.  I wonder what beautiful
 locales are just waiting to be explored.  Once I'm 
 finished here, I think I'm goint to pay a visit to 
-this boat and sail someone- anywhere!  I'll take
+that boat and sail somewhere- anywhere!  I'll take
 Mirian with me!  I think she's had enough of this 
 steril lifestyle for much too long.  Thank you Aeona!
 
-==========================================================================================================================================================================
-==========================================================================================================================================================================
-==========================================================================================================================================================================
-==========================================================================================================================================================================
-DESERT
-=================
-
--NULIEN-
-
-Ah, a traveler!
-
-<yeah, that's me!>  					<no, I'm local!>
-
-Glad you came along stranger!				Oh yeah?  Well, it's good to see 
-We hope you enjoy our town.			 	you again......err
-							
-							<..Aeona>
-
-							Right!  Aenoa!  I never forgot about
-							you- Aenoa!  Why I remember when you were
-							a little girl!  Right? Those were good times!
-							
-							<...I was just kidding, I'm not local>
-
-							Why you crafty fiend!  You had me fooled.
-==========================================================================================================================================================================
--SANEI-
-
-My Husband left to go and Hunt.
-
-<Interesting, any particular game?>
-
-'Round here is pretty barren, so he spends
-most of his time hunting wild game 
-further North.
-
-<There are more animals there?>				<What's so special about the North?>
-	
-More animals, more vegetation,				Well, there's some kind of Oasis further up. 
-more everything.  But it's also very 			Legend has it, there is some mysterious power 
-dangerous.  A young woman like you 			just lying there- ripe for the picking!  
-shouldn't wonder too far.				
-==========================================================================================================================================================================
--ZEMBA-
-
-The Desert can be a very harsh place- 
-though, the more I spend time here,
-the more I feel there is beauty to behold.
-What do you think?
-
-< I agree >						< I disagree >
-
-Really?! That's great.  I find the very 		Yeah, I know most individuals come here and
-fabric of the desert to be tranquil and			can't stand the barren view, but I swear this
-vibrant. I love living here.				place is gorgeous when the cacti bloom.
-==========================================================================================================================================================================
--Rulo-
-
-Hi there!  Come to see the EarthStrom?
-
-< Yeah >						< EarthStrom? You spelled it->
-
-Well, be careful because that God Weapon		Yeah, I know how you think it's supposed to be
-won't let just anyone pass through.  You		spelled.  We call it STROM because that used
-must be a true Hero and overcome the 			to be the name of a mighty warrior.
-EarthStrom.	 			
-							
-							< Mighty Warrior? >
-							
-							Strom conquered all, but his quest for power never splintered.
-							He seeked the great weapon of the God and ended up
-							losing his way through the SandStorm.  He was defeated
-							and now all townsfolk refer to the Storm as the "Strom."
-							
-							< I seek the same Weapon >
-							
-							The EarthStrom will be quite difficult to navigate through.
-							Please be careful.
-==========================================================================================================================================================================
--Miraz-
-
-You've come to a place full of rich History.
-
-< Rich History? >					< I'm just going to walk away.. >
-
-Indeed.  Would you like to hear the tale?
-
-< Of course! >						< I'm just going to walk away.. >
-
-
-Long ago- Ani, God of Tempest fell in love with
-Laylee- great Queen of the Desert.  Their love created
-a well of bounty.  Legend has it, the well is real and is
-in the Northern region of the Desert.  My father once said 
-he saw the Oasis with his own eyes, but many travelers ended
-up dismissing our stories as propogated lies to entice people
-to visit our barren land more often.
-
-< But I believe you..>
-
-Thank you dear child.
-I know in my heart I will see the Oasis one day.  But you
-haven't even heard the best part!
-
-<There's more?>
-
-Well Laylee and Ani bore mystical children!
-I don't know much about them, but my father said they won't 
-speak to anyone unless they introduce themselves to all 
-siblings.  Who knows what secrets they share!
 ==========================================================================================================================================================================
 ==========================================================================================================================================================================
 ==========================================================================================================================================================================
@@ -249,14 +139,14 @@ shattered rock and undid the damage with one fell swoop.
 I should probably emphasize "fell swoop" as the biggest under-
 statement of the century!  This was no mere swoop Gungho- it
 was a quake of rage that pieced the world back together!
-Kromos and single handedly built the world back with his powerful
+Kromos had single handedly built the world back with his powerful
 hammer.  
 
 < Fascinating.. is that why you guys are so cheery? >
 
 Gungho!  That is the very nature of our spirit!
 We believe that Kromos gave us another chance to live again.  
-We are so gracious we spend nearly every moment of our existance
+We are so gracious we spend every moment of our existance
 respecting everyone and everything.  Life is something
 to protect.  Though this is stuff of Legend, we have begun to manifest
 it into something more than story.  We believe our calling
@@ -265,9 +155,8 @@ Isn't that amazing!?
 
 < It sure is!  But what of the Hammer? >
 
-The Hammer?  Gungho! Isn't that why you are here?  It's further
-East shrouded by the Cliff.  We protect it and wait for
-when the Hero to wield it.  Gungho!
+The Hammer?  Gungho! It's furtherEast shrouded by the Cliff.  
+We protect it and wait for when a Hero will claim it.  Gungho!
 ==========================================================================================================================================================================
 -Vlid-
 
@@ -353,8 +242,8 @@ that we honor and understand to be righteous.
 < I guess I can understand that >
 
 Gungho!  You understand!?  Well I am happy to hear that!
-maybe one day you will come back.  I feel like you are
-a very special person and would be thrilled if you
+Maybe one day you will come back.  I feel like you are
+a very special person. Gungho! I would be thrilled if you
 stood beside me when I become the next leader.
 
 < You want me to come back and marry you? >
@@ -423,20 +312,137 @@ I cannot interfere with your life.
 I wish to see Kromos give his power to the worthy.  I have
 waited for an eternity...
 
-<  I have the Ryza Sword >  
+<  I have the Ryza Sword, will that help? >  
 
-True. Kromos wants a Champion to rebuild Valest.
-I hope he chooses well.
+It might, Kromos wants a Champion to rebuild Valest.
+I hope he chooses well....
 
-< I seek the Hammer >
+< But I came here for the Hammer >
 
-Then good luck to you Aeona.
+Then you have chosen your path. Good luck to you Aeona.
 
-< how did you know my name? >
+< But how do you know my name? >
 
 I have waited for an eternity...
 
-< ... Understood >
+< ... >
+==========================================================================================================================================================================
+==========================================================================================================================================================================
+==========================================================================================================================================================================
+==========================================================================================================================================================================
+DESERT
+=================
+
+-NULIEN-
+
+Ah, a traveler!
+
+<yeah, that's me!>  					<no, I'm local!>
+
+Glad you came along stranger!				Oh yeah?  Well, it's good to see 
+We hope you enjoy our town.			 	you again......err
+							
+							<..Aeona>
+
+							Right!  Aenoa!  I never forgot about
+							you- Aenoa!  Why I remember when you were
+							a little girl!  Right? Those were good times!
+							And remember when-
+							
+							<...I was just kidding, I'm not local>
+
+							Why you crafty fiend!  You had me fooled.
+==========================================================================================================================================================================
+-SANEI-
+
+My Husband left for Hunting.
+
+<Interesting, any particular game?>
+
+'Round here is pretty barren, so he spends
+most of his time hunting wild game 
+further North.
+
+<There are more animals there?>				<What's so special about the North?>
+	
+More animals, more vegetation,				Well, there's some kind of Oasis further up. 
+more everything.  But it's also very 			Legend has it, there is some mysterious power 
+dangerous.  A young woman like you 			just lying there- ripe for the picking!  
+shouldn't wander too far.				
+==========================================================================================================================================================================
+-ZEMBA-
+
+The Desert can be a very harsh place- 
+though, the more I spend time here,
+the more I feel there is beauty to behold.
+What do you think?
+
+< I agree >						< I disagree >
+
+Really?! That's great.  I find the very 		Yeah, I know most individuals come here and
+fabric of the desert to be tranquil and			can't stand the barren view, but I swear this
+vibrant. I love living here.				place is gorgeous when the cacti bloom.
+==========================================================================================================================================================================
+-Rulo-
+
+Hi there!  Come to see the EarthStrom?
+
+< Yeah >						< EarthStrom? You pronounced it->
+
+Well, be careful because that God Weapon		Yeah, I know how you think it's supposed to be
+won't let just anyone pass through.  You		announciated.  We call it STROM instead of storm because that used
+must be a true Hero and overcome the 			to be the name of a mighty warrior.
+EarthStrom.	 			
+							
+							< Mighty Warrior? >
+							
+							Strom conquered all, but his quest for power never splintered.
+							He seeked a great weapon of the Gods and ended up
+							losing his way through the SandStorm.  He was defeated
+							and now all townsfolk refer to the SandStorm as "The Strom."
+							
+							< I seek the same Weapon >
+							
+							The EarthStrom will be quite difficult to navigate through.
+							Please be careful.
+==========================================================================================================================================================================
+-Miraz-
+
+You've come to a place full of rich History.
+
+< Rich History? >					< I'm just going to walk away.. >
+
+Indeed.  Would you like to hear the tale?
+
+< Of course! >						< I'm just going to walk away.. >
+
+
+Long ago- Ani, God of Tempest fell in love with
+Laylee- great Queen of the Desert.  Their love created
+a well of bounty.  Legend has it, the well is real and is
+in the Northern region of the Desert.  My father once said 
+he saw the Oasis with his own eyes, but many travelers ended
+up dismissing our stories as propogated lies to entice people
+to visit our barren land more often.
+
+< But I believe you..>							< They're right, you are lying!>
+
+Thank you dear child.
+I know in my heart I will see the Oasis one day.  			Oh My!  How rude, well, if you are so keen,
+But you haven't even heard the best part!				why don't you head over there yourself?
+									See for yourself the Weapon of Ani, and Laylee's oasis!
+<There's more?>
+
+Well Laylee and Ani bore mystical children!
+I don't know much about them, but my father said they won't 
+speak to anyone unless they find and introduce themselves to all 
+siblings.  Who knows what secrets they share!
+
+< Are they people? DemiGods? >
+
+No one knows for certain what they are.  Best head my advice
+and be as friendly as possible.  I heart they might be
+tretcherous and very unpleasant looking!  Oh my!
 ==========================================================================================================================================================================
 ==========================================================================================================================================================================
 ==========================================================================================================================================================================
