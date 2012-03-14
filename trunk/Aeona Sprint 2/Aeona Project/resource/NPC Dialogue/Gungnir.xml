@@ -1,62 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Dialogue name="Hanz">
+<Dialogue name="Gungnir">
 
-
-<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Yes?" name="Gungnir1">
+<Option text="I seek the Hammer of Kromos!"/>
+<Option text="Nevermind"/>
 </SpeechNode>
 
-
-<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
-<Option text="How is that even possible?"/>
+<SpeechNode text="East." name="Gungnir2">
+<Option text="You are a man a few words."/>
 </SpeechNode>
 
-<SpeechNode text="Gunho!  Well, you see it is actually pretty sad.  Though our culture nurture's and protects all forms of life, Nature does not adhere to our same form of tolerance."name="Braht3">
-<Option text="You mean there are no children?!"/>
+<SpeechNode text="Words mean nothing.  Action means everything."name="Gungnir3">
+<Option text="Choice words. Who are you?"/>
+<Option text="Goodbye."/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous."name="Braht4">
-<Option text="I guess I can understand that"/>
+<SpeechNode text="Gungnir"name="Gungnir4">
+<Option text="Isn't the name of a Weapon?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader."name="Braht5">
-<Option text="You want me to come back and marry you?"/>
+<SpeechNode text="Aye"name="Gungnir5">
+<Option text="You are named after a weapon?"/>
 </SpeechNode>
 
-<SpeechNode text="GUNGHO! GUNGHO! GUNGHO!  YES PLEASE! ABSOLUTELY!"name="Braht6">
-<Option text="!?"/>
+<SpeechNode text="Nay"name="Gungnir6">
+<Option text="WHAT RELATION DO YOU HAVE WITH GUNGNIR?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I see you are paralyzed with love.  I know what I ask of you is much, but you have to understand that I have never seen a woman so slender and beautiful!  Listen, you don't have to answer now, but maybe one day you'll come back and give me an answer.  So long for now, peculiar stranger.  Wait, what is your name!?"name="Braht7">
-<Option text="Aeona"/>
-<Option text="BERN"/>
+<SpeechNode text="Relation?"name="Gungnir7">
+<Option text="Yes!"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!? A fascinating name. Weak, but nice, I await your return Aeona!"name="Braht8">
+<SpeechNode text="No relation, the Weapon was named after me."name="Gungnir8">
+<Option text="You are THE Gungnir?!"/>
 </SpeechNode>
 
-<SpeechNode text="Oh I'm sorry, I'm just very curious!  Gungho!  Sorry."name="BrahtA">
-
-<SpeechNode text="Gungho!!!! A strong and Gorgeous name!  I am in love with you already!  I fair thee well sweet BERN!"name="BrahtB">
-
+<SpeechNode text="Yes"name="Gungnir9">
+<Option text="Your Grace, I have so many questions!-"/>
 </SpeechNode>
 
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
+<SpeechNode text="Seek and discover answers throughout your journey.  I cannot interfere with your life."name="Gungnir10">
+<Option text="I don't get it, why are you here if you can't help?"/>
+</SpeechNode>
 
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
+<SpeechNode text="I wish to see Kromos give his power to the worthy.  I have waited for an eternity..."name="Gungnir11">
+<Option text="I have the Ryza Sword, will that help?"/>
+</SpeechNode>
 
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
+<SpeechNode text="It might, Kromos wants a Champion to rebuild Valest.  I hope he chooses well...."name="Gungnir12">
+<Option text="But I came here for the Hammer"/>
+</SpeechNode>
 
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
+<SpeechNode text="Then you have chosen your path. Good luck to you Aeona."name="Gungnir13">
+<Option text="But how do you know my name?"/>
+</SpeechNode>
 
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
+<SpeechNode text="As I said, I have waited an eternity to see this moment..."name="Gungnir14">
+<Option text="..."/>
+</SpeechNode>
 
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<Connection speechA="Gungnir1" option="1" speechB="Gungnir2"/>
+<Connection speechA="Gungnir2" option="1" speechB="Gungnir3"/>
+<Connection speechA="Gungnir3" option="1" speechB="Gungnir4"/>
+<Connection speechA="Gungnir4" option="1" speechB="Gungnir5"/>
+<Connection speechA="Gungnir5" option="1" speechB="Gungnir6"/>
+<Connection speechA="Gungnir7" option="1" speechB="Gungnir8"/>
+<Connection speechA="Gungnir8" option="1" speechB="Gungnir9"/>
+<Connection speechA="Gungnir9" option="1" speechB="Gungnir10"/>
+<Connection speechA="Gungnir10" option="1" speechB="Gungnir11"/>
+<Connection speechA="Gungnir11" option="1" speechB="Gungnir12"/>
+<Connection speechA="Gungnir12" option="1" speechB="Gungnir13"/>
+<Connection speechA="Gungnir13" option="1" speechB="Gungnir14"/>
 
 </Dialogue>
-
-
-
