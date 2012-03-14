@@ -12,7 +12,7 @@
 CCrossBow::CCrossBow()
 {
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/PlayerWCrossBow.xml");
+	CBaseCharacter::LoadAnimations("resource/AeonaAirCrossBow.xml");
 	SetAttacking(false);
 	m_pArrow = NULL;
 	m_fTime = 0;

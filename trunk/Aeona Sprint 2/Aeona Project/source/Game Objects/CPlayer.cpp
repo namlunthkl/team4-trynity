@@ -230,7 +230,8 @@ void CPlayer::ChargedAttack(void)
 void CPlayer::Die(void)
 {
 	CBaseCharacter::Die();
-	CEventSystem::GetInstance()->SendEvent("game.over");
+	WEAPON->SetCurrentAnimation(ANM_DIE_DIE);
+	//CEventSystem::GetInstance()->SendEvent("game.over");
 }
 
 // Get input for the player
@@ -323,6 +324,13 @@ void CPlayer::Input(void)
 		//	
 		//}
 	} 
+	else if(WEAPON->GetCurrentAnimation() == ANM_DIE_DIE)
+	{
+		SetVelX(0);
+		SetVelY(0);
+		if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetFrameNumber() == 3)
+		CEventSystem::GetInstance()->SendEvent("game.over");
+	}
 	else
 	{
 		//if(attacked == true)

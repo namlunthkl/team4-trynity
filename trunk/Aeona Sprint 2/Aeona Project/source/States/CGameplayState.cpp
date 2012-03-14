@@ -223,16 +223,7 @@ bool CGameplayState::Input(void)
 	{
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
-#if 0
-	if(INPUT->KeyPressed(DIK_V))
-	{
-		EVENTS->SendEvent("victory");
-	}
-	else if(INPUT->KeyPressed(DIK_B))
-	{
-		EVENTS->SendEvent("game.over");
-	}
-#endif // Victory/Lose keys
+
 
 
 
