@@ -142,7 +142,7 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 					CMessageSystem::GetInstance()->SendMsg(new CCreateEnemyMessage(
 						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
 						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
-						CCreateEnemyMessage::ENEMY_SWARM));
+						pStringTable->GetString(GetTileset()->GetID())));
 					ucEventID = pStringTable->GetStringIndex("");
 				}
 				else if(ucEventID == ucNPCID)

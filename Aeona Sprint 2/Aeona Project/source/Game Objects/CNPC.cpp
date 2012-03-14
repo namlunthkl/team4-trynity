@@ -164,16 +164,41 @@ void CNPC::Input(void)
 
 	if(CInputManager::GetInstance()->GetPressedA())
 	{
-		if(m_bTalk)
+		if(!m_bTalk)
 		{
-			// If NPC is talking and Enter is pressed, answer him
+			// Get the distance between the player and the NPC
+			double dDistance;
+			dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
+
+			if(dDistance < m_dRange)
+			{
+				m_pCurrentSpeech = m_Dialogue[0];
+				m_bTalk = true;
+				m_uiTextIndex = 0;
+				CPlayer::GetInstance()->Lock();
+			}
+		}
+		else
+		{
+			// If player pressed Enter and NPC has finished talking...
 			if(m_uiTextIndex == m_pCurrentSpeech->GetText().size() && m_nCurrentOption != -1)
 			{
+				// ...and if player has selected an option to answer...
 				if(m_pCurrentSpeech->GetOption(m_nCurrentOption))
+				{
+					// ...the NPC should get another speech to answer the player.
 					m_pCurrentSpeech = m_pCurrentSpeech->GetOption(m_nCurrentOption)->GetNextSpeech();
+
+					if(m_pCurrentSpeech == nullptr)
+					{
+						m_bTalk = false;
+						CPlayer::GetInstance()->Unlock();
+						GAMEPLAY->SetMessageBox(false);
+					}
+				}
 				else
 				{
-					m_pCurrentSpeech = m_Dialogue[0];
+					// If there's no option, just stop talking
 					m_bTalk = false;
 					CPlayer::GetInstance()->Unlock();
 					GAMEPLAY->SetMessageBox(false);
@@ -181,25 +206,14 @@ void CNPC::Input(void)
 	
 				m_uiTextIndex = 0;
 			}
+			// If player pressed Enter and NPC is talking
+			// but he didn't finish talking yet, force him to finish
 			else
 				m_uiTextIndex = m_pCurrentSpeech->GetText().size();
 		}
-		// Else if NPC is not talking and he's a passive speaker, start the conversation
-		else if(!m_bActiveTalk)
-		{
-				// Get the distance between the player and the NPC
-				double dDistance;
-				dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
-
-				if(dDistance < m_dRange)
-				{
-					if(CPlayer::GetInstance()->Lock())
-						m_bTalk = true;
-				}
-				m_uiTextIndex = 0;
-		}
 	}
-	
+		
+
 	if(m_bTalk && CInputManager::GetInstance()->GetPressedB())
 	{
 		m_bTalk = false;

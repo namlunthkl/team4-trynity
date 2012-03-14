@@ -108,19 +108,19 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(pEnemy);
 	pEnemy->Release();*/
 
-	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CSpiderAIState::GetInstance());
-	pEnemy2->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2);
-	pEnemy2->Release();
+	//CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2->ChangeAIState(CSpiderAIState::GetInstance());
+	//pEnemy2->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2);
+	//pEnemy2->Release();
 
-	CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2a->ChangeAIState(CLilBastardAIState::GetInstance());
-	pEnemy2a->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2a);
-	pEnemy2a->Release();
+	//CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2a->ChangeAIState(CLilBastardAIState::GetInstance());
+	//pEnemy2a->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2a);
+	//pEnemy2a->Release();
 
 	//CEnemy* pEnemy2b = new CEnemy(1250, 570, 40,  -1, 50, 50, true, 75, 1);
 	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
@@ -150,7 +150,7 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy3);
 	//pEnemy3->Release();
 
-	CEnemy* pEnemy4 = new CEnemy(743, 5082, 40,  -1, 50, 50, true, 100, 1);
+	/*CEnemy* pEnemy4 = new CEnemy(743, 5082, 40,  -1, 50, 50, true, 100, 1);
 	pEnemy4->LoadAnimations("resource/Air Enemy.xml");
 	pEnemy4->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy4->SetDebugMode(false);
@@ -169,7 +169,7 @@ void CGameplayState::Enter(void)
 	pEnemy6->ChangeAIState(CJumperAIState::GetInstance());
 	pEnemy6->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy6);
-	pEnemy6->Release();
+	pEnemy6->Release();*/
 
 	// Initialize NPCs
 	/*CNPC* pNPC;
@@ -690,15 +690,112 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateEnemyMessage* pMsgEnemy = (CCreateEnemyMessage*)pMsg;
 
-			if(pMsgEnemy->GetType() == CCreateEnemyMessage::ENEMY_SWARM)
+			int nRandom = RandomInt(0, 0);
+			double dPosX = RandomFloat(pMsgEnemy->GetPosX() - 64, pMsgEnemy->GetPosX() + 64);
+			double dPosY = RandomFloat(pMsgEnemy->GetPosY() - 64, pMsgEnemy->GetPosY() + 64);
+
+			IBaseAIState* pAIState = nullptr;
+			unsigned int uiSpeed = 0;
+			unsigned int uiWidth = 0;
+			unsigned int uiHeight = 0;
+			unsigned int uiMaxHealth = 0;
+			unsigned int uiAttackDamage = 0;
+
+
+			if(pMsgEnemy->GetRegion() == "Forest")
 			{
-				CEnemy* pEnemy = new CEnemy(pMsgEnemy->GetPosX(), pMsgEnemy->GetPosY(),
-					40, -1, 50, 50, true, 100, 1);
-				pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-				pEnemy->ChangeAIState(CSwarmAIState::GetInstance());
+				switch(nRandom)
+				{
+				case 0:
+					pAIState = CSpiderAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
+					break;
+				case 1:
+					// pAIState = CRatAIState::GetInstance();
+					break;
+				case 2:
+					// pAIState = CBirdAIState::GetInstance();
+					break;
+				}
+			}
+			else if(pMsgEnemy->GetRegion() == "Snow")
+			{
+				switch(nRandom)
+				{
+				case 0:
+					pAIState = CSlimeAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
+					break;
+				case 1:
+					// pAIState = CIceGolemAIState::GetInstance();
+					break;
+				case 2:
+					// pAIState = CAniviaAIState::GetInstance();
+					break;
+				}
+			}
+			else if(pMsgEnemy->GetRegion() == "Desert")
+			{
+				switch(nRandom)
+				{
+				case 0:
+					pAIState = CGolemAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
+					break;
+				case 1:
+					// pAIState = CHardSpiderAIState::GetInstance();
+					break;					
+				case 2:
+					pAIState = CLarvaAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
+					break;
+				}
+			}
+			else // if Volcano
+			{
+				switch(nRandom)
+				{
+				case 0:
+					pAIState = CLilBastardAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
+					break;
+				case 1:
+					// pAIState = CLavaGolemAIState::GetInstance();
+					break;
+				case 2:
+					//pAIState = CLavaAIState::GetInstance();
+					break;
+				}
+			}
+
+			if(pAIState)
+			{
+				CEnemy* pEnemy = new CEnemy(dPosX, dPosY, uiSpeed, -1, uiWidth, uiHeight, true, uiMaxHealth, uiAttackDamage);
+				pEnemy->ChangeAIState(pAIState);
 				OBJECTS->AddObject(pEnemy);
 				pEnemy->Release();
 			}
+
 			break;
 		}
 	case MSG_CREATE_CHEST:
