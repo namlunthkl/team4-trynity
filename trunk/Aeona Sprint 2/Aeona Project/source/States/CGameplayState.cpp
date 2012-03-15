@@ -111,16 +111,16 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy);
 	//pEnemy->Release();
 
-	/*
+	
 
 	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CRatAIState::GetInstance());
+	pEnemy2->ChangeAIState(CSlimeAIState::GetInstance());
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
 
-	*/
+	
 
 	//CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
 	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");

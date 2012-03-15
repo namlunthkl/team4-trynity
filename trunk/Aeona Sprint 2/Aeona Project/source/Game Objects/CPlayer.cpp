@@ -132,11 +132,20 @@ void CPlayer::Update(float fElapsedTime)
 
 void CPlayer::Render(void)
 {
+	RECT shadow;
+	shadow.left = 512-32;
+	shadow.top = 0;
+	shadow.right = 512;
+	shadow.bottom = 32;
+
+	TEX_MNG->Draw(GAME->m_imgEnemiesDeath, GetPosX() -(16)/*- (48*scale)*/, GetPosY() -(16)/*- (48*scale)*/, 1.0f, 1.0f, &shadow, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(100, 255, 255, 255));
+
 	// Render the player
 	//
 	//
 	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
 		WEAPON->Render(GetPosition());
+
 	// Render the particles
 	m_fxElementalWeapon.Render();
 	
