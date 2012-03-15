@@ -256,6 +256,9 @@
     <ClCompile Include="source\AI_States\CSpiderAIState.cpp">
       <Filter>Artificial Intelligence</Filter>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CFinalBoss.cpp">
+      <Filter>Object Hierarchy\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -493,6 +496,9 @@
       <Filter>Artificial Intelligence</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="source\Game Objects\CFinalBoss.h">
+      <Filter>Object Hierarchy\Characters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Aeona.rc" />
