@@ -94,8 +94,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(1536); //743 = goodspot
-	PLAYER->SetPosY(1024); //4992 = goodspot
+	PLAYER->SetPosX(600); //743 = goodspot
+	PLAYER->SetPosY(500); //4992 = goodspot
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -115,7 +115,7 @@ void CGameplayState::Enter(void)
 
 	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CSlimeAIState::GetInstance());
+	pEnemy2->ChangeAIState(CLavaGolemAIState::GetInstance());
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
@@ -882,7 +882,8 @@ void CGameplayState::RenderHUD()
 
 	//	Value for the actual current XP
 
-	float tempXP = CInputManager::GetInstance()->Timeheld();
+	//float tempXP = CInputManager::GetInstance()->Timeheld();
+	float tempXP = PLAYER->m_fPhilChargeIdkman;
 	if(tempXP > 1.0f)
 		tempXP = 1.0f;
 

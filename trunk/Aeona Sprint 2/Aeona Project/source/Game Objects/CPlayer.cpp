@@ -51,6 +51,10 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
 	SetNumPotions(0);
+	m_bPhilCharging = false;
+	m_bPhilSpecialAttack = false;
+	m_fPhilChargeIdkman = 0.0f;
+
 	m_vGameWeapons.push_back(new CDagger);
 	m_vGameWeapons[WEAPON_DAGGER]->Activate();
 	m_vGameWeapons[WEAPON_DAGGER]->SetCurrentAnimation(ANM_IDLE_UP);
@@ -193,6 +197,8 @@ void CPlayer::Attack(void)
 
 	if( m_fOuchTimer == 0.0f )
 	{
+		m_fPhilChargeIdkman = 0.0f;	//	Set it to 0.0f when we begin an attack, cus we either are not charging, or we just Attack()'d a charged attack, so set it back to 0.0f anyway.
+
 		if( m_uiCurrentWeapon == WEAPON_SWORD )
 		{
 			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
@@ -255,18 +261,40 @@ void CPlayer::Input(void)
 {
 	if(IsBusy())
 		return;
-	// This If Check is breaking the attacks for bow and hammer fyi
-	//if(WEAPON->GetAttacking() == false)
-	//{
-		if(CInputManager::GetInstance()->GetAttack())
+	// This If Check is breaking the attacks for bow and hammer fyi - NO ITS NOT, UR LYING U BUTTNOSE!
+	if(m_bPhilCharging == false)
+	{
+		if(WEAPON->GetAttacking() == false)
 		{
-			WEAPON->SetAttacking(true);
+			if(CInputManager::GetInstance()->GetAttack())
+				WEAPON->SetAttacking(true);
+			else
+				WEAPON->SetAttacking(false);
 		}
-		else
+	}
+	//only for charge attack timer.
+	if(CInputManager::GetInstance()->GetAttack() == true)
+	{
+		m_bPhilCharging = true;
+	}
+	else
+	{
+		m_bPhilCharging = false;
+		if(m_fPhilChargeIdkman > 0.0f)
 		{
-			WEAPON->SetAttacking(false);
+			if(m_fPhilChargeIdkman < 1.0f)
+			{
+				m_fPhilChargeIdkman = 0.0f;
+				WEAPON->SetAttacking(true);
+			}
+			else
+			{
+				m_fPhilChargeIdkman = 0.0f;
+				m_bPhilSpecialAttack = true;
+				WEAPON->SetAttacking(true);
+			}
 		}
-	//}
+	}
 
 	if(CInputManager::GetInstance()->GetY())
 	{

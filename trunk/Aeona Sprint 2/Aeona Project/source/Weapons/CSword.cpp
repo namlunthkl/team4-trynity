@@ -12,6 +12,7 @@ CSword::CSword()
 	//Load the Animation
 	CBaseCharacter::LoadAnimations("resource/AeonaFireSword.xml");
 	SetAttacking(false);
+
 	SetSound(new Sound("resource/sound/Sword.wav"));
 
 	m_fSlashTimer = 0.0f;
@@ -36,7 +37,16 @@ void CSword::Update(float fElapsedTime)
 	CBaseCharacter::Update(fElapsedTime);
 
 	if( GetAttacking() == true )
+	{
 		m_fSlashTimer += fElapsedTime;
+	}
+	else
+	{
+		if( CPlayer::GetInstance()->m_bPhilCharging == true )
+		{
+			CPlayer::GetInstance()->m_fPhilChargeIdkman += fElapsedTime;
+		}
+	}
 }
 void CSword::Attack(void)
 {
@@ -56,20 +66,41 @@ RectD CSword::GetCollisionRect(void)
 	{
 		rectCollision.top = -15 - 76;
 		rectCollision.bottom = -15;
-		if(m_fSlashTimer < 0.1f)
+		if(m_fSlashTimer < 0.125f)
 		{
-			rectCollision.left = -32;
+			rectCollision.left = -40;
 			rectCollision.right = 0;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.2f)
+		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.left = -22;
-			rectCollision.right = 22;
+			rectCollision.left = -27;
+			rectCollision.right = 27;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.3f)
+		else if(m_fSlashTimer < 0.375f)
 		{
 			rectCollision.left = 0;
-			rectCollision.right = 32;
+			rectCollision.right = 40;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
 		else
 		{
@@ -79,26 +110,48 @@ RectD CSword::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
 		rectCollision.top = 15;
 		rectCollision.bottom = 15 + 76;
-		if(m_fSlashTimer < 0.1f)
+		if(m_fSlashTimer < 0.125f)
 		{
 			rectCollision.left = 0;
-			rectCollision.right = 32;
+			rectCollision.right = 40;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.2f)
+		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.left = -22;
-			rectCollision.right = 22;
+			rectCollision.left = -27;
+			rectCollision.right = 27;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.3f)
+		else if(m_fSlashTimer < 0.375f)
 		{
-			rectCollision.left = -32;
+			rectCollision.left = -40;
 			rectCollision.right = 0;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
 		else
 		{
@@ -108,26 +161,48 @@ RectD CSword::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
 		rectCollision.left = -15 - 76;
 		rectCollision.right = -15;
-		if(m_fSlashTimer < 0.1f)
+		if(m_fSlashTimer < 0.125f)
 		{
 			rectCollision.top = 0;
-			rectCollision.bottom = 32;
+			rectCollision.bottom = 40;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.2f)
+		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.top = -22;
-			rectCollision.bottom = 22;
+			rectCollision.top = -27;
+			rectCollision.bottom = 27;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
-		else if(m_fSlashTimer < 0.3f)
+		else if(m_fSlashTimer < 0.375f)
 		{
-			rectCollision.top = -32;
+			rectCollision.top = -40;
 			rectCollision.bottom = 0;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
 		else
 		{
@@ -137,26 +212,48 @@ RectD CSword::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
 		rectCollision.left = 15;
 		rectCollision.right = 15 + 76;
-		if(m_fSlashTimer < 0.1f)
-		{
-			rectCollision.top = -32;
-			rectCollision.bottom = 0;
-		}
-		else if(m_fSlashTimer < 0.2f)
-		{
-			rectCollision.top = -22;
-			rectCollision.bottom = 22;
-		}
-		else if(m_fSlashTimer < 0.3f)
+		if(m_fSlashTimer < 0.125f)
 		{
 			rectCollision.top = 0;
-			rectCollision.bottom = 32;
+			rectCollision.bottom = 40;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
+		}
+		else if(m_fSlashTimer < 0.25f)
+		{
+			rectCollision.top = -27;
+			rectCollision.bottom = 27;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
+		}
+		else if(m_fSlashTimer < 0.375f)
+		{
+			rectCollision.top = -40;
+			rectCollision.bottom = 0;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -100;
+				rectCollision.top = -100;
+				rectCollision.right = 100;
+				rectCollision.bottom = 100;
+			}
 		}
 		else
 		{
@@ -166,6 +263,7 @@ RectD CSword::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	return rectCollision;
