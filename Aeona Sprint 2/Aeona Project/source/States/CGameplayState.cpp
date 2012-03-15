@@ -94,8 +94,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(600); //743 = goodspot
-	PLAYER->SetPosY(500); //4992 = goodspot
+	PLAYER->SetPosX(743); //743 = goodspot
+	PLAYER->SetPosY(4992); //4992 = goodspot
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -115,7 +115,7 @@ void CGameplayState::Enter(void)
 
 	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CLavaGolemAIState::GetInstance());
+	pEnemy2->ChangeAIState(CSlimeAIState::GetInstance());
 	pEnemy2->SetDebugMode(false);
 	OBJECTS->AddObject(pEnemy2);
 	pEnemy2->Release();
@@ -672,9 +672,9 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateEnemyMessage* pMsgEnemy = (CCreateEnemyMessage*)pMsg;
 
-			int nRandom = RandomInt(0, 0);
-			double dPosX = RandomFloat(pMsgEnemy->GetPosX() - 64, pMsgEnemy->GetPosX() + 64);
-			double dPosY = RandomFloat(pMsgEnemy->GetPosY() - 64, pMsgEnemy->GetPosY() + 64);
+			int nRandom = RandomInt(0, 2);
+			double dPosX = RandomFloat(pMsgEnemy->GetPosX() - 32, pMsgEnemy->GetPosX() + 32);
+			double dPosY = RandomFloat(pMsgEnemy->GetPosY() - 32, pMsgEnemy->GetPosY() + 32);
 
 			IBaseAIState* pAIState = nullptr;
 			unsigned int uiSpeed = 0;
@@ -689,7 +689,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				switch(nRandom)
 				{
 				case 0:
-					pAIState = CSpiderAIState::GetInstance();
+					pAIState = CSmallSpiderAIState::GetInstance();
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
@@ -697,10 +697,20 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiAttackDamage = 1;
 					break;
 				case 1:
-					// pAIState = CRatAIState::GetInstance();
+					pAIState = CRatAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
 					break;
 				case 2:
-					// pAIState = CBirdAIState::GetInstance();
+					pAIState = CFlowerAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
 					break;
 				}
 			}
@@ -709,18 +719,20 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				switch(nRandom)
 				{
 				case 0:
-					pAIState = CSlimeAIState::GetInstance();
+					pAIState = CSnowGolemAIState::GetInstance();
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
 					uiMaxHealth = 75;
 					uiAttackDamage = 1;
 					break;
-				case 1:
-					// pAIState = CIceGolemAIState::GetInstance();
-					break;
-				case 2:
-					// pAIState = CAniviaAIState::GetInstance();
+				default:
+					pAIState = CSlimeAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
 					break;
 				}
 			}
@@ -737,7 +749,12 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiAttackDamage = 1;
 					break;
 				case 1:
-					// pAIState = CHardSpiderAIState::GetInstance();
+					pAIState = CSpiderAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
 					break;					
 				case 2:
 					pAIState = CLarvaAIState::GetInstance();
@@ -754,18 +771,20 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 				switch(nRandom)
 				{
 				case 0:
-					pAIState = CLilBastardAIState::GetInstance();
+					pAIState = CLavaGolemAIState::GetInstance();
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
 					uiMaxHealth = 75;
 					uiAttackDamage = 1;
 					break;
-				case 1:
-					// pAIState = CLavaGolemAIState::GetInstance();
-					break;
-				case 2:
-					//pAIState = CLavaAIState::GetInstance();
+				default:
+					pAIState = CLilBastardAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 75;
+					uiAttackDamage = 1;
 					break;
 				}
 			}
@@ -882,8 +901,7 @@ void CGameplayState::RenderHUD()
 
 	//	Value for the actual current XP
 
-	//float tempXP = CInputManager::GetInstance()->Timeheld();
-	float tempXP = PLAYER->m_fPhilChargeIdkman;
+	float tempXP = CInputManager::GetInstance()->Timeheld();
 	if(tempXP > 1.0f)
 		tempXP = 1.0f;
 

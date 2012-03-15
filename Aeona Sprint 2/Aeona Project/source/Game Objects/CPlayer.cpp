@@ -18,8 +18,6 @@
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../Light System/LightEngine.h"
 
-
-#define WEAPON m_vGameWeapons[m_uiCurrentWeapon]
 // Constructor]
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
@@ -171,21 +169,24 @@ void CPlayer::Render(void)
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 
 #ifdef _DEBUG
-	if(m_uiCurrentWeapon == WEAPON_SWORD)
+	if(IsOnDebug())
 	{
-		D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
-	}
-	else if(m_uiCurrentWeapon == WEAPON_DAGGER)
-	{
-		D3D->DrawRect(temp.GetWindowsRECT(), 255, 255, 0);
-	}
-	else if(m_uiCurrentWeapon == WEAPON_HAMMER)
-	{
-		D3D->DrawRect(temp.GetWindowsRECT(), 139, 69, 19);
-	}
-	else if(m_uiCurrentWeapon == WEAPON_CROSSBOW)
-	{
-		D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
+		if(m_uiCurrentWeapon == WEAPON_SWORD)
+		{
+			D3D->DrawRect(temp.GetWindowsRECT(), 255, 69, 0);
+		}
+		else if(m_uiCurrentWeapon == WEAPON_DAGGER)
+		{
+			D3D->DrawRect(temp.GetWindowsRECT(), 255, 255, 0);
+		}
+		else if(m_uiCurrentWeapon == WEAPON_HAMMER)
+		{
+			D3D->DrawRect(temp.GetWindowsRECT(), 139, 69, 19);
+		}
+		else if(m_uiCurrentWeapon == WEAPON_CROSSBOW)
+		{
+			D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
+		}
 	}
 #endif
 }
