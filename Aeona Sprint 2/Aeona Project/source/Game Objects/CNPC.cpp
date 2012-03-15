@@ -146,7 +146,7 @@ void CNPC::Update(float fElapsedTime)
 	if(dDistance < m_dRange)
 	{
 		if(m_bActiveTalk)
-			if(CPlayer::GetInstance()->Lock())
+			if(CPlayer::GetInstance()->LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC())
 				m_bTalk = true;
 	}
 	else if(m_bTalk)
@@ -175,7 +175,7 @@ void CNPC::Input(void)
 				m_pCurrentSpeech = m_Dialogue[0];
 				m_bTalk = true;
 				m_uiTextIndex = 0;
-				CPlayer::GetInstance()->Lock();
+				CPlayer::GetInstance()->LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC();
 			}
 		}
 		else
