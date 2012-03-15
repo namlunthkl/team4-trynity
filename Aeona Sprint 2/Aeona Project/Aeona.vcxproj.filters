@@ -61,6 +61,9 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{226f1af6-cd17-474b-8aad-bacd8ebc43e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Artificial Intelligence\Boss AI">
+      <UniqueIdentifier>{c512ff8f-1d4d-47c7-bece-e0f7be31e2bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game Objects\CObjectManager.cpp">
@@ -273,6 +276,18 @@
     </ClCompile>
     <ClCompile Include="source\AI_States\CRatAIState.cpp">
       <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CBossFireAI.cpp">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CBossEarthAI.cpp">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CBossAirAI.cpp">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CBossDaggerAI.cpp">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -528,6 +543,18 @@
     </ClInclude>
     <ClInclude Include="source\AI_States\CRatAIState.h">
       <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CBossFireAI.h">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CBossEarthAI.h">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CBossAirAI.h">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CBossDaggerAI.h">
+      <Filter>Artificial Intelligence\Boss AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

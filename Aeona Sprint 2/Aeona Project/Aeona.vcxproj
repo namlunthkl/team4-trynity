@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AI_States\CBossAirAI.cpp" />
+    <ClCompile Include="source\AI_States\CBossDaggerAI.cpp" />
+    <ClCompile Include="source\AI_States\CBossEarthAI.cpp" />
+    <ClCompile Include="source\AI_States\CBossFireAI.cpp" />
     <ClCompile Include="source\AI_States\CFlowerAIState.cpp" />
     <ClCompile Include="source\AI_States\CGolemAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -222,6 +226,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="source\AI_States\CBossAirAI.h" />
+    <ClInclude Include="source\AI_States\CBossDaggerAI.h" />
+    <ClInclude Include="source\AI_States\CBossEarthAI.h" />
+    <ClInclude Include="source\AI_States\CBossFireAI.h" />
     <ClInclude Include="source\AI_States\CFlowerAIState.h" />
     <ClInclude Include="source\AI_States\CGolemAIState.h" />
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
