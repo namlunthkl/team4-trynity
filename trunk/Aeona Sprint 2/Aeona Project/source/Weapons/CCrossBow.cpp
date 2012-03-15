@@ -28,7 +28,13 @@ void CCrossBow::Render(PointD nPos)
 
 	CBaseCharacter::Render();
 }
+void CCrossBow::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
 
+	CBaseCharacter::Render(WHICHCOLORYOUWANTHIMTOGLOWBRO);
+}
 void CCrossBow::Update(float fElapsedTime)
 {
 	m_fTime += fElapsedTime;

@@ -87,7 +87,7 @@ public:
 	virtual void Input(void);
 	virtual RectD GetCollisionRect(void);
 	virtual bool CheckCollision(IBaseInterface* pObject);
-
+	void Render(DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
 	virtual inline unsigned int GetType(void) const { return TYPE_OBJ_BASE; }
 	virtual Point	GetAnchorPoint(void);
 	

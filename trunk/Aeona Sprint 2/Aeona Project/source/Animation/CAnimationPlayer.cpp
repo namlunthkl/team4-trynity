@@ -69,6 +69,17 @@ void CAnimationPlayer::Render(int nPosX,int nPosY)
 	}
 
 }
+void CAnimationPlayer::Render(int nPosX,int nPosY,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	if(m_bIsPlaying)
+	{
+		int nSheet = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetImageId();
+		RectD drawRect = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDrawRect();
+		Point anchor = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetAnchorPoint();
+		TEX_MNG->Draw(nSheet,nPosX - anchor.x, nPosY - anchor.y,1,1,&drawRect.GetWindowsRECT(),0.0f,0.0f,0.0f,WHICHCOLORYOUWANTHIMTOGLOWBRO);
+	}
+
+}
 
 RectD CAnimationPlayer::ReturnFrameRect(void)
 {

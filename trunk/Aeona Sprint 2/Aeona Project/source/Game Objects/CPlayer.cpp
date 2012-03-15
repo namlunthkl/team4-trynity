@@ -53,12 +53,16 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	SetNumPotions(0);
 	m_vGameWeapons.push_back(new CDagger);
 	m_vGameWeapons[WEAPON_DAGGER]->Activate();
+	m_vGameWeapons[WEAPON_DAGGER]->SetCurrentAnimation(ANM_IDLE_UP);
 	m_vGameWeapons.push_back(new CSword);
 	m_vGameWeapons[WEAPON_SWORD]->Activate();
+	m_vGameWeapons[WEAPON_SWORD]->SetCurrentAnimation(ANM_IDLE_UP);
 	m_vGameWeapons.push_back(new CHammer);
 	m_vGameWeapons[WEAPON_HAMMER]->Activate();
+	m_vGameWeapons[WEAPON_HAMMER]->SetCurrentAnimation(ANM_IDLE_UP);
 	m_vGameWeapons.push_back(new CCrossBow);
 	m_vGameWeapons[WEAPON_CROSSBOW]->Activate();
+	m_vGameWeapons[WEAPON_CROSSBOW]->SetCurrentAnimation(ANM_IDLE_UP);
 
 	m_bBusy = false;
 
@@ -145,7 +149,10 @@ void CPlayer::Render(void)
 	//
 	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
 		WEAPON->Render(GetPosition());
-
+	else
+	{
+		WEAPON->Render(GetPosition(),D3DCOLOR_ARGB(155,255,0,0));
+	}
 	// Render the particles
 	m_fxElementalWeapon.Render();
 	
@@ -338,7 +345,7 @@ void CPlayer::Input(void)
 		SetVelX(0);
 		SetVelY(0);
 		if(WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->GetFrameNumber() == 3)
-		CEventSystem::GetInstance()->SendEvent("game.over");
+			CEventSystem::GetInstance()->SendEvent("game.over");
 	}
 	else
 	{

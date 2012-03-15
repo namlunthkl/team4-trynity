@@ -32,6 +32,7 @@ public:
 	void Reset();
 	void Update(float fElapsedTime);
 	void Render(int nPosX, int nPosY);
+	void Render(int nPosX,int nPosY,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
 	RectD ReturnFrameRect(void);
 
 	RectD ReturnCollisionRect(void);

@@ -28,6 +28,7 @@ public:
 	void ChargedAttack(void);
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
+	void Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_DAGGER; }
 	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_DAGGER; }
 	//void SetWeaponRotation(float fWeaponRotation);

@@ -29,6 +29,7 @@ public:
 	void ChargedAttack(void);
 	//void Render(void);
 	void Render(PointD nPosition);
+	void Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
 	void Update(float fElapsedTime);
 	//bool CheckCollision(IBaseInterface* pObject);
 	//void Render(void);

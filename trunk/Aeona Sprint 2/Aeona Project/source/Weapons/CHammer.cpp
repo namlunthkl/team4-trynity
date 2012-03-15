@@ -24,7 +24,13 @@ void CHammer::Render(PointD nPos)
 
 	CBaseCharacter::Render();
 }
+void CHammer::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
 
+	CBaseCharacter::Render(WHICHCOLORYOUWANTHIMTOGLOWBRO);
+}
 void CHammer::Update(float fElapsedTime)
 {
 	CBaseCharacter::Update(fElapsedTime);

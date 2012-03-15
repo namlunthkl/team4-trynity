@@ -24,7 +24,13 @@ void CDagger::Render(PointD nPos)
 
 	CBaseCharacter::Render();
 }
+void CDagger::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
 
+	CBaseCharacter::Render(WHICHCOLORYOUWANTHIMTOGLOWBRO);
+}
 void CDagger::Update(float fElapsedTime)
 {
 	CBaseCharacter::Update(fElapsedTime);
