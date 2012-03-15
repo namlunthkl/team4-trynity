@@ -505,6 +505,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resource\Aeona Icon.ico" />
-    <None Include="..\..\..\Character Dialog.txt" />
   </ItemGroup>
 </Project>
