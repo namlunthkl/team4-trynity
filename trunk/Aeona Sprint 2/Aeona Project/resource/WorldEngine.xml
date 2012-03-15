@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WorldEngine>
+<COMMENT>
            <Tileset file="resource/Tilesets/TilesetSprint2.xml"/>
            <Map file="resource/Maps/MapSprint2.xml"/>
-	   <Tileset file="resource/Tilesets/TilesetCave.xml"/>
-	   <Map file="resource/Maps/MapCave.xml"/>
+</COMMENT>
+
+
+	   <Tileset file="resource/Tilesets/Cave.xml"/>
+	   <Map file="resource/Maps/BossRoom.xml"/>
 
 <Tileset file="resource/Tilesets/SnowTileset.xml"/>
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
@@ -15,55 +19,6 @@
 <Map file="resource/Maps/SnowMapFinal6.xml"/>
 <Map file="resource/Maps/SnowMapFinal7.xml"/>
 
-<COMMENT>
-<Tileset file="resource/Tilesets/DesertTileset.xml"/>
-<Tileset file="resource/Tilesets/ForestTileset.xml"/>
-<Tileset file="resource/Tilesets/VillageTileset.xml"/>
-<Tileset file="resource/Tilesets/VolcanoTileset.xml"/>
-<Tileset file="resource/Tilesets/LakeTileset.xml"/>
-
-<Map file="resource/Maps/DesertMap00.xml"/>
-<Map file="resource/Maps/DesertMap01.xml"/>
-<Map file="resource/Maps/DesertMap02.xml"/>
-<Map file="resource/Maps/DesertMap03.xml"/>
-<Map file="resource/Maps/DesertMap10.xml"/>
-<Map file="resource/Maps/DesertMap11.xml"/>
-<Map file="resource/Maps/DesertMap12.xml"/>
-<Map file="resource/Maps/DesertMap13.xml"/>
-
-<Map file="resource/Maps/ForestMap00.xml"/>
-<Map file="resource/Maps/ForestMap01.xml"/>
-<Map file="resource/Maps/ForestMap10.xml"/>
-<Map file="resource/Maps/ForestMap11.xml"/>
-<Map file="resource/Maps/ForestMap20.xml"/>
-<Map file="resource/Maps/ForestMap21.xml"/>
-<Map file="resource/Maps/ForestMap30.xml"/>
-<Map file="resource/Maps/ForestMap31.xml"/>
-
-<Map file="resource/Maps/VillageMap00.xml"/>
-<Map file="resource/Maps/VillageMap01.xml"/>
-<Map file="resource/Maps/VillageMap10.xml"/>
-<Map file="resource/Maps/VillageMap11.xml"/>
-
-<Map file="resource/Maps/LakeMap00.xml"/>
-<Map file="resource/Maps/LakeMap01.xml"/>
-<Map file="resource/Maps/LakeMap10.xml"/>
-<Map file="resource/Maps/LakeMap11.xml"/>
-
-<Map file="resource/Maps/VolcanoMap00.xml"/>
-<Map file="resource/Maps/VolcanoMap01.xml"/>
-<Map file="resource/Maps/VolcanoMap10.xml"/>
-<Map file="resource/Maps/VolcanoMap11.xml"/>
-
-<Map file="resource/Maps/SnowMap00.xml"/>
-<Map file="resource/Maps/SnowMap01.xml"/>
-<Map file="resource/Maps/SnowMap02.xml"/>
-<Map file="resource/Maps/SnowMap03.xml"/>
-<Map file="resource/Maps/SnowMap10.xml"/>
-<Map file="resource/Maps/SnowMap11.xml"/>
-<Map file="resource/Maps/SnowMap12.xml"/>
-<Map file="resource/Maps/SnowMap13.xml"/>
-</COMMENT>
 
 </WorldEngine>
 

@@ -252,11 +252,14 @@ bool CGame::Input(void)
 ////////////////////////////////////////////////////////////////////////
 void CGame::Update(void)
 {
+	m_Timer.m_fGameTime += m_Timer.m_fElapsedTime;
+
 	AUDIO->Update();
 
 	if(m_pCurrentState != NULL)
 	{
 		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+		
 	///////////////////////////
 	//ARI EXTRA CODE
 	/////////////////////////////

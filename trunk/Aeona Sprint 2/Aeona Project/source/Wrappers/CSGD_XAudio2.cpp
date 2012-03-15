@@ -383,7 +383,8 @@ bool CSGD_XAudio2::InitXAudio2()
 	}
 	// Create the Mastering Voice (works with the hardware).
 	// XAUDIO2_DEFAULT_SAMPLERATE
-	hr = m_pXAudio2->CreateMasteringVoice( &m_pMasterVoice, XAUDIO2_DEFAULT_CHANNELS,
+	// Took out XAUDIO2_DEFAULT_CHANNELS -- Bern Schotanes
+	hr = m_pXAudio2->CreateMasteringVoice( &m_pMasterVoice,XAUDIO2_MAX_AUDIO_CHANNELS,
 									AUDIO_SAMPLE_RATE, 0, 0, NULL );
 	if ( FAILED(hr) )
     {  

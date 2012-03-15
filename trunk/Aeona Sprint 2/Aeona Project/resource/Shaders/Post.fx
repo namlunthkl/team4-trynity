@@ -131,13 +131,15 @@ float4 ColorCycle(VS_OUTPUT input) : COLOR
 float4 TronLines(VS_OUTPUT input) : COLOR
 {
 	float4 color = tex2D( gDiffuseSampler, input.uv );
-	input.uv.y -= gTime * 0.25f;
+	input.uv.x -= gTime * 0.25f;
 	
 	if( color.r >= 0.6f && color.b >= 0.6f && color.g <= 0.5f )
 	{
-	color.r = cos( input.uv.y * 10 ) * gRed;
-	color.g = cos( input.uv.y * 10 ) * gGreen;
-	color.b = cos( input.uv.y * 10 ) * gBlue;
+	color.r = cos( input.uv.x * 10 ) * gRed;
+	//color.g = cos( input.uv.x * 10 ) * gGreen*.3f;
+	//color.b = cos( input.uv.x * 10 ) * gBlue;
+	color.g = 0.0f;
+	color.b = 0.0f;
 	color.a = 1.0f;
 	}
 	return color;

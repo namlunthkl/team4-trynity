@@ -13,7 +13,6 @@
 //
 //	Special thanks to:  Joshua Villareal and Ethan Pendergraft for providing his MAudioManager.
 ///////////////////////////////////////////////////////////////////////////
-
 /* 
 Disclaimer:
 This source code was developed for and is the property of:

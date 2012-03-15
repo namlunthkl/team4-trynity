@@ -78,7 +78,7 @@ void CPostProcess::Initialize( void )
 	techs[3] = ( "ColorLoop" );
 	techs[4] = ( "TronEnergy" );
 	techs[5] = ( "DayCycleEffect" );
-	index = 5;
+	index = 4;
 
 	// COLOR
 	colChange = 1;
@@ -136,8 +136,8 @@ void CPostProcess::EndPostProcess( void )
 	{
 		postEffect->BeginPass(i);
 		postEffect->SetTexture( "gDiffuseTexture", renderTarget );
-
-		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetTimer().m_fElapsedTime );
+		float x =  CGame::GetInstance()->GetTimer().m_fGameTime;
+		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetTimer().m_fGameTime );
 		postEffect->SetFloat( "gRed" , fRed );
 		postEffect->SetFloat( "gGreen" , fGreen );
 		postEffect->SetFloat( "gBlue" , fBlue );
