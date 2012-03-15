@@ -24,6 +24,6 @@ public:
 
 	~CFinalBoss(void);
 	void Die(void);
-	inline unsigned int GetType(void) const { return TYPE_CHAR_FINALBOSS; }
+	inline unsigned int GetType(void) const { return TYPE_CHAR_ENEMY; }
 };
 #endif

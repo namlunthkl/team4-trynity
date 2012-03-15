@@ -28,8 +28,12 @@
 #include "../AI_States/CSnowGolemAIState.h"
 #include "../AI_States/CLavAGolemAIState.h"
 #include "../AI_States/CRatAIState.h"
+
+#include "../AI_States/CBossFireAI.h"
+
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
+#include "../Game Objects/CFinalBoss.h"
 #include "../Puzzles/CPuzzleManager.h"
 #include "../Game Objects/CChest.h"
 #include "../Weather System/WeatherManager.h"
@@ -94,9 +98,9 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(3020); //743 = goodspot
-	PLAYER->SetPosY(5582); //4992 = goodspot
-	PLAYER->SetSpeed(150);
+	PLAYER->SetPosX(1536); //743 = goodspot
+	PLAYER->SetPosY(1024); //4992 = goodspot
+	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(20);
@@ -111,7 +115,12 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy);
 	//pEnemy->Release();
 
-	
+	CEnemy* BOSS = new CEnemy(1522, 169, 40,  -1, 50, 50, true, 75, 1);
+	BOSS->LoadAnimations("resource/Red Enemy Animation.xml");
+	BOSS->ChangeAIState(CBossFireAI::GetInstance());
+	BOSS->SetDebugMode(true);
+	OBJECTS->AddObject(BOSS);
+	BOSS->Release();
 
 	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
 	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
