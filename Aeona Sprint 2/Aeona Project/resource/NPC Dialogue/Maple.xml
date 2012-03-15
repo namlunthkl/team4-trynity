@@ -2,15 +2,39 @@
 <Dialogue name="Maple">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Maple1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="......" name="Maple1">
+<Option text="...?"/>
 </SpeechNode>
 
+<SpeechNode text=".....!!!!" name="Maple2">
+<Option text="....!!!!"/>
+</SpeechNode>
+
+<SpeechNode text="Are you mocking me?" name="Maple3">
+<Option text="Are you mocking me?"/>
+</SpeechNode>
+
+<SpeechNode text="Hey, cut that out!" name="Maple4">
+<Option text="Hey, cut that out!"/>
+</SpeechNode>
+
+<SpeechNode text="You better stop before I stomp on you!" name="Maple5">
+<Option text="You better stop before I stomp on you!"/>
+</SpeechNode>
+
+<SpeechNode text="Why you!" name="Maple6">
+<Option text="Hahahahaa!"/>
+</SpeechNode>
 
 <Connection speechA="Maple1" option="1" speechB="Maple2"/>
 
+<Connection speechA="Maple2" option="1" speechB="Maple3"/>
 
+<Connection speechA="Maple3" option="1" speechB="Maple4"/>
+
+<Connection speechA="Maple4" option="1" speechB="Maple5"/>
+
+<Connection speechA="Maple5" option="1" speechB="Maple6"/>
 
 </Dialogue>
 
