@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue name="Oak">
+
+
+<SpeechNode text="Gungho!  This peak is where might is born." name="Oak1">
+<Option text="Why here?"/>
+<Option text="Intersting... well, bye!"/>
+</SpeechNode>
+
+
+
+<Connection speechA="Oak1" option="1" speechB="Oak2"/>
+
+
+
+</Dialogue>
+
+
+
+
