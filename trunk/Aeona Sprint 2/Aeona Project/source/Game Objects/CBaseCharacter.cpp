@@ -146,9 +146,34 @@ void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 				else if(m_uiEnemyBehavior == BEHAVIOR_LILBASTARD && this->m_bDying == false )
 				{
 					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
-					philEnemyColor = D3DCOLOR_XRGB(0, 0, 0);
+					philEnemyColor = D3DCOLOR_XRGB(30, 30, 30);
 				}
 				else if(m_uiEnemyBehavior == BEHAVIOR_SPIDER && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_SMALLSPIDER && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(255, 0, 90);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_FLOWER && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(200, 185, 0);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_SNOWGOLEM && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(200, 240, 255);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_LAVAGOLEM && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(75, 75, 75);
+				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_RAT && this->m_bDying == false )
 				{
 					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
 					philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AI_States\CFlowerAIState.cpp" />
     <ClCompile Include="source\AI_States\CGolemAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -20,15 +21,19 @@
     <ClCompile Include="source\AI_States\CLarvaAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CLavaGolemAIState.cpp" />
     <ClCompile Include="source\AI_States\CLilBastardAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\AI_States\CRandomAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CRatAIState.cpp" />
     <ClCompile Include="source\AI_States\CSlimeAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CSmallSpiderAIState.cpp" />
+    <ClCompile Include="source\AI_States\CSnowGolemAIState.cpp" />
     <ClCompile Include="source\AI_States\CSpiderAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -217,13 +222,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="source\AI_States\CFlowerAIState.h" />
     <ClInclude Include="source\AI_States\CGolemAIState.h" />
     <ClInclude Include="source\AI_States\CIdleAIState.h" />
     <ClInclude Include="source\AI_States\CJumperAIState.h" />
     <ClInclude Include="source\AI_States\CLarvaAIState.h" />
+    <ClInclude Include="source\AI_States\CLavaGolemAIState.h" />
     <ClInclude Include="source\AI_States\CLilBastardAIState.h" />
     <ClInclude Include="source\AI_States\CRandomAIState.h" />
+    <ClInclude Include="source\AI_States\CRatAIState.h" />
     <ClInclude Include="source\AI_States\CSlimeAIState.h" />
+    <ClInclude Include="source\AI_States\CSmallSpiderAIState.h" />
+    <ClInclude Include="source\AI_States\CSnowGolemAIState.h" />
     <ClInclude Include="source\AI_States\CSpiderAIState.h" />
     <ClInclude Include="source\AI_States\CSwarmAIState.h" />
     <ClInclude Include="source\AI_States\IBaseAIState.h" />
