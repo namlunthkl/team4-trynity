@@ -2,15 +2,40 @@
 <Dialogue name="Fern">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Fern1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Yes, my name is Fern." name="Fern1">
+<Option text="Are you a Fairy?"/>
+<Option text="Dumb... well, bye!"/>
 </SpeechNode>
 
+<SpeechNode text="Yes, I am.  I have lived in the Forest since I was a spec of dust.  Our Creator breathed life into every single one of us and made us who we are.  Only a select few can actually become a Fairy." name="Fern2">
+<Option text="Who is your Creator?"/>
+</SpeechNode>
+
+<SpeechNode text="How do you not know of the Creator of the Fairies?  She exists all around us- where you stand even!" name="Fern3">
+<Option text="You mean the Forest?"/>
+</SpeechNode>
+
+<SpeechNode text="Yes, The Forest is responsible for everything.  You cannot understand the power that flows from the trees.  When they die, they decompose.  The soil becomes littered with the remnants of past life.  Everything you eat, everything that grows, everything you touch- all made possible because of the death of others." name="Fern4">
+<Option text="Don't you fear death?"/>
+</SpeechNode>
+
+<SpeechNode text="I do not fear death.  I respect it." name="Fern5">
+<Option text="How can you respect death?"/>
+</SpeechNode>
+
+<SpeechNode text="Have you not understood anything I have told you?  When you die, others can exist.  This series of events are needed for new Life.  Where do you think you came from?  Your life force was created from the recycling of countless deaths.  Aren't you greatful to be alive?  You can thank them for giving you a chance to be alive.  We all get a chance to be alive.  It is the right of all life." name="Fern6">
+<Option text="I think I'm beginning to understand."/>
+</SpeechNode>
 
 <Connection speechA="Fern1" option="1" speechB="Fern2"/>
 
+<Connection speechA="Fern2" option="1" speechB="Fern3"/>
 
+<Connection speechA="Fern3" option="1" speechB="Fern4"/>
+
+<Connection speechA="Fern4" option="1" speechB="Fern5"/>
+
+<Connection speechA="Fern5" option="1" speechB="Fern6"/>
 
 </Dialogue>
 
