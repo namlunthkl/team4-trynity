@@ -6,7 +6,7 @@
 </COMMENT>
 
 
-	   <Tileset file="resource/Tilesets/Cave.xml"/>
+	   <Tileset file="resource/Tilesets/Dungeon.xml"/>
 	   <Map file="resource/Maps/BossRoom.xml"/>
 
 <Tileset file="resource/Tilesets/SnowTileset.xml"/>
@@ -21,6 +21,7 @@
 
 
 </WorldEngine>
+
 
 
 
