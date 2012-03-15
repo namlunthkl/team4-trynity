@@ -259,6 +259,21 @@
     <ClCompile Include="source\Game Objects\CFinalBoss.cpp">
       <Filter>Object Hierarchy\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CSmallSpiderAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CFlowerAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CSnowGolemAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CLavaGolemAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AI_States\CRatAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -498,6 +513,21 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="source\Game Objects\CFinalBoss.h">
       <Filter>Object Hierarchy\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CSmallSpiderAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CFlowerAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CSnowGolemAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CLavaGolemAIState.h">
+      <Filter>Artificial Intelligence</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CRatAIState.h">
+      <Filter>Artificial Intelligence</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

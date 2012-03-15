@@ -23,6 +23,11 @@
 #include "../AI_States/CSlimeAIState.h"
 #include "../AI_States/CLilBastardAIState.h"
 #include "../AI_States/CSpiderAIState.h"
+#include "../AI_States/CSmallSpiderAIState.h"
+#include "../AI_States/CFlowerAIState.h"
+#include "../AI_States/CSnowGolemAIState.h"
+#include "../AI_States/CLavAGolemAIState.h"
+#include "../AI_States/CRatAIState.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Game Objects/CNPC.h"
 #include "../Puzzles/CPuzzleManager.h"
@@ -89,8 +94,8 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(743); //743
-	PLAYER->SetPosY(4992); //4992
+	PLAYER->SetPosX(605); //743 = goodspot
+	PLAYER->SetPosY(500); //4992 = goodspot
 	PLAYER->SetSpeed(100);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -106,12 +111,16 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy);
 	//pEnemy->Release();
 
-	//CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
-	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2->ChangeAIState(CGolemAIState::GetInstance());
-	//pEnemy2->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy2);
-	//pEnemy2->Release();
+	/*
+
+	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
+	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	pEnemy2->ChangeAIState(CRatAIState::GetInstance());
+	pEnemy2->SetDebugMode(false);
+	OBJECTS->AddObject(pEnemy2);
+	pEnemy2->Release();
+
+	*/
 
 	//CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
 	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");

@@ -99,6 +99,12 @@ void CBaseObject::Render(void)
 			enemy.right = 96 + (m_uiPhilDirection*96);
 			enemy.bottom = 96 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
 
+			RECT shadow;
+			shadow.left = 512-32;
+			shadow.top = 0;
+			shadow.right = 512;
+			shadow.bottom = 32;
+
 			if( m_bSpecial == true )
 			{
 				enemy.left = 384;
@@ -107,10 +113,11 @@ void CBaseObject::Render(void)
 
 			float scale = 1.0f;
 
-			if(m_uiEnemyBehavior == BEHAVIOR_GOLEM)
+			if(m_uiEnemyBehavior == BEHAVIOR_GOLEM || m_uiEnemyBehavior == BEHAVIOR_SNOWGOLEM || m_uiEnemyBehavior == BEHAVIOR_LAVAGOLEM)
 				scale = 2.0f;
 
 			//TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*1), (int)m_ptPosition.y - (48*1), 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)m_ptPosition.x -(16)/*- (48*scale)*/, (int)m_ptPosition.y -(16)/*- (48*scale)*/, scale, scale, &shadow, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(100, 255, 255, 255));
 			TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*scale), (int)m_ptPosition.y - (48*scale), scale, scale, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
 		}
 		else
@@ -122,6 +129,12 @@ void CBaseObject::Render(void)
 				enemy.top = 0;
 				enemy.right = 96 + ((int)m_fDeathAnim * 96);
 				enemy.bottom = 96;
+
+				if(m_uiEnemyBehavior == BEHAVIOR_GOLEM || m_uiEnemyBehavior == BEHAVIOR_SNOWGOLEM || m_uiEnemyBehavior == BEHAVIOR_LAVAGOLEM)
+				{
+					enemy.top = 96;
+					enemy.bottom = 192;
+				}
 
 				TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)m_ptPosition.x - 48, (int)m_ptPosition.y - 48, 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
 			}
