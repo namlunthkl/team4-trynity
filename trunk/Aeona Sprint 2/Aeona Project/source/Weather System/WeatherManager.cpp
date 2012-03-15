@@ -63,6 +63,10 @@ void CWeatherManager::CheckRegion(void)
 		{
 			m_nCurrRegion = 5;
 		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Dungeon" ) == 0 )
+		{
+			m_nCurrRegion = 6;
+		}
 	}
 }
 void CWeatherManager::LoadWeather(void)
@@ -250,6 +254,14 @@ void CWeatherManager::SetWeatherPattern(void)
 				SetTime( 0.0f );
 			}
 			break;
+		case DUNGEON:
+			{
+				SetTypeOfWeather( EMBER );
+				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				LoadWeather();
+				SetTime( 0.0f );
+			}
+			break;
 		case CAVE:
 			{
 				int nCave = RandomInt( 1, 2 );
@@ -313,6 +325,9 @@ void CWeatherManager::SetWeatherPattern(void)
 					break;
 				}
 			}
+			
+
+
 			break;
 		}
 	}
