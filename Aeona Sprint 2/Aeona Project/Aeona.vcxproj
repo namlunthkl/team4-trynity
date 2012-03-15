@@ -303,7 +303,6 @@
     <ResourceCompile Include="Aeona.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Character Dialog.txt" />
     <None Include="resource\Aeona Icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

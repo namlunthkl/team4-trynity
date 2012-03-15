@@ -1,60 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Dialogue name="Hanz">
+<Dialogue name="BlackSmith">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Ooh HrrHahaha!!" name="BlackSmith1">
+<Option text="Oh My!"/>
 </SpeechNode>
 
-
-<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
-<Option text="How is that even possible?"/>
+<SpeechNode text="You Fancy Weapons!?  HrrHahaha!!" name="BlackSmith2">
+<Option text="Yes, I do!"/>
+<Option text="No, I don't!"/>
 </SpeechNode>
 
-<SpeechNode text="Gunho!  Well, you see it is actually pretty sad.  Though our culture nurture's and protects all forms of life, Nature does not adhere to our same form of tolerance."name="Braht3">
-<Option text="You mean there are no children?!"/>
+<SpeechNode text="Me too!  HrrHahaha!!" name="BlackSmith3">
+<Option text="Um, What do you do here?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous."name="Braht4">
-<Option text="I guess I can understand that"/>
+<SpeechNode text="Me?? HrrHahaha!! I fancy Weapons!" name="BlackSmith4">
+<Option text="You just said that!"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader."name="Braht5">
-<Option text="You want me to come back and marry you?"/>
+<SpeechNode text="HrrHahaha!!  Weapons are good!  Weapons are pretty!  Weapons are love!"name="BlackSmith5">
+<Option text="Love? Weapons are designed to hurt"/>
 </SpeechNode>
 
-<SpeechNode text="GUNGHO! GUNGHO! GUNGHO!  YES PLEASE! ABSOLUTELY!"name="Braht6">
-<Option text="!?"/>
+<SpeechNode text="Just like Love! HrrHahaha!!  See? I'm right, weapons are just like women!" name="BlackSmith6">
+<Option text="I'm not following the punch line.."/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I see you are paralyzed with love.  I know what I ask of you is much, but you have to understand that I have never seen a woman so slender and beautiful!  Listen, you don't have to answer now, but maybe one day you'll come back and give me an answer.  So long for now, peculiar stranger.  Wait, what is your name!?"name="Braht7">
-<Option text="Aeona"/>
-<Option text="BERN"/>
+<SpeechNode text="Attractive, but dangerous to play with! HrrHahaha!!" name="BlackSmith7">
+<Option text="not funny..."/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!? A fascinating name. Weak, but nice, I await your return Aeona!"name="Braht8">
+<SpeechNode text="HrrHahaha!! Women are like arrows!" name="BlackSmith8">
+<Option text="now just see here-"/>
 </SpeechNode>
 
-<SpeechNode text="Oh I'm sorry, I'm just very curious!  Gungho!  Sorry."name="BrahtA">
-
-<SpeechNode text="Gungho!!!! A strong and Gorgeous name!  I am in love with you already!  I fair thee well sweet BERN!"name="BrahtB">
-
+<SpeechNode text="you keep one around long enough and your going to want to shoot it!"name="BlackSmith9">
+<Option text="I'm leaving...-"/>
 </SpeechNode>
 
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
+<SpeechNode text="HrrHahaha!! Wait! HrrHahaha!!"name="BlackSmith10">
+<Option text="What do you want?"/>
+</SpeechNode>
 
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
+<SpeechNode text="HrrHahaha!! I want to talk about weapons!"name="BlackSmith11">
+<Option text="What do you know about weapons?"/>
+</SpeechNode>
 
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
+<SpeechNode text="HrrHahaha!! Everything!"name="BlackSmith12">
+<Option text="I would hardly think so.."/>
+</SpeechNode>
 
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
+<SpeechNode text="HrrHahaha!! Do you know how to charge your attack?"name="BlackSmith13">
+<Option text="No"/>
+</SpeechNode>
 
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
+<SpeechNode text="I will give you the power you seek"name="BlackSmith14">
+<Option text="Wow, this is amazing!"/>
+</SpeechNode>
 
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<SpeechNode text="HrrHahaha!! I told you so!"name="BlackSmith15">
+<Option text="What's the matter with you anyway? Who are you?"/>
+</SpeechNode>
+
+<SpeechNode text="Glad you asked.  You see- when I was very young, my father left my mother.  I was heartbroken and couldn't find solice in knowing I was unwanted.  For many years, my mother would curse my name, claiming I was the reason father left.  I think he may have thought I was an abomination when I was born.  I know I look different, but I also think that makes me special.  I have no idea where my father went, or why he left. Nothing made me feel better and it even got worse when I reached my adolescent years.  During that dark chapter of my life, I started rebeling.  I picked up a wooden stick and hurlded it at an oak tree.  I picked the stick back up and forcefully began to strike the bark.  I hit the stick over and over until it bruised the tree.  When the Stick broke, I didn't stop- I repeatedly beat the Oak tree until my hands started to splinter.  I don't know why I acted so violent towards that old tree- maybe it was because of my mother; or maybe it was my father.  I only now realize I was mad at myself, mad that I couldn't amount to anything other than the neighborhood bastard child.  I was ugly on the outside and felt alone.  I picked up another stick and started to fashion it into something sharper.  This time, I really wanted to cause pain to the Oak tree.  I wanted it to feel the way I did everyday.  I spent hours stabbing and marking that tree with cuts and abrasions that became deeper and darker as the sap seeded through.  I went back home and grabbed cutting knives to further cristen my hate. I did this for several years and began making my own tools; tools to more efficiently cut and cause harm. My purpose in life became clear to me when I discoverd my natural abilities to forge weapons and empower echanted ones; Weapons like the one you are holding in your hands.  I know you are a Hero.  You are holding the Ryza blade are you not?  That weapon is truly powerful.  It can cut almost anything in two and can even change the land.  I know I am crazy, but I can teach you the art of weaponry.  It is who I am: an unwanted child, a deranged child beating the living heck out of an old oak tree, a crafter of tools, a psychotic man living on a barren island, a powerful blacksmith, No! The Greatest Blacksmith in all of Valest!  What am I?  A monster.... HrrHahaha..  at your service!"name="BlackSmith16">
+<Option text="!"/>
+</SpeechNode>
+
+<SpeechNode text="HrrHahaha!! Leave now! Never return you hooligan!  HrrHahaha!!  Leave you spoony bard!  HrrHahaha!!"name="BlackSmithB">
+<Option text="I don't get it..??"/>
+</SpeechNode>
+
+<SpeechNode text="HrrHahaha!! You never will Dovakiin! HrrHahaha!! You Link to the Past!"name="BlackSmithC">
+<Option text="..Still not following you!"/>
+</SpeechNode>
+
+<SpeechNode text="HrrHahaha!! Begone! You COD player! HrrHahaha!!"name="BlackSmithD">
+<Option text="....what else you got?"/>
+</SpeechNode>
+
+<SpeechNode text="Got? HrrHahaha!! I just got Mass Effect 3 HrrHahaha!!  Go now, so I can play!"name="BlackSmithE">
+<Option text="Is that it?"/>
+</SpeechNode>
+
+<SpeechNode text="HrrHahaha!! Wait what? Broccoli! That's the Issue! Pointer! HrrHahaha!!"name="BlackSmithF">
+</SpeechNode>
+
+<Connection speechA="BlackSmith1" option="1" speechB="BlackSmith2"/>
+
+<Connection speechA="BlackSmith2" option="1" speechB="BlackSmith3"/>
+<Connection speechA="BlackSmith2" option="2" speechB="BlackSmithA"/>
+
+<Connection speechA="BlackSmith3" option="1" speechB="BlackSmith4"/>
+<Connection speechA="BlackSmith4" option="1" speechB="BlackSmith5"/>
+<Connection speechA="BlackSmith5" option="1" speechB="BlackSmith6"/>
+<Connection speechA="BlackSmith6" option="1" speechB="BlackSmith7"/>
+<Connection speechA="BlackSmith7" option="1" speechB="BlackSmith8"/>
+<Connection speechA="BlackSmith8" option="1" speechB="BlackSmith9"/>
+<Connection speechA="BlackSmith9" option="1" speechB="BlackSmith10"/>
+<Connection speechA="BlackSmith10"option="1" speechB="BlackSmith11"/>
+<Connection speechA="BlackSmith11"option="1" speechB="BlackSmith12"/>
+<Connection speechA="BlackSmith12"option="1" speechB="BlackSmith13"/>
+<Connection speechA="BlackSmith13"option="1" speechB="BlackSmith14"/>
+<Connection speechA="BlackSmith14"option="1" speechB="BlackSmith15"/>
+<Connection speechA="BlackSmith15"option="1" speechB="BlackSmith16"/>
+
+<Connection speechA="BlackSmithA" option="1" speechB="BlackSmithB"/>
+<Connection speechA="BlackSmithB" option="1" speechB="BlackSmithC"/>
+<Connection speechA="BlackSmithC" option="1" speechB="BlackSmithD"/>
+<Connection speechA="BlackSmithD" option="1" speechB="BlackSmithE"/>
+<Connection speechA="BlackSmithE" option="1" speechB="BlackSmithF"/>
 
 </Dialogue>
 
