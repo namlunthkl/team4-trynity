@@ -2,15 +2,32 @@
 <Dialogue name="Willow">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Willow1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Hello, my name is Willow" name="Willow1">
+<Option text="You're a Fairy too?"/>
 </SpeechNode>
 
+<SpeechNode text="Absolutely!  I'm not just any kind of Fairy either, I'm the next Fairy to watch over the Forest." name="Willow2">
+<Option text="This Forest seems quite secluded though."/>
+</SpeechNode>
 
+<SpeechNode text="It is, and it's because of the Fairies.  We spend the majority of our lives planting flowers, tending butterflies, and helping animals find homes." name="Willow3">
+<Option text="Are all animals welcome?"/>
+</SpeechNode>
+
+<SpeechNode text="Just the ones with families.  We need to find homes for the Mother's and Father's who have lots of mouths to feed.  It can become quite stressful finding food in the desert, or mountain, or anywhere near humans.  They consume beyond necessity.  The other animals can manage when they are by themselves, but raising a family can be a very difficult endeavor." name="Willow4">
+<Option text="Can fairies have children?"/>
+</SpeechNode>
+
+<SpeechNode text="Faires don't procreate the way other life forms do.  We exist or don't exist.  We consume nothing but can get created from a piece of anything. Leaves, dirt, water drop- anything.  We are gifted into the world from other objects.  Baby Fairies would be cute, though." name="Willow5">
+</SpeechNode>
 
 <Connection speechA="Willow1" option="1" speechB="Willow2"/>
 
+<Connection speechA="Willow2" option="1" speechB="Willow3"/>
+
+<Connection speechA="Willow3" option="1" speechB="Willow4"/>
+
+<Connection speechA="Willow4" option="1" speechB="Willow5"/>
 
 
 </Dialogue>
