@@ -53,3 +53,14 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 	}
 	return false;
 }
+RectD CArrow::GetCollisionRect(void)
+{
+	RectD rectCollision;
+
+	rectCollision.left = GetPosX() + 14;
+	rectCollision.top = GetPosY() + 102;
+	rectCollision.right = rectCollision.left + 8;
+	rectCollision.bottom = rectCollision.top + 17;
+
+	return rectCollision;
+}

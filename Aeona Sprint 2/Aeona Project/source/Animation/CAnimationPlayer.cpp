@@ -35,10 +35,9 @@ void CAnimationPlayer::Update(float fElapsedTime)
 	if(!m_bIsPlaying)
 		return;
 	m_fTimer += fElapsedTime;
-	m_fTimer *=	CAnimationManager::GetInstance()->GetAnimation( m_nAnimationId)->GetSpeed();
-	double x = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
-	CFrame* tempframe = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber);
-	if(((long)x*100000) < ((long)m_fTimer*100000) && m_bPause == false)
+	double duration = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
+	//CFrame* tempframe = CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber);
+	if(( m_fTimer >= duration) && m_bPause == false)
 	{
 		m_fTimer -= CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetDuration();
 		if(CAnimationManager::GetInstance()->GetAnimation(m_nAnimationId)->GetFrame(m_nFrameNumber)->GetEvent() != "NONE")

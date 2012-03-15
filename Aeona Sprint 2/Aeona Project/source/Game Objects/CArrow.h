@@ -26,6 +26,7 @@ public:
 	void Render(void);
 	bool CheckCollision(IBaseInterface* pObject);
 	void Update(float fElapsedTime);
+	RectD GetCollisionRect(void);
 	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_ARROW; }
 protected:
 };

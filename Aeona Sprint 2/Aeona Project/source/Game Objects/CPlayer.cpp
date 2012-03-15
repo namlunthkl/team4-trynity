@@ -270,25 +270,25 @@ void CPlayer::Input(void)
 		case ANM_WALK_UP:
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_UP);
-				WEAPON->SetPreviousAnimation(ANM_WALK_UP);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_UP);
 				break;
 			}
 		case ANM_WALK_DOWN:
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_DOWN);
-				WEAPON->SetPreviousAnimation(ANM_WALK_DOWN);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_DOWN);
 				break;
 			}
 		case ANM_WALK_LEFT:
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_LEFT);
-				WEAPON->SetPreviousAnimation(ANM_WALK_LEFT);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_LEFT);
 				break;
 			}
 		case ANM_WALK_RIGHT:
 			{
 				WEAPON->SetCurrentAnimation(ANM_ATK_RIGHT);
-				WEAPON->SetPreviousAnimation(ANM_WALK_RIGHT);
+				WEAPON->SetPreviousAnimation(ANM_IDLE_RIGHT);
 				break;
 			}
 		case ANM_IDLE_UP:
