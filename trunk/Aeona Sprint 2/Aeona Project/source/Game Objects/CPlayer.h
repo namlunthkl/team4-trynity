@@ -113,7 +113,7 @@ public:
 
 	// Accessors
 	inline bool IsBusy(void) const { return m_bBusy; }
-	inline bool Lock(void)
+	inline bool LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC(void)
 	{
 		if(!m_bBusy)
 		{
