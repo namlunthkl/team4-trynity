@@ -138,6 +138,9 @@ public:
 	inline void SetHeight		(unsigned int uiHeight)		{ m_uiHeight = uiHeight; }
 	inline void SetDebugMode	(bool bDebugMode)			{ m_bDebugMode = bDebugMode; }
 
+
+	inline bool IsOnDebug(void) const { return m_bDebugMode; }
+
 	void SetCurrentAnimation	(int anmCurrent);
 	//	Bern added this
 	void SetPreviousAnimation	(int anmPrevious);

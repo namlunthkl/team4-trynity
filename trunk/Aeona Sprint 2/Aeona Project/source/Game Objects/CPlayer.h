@@ -16,6 +16,9 @@
 #include "../Particle Engine/ParticleWeapon.h"
 #include "../Weapons/IBaseWeapon.h"
 #include "../Items/CPotion.h"
+
+#define WEAPON m_vGameWeapons[m_uiCurrentWeapon]
+
 class CPlayer : public CBaseCharacter
 {
 public:
@@ -115,10 +118,21 @@ public:
 		if(!m_bBusy)
 		{
 			m_bBusy = true;
+			StopAttackingImmediatelyNowCauseYouWereAttackedOrYouAreTalkingWithAnNPC();
 			return true;
 		}
 		return false;
 	}
+
+	inline void StopAttackingImmediatelyNowCauseYouWereAttackedOrYouAreTalkingWithAnNPC(void)
+	{
+		m_bPhilCharging = false;
+		m_bPhilSpecialAttack = false;
+		m_fPhilChargeIdkman = 0.0f;
+		WEAPON->SetAttacking(false);
+		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
+	}
+
 	inline void Unlock(void) { if(m_bBusy) m_bBusy = false; }
 
 	Byte GetWeaponsByte(void) { return m_byteWeapons; }
