@@ -40,6 +40,7 @@ public:
 	virtual void ChargedAttack(void) = 0;
 	virtual void Update(float fElapsedTime) = 0;
 	virtual void Render(PointD nPosition) = 0;
+	virtual void Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO) = 0;
 	virtual unsigned int GetWeaponType(void) const = 0;
 
 	int GetDamage() const { return m_nDamage; }

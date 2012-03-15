@@ -23,6 +23,13 @@ void CSword::Render(PointD nPos)
 	
 	CBaseCharacter::Render();
 }
+void CSword::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	SetPosX(nPos.x);
+	SetPosY(nPos.y);
+
+	CBaseCharacter::Render(WHICHCOLORYOUWANTHIMTOGLOWBRO);
+}
 
 void CSword::Update(float fElapsedTime)
 {

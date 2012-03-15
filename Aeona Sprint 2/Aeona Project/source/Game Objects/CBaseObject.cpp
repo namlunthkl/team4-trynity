@@ -165,6 +165,98 @@ void CBaseObject::Render(void)
 		D3D->DrawRect(rect.GetWindowsRECT(), 0, 0, 255);
 	}
 }
+void CBaseObject::Render(DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
+{
+	if(!IsActive()) return;
+
+	if( m_uiEnemyBehavior == 0)	//	use the animation editor here, if this value is 0
+	{
+		// If there's no animation, render object's image in its position
+		if(m_vpAnimations.empty())
+		{
+			TEX_MNG->Draw(m_nImageID, (int)m_ptPosition.x - m_ptAnchor.x, (int)m_ptPosition.y - m_ptAnchor.y,1.0f,1.0f,0,0.0f,0.0f,0.0f,WHICHCOLORYOUWANTHIMTOGLOWBRO);
+		}
+		else if(m_anmCurrent != -1 && m_anmCurrent < (int)m_vpAnimations.size())
+		{
+			m_vpAnimations[m_anmCurrent]->Render((int)m_ptPosition.x, (int)m_ptPosition.y,WHICHCOLORYOUWANTHIMTOGLOWBRO);
+		}
+	}
+	else	//	Else, if we are an enemy, let's render a different way, for more control for AI and stuff
+	{
+		if( m_bDying == false )
+		{
+			RECT enemy;
+			enemy.left = 0 + (m_uiPhilDirection*96);
+			enemy.top = 0 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
+			enemy.right = 96 + (m_uiPhilDirection*96);
+			enemy.bottom = 96 + (96*(int)m_bWalkCycle) + ((m_uiEnemyBehavior-1)*192);
+
+			RECT shadow;
+			shadow.left = 512-32;
+			shadow.top = 0;
+			shadow.right = 512;
+			shadow.bottom = 32;
+
+			if( m_bSpecial == true )
+			{
+				enemy.left = 384;
+				enemy.right = 384+96;
+			}
+
+			float scale = 1.0f;
+
+			if(m_uiEnemyBehavior == BEHAVIOR_GOLEM || m_uiEnemyBehavior == BEHAVIOR_SNOWGOLEM || m_uiEnemyBehavior == BEHAVIOR_LAVAGOLEM)
+				scale = 2.0f;
+
+			//TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*1), (int)m_ptPosition.y - (48*1), 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)m_ptPosition.x -(16)/*- (48*scale)*/, (int)m_ptPosition.y -(16)/*- (48*scale)*/, scale, scale, &shadow, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(100, 255, 255, 255));
+			TEX_MNG->Draw(GAME->m_imgEnemies, (int)m_ptPosition.x - (48*scale), (int)m_ptPosition.y - (48*scale), scale, scale, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+		}
+		else
+		{
+			if(m_fDeathAnim < 4.0f )
+			{
+				RECT enemy;
+				enemy.left = 0 + ((int)m_fDeathAnim * 96);
+				enemy.top = 0;
+				enemy.right = 96 + ((int)m_fDeathAnim * 96);
+				enemy.bottom = 96;
+
+				if(m_uiEnemyBehavior == BEHAVIOR_GOLEM || m_uiEnemyBehavior == BEHAVIOR_SNOWGOLEM || m_uiEnemyBehavior == BEHAVIOR_LAVAGOLEM)
+				{
+					enemy.top = 96;
+					enemy.bottom = 192;
+				}
+
+				TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)m_ptPosition.x - 48, (int)m_ptPosition.y - 48, 1.0f, 1.0f, &enemy, 0.0f, 0.0f, 0.0f, philEnemyColor);
+			}
+			else
+			{
+				// DANIEL CODE BEGIN
+				// That's where the enemy is finally killed,
+				// when the death animation has finished playing
+
+				// We won't do this anymore..
+				// CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+
+				// Instead...
+				Deactivate();
+				m_bTrulyDead = true;
+				// DANIEL CODE END
+			}
+		}
+	}
+
+	//D3D->GetSprite()->Flush();
+
+	if(m_bDebugMode)
+	{
+		RectD rect = GetCollisionRect();
+		rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
+			CCameraControl::GetInstance()->GetPositionY());
+		D3D->DrawRect(rect.GetWindowsRECT(), 0, 0, 255);
+	}
+}
 
 RectD CBaseObject::GetCollisionRect(void)
 {
