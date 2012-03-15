@@ -19,12 +19,15 @@
 class CPlayer : public CBaseCharacter
 {
 public:
-	// PHIL'S HACKS...
+	// PHIL'S HACKS... tee-hee-hee!
 	Byte			m_byteWeapons;
 	Byte			m_byteMasks;
 	unsigned int	m_uiCurrentWeapon;
 	unsigned int	m_uiCurrentMask;
 	unsigned int	m_uiNumPotions;
+	bool			m_bPhilCharging;
+	bool			m_bPhilSpecialAttack;
+	float			m_fPhilChargeIdkman;
 
 private:
 	bool			m_bHeartPiece;

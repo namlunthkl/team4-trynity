@@ -34,12 +34,25 @@ void CHammer::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
 void CHammer::Update(float fElapsedTime)
 {
 	CBaseCharacter::Update(fElapsedTime);
+
+	if( GetAttacking() == true )
+	{
+		m_fSlashTimer += fElapsedTime;
+	}
+	else
+	{
+		if( CPlayer::GetInstance()->m_bPhilCharging == true )
+		{
+			CPlayer::GetInstance()->m_fPhilChargeIdkman += fElapsedTime;
+		}
+	}
 }
 
 void CHammer::Attack(void)
 {
 	SetAttacking(true);
-	GetSound()->Play();
+	if(m_fSlashTimer == 0.0f)
+		GetSound()->Play();
 }
 
 void CHammer::ChargedAttack(void)
@@ -50,26 +63,30 @@ void CHammer::ChargedAttack(void)
 RectD CHammer::GetCollisionRect(void)
 {
 	RectD rectCollision;
-	rectCollision.left = 1;
-	rectCollision.top = 1;
-	rectCollision.right = 1;
-	rectCollision.bottom = 1;
+
+	rectCollision.left = -2;
+	rectCollision.top = -2;
+	rectCollision.right = 2;
+	rectCollision.bottom = 2;
 
 	if(ANM_ATK_UP == GetCurrentAnimation())
 	{
-		if(m_fSlashTimer < 0.75f)
+		if(m_fSlashTimer < 0.59f)
 		{
-			rectCollision.left = -2;
-			rectCollision.top = -2;
-			rectCollision.right = 2;
-			rectCollision.bottom = 2;
 		}
-		else if(m_fSlashTimer < 1.0f)
+		else if(m_fSlashTimer < 0.75f)
 		{
 			rectCollision.left = -22;
 			rectCollision.top = -22 - 60;
 			rectCollision.right = 22;
-			rectCollision.bottom = 22 - 60;
+			rectCollision.bottom = 22 - 50;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -90;
+				rectCollision.top = -90;
+				rectCollision.right = 90;
+				rectCollision.bottom = 90;
+			}
 		}
 		else
 		{
@@ -79,23 +96,27 @@ RectD CHammer::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_DOWN == GetCurrentAnimation())
 	{
-		if(m_fSlashTimer < 0.75f)
+		if(m_fSlashTimer < 0.59f)
 		{
-			rectCollision.left = -2;
-			rectCollision.top = -2;
-			rectCollision.right = 2;
-			rectCollision.bottom = 2;
 		}
-		else if(m_fSlashTimer < 1.0f)
+		else if(m_fSlashTimer < 0.75f)
 		{
 			rectCollision.left = -22;
-			rectCollision.top = -22 + 60;
+			rectCollision.top = -22 + 50;
 			rectCollision.right = 22;
 			rectCollision.bottom = 22 + 60;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -90;
+				rectCollision.top = -90;
+				rectCollision.right = 90;
+				rectCollision.bottom = 90;
+			}
 		}
 		else
 		{
@@ -105,23 +126,27 @@ RectD CHammer::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_LEFT == GetCurrentAnimation())
 	{
-		if(m_fSlashTimer < 0.75f)
+		if(m_fSlashTimer < 0.59f)
 		{
-			rectCollision.left = -2;
-			rectCollision.top = -2;
-			rectCollision.right = 2;
-			rectCollision.bottom = 2;
 		}
-		else if(m_fSlashTimer < 1.0f)
+		else if(m_fSlashTimer < 0.75f)
 		{
 			rectCollision.left = -22 - 60;
 			rectCollision.top = -22;
-			rectCollision.right = 22 - 60;
+			rectCollision.right = 22 - 50;
 			rectCollision.bottom = 22;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -90;
+				rectCollision.top = -90;
+				rectCollision.right = 90;
+				rectCollision.bottom = 90;
+			}
 		}
 		else
 		{
@@ -131,23 +156,27 @@ RectD CHammer::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
 	{
-		if(m_fSlashTimer < 0.75f)
+		if(m_fSlashTimer < 0.59f)
 		{
-			rectCollision.left = -2;
-			rectCollision.top = -2;
-			rectCollision.right = 2;
-			rectCollision.bottom = 2;
 		}
-		else if(m_fSlashTimer < 1.0f)
+		else if(m_fSlashTimer < 0.75f)
 		{
-			rectCollision.left = -22 + 60;
+			rectCollision.left = -22 + 50;
 			rectCollision.top = -22;
 			rectCollision.right = 22 + 60;
 			rectCollision.bottom = 22;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -90;
+				rectCollision.top = -90;
+				rectCollision.right = 90;
+				rectCollision.bottom = 90;
+			}
 		}
 		else
 		{
@@ -157,6 +186,7 @@ RectD CHammer::GetCollisionRect(void)
 			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
 		}
 	}
 	return rectCollision;
