@@ -1,60 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Dialogue name="Hanz">
+<Dialogue name="Sheridan">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Life is full of mysteries....." name="Sheridan1">
+<Option text="How so?"/>
 </SpeechNode>
 
 
-<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
-<Option text="How is that even possible?"/>
+<SpeechNode text="Well, just think about the way the world balances itself out.  Say -you have a bad day; or maybe even a very bad week!  Everything just seems so miserable until the Universe balances your world for you.  The very next week will always be much better.  Have you ever held witness to this phenomenon?"name="Sheridan2">
+<Option text="Why yes I have!"/>
+<Option text="...No I haven't"/>
 </SpeechNode>
 
-<SpeechNode text="Gunho!  Well, you see it is actually pretty sad.  Though our culture nurture's and protects all forms of life, Nature does not adhere to our same form of tolerance."name="Braht3">
-<Option text="You mean there are no children?!"/>
+<SpeechNode text="My, what a perceptive young lady you are!  We are so proud of you.  I know people are worried about the coming or Rann, but I bet there will be a balance to his return.  A hero will rise.  If I know the forces of Nature, I know this to be true."name="Sheridan3">
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous."name="Braht4">
-<Option text="I guess I can understand that"/>
+<SpeechNode text="Well give it time, if you start paying attention to all the little things, you will become more in tune with your surroundings.  I think you will enjoy life more because of it."name="SheridanA">
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader."name="Braht5">
-<Option text="You want me to come back and marry you?"/>
-</SpeechNode>
+<Connection speechA="Sheridan1" option="1" speechB="Sheridan2"/>
 
-<SpeechNode text="GUNGHO! GUNGHO! GUNGHO!  YES PLEASE! ABSOLUTELY!"name="Braht6">
-<Option text="!?"/>
-</SpeechNode>
-
-<SpeechNode text="Gungho!  I see you are paralyzed with love.  I know what I ask of you is much, but you have to understand that I have never seen a woman so slender and beautiful!  Listen, you don't have to answer now, but maybe one day you'll come back and give me an answer.  So long for now, peculiar stranger.  Wait, what is your name!?"name="Braht7">
-<Option text="Aeona"/>
-<Option text="BERN"/>
-</SpeechNode>
-
-<SpeechNode text="Gungho!? A fascinating name. Weak, but nice, I await your return Aeona!"name="Braht8">
-</SpeechNode>
-
-<SpeechNode text="Oh I'm sorry, I'm just very curious!  Gungho!  Sorry."name="BrahtA">
-
-<SpeechNode text="Gungho!!!! A strong and Gorgeous name!  I am in love with you already!  I fair thee well sweet BERN!"name="BrahtB">
-
-</SpeechNode>
-
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
-
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
-
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
-
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
-
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
-
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<Connection speechA="Sheridan2" option="1" speechB="Sheridan3"/>
+<Connection speechA="Sheridan2" option="2" speechB="SheridanA"/>
 
 </Dialogue>
 
