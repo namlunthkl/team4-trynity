@@ -66,7 +66,6 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 	// Get the ids of the possible strings we'll have to check for
 	// so we don't need to do strcmps
 	unsigned char ucEnemyID = pStringTable->LoadStringOnTable("Enemy");
-	unsigned char ucNPCID = pStringTable->LoadStringOnTable("NPC");
 	unsigned char ucChestID = pStringTable->LoadStringOnTable("Chest");
 
 	// Temporary variables to store the data we'll read
@@ -132,6 +131,17 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 			pTile->Attribute("Type", &nTileType);
 			szEvent = pTile->Attribute("Event");
 
+			// I like making weird code sometimes =D
+			if(szEvent[0] == 'N')
+				if(szEvent[1] == 'P')
+					if(szEvent[2] == 'C')
+						if(szEvent[3] == '.')
+						{
+							CMessageSystem::GetInstance()->SendMsg(new CCreateNPCMessage(szEvent + 4,
+							GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+							GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight()));
+						}
+
 			// Load the event in the string table and get its ID
 			unsigned char ucEventID = pStringTable->LoadStringOnTable(szEvent);
 
@@ -143,14 +153,6 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
 						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
 						pStringTable->GetString(GetTileset()->GetID())));
-					ucEventID = pStringTable->GetStringIndex("");
-				}
-				else if(ucEventID == ucNPCID)
-				{
-					CMessageSystem::GetInstance()->SendMsg(new CCreateNPCMessage("NPC",
-						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
-						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
-						CCreateNPCMessage::NPC_DEMO));
 					ucEventID = pStringTable->GetStringIndex("");
 				}
 				else if(ucEventID == ucChestID)

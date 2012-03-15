@@ -41,7 +41,7 @@ CNPC::~CNPC()
 	CEventSystem::GetInstance()->UnregisterFromEvent("destroyenemy",this);
 }
 // Load NPC's speech
-void CNPC::LoadText(char* szFilename)
+void CNPC::LoadText(char const * const szFilename)
 {
 	// Create XML doc
 	TiXmlDocument doc;
@@ -149,11 +149,11 @@ void CNPC::Update(float fElapsedTime)
 			if(CPlayer::GetInstance()->Lock())
 				m_bTalk = true;
 	}
-	else
+	else if(m_bTalk)
 	{
 		m_bTalk = false;
 		m_uiTextIndex = 0;
-		/*CPlayer::GetInstance()->Unlock();*/
+		CPlayer::GetInstance()->Unlock();
 		GAMEPLAY->SetMessageBox(false);
 	}
 }

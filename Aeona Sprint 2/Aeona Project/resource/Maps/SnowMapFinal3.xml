@@ -369,7 +369,7 @@
       <Tile PosX="0" PosY="5" Type="128" Event="" />
       <Tile PosX="10" PosY="13" Type="128" Event="" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
-      <Tile PosX="0" PosY="5" Type="0" Event="" />
+      <Tile PosX="0" PosY="5" Type="0" Event="NPC.Vlid" />
       <Tile PosX="0" PosY="15" Type="128" Event="" />
       <Tile PosX="1" PosY="15" Type="128" Event="" />
       <Tile PosX="1" PosY="15" Type="128" Event="" />
@@ -448,7 +448,7 @@
       <Tile PosX="6" PosY="48" Type="128" Event="" />
       <Tile PosX="6" PosY="48" Type="128" Event="" />
       <Tile PosX="0" PosY="5" Type="128" Event="" />
-      <Tile PosX="0" PosY="5" Type="0" Event="" />
+      <Tile PosX="0" PosY="5" Type="0" Event="NPC.Helna" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
       <Tile PosX="1" PosY="3" Type="128" Event="" />
       <Tile PosX="1" PosY="3" Type="128" Event="" />
@@ -818,7 +818,7 @@
       <Tile PosX="0" PosY="5" Type="128" Event="" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
-      <Tile PosX="0" PosY="5" Type="0" Event="" />
+      <Tile PosX="0" PosY="5" Type="0" Event="NPC.Hanz" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
       <Tile PosX="0" PosY="5" Type="0" Event="" />
@@ -1848,7 +1848,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="3" PosY="32" Type="4" Event="Fire" />
+      <Tile PosX="3" PosY="32" Type="4" Event="TorchLit.0" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />

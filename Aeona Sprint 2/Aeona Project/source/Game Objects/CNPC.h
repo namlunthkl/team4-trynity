@@ -46,7 +46,7 @@ public:
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
 	~CNPC();
 	// Load NPC's speech
-	void LoadText(char* szFilename);
+	void LoadText(char const * const szFilename);
 
 	// Common routines
 	void Update(float fElapsedTime);

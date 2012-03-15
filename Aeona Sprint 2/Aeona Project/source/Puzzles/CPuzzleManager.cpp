@@ -22,6 +22,7 @@ void CPuzzleManager::InitPuzzleManager(void)
 {
 	// Push all puzzles
 	CTorchPuzzle* TorchPuzzle = new CTorchPuzzle;
+
 	TorchPuzzle->Create(4, "victory", "TorchLit", true);
 	m_vpPuzzles.push_back(TorchPuzzle);
 }
