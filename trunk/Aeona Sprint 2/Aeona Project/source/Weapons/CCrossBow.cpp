@@ -86,9 +86,9 @@ void CCrossBow::ShootArrow(void)
 {
 	m_pArrow = new CArrow();
 	m_pArrow->SetSpeed(580);
-	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BrS_Arrow.png", D3DCOLOR_XRGB(0,0,0)));
-	m_pArrow->SetHeight(18);
-	m_pArrow->SetWidth(4);
+	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BlueArrow.png", D3DCOLOR_XRGB(0,0,0)));
+	m_pArrow->SetHeight(128);
+	m_pArrow->SetWidth(32);
 	m_pArrow->Activate();
 	CObjectManager::GetInstance()->AddObject(m_pArrow);
 	PointD temp = CPlayer::GetInstance()->GetPosition();
@@ -96,28 +96,28 @@ void CCrossBow::ShootArrow(void)
 	{
 		m_pArrow->SetVelX(0.0f);
 		m_pArrow->SetVelY(-1.0f *m_pArrow->GetSpeed());
-		m_pArrow->SetPosX(temp.x);
-		m_pArrow->SetPosY(temp.y- 40);
+		m_pArrow->SetPosX(temp.x - 11 - 16);
+		m_pArrow->SetPosY(temp.y - 67 - 64);
 	}
 	else if(GetCurrentAnimation() == ANM_ATK_DOWN)
 	{
 		m_pArrow->SetVelX(0.0f);
 		m_pArrow->SetVelY(1.0f * m_pArrow->GetSpeed());
-		m_pArrow->SetPosX(temp.x);
-		m_pArrow->SetPosY(temp.y + 20);
+		m_pArrow->SetPosX(temp.x + 12 - 16);
+		m_pArrow->SetPosY(temp.y - 20 - 64);
 	}
 	else if(GetCurrentAnimation() == ANM_ATK_LEFT)
 	{
 		m_pArrow->SetVelX(-1.0f *(int)m_pArrow->GetSpeed());
 		m_pArrow->SetVelY(0.0f);
-		m_pArrow->SetPosX(temp.x - 20);
-		m_pArrow->SetPosY(temp.y-20);
+		m_pArrow->SetPosX(temp.x - 44 - 64);
+		m_pArrow->SetPosY(temp.y - 48 - 64);
 	}
 	else if(GetCurrentAnimation() == ANM_ATK_RIGHT)
 	{
 		m_pArrow->SetVelX(1.0f *m_pArrow->GetSpeed());
 		m_pArrow->SetVelY(0.0f);
-		m_pArrow->SetPosX(temp.x + 20);
-		m_pArrow->SetPosY(temp.y-20);
+		m_pArrow->SetPosX(temp.x + 43 - 64);
+		m_pArrow->SetPosY(temp.y - 51 - 64);
 	}
 } 
