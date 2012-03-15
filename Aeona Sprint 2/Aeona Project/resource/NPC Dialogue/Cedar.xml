@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue name="Cedar">
+
+
+<SpeechNode text="Welcome to the Forest!" name="Cedar1">
+<Option text="I've been here before"/>
+<Option text="This Place sucks!"/>
+</SpeechNode>
+
+<SpeechNode text="Is that so?  Well, when Rann blankets Valest with Shadow, then don't expect to find solice here.  Begone!" name="CedarA">
+<Option text="I've been here before"/>
+</SpeechNode>
+
+<SpeechNode text="Thank you for coming back.  The forest is the last bastion for hope.  Peace is all around us- Bounty is permeating from the Woods.  We Fairies want to protect the Forest for as long as we can.  If not us, then who?  We have waited for the Hero to conquer evil, but he has not shown up." name="Cedar2">
+<Option text="I'm going to save us!"/>
+</SpeechNode>
+
+<SpeechNode text="How charming, a woman saving all living things and the World?  That is a wonderul tale, but not reality." name="Cedar3">
+</SpeechNode>
+
+<Connection speechA="Cedar1" option="1" speechB="Cedar2"/>
+<Connection speechA="Cedar1" option="2" speechB="CedarA"/>
+
+<Connection speechA="Cedar2" option="1" speechB="Cedar3"/>
+
+</Dialogue>
+
+
+
+
