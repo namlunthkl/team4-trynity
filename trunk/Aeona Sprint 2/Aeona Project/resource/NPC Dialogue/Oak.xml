@@ -2,16 +2,25 @@
 <Dialogue name="Oak">
 
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Oak1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Ack!  A human!" name="Oak1">
+<Option text="Don't be afraid!"/>
+<Option text="Be afraid, be very afraid!"/>
 </SpeechNode>
 
+<SpeechNode text="Don't be afraid!?  You crazy girl, stay away from me!  Stay away from the Forest! What do you even want?" name="Oak2">
+<Option text="I'm looking for something shiny!"/>
+</SpeechNode>
 
+<SpeechNode text="Please don't hurt me!  AYEEEEE!" name="OakA">
+</SpeechNode>
+
+<SpeechNode text="Shiny?  You mean the Ray Amulet.  Haha, if you can find it Human, you can keep it.  It's worthless." name="Oak3">
+</SpeechNode>
 
 <Connection speechA="Oak1" option="1" speechB="Oak2"/>
+<Connection speechA="Oak1" option="2" speechB="OakA"/>
 
-
+<Connection speechA="Oak2" option="1" speechB="Oak3"/>
 
 </Dialogue>
 
