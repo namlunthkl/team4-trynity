@@ -649,19 +649,23 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateNPCMessage* pMsgNPC = (CCreateNPCMessage*)pMsg;
 
-			if(pMsgNPC->GetType() == CCreateNPCMessage::NPC_DEMO)
-			{
-				CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
-					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+			CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
+				pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
 
+			string szDialogFile = "resource/NPC Dialogue/";
+			szDialogFile += pMsgNPC->GetName();
+			szDialogFile += ".xml";
+			string szAnmFile = "resource/Animations/";
+			szAnmFile += pMsgNPC->GetName();
+			szAnmFile += ".xml";
 
+			pNPC->LoadAnimations(szAnmFile.c_str());
+			pNPC->LoadText(szDialogFile.c_str());
+			pNPC->ChangeAIState(CRandomAIState::GetInstance());
 
-				pNPC->LoadAnimations("resource/NPCAnimationsAnchorBased.xml");
-				pNPC->ChangeAIState(CRandomAIState::GetInstance());
-				pNPC->LoadText("resource/NPC Dialogue/Example.xml");
-				OBJECTS->AddObject(pNPC);
-				pNPC->Release();
-			}
+			OBJECTS->AddObject(pNPC);
+			pNPC->Release();
+
 			break;
 		}
 	case MSG_CREATE_ENEMY:

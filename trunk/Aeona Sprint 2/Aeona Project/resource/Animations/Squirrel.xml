@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue>
+<SpeechNode text="How are you doing dude?" name="Hi">
+<Option text="I am fine thanks."/>
+<Option text="Not really good."/>
+<Option text="You are ugly."/>
+</SpeechNode>
+<SpeechNode text="Cool!" name="Cool"/>
+<SpeechNode text="I am not good either" name="Not good">
+<Option text="Why?"/>
+<Option text="I don't care."/>
+</SpeechNode>
+<SpeechNode text="Well I wasn't supposed to be an NPC" name="Not NPC">
+<Option text="Continue..."/>
+</SpeechNode>
+<SpeechNode text="I would be the main character but..." name="Would be">
+<Option text="But...?"/>
+</SpeechNode>
+<SpeechNode text="I guess I am too small..." name="Small">
+<Option text="Yes you are."/>
+<Option text="I think you look great."/>
+</SpeechNode>
+<SpeechNode text="Oh thank you so much!" name="Thanks"/>
+<SpeechNode text="You are a bad person!" name="Bad"/>
+
+
+<Connection speechA="Hi" option="1" speechB="Cool"/>
+<Connection speechA="Hi" option="2" speechB="Not good"/>
+<Connection speechA="Hi" option="3" speechB="Bad"/>
+<Connection speechA="Not good" option="1" speechB="Not NPC"/>
+<Connection speechA="Not good" option="2" speechB="Bad"/>
+<Connection speechA="Not NPC" option="1" speechB="Would be"/>
+<Connection speechA="Would be" option="1" speechB="Small"/>
+<Connection speechA="Small" option="1" speechB="Bad"/>
+<Connection speechA="Small" option="2" speechB="Thanks"/>
+</Dialogue>
+
+
+

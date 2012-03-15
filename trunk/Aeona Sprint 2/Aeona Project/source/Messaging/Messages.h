@@ -41,26 +41,21 @@ private:
 	string	m_szName;
 	double	m_dPosX;
 	double	m_dPosY;
-	int		m_nType;
 
 public:
-	enum ENPCType { NPC_DEMO, NPC_MAX };
 
-	CCreateNPCMessage(string szName, double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_NPC)
+	CCreateNPCMessage(string szName, double dPosX, double dPosY) : CBaseMessage(MSG_CREATE_NPC)
 	{
 		m_szName = szName;
 		m_dPosX = dPosX;
 		m_dPosY = dPosY;
-		m_nType = nType;
 	}
 	
 	inline string	GetName(void) const { return m_szName; }
 	inline double	GetPosX(void) const { return m_dPosX; }
 	inline double	GetPosY(void) const { return m_dPosY; }
-	inline int		GetType(void) const { return m_nType; }
-	~CCreateNPCMessage() {}
+	~CCreateNPCMessage() {};
 };
-
 class CCreateEnemyMessage : public CBaseMessage
 {
 private:

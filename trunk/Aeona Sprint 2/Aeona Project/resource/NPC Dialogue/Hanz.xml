@@ -12,26 +12,28 @@
 <Option text="Intersting... well, bye!"/>
 </SpeechNode>
 
-<SpeechNode text="Long ago, Valest was ripped apart when a meteor from the heavens streaked through the skies!  Valest was powerless from the impact and exploded.  All was not lost, however, because from the ashes Kromos came from the shattered rock and undid the damage with one fell swoop.  I should probably emphasize "fell swoop" as the biggest under- statement of the century!  This was no mere swoop Gungho- it was a quake of rage that pieced the world back together!  Kromos had single handedly built the world back with his powerful hammer."name="Hanz3">
+<SpeechNode text="Long ago, Valest was ripped apart when a meteor from the heavens streaked through the skies!  Valest was powerless from the impact and exploded.  All was not lost, however, because from the ashes Kromos came from the shattered rock and undid the damage with one fell swoop.  I should probably emphasize 'fell swoop' as the biggest under- statement of the century!  This was no mere swoop Gungho- it was a quake of rage that pieced the world back together!  Kromos had single handedly built the world back with his powerful hammer." name="Hanz3">
 <Option text="Fascinating.. is that why you guys are so cheery?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  That is the very nature of our spirit!  We believe that Kromos gave us another chance to live again.  We are so gracious we spend every moment of our existance respecting everyone and everything.  Life is something to protect.  Though this is stuff of Legend, we have begun to manifest it into something more than story.  We believe our calling is to protect life.  And it all started from a Hammer strike.  Isn't that amazing!?"name="Hanz4">
+<SpeechNode text="Gungho!  That is the very nature of our spirit!  We believe that Kromos gave us another chance to live again.  We are so gracious we spend every moment of our existance respecting everyone and everything.  Life is something to protect.  Though this is stuff of Legend, we have begun to manifest it into something more than story.  We believe our calling is to protect life.  And it all started from a Hammer strike.  Isn't that amazing!?" name="Hanz4">
 <Option text="It sure is!  But what of the Hammer?"/>
 </SpeechNode>
 
-<SpeechNode text="The Hammer?  Gungho! It's furtherEast shrouded by the Cliff.  
-We protect it and wait for when a Hero will claim it.  Gungho!"name="Hanz5">
-</SpeechNode>
-
+<SpeechNode text="The Hammer?  Gungho! It's furtherEast shrouded by the Cliff.   We protect it and wait for when a Hero will claim it.  Gungho!" name="Hanz5">
 </SpeechNode>
 
 <Connection speechA="Hanz1" option="1" speechB="Hanz2"/>
+
 <Connection speechA="Hanz2" option="1" speechB="Hanz3"/>
+
 <Connection speechA="Hanz3" option="1" speechB="Hanz4"/>
+
 <Connection speechA="Hanz4" option="1" speechB="Hanz5"/>
 
+
 </Dialogue>
+
 
 
 
