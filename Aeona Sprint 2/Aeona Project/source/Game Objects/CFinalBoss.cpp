@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "CFinalBoss.h"
+#include "../Game Objects/CPlayer.h"
 CFinalBoss::CFinalBoss(double dPositionX, double dPositionY, unsigned int uiSpeed, int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage, float fRespawnTime) : CEnemy(dPositionX,dPositionY,uiSpeed,nImageID,uiWidth,uiHeight,bActive,uiMaxHealth,uiAttackDamage,fRespawnTime)
 {

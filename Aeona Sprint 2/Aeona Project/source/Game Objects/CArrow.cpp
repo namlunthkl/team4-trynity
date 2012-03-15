@@ -45,10 +45,10 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 		if(pObject->GetType() == TYPE_CHAR_ENEMY)
 			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 		
-		if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
-		{
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-		}
+		//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
+		//{
+		//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		//}
 		return true;
 	}
 	return false;
