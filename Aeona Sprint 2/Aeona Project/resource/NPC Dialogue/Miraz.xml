@@ -1,60 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Dialogue name="Hanz">
+<Dialogue name="Miraz">
 
+<SpeechNode text="You've come to a place full of rich History." name="Miraz1">
+<Option text="Rich History?"/>
+<Option text="I'm just going to walk away.."/>
+</SpeechNode>
 
-<SpeechNode text="Gungho!  This peak is where might is born." name="Hanz1">
-<Option text="Why here?"/>
-<Option text="Intersting... well, bye!"/>
+<SpeechNode text="Indeed.  Would you like to hear the tale?" name="Miraz2">
+<Option text="Of Course!"/>
+<Option text="I'm just going to walk away.."/>
+</SpeechNode>
+
+<SpeechNode text="Long ago- Ani, God of Tempest fell in love with Laylee- great Queen of the Desert.  Their love created a well of bounty.  Legend has it, the well is real and is in the Northern region of the Desert.  My father once said he saw the Oasis with his own eyes, but many travelers ended up dismissing our stories as propogated lies to entice people to visit our barren land more often."name="Miraz3">
+<Option text="But I Believe you!"/>
+<Option text="They're right, you're lying!"/>
 </SpeechNode>
 
 
-<SpeechNode text="Gungho! Benevolent Power swells within the mountain and even surges to the east!  We defend and honor Kromos-the God of Beneath us.  It's truly an amazing tale." name="Hanz2">
-<Option text="How is that even possible?"/>
+<SpeechNode text="Thank you dear child.  I know in my heart I will see the Oasis one day.  But you haven't even heard the best part!"name="Miraz4">
+<Option text="There's more?"/>
 </SpeechNode>
 
-<SpeechNode text="Gunho!  Well, you see it is actually pretty sad.  Though our culture nurture's and protects all forms of life, Nature does not adhere to our same form of tolerance."name="Braht3">
-<Option text="You mean there are no children?!"/>
+<SpeechNode text="Well Laylee and Ani bore mystical children!  I don't know much about them, but my father said they won't speak to anyone unless they find and introduce themselves to all siblings.  Who knows what secrets they share!"name="Miraz5">
+<Option text="Are they People? DemiGods?"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous."name="Braht4">
-<Option text="I guess I can understand that"/>
+<SpeechNode text="No one knows for certain what they are.  Best head my advice and be as friendly as possible.  I heart they might be tretcherous and very unpleasant looking!  Oh my!"name="Miraz6">
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader."name="Braht5">
-<Option text="You want me to come back and marry you?"/>
+<SpeechNode text="Oh My!  How rude, well, if you are so keen, why don't you head over there?  See for yourself the Weapon of Ani, and Laylee's oasis!"name="MirazA">
 </SpeechNode>
 
-<SpeechNode text="GUNGHO! GUNGHO! GUNGHO!  YES PLEASE! ABSOLUTELY!"name="Braht6">
-<Option text="!?"/>
-</SpeechNode>
+<Connection speechA="Miraz1" option="1" speechB="Miraz2"/>
 
-<SpeechNode text="Gungho!  I see you are paralyzed with love.  I know what I ask of you is much, but you have to understand that I have never seen a woman so slender and beautiful!  Listen, you don't have to answer now, but maybe one day you'll come back and give me an answer.  So long for now, peculiar stranger.  Wait, what is your name!?"name="Braht7">
-<Option text="Aeona"/>
-<Option text="BERN"/>
-</SpeechNode>
+<Connection speechA="Miraz2" option="1" speechB="Miraz3"/>
 
-<SpeechNode text="Gungho!? A fascinating name. Weak, but nice, I await your return Aeona!"name="Braht8">
-</SpeechNode>
+<Connection speechA="Miraz3" option="1" speechB="Miraz4"/>
+<Connection speechA="Miraz3" option="2" speechB="MirazA"/>
 
-<SpeechNode text="Oh I'm sorry, I'm just very curious!  Gungho!  Sorry."name="BrahtA">
+<Connection speechA="Miraz4" option="1" speechB="Miraz5"/>
 
-<SpeechNode text="Gungho!!!! A strong and Gorgeous name!  I am in love with you already!  I fair thee well sweet BERN!"name="BrahtB">
-
-</SpeechNode>
-
-<Connection speechA="Braht1" option="1" speechB="Braht2"/>
-<Connection speechA="Braht1" option="2" speechB="BrahtA"/>
-
-<Connection speechA="Braht2" option="1" speechB="Braht3"/>
-
-<Connection speechA="Braht3" option="1" speechB="Braht4"/>
-
-<Connection speechA="Braht5" option="1" speechB="Braht6"/>
-
-<Connection speechA="Braht6" option="1" speechB="Braht7"/>
-
-<Connection speechA="Braht7" option="1" speechB="Braht8"/>
-<Connection speechA="Braht7" option="2" speechB="BrahtB"/>
+<Connection speechA="Miraz5" option="1" speechB="Miraz6"/>
 
 </Dialogue>
 
