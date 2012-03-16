@@ -17,7 +17,7 @@
 #include "../Camera/CCameraControl.h"
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../Light System/LightEngine.h"
-
+#include "../Game Objects/CFinalBoss.h"
 // Constructor]
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
@@ -69,7 +69,10 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_bBusy = false;
 
 	Activate();
-
+	//////////////////////////////////////////////////////////////////////////
+	SetMaxHealth(10);
+	SetCurHealth(10);
+	////////////////////////////////////////////////////////////////////////// 
 	// PARTICLE WEAPON
 	m_fxElementalWeapon.Load("Resource/data/Weapon.xml");
 
@@ -571,6 +574,32 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 			if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
 			{
 				pEnemy->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
+			}
+		}
+	}
+
+	if(WEAPON->GetAttacking() == true && pObject->GetType() == TYPE_CHAR_FINALBOSS)
+	{
+		CFinalBoss* pFinalBoss = (CFinalBoss*)pObject;
+		RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
+		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
+		RECT temp2;
+
+		if(pFinalBoss->m_uiEnemyBehavior != 0)
+		{
+			if(pFinalBoss->m_uiMiniState > 1 )
+			{
+				if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+				{
+					pFinalBoss->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
+				}
+			}
+		}
+		else
+		{
+			if(IntersectRect(&temp2,&WeaponCollisionRect.GetWindowsRECT(),&pObject->GetCollisionRect().GetWindowsRECT()) != 0)
+			{
+				pFinalBoss->SufferDamage(GetAttackDamage()*m_nDamageIncrease);
 			}
 		}
 	}

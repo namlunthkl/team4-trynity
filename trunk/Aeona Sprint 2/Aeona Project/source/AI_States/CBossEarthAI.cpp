@@ -88,8 +88,10 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->m_bSpecial = false;
+				pCharacter->m_uiSpecialCounter = 0;
 				pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
-				pCharacter->SetMiniState( 3 );	// Immediately squirm forward.
+				pCharacter->SetMiniState( 2 );	// Go to stationary-searching
 			}
 			break;
 		}
@@ -120,9 +122,9 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			break;
 		}
-	case 3:
+	case 3:	// 3 - Squirm toward the player!
 		{
-			if( pCharacter->GetMoveTimer() == 0.0f )
+		if( pCharacter->GetMoveTimer() == 0.0f )
 			{
 				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
@@ -179,6 +181,56 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMiniState( 4 );
+			}
+			break;
+		}
+	case 4:	//	Pause a little, after moving, like a freakin' caterpillar, bro-dawg.
+		{
+			if( pCharacter->GetMoveTimer() == 0.0f )
+			{
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+				pCharacter->SetVelX( 0.0f );
+				pCharacter->SetVelY( 0.0f );
+			}
+			else if( pCharacter->GetMoveTimer() < 0.2f )	//	I will take a break for this long.
+			{
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+			}
+			else
+			{
+				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMiniState( 3 );	// Immediately squirm forward.
+			}
+			break;
+		}
+	case 5:		// ARE YOU READY TO ROCK AND ROLLLLLL!!!??!
+		{
+			if( pCharacter->GetMoveTimer() == 0.0f )
+			{
+				pCharacter->m_uiSpecialCounter += 1;
+				if(pCharacter->m_uiSpecialCounter == 6)
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->m_bSpecial = false;
+					pCharacter->m_uiSpecialCounter = 0;
+					pCharacter->SetMiniState( 2 );
+					break;
+				}
+				pCharacter->m_bSpecial = true;	//	All this does is make him render the 'special' frames, not normal walk cycles.
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+				pCharacter->SetVelX( pCharacter->GetVelX() * 1.4f );
+				pCharacter->SetVelY( pCharacter->GetVelY() * 1.4f );
+				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;	//	Cycle the rolling rock animation
+			}
+			else if( pCharacter->GetMoveTimer() < 0.25f )	//	Short roll for this long
+			{
+				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
+			}
+			else
+			{
+				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMiniState( 5 );	// WE AREN'T DONE MAN ROCK AND ROLLLLLLLL
 			}
 			break;
 		}

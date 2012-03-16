@@ -16,14 +16,14 @@ class CFinalBoss : public CEnemy
 	enum EBossState { BOSS_FIRE = 0 , BOSS_EARTH, BOSS_WIND, BOSS_DAGGER, BOSS_MAX };
 private:
 	int m_nCurrentBossState;
-	vector<IBaseAIState*> m_BossAI;
 public:
 	CFinalBoss(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0, float fRespawnTime = 0.0f);
 
 	~CFinalBoss(void);
+	void SufferDamage(unsigned int uiDamage);
 	void Die(void);
-	inline unsigned int GetType(void) const { return TYPE_CHAR_ENEMY; }
+	inline unsigned int GetType(void) const { return TYPE_CHAR_FINALBOSS; }
 };
 #endif
