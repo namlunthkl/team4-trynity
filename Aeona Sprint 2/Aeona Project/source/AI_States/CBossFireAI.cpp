@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "CBossFireAI.h"
 #include "../Game Objects/CPlayer.h"
+#include "../Weapons/CFireBall.h"
+#include "../Game Objects/CObjectManager.h"
 CBossFireAI* CBossFireAI::sm_pInstance = NULL;
 
 IBaseAIState* CBossFireAI::GetInstance(void)
@@ -25,27 +27,22 @@ void CBossFireAI::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetVelX( 0 );
 	pCharacter->SetPrevVelX( 0 );
 	pCharacter->SetPrevVelY( 0 );
-
-	pCharacter->SetMoveTimer( 0.0f );
+	pCharacter->SetMoveTimer(0.0f);
+	FireTime = 0.0f;
 	pCharacter->SetMiniState(2);
 	pCharacter->SetBehavior(0);
 	pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
 
 	pCharacter->m_bSpecial = false;
 	pCharacter->m_uiSpecialCounter = 0;
-	pCharacter->SetSpeed(350);
-
-	//	0 - GetWhacked
-	//	1 - WhackedPause
-	//	2 - SittingStill
-	//	3 - SquirmForward
-	//	4 - SquirmPause
-	//	5 - Lunge
+	pCharacter->SetSpeed(150);
 
 }
 
 void CBossFireAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 {
+	FireTime += fElapsedTime;
+
 	switch( pCharacter->GetMiniState() )
 	{
 	case 0:	// 0 - Get Whacked!
@@ -178,11 +175,68 @@ void CBossFireAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			else
 			{
-					pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMiniState( 4 );
 			}
 			break;
 		}
+	case 4:
+		{
+			if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) && FireTime >= 1.0f)
+			{
+				CFireball* FireBall = new CFireball();
+				FireBall->SetSpeed(580);
+				FireBall->Activate();
+				CObjectManager::GetInstance()->AddObject(FireBall);
+				PointD temp = pCharacter->GetPosition();
+				float temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+				float temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+
+				if(fabs(temp_y_dist) > fabs(temp_x_dist))
+				{
+					if(CPlayer::GetInstance()->GetPosY() < pCharacter->GetPosY())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_UP);
+						FireBall->SetVelX(0.0f);
+						FireBall->SetVelY(-1.0f *FireBall->GetSpeed());
+						FireBall->SetPosX(temp.x);
+						FireBall->SetPosY(temp.y-20);
+					}
+					else if(CPlayer::GetInstance()->GetPosY() > pCharacter->GetPosY())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_DOWN);
+						FireBall->SetVelX(0.0f);
+						FireBall->SetVelY(1.0f * FireBall->GetSpeed());
+						FireBall->SetPosX(temp.x);
+						FireBall->SetPosY(temp.y);
+					}
+				}
+				else
+				{
+					if(CPlayer::GetInstance()->GetPosX() < pCharacter->GetPosX())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_LEFT);
+						FireBall->SetVelX(-1.0f *FireBall->GetSpeed());
+						FireBall->SetVelY(0.0f);
+						FireBall->SetPosX(temp.x);
+						FireBall->SetPosY(temp.y-20);
+					}
+					else if(CPlayer::GetInstance()->GetPosX() > pCharacter->GetPosX())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_RIGHT);
+						FireBall->SetVelX(1.0f *FireBall->GetSpeed());
+						FireBall->SetVelY(0.0f);
+						FireBall->SetPosX(temp.x);
+						FireBall->SetPosY(temp.y-20);
+					}
+				}
+				FireTime = 0;
+			}
+			pCharacter->SetMoveTimer( 0.0f );
+			pCharacter->SetMiniState( 3 );
+		}
 	}
+
 }
 
 void CBossFireAI::Exit(CBaseCharacter* pCharacter)

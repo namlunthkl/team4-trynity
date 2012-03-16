@@ -118,7 +118,7 @@ void CGameplayState::Enter(void)
 	//OBJECTS->AddObject(pEnemy);
 	//pEnemy->Release();
 
-	CEnemy* BOSS = new CEnemy(1522, 169, 40,  -1, 50, 50, true, 75, 1);
+	CFinalBoss* BOSS = new CFinalBoss(1519, 595, 40,  -1, 100, 100, true, 75, 1);
 	BOSS->LoadAnimations("resource/Red Enemy Animation.xml");
 	BOSS->ChangeAIState(CBossFireAI::GetInstance());
 	BOSS->SetDebugMode(true);

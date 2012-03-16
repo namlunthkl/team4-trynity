@@ -12,15 +12,7 @@ class CBossFireAI : public IBaseAIState
 	CBossFireAI(void){}
 
 	static CBossFireAI* sm_pInstance;
-
-	//int m_sndLarvaHiss;
-
-	//	0 - GetWhacked
-	//	1 - WhackedPause
-	//	2 - SittingStill
-	//	3 - SquirmForward
-	//	4 - SquirmPause
-	//	5 - Lunge
+	float FireTime;
 
 public:
 	static IBaseAIState* GetInstance(void);

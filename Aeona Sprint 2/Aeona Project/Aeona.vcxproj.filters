@@ -289,6 +289,15 @@
     <ClCompile Include="source\AI_States\CBossDaggerAI.cpp">
       <Filter>Artificial Intelligence\Boss AI</Filter>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CBoulder.cpp">
+      <Filter>Object Hierarchy\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CFireball.cpp">
+      <Filter>Object Hierarchy\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Weapons\CTornado.cpp">
+      <Filter>Object Hierarchy\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -555,6 +564,15 @@
     </ClInclude>
     <ClInclude Include="source\AI_States\CBossDaggerAI.h">
       <Filter>Artificial Intelligence\Boss AI</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CBoulder.h">
+      <Filter>Object Hierarchy\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CFireball.h">
+      <Filter>Object Hierarchy\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Weapons\CTornado.h">
+      <Filter>Object Hierarchy\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

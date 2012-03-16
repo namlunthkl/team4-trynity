@@ -1,31 +1,28 @@
 ////////////////////////////////////////////////////////////////////////
-//    File Name				:	"CArrow.cpp"
+//    File Name				:	"CTornado.cpp"
 //    Author Name			:	Bryan Schotanes
 //    Creation Date			:	3/01/12
 //    Purpose				:	Arrow
 ////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
-#include "CArrow.h"
-#include "../Game Objects/CPlayer.h"
+#include "CTornado.h"
+#include "../Game Objects/CEnemy.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Weapons/CCrossBow.h"
 #include "../Messaging/CMessageSystem.h"
 #include "../Messaging/CEventSystem.h"
-#include "CPlayer.h"
-#include "CEnemy.h"
-#include "CFinalBoss.h"
-CArrow::CArrow()
+CTornado::CTornado()
 {
 	timeout = 0;
 }
-void CArrow::Update(float fElapsedTime)
+void CTornado::Update(float fElapsedTime)
 {
 	CBaseObject::Update(fElapsedTime);
 	timeout += fElapsedTime;
 	if(timeout > 2.0f)
 		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
 }
-void CArrow::Render(void)
+void CTornado::Render(void)
 {
 	RectD temp(0,0,GetWidth(),GetHeight());
 	if(GetVelX() == 0 && GetVelY() > 0)
@@ -37,22 +34,15 @@ void CArrow::Render(void)
 	else if(GetVelX() > 0 && GetVelY() == 0)
 		TEX_MNG->Draw(GetImageID(), (int)GetPosX(), (int)GetPosY(),1.0f,1.0f,&temp.GetWindowsRECT(),GetWidth()*0.5f,GetHeight()*0.5f,-3.14f*0.5f);
 }
-bool CArrow::CheckCollision(IBaseInterface* pObject)
+bool CTornado::CheckCollision(IBaseInterface* pObject)
 {
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
 		if(pObject->GetType() == TYPE_CHAR_ENEMY)
-		{
-			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-		}
-		else if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
-		{
-			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-		}
+		//	((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
+
 		//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
 		//{
 		//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
@@ -61,7 +51,7 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 	}
 	return false;
 }
-RectD CArrow::GetCollisionRect(void)
+RectD CTornado::GetCollisionRect(void)
 {
 	RectD rectCollision;
 

@@ -208,18 +208,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CBoulder.cpp" />
     <ClCompile Include="source\Weapons\CCrossBow.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\Weapons\CDagger.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CFireball.cpp" />
     <ClCompile Include="source\Weapons\CHammer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\Weapons\CSword.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Weapons\CTornado.cpp" />
     <ClCompile Include="source\Weather System\WeatherManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -322,10 +325,13 @@
     <ClInclude Include="source\Util\CDialogueList.h" />
     <ClInclude Include="source\Util\CTimer.h" />
     <ClInclude Include="source\Util\UtilStructs.h" />
+    <ClInclude Include="source\Weapons\CBoulder.h" />
     <ClInclude Include="source\Weapons\CCrossBow.h" />
     <ClInclude Include="source\Weapons\CDagger.h" />
+    <ClInclude Include="source\Weapons\CFireball.h" />
     <ClInclude Include="source\Weapons\CHammer.h" />
     <ClInclude Include="source\Weapons\CSword.h" />
+    <ClInclude Include="source\Weapons\CTornado.h" />
     <ClInclude Include="source\Weapons\IBaseWeapon.h" />
     <ClInclude Include="source\Weather System\WeatherManager.h" />
     <ClInclude Include="source\Wrappers\CSGD_Direct3D.h" />
