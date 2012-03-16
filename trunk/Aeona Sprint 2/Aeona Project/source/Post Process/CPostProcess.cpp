@@ -78,7 +78,7 @@ void CPostProcess::Initialize( void )
 	techs[3] = ( "ColorLoop" );
 	techs[4] = ( "TronEnergy" );
 	techs[5] = ( "DayCycleEffect" );
-	index = 4;
+	index = 5;
 
 	// COLOR
 	colChange = 1;

@@ -6,6 +6,7 @@
 #include "..\Wrappers\SGD_Math.h"
 #include "..\Light System\LightEngine.h"
 #include "..\Game Objects\CPlayer.h"
+#include "..\Post Process\CPostProcess.h"
 
 CWeatherManager::CWeatherManager()
 {
@@ -14,11 +15,11 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 
-	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/Rain.wav");
+	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/Potion.wav");
 	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
 	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
 	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");
-	m_nSandStormSound = AUDIO->SFXLoadSound("resource/sound/SandStorm.wav");
+	//m_nSandStormSound = AUDIO->SFXLoadSound("resource/sound/Sand_Storm.wav");
 	//m_nEmberSound = AUDIO->SFXLoadSound("resource/sound/Ember.wav");
 	//m_nFogSound = AUDIO->SFXLoadSound("resource/sound/Fog.wav");
 }
@@ -67,6 +68,10 @@ void CWeatherManager::CheckRegion(void)
 		{
 			m_nCurrRegion = 6;
 		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "DesertMaze" ) == 0 )
+		{
+			m_nCurrRegion = 7;
+		}
 	}
 }
 void CWeatherManager::LoadWeather(void)
@@ -114,7 +119,7 @@ void CWeatherManager::LoadWeather(void)
 		{
 			ShutDown();
 			LoadXML("Resource/data/SandStorm.xml");
-			AUDIO->SFXPlaySound( m_nSandStormSound, true );
+			//AUDIO->SFXPlaySound( m_nSandStormSound, true );
 			SetIsOn( true );
 		}
 		break;
@@ -126,14 +131,14 @@ void CWeatherManager::LoadWeather(void)
 			SetIsOn( true );
 		}
 		break;
-	//case FOG:
-	//	{
-	//		ShutDown();
-	//		LoadXML("Resource/data/Fog.xml");
-	//		AUDIO->SFXPlaySound( m_nFogSound, true );
-	//		SetIsOn( true );
-	//	}
-	//	break;
+		//case FOG:
+		//	{
+		//		ShutDown();
+		//		LoadXML("Resource/data/Fog.xml");
+		//		AUDIO->SFXPlaySound( m_nFogSound, true );
+		//		SetIsOn( true );
+		//	}
+		//	break;
 	}
 }
 void CWeatherManager::SetWeatherPattern(void)
@@ -144,6 +149,7 @@ void CWeatherManager::SetWeatherPattern(void)
 		{
 		case FOREST:
 			{
+				CPostProcess::GetInstance()->index = 5;
 				int nForest = RandomInt( 1, 5 );
 				switch( nForest )
 				{
@@ -192,6 +198,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			}
 		case MOUNTAIN:
 			{
+				CPostProcess::GetInstance()->index = 5;
 				int nMountain = RandomInt( 1, 3 );
 				switch( nMountain )
 				{
@@ -224,38 +231,35 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case DESERT:
 			{
-				int nDesert = RandomInt( 1, 2 );
-				switch( nDesert )
-				{
-				case 1:
-					{
-						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				case 2:
-					{
-						SetTypeOfWeather( SAND );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				}
-			}
-			break;
-		case VOLCANO:
-			{
-				SetTypeOfWeather( EMBER );
+				CPostProcess::GetInstance()->index = 5;
+				SetTypeOfWeather( CLEAR );
 				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
 				LoadWeather();
 				SetTime( 0.0f );
 			}
 			break;
+		case DESERTMAZE:
+			{
+				CPostProcess::GetInstance()->index = 5;
+				SetTypeOfWeather( SAND );
+				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				LoadWeather();
+				SetTime( 0.0f );
+			}
+			break;
+		case VOLCANO:
+			{
+				CPostProcess::GetInstance()->index = 4;
+				SetTypeOfWeather( EMBER );
+				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				LoadWeather();
+				SetTime( 0.0f );
+
+			}
+			break;
 		case DUNGEON:
 			{
+				CPostProcess::GetInstance()->index = 4;
 				SetTypeOfWeather( EMBER );
 				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
 				LoadWeather();
@@ -264,6 +268,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case CAVE:
 			{
+				CPostProcess::GetInstance()->index = 2;
 				int nCave = RandomInt( 1, 2 );
 				switch( nCave )
 				{
@@ -288,6 +293,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case LAKE:
 			{
+				CPostProcess::GetInstance()->index = 5;
 				int nLake = RandomInt( 1, 4 );
 				switch( nLake )
 				{
@@ -325,9 +331,6 @@ void CWeatherManager::SetWeatherPattern(void)
 					break;
 				}
 			}
-			
-
-
 			break;
 		}
 	}
@@ -518,7 +521,7 @@ void CWeatherManager::ShutDown(void)
 	//AUDIO->SFXStopSound( m_nFireFliesSound );
 	//AUDIO->SFXStopSound( m_nLeavesSound );
 	//AUDIO->SFXStopSound( m_nSnowSound );
-	AUDIO->SFXStopSound( m_nSandStormSound );
+	//AUDIO->SFXStopSound( m_nSandStormSound );
 	//AUDIO->SFXStopSound( m_nEmberSound );
 	//AUDIO->SFXStopSound( m_nFogSound );
 

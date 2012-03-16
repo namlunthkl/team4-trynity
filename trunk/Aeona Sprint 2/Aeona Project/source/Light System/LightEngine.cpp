@@ -6,7 +6,10 @@
 #include "..\Camera\CCameraControl.h"
 
 
-LightEngine::LightEngine(void){}
+LightEngine::LightEngine(void)
+{
+	
+}
 LightEngine::~LightEngine(void)
 {
 	ShutDown();
@@ -18,6 +21,7 @@ LightEngine* LightEngine::GetInstance(void)
 }
 void LightEngine::Initialize( void )
 {
+	//m_nDayBed = AUDIO->SFXLoadSound("resource/sound/Day_AirBed.wav");
 	SetCurrentCycle( 0 );
 	SetCurrentLTime( 0.0f );
 	SetTimeToWait( 0.0f );
@@ -294,51 +298,52 @@ void LightEngine::DayNightCycle( void )
 		{
 		case 1:
 			{
+				//AUDIO->SFXPlaySound( m_nDayBed, true );
 				Morning();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 100.0f );
 			}
 			break;
 		case 2:
 			{
 				Afternoon();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 100.0f );
 			}
 			break;
 		case 3:
 			{
 				Day();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 200.0f );
 			}
 			break;
 		case 4:
 			{
 				Evening();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 100.0f );
 			}
 			break;
 		case 5:
 			{
 				Dusk();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 100.0f );
 			}
 			break;
 		case 6:
 			{
 				Night();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 200.0f );
 			}
 			break;
 		case 7:
 			{
 				Dawn();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 100.0f );
 			}
 			break;
 		}

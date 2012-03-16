@@ -4,7 +4,7 @@
 #include "..\Particle Engine\Emitter.h"
 
 enum WEATHER{ CLEAR, RAIN, FIREFLIES, LEAVES, SNOW, SAND, EMBER, FOG };
-enum REGION { FOREST, MOUNTAIN, DESERT, VOLCANO, CAVE, LAKE, DUNGEON };
+enum REGION { FOREST, MOUNTAIN, DESERT, VOLCANO, CAVE, LAKE, DUNGEON, DESERTMAZE };
 
 class CWeatherManager
 {
@@ -21,7 +21,7 @@ private:
 	//int m_nFireFliesSound;
 	//int m_nLeavesSound;
 	//int m_nSnowSound;
-	int m_nSandStormSound;
+	//int m_nSandStormSound;
 	//int m_nEmberSound;
 	//int m_nFogSound;
 
