@@ -32,7 +32,7 @@
 #include "../AI_States/CBossFireAI.h"
 
 #include "../Game Objects/CObjectManager.h"
-#include "../Game Objects/CNPC.h"
+#include "../Game Objects/CGrimirNPC.h"
 #include "../Game Objects/CFinalBoss.h"
 #include "../Puzzles/CPuzzleManager.h"
 #include "../Game Objects/CChest.h"
@@ -86,6 +86,7 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("destroy", this);
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
+	EVENTS->RegisterForEvent("get.flower", this);
 
 	//	Load all assets
 	//		Textures
@@ -101,22 +102,14 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
-	PLAYER->SetPosX(1536);
-	PLAYER->SetPosY(3036);
+	PLAYER->SetPosX(4608);
+	PLAYER->SetPosY(7100);
 	PLAYER->SetSpeed(150);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(20);
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
-
-	//// Initialize Enemies
-	//CEnemy* pEnemy = new CEnemy(1180, 720, 40,  -1, 50, 50, true, 100, 1);
-	////pEnemy->LoadAnimations("resource/Enemy Animation.xml");
-	//pEnemy->ChangeAIState(CRandomAIState::GetInstance());
-	//pEnemy->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy);
-	//pEnemy->Release();
 
 	CFinalBoss* BOSS = new CFinalBoss(1519, 595, 40,  -1, 100, 100, true, 75, 1);
 	BOSS->LoadAnimations("resource/Red Enemy Animation.xml");
@@ -141,78 +134,6 @@ void CGameplayState::Enter(void)
 	pEnemy2f->Release();
 
 	
-
-	//CEnemy* pEnemy2a = new CEnemy(1050, 570, 40,  -1, 50, 50, true, 75, 1);
-	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2a->ChangeAIState(CLilBastardAIState::GetInstance());
-	//pEnemy2a->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy2a);
-	//pEnemy2a->Release();
-
-	//CEnemy* pEnemy2b = new CEnemy(1250, 570, 40,  -1, 50, 50, true, 75, 1);
-	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2b->ChangeAIState(CSlimeAIState::GetInstance());
-	//pEnemy2b->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy2b);
-	//pEnemy2b->Release();
-
-	//CEnemy* pEnemy2c = new CEnemy(1480, 570, 40,  -1, 50, 50, true, 75, 1);
-	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2c->ChangeAIState(CLilBastardAIState::GetInstance());
-	//pEnemy2c->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy2c);
-	//pEnemy2c->Release();
-
-	//CEnemy* pEnemy2d = new CEnemy(1580, 570, 40,  -1, 50, 50, true, 75, 1);
-	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	//pEnemy2d->ChangeAIState(CSpiderAIState::GetInstance());
-	//pEnemy2d->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy2d);
-	//pEnemy2d->Release();
-
-	//CEnemy* pEnemy3 = new CEnemy(1673, 395, 40,  -1, 50, 50, true, 100, 1);
-	//pEnemy3->LoadAnimations("resource/Red Enemy Animation.xml");
-	//pEnemy3->ChangeAIState(CJumperAIState::GetInstance());
-	//pEnemy3->SetDebugMode(false);
-	//OBJECTS->AddObject(pEnemy3);
-	//pEnemy3->Release();
-
-	/*CEnemy* pEnemy4 = new CEnemy(743, 5082, 40,  -1, 50, 50, true, 100, 1);
-	pEnemy4->LoadAnimations("resource/Air Enemy.xml");
-	pEnemy4->ChangeAIState(CJumperAIState::GetInstance());
-	pEnemy4->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy4);
-	pEnemy4->Release();
-
-	CEnemy* pEnemy5 = new CEnemy(743, 4922, 40,  -1, 50, 50, true, 100, 1);
-	pEnemy5->LoadAnimations("resource/Earth Enemy.xml");
-	pEnemy5->ChangeAIState(CJumperAIState::GetInstance());
-	pEnemy5->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy5);
-	pEnemy5->Release();
-
-	CEnemy* pEnemy6 = new CEnemy(673, 4992, 40,  -1, 50, 50, true, 100, 1);
-	pEnemy6->LoadAnimations("resource/Fire Enemy.xml");
-	pEnemy6->ChangeAIState(CJumperAIState::GetInstance());
-	pEnemy6->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy6);
-	pEnemy6->Release();*/
-
-	// Initialize NPCs
-	/*CNPC* pNPC;
-	pNPC = new CNPC("Mini Guy", false, 150, -1, 290, 1000, 20, -1, 20, 20, true, 100, 0);
-	pNPC->LoadAnimations("resource/UglySquirelyGirl.xml");
-	pNPC->LoadText("resource/NPC Dialogue/Squirrel.xml");
-	OBJECTS->AddObject(pNPC);
-	pNPC->Release();*/
-
-	// Initialize chests
-	/*CChest* pChest;
-	pChest = new CChest("PotionChest", false, 150, -1, 700, 500, 20, -1, 32,32, true, 100, 0);
-	pChest->LoadAnimations("resource/chest.xml");
-	OBJECTS->AddObject(pChest);
-	pChest->Release();*/
-
 	// Initialize Camera and post process
 	CAMERA->InitializeCamera( GAME->GetScreenWidth(), GAME->GetScreenHeight(),
 		(float)PLAYER->GetPosX(), (float)PLAYER->GetPosY() );
@@ -650,7 +571,19 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Map->TurnOffCollisionOnTile(eventInfo->sMapPosX, eventInfo->sMapPosY);
 
 	}
+	if(pEvent->GetEventID() == "get.flower")
+	{
+		PLAYER->AcquireFlower();
 
+		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
+
+		eventInfo->Tile->SetPosX(-1);
+		eventInfo->Tile->SetPosY(-1);
+		eventInfo->Tile->SetInfo(0);
+		eventInfo->Tile->SetEventID(0);
+
+		eventInfo->Map->TurnOffCollisionOnTile(eventInfo->sMapPosX, eventInfo->sMapPosY);
+	}
 	if(pEvent->GetEventID() == "game.over")
 		m_bGameOver = true;
 	if(pEvent->GetEventID() == "victory")
@@ -672,8 +605,17 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateNPCMessage* pMsgNPC = (CCreateNPCMessage*)pMsg;
 
-			CNPC* pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
-				pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+			CNPC* pNPC;
+			if(pMsgNPC->GetName() == "Grimir")
+			{
+				pNPC = new CGrimirNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
+					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+			}
+			else
+			{
+				pNPC = new CNPC(pMsgNPC->GetName().c_str(), false, 150, -1, pMsgNPC->GetPosX(),
+					pMsgNPC->GetPosY(), 20, -1, 50, 50, true, 100, 0);
+			}
 
 			string szDialogFile = "resource/NPC Dialogue/";
 			szDialogFile += pMsgNPC->GetName();
@@ -695,7 +637,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateEnemyMessage* pMsgEnemy = (CCreateEnemyMessage*)pMsg;
 
-			int nRandom = RandomInt(0, 2);
+			int nRandom = rand() % 3;
 			double dPosX = RandomFloat((float)pMsgEnemy->GetPosX() - 32, (float)pMsgEnemy->GetPosX() + 32);
 			double dPosY = RandomFloat((float)pMsgEnemy->GetPosY() - 32, (float)pMsgEnemy->GetPosY() + 32);
 

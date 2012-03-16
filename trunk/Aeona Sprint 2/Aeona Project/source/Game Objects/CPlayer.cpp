@@ -24,9 +24,14 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_byteWeapons = 0;
 	m_byteMasks = 0;
 	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
-
+	TurnBitOn(m_byteMasks, MASK_NONE);
 	m_fOuchTimer = 0.0f;
 	m_Potion = new CPotion;
+
+	m_bHasFlower = false;
+	m_uiGems = 0;
+
+#if 0
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
@@ -43,6 +48,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteMasks, 1);
 	TurnBitOn(m_byteMasks, 2);
 	TurnBitOn(m_byteMasks, 3);
+#endif
 
 	m_bHeartPiece = false;
 	m_uiCurrentWeapon = WEAPON_DAGGER;
@@ -469,18 +475,15 @@ void CPlayer::CycleWeapon(void)
 // Cycle through the masks
 void CPlayer::CycleMask(void)
 {
-	// Increase the current weapon variable
-	m_uiCurrentMask++;
-
-	// If we reached max, go back to the first one
-	if(m_uiCurrentMask >= MASK_MAX)
-		m_uiCurrentMask = MASK_NONE;
-
-	// If it doesn't have the weapon
-	if(!TestBit(m_byteMasks, m_uiCurrentMask))
+	while(true)
 	{
-		// Keep looking
-		CycleMask();
+		m_uiCurrentMask++;
+
+		if(m_uiCurrentMask >= MASK_MAX)
+			m_uiCurrentMask = MASK_NONE;
+
+		if(TestBit(m_byteMasks, m_uiCurrentMask))
+			break;
 	}
 
 	m_sndSwitchAmulet->Play();

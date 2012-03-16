@@ -99,6 +99,7 @@
     <ClCompile Include="source\Game Objects\CFinalBoss.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CGrimirNPC.cpp" />
     <ClCompile Include="source\Game Objects\CNPC.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -279,6 +280,7 @@
     <ClInclude Include="source\Game Objects\CChest.h" />
     <ClInclude Include="source\Game Objects\CEnemy.h" />
     <ClInclude Include="source\Game Objects\CFinalBoss.h" />
+    <ClInclude Include="source\Game Objects\CGrimirNPC.h" />
     <ClInclude Include="source\Game Objects\CNPC.h" />
     <ClInclude Include="source\Game Objects\CObjectManager.h" />
     <ClInclude Include="source\Game Objects\CPlayer.h" />
