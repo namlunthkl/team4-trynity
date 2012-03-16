@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WorldEngine>
-<COMMENT>
-           <Tileset file="resource/Tilesets/TilesetSprint2.xml"/>
-           <Map file="resource/Maps/MapSprint2.xml"/>
-</COMMENT>
 
-
-	   <Tileset file="resource/Tilesets/Dungeon.xml"/>
-	   <Map file="resource/Maps/BossRoom.xml"/>
-
+<Tileset file="resource/Tilesets/Dungeon.xml"/>
 <Tileset file="resource/Tilesets/SnowTileset.xml"/>
-<Map file="resource/Maps/SnowMapFinal1.xml"/>
+<Tileset file="resource/Tilesets/forestTileset.xml"/>
+<Tileset file="resource/Tilesets/LakeTileset.xml"/>
+<Tileset file="resource/Tilesets/DesertTiles.xml"/>
 
+<Map file="resource/Maps/BossRoom.xml"/>
+
+<Map file="resource/Maps/SnowMapFinal1.xml"/>
 <Map file="resource/Maps/SnowMapFinal2.xml"/>
 <Map file="resource/Maps/SnowMapFinal3.xml"/>
 <Map file="resource/Maps/SnowMapFinal4.xml"/>
@@ -19,6 +17,19 @@
 <Map file="resource/Maps/SnowMapFinal6.xml"/>
 <Map file="resource/Maps/SnowMapFinal7.xml"/>
 
+<Map file="resource/Maps/TransitionSnowForest.xml"/>
+
+<Map file="resource/Maps/ForestUpperLeft.xml"/>
+<Map file="resource/Maps/ForestLowerLeft.xml"/>
+
+<Map file="resource/Maps/Lake1.xml"/>
+
+<Map file="resource/Maps/Desert1.xml"/>
+<Map file="resource/Maps/Desert2.xml"/>
+<Map file="resource/Maps/Desert3.xml"/>
+<Map file="resource/Maps/Desert4.xml"/>
+<Map file="resource/Maps/DesertEntrance.xml"/>
+<Map file="resource/Maps/DesertTown.xml"/>
 
 </WorldEngine>
 

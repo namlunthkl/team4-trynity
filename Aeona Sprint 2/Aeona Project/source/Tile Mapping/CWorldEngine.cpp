@@ -97,10 +97,13 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 	if(!pMap)
 		return false;
 	
-
+	int i=0;
 	// Load all the maps
 	while(pMap)
 	{
+		if(i == 12)
+			int x = 0;
+
 		// Create the tileset
 		CMap* tempMap = new CMap();
 		// Get the file name
@@ -114,6 +117,7 @@ bool CWorldEngine::LoadAllMaps(const char* szFilename)
 		pMap = pMap->NextSiblingElement("Map");
 
 		//GAME->RenderLoadingScreen( GAME->IncrementAndReturnAmountLoaded(), 0);
+		++i;
 	}
 
 	// Succeeded
