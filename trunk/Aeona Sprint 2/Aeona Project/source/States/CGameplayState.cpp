@@ -102,7 +102,7 @@ void CGameplayState::Enter(void)
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
 	PLAYER->SetPosX(1536);
-	PLAYER->SetPosY(1024);
+	PLAYER->SetPosY(3036);
 	PLAYER->SetSpeed(150);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
