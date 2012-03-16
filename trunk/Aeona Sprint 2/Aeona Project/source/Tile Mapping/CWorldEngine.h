@@ -139,9 +139,9 @@ public:
 	// HACK
 	///////////
 	inline int GetWorldWidth(void)
-	{ return INT_MAX; }//m_vpMaps[0]->GetWidth() * m_vpMaps[0]->GetTileset()->GetTileWidth(); }
+	{ return 8192; }//m_vpMaps[0]->GetWidth() * m_vpMaps[0]->GetTileset()->GetTileWidth(); }
 	inline int GetWorldHeight(void)
-	{ return INT_MAX; }//m_vpMaps[0]->GetHeight() * m_vpMaps[0]->GetTileset()->GetTileHeight(); }
+	{ return 8192; }//m_vpMaps[0]->GetHeight() * m_vpMaps[0]->GetTileset()->GetTileHeight(); }
 };
 
 #endif // C_WORLD_ENGINE_H_
