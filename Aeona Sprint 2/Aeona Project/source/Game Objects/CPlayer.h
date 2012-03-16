@@ -130,7 +130,7 @@ public:
 		m_bPhilSpecialAttack = false;
 		m_fPhilChargeIdkman = 0.0f;
 		WEAPON->SetAttacking(false);
-		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
+		//WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
 	}
 
 	inline void Unlock(void) { if(m_bBusy) m_bBusy = false; }

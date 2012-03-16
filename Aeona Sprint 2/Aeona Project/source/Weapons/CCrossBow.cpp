@@ -15,7 +15,10 @@ CCrossBow::CCrossBow()
 	CBaseCharacter::LoadAnimations("resource/AeonaAirCrossBow.xml");
 	SetAttacking(false);
 	m_pArrow = NULL;
-	m_fTime = 0;
+	//m_fTime = 0;
+
+	m_imgArrow = TEX_MNG->LoadTexture("resource/BlueArrow.png", D3DCOLOR_XRGB(0,0,0));
+
 
 	SetSound(new Sound("resource/sound/Bow.wav"));
 
@@ -37,62 +40,136 @@ void CCrossBow::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
 }
 void CCrossBow::Update(float fElapsedTime)
 {
-	m_fTime += fElapsedTime;
 	CBaseCharacter::Update(fElapsedTime);
 
+	if( GetAttacking() == true )
+	{
+		m_fSlashTimer += fElapsedTime;
+	}
+	else
+	{
+		if( CPlayer::GetInstance()->m_bPhilCharging == true )
+		{
+			CPlayer::GetInstance()->m_fPhilChargeIdkman += fElapsedTime;
+		}
+	}
 }
 void CCrossBow::Attack(void)
 {
-	if(m_fTime >= 0.5f)
+	SetAttacking(true);
+	if(m_fSlashTimer == 0.0f)
 	{
-		SetAttacking(true);
 		GetSound()->Play();
-		m_fTime = 0;
-		ShootArrow();
+		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
+			ShootArrow();
 	}
 }
 void CCrossBow::ChargedAttack(void)
 {
 
 }
-//RectD CCrossBow::GetCollisionRect(void)
-//{
-//	RectD rectCollision;
-//	if(ANM_ATK_UP == GetCurrentAnimation())
-//	{
-//		rectCollision.left = -30;
-//		rectCollision.top = -35;
-//		rectCollision.right = 30;
-//		rectCollision.bottom = -5;
-//	}
-//	else if(ANM_ATK_DOWN == GetCurrentAnimation())
-//	{
-//		rectCollision.left = -30;
-//		rectCollision.top = 5;
-//		rectCollision.right = 30;
-//		rectCollision.bottom = 35;
-//	}
-//	else if(ANM_ATK_LEFT == GetCurrentAnimation())
-//	{
-//		rectCollision.left = -35;
-//		rectCollision.top = -30;
-//		rectCollision.right = -5;
-//		rectCollision.bottom = 30;
-//	}
-//	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
-//	{
-//		rectCollision.left = 5;
-//		rectCollision.top = -30;
-//		rectCollision.right = 35;
-//		rectCollision.bottom = 30;
-//	}
-//	return rectCollision;
-//}
+RectD CCrossBow::GetCollisionRect(void)
+{
+	RectD rectCollision;
+	if(ANM_ATK_UP == GetCurrentAnimation())
+	{
+		if(m_fSlashTimer < 0.5f)
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -24;
+				rectCollision.top = -500;
+				rectCollision.right = 24;
+				rectCollision.bottom = 500;
+			}
+		}
+		else
+		{
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
+		}
+	}
+	else if(ANM_ATK_DOWN == GetCurrentAnimation())
+	{
+		if(m_fSlashTimer < 0.5f)
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -24;
+				rectCollision.top = -500;
+				rectCollision.right = 24;
+				rectCollision.bottom = 500;
+			}
+		}
+		else
+		{
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
+		}
+	}
+	else if(ANM_ATK_LEFT == GetCurrentAnimation())
+	{
+		if(m_fSlashTimer < 0.5f)
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -500;
+				rectCollision.top = -24;
+				rectCollision.right = 500;
+				rectCollision.bottom = 24;
+			}
+		}
+		else
+		{
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
+		}
+	}
+	else if(ANM_ATK_RIGHT == GetCurrentAnimation())
+	{
+		if(m_fSlashTimer < 0.5f)
+		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			{
+				rectCollision.left = -500;
+				rectCollision.top = -24;
+				rectCollision.right = 500;
+				rectCollision.bottom = 24;
+			}
+		}
+		else
+		{
+			SetAttacking(false);
+			m_fSlashTimer = 0.0f;
+			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
+		}
+	}
+	return rectCollision;
+}
 void CCrossBow::ShootArrow(void)
 {
 	m_pArrow = new CArrow();
-	m_pArrow->SetSpeed(580);
-	m_pArrow->SetImageID(TEX_MNG->LoadTexture("resource/BlueArrow.png", D3DCOLOR_XRGB(0,0,0)));
+	m_pArrow->SetSpeed(585);
+	m_pArrow->SetImageID(m_imgArrow);
 	m_pArrow->SetHeight(128);
 	m_pArrow->SetWidth(32);
 	m_pArrow->Activate();

@@ -70,7 +70,7 @@ void CCameraControl::ChargeCamSequence( float fChargeTime )
 	}	
 	if( fChargeTime == 0.0f && GetReleaseButton() )
 	{
-		SetScale( GetScale() - 3.0f * GetTime() );
+		SetScale( GetScale() - 1.0f * GetTime() );
 
 		if( GetScale() <= 1.0f )
 		{

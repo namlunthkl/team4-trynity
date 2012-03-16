@@ -23,6 +23,7 @@ class CCrossBow : public IBaseWeapon
 private:
 	CArrow* m_pArrow;
 	float m_fTime;
+	int m_imgArrow;
 public:
 	CCrossBow();
 	~CCrossBow(void) {}
@@ -34,7 +35,7 @@ public:
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
 	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_ARROW; }
 	void ShootArrow(void);
-	//RectD GetCollisionRect(void);
+	RectD GetCollisionRect(void);
 	//void SetWeaponRotation(float fWeaponRotation);
 };
 
