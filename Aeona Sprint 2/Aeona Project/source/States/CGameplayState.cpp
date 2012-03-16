@@ -98,11 +98,11 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	// (1536, 1024)		- Boss Cave
+	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
-	PLAYER->SetPosX(4608);
-	PLAYER->SetPosY(7100);
+	PLAYER->SetPosX(1536);
+	PLAYER->SetPosY(1024);
 	PLAYER->SetSpeed(150);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
