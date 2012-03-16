@@ -144,7 +144,7 @@ void CPlayer::Render(void)
 	shadow.right = 512;
 	shadow.bottom = 32;
 
-	TEX_MNG->Draw(GAME->m_imgEnemiesDeath, GetPosX() -(16)/*- (48*scale)*/, GetPosY() -(16)/*- (48*scale)*/, 1.0f, 1.0f, &shadow, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(100, 255, 255, 255));
+	TEX_MNG->Draw(GAME->m_imgEnemiesDeath, (int)GetPosX() -(16)/*- (48*scale)*/, (int)GetPosY() -(16)/*- (48*scale)*/, 1.0f, 1.0f, &shadow, 0.0f, 0.0f, 0.0f, D3DCOLOR_ARGB(100, 255, 255, 255));
 
 	// Render the player
 	//

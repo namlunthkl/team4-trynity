@@ -304,9 +304,12 @@ void CGame::Render(void)
 		m_pCurrentState->Render();
 
 		D3D->GetSprite()->Flush();
+
+#if 0
 		char buffer[100];
 		sprintf_s(buffer, 100, "FPS: %i", m_Timer.m_nFPS);
 		D3D->DrawTextA(&buffer[0], 0, 0, 255, 0, 0);
+#endif
 
 		D3D->SpriteEnd();
 		D3D->DeviceEnd();
