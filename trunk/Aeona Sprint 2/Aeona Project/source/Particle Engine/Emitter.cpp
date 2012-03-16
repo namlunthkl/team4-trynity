@@ -167,7 +167,7 @@ void Emitter::Render()
 void Emitter::ShutDown(void)
 {
 	for(unsigned int i = 0; i < Particle_List.size(); i++)
-		delete (Particle*)(Particle_List[i]);
+		delete Particle_List[i];
 
 	Particle_List.clear();
 

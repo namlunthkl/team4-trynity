@@ -98,9 +98,11 @@ void CGameplayState::Enter(void)
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
-	PLAYER->SetPosX(1536); //743 = goodspot
-	PLAYER->SetPosY(1024); //4992 = goodspot
-	PLAYER->SetSpeed(100);
+	// (1536, 1024) - Boss Cave
+	// (743, 4992) - Snow Area
+	PLAYER->SetPosX(743);
+	PLAYER->SetPosY(4992);
+	PLAYER->SetSpeed(150);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(20);
@@ -406,6 +408,7 @@ void CGameplayState::Render(void)
 	D3DXMATRIX identity;
 	D3DXMatrixIdentity(&identity);
 	D3D->GetSprite()->SetTransform(&identity);
+#if 0
 #ifdef _DEBUG
 	if(CInputManager::GetInstance()->GetAttack())
 	{
@@ -414,6 +417,7 @@ void CGameplayState::Render(void)
 		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
 		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
 	}
+#endif
 #endif
 	// Render the Weather
 	CWeatherManager::GetInstance()->Render();
@@ -511,6 +515,7 @@ void CGameplayState::Render(void)
 	D3D->GetSprite()->Flush();
 
 	RenderGameOverScreens();
+#if 0
 #ifdef _DEBUG
 	char buffer[100];
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
@@ -526,6 +531,7 @@ void CGameplayState::Render(void)
 		strcpy_s(buffer, 100, szRegion);
 		D3D->DrawTextA(&buffer[0], 120, 570, 255, 0, 0);
 	}
+#endif
 #endif
 	D3D->SpriteEnd();
 	D3D->DeviceEnd();
@@ -640,8 +646,6 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetInfo(0);
 		eventInfo->Tile->SetEventID(0);
 
-		// TODO: find the matching tile on layer 0 and set its collision
-		// type to not collidable
 		eventInfo->Map->TurnOffCollisionOnTile(eventInfo->sMapPosX, eventInfo->sMapPosY);
 
 	}
@@ -650,6 +654,7 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		m_bGameOver = true;
 	if(pEvent->GetEventID() == "victory")
 		m_bVictory = true;
+
 }
 
 void CGameplayState::MessageProc(CBaseMessage* pMsg)
@@ -690,8 +695,8 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 			CCreateEnemyMessage* pMsgEnemy = (CCreateEnemyMessage*)pMsg;
 
 			int nRandom = RandomInt(0, 2);
-			double dPosX = RandomFloat(pMsgEnemy->GetPosX() - 32, pMsgEnemy->GetPosX() + 32);
-			double dPosY = RandomFloat(pMsgEnemy->GetPosY() - 32, pMsgEnemy->GetPosY() + 32);
+			double dPosX = RandomFloat((float)pMsgEnemy->GetPosX() - 32, (float)pMsgEnemy->GetPosX() + 32);
+			double dPosY = RandomFloat((float)pMsgEnemy->GetPosY() - 32, (float)pMsgEnemy->GetPosY() + 32);
 
 			IBaseAIState* pAIState = nullptr;
 			unsigned int uiSpeed = 0;

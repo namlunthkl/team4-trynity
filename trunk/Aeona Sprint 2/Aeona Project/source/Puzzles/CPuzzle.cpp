@@ -37,7 +37,7 @@ void IBasePuzzle::Create(unsigned int uiArgCount, char* szEventToFire, char* szE
 
 void IBasePuzzle::HandleEvent(CEvent* pEvent)
 {
-	if(timeGetTime() - m_dwTimeStamp < 250)
+	if(timeGetTime() - m_dwTimeStamp < 500)
 		return;
 
 	unsigned int i;

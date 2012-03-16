@@ -149,8 +149,8 @@ void CFlowerAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				{*/
 					//pCharacter->m_bWalkCycle = 0;	//	Set to the one that looks most like an attack.
 					//find the player direction!
-					float temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
-					float temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+					double temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+					double temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
 					if(fabs(temp_y_dist) > fabs(temp_x_dist))
 					{
 						//then we are going north-south
@@ -162,7 +162,7 @@ void CFlowerAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						else
 						{
 							pCharacter->SetVelX( 0.0f );
-							pCharacter->SetVelY( pCharacter->GetSpeed() );
+							pCharacter->SetVelY( (float) pCharacter->GetSpeed() );
 						}
 						pCharacter->SetPrevVelX( 0.0f );
 						pCharacter->SetPrevVelY( pCharacter->GetVelY() );
@@ -177,7 +177,7 @@ void CFlowerAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						}
 						else
 						{
-							pCharacter->SetVelX( pCharacter->GetSpeed() );
+							pCharacter->SetVelX( (float) pCharacter->GetSpeed() );
 							pCharacter->SetVelY( 0.0f );
 						}
 						pCharacter->SetPrevVelX( pCharacter->GetVelX() );

@@ -1,4 +1,7 @@
 #include "StdAfx.h"
+
+#include "../StdAfx.h"
+
 #include "CTorchPuzzle.h"
 #include "../Game Objects/CPlayer.h"
 #include "../Light System/LightEngine.h"
@@ -101,8 +104,11 @@ void CTorchPuzzle::Destroy(void)
 
 	m_vParticle.clear();
 
-	AUDIO->SFXStopSound(m_sndFireSound);
-	AUDIO->SFXUnloadSound(m_sndFireSound);
+	if(AUDIO->SFXIsSoundPlaying(m_sndFireSound))
+	{
+		AUDIO->SFXStopSound(m_sndFireSound);
+		AUDIO->SFXUnloadSound(m_sndFireSound);
+	}
 
 	IBasePuzzle::Destroy();
 }
