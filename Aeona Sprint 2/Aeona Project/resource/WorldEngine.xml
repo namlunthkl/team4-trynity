@@ -7,6 +7,7 @@
 <Tileset file="resource/Tilesets/LakeTileset.xml"/>
 <Tileset file="resource/Tilesets/DesertTiles.xml"/>
 
+<COMMENT>
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
 <Map file="resource/Maps/Dungeon2.xml"/>
@@ -16,6 +17,7 @@
 <Map file="resource/Maps/Dungeon6.xml"/>
 <Map file="resource/Maps/Dungeon7.xml"/>
 <Map file="resource/Maps/Dungeon8.xml"/>
+</COMMENT>
 
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
 <Map file="resource/Maps/SnowMapFinal2.xml"/>
@@ -29,15 +31,18 @@
 
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
 <Map file="resource/Maps/ForestLowerLeft.xml"/>
+<Map file="resource/Maps/ForestLowerRight.xml"/>
 
 <Map file="resource/Maps/Lake1.xml"/>
 
+<COMMENT>
 <Map file="resource/Maps/Desert1.xml"/>
 <Map file="resource/Maps/Desert2.xml"/>
 <Map file="resource/Maps/Desert3.xml"/>
 <Map file="resource/Maps/Desert4.xml"/>
 <Map file="resource/Maps/DesertEntrance.xml"/>
 <Map file="resource/Maps/DesertTown.xml"/>
+</COMMENT>
 
 </WorldEngine>
 

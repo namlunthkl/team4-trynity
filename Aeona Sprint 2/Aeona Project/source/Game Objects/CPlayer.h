@@ -31,6 +31,8 @@ public:
 	bool			m_bPhilCharging;
 	bool			m_bPhilSpecialAttack;
 	float			m_fPhilChargeIdkman;
+	bool			m_bHasFlower;
+	unsigned int	m_uiGems;
 
 private:
 	bool			m_bHeartPiece;
@@ -141,7 +143,8 @@ public:
 	inline unsigned int GetCurrentAmulet(void) const { return m_uiCurrentMask; }
 	inline float GetOuchTimer(void) const { return m_fOuchTimer; }
 	inline void SetOuchTimer(float fOuchTimer) { m_fOuchTimer = fOuchTimer; }
-
+	inline void AcquireFlower(void) { m_bHasFlower = true; }
+	inline bool HasFlower(void) { return m_bHasFlower; }
 };
 
 #endif // C_PLAYER_H_

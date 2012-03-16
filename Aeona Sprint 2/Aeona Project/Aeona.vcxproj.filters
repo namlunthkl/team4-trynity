@@ -298,6 +298,9 @@
     <ClCompile Include="source\Weapons\CTornado.cpp">
       <Filter>Object Hierarchy\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="source\Game Objects\CGrimirNPC.cpp">
+      <Filter>Object Hierarchy\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -573,6 +576,9 @@
     </ClInclude>
     <ClInclude Include="source\Weapons\CTornado.h">
       <Filter>Object Hierarchy\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game Objects\CGrimirNPC.h">
+      <Filter>Object Hierarchy\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

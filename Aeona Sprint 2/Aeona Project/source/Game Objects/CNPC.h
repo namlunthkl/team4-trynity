@@ -20,8 +20,9 @@ class CNPC : public CBaseCharacter , public IListener
 	//	NPC's speech
 	string			m_szText;
 	CDialogueList	m_Dialogue;
-	tSpeechNode*	m_pCurrentSpeech;
-	int				m_nCurrentOption;
+
+
+	
 	//	Range for the NPC to say something
 	double			m_dRange;
 	//	Should the NPC be talking?
@@ -38,20 +39,25 @@ class CNPC : public CBaseCharacter , public IListener
 	unsigned int	m_uiTextIndex;
 	DWORD			m_dwTimeStamp;
 
+protected:
+	CDialogueList*	m_pCurrentDialogue;
+	tSpeechNode*	m_pCurrentSpeech;
+	int				m_nCurrentOption;
+
 public:
 	// Constructor
 	CNPC(const char* szName = "noname", bool bActiveTalk = false, double dRange = 0, int sndNPC = -1,
 		double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
 		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0);
-	~CNPC();
+	virtual ~CNPC();
 	// Load NPC's speech
-	void LoadText(char const * const szFilename);
+	virtual void LoadText(char const * const szFilename);
 
 	// Common routines
-	void Update(float fElapsedTime);
-	void Render(void);
-	void Input(void);
+	virtual void Update(float fElapsedTime);
+	virtual void Render(void);
+	virtual void Input(void);
 	inline unsigned int GetType(void) const { return TYPE_CHAR_NPC; }
 	void HandleEvent(CEvent* pEvent);
 };

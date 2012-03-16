@@ -35,6 +35,8 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 	
 	m_pCurrentSpeech = nullptr;
 	m_nCurrentOption = -1;
+
+	m_pCurrentDialogue = nullptr;
 }
 CNPC::~CNPC()
 {
@@ -107,7 +109,8 @@ void CNPC::LoadText(char const * const szFilename)
 		xConnection = xConnection->NextSiblingElement("Connection");
 	}
 
-	m_pCurrentSpeech = m_Dialogue[0];
+	m_pCurrentDialogue = &m_Dialogue;
+	m_pCurrentSpeech = (*m_pCurrentDialogue)[0];
 	m_nCurrentOption = 0;
 }
 
@@ -172,7 +175,7 @@ void CNPC::Input(void)
 
 			if(dDistance < m_dRange)
 			{
-				m_pCurrentSpeech = m_Dialogue[0];
+				m_pCurrentSpeech = (*m_pCurrentDialogue)[0];
 				m_bTalk = true;
 				m_uiTextIndex = 0;
 				CPlayer::GetInstance()->LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC();
