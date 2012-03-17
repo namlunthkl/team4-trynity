@@ -7,12 +7,16 @@
 #include "StdAfx.h"
 #include "CTornado.h"
 #include "../Game Objects/CEnemy.h"
+#include "../Game Objects/CPlayer.h"
 #include "../Game Objects/CObjectManager.h"
 #include "../Weapons/CCrossBow.h"
 #include "../Messaging/CMessageSystem.h"
 #include "../Messaging/CEventSystem.h"
 CTornado::CTornado()
 {
+	SetHeight(40);
+	SetWidth(32);
+	SetImageID(TEX_MNG->LoadTexture("resource/Tornado.png"));
 	timeout = 0;
 }
 void CTornado::Update(float fElapsedTime)
@@ -40,9 +44,11 @@ bool CTornado::CheckCollision(IBaseInterface* pObject)
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
-		if(pObject->GetType() == TYPE_CHAR_ENEMY)
-		//	((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-
+		if(pObject->GetType() == TYPE_CHAR_PLAYER)
+		{
+			((CPlayer*)pObject)->SufferDamage(1);
+			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		}
 		//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
 		//{
 		//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));

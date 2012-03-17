@@ -33,8 +33,7 @@ void CBossEarthAI::Enter(CBaseCharacter* pCharacter)
 
 	pCharacter->m_bSpecial = false;
 	pCharacter->m_uiSpecialCounter = 0;
-	pCharacter->SetSpeed(350);
-
+	pCharacter->SetSpeed(120);
 	//	0 - GetWhacked
 	//	1 - WhackedPause
 	//	2 - SittingStill
@@ -117,8 +116,17 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			else
 			{
-				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 2 );
+				//	Before leaving, let's see if the player is close enough for us to lunge at him!
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 24 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 24) || (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 24 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 24) )
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 5 );
+				}
+				else
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 4 );
+				}
 			}
 			break;
 		}
@@ -126,7 +134,7 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 		{
 		if( pCharacter->GetMoveTimer() == 0.0f )
 			{
-				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
+				//pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 				//	HACK directly check whether the player is nearby or not, below.
 				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) )
@@ -180,8 +188,16 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			else
 			{
-				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 4 );
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 24 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 24) || (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 24 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 24) )
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 5 );
+				}
+				else
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 4 );
+				}
 			}
 			break;
 		}
@@ -217,11 +233,9 @@ void CBossEarthAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 					pCharacter->SetMiniState( 2 );
 					break;
 				}
-				pCharacter->m_bSpecial = true;	//	All this does is make him render the 'special' frames, not normal walk cycles.
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment timer.
 				pCharacter->SetVelX( pCharacter->GetVelX() * 1.4f );
 				pCharacter->SetVelY( pCharacter->GetVelY() * 1.4f );
-				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;	//	Cycle the rolling rock animation
 			}
 			else if( pCharacter->GetMoveTimer() < 0.25f )	//	Short roll for this long
 			{

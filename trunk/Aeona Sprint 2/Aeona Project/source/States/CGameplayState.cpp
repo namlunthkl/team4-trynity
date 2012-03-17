@@ -102,19 +102,23 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
-	PLAYER->SetPosX(4608);
-	PLAYER->SetPosY(7100);
-	PLAYER->SetSpeed(150);
+	PLAYER->SetPosX(1536);
+	PLAYER->SetPosY(3013);
+	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(20);
+#ifdef _DEBUG
+	PLAYER->SetMaxHealth(10);
+	PLAYER->SetCurHealth(10);
+#endif
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
-	CFinalBoss* BOSS = new CFinalBoss(1519, 595, 40,  -1, 100, 100, true, 75, 1);
-	BOSS->LoadAnimations("resource/Red Enemy Animation.xml");
+	CFinalBoss* BOSS = new CFinalBoss(1519, 595, 40,  -1, 32, 32, true, 100, 1);
+	BOSS->LoadAnimations("resource/Grey Enemy Animation.xml");
 	BOSS->ChangeAIState(CBossFireAI::GetInstance());
-	BOSS->SetDebugMode(true);
+	BOSS->SetDebugMode(false);
 	OBJECTS->AddObject(BOSS);
 	BOSS->Release();
 

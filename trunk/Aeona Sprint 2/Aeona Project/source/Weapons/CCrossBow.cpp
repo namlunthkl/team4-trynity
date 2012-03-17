@@ -16,10 +16,7 @@ CCrossBow::CCrossBow()
 	SetAttacking(false);
 	m_pArrow = NULL;
 	//m_fTime = 0;
-
 	m_imgArrow = TEX_MNG->LoadTexture("resource/BlueArrow.png", D3DCOLOR_XRGB(0,0,0));
-
-
 	SetSound(new Sound("resource/sound/Bow.wav"));
 
 	m_fSlashTimer = 0.0f;
@@ -40,19 +37,21 @@ void CCrossBow::Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO)
 }
 void CCrossBow::Update(float fElapsedTime)
 {
+	
 	CBaseCharacter::Update(fElapsedTime);
 
-	if( GetAttacking() == true )
+	if(GetAttacking() == true)
 	{
-		m_fSlashTimer += fElapsedTime;
+		m_fSlashTimer+= fElapsedTime;
 	}
 	else
 	{
-		if( CPlayer::GetInstance()->m_bPhilCharging == true )
+		if(CPlayer::GetInstance()->m_bPhilCharging == true)
 		{
 			CPlayer::GetInstance()->m_fPhilChargeIdkman += fElapsedTime;
 		}
 	}
+
 }
 void CCrossBow::Attack(void)
 {
@@ -61,13 +60,17 @@ void CCrossBow::Attack(void)
 	{
 		GetSound()->Play();
 		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
+		{
+			//m_fSlashTimer = 0.0f;
 			ShootArrow();
+		}
 	}
 }
 void CCrossBow::ChargedAttack(void)
 {
 
 }
+
 RectD CCrossBow::GetCollisionRect(void)
 {
 	RectD rectCollision;
@@ -165,10 +168,11 @@ RectD CCrossBow::GetCollisionRect(void)
 	}
 	return rectCollision;
 }
+
 void CCrossBow::ShootArrow(void)
 {
 	m_pArrow = new CArrow();
-	m_pArrow->SetSpeed(585);
+	m_pArrow->SetSpeed(580);
 	m_pArrow->SetImageID(m_imgArrow);
 	m_pArrow->SetHeight(128);
 	m_pArrow->SetWidth(32);
