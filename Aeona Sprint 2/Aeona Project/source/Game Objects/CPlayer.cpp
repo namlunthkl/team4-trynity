@@ -31,7 +31,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_bHasFlower = false;
 	m_uiGems = 0;
 
-#if 0
+#if 1
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
