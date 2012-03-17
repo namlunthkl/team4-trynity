@@ -45,3 +45,7 @@ CREDITS
 FRAMERATE
 ======================
 increases with speed mask, slows down without
+
+PARTICLES
+======================
+sandstorm repeats and doesn't look good.
