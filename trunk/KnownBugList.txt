@@ -31,3 +31,6 @@ CREDITS
 ===================
 Screen scrolls one Pixel, then goes back.
 
+FRAMERATE
+======================
+increases with speed mask, slows down without
