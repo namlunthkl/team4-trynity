@@ -65,12 +65,12 @@
 <Option text="Nooo!  Not another fetch quest!"/>
 </SpeechNode>
 
-<SpeechNode text="Well, give me that flower, it has the properties I need to unlock the enchantment of this sword!  It is called the Ryza blade, it is one of 3 weapons left behind by the Gods to defeat Rann.  Only a true Hero can collect these becons of strength. The first weapon you are holding is very destructive, you can clear many obstacles in your path and harm dangerous creatures.  To get the next weapon, you need to climb the mountain in west and acquire a great hammer!" name="Grimir2_5">
+<SpeechNode text="Well, give me that flower, it has the properties I need to unlock the enchantment of this sword!  It is called the Ryza blade, it is one of 3 weapons left behind by the Gods to defeat Rann.  Only a true Hero can collect these becons of strength. The first weapon you are holding is very destructive, can clear many obstacles in your path and harm dangerous creatures.  To get the next weapon, you need to climb the mountain in the west and acquire a great hammer!" name="Grimir2_5">
 <Option text="I will, Grandfather, I will make you proud!"/>
 </SpeechNode>
 
 <SpeechNode text="Go forth, take this mighty blade, and seek the other weapons." name="Grimir2_6">
-<Option text="I will!"/>
+<Option text="To the Moutain!"/>
 </SpeechNode>
 
 
@@ -89,32 +89,17 @@
 </Dialogue>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <Dialogue>
 
-<SpeechNode text="Why are you still here? Go look for other weapons." name="GetOut">
+<SpeechNode text="Wow!  You have the other weapon." name="Grimir3_1">
+<Option text="Of Course!  Where to next?"/>
 </SpeechNode>
 
+<SpeechNode text="Travel West, in the Land of Sand, there is another weapon to pierce the heart of all enemies from a great distance.  But be careful, the desert doesn't play nice to any unwanted traveler." name="Grimir3_1">
+<Option text="I will be careful Grandfather!"/>
+</SpeechNode>
+
+<Connection speechA="Grimir3_1" option="1" speechB="Grimir3_2"/>
 
 </Dialogue>
 
