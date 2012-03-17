@@ -26,3 +26,8 @@ SAVING LOADING
 ===================
 - Saving and loading is messed up
 
+
+CREDITS
+===================
+Screen scrolls one Pixel, then goes back.
+
