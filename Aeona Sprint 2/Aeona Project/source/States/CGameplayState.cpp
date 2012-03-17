@@ -106,9 +106,11 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
+	PLAYER->SetPosX(1504);
+	PLAYER->SetPosY(2720);
 	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
-	PLAYER->SetPosX(6144+512);
-	PLAYER->SetPosY(8192-512);
+	//PLAYER->SetPosX(6144+512);
+	//PLAYER->SetPosY(8192-512);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -291,7 +293,7 @@ void CGameplayState::Render(void)
 	///////////////////////////
 	//END ARI EXTRA CODE
 	///////////////////////////
-	D3D->Clear(50,50,50);
+	D3D->Clear(0,0,0);
 	//ARI EXTRA CODE
 	CCameraControl::GetInstance()->SetSpriteProjection();
 	//END ARI EXTRA CODE
