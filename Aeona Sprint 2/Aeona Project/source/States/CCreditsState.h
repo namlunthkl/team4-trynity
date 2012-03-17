@@ -26,6 +26,8 @@ private:
 	~CCreditsState();
 
 public:
+	float m_fWhatever;
+
 	//	Singleton
 	static CCreditsState* GetInstance();
 	static void DeleteInstance();
