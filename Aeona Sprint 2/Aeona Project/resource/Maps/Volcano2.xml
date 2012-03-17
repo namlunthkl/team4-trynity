@@ -1558,7 +1558,7 @@
       <Tile PosX="2" PosY="14" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="9" PosY="2" Type="0" Event="" />
+      <Tile PosX="9" PosY="2" Type="0" Event="NPC.Blacksmith" />
       <Tile PosX="10" PosY="2" Type="0" Event="" />
       <Tile PosX="10" PosY="2" Type="0" Event="" />
       <Tile PosX="11" PosY="2" Type="0" Event="" />
