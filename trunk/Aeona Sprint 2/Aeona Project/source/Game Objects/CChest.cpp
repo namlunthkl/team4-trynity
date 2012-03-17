@@ -47,8 +47,11 @@ void CChest::Input(void)
 }
 CChest::~CChest()
 {
-	AUDIO->SFXStopSound(m_sndChest);
-	AUDIO->SFXUnloadSound(m_sndChest);
+	if(AUDIO->SFXIsSoundPlaying(m_sndChest))
+	{
+		AUDIO->SFXStopSound(m_sndChest);
+		AUDIO->SFXUnloadSound(m_sndChest);
+	}
 }
 void CChest::OpenChest(void)
 {
