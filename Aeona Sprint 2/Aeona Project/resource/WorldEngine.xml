@@ -7,6 +7,7 @@
 <Tileset file="resource/Tilesets/LakeTileset.xml"/>
 <Tileset file="resource/Tilesets/DesertTiles.xml"/>
 <Tileset file="resource/Tilesets/DesertMaze.xml"/>
+<Tileset file="resource/Tilesets/VolcanoTileset.xml"/>
 
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
@@ -47,6 +48,9 @@
 <Map file="resource/Maps/DesertOasis.xml"/>
 <Map file="resource/Maps/DesertMaze.xml"/>
 
+
+<Map file="resource/Maps/Volcano1.xml"/>
+<Map file="resource/Maps/Volcano2.xml"/>
 
 </WorldEngine>
 
