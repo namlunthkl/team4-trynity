@@ -1674,7 +1674,7 @@
       <Tile PosX="5" PosY="11" Type="0" Event="" />
       <Tile PosX="5" PosY="11" Type="0" Event="" />
       <Tile PosX="5" PosY="11" Type="0" Event="" />
-      <Tile PosX="5" PosY="11" Type="0" Event="" />
+      <Tile PosX="5" PosY="11" Type="0" Event="NPC.Nulien" />
       <Tile PosX="5" PosY="11" Type="0" Event="" />
       <Tile PosX="3" PosY="37" Type="0" Event="" />
       <Tile PosX="0" PosY="35" Type="0" Event="" />
@@ -1691,7 +1691,7 @@
       <Tile PosX="21" PosY="6" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
-      <Tile PosX="21" PosY="6" Type="0" Event="" />
+      <Tile PosX="21" PosY="6" Type="0" Event="NPC.Rulo" />
       <Tile PosX="16" PosY="21" Type="0" Event="" />
       <Tile PosX="17" PosY="21" Type="0" Event="" />
       <Tile PosX="18" PosY="21" Type="0" Event="" />
@@ -1718,7 +1718,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
-      <Tile PosX="21" PosY="6" Type="0" Event="" />
+      <Tile PosX="21" PosY="6" Type="0" Event="NPC.Miraz" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
       <Tile PosX="21" PosY="6" Type="0" Event="" />
@@ -1812,7 +1812,7 @@
       <Tile PosX="5" PosY="36" Type="0" Event="" />
       <Tile PosX="5" PosY="11" Type="0" Event="" />
       <Tile PosX="5" PosY="11" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="NPC.Sanei" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="16" PosY="4" Type="0" Event="" />
@@ -1850,7 +1850,7 @@
       <Tile PosX="16" PosY="5" Type="0" Event="" />
       <Tile PosX="17" PosY="5" Type="0" Event="" />
       <Tile PosX="18" PosY="5" Type="0" Event="" />
-      <Tile PosX="22" PosY="6" Type="0" Event="" />
+      <Tile PosX="22" PosY="6" Type="0" Event="NPC.Zemba" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
