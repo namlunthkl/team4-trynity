@@ -14,6 +14,7 @@ CCreditsState* CCreditsState::m_pInstance = NULL;
 
 CCreditsState::CCreditsState()
 {
+	m_fWhatever = 0.0f;
 }
 
 CCreditsState::~CCreditsState()
@@ -41,6 +42,7 @@ void CCreditsState::DeleteInstance()
 void CCreditsState::Enter()
 {
 	pFont = new CBitmapFont;
+	m_fWhatever = 0.0f;
 }
 
 void CCreditsState::Exit()
@@ -64,21 +66,24 @@ bool CCreditsState::Input()
 
 void CCreditsState::Update(float fElapsedTime)
 {
+	m_fWhatever += fElapsedTime*10;
+	if(m_fWhatever > 510.0f)
+		m_fWhatever = 510.0f;
 }
 
 void CCreditsState::Render()
 {
-	pFont->Write("PROGRAMMING BY", 24, 1 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Ari Bodaghee", 32, 2 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Daniel Lima", 32, 3 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Bryan Schotanes", 32, 4 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Phil Sullivan", 32, 5 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("MUSIC BY", 24, 7 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Kim Stennabb Caesar", 32, 8 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("LED BY", 24, 10 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("John OLeske", 32, 11 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Rob Martinez", 32, 12 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Shawn Paris", 32, 13 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Sean Hathaway", 32, 14 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Press Enter", 32, 16 * pFont->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("PROGRAMMING BY", 24, 1 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Ari Bodaghee", 32, 2 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Daniel Lima", 32, 3 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Bryan Schotanes", 32, 4 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Phil Sullivan", 32, 5 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("MUSIC BY", 24, 7 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Kim Stennabb Caesar", 32, 8 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("LED BY", 24, 10 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("John OLeske", 32, 11 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Rob Martinez", 32, 12 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Shawn Paris", 32, 13 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Sean Hathaway", 32, 14 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Press Enter", 32, 16 * pFont->GetCharHeight() -m_fWhatever, D3DCOLOR_XRGB(255, 255, 255));
 }

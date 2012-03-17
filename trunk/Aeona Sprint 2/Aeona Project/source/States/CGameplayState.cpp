@@ -103,6 +103,7 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
+	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
 	PLAYER->SetPosX(6144+512);
 	PLAYER->SetPosY(8192-512);
 	PLAYER->SetSpeed(200);
