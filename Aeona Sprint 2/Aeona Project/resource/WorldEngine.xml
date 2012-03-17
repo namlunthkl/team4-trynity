@@ -35,14 +35,15 @@
 
 <Map file="resource/Maps/Lake1.xml"/>
 
-<COMMENT>
 <Map file="resource/Maps/Desert1.xml"/>
 <Map file="resource/Maps/Desert2.xml"/>
 <Map file="resource/Maps/Desert3.xml"/>
 <Map file="resource/Maps/Desert4.xml"/>
 <Map file="resource/Maps/DesertEntrance.xml"/>
 <Map file="resource/Maps/DesertTown.xml"/>
-</COMMENT>
+<Map file="resource/Maps/DesertOasis.xml"/>
+<Map file="resource/Maps/DesertMaze.xml"/>
+
 
 </WorldEngine>
 
