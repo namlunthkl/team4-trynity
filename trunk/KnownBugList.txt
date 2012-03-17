@@ -3,13 +3,12 @@ NPC DIALOG
 - Speech pattern continues past the visible dialog box so you can't read the rest of the words.
 - Sanei doesn't finish his text
 - Grimir speech doesnt work properly and give you directions on how what to do.
-- Zemba has a TYeah when you select Disagree.
+- Zemba says "TYeah" when you select Disagree instead of "Yeah."
 
 
 COLLISION
 ==================
-- Possible to break collision when using the speed mask if frame rate decrases
-
+- Possible to break collision when using the speed mask
 MAP
 ==================
 - Missing zones
