@@ -7,18 +7,14 @@
 <Option text="EarthStrom?  You pronounced it-"/>
 </SpeechNode>
 
-<SpeechNode text="Well, be careful because that God Weapon won't let just anyone pass through.  You must be a true Hero and overcome the EarthStrom."name="Rulo2">
+<SpeechNode text="Well, be careful because that God Weapon won't let just anyone pass through.  You must be a true Hero and overcome the EarthStrom." name="Rulo2">
 </SpeechNode>
 
-<SpeechNode text="Yeah, I know how you think it's supposed to be announciated.  We call it STROM instead of storm because that used to be the name of a mighty warrior."name="RuloA">
+<SpeechNode text="Yeah, I know how you think it's supposed to be announciated.  We call it STROM instead of storm because that used to be the name of a mighty warrior." name="RuloA">
 <Option text="Mighty Warrior?"/>
 </SpeechNode>
 
-<SpeechNode text="Strom conquered all, but his quest for power never splintered.
-He seeked a great weapon of the Gods and ended up
-losing his way through the SandStorm.  He was defeated
-and now all townsfolk refer to the SandStorm as "The Strom."
-"name="RuloB">
+<SpeechNode text="Strom conquered all, but his quest for power never splintered. He seeked a great weapon of the Gods and ended up losing his way through the SandStorm.  He was defeated and now all townsfolk refer to the SandStorm as 'The Strom.'" name="RuloB">
 <Option text="I seek the same Weapon"/>
 </SpeechNode>
 
@@ -29,6 +25,7 @@ and now all townsfolk refer to the SandStorm as "The Strom."
 <Connection speechA="RuloB" option="1" speechB="Rulo2"/>
 
 </Dialogue>
+
 
 
 
