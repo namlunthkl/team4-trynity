@@ -1,0 +1,7 @@
+NPC DIALOG
+==================
+Speech pattern continues past the visible dialog box so you can't read the rest of the words.
+Sanei doesn't finish his text
+Grimir speech doesnt work.
+Rulo crashes game.
+Zemba has a TYeah when you select Disagree.
