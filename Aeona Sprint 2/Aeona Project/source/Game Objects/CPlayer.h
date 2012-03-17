@@ -33,10 +33,11 @@ public:
 	float			m_fPhilChargeIdkman;
 	bool			m_bHasFlower;
 	unsigned int	m_uiGems;
+	float			m_fOuchTimer;
 
 private:
 	bool			m_bHeartPiece;
-	float			m_fOuchTimer;
+	
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 
