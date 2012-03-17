@@ -50,6 +50,7 @@ void CDagger::Update(float fElapsedTime)
 void CDagger::Attack(void)
 {
 	SetAttacking(true);
+	CPlayer::GetInstance()->SetAttackDamage(16);
 	if(m_fSlashTimer == 0.0f)
 		GetSound()->Play();
 }

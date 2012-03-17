@@ -56,6 +56,7 @@ void CCrossBow::Update(float fElapsedTime)
 void CCrossBow::Attack(void)
 {
 	SetAttacking(true);
+	CPlayer::GetInstance()->SetAttackDamage(15);
 	if(m_fSlashTimer == 0.0f)
 	{
 		GetSound()->Play();
