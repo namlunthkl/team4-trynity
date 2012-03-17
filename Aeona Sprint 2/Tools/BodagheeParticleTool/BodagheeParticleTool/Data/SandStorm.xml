@@ -2,13 +2,13 @@
 <Particle>
   <ImageFile>Puff2.png</ImageFile>
   <Continuous>1</Continuous>
-  <Reanimate>1</Reanimate>
+  <Reanimate>0</Reanimate>
   <EmitterPosX>-200</EmitterPosX>
   <EmitterPosY>-50</EmitterPosY>
-  <MaxParticles>800</MaxParticles>
+  <MaxParticles>500</MaxParticles>
   <Size>5</Size>
-  <MaxLife>20</MaxLife>
-  <SpawnWidth>1</SpawnWidth>
+  <MaxLife>5</MaxLife>
+  <SpawnWidth>800</SpawnWidth>
   <SpawnHeight>600</SpawnHeight>
   <ScaleStart>5</ScaleStart>
   <ScaleEnd>5</ScaleEnd>
@@ -31,5 +31,5 @@
   <GravPosY>0</GravPosY>
   <GravPower>0</GravPower>
   <GravDistX>-0</GravDistX>
-  <GravDistY>-0</GravDistY>
+  <GravDistY>0</GravDistY>
 </Particle>
