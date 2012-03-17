@@ -88,6 +88,8 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("victory", this);
 	EVENTS->RegisterForEvent("get.flower", this);
 	EVENTS->RegisterForEvent("get.hammer", this);
+	EVENTS->RegisterForEvent("Teleport.Dungeon", this);
+	EVENTS->RegisterForEvent("Teleport.Volcano", this);
 
 	//	Load all assets
 	//		Textures
@@ -601,6 +603,16 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetPosY(-1);
 		eventInfo->Tile->SetInfo(0);
 		eventInfo->Tile->SetEventID(0);
+	}
+	if(pEvent->GetEventID() == "Teleport.Dungeon")
+	{
+		PLAYER->SetPosX(1504);
+		PLAYER->SetPosY(2720);
+	}
+	if(pEvent->GetEventID() == "Teleport.Volcano")
+	{
+		PLAYER->SetPosX(4704);
+		PLAYER->SetPosY(1696);
 	}
 	if(pEvent->GetEventID() == "game.over")
 		m_bGameOver = true;
