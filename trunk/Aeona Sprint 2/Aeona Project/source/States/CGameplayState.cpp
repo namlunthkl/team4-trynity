@@ -87,6 +87,7 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("game.over", this);
 	EVENTS->RegisterForEvent("victory", this);
 	EVENTS->RegisterForEvent("get.flower", this);
+	EVENTS->RegisterForEvent("get.hammer", this);
 
 	//	Load all assets
 	//		Textures
@@ -587,6 +588,18 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 		eventInfo->Tile->SetEventID(0);
 
 		eventInfo->Map->TurnOffCollisionOnTile(eventInfo->sMapPosX, eventInfo->sMapPosY);
+	}
+	if(pEvent->GetEventID() == "get.hammer")
+	{
+		PLAYER->AquireWeapon(CPlayer::WEAPON_HAMMER);
+		PLAYER->CycleWeapon();
+
+		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
+
+		eventInfo->Tile->SetPosX(-1);
+		eventInfo->Tile->SetPosY(-1);
+		eventInfo->Tile->SetInfo(0);
+		eventInfo->Tile->SetEventID(0);
 	}
 	if(pEvent->GetEventID() == "game.over")
 		m_bGameOver = true;
