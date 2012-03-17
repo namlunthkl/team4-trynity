@@ -106,19 +106,19 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
-	PLAYER->SetPosX(1504);
-	PLAYER->SetPosY(2720);
+	//PLAYER->SetPosX(1504);
+	//PLAYER->SetPosY(2720);
 	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
-	//PLAYER->SetPosX(6144+512);
-	//PLAYER->SetPosY(8192-512);
+	PLAYER->SetPosX(6144+512);
+	PLAYER->SetPosY(8192-512);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(18);
-#ifdef _DEBUG
-	PLAYER->SetMaxHealth(10);
-	PLAYER->SetCurHealth(10);
-#endif
+//#ifdef _DEBUG
+//	PLAYER->SetMaxHealth(10);
+//	PLAYER->SetCurHealth(10);
+//#endif
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
@@ -129,20 +129,20 @@ void CGameplayState::Enter(void)
 	OBJECTS->AddObject(BOSS);
 	BOSS->Release();
 
-	CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2->ChangeAIState(CRatAIState::GetInstance());
-	pEnemy2->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2);
-	pEnemy2->Release();
-
-
-	CEnemy* pEnemy2f = new CEnemy(850, 600, 40,  -1, 50, 50, true, 75, 1);
-	//pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
-	pEnemy2f->ChangeAIState(CRatAIState::GetInstance());
-	pEnemy2f->SetDebugMode(false);
-	OBJECTS->AddObject(pEnemy2f);
-	pEnemy2f->Release();
+	//CEnemy* pEnemy2 = new CEnemy(850, 570, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2->ChangeAIState(CRatAIState::GetInstance());
+	//pEnemy2->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2);
+	//pEnemy2->Release();
+	//
+	//
+	//CEnemy* pEnemy2f = new CEnemy(850, 600, 40,  -1, 50, 50, true, 75, 1);
+	////pEnemy2->LoadAnimations("resource/Grey Enemy Animation.xml");
+	//pEnemy2f->ChangeAIState(CRatAIState::GetInstance());
+	//pEnemy2f->SetDebugMode(false);
+	//OBJECTS->AddObject(pEnemy2f);
+	//pEnemy2f->Release();
 
 	
 	// Initialize Camera and post process

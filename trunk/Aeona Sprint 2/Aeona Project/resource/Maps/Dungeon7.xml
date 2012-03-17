@@ -720,8 +720,8 @@
       <Tile PosX="6" PosY="14" Type="0" Event="" />
       <Tile PosX="6" PosY="14" Type="0" Event="" />
       <Tile PosX="6" PosY="14" Type="128" Event="" />
-      <Tile PosX="7" PosY="0" Type="0" Event="" />
-      <Tile PosX="7" PosY="0" Type="0" Event="" />
+      <Tile PosX="7" PosY="0" Type="32" Event="Teleport.Volcano" />
+      <Tile PosX="7" PosY="0" Type="32" Event="Teleport.Volcano" />
       <Tile PosX="6" PosY="14" Type="128" Event="" />
       <Tile PosX="6" PosY="14" Type="0" Event="" />
       <Tile PosX="6" PosY="14" Type="0" Event="" />
