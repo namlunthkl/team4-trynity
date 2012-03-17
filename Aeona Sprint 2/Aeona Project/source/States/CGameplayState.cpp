@@ -112,7 +112,7 @@ void CGameplayState::Enter(void)
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
-	PLAYER->SetAttackDamage(20);
+	PLAYER->SetAttackDamage(18);
 #ifdef _DEBUG
 	PLAYER->SetMaxHealth(10);
 	PLAYER->SetCurHealth(10);

@@ -51,6 +51,7 @@ void CSword::Update(float fElapsedTime)
 void CSword::Attack(void)
 {
 	SetAttacking(true);
+	CPlayer::GetInstance()->SetAttackDamage(24);
 	if(m_fSlashTimer == 0.0f)
 		GetSound()->Play();
 }

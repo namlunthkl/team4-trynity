@@ -51,6 +51,7 @@ void CHammer::Update(float fElapsedTime)
 void CHammer::Attack(void)
 {
 	SetAttacking(true);
+	CPlayer::GetInstance()->SetAttackDamage(50);
 	if(m_fSlashTimer == 0.0f)
 		GetSound()->Play();
 }
