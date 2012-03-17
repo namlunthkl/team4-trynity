@@ -7,14 +7,14 @@
 
 void CFinalTorchPuzzleThatBernWantedButDanielMade::Create(unsigned int uiArgCount, char* szEventToFire, char* szEventToListenTo, bool bSequential)
 {
-	torchPositions[0].x = 1312;
-	torchPositions[0].y = 1280;
-	torchPositions[1].x = 1760;
-	torchPositions[1].y = 1280;
-	torchPositions[2].x = 1312;
-	torchPositions[2].y = 1664;
-	torchPositions[3].x = 1760;
-	torchPositions[3].y = 1664;
+	torchPositions[0].x = 1272;
+	torchPositions[0].y = 1264;
+	torchPositions[1].x = 1718;
+	torchPositions[1].y = 1264;
+	torchPositions[2].x = 1272;
+	torchPositions[2].y = 1644;
+	torchPositions[3].x = 1718;
+	torchPositions[3].y = 1644;
 
 	CTorchPuzzle::Create(uiArgCount, szEventToFire, szEventToListenTo, bSequential);
 }

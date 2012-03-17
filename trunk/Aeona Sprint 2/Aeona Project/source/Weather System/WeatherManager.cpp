@@ -143,7 +143,7 @@ void CWeatherManager::LoadWeather(void)
 }
 void CWeatherManager::SetWeatherPattern(void)
 {
-	if( GetTime() > GetTimeToWait() )
+	if( GetTime() > GetTimeToWait())
 	{
 		switch( m_nCurrRegion )
 		{
