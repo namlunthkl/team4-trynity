@@ -6,8 +6,8 @@
 <Tileset file="resource/Tilesets/forestTileset.xml"/>
 <Tileset file="resource/Tilesets/LakeTileset.xml"/>
 <Tileset file="resource/Tilesets/DesertTiles.xml"/>
+<Tileset file="resource/Tilesets/DesertMaze.xml"/>
 
-<COMMENT>
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
 <Map file="resource/Maps/Dungeon2.xml"/>
@@ -17,7 +17,6 @@
 <Map file="resource/Maps/Dungeon6.xml"/>
 <Map file="resource/Maps/Dungeon7.xml"/>
 <Map file="resource/Maps/Dungeon8.xml"/>
-</COMMENT>
 
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
 <Map file="resource/Maps/SnowMapFinal2.xml"/>
