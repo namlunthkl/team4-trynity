@@ -156,7 +156,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 1:
 					{
 						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -164,7 +164,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( RAIN );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -172,7 +172,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 3:
 					{
 						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -180,7 +180,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 4:
 					{
 						SetTypeOfWeather( LEAVES );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -188,7 +188,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 5:
 					{
 						SetTypeOfWeather( FOG );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -205,7 +205,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 1:
 					{
 						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -213,7 +213,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( SNOW );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -221,7 +221,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 3:
 					{
 						SetTypeOfWeather( FOG );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -233,7 +233,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			{
 				CPostProcess::GetInstance()->index = 5;
 				SetTypeOfWeather( CLEAR );
-				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				SetTimeToWait( 10.0f );
 				LoadWeather();
 				SetTime( 0.0f );
 			}
@@ -242,7 +242,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			{
 				CPostProcess::GetInstance()->index = 5;
 				SetTypeOfWeather( SAND );
-				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				SetTimeToWait( 10.0f );
 				LoadWeather();
 				SetTime( 0.0f );
 			}
@@ -251,7 +251,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			{
 				CPostProcess::GetInstance()->index = 4;
 				SetTypeOfWeather( EMBER );
-				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				SetTimeToWait( 10.0f );
 				LoadWeather();
 				SetTime( 0.0f );
 
@@ -261,7 +261,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			{
 				CPostProcess::GetInstance()->index = 4;
 				SetTypeOfWeather( EMBER );
-				SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+				SetTimeToWait( 10.0f );
 				LoadWeather();
 				SetTime( 0.0f );
 			}
@@ -275,7 +275,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 1:
 					{
 						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -283,7 +283,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( FOG );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -300,7 +300,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 1:
 					{
 						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -308,7 +308,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( RAIN );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -316,7 +316,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 3:
 					{
 						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -324,7 +324,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 4:
 					{
 						SetTypeOfWeather( FOG );
-						SetTimeToWait( RandomFloat( 2.0f, 5.0f ) );
+						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
