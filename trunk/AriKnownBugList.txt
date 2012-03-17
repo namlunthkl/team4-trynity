@@ -1,14 +1,28 @@
 NPC DIALOG
 ==================
-Speech pattern continues past the visible dialog box so you can't read the rest of the words.
-Sanei doesn't finish his text
-Grimir speech doesnt work properly.
-Zemba has a TYeah when you select Disagree.
+- Speech pattern continues past the visible dialog box so you can't read the rest of the words.
+- Sanei doesn't finish his text
+- Grimir speech doesnt work properly.
+- Zemba has a TYeah when you select Disagree.
 
+
+
+COLLISION
+==================
 - Possible to break collision when using the speed mask if frame rate decrases
+
+MAP
+==================
 - Missing zones
 - Possible to see and go to black spaces sometimes
+
+
+ITEMS PICKUP
+===================
 - Can't pick the wind bow on the desert
 - Chest gives you more apples than it should
 
+
+SAVING LOADING
+===================
 - Saving and loading is messed up
