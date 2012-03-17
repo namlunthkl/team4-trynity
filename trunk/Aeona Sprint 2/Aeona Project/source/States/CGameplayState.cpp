@@ -90,6 +90,7 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("get.hammer", this);
 	EVENTS->RegisterForEvent("Teleport.Dungeon", this);
 	EVENTS->RegisterForEvent("Teleport.Volcano", this);
+	EVENTS->RegisterForEvent("Teleport.Lake", this);
 
 	//	Load all assets
 	//		Textures
@@ -613,6 +614,11 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	{
 		PLAYER->SetPosX(4704);
 		PLAYER->SetPosY(1696);
+	}
+	if(pEvent->GetEventID() == "Teleport.Lake")
+	{
+		PLAYER->SetPosX(4000);
+		PLAYER->SetPosY(4736);
 	}
 	if(pEvent->GetEventID() == "game.over")
 		m_bGameOver = true;
