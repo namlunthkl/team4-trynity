@@ -947,13 +947,16 @@ void CGameplayState::RenderHUD()
 	r1.bottom = 64+96;
 
 	//	Draw the minimap frame
-	if(GAME->GetMapLocation() == 0)
+	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
 	{
-		TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &r1);
-	}
-	else
-	{
-		TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
+		if(GAME->GetMapLocation() == 0)
+		{
+			TEX_MNG->Draw(m_imgHUD, 4, 600-96-4, 1.0f, 1.0f, &r1);
+		}
+		else
+		{
+			TEX_MNG->Draw(m_imgHUD, 800-96-4, 600-96-4, 1.0f, 1.0f, &r1);
+		}
 	}
 }
 
