@@ -65,7 +65,7 @@ void CFinalBoss::Die(void)
 	else if(m_nCurrentBossState == BOSS_WIND)
 	{
 		ChangeAIState(CBossDaggerAI::GetInstance());
-		SetCurHealth(GetMaxHealth());
+		SetCurHealth(20);
 		m_nCurrentBossState++;
 	}
 	else if(m_nCurrentBossState == BOSS_DAGGER)
@@ -73,7 +73,7 @@ void CFinalBoss::Die(void)
 }
 void CFinalBoss::Render()
 {
-	if(m_fOuchTimer == 0.0f )
+	if(m_uiMiniState !=  0)
 	{
 		if(m_nCurrentBossState == BOSS_FIRE)
 		{
@@ -88,7 +88,14 @@ void CFinalBoss::Render()
 			CBaseObject::Render(D3DCOLOR_ARGB(255,0,0,255));
 		}
 		else if(m_nCurrentBossState == BOSS_DAGGER)
-			CBaseObject::Render();
+			CBaseObject::Render(D3DCOLOR_ARGB(255,255,255,255));
+	}
+	else if ((m_nCurrentBossState == BOSS_FIRE && CPlayer::GetInstance()->GetCurrentWeapon() != CPlayer::WEAPON_SWORD )||
+		(m_nCurrentBossState == BOSS_EARTH && CPlayer::GetInstance()->GetCurrentWeapon() != CPlayer::WEAPON_HAMMER) ||
+		(m_nCurrentBossState == BOSS_WIND && CPlayer::GetInstance()->GetCurrentWeapon() != CPlayer::WEAPON_CROSSBOW) ||
+		(m_nCurrentBossState == BOSS_DAGGER && CPlayer::GetInstance()->GetCurrentWeapon() != CPlayer::WEAPON_DAGGER))
+	{
+		CBaseObject::Render(D3DCOLOR_ARGB(155,60,60,60));
 	}
 	else
 	{
@@ -103,5 +110,5 @@ void CFinalBoss::Update(float fElapsedTime)
 	if( m_fOuchTimer < 0.0f )
 		m_fOuchTimer = 0.0f;
 	CEnemy::Update(fElapsedTime);
-
+	
 }
