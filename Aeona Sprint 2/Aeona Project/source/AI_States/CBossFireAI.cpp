@@ -3,6 +3,8 @@
 #include "../Game Objects/CPlayer.h"
 #include "../Weapons/CFireBall.h"
 #include "../Game Objects/CObjectManager.h"
+#include "../Game Objects/CEnemy.h"
+#include "../AI_States/CGolemAIState.h"
 CBossFireAI* CBossFireAI::sm_pInstance = NULL;
 
 IBaseAIState* CBossFireAI::GetInstance(void)
@@ -241,5 +243,15 @@ void CBossFireAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 
 void CBossFireAI::Exit(CBaseCharacter* pCharacter)
 {
-
+	CEnemy* pEnemy = new CEnemy(pCharacter->GetPosX()-50, pCharacter->GetPosY()-50, 40,  -1, 50, 50, true, 20, 1);
+	pEnemy->ChangeAIState(CGolemAIState::GetInstance());
+	pEnemy->SetDebugMode(false);
+	CObjectManager::GetInstance()->AddObject(pEnemy);
+	pEnemy->Release();
+	
+	CEnemy* pEnemy2 = new CEnemy(pCharacter->GetPosX()+50, pCharacter->GetPosY()+50, 40,  -1, 50, 50, true, 20, 1);
+	pEnemy2->ChangeAIState(CGolemAIState::GetInstance());
+	pEnemy2->SetDebugMode(false);
+	CObjectManager::GetInstance()->AddObject(pEnemy2);
+	pEnemy2->Release();
 }

@@ -12,7 +12,7 @@ class CBossAirAI : public IBaseAIState
 	CBossAirAI(void){}
 
 	static CBossAirAI* sm_pInstance;
-
+	float FireTime;
 	//int m_sndLarvaHiss;
 
 	//	0 - GetWhacked

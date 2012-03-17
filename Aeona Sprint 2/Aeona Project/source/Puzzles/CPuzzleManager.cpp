@@ -28,6 +28,23 @@ void CPuzzleManager::InitPuzzleManager(void)
 	CTorchPuzzle* TorchPuzzleB = new CTorchPuzzle;
 	TorchPuzzleB->Create(1, "", "Fire", false);
 	m_vpPuzzles.push_back(TorchPuzzleB);
+
+	CTorchPuzzle* TorchPuzzleBoss1 = new CTorchPuzzle;
+	TorchPuzzleBoss1->Create(4,"Light Torch.0", "TopLeftRoom",true);
+	m_vpPuzzles.push_back(TorchPuzzleBoss1);
+	CTorchPuzzle* TorchPuzzleBoss2 = new CTorchPuzzle;
+	TorchPuzzleBoss2->Create(4,"Light Torch.1", "TopRightRoom",true);
+	m_vpPuzzles.push_back(TorchPuzzleBoss2);
+	CTorchPuzzle* TorchPuzzleBoss3 = new CTorchPuzzle;
+	TorchPuzzleBoss3->Create(4,"Light Torch.2", "BottomLeftRoom",true);
+	m_vpPuzzles.push_back(TorchPuzzleBoss3);
+	CTorchPuzzle* TorchPuzzleBoss4 = new CTorchPuzzle;
+	TorchPuzzleBoss4->Create(4,"Light Torch.3", "BottomRightRoom",true);
+	m_vpPuzzles.push_back(TorchPuzzleBoss4);
+
+	CTorchPuzzle* TorchPuzzleBossRoom = new CTorchPuzzle;
+	TorchPuzzleBossRoom->Create(4,"OpenBossRoom", "Light Torch",false);
+	m_vpPuzzles.push_back(TorchPuzzleBossRoom);
 }
 
 void CPuzzleManager::ShutdownPuzzleManager(void)

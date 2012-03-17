@@ -15,7 +15,7 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 
-	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/LightRain_Loop.wav");
+	//m_nRainSound = AUDIO->SFXLoadSound("resource/sound/LightRain_Loop.wav");
 	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
 	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
 	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");

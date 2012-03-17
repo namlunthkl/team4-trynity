@@ -16,6 +16,7 @@ class CFinalBoss : public CEnemy
 	enum EBossState { BOSS_FIRE = 0 , BOSS_EARTH, BOSS_WIND, BOSS_DAGGER, BOSS_MAX };
 private:
 	int m_nCurrentBossState;
+	float m_fOuchTimer;
 public:
 	CFinalBoss(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
@@ -24,6 +25,8 @@ public:
 	~CFinalBoss(void);
 	void SufferDamage(unsigned int uiDamage);
 	void Die(void);
+	void Render(void);
+	void Update(float fElapsedTime);
 	inline unsigned int GetType(void) const { return TYPE_CHAR_FINALBOSS; }
 };
 #endif

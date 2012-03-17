@@ -468,7 +468,10 @@ void CPlayer::CycleWeapon(void)
 		// Keep looking
 		CycleWeapon();
 	}
-
+	m_bPhilCharging = false;
+	m_bPhilSpecialAttack = false;
+	if(m_bDying == true)
+		WEAPON->SetCurrentAnimation(ANM_DIE_DIE);
 	m_sndSwitchWeapon->Play();
 }
 

@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "CBossAirAI.h"
 #include "../Game Objects/CPlayer.h"
+#include "../Game Objects/CObjectManager.h"
+#include "../Weapons/CTornado.h"
 CBossAirAI* CBossAirAI::sm_pInstance = NULL;
 
 IBaseAIState* CBossAirAI::GetInstance(void)
@@ -27,6 +29,7 @@ void CBossAirAI::Enter(CBaseCharacter* pCharacter)
 	pCharacter->SetPrevVelY( 0 );
 
 	pCharacter->SetMoveTimer( 0.0f );
+	FireTime = 0.0f;
 	pCharacter->SetMiniState(2);
 	pCharacter->SetBehavior(0);
 	pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
@@ -46,6 +49,7 @@ void CBossAirAI::Enter(CBaseCharacter* pCharacter)
 
 void CBossAirAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 {
+	FireTime += fElapsedTime;
 	switch( pCharacter->GetMiniState() )
 	{
 	case 0:	// 0 - Get Whacked!
@@ -179,8 +183,64 @@ void CBossAirAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				pCharacter->SetMoveTimer( 0.0f );
+				pCharacter->SetMiniState( 4 );
 			}
 			break;
+		}
+	case 4:
+		{
+			if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 512 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 512) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 512 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 512) && FireTime >= 1.0f)
+			{
+				CTornado* Tornado = new CTornado();
+				Tornado->SetSpeed(580);
+				Tornado->Activate();
+				CObjectManager::GetInstance()->AddObject(Tornado);
+				PointD temp = pCharacter->GetPosition();
+				float temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+				float temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+
+				if(fabs(temp_y_dist) > fabs(temp_x_dist))
+				{
+					if(CPlayer::GetInstance()->GetPosY() < pCharacter->GetPosY())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_UP);
+						Tornado->SetVelX(0.0f);
+						Tornado->SetVelY(-1.0f *Tornado->GetSpeed());
+						Tornado->SetPosX(temp.x);
+						Tornado->SetPosY(temp.y-20);
+					}
+					else if(CPlayer::GetInstance()->GetPosY() > pCharacter->GetPosY())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_DOWN);
+						Tornado->SetVelX(0.0f);
+						Tornado->SetVelY(1.0f * Tornado->GetSpeed());
+						Tornado->SetPosX(temp.x);
+						Tornado->SetPosY(temp.y);
+					}
+				}
+				else
+				{
+					if(CPlayer::GetInstance()->GetPosX() < pCharacter->GetPosX())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_LEFT);
+						Tornado->SetVelX(-1.0f *Tornado->GetSpeed());
+						Tornado->SetVelY(0.0f);
+						Tornado->SetPosX(temp.x);
+						Tornado->SetPosY(temp.y-20);
+					}
+					else if(CPlayer::GetInstance()->GetPosX() > pCharacter->GetPosX())
+					{
+						pCharacter->SetCurrentAnimation(CBaseCharacter::ANM_WALK_RIGHT);
+						Tornado->SetVelX(1.0f *Tornado->GetSpeed());
+						Tornado->SetVelY(0.0f);
+						Tornado->SetPosX(temp.x);
+						Tornado->SetPosY(temp.y-20);
+					}
+				}
+				FireTime = 0;
+			}
+			pCharacter->SetMoveTimer( 0.0f );
+			pCharacter->SetMiniState( 3 );
 		}
 	}
 }
