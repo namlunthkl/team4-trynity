@@ -1,13 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Grimir>
+
 <Dialogue>
-<SpeechNode text="Get me a flower honey" name="GetFlower"/>
+
+
+<SpeechNode text="Good Morning Aeona!" name="Grimir1_1"/>
+<Option text="Good morning GrandFather!"/>
+
+<SpeechNode text="I trust you slept well!" name="Grimir1_2"/>
+<Option text="Without a Doubt!"/>
+<Option text="Eh..."/>
+
+<SpeechNode text="Well, listen to this, I know it's your Birthday today but I have a special task for you-" name="Grimir1_3"/>
+<Option text="Task?!"/>
+<Option text="But why should I have to-"/>
+
+<SpeechNode text="It has to do with your present!" name="Grimir1_4"/>
+<Option text="YES!"/>
+<Option text="Hooray!  A fetch quest!"/>
+
+<SpeechNode text="Get me a flower honey" name="Grimir1_10"/>
+
+<Connection speechA="Grimir1_1" option="1" speechB="Grimir1_2"/>
+
+<Connection speechA="Grimir1_2" option="1" speechB="Grimir1_3"/>
+<Connection speechA="Grimir1_2" option="2" speechB="Grimir1_3"/>
+
+<Connection speechA="Grimir1_3" option="1" speechB="Grimir1_4"/>
+<Connection speechA="Grimir1_3" option="2" speechB="Grimir1_4"/>
+
+<Connection speechA="Grimir1_4" option="1" speechB="Grimir1_5"/>
+<Connection speechA="Grimir1_5" option="1" speechB="Grimir1_6"/>
+<Connection speechA="Grimir1_6" option="1" speechB="Grimir1_7"/>
+<Connection speechA="Grimir1_7" option="1" speechB="Grimir1_8"/>
+<Connection speechA="Grimir1_8" option="1" speechB="Grimir1_9"/>
+<Connection speechA="Grimir1_9" option="1" speechB="Grimir1_10"/>
+
+
+
 </Dialogue>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <Dialogue>
+
+
 <SpeechNode text="I like this flower now take this sword" name="TakeThisSword"/>
+
+
 </Dialogue>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <Dialogue>
+
 <SpeechNode text="Why are you still here? Go look for other weapons." name="GetOut"/>
+
+
 </Dialogue>
+
+
 </Grimir>
