@@ -2,9 +2,8 @@ NPC DIALOG
 ==================
 - Speech pattern continues past the visible dialog box so you can't read the rest of the words.
 - Sanei doesn't finish his text
-- Grimir speech doesnt work properly.
+- Grimir speech doesnt work properly and give you directions on how what to do.
 - Zemba has a TYeah when you select Disagree.
-
 
 
 COLLISION
@@ -26,3 +25,4 @@ ITEMS PICKUP
 SAVING LOADING
 ===================
 - Saving and loading is messed up
+
