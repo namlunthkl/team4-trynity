@@ -10,3 +10,5 @@ Zemba has a TYeah when you select Disagree.
 - Possible to see and go to black spaces sometimes
 - Can't pick the wind bow on the desert
 - Chest gives you more apples than it should
+
+- Saving and loading is messed up
