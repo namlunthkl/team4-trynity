@@ -34,6 +34,7 @@
 <Map file="resource/Maps/ForestUpperRight.xml"/>
 
 <Map file="resource/Maps/Lake1.xml"/>
+<Map file="resource/Maps/Lake2.xml"/>
 
 <Map file="resource/Maps/Desert1.xml"/>
 <Map file="resource/Maps/Desert2.xml"/>
