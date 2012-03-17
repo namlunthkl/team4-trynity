@@ -144,6 +144,7 @@
     <ClCompile Include="source\Post Process\CPostProcess.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Puzzles\CFinalTorchPuzzleThatBernWantedButDanielMade.cpp" />
     <ClCompile Include="source\Puzzles\CPuzzle.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -309,6 +310,7 @@
     <ClInclude Include="source\Particle Engine\Particle.h" />
     <ClInclude Include="source\Particle Engine\ParticleWeapon.h" />
     <ClInclude Include="source\Post Process\CPostProcess.h" />
+    <ClInclude Include="source\Puzzles\CFinalTorchPuzzleThatBernWantedButDanielMade.h" />
     <ClInclude Include="source\Puzzles\CPuzzle.h" />
     <ClInclude Include="source\Puzzles\CPuzzleFunctions.h" />
     <ClInclude Include="source\Puzzles\CPuzzleManager.h" />
