@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Root tileset="Desert">
+<Root tileset="DesertMaze">
   <Map posX="6144" posY="2048" width="32" height="32" objectlayer="1">
     <Layer>
       <Tile PosX="1" PosY="0" Type="128" Event="" />
