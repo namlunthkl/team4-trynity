@@ -366,7 +366,7 @@ void CGameplayState::Render(void)
 		D3D->Clear(160, 160, 160);
 		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
 		GAME->GetFont()->Write("Press ESC again to resume", 32, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
-		GAME->GetFont()->Write("ESC brings up player inventory!", 32, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
+		//GAME->GetFont()->Write("ESC brings up player inventory!", 32, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		GAME->GetFont()->Write("PRESS DELETE FOR MAIN MENU", 32, 6 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		
 		RECT w;
@@ -375,6 +375,13 @@ void CGameplayState::Render(void)
 		w.right = 270+39+16;
 		w.bottom = 64+128+16;
 
+		RECT map;
+		map.left = 256;
+		map.right = 512;
+		map.top = 256;
+		map.bottom = 512;
+		//draw map w/e
+		TEX_MNG->Draw(m_imgHUD, 800-256-32, 600-256-32, 1.0f, 1.0f, &map, 0.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(255, 255, 255));
 
 		for(unsigned int i=0; i<4; ++i)
 		{
