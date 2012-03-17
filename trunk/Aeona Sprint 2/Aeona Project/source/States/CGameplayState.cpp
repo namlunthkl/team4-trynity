@@ -103,8 +103,8 @@ void CGameplayState::Enter(void)
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
 	// (4608, 7100)		- Forest
-	PLAYER->SetPosX(4608);
-	PLAYER->SetPosY(7100);
+	PLAYER->SetPosX(1536);
+	PLAYER->SetPosY(1024);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);

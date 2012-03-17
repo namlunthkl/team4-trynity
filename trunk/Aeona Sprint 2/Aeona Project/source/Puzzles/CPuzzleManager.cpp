@@ -17,6 +17,7 @@
 
 #include "CPuzzleManager.h"
 #include "CTorchPuzzle.h"
+#include "CFinalTorchPuzzleThatBernWantedButDanielMade.h"
 
 void CPuzzleManager::InitPuzzleManager(void)
 {
@@ -42,7 +43,7 @@ void CPuzzleManager::InitPuzzleManager(void)
 	TorchPuzzleBoss4->Create(4,"Light Torch.3", "BottomRightRoom",true);
 	m_vpPuzzles.push_back(TorchPuzzleBoss4);
 
-	CTorchPuzzle* TorchPuzzleBossRoom = new CTorchPuzzle;
+	CFinalTorchPuzzleThatBernWantedButDanielMade* TorchPuzzleBossRoom = new CFinalTorchPuzzleThatBernWantedButDanielMade;
 	TorchPuzzleBossRoom->Create(4,"OpenBossRoom", "Light Torch",false);
 	m_vpPuzzles.push_back(TorchPuzzleBossRoom);
 }

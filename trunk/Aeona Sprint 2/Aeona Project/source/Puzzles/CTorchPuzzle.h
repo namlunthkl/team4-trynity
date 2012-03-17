@@ -5,6 +5,7 @@
 
 class CTorchPuzzle : public IBasePuzzle
 {
+protected:
 	vector<ParticleWeapon*> m_vParticle;
 	int m_sndFireSound;
 	PointD m_ptLastLitTorchPosition;
