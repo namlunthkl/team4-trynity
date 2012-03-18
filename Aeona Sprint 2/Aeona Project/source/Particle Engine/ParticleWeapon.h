@@ -22,6 +22,7 @@ public:
 	void Update(float DT);
 	void Render();
 	bool Load(const char* szXMLFileName);
+	void ShutDown(void);
 };
 
 #endif

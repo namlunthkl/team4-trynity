@@ -10,12 +10,7 @@ ParticleWeapon::ParticleWeapon(void)
 }
 ParticleWeapon::~ParticleWeapon(void)
 {
-	//for(unsigned int i = 0; i < Emitters.size(); i++)
-	//{
-	//	delete (Emitter*)(Emitters[i]);
-	//	Emitters[i] = NULL;	
-	//}
-	//Emitters.clear();
+	ShutDown();
 }
 void ParticleWeapon::Fire()
 {
@@ -193,4 +188,8 @@ bool ParticleWeapon::Load(const char* szXMLFileName)
 	}
 
 	return true;
+}
+void ParticleWeapon::ShutDown(void )
+{
+	emitter.ShutDown();
 }

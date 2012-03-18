@@ -9,6 +9,7 @@
 #define _CMAINMENUSTATE_H_
 #include "CBaseMenu.h"
 #include "../CGame.h"
+#include "../Particle Engine/ParticleWeapon.h"
 
 enum {MAIN_NEW = 0, MAIN_LOAD, MAIN_OPTIONS, MAIN_CREDITS, MAIN_EXIT, MAIN_MAX};
 
@@ -25,7 +26,8 @@ private:
 	~CMainMenuState();
 	
 	//	Assets
-
+	ParticleWeapon		MenuFog;
+	ParticleWeapon		MenuGlitter;
 	//	Members
 	int m_imgTempTitle;
 
