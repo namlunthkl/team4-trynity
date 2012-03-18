@@ -67,9 +67,6 @@ private:
 	// ITEMS POINT LIGHT
 	float m_fItemPointRadius;
 
-		// SOUND
-	//int m_nDayBed;
-
 	LightEngine(void);
 	LightEngine(const LightEngine&){}
 	LightEngine& operator=(const LightEngine&){}
