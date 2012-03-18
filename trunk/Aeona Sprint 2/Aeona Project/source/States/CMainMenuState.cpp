@@ -57,10 +57,21 @@ void CMainMenuState::Enter()
 
 	//	Imperfect..
 	m_uiCurSelected = 0;
+
+	MenuFog.Load( "resource/data/MainMenuFog.xml" );
+	MenuFog.Fire();
+	MenuFog.emitter.EmitterPosY = 600;
+
+	MenuGlitter.Load( "resource/data/FireFlies.xml" );
+	MenuGlitter.emitter.MaxLife = 3;
+	MenuGlitter.Fire();
+	
 }
 
 void CMainMenuState::Exit()
 {
+	MenuFog.ShutDown();
+	MenuGlitter.ShutDown();
 }
 
 bool CMainMenuState::Input()
@@ -116,13 +127,16 @@ bool CMainMenuState::Input()
 void CMainMenuState::Update(float fElapsedTime)
 {
 	CBaseMenu::Update(fElapsedTime);
+	MenuFog.Update(fElapsedTime);
+	MenuGlitter.Update(fElapsedTime);
 }
 
 void CMainMenuState::Render()
 {
 	//	Draw the base menu's stuff
 	CBaseMenu::Render();
-
+	MenuFog.Render();
+	MenuGlitter.Render();
 	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
 		//	Draw this menu's stuff
@@ -136,6 +150,6 @@ void CMainMenuState::Render()
 	//	TODO Temp Title
 	if(CGame::GetInstance()->m_fLogoTimer >= 7.0f)
 	{
-		TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268, GAME->GetScreenHeight()/2 - 243);
+		TEX_MNG->Draw(m_imgTempTitle, GAME->GetScreenWidth()/2 - 268, GAME->GetScreenHeight()/2 - 270);
 	}
 }
