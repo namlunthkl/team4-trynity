@@ -297,7 +297,7 @@ void CGame::Render(void)
 		// When DirectX has a problem and is not rendering anything,
 		// the screen is just cleared as black, so we'll be able to
 		// differentiate
-		D3D->Clear(50,50,50);
+		D3D->Clear(0,0,0);
 		D3D->DeviceBegin();
 		D3D->SpriteBegin();
 

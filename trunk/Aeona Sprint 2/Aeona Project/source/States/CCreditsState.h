@@ -16,7 +16,6 @@ private:
 	//	Instance
 	static CCreditsState* m_pInstance;
 
-	int m_imgBackground;
 	CBitmapFont* pFont;
 
 	//	Constructor & Trilogy
