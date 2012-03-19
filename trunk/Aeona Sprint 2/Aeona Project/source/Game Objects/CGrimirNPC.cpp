@@ -120,7 +120,7 @@ void CGrimirNPC::Input(void)
 			if(m_pCurrentDialogue == &m_GrimirDialogues[0])
 			{
 				m_pCurrentDialogue = &m_GrimirDialogues[1];
-				CPlayer::GetInstance()->AquireWeapon(CPlayer::WEAPON_SWORD);
+				CPlayer::GetInstance()->AcquireWeapon(CPlayer::WEAPON_SWORD);
 				CPlayer::GetInstance()->CycleWeapon();
 				AUDIO->SFXPlaySound(AUDIO->SFXLoadSound("resource/sound/GetItem.wav"));
 			}

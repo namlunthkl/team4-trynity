@@ -19,6 +19,7 @@
 <Map file="resource/Maps/Dungeon6.xml"/>
 <Map file="resource/Maps/Dungeon7.xml"/>
 <Map file="resource/Maps/Dungeon8.xml"/>
+</COMMENT>
 
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
 <Map file="resource/Maps/SnowMapFinal2.xml"/>
@@ -28,18 +29,17 @@
 <Map file="resource/Maps/SnowMapFinal6.xml"/>
 <Map file="resource/Maps/SnowMapFinal7.xml"/>
 
+<COMMENT>
 <Map file="resource/Maps/TransitionSnowForest.xml"/>
 
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
 <Map file="resource/Maps/ForestLowerLeft.xml"/>
 <Map file="resource/Maps/ForestLowerRight.xml"/>
 <Map file="resource/Maps/ForestUpperRight.xml"/>
-</COMMENT>
 
 <Map file="resource/Maps/Townright.xml"/>
 <Map file="resource/Maps/TownFarRight.xml"/>
 
-<COMMENT>
 <Map file="resource/Maps/Lake1.xml"/>
 <Map file="resource/Maps/Lake2.xml"/>
 
