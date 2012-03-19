@@ -50,14 +50,6 @@ CGame* CGame::GetInstance(void)
 bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	int nScreenHeight, bool bIsWindowed)
 {
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	m_fCharge = 0.0f;
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-
 	//phil logo
 	m_fLogoTimer = 0.0f;
 	m_fDerpScroll = 0.0f;
@@ -184,28 +176,10 @@ bool CGame::Main(void)
 bool CGame::Input(void)
 {
 	INPUT->ReadDevices();
-
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
 	if( INPUT->KeyPressed( DIK_T ) )
 	{
 		CCameraControl::GetInstance()->SetKillCam(true);
 	}
-	if( INPUT->KeyDown( DIK_C ) )
-	{
-		m_fCharge += 1.0f * CGame::GetInstance()->GetTimer().m_fElapsedTime;
-	}
-	if( INPUT->KeyUp( DIK_C ) )
-	{
-		m_fCharge = 0.0f;
-		CCameraControl::GetInstance()->SetReleaseButton( true );
-	}
-
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-
 	//TODO Change later when we have actual inventory.
 	if(m_bPaused == true)
 	{
@@ -259,17 +233,6 @@ void CGame::Update(void)
 	if(m_pCurrentState != NULL)
 	{
 		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
-		
-	///////////////////////////
-	//ARI EXTRA CODE
-	/////////////////////////////
-	//	if( !CCameraControl::GetInstance()->GetKillCam() )
-	//	{
-	//		CCameraControl::GetInstance()->ChargeCamSequence( m_fCharge );
-	//	}
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
 	}
 }
 
