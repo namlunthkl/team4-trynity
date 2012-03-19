@@ -197,6 +197,14 @@ void CPlayer::Render(void)
 			D3D->DrawRect(temp.GetWindowsRECT(), 30, 154, 255);
 		}
 	}
+
+	D3D->GetSprite()->Flush();
+
+	//if(GetPosX() != GetInteractivePoint().x)
+	//	int x = 0;
+
+	D3D->DrawLine(GetScreenPosX(GetPosX()), GetScreenPosY(GetPosY()),
+		GetScreenPosX(GetInteractivePoint().x), GetScreenPosY(GetInteractivePoint().y), 255, 0, 0);
 #endif
 }
 
@@ -677,5 +685,36 @@ void CPlayer::UsePotion(void)
 			
 			m_sndPotion->Play();
 		}
+	}
+}
+
+
+// Return Point used for talking with NPCs and opening chests
+PointD CPlayer::GetInteractivePoint(void)
+{
+	switch(WEAPON->GetCurrentAnimation())
+	{
+	case ANM_WALK_UP:
+	case ANM_IDLE_UP:
+	case ANM_ATK_UP:
+		return PointD(GetPosX(), GetPosY() - 50);
+		break;
+	case ANM_WALK_DOWN:
+	case ANM_IDLE_DOWN:
+	case ANM_ATK_DOWN:
+		return PointD(GetPosX(), GetPosY() + 50);
+		break;
+	case ANM_WALK_LEFT:
+	case ANM_IDLE_LEFT:
+	case ANM_ATK_LEFT:
+		return PointD(GetPosX() - 50, GetPosY());
+		break;
+	case ANM_WALK_RIGHT:
+	case ANM_IDLE_RIGHT:
+	case ANM_ATK_RIGHT:
+		return PointD(GetPosX() + 50, GetPosY());
+		break;
+	default:
+		return PointD(GetPosX(), GetPosY());
 	}
 }

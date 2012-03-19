@@ -220,6 +220,13 @@ struct RectD
 		rectTemp.bottom = (long)bottom;
 		return rectTemp;
 	}
+	bool ContainsPoint(PointD Point)
+	{
+		if(Point.x > left && Point.x < right
+			&& Point.y > top && Point.y < bottom)
+			return true;
+		else return false;
+	}
 };
 
 struct Sound

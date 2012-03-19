@@ -73,6 +73,10 @@ void CNPC::LoadText(char const * const szFilename)
 		// Read the speech node stuff
 		szSpeechName = xSpeechNode->Attribute("name");
 		szSpeechText = xSpeechNode->Attribute("text");
+		
+		// Hacks for tests
+		///string szEvent = xSpeechNode->Attribute("event");
+		//////////////////
 
 		tSpeechNode* pSpeechNode = m_Dialogue.AddSpeechNode(szSpeechName, GAMEPLAY->BreakDownStrings(szSpeechText, 50, 52));
 
@@ -143,11 +147,7 @@ void CNPC::Update(float fElapsedTime)
 		}
 	}
 
-	// Get the distance between the player and the NPC
-	double dDistance;
-	dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
-
-	if(dDistance < m_dRange)
+	if(GetCollisionRect().ContainsPoint(CPlayer::GetInstance()->GetInteractivePoint()))
 	{
 		if(m_bActiveTalk)
 			if(CPlayer::GetInstance()->Lock())
@@ -170,11 +170,7 @@ void CNPC::Input(void)
 	{
 		if(!m_bTalk)
 		{
-			// Get the distance between the player and the NPC
-			double dDistance;
-			dDistance = GetPosition().GetDistanceUntil(CPlayer::GetInstance()->GetPosition());
-
-			if(dDistance < m_dRange)
+			if(GetCollisionRect().ContainsPoint(CPlayer::GetInstance()->GetInteractivePoint()))
 			{
 				if(CPlayer::GetInstance()->Lock())
 				{
