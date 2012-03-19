@@ -10,7 +10,7 @@
 CDagger::CDagger()
 {
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/AeonaDagger.xml");
+	CBaseCharacter::LoadAnimations("resource/aeonaDagger.xml");
 	SetAttacking(false);
 
 	SetSound(new Sound("resource/sound/Dagger.wav"));

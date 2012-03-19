@@ -13,6 +13,7 @@
 #include "../AI_States/CBossEarthAI.h"
 #include "../AI_States/CBossFireAI.h"
 #include "../AI_States/CBossDaggerAI.h"
+#include "../Messaging/CEventSystem.h"
 CFinalBoss::CFinalBoss(double dPositionX, double dPositionY, unsigned int uiSpeed, int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage, float fRespawnTime) : CEnemy(dPositionX,dPositionY,uiSpeed,nImageID,uiWidth,uiHeight,bActive,uiMaxHealth,uiAttackDamage,fRespawnTime)
 {
@@ -69,7 +70,10 @@ void CFinalBoss::Die(void)
 		m_nCurrentBossState++;
 	}
 	else if(m_nCurrentBossState == BOSS_DAGGER)
+	{
 		CEnemy::Die();
+		CEventSystem::GetInstance()->SendEvent("victory");
+	}
 }
 void CFinalBoss::Render()
 {

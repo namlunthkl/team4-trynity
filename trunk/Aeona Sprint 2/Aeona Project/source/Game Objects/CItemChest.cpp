@@ -140,5 +140,5 @@ void CItemChest::Render(void)
 	sourceRect.right = sourceRect.left + 32;
 	sourceRect.bottom = sourceRect.top + 48;
 
-	TEX_MNG->Draw(GetImageID(), GetPosX() - 16, GetPosY() - 24, 1.0f, 1.0f, &sourceRect);
+	TEX_MNG->Draw(GetImageID(), (int)GetPosX() - 16, (int)GetPosY() - 24, 1.0f, 1.0f, &sourceRect);
 }

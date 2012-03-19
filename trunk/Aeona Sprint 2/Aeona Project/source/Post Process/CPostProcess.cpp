@@ -108,12 +108,12 @@ void CPostProcess::BeginPostProcess( void )
 
 	// CLEAR RENDERTARGET
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
+	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
 }
 void CPostProcess::EndPostProcess( void )
 {
 	// PRESENT BACKBUFFER
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->EndScene();
+	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->EndScene();
 
 	// RESTORE BACKBUFFER
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderTarget( 0, current );
@@ -198,6 +198,7 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->EndPass();
 	}
 	postEffect->End();
+	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->EndScene();
 }
 void CPostProcess::ShutDown( void )
 {

@@ -25,7 +25,7 @@ private:
 	~CCreditsState();
 
 public:
-	int m_fWhatever;
+	float m_fWhatever;
 
 	//	Singleton
 	static CCreditsState* GetInstance();
