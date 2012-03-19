@@ -27,7 +27,7 @@ void CChest::Render(void)
 	if(GetAnimationPlayer(GetCurrentAnimation())->GetFrameNumber() == 3 && m_bOpened == false )
 	{
 		m_bOpened = true;
-		CPlayer::GetInstance()->SetNumPotions(CPlayer::GetInstance()->GetNumPotions()+1);
+		CPlayer::GetInstance()->AcquirePotion();
 		GetAnimationPlayer(GetCurrentAnimation())->Pause();
 	}
 	CNPC::Render();
@@ -61,5 +61,5 @@ void CChest::OpenChest(void)
 	GetAnimationPlayer(GetCurrentAnimation())->Play();
 
 	//TEMPORARY EFFECT TODO
-	CPlayer::GetInstance()->SetNumPotions( CPlayer::GetInstance()->GetNumPotions() + 1 );
+	CPlayer::GetInstance()->AcquirePotion();
 }

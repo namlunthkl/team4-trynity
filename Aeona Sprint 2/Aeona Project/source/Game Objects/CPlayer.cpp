@@ -30,8 +30,8 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	m_bHasFlower = false;
 	m_uiGems = 0;
-
-#if 1
+	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
+#if 0
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
@@ -54,7 +54,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiCurrentWeapon = WEAPON_DAGGER;
 	m_uiCurrentMask = MASK_NONE;
 	m_sndPlayerMovement = -1;
-	SetNumPotions(0);
+	m_uiNumPotions = 0;
 	m_bPhilCharging = false;
 	m_bPhilSpecialAttack = false;
 	m_fPhilChargeIdkman = 0.0f;
@@ -205,6 +205,10 @@ void CPlayer::Render(void)
 
 	D3D->DrawLine(GetScreenPosX(GetPosX()), GetScreenPosY(GetPosY()),
 		GetScreenPosX(GetInteractivePoint().x), GetScreenPosY(GetInteractivePoint().y), 255, 0, 0);
+	
+	temp = GetInteractiveRect();
+	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
+	D3D->DrawRect(temp.GetWindowsRECT(), 255, 0, 0);
 #endif
 }
 
@@ -501,19 +505,19 @@ void CPlayer::CycleMask(void)
 }
 
 // Set the bit for a weapon on
-void CPlayer::AquireWeapon(unsigned int uiWeaponType)
+void CPlayer::AcquireWeapon(unsigned int uiWeaponType)
 {
 	TurnBitOn(m_byteWeapons, uiWeaponType);
 }
 
 // Set bit of a mask on
-void CPlayer::AquireMask(unsigned int uiMaskType)
+void CPlayer::AcquireAmulet(unsigned int uiMaskType)
 {
 	TurnBitOn(m_byteMasks, uiMaskType);
 }
 
 // Set bool for heart piece on or increase health
-void CPlayer::AquireHeartPiece(void)
+void CPlayer::AcquireHeartPiece(void)
 {
 	if(m_bHeartPiece == false)
 		m_bHeartPiece = true;
@@ -681,8 +685,7 @@ void CPlayer::UsePotion(void)
 		{
 			//m_Potion->Heal();
 			SetCurHealth( GetCurHealth() + 1 );
-			SetNumPotions(GetNumPotions()-1);
-			
+			m_uiNumPotions--;
 			m_sndPotion->Play();
 		}
 	}
@@ -717,4 +720,17 @@ PointD CPlayer::GetInteractivePoint(void)
 	default:
 		return PointD(GetPosX(), GetPosY());
 	}
+}
+
+RectD CPlayer::GetInteractiveRect(void)
+{
+	PointD point = GetInteractivePoint();
+
+	RectD interactiveRect;
+	interactiveRect.top = point.y - 12;
+	interactiveRect.bottom = point.y + 12;
+	interactiveRect.left = point.x - 12;
+	interactiveRect.right = point.x + 12;
+
+	return interactiveRect;
 }

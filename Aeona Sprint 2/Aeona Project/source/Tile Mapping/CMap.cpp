@@ -27,6 +27,7 @@
 #include "../States/CGameplayState.h"
 #include "../Camera/CCameraControl.h"
 #include "../Messaging/CMessageSystem.h"
+#include "../Game Objects/CItemChest.h"
 
 #define GAMEPLAY CGameplayState::GetInstance()
 #define CAMERA CCameraControl::GetInstance()
@@ -66,7 +67,13 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 	// Get the ids of the possible strings we'll have to check for
 	// so we don't need to do strcmps
 	unsigned char ucEnemyID = pStringTable->LoadStringOnTable("Enemy");
-	unsigned char ucChestID = pStringTable->LoadStringOnTable("Chest");
+	unsigned char ucChestPotionID = pStringTable->LoadStringOnTable("Chest.Potion");
+	unsigned char ucChestHeartpieceID = pStringTable->LoadStringOnTable("Chest.Heartpiece");
+	unsigned char ucChestGemID = pStringTable->LoadStringOnTable("Chest.Gem");
+	unsigned char ucChestAmuletLightID = pStringTable->LoadStringOnTable("Chest.Amulet.Light");
+	unsigned char ucChestAmuletEnduranceID = pStringTable->LoadStringOnTable("Chest.Amulet.Endurance");
+	unsigned char ucChestAmuletStrengthID = pStringTable->LoadStringOnTable("Chest.Amulet.Strength");
+	unsigned char ucChestAmuletSpeedID = pStringTable->LoadStringOnTable("Chest.Amulet.Speed");
 
 	// Temporary variables to store the data we'll read
 	const char* szTileset = "";
@@ -145,7 +152,10 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 			// Load the event in the string table and get its ID
 			unsigned char ucEventID = pStringTable->LoadStringOnTable(szEvent);
 
-			if(nTileType == 0)
+#pragma region MESSAGE CHECKS
+			// Basically here I'm just checking for the event
+			// and sending messages when needed
+			if(nTileType == 0 && szEvent != "")
 			{
 				if(ucEventID == ucEnemyID)
 				{
@@ -155,15 +165,64 @@ bool CMap::Load(char const * const szFilename, CStringTable* pStringTable)
 						pStringTable->GetString(GetTileset()->GetID())));
 					ucEventID = pStringTable->GetStringIndex("");
 				}
-				else if(ucEventID == ucChestID)
+				else if(ucEventID == ucChestPotionID)
 				{
 					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
 						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
 						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
-						CCreateChestMessage::CHEST_POTION));
+						CItemChest::CHEST_POTION));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestHeartpieceID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_HEARTPIECE));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestGemID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_GEM));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestAmuletEnduranceID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_AMULET_ENDURANCE));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestAmuletLightID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_AMULET_LIGHT));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestAmuletSpeedID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_AMULET_SPEED));
+					ucEventID = pStringTable->GetStringIndex("");
+				}
+				else if(ucEventID == ucChestAmuletStrengthID)
+				{
+					CMessageSystem::GetInstance()->SendMsg(new CCreateChestMessage(
+						GetPosX() + (TileIndex % GetWidth()) * GetTileset()->GetTileWidth(),
+						GetPosY() + (TileIndex / GetHeight()) * GetTileset()->GetTileHeight(),
+						CItemChest::CHEST_AMULET_STRENGTH));
 					ucEventID = pStringTable->GetStringIndex("");
 				}
 			}
+#pragma endregion
 
 			// Create the tile
 			CTile tempTile((unsigned char)nTilePosX, (unsigned char)nTilePosY,

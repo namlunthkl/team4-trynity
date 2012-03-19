@@ -85,8 +85,6 @@ class CCreateChestMessage : public CBaseMessage
 	int		m_nType;
 
 public:
-	enum EChestType { CHEST_POTION, CHEST_HEARTPIECE, CHEST_MAX };
-
 	CCreateChestMessage(double dPosX, double dPosY, int nType) : CBaseMessage(MSG_CREATE_CHEST)
 	{
 		m_dPosX = dPosX;

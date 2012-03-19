@@ -37,7 +37,6 @@ public:
 
 private:
 	bool			m_bHeartPiece;
-	
 	vector<IBaseWeapon *>	m_vGameWeapons;
 	int				m_sndPlayerMovement;
 
@@ -88,11 +87,11 @@ public:
 	// Cycle through the masks
 	void CycleMask(void);
 	// Set the bit for a weapon on
-	void AquireWeapon(unsigned int uiWeaponType);
+	void AcquireWeapon(unsigned int uiWeaponType);
 	// Set bit of a mask on
-	void AquireMask(unsigned int uiMaskType);
+	void AcquireAmulet(unsigned int uiMaskType);
 	// Set bool for heart piece on or increase health
-	void AquireHeartPiece(void);
+	void AcquireHeartPiece(void);
 
 	void SufferDamage(unsigned int uiDamage);
 
@@ -108,15 +107,15 @@ public:
 	const char* GetRegion(void) const;
 
 	inline bool HasHeartPiece(void) { return m_bHeartPiece; }
-	// Bern's STUFF DON'T TOUCH IT PHIL!!!!!!!!!!!!!!!!!!!!!!
-	// just did
-	unsigned int GetNumPotions() const { return m_uiNumPotions; }
-	void SetNumPotions(unsigned int val) { m_uiNumPotions = val; }
+
+	inline void AcquirePotion(void) { m_uiNumPotions++; }
+	inline unsigned int GetNumPotions(void) { return m_uiNumPotions; }
+	inline void AcquireGem(void) { m_uiGems++; }
 	void UsePotion(void);
 
 	// Return Point used for talking with NPCs and opening chests
 	PointD GetInteractivePoint(void);
-
+	RectD GetInteractiveRect(void);	// Better for chests
 
 	// Accessors
 	inline bool IsBusy(void) const { return m_bBusy; }

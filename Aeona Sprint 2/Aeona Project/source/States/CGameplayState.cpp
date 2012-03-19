@@ -35,7 +35,7 @@
 #include "../Game Objects/CGrimirNPC.h"
 #include "../Game Objects/CFinalBoss.h"
 #include "../Puzzles/CPuzzleManager.h"
-#include "../Game Objects/CChest.h"
+#include "../Game Objects/CItemChest.h"
 #include "../Weather System/WeatherManager.h"
 #include "../Post Process/CPostProcess.h"
 
@@ -48,6 +48,8 @@
 #define PUZZLES		CPuzzleManager::GetInstance()
 #define POSTPROCESS CPostProcess::GetInstance()
 #define WEATHER		CWeatherManager::GetInstance()
+
+
 // Constructor
 CGameplayState::CGameplayState(void)
 {
@@ -105,12 +107,13 @@ void CGameplayState::Enter(void)
 	// Initialize Player
 	// (1536, 1024)		- Boss Dungeon
 	// (743, 4992)		- Snow Area
+	// (743, 4000)		- Testing Chests
 	// (4608, 7100)		- Forest
 	//PLAYER->SetPosX(1504);
 	//PLAYER->SetPosY(2720);
 	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
-	PLAYER->SetPosX(6144+512);
-	PLAYER->SetPosY(8192-512);
+	PLAYER->SetPosX(743);
+	PLAYER->SetPosY(4000);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -692,7 +695,7 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	}
 	if(pEvent->GetEventID() == "get.hammer")
 	{
-		PLAYER->AquireWeapon(CPlayer::WEAPON_HAMMER);
+		PLAYER->AcquireWeapon(CPlayer::WEAPON_HAMMER);
 		PLAYER->CycleWeapon();
 
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
@@ -901,18 +904,14 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		{
 			CCreateChestMessage* pMsgChest = (CCreateChestMessage*)pMsg;
 
-			if(pMsgChest->GetType() == CCreateChestMessage::CHEST_POTION)
-			{
-				CChest* pChest = new CChest("PotionChest", false, 150, -1,
-					pMsgChest->GetPosX(), pMsgChest->GetPosY(), 20, -1, 32,32, true, 100, 0);
-				pChest->LoadAnimations("resource/chest.xml");
-				OBJECTS->AddObject(pChest);
-				pChest->Release();
-			}
+			CItemChest* pChest = new CItemChest(pMsgChest->GetType(), pMsgChest->GetPosX(), pMsgChest->GetPosY());
+			OBJECTS->AddObject(pChest);
+			pChest->Release();
 			break;
 		}
 	}
 }
+
 
 void CGameplayState::RenderHUD()
 {
