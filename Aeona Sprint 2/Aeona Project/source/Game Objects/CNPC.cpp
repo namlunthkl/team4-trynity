@@ -153,13 +153,13 @@ void CNPC::Update(float fElapsedTime)
 			if(CPlayer::GetInstance()->Lock())
 				m_bTalk = true;
 	}
-	else if(m_bTalk)
+	/*else if(m_bTalk)
 	{
 		m_bTalk = false;
 		m_uiTextIndex = 0;
 		CPlayer::GetInstance()->Unlock();
 		GAMEPLAY->SetMessageBox(false);
-	}
+	}*/
 }
 
 void CNPC::Input(void)
