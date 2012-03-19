@@ -40,7 +40,6 @@ void CTorchPuzzle::Update(float fElapsedTime)
 	{
 		AUDIO->SFXStopSound(m_sndFireSound);
 	}
-
 }
 
 void CTorchPuzzle::EventReceived(int ArgumentNumber, void* EventData)

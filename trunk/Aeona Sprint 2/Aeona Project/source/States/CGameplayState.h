@@ -5,6 +5,8 @@
 //    Purpose				:	Contains the GameplayState
 ////////////////////////////////////////////////////////////////////////
 
+
+
 // Standard header protection
 #ifndef CGAMEPLAYSTATE_H_
 #define CGAMEPLAYSTATE_H_
@@ -101,6 +103,8 @@ public:
 
 	void SetMessageBox(bool bNPCTalking, string szCharName = "",
 		string szCurrentMessage = "", string szCurrentOption = "");
+
+	string BreakDownStrings(string szString, int nMin, int nMax);
 
 	//	HEART ANIMATION TIMER?!
 	float m_fHeartTimer;

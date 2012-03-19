@@ -355,13 +355,20 @@ void CGameplayState::Render(void)
 	// Render the Weather
 	CWeatherManager::GetInstance()->Render();
 
-	//	Render a neato HUD
-	if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
-		if(GAME->GetPaused() == false)
-			RenderHUD();
 
-	// Render the message box
-	RenderMessageBox();
+	// If the player is talking to an NPC, render the MessageBox but not the HUD
+	if(m_bNPCTalking)
+	{
+		RenderMessageBox();
+	}
+	else
+	{
+		//	Render a neato HUD
+		if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
+			if(GAME->GetPaused() == false)
+				RenderHUD();
+	}
+
 
 	if(GAME->GetPaused() == true)
 	{
@@ -522,26 +529,107 @@ void CGameplayState::RenderGameOverScreens(void)
 void CGameplayState::RenderMessageBox(void)
 {
 	// Safe checks
-	if(m_bNPCTalking && m_pFont && m_imgMessageBox != -1 && m_szCurrentMessage != "")
+	if(m_pFont && m_imgMessageBox != -1 && m_szCurrentMessage != "")
 	{
-		int nDrawLocationX = GAME->GetMapLocation() ? 5 : 105;
-		int nDrawLocationY = 468;
+		// int nDrawLocationX = GAME->GetMapLocation() ? 5 : 105;
+		// int nDrawLocationY = 468;
+		RECT sourceRect;
 
-		// Draw the box
-		if(m_imgMessageBox != -1)
-			TEX_MNG->Draw(m_imgMessageBox, nDrawLocationX, nDrawLocationY);
+		// Draw the box that displays the NPC's speech
+		sourceRect.left = 0;
+		sourceRect.top = 0;
+		sourceRect.right = 720;
+		sourceRect.bottom = 232;
+		TEX_MNG->Draw(m_imgMessageBox, 50 - 10, 387 - 10, 1.0f, 1.0f, &sourceRect);
+
+		// Draw the box that displays the NPC's name
+		sourceRect.left = 0;
+		sourceRect.top = 230;
+		sourceRect.right = 248;
+		sourceRect.bottom = sourceRect.top + 68;
+		TEX_MNG->Draw(m_imgMessageBox, 280 - 4, 320 - 4, 1.0f, 1.0f, &sourceRect);
 
 		// Flush it so that the box is already rendered on screen
 		D3D->GetSprite()->Flush();
 
 		// Write the text using the bitmap font
-		m_pFont->Write(m_szCharName.c_str(), nDrawLocationX + 30, nDrawLocationY + 15, D3DCOLOR_XRGB(255, 255, 255)); 
-		m_pFont->Write(m_szCurrentMessage.c_str(), nDrawLocationX + 8, nDrawLocationY + 51, D3DCOLOR_XRGB(255, 255, 255));
 
-		// If there's a current option
+		// For the name to be centered...
+		// Each character in the bitmap font has a size of 16 or less,
+		// since there are usually a couple characters like "i", that are
+		// smaller, I'm just using 14 as an average size
+		int nNameWidth = 14 * m_szCharName.length();
+
+		// Write name and text using the bitmap font
+		m_pFont->Write(m_szCharName.c_str(), 400 - (nNameWidth / 2), 334, D3DCOLOR_XRGB(255, 255, 255)); 
+		m_pFont->Write(m_szCurrentMessage.c_str(), 100, 413, D3DCOLOR_XRGB(255, 255, 255), 0.8f);
+
+		// If there's a current option...
 		if(m_szCurrentOption != "")
-			m_pFont->Write(m_szCurrentOption.c_str(), nDrawLocationX + 8, nDrawLocationY + 88, D3DCOLOR_XRGB(255, 0, 0));
+		{
+			// Draw the box that displays the selected option
+			sourceRect.left = 0;
+			sourceRect.top = 300;
+			sourceRect.right = sourceRect.left + 660;
+			sourceRect.bottom = sourceRect.top + 72;
+			TEX_MNG->Draw(m_imgMessageBox, 80 - 10, 144 - 4, 1.0f, 1.0f, &sourceRect);
+
+			int nOptionWidth = 14 * m_szCurrentOption.length();
+			// Write the selected option
+			m_pFont->Write(m_szCurrentOption.c_str(), 400 - (nOptionWidth / 2), 160, D3DCOLOR_XRGB(255, 255, 128), 0.9f);
+
+			if(true /*Should be "if there are other options"*/)
+			{
+				static int nArrowIndex = 0;
+
+				// Draw the arrows
+				sourceRect.left = 0 + (nArrowIndex/10) * 60;
+				sourceRect.top = 410;
+				sourceRect.right = sourceRect.left + 60;
+				sourceRect.bottom = sourceRect.top + 44;
+				TEX_MNG->Draw(m_imgMessageBox, 31 - 2, 157 - 2, 1.0f, 1.0f, &sourceRect);
+				sourceRect.top = 460;
+				sourceRect.bottom = sourceRect.top + 44;
+				TEX_MNG->Draw(m_imgMessageBox, 720 - 2, 157 - 2, 1.0f, 1.0f, &sourceRect);
+
+				nArrowIndex += 5;
+
+				if(nArrowIndex >= 80)
+					nArrowIndex = 0;
+			}
+		}
 	}
+}
+
+string CGameplayState::BreakDownStrings(string szString, int nMin, int nMax)
+{
+	string szReturnableString;
+	int horIndex = 0;
+	for(int i=0; i < szString.size(); ++i, ++horIndex)
+	{
+		if(horIndex >= nMin &&
+			(szString[i] == ' ' || szString[i] == '\t' || szString[i] == '	' || szString[i] == '-'))
+		{
+			szReturnableString += '\n';
+			horIndex = 0;
+		}
+		else
+		{
+			szReturnableString += szString[i];
+			if(horIndex >= nMax && i < szString.size() - 1)
+			{
+				if(szString[i+1] != ' ' && szString[i+1] != '\t' && szString[i+1] != '	' && szString[i+1] && '-')
+				{
+					szReturnableString += '-';
+					szReturnableString += '\n';
+					horIndex = 0;
+				}
+			}
+		}
+			
+	}
+
+	return szReturnableString;
 }
 
 void CGameplayState::Exit(void)

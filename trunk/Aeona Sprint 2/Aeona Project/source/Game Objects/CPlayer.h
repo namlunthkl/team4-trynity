@@ -116,24 +116,24 @@ public:
 
 	// Accessors
 	inline bool IsBusy(void) const { return m_bBusy; }
-	inline bool LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC(void)
+	inline bool Lock(void)
 	{
 		if(!m_bBusy)
 		{
 			m_bBusy = true;
-			StopAttackingImmediatelyNowCauseYouWereAttackedOrYouAreTalkingWithAnNPC();
+			StopAttacking();
 			return true;
 		}
 		return false;
 	}
 
-	inline void StopAttackingImmediatelyNowCauseYouWereAttackedOrYouAreTalkingWithAnNPC(void)
+	inline void StopAttacking(void)
 	{
 		m_bPhilCharging = false;
 		m_bPhilSpecialAttack = false;
 		m_fPhilChargeIdkman = 0.0f;
 		WEAPON->SetAttacking(false);
-		//WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
+		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Pause();
 	}
 
 	inline void Unlock(void) { if(m_bBusy) m_bBusy = false; }
