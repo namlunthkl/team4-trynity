@@ -114,6 +114,10 @@ public:
 	void SetNumPotions(unsigned int val) { m_uiNumPotions = val; }
 	void UsePotion(void);
 
+	// Return Point used for talking with NPCs and opening chests
+	PointD GetInteractivePoint(void);
+
+
 	// Accessors
 	inline bool IsBusy(void) const { return m_bBusy; }
 	inline bool Lock(void)
