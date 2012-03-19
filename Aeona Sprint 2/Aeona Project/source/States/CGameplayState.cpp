@@ -118,10 +118,10 @@ void CGameplayState::Enter(void)
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(18);
-//#ifdef _DEBUG
-//	PLAYER->SetMaxHealth(10);
-//	PLAYER->SetCurHealth(10);
-//#endif
+#ifdef _DEBUG
+	PLAYER->SetMaxHealth(10);
+	PLAYER->SetCurHealth(10);
+#endif
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
@@ -188,9 +188,10 @@ bool CGameplayState::Input(void)
 		GAME->SetPaused( !GAME->GetPaused() );
 	}
 
-
-
-
+	if((INPUT->KeyDown(DIK_LALT) || INPUT->KeyDown(DIK_RALT)) && INPUT->KeyDown(DIK_TAB))
+	{
+		GAME->SetPaused( true );
+	}
 	//TEMPORARY CODE TO SHOW SWITCHING WEAPONS AND AMULETS AND STUFF TODO
 	if(CInputManager::GetInstance()->GetSwapMask())
 	{
@@ -288,93 +289,103 @@ void CGameplayState::Render(void)
 //		D3D->DrawText(buffer2,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
 //	}
 //#endif
-
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->BeginPostProcess();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
-	D3D->Clear(0,0,0);
-	//ARI EXTRA CODE
-	CCameraControl::GetInstance()->SetSpriteProjection();
-	//END ARI EXTRA CODE
 	
-	D3D->SpriteBegin();
+	///////////////////////////
+	//ARI EXTRA CODE
+	///////////////////////////
+	if(!GAME->GetPaused())
+	{
+		D3D->DeviceBegin();
+		CPostProcess::GetInstance()->BeginPostProcess();
+		///////////////////////////
+		//END ARI EXTRA CODE
+		///////////////////////////
+		D3D->Clear(0,0,0);
+		//ARI EXTRA CODE
+		CCameraControl::GetInstance()->SetSpriteProjection();
+		//END ARI EXTRA CODE
+		
+		D3D->SpriteBegin();
+		
+		//ARI EXTRA CODE
+		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
+		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
+		D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
+		//END ARI EXTRA CODE
+
+		WORLD->RenderWorldBelowObjects();
+		D3D->GetSprite()->Flush();
+
+		OBJECTS->RenderObjects();
+		D3D->GetSprite()->Flush();
+
+		WORLD->RenderWorldAboveObjects();
+		D3D->GetSprite()->Flush();
+
+		PUZZLES->RenderPuzzles();
+
+		D3D->GetSprite()->Flush();
+
+
+		D3D->SpriteEnd();
+		///////////////////////////
+		//ARI EXTRA CODE
+		///////////////////////////
+		D3D->DeviceEnd();
+		CPostProcess::GetInstance()->EndPostProcess();
 	
-	//ARI EXTRA CODE
-	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
-	D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
-	D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
-	//END ARI EXTRA CODE
-
-	WORLD->RenderWorldBelowObjects();
-	D3D->GetSprite()->Flush();
-
-	OBJECTS->RenderObjects();
-	D3D->GetSprite()->Flush();
-
-	WORLD->RenderWorldAboveObjects();
-	D3D->GetSprite()->Flush();
-
-	PUZZLES->RenderPuzzles();
-
-	D3D->GetSprite()->Flush();
-
-
-	D3D->SpriteEnd();
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->EndPostProcess();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
+		///////////////////////////
+		//END ARI EXTRA CODE
+		///////////////////////////
 
 
 
-	D3D->DeviceBegin();
-	D3D->SpriteBegin();
+		D3D->DeviceBegin();
+		D3D->SpriteBegin();
 
-	///////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////
 
-	D3DXMATRIX identity;
-	D3DXMatrixIdentity(&identity);
-	D3D->GetSprite()->SetTransform(&identity);
-#if 0
+		D3DXMATRIX identity;
+		D3DXMatrixIdentity(&identity);
+		D3D->GetSprite()->SetTransform(&identity);
+
 #ifdef _DEBUG
-	if(CInputManager::GetInstance()->GetAttack())
-	{
-		D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
-		char buffer[100];
-		sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
-		D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
-	}
+		if(CInputManager::GetInstance()->GetAttack())
+		{
+			D3D->DrawText("Button is Down",(int)(GAME->GetScreenWidth()*0.5f),(int)(GAME->GetScreenHeight()*0.5f));
+			char buffer[100];
+			sprintf_s(&buffer[0],100,"Value %f",CInputManager::GetInstance()->Timeheld());
+			D3D->DrawText(buffer,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
+		}
 #endif
-#endif
-	// Render the Weather
-	CWeatherManager::GetInstance()->Render();
+
+		// Render the Weather
+		CWeatherManager::GetInstance()->Render();
 
 
-	// If the player is talking to an NPC, render the MessageBox but not the HUD
-	if(m_bNPCTalking)
-	{
-		RenderMessageBox();
+		// If the player is talking to an NPC, render the MessageBox but not the HUD
+		if(m_bNPCTalking)
+		{
+			RenderMessageBox();
+		}
+		else
+		{
+			//	Render a neato HUD
+			if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
+				if(GAME->GetPaused() == false)
+					RenderHUD();
+		}
+		D3D->SpriteEnd();
+		D3D->DeviceEnd();
 	}
-	else
-	{
-		//	Render a neato HUD
-		if(GAME->GetShowHUD() == true)		//	But why wouldn't you want to show it??!?
-			if(GAME->GetPaused() == false)
-				RenderHUD();
-	}
-
 
 	if(GAME->GetPaused() == true)
 	{
+		D3D->DeviceBegin();
+		D3D->SpriteBegin();
+
 		D3D->Clear(160, 160, 160);
 		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
 		GAME->GetFont()->Write("Press ESC again to resume", 32, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
@@ -460,6 +471,8 @@ void CGameplayState::Render(void)
 			TEX_MNG->Draw(m_imgHUD, 80+((39+16+8)*3), 240+128+16+8, 1.0f, 1.0f, &f);
 		}
 		}
+		D3D->SpriteEnd();
+		D3D->DeviceEnd();
 	}
 
 	D3D->GetSprite()->Flush();
@@ -483,8 +496,6 @@ void CGameplayState::Render(void)
 	}
 #endif
 #endif
-	D3D->SpriteEnd();
-	D3D->DeviceEnd();
 	D3D->Present();
 }
 
@@ -608,7 +619,7 @@ string CGameplayState::BreakDownStrings(string szString, int nMin, int nMax)
 {
 	string szReturnableString;
 	int horIndex = 0;
-	for(int i=0; i < szString.size(); ++i, ++horIndex)
+	for(unsigned int i=0; i < szString.size(); ++i, ++horIndex)
 	{
 		if(horIndex >= nMin &&
 			(szString[i] == ' ' || szString[i] == '\t' || szString[i] == '	' || szString[i] == '-'))

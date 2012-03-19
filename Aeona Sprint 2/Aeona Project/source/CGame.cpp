@@ -18,9 +18,10 @@
 #include "Animation\CAnimationManager.h"
 #include "Input Manager/CInputManager.h"
 #include "Game Objects\CPlayer.h"
-
 #include "Util/ByteUtil.h"
 
+#include <Shlobj.h>
+#include <direct.h>
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -337,7 +338,21 @@ void CGame::ChangeState(IGameState* pNewState)
 ////////////////////////////////////////////////////////////////////////
 void CGame::OutputOptionsToFile()
 {
-	ofstream foutOptions("option.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+	
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\option.txt";
+	ofstream foutOptions(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(foutOptions.is_open())
 	{
@@ -352,7 +367,22 @@ void CGame::OutputOptionsToFile()
 
 void CGame::ReadOptionsFromFile()
 {
-	ifstream finOptions("option.txt", ios_base::in);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, KF_FLAG_CREATE , NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\option.txt";
+	ifstream finOptions(tempFP.c_str(), ios_base::in);
 
 	if(finOptions.is_open())
 	{
@@ -384,11 +414,33 @@ void CGame::ReadOptionsFromFile()
 		else
 			GAME->SetSoundVolume( 100 );
 	}
+	else
+	{
+			GAME->SetShowHUD( true );
+			GAME->SetMapLocation( 1 );
+			GAME->SetMusicVolume( 50 );
+			GAME->SetSoundVolume( 80 );
+	}
 }
 
 void CGame::LoadSlot1()
 {
-	ifstream finStuff("save1.txt", ios_base::in);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save1.txt";
+
+	ifstream finStuff(tempFP.c_str(), ios_base::in);
 	if(finStuff.is_open())
 	{
 		bool nope;
@@ -404,7 +456,22 @@ void CGame::LoadSlot1()
 }
 void CGame::LoadSlot2()
 {
-	ifstream finStuff("save2.txt", ios_base::in);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save2.txt";
+
+	ifstream finStuff(tempFP.c_str(), ios_base::in);
 	if(finStuff.is_open())
 	{
 		bool nope;
@@ -420,7 +487,22 @@ void CGame::LoadSlot2()
 }
 void CGame::LoadSlot3()
 {
-	ifstream finStuff("save3.txt", ios_base::in);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save3.txt";
+
+	ifstream finStuff(tempFP.c_str(), ios_base::in);
 	if(finStuff.is_open())
 	{
 		bool nope;
@@ -438,8 +520,24 @@ void CGame::LoadSlot3()
 char CGame::ReadSaveSlots()
 {
 	Byte cLoadedOrNot = 0;
+	string tempFP;
+	size_t temp = 0;
 
-	ifstream finSlot1("save1.txt", ios_base::in);
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	string currentslot;
+	currentslot += tempFP;
+	currentslot += "\\save1.txt";
+
+	ifstream finSlot1(currentslot.c_str(), ios_base::in);
 	if(finSlot1.is_open())
 	{
 		bool bHasData = false;
@@ -449,8 +547,11 @@ char CGame::ReadSaveSlots()
 		else
 			TurnBitOff(cLoadedOrNot, 0);
 	}
+	currentslot.clear();
+	currentslot += tempFP;
+	currentslot += "\\Save2.txt";
 
-	ifstream finSlot2("save2.txt", ios_base::in);
+	ifstream finSlot2(currentslot.c_str(), ios_base::in);
 	if(finSlot2.is_open())
 	{
 		bool bHasData = false;
@@ -460,8 +561,10 @@ char CGame::ReadSaveSlots()
 		else
 			TurnBitOff(cLoadedOrNot, 1);
 	}
-
-	ifstream finSlot3("save3.txt", ios_base::in);
+	currentslot.clear();
+	currentslot += tempFP;
+	currentslot += "\\Save3.txt";
+	ifstream finSlot3(currentslot.c_str(), ios_base::in);
 	if(finSlot3.is_open())
 	{
 		bool bHasData = false;
@@ -481,7 +584,22 @@ char CGame::ReadSaveSlots()
 
 void CGame::DeleteSlot1()
 {
-	ofstream fout("save1.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save1.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{
@@ -493,7 +611,22 @@ void CGame::DeleteSlot1()
 }
 void CGame::DeleteSlot2()
 {
-	ofstream fout("save2.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save2.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{
@@ -505,7 +638,22 @@ void CGame::DeleteSlot2()
 }
 void CGame::DeleteSlot3()
 {
-	ofstream fout("save3.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save3.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{
@@ -518,7 +666,22 @@ void CGame::DeleteSlot3()
 
 void CGame::SaveSlot1()
 {
-	ofstream fout("save1.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save1.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{
@@ -535,7 +698,22 @@ void CGame::SaveSlot1()
 }
 void CGame::SaveSlot2()
 {
-	ofstream fout("save2.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save2.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{
@@ -552,7 +730,22 @@ void CGame::SaveSlot2()
 }
 void CGame::SaveSlot3()
 {
-	ofstream fout("save3.txt", ios_base::out | ios_base::trunc);
+	string tempFP;
+	size_t temp = 0;
+
+	wchar_t* localAppData = 0;
+	SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
+
+	char buffer[100];
+	wcstombs_s(&temp,buffer,100,localAppData,100);
+
+	CoTaskMemFree(static_cast<void*>(localAppData));
+	tempFP = buffer;
+	tempFP += "\\Aeona";
+	_mkdir(tempFP.c_str());
+	tempFP += "\\save3.txt";
+
+	ofstream fout(tempFP.c_str(), ios_base::out | ios_base::trunc);
 
 	if(fout.is_open())
 	{

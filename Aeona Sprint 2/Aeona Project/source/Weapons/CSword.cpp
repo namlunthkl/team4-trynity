@@ -10,7 +10,7 @@
 CSword::CSword()
 {
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/AeonaFireSword.xml");
+	CBaseCharacter::LoadAnimations("resource/aeonaFireSword.xml");
 	SetAttacking(false);
 
 	SetSound(new Sound("resource/sound/Sword.wav"));

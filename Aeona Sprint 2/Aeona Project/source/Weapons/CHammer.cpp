@@ -10,7 +10,7 @@
 CHammer::CHammer()
 {
 	//Load the Animation
-	CBaseCharacter::LoadAnimations("resource/AeonaEarthHammer.xml");
+	CBaseCharacter::LoadAnimations("resource/aeonaEarthHammer.xml");
 	SetAttacking(false);
 
 	SetSound(new Sound("resource/sound/Hammer.wav"));

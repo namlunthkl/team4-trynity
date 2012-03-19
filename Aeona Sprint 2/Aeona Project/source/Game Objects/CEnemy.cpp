@@ -55,7 +55,8 @@ bool CEnemy::CheckCollision(IBaseInterface* pObject)
 		if( pObject->GetType() == TYPE_CHAR_PLAYER && this->m_uiMiniState > 1 )
 		{
 			CPlayer::GetInstance()->SufferDamage(GetAttackDamage());
-			CPlayer::GetInstance()->SetOuchTimer(0.8f);
+			if(CPlayer::GetInstance()->GetOuchTimer() == 0.0f)
+				CPlayer::GetInstance()->SetOuchTimer(0.8f);
 		}
 	}
 	return true;

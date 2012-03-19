@@ -30,24 +30,21 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	m_bHasFlower = false;
 	m_uiGems = 0;
-	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
-#if 0
-	//	Test the weapons!
-	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
-	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
-	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 
+	TurnBitOn(m_byteMasks, MASK_NONE);
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
 	TurnBitOn(m_byteMasks,MASK_LIGHT);
-	//	IM 12 AND WHAT IS THIS?
-	TurnBitOn(m_byteMasks, MASK_NONE);
 
-	TurnBitOn(m_byteMasks, 0);
-	TurnBitOn(m_byteMasks, 1);
-	TurnBitOn(m_byteMasks, 2);
-	TurnBitOn(m_byteMasks, 3);
+	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
+#if 0
+	//	Test the weapons!
+	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
+	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
+	
+	//	IM 12 AND WHAT IS THIS?
+	
 #endif
 
 	m_bHeartPiece = false;
@@ -203,8 +200,8 @@ void CPlayer::Render(void)
 	//if(GetPosX() != GetInteractivePoint().x)
 	//	int x = 0;
 
-	D3D->DrawLine(GetScreenPosX(GetPosX()), GetScreenPosY(GetPosY()),
-		GetScreenPosX(GetInteractivePoint().x), GetScreenPosY(GetInteractivePoint().y), 255, 0, 0);
+	D3D->DrawLine((int)GetScreenPosX(GetPosX()), (int)GetScreenPosY(GetPosY()),
+		(int)GetScreenPosX(GetInteractivePoint().x), (int)GetScreenPosY(GetInteractivePoint().y), 255, 0, 0);
 	
 	temp = GetInteractiveRect();
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());

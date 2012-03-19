@@ -191,8 +191,8 @@ void CBossFireAI::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 				FireBall->Activate();
 				CObjectManager::GetInstance()->AddObject(FireBall);
 				PointD temp = pCharacter->GetPosition();
-				float temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
-				float temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
+				double temp_y_dist = pCharacter->GetPosY() - CPlayer::GetInstance()->GetPosY();
+				double temp_x_dist = pCharacter->GetPosX() - CPlayer::GetInstance()->GetPosX();
 
 				if(fabs(temp_y_dist) > fabs(temp_x_dist))
 				{
