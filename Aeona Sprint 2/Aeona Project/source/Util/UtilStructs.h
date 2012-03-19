@@ -256,8 +256,4 @@ struct Sound
 };
 
 
-
-
-
-
 #endif // UTIL_STRUCTS_H_

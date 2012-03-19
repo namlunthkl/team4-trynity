@@ -641,7 +641,7 @@ const char* CPlayer::GetRegion(void) const
 }
 void CPlayer::SufferDamage(unsigned int uiDamage)
 {
-	this->StopAttackingImmediatelyNowCauseYouWereAttackedOrYouAreTalkingWithAnNPC();
+	StopAttacking();
 
 	if( m_fOuchTimer == 0.0f)
 	{

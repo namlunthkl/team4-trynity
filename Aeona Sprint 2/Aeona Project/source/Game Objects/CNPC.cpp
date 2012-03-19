@@ -73,7 +73,8 @@ void CNPC::LoadText(char const * const szFilename)
 		// Read the speech node stuff
 		szSpeechName = xSpeechNode->Attribute("name");
 		szSpeechText = xSpeechNode->Attribute("text");
-		tSpeechNode* pSpeechNode = m_Dialogue.AddSpeechNode(szSpeechName, szSpeechText);
+
+		tSpeechNode* pSpeechNode = m_Dialogue.AddSpeechNode(szSpeechName, GAMEPLAY->BreakDownStrings(szSpeechText, 50, 52));
 
 		TiXmlElement* xOptionNode = xSpeechNode->FirstChildElement("Option");
 		
@@ -149,7 +150,7 @@ void CNPC::Update(float fElapsedTime)
 	if(dDistance < m_dRange)
 	{
 		if(m_bActiveTalk)
-			if(CPlayer::GetInstance()->LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC())
+			if(CPlayer::GetInstance()->Lock())
 				m_bTalk = true;
 	}
 	else if(m_bTalk)
@@ -175,10 +176,12 @@ void CNPC::Input(void)
 
 			if(dDistance < m_dRange)
 			{
-				m_pCurrentSpeech = (*m_pCurrentDialogue)[0];
-				m_bTalk = true;
-				m_uiTextIndex = 0;
-				CPlayer::GetInstance()->LockTheHellOutOfThatPlayerCauseHeShouldNotBeAbleToAttackOrDoAnythingWhileHeIsSpeakingWithAnNPC();
+				if(CPlayer::GetInstance()->Lock())
+				{
+					m_pCurrentSpeech = (*m_pCurrentDialogue)[0];
+					m_bTalk = true;
+					m_uiTextIndex = 0;
+				}
 			}
 		}
 		else
