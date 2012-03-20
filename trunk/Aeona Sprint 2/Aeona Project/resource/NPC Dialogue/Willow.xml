@@ -18,7 +18,7 @@
 <Option text="Can fairies have children?"/>
 </SpeechNode>
 
-<SpeechNode text="Faires don't procreate the way other life forms do.  We exist or don't exist.  We consume nothing but can get created from a piece of anything. Leaves, dirt, water drop- anything.  We are gifted into the world from other objects.  Baby Fairies would be cute, though." name="Willow5">
+<SpeechNode text="Fairies don't procreate the way other life forms do.  We exist or don't exist.  We consume nothing but can get created from a piece of anything. Leaves, dirt, water drop- anything.  We are gifted into the world from other objects.  Baby Fairies would be cute, though." name="Willow5">
 </SpeechNode>
 
 <Connection speechA="Willow1" option="1" speechB="Willow2"/>

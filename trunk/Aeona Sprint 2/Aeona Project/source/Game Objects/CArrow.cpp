@@ -14,6 +14,9 @@
 #include "CPlayer.h"
 #include "CEnemy.h"
 #include "CFinalBoss.h"
+
+#include "..\Camera\CCameraControl.h"
+#include "..\CGame.h"
 CArrow::CArrow()
 {
 	timeout = 0;
@@ -22,8 +25,18 @@ void CArrow::Update(float fElapsedTime)
 {
 	CBaseObject::Update(fElapsedTime);
 	timeout += fElapsedTime;
-	if(timeout > 2.0f)
+	if(timeout >= 2.0f)
 		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+
+	if( GetPosX() <= GetPosX() - 350 )
+	{
+		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	}
+	if( GetPosY() <= 0 )
+	{
+		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	}
+
 }
 void CArrow::Render(void)
 {
@@ -45,13 +58,13 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 	{
 		if(pObject->GetType() == TYPE_CHAR_ENEMY )
 		{
-			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 		}
 		if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
 		{
-			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 		}
 		//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
 		//{

@@ -20,7 +20,7 @@
 <Connection speechA="Sanei1" option="1" speechB="Sanei2"/>
 
 <Connection speechA="Sanei2" option="1" speechB="Sanei3"/>
-<Connection speechA="Sanei2" option="1" speechB="SaneiA"/>
+<Connection speechA="Sanei2" option="2" speechB="SaneiA"/>
 
 
 </Dialogue>
