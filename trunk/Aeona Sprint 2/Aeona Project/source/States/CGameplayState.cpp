@@ -659,7 +659,7 @@ void CGameplayState::Exit(void)
 	TEX_MNG->UnloadTexture(PLAYER->m_imgCharges);
 	
 	AUDIO->MusicStopSong(GetBGMusic());
-
+	AUDIO->SilenceAll();
 	EVENTS->ClearEvents();
 	MESSAGES->ClearMessages();
 
