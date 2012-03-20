@@ -106,10 +106,12 @@ RectD CHammer::GetCollisionRect(void)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
 				}
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -110;
+				rectCollision.top = -110;
+				rectCollision.right = 110;
+				rectCollision.bottom = 110;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
 		else
@@ -145,10 +147,12 @@ RectD CHammer::GetCollisionRect(void)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
 				}
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -110;
+				rectCollision.top = -110;
+				rectCollision.right = 110;
+				rectCollision.bottom = 110;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
 		else
@@ -184,10 +188,12 @@ RectD CHammer::GetCollisionRect(void)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
 				}
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -110;
+				rectCollision.top = -110;
+				rectCollision.right = 110;
+				rectCollision.bottom = 110;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
 		else
@@ -223,10 +229,12 @@ RectD CHammer::GetCollisionRect(void)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
 				}
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -110;
+				rectCollision.top = -110;
+				rectCollision.right = 110;
+				rectCollision.bottom = 110;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
 		else

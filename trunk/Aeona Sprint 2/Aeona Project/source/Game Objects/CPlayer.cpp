@@ -53,6 +53,8 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_bPhilCharging = false;
 	m_bPhilSpecialAttack = false;
 	m_fPhilChargeIdkman = 0.0f;
+	m_imgCharges = TEX_MNG->LoadTexture("resource/Charges.png", D3DCOLOR_XRGB(255, 0, 255));
+	m_fBlastTimer = 0.0f;
 
 	m_vGameWeapons.push_back(new CDagger);
 	m_vGameWeapons[WEAPON_DAGGER]->Activate();
@@ -139,6 +141,11 @@ void CPlayer::Update(float fElapsedTime)
 		m_fOuchTimer -= fElapsedTime;
 	if( m_fOuchTimer < 0.0f )
 		m_fOuchTimer = 0.0f;
+
+	if(m_fBlastTimer > 0.0f)
+		m_fBlastTimer -= fElapsedTime;
+	if(m_fBlastTimer < 0.0f)
+		m_fBlastTimer = 0.0f;
 	
 	if(m_uiCurrentMask == MASK_SPEED)
 		m_nSpeedIncrease = 2;
@@ -190,7 +197,93 @@ void CPlayer::Render(void)
 	//
 	//
 	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
+	{
 		WEAPON->Render(GetPosition());
+
+		
+		//begin shit for rendering charge crap below
+		if(m_fBlastTimer > 0.0f)
+		{
+			RECT r;
+			r.left = 0;
+			r.right = 1;
+			r.top = 0;
+			r.bottom = 1;
+			float rotation = 0.0f;
+			int ox = 0;
+			int oy = 0;
+		
+			switch(WEAPON->GetCurrentAnimation())
+			{
+			case ANM_WALK_UP:
+			case ANM_IDLE_UP:
+			case ANM_ATK_UP:
+				rotation = 3.14159f/2.0f;
+				break;
+			case ANM_WALK_DOWN:
+			case ANM_IDLE_DOWN:
+			case ANM_ATK_DOWN:
+				rotation = 3.14159f/2.0f;
+				break;
+			case ANM_WALK_LEFT:
+			case ANM_IDLE_LEFT:
+			case ANM_ATK_LEFT:
+				rotation = 0.0f;
+				break;
+			case ANM_WALK_RIGHT:
+			case ANM_IDLE_RIGHT:
+			case ANM_ATK_RIGHT:
+				rotation = 0.0f;
+				break;
+			default:
+				rotation = 0.0f;
+			}
+
+			if(GetCurrentWeapon() == 0)			//dagger
+			{
+				r.left = 0;
+				r.right = 240;
+				r.top = 0;
+				r.bottom = 60;
+				ox = 120;
+				oy = 30;
+			}
+			else if(GetCurrentWeapon() == 1)	//sword
+			{
+				r.left = 0;
+				r.right = 200;
+				r.top = 60;
+				r.bottom = 60+200;
+				ox = 100;
+				oy = 100;
+			}
+			else if(GetCurrentWeapon() == 2)	//hammer
+			{
+				r.left = 0;
+				r.right = 220;
+				r.top = 60+200;
+				r.bottom = 60+200+220;
+				ox = 110;
+				oy = 110;
+			}
+			else if(GetCurrentWeapon() == 3)	//bow
+			{
+				r.left = 240;
+				r.right = 240+48;
+				r.top = 0;
+				r.bottom = 1000;
+				if(rotation == 0.0f)
+					rotation = 3.14159f/2.0f;
+				else
+					rotation = 0.0f;
+				ox = 24;
+				oy = 500;
+			}
+		
+			TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
+		}
+		//end render of charge stuff.
+	}
 	else
 	{
 		WEAPON->Render(GetPosition(),D3DCOLOR_ARGB(155,255,0,0));
@@ -209,7 +302,7 @@ void CPlayer::Render(void)
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 
 #ifdef _DEBUG
-	if(true) //if(IsOnDebug())
+	if(false) //if(IsOnDebug())
 	{
 		if(m_uiCurrentWeapon == WEAPON_SWORD)
 		{
@@ -682,10 +775,12 @@ RectD CPlayer::GetWeaponRect(void)
 CPlayer::~CPlayer(void)
 {
 }
+
 const char* CPlayer::GetRegion(void) const
 {
 	return CWorldEngine::GetInstance()->GetRegionName(GetPosX(), GetPosY());
 }
+
 void CPlayer::SufferDamage(unsigned int uiDamage)
 {
 	StopAttacking();

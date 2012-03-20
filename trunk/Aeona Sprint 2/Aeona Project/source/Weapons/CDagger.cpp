@@ -85,10 +85,12 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 0;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(20);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -97,10 +99,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 22;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
 			}
 		}
 		else if(m_fSlashTimer < 0.375f)
@@ -109,10 +111,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 34;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
 			}
 		}
 		else
@@ -136,10 +138,12 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 34;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(20);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -148,10 +152,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 22;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
 			}
 		}
 		else if(m_fSlashTimer < 0.375f)
@@ -160,10 +164,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.right = 0;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -30;
+				rectCollision.top = -120;
+				rectCollision.right = 30;
+				rectCollision.bottom = 120;
 			}
 		}
 		else
@@ -187,10 +191,12 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 34;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(20);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -199,10 +205,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 22;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
 			}
 		}
 		else if(m_fSlashTimer < 0.375f)
@@ -211,10 +217,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 0;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
 			}
 		}
 		else
@@ -238,10 +244,12 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 34;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(20);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -250,10 +258,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 22;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
 			}
 		}
 		else if(m_fSlashTimer < 0.375f)
@@ -262,10 +270,10 @@ RectD CDagger::GetCollisionRect(void)
 			rectCollision.bottom = 0;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
-				rectCollision.left = -90;
-				rectCollision.top = -90;
-				rectCollision.right = 90;
-				rectCollision.bottom = 90;
+				rectCollision.left = -120;
+				rectCollision.top = -30;
+				rectCollision.right = 120;
+				rectCollision.bottom = 30;
 			}
 		}
 		else

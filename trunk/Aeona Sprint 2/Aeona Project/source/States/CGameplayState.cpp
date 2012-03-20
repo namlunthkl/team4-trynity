@@ -655,6 +655,9 @@ string CGameplayState::BreakDownStrings(string szString, int nMin, int nMax)
 
 void CGameplayState::Exit(void)
 {
+	//unload charge img
+	TEX_MNG->UnloadTexture(PLAYER->m_imgCharges);
+	
 	AUDIO->MusicStopSong(GetBGMusic());
 
 	EVENTS->ClearEvents();

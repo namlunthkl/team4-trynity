@@ -97,6 +97,8 @@ RectD CCrossBow::GetCollisionRect(void)
 				rectCollision.top = -500;
 				rectCollision.right = 24;
 				rectCollision.bottom = 500;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(22);
 			}
 		}
 		else
@@ -124,6 +126,8 @@ RectD CCrossBow::GetCollisionRect(void)
 				rectCollision.top = -500;
 				rectCollision.right = 24;
 				rectCollision.bottom = 500;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(22);
 			}
 		}
 		else
@@ -151,6 +155,8 @@ RectD CCrossBow::GetCollisionRect(void)
 				rectCollision.top = -24;
 				rectCollision.right = 500;
 				rectCollision.bottom = 24;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(22);
 			}
 		}
 		else
@@ -178,6 +184,8 @@ RectD CCrossBow::GetCollisionRect(void)
 				rectCollision.top = -24;
 				rectCollision.right = 500;
 				rectCollision.bottom = 24;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->SetAttackDamage(22);
 			}
 		}
 		else
