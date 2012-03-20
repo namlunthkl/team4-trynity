@@ -43,12 +43,12 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
 	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
 	{
-		if(pObject->GetType() == TYPE_CHAR_ENEMY)
+		if(pObject->GetType() == TYPE_CHAR_ENEMY )
 		{
 			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
 		}
-		else if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
+		if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
 		{
 			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
