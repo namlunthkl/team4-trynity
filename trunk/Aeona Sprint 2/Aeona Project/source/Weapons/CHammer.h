@@ -25,7 +25,7 @@ public:
 	CHammer();
 	~CHammer(void);
 	void Attack(void);
-	void ChargedAttack(void);
+	void ChargedAttack(void){}
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
 	void Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
