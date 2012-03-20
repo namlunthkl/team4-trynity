@@ -117,10 +117,12 @@ void CGameplayState::Enter(void)
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
 	PLAYER->SetAttackDamage(18);
-#ifdef _DEBUG
-	PLAYER->SetMaxHealth(10);
-	PLAYER->SetCurHealth(10);
-#endif
+	PLAYER->SetMaxHealth(5);
+	PLAYER->SetCurHealth(5);
+//#ifdef _DEBUG
+//	PLAYER->SetMaxHealth(10);
+//	PLAYER->SetCurHealth(10);
+//#endif
 	PLAYER->SetDebugMode(false);
 	OBJECTS->AddObject(PLAYER);
 
