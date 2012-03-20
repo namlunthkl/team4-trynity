@@ -319,6 +319,7 @@ void CPlayer::Input(void)
 	// This If Check is breaking the attacks for bow and hammer fyi - NO ITS NOT, UR LYING U BUTTNOSE!
 	if(m_bPhilCharging == false)
 	{
+		CCameraControl::GetInstance()->SetReleaseButton(true);
 		if(WEAPON->GetAttacking() == false)
 		{
 			if(CInputManager::GetInstance()->GetAttack())

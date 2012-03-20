@@ -15,7 +15,7 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 
-	//m_nRainSound = AUDIO->SFXLoadSound("resource/sound/T4_M3.wav");
+	//m_nRainSound = AUDIO->MusicLoadSong("resource/sound/T4_M1.xwm");
 	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
 	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
 	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");
@@ -87,7 +87,7 @@ void CWeatherManager::LoadWeather(void)
 		{
 			ShutDown();
 			LoadXML("Resource/data/Rain.xml");
-			//AUDIO->SFXPlaySound( m_nRainSound, true );
+			//AUDIO->MusicPlaySong( m_nRainSound, true );
 			SetIsOn( true );
 		}
 		break;
