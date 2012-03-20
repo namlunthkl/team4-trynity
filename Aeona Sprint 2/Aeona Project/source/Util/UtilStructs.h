@@ -248,7 +248,7 @@ struct Sound
 	{
 		if(m_nSoundID != -1)
 		{
-			if(timeGetTime() - m_dwTimeStamp > m_dwDelta)
+			if(AUDIO->SFXIsSoundPlaying(m_nSoundID) == false)
 			{
 				AUDIO->SFXPlaySound(m_nSoundID);
 				m_dwTimeStamp = timeGetTime();

@@ -20,10 +20,10 @@
 class CHammer : public IBaseWeapon
 {
 private:
-
+	int m_sndCharged;
 public:
 	CHammer();
-	~CHammer(void) {}
+	~CHammer(void);
 	void Attack(void);
 	void ChargedAttack(void);
 	void Update(float fElapsedTime);

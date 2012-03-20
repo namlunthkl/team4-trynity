@@ -20,9 +20,9 @@
 class CSword : public IBaseWeapon
 {
 private:
-
+	int m_sndCharged;
 public:
-	~CSword(void) {}
+	~CSword(void);
 	CSword();
 
 	void Attack(void);

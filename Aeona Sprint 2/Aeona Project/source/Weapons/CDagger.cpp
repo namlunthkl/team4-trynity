@@ -13,9 +13,14 @@ CDagger::CDagger()
 	CBaseCharacter::LoadAnimations("resource/aeonaDagger.xml");
 	SetAttacking(false);
 
-	SetSound(new Sound("resource/sound/Dagger.wav"));
+	SetSound(new Sound("resource/sound/AtkDaggerSlash.wav"));
+	m_sndCharged = AUDIO->SFXLoadSound("resource/sound/AtkDaggerWhirl.wav");
 
 	m_fSlashTimer = 0.0f;
+}
+CDagger::~CDagger()
+{
+	AUDIO->SFXUnloadSound(m_sndCharged);
 }
 void CDagger::Render(PointD nPos)
 {
@@ -52,7 +57,16 @@ void CDagger::Attack(void)
 	SetAttacking(true);
 	CPlayer::GetInstance()->SetAttackDamage(16);
 	if(m_fSlashTimer == 0.0f)
-		GetSound()->Play();
+	{
+		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
+		{
+			GetSound()->Play();
+		}
+		else
+		{
+			AUDIO->SFXPlaySound(m_sndCharged);
+		}
+	}
 }
 void CDagger::ChargedAttack(void)
 {

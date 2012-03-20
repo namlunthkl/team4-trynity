@@ -17,9 +17,14 @@ CCrossBow::CCrossBow()
 	m_pArrow = NULL;
 	//m_fTime = 0;
 	m_imgArrow = TEX_MNG->LoadTexture("resource/BlueArrow.png", D3DCOLOR_XRGB(0,0,0));
-	SetSound(new Sound("resource/sound/Bow.wav"));
+	SetSound(new Sound("resource/sound/AtkBowShoot.wav"));
+	m_sndCharged = AUDIO->SFXLoadSound("resource/sound/AtkBowLaser.wav");
 
 	m_fSlashTimer = 0.0f;
+}
+CCrossBow::~CCrossBow()
+{
+	AUDIO->SFXUnloadSound(m_sndCharged);
 }
 void CCrossBow::Render(PointD nPos)
 {
@@ -59,11 +64,14 @@ void CCrossBow::Attack(void)
 	CPlayer::GetInstance()->SetAttackDamage(15);
 	if(m_fSlashTimer == 0.0f)
 	{
-		GetSound()->Play();
 		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 		{
-			//m_fSlashTimer = 0.0f;
+			GetSound()->Play();
 			ShootArrow();
+		}
+		else
+		{
+			AUDIO->SFXPlaySound(m_sndCharged);
 		}
 	}
 }
@@ -93,6 +101,10 @@ RectD CCrossBow::GetCollisionRect(void)
 		}
 		else
 		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
 			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
@@ -116,6 +128,10 @@ RectD CCrossBow::GetCollisionRect(void)
 		}
 		else
 		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
 			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
@@ -139,6 +155,10 @@ RectD CCrossBow::GetCollisionRect(void)
 		}
 		else
 		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
 			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
@@ -162,6 +182,10 @@ RectD CCrossBow::GetCollisionRect(void)
 		}
 		else
 		{
+			rectCollision.left = -2;
+			rectCollision.top = -2;
+			rectCollision.right = 2;
+			rectCollision.bottom = 2;
 			SetAttacking(false);
 			m_fSlashTimer = 0.0f;
 			CPlayer::GetInstance()->m_bPhilSpecialAttack = false;
