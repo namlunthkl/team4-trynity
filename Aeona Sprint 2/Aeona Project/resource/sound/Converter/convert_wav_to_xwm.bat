@@ -1,0 +1,1 @@
+for /r . %%T IN (*.wav) do @xWMAEncode.exe "%%T" "%%~pT%%~nT.xwm"
