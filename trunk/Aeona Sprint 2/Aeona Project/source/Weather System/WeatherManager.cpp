@@ -15,6 +15,8 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 	m_nDesert = AUDIO->MusicLoadSong("resource/sound/JDesert.xwm");
+	m_nLake = AUDIO->MusicLoadSong("resource/sound/JLake.xwm");
+	m_nVolcano = AUDIO->MusicLoadSong("resource/sound/JVolcano.xwm");
 }
 CWeatherManager::~CWeatherManager()
 {
@@ -52,6 +54,11 @@ void CWeatherManager::CheckRegion(void)
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Volcano" ) == 0 )
 		{
+			if(!AUDIO->MusicIsSongPlaying(m_nVolcano))
+			{
+				AUDIO->SilenceAll();
+				AUDIO->MusicPlaySong(m_nVolcano,true);
+			}
 			m_nCurrRegion = 3;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Cave" ) == 0 )
@@ -60,6 +67,11 @@ void CWeatherManager::CheckRegion(void)
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Lake" ) == 0 )
 		{
+			if(!AUDIO->MusicIsSongPlaying(m_nLake))
+			{
+				AUDIO->SilenceAll();
+				AUDIO->MusicPlaySong(m_nLake,true);
+			}
 			m_nCurrRegion = 5;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Dungeon" ) == 0 )

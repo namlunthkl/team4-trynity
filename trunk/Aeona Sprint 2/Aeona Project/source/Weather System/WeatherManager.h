@@ -18,6 +18,10 @@ private:
 
 	// SOUND
 	int m_nRainSound;
+
+	// MUSIC
+	int m_nLake;
+	int m_nVolcano;
 	int m_nDesert;
 
 	CWeatherManager();
