@@ -72,7 +72,7 @@ public:
 	~CBaseCharacter(void);
 
 
-	inline void GainHeart(void) { m_uiMaxHealth++; }
+	inline void GainHeart(void) { m_uiMaxHealth++; m_uiCurHealth = m_uiMaxHealth; }
 	inline float GetMoveTimer(void) const { return m_fMoveTimer; }
 	inline void SetMoveTimer(float fMoveTimer) { m_fMoveTimer = fMoveTimer; }
 

@@ -2947,7 +2947,7 @@
       <Tile PosX="7" PosY="25" Type="4" Event="destroy" />
       <Tile PosX="7" PosY="25" Type="4" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="Chest.Amulet.Light" />
       <Tile PosX="7" PosY="25" Type="4" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />

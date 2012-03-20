@@ -18,7 +18,7 @@
 #include "../Tile Mapping/CWorldEngine.h"
 #include "../Light System/LightEngine.h"
 #include "../Game Objects/CFinalBoss.h"
-// Constructor]
+// Constructor
 CPlayer::CPlayer(void) : CBaseCharacter()
 {
 	m_byteWeapons = 0;
@@ -32,19 +32,17 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiGems = 0;
 
 	TurnBitOn(m_byteMasks, MASK_NONE);
+
+#if 0
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
 	TurnBitOn(m_byteMasks,MASK_LIGHT);
 
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
-#if 1
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
-	
-	//	IM 12 AND WHAT IS THIS?
-	
 #endif
 
 	m_bHeartPiece = false;
