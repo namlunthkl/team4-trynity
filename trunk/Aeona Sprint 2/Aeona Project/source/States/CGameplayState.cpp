@@ -102,6 +102,7 @@ void CGameplayState::Enter(void)
 	
 	//		Sounds
 	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
+	//SetBGMusic(AUDIO->MusicLoadSong("resource/sound/T4_M1.xwm"));
 
 	// Initialize Player
 	// (1536, 1024)		- Boss Dungeon
