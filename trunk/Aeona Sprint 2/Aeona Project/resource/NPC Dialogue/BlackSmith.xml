@@ -55,35 +55,56 @@
 <Option text="No"/>
 </SpeechNode>
 
-<SpeechNode text="I will give you the power you seek"name="BlackSmith14">
-<Option text="Wow, this is amazing!"/>
+<SpeechNode text="Hold down your attack button, and release for a big impact.  But make sure the meter is full!  HrrHahaahahaaa!"name="BlackSmith14">
+<Option text="Wow, that is amazing!"/>
 </SpeechNode>
 
 <SpeechNode text="HrrHahaha!! I told you so!"name="BlackSmith15">
-<Option text="What's the matter with you anyway? Who are you?"/>
+<Option text="What's the matter with you? Who are you?"/>
 </SpeechNode>
 
-<SpeechNode text="Glad you asked.  You see- when I was very young, my father left my mother.  I was heartbroken and couldn't find solice in knowing I was unwanted.  For many years, my mother would curse my name, claiming I was the reason father left.  I think he may have thought I was an abomination when I was born.  I know I look different, but I also think that makes me special.  I have no idea where my father went, or why he left. Nothing made me feel better and it even got worse when I reached my adolescent years.  During that dark chapter of my life, I started rebeling.  I picked up a wooden stick and hurlded it at an oak tree.  I picked the stick back up and forcefully began to strike the bark.  I hit the stick over and over until it bruised the tree.  When the Stick broke, I didn't stop- I repeatedly beat the Oak tree until my hands started to splinter.  I don't know why I acted so violent towards that old tree- maybe it was because of my mother; or maybe it was my father.  I only now realize I was mad at myself, mad that I couldn't amount to anything other than the neighborhood bastard child.  I was ugly on the outside and felt alone.  I picked up another stick and started to fashion it into something sharper.  This time, I really wanted to cause pain to the Oak tree.  I wanted it to feel the way I did everyday.  I spent hours stabbing and marking that tree with cuts and abrasions that became deeper and darker as the sap seeded through.  I went back home and grabbed cutting knives to further cristen my hate. I did this for several years and began making my own tools; tools to more efficiently cut and cause harm. My purpose in life became clear to me when I discoverd my natural abilities to forge weapons and empower echanted ones; Weapons like the one you are holding in your hands.  I know you are a Hero.  You are holding the Ryza blade are you not?  That weapon is truly powerful.  It can cut almost anything in two and can even change the land.  I know I am crazy, but I can teach you the art of weaponry.  It is who I am: an unwanted child, a deranged child beating the living heck out of an old oak tree, a crafter of tools, a psychotic man living on a barren island, a powerful blacksmith, No! The Greatest Blacksmith in all of Valest!  What am I?  A monster.... HrrHahaha..  at your service!"name="BlackSmith16">
+<SpeechNode text="Glad you asked.  You see- when I was very young, my father left my mother.  I was heartbroken and couldn't find solice in knowing I was unwanted.  For many years, my mother would curse my name, claiming I was the reason father left.  I think he may have thought I was an abomination when I was born.  I know I look different, but I also think that makes me special."name="BlackSmith16">
+<Option text=".."/>
+</SpeechNode>  
+
+<SpeechNode text="I have no idea why my Father left. Nothing made me feel better and it even got worse when I reached my adolescent years.  During that dark chapter of my life, I started rebeling. I picked up a wooden stick and hurlded it at an oak tree. I picked the stick back up and forcefully began to strike the bark. I hit the tree over and over until it bruised."name="BlackSmith17">
+<Option text="..."/>
+</SpeechNode>
+
+<SpeechNode text="When the Stick broke, I didn't stop. I repeatedly it until my hands splintered. I don't know why I acted so violent towards that old tree- maybe it was a metaphor for my mother or father. I only now realize I was mad at myself, mad that I couldn't amount to anything other than the neighborhood bastard child.  Im ugly on the outside and alone."name="BlackSmith18">
+<Option text="..."/>
+</SpeechNode>
+
+<SpeechNode text="I picked up another stick and fashioned it into something sharper. This time, I really wanted to cause pain. I wanted it to feel the way I did everyday. I spent hours stabbing and marking that tree with cuts and abrasions that became deeper and darker as the sap seeded through. I went back home and grabbed cutting knives to further cristen my hate."name="BlackSmith19">
+<Option text="..."/>
+</SpeechNode>
+
+<SpeechNode text="Later, I began making my own tools that were more effective. My purpose in life became clear when I discoverd my natural abilities to forge weapons. Weapons like the one you are holding in your hands. You are holding the Ryza blade are you not? That weapon is truly powerful. It can cut almost anything in two."name="BlackSmith20">
+<Option text="..."/>
+</SpeechNode>
+
+<SpeechNode text="I know I am crazy, but I can teach you the art of weaponry.  It is who I am: an unwanted child, a deranged child beating the living heck out of an old oak tree, a crafter of tools, a psychotic man living on a barren island, a powerful blacksmith, No! The Greatest Blacksmith in all of Valest!  What am I?  A monster.... HrrHahaha..  at your service!"name="BlackSmith21">
 <Option text="!"/>
 </SpeechNode>
 
-<SpeechNode text="HrrHahaha!! Leave now! Never return you hooligan!  HrrHahaha!!  Leave you spoony bard!  HrrHahaha!!"name="BlackSmithB">
+
+<SpeechNode text="HrrHahaha!! Leave now! Never return you hooligan!  HrrHahaha!!  Leave you spoony bard!  HrrHahaha!!"name="BlackSmithA">
 <Option text="I don't get it..??"/>
 </SpeechNode>
 
-<SpeechNode text="HrrHahaha!! You never will Dovakiin! HrrHahaha!! You Link to the Past!"name="BlackSmithC">
+<SpeechNode text="HrrHahaha!! You never will Dovakiin! HrrHahaha!! You Link to the Past!"name="BlackSmithB">
 <Option text="..Still not following you!"/>
 </SpeechNode>
 
-<SpeechNode text="HrrHahaha!! Begone! You COD player! HrrHahaha!!"name="BlackSmithD">
+<SpeechNode text="HrrHahaha!! Begone! You COD player! HrrHahaha!!"name="BlackSmithC">
 <Option text="....what else you got?"/>
 </SpeechNode>
 
-<SpeechNode text="Got? HrrHahaha!! I just got Mass Effect 3 HrrHahaha!!  Go now, so I can play!"name="BlackSmithE">
+<SpeechNode text="Got? HrrHahaha!! I just got Mass Effect 3 HrrHahaha!!  Go now, so I can play!"name="BlackSmithD">
 <Option text="Is that it?"/>
 </SpeechNode>
 
-<SpeechNode text="HrrHahaha!! Wait what? Broccoli! That's the Issue! Pointer! HrrHahaha!!"name="BlackSmithF">
+<SpeechNode text="HrrHahaha!! Wait what? Broccoli! That's the Issue! Pointer! HrrHahaha!!"name="BlackSmithE">
 </SpeechNode>
 
 <Connection speechA="BlackSmith1" option="1" speechB="BlackSmith2"/>
@@ -104,12 +125,16 @@
 <Connection speechA="BlackSmith13"option="1" speechB="BlackSmith14"/>
 <Connection speechA="BlackSmith14"option="1" speechB="BlackSmith15"/>
 <Connection speechA="BlackSmith15"option="1" speechB="BlackSmith16"/>
+<Connection speechA="BlackSmith16"option="1" speechB="BlackSmith17"/>
+<Connection speechA="BlackSmith17"option="1" speechB="BlackSmith18"/>
+<Connection speechA="BlackSmith18"option="1" speechB="BlackSmith19"/>
+<Connection speechA="BlackSmith19"option="1" speechB="BlackSmith20"/>
+<Connection speechA="BlackSmith20"option="1" speechB="BlackSmith21"/>
 
 <Connection speechA="BlackSmithA" option="1" speechB="BlackSmithB"/>
 <Connection speechA="BlackSmithB" option="1" speechB="BlackSmithC"/>
 <Connection speechA="BlackSmithC" option="1" speechB="BlackSmithD"/>
 <Connection speechA="BlackSmithD" option="1" speechB="BlackSmithE"/>
-<Connection speechA="BlackSmithE" option="1" speechB="BlackSmithF"/>
 
 </Dialogue>
 
