@@ -18,6 +18,7 @@ private:
 
 	// SOUND
 	int m_nRainSound;
+	int m_nDesert;
 	//int m_nFireFliesSound;
 	//int m_nLeavesSound;
 	//int m_nSnowSound;

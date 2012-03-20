@@ -14,8 +14,8 @@ CWeatherManager::CWeatherManager()
 	SetTimeToWait( 0.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );
-
-	//m_nRainSound = AUDIO->MusicLoadSong("resource/sound/T4_M1.xwm");
+	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/T4_M12.wav");
+	m_nDesert = AUDIO->MusicLoadSong("resource/sound/JDesert.xwm");
 	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
 	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
 	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");
@@ -50,6 +50,11 @@ void CWeatherManager::CheckRegion(void)
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Desert" ) == 0 )
 		{
+			if(!AUDIO->MusicIsSongPlaying(m_nDesert))
+			{
+				AUDIO->SilenceAll();
+				AUDIO->MusicPlaySong(m_nDesert,true);
+			}
 			m_nCurrRegion = 2;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Volcano" ) == 0 )
@@ -87,7 +92,7 @@ void CWeatherManager::LoadWeather(void)
 		{
 			ShutDown();
 			LoadXML("Resource/data/Rain.xml");
-			//AUDIO->MusicPlaySong( m_nRainSound, true );
+			AUDIO->SFXPlaySound( m_nRainSound, true );
 			SetIsOn( true );
 		}
 		break;

@@ -1,0 +1,20 @@
+XAudio2 only supports .wav files for sfx and .xwm for music files.
+.xwm has a better compression rate than .mp3 so your .xwm files will be smaller.
+
+
+Step 1.	Find a free .mp3 to .wav converter on the internet
+	Google this: "download free .mp3 to .wav converter"
+
+Step 2.	Convert .mp3 to .wav
+
+Step 3. Put the .wav in this folder
+Step 4.	Run the "convert_wav_to_xwm.bat" by double clicking it
+
+Step 5. Copy the .xwm into your game's resource folder and load it with XAudio2! :)
+
+
+NOTE:	ALL .wav files in the directory will be converted when you run the .bat
+	so please take them out of the folder when you are done.
+
+	Also, if you make sub folders inside this folder, all .wav files
+	in those sub folders will be converted too.
