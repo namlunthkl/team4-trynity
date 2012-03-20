@@ -676,6 +676,8 @@ void CGameplayState::Exit(void)
 	WORLD->ShutdownWorldEngine();
 	WORLD->DeleteInstance();
 	MESSAGES->ShutdownMessageSystem();
+
+	CPlayer::GetInstance()->Reset();
 }
 
 CGameplayState* CGameplayState::GetInstance(void)

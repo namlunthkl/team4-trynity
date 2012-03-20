@@ -72,6 +72,8 @@ public:
 	// Singleton's accessor
 	static CPlayer* GetInstance(void);
 
+	void Reset(void);
+
 	// Common routines - Overloaded methods
 	void Update(float fElapsedTime);
 	void Render(void);
