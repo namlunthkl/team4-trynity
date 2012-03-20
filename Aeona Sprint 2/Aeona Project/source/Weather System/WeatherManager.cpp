@@ -103,7 +103,7 @@ void CWeatherManager::LoadWeather(void)
 		{
 			ShutDown();
 			LoadXML("Resource/data/Rain.xml");
-			AUDIO->SFXPlaySound( m_nRainSound, true );
+			//AUDIO->SFXPlaySound( m_nRainSound, true );
 			SetIsOn( true );
 		}
 		break;
