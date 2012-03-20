@@ -8,6 +8,7 @@
 <Tileset file="resource/Tilesets/DesertTiles.xml"/>
 <Tileset file="resource/Tilesets/DesertMaze.xml"/>
 <Tileset file="resource/Tilesets/VolcanoTileset.xml"/>
+<Tileset file="resource/Tilesets/TownTileset.xml"/>
 
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
