@@ -121,6 +121,8 @@ void CPlayer::Reset(void)
 
 	m_bBusy = false;
 	m_bTrulyDead = false;
+	m_bDying = false;
+	Activate();
 }
 
 CPlayer* CPlayer::GetInstance(void)
