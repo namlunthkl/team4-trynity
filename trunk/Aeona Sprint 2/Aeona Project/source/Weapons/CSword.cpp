@@ -83,8 +83,10 @@ RectD CSword::GetCollisionRect(void)
 		rectCollision.bottom = -15;
 		if(m_fSlashTimer < 0.125f)
 		{
-			rectCollision.left = -40;
-			rectCollision.right = 0;
+			rectCollision.top = -2;
+			rectCollision.bottom = 2;
+			rectCollision.left = -2;
+			rectCollision.right = 2;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -97,8 +99,8 @@ RectD CSword::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.left = -27;
-			rectCollision.right = 27;
+			rectCollision.left = -40;
+			rectCollision.right = 0;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -136,8 +138,10 @@ RectD CSword::GetCollisionRect(void)
 		rectCollision.bottom = 15 + 76;
 		if(m_fSlashTimer < 0.125f)
 		{
-			rectCollision.left = 0;
-			rectCollision.right = 40;
+			rectCollision.top = -2;
+			rectCollision.bottom = 2;
+			rectCollision.left = -2;
+			rectCollision.right = 2;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -150,8 +154,8 @@ RectD CSword::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.left = -27;
-			rectCollision.right = 27;
+			rectCollision.left = 0;
+			rectCollision.right = 40;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -189,8 +193,10 @@ RectD CSword::GetCollisionRect(void)
 		rectCollision.right = -15;
 		if(m_fSlashTimer < 0.125f)
 		{
-			rectCollision.top = 0;
-			rectCollision.bottom = 40;
+			rectCollision.top = -2;
+			rectCollision.bottom = 2;
+			rectCollision.left = -2;
+			rectCollision.right = 2;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -203,8 +209,8 @@ RectD CSword::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.top = -27;
-			rectCollision.bottom = 27;
+			rectCollision.top = 0;
+			rectCollision.bottom = 40;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -242,8 +248,10 @@ RectD CSword::GetCollisionRect(void)
 		rectCollision.right = 15 + 76;
 		if(m_fSlashTimer < 0.125f)
 		{
-			rectCollision.top = 0;
-			rectCollision.bottom = 40;
+			rectCollision.top = -2;
+			rectCollision.bottom = 2;
+			rectCollision.left = -2;
+			rectCollision.right = 2;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;
@@ -256,8 +264,8 @@ RectD CSword::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.25f)
 		{
-			rectCollision.top = -27;
-			rectCollision.bottom = 27;
+			rectCollision.top = 0;
+			rectCollision.bottom = 40;
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
 			{
 				rectCollision.left = -100;

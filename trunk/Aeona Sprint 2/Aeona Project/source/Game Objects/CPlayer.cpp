@@ -302,7 +302,7 @@ void CPlayer::Render(void)
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 
 #ifdef _DEBUG
-	if(false) //if(IsOnDebug())
+	if(true) //if(IsOnDebug())
 	{
 		if(m_uiCurrentWeapon == WEAPON_SWORD)
 		{
