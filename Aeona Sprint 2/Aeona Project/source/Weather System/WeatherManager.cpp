@@ -14,14 +14,7 @@ CWeatherManager::CWeatherManager()
 	SetTimeToWait( 0.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );
-	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/T4_M12.wav");
 	m_nDesert = AUDIO->MusicLoadSong("resource/sound/JDesert.xwm");
-	//m_nFireFliesSound = AUDIO->SFXLoadSound("resource/sound/FireFlies.wav");
-	//m_nLeavesSound = AUDIO->SFXLoadSound("resource/sound/Leaves.wav");
-	//m_nSnowSound = AUDIO->SFXLoadSound("resource/sound/Snow.wav");
-	//m_nSandStormSound = AUDIO->SFXLoadSound("resource/sound/Sand_Storm.wav");
-	//m_nEmberSound = AUDIO->SFXLoadSound("resource/sound/Ember.wav");
-	//m_nFogSound = AUDIO->SFXLoadSound("resource/sound/Fog.wav");
 }
 CWeatherManager::~CWeatherManager()
 {
