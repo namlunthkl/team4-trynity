@@ -24,7 +24,6 @@ void CInputManager::SetController(int PlayerController)
 	}
 	m_bControllerSet = true;
 	
-	
 }
 bool CInputManager::GetPause(void)
 {

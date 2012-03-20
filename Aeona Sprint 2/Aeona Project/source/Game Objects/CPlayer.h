@@ -53,7 +53,7 @@ private:
 	int				m_sndHit;
 	bool			m_bDamageDecrease;
 	int				m_nDamageIncrease;
-	int				m_nSpeedIncrease;
+	float			m_fSpeedIncrease;
 
 	// Bool to indicate if the player is busy
 	// talking with an NPC or doing something that
