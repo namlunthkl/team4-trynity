@@ -9,7 +9,7 @@
 <SpeechNode text="Really?! That's great.  I find the very fabric of the desert to be tranquil and	vibrant. I love living here."name="Zemba2">
 </SpeechNode>
 
-<SpeechNode text="TYeah, I know most individuals come here and can't stand the barren view, but I swear this place is gorgeous when the cacti bloom."name="ZembaA">
+<SpeechNode text="Yeah, I know most individuals come here and can't stand the barren view, but I swear this place is gorgeous when the cacti bloom."name="ZembaA">
 </SpeechNode>
 
 <Connection speechA="Zemba1" option="1" speechB="Zemba2"/>

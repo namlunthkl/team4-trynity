@@ -16,11 +16,11 @@
 <Option text="You mean there are no children?!"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I didn't say that!  Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile.  I have stayed on this peak and have grown into a very capable man.  One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to call this place home.  It is a cycle that we honor and understand to be righteous." name="Braht4">
+<SpeechNode text="Gungho! I didn't say that! Look around, all the children have grown up!  We are adults now!  Only the strongest grow and the weakest fade away to other lands more docile. I have stayed on this peak and have grown into a very capable man. One day I will be the leader of the tribe and will eventually be replaced by the next child strong enough to survive." name="Braht4">
 <Option text="I guess I can understand that"/>
 </SpeechNode>
 
-<SpeechNode text="Gungho!  You understand!?  Well I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader." name="Braht5">
+<SpeechNode text="Gungho!  You understand!?  It is a cycle that we honor and understand to be righteous.  I am happy to hear that!  Maybe one day you will come back.  I feel like you are a very special person. Gungho! I would be thrilled if you stood beside me when I become the next leader." name="Braht5">
 <Option text="You want me to come back and marry you?"/>
 </SpeechNode>
 

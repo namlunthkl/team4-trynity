@@ -64,6 +64,7 @@
 <Connection speechA="Gungnir3" option="1" speechB="Gungnir4"/>
 <Connection speechA="Gungnir4" option="1" speechB="Gungnir5"/>
 <Connection speechA="Gungnir5" option="1" speechB="Gungnir6"/>
+<Connection speechA="Gungnir6" option="1" speechB="Gungnir7"/>
 <Connection speechA="Gungnir7" option="1" speechB="Gungnir8"/>
 <Connection speechA="Gungnir8" option="1" speechB="Gungnir9"/>
 <Connection speechA="Gungnir9" option="1" speechB="Gungnir10"/>

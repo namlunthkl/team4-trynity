@@ -19,7 +19,7 @@
 <SpeechNode text="Gungho!  You are too kind.	Tell you what my dearest, if you are having trouble climbing the mountain, or even traveling the world, I think you might enjoy a special heirloom located south of the village.  It is yours to keep, but first, Gungho- Kromos must oblige..."name="Helna4">
 </SpeechNode>
 
-<SpeechNode text="Gungho!  I was mearly messing with you!  A word of advice, never back away from someone who is threatening who you are!  Gungho!  You must always believe in yourself, even if your name is strange!  Gungho, you have to remember that being unique is the gift of life.  And we on this peak cherish life more than anything.  Life itself is unique, If we were all the same, then why have names at all?  Remember that in your travels Gungho!"name="HelnaA">
+<SpeechNode text="Gungho!  I was testing you!  A word of advice,  you must always believe in yourself, even if your name is strange!  You have to remember that being unique is the gift of life.  And we on this peak cherish life more than anything.  Life itself is unique, If we were all the same, then why have names at all?  Remember that in your travels!"name="HelnaA">
 </SpeechNode>
 
 <Connection speechA="Helna1" option="1" speechB="Helna2"/>

@@ -11,7 +11,7 @@
 <Option text="I'm just going to walk away.."/>
 </SpeechNode>
 
-<SpeechNode text="Long ago- Ani, God of Tempest fell in love with Laylee- great Queen of the Desert.  Their love created a well of bounty.  Legend has it, the well is real and is in the Northern region of the Desert.  My father once said he saw the Oasis with his own eyes, but many travelers ended up dismissing our stories as propogated lies to entice people to visit our barren land more often."name="Miraz3">
+<SpeechNode text="Long ago- Ani, God of Tempest fell in love with Laylee- great Queen of the Desert. Their love created a well of bounty.  Legend has it, the well is real and is in the Northern region of the Desert. My father said he saw the Oasis with his own eyes, but many travelers dismissed our stories as propogated lies to get people to visit more often."name="Miraz3">
 <Option text="But I Believe you!"/>
 <Option text="They're right, you're lying!"/>
 </SpeechNode>
