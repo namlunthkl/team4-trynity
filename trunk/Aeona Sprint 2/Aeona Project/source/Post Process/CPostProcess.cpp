@@ -105,7 +105,6 @@ void CPostProcess::BeginPostProcess( void )
 	output = 0;
 	renderTarget->GetSurfaceLevel(0,&output);
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderTarget(0,output);
-
 	// CLEAR RENDERTARGET
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
 	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
@@ -121,7 +120,6 @@ void CPostProcess::EndPostProcess( void )
 	// DROP REF COUNTS
 	current->Release();
 	output->Release();
-
 	// CLEAR BACKBUFFER
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0,255,0), 1.0f, 0);	// MODIFY FOR ZBUFFER
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
@@ -202,6 +200,7 @@ void CPostProcess::EndPostProcess( void )
 void CPostProcess::ShutDown( void )
 {
 	LightEngine::GetInstance()->ShutDown();
+	SAFE_RELEASE(renderTarget);
 	SAFE_RELEASE( quadbuff );
 	SAFE_RELEASE( quadindex );
 	SAFE_RELEASE( cubedecl );
@@ -274,4 +273,13 @@ void CPostProcess::UpdateColor()
 		}
 		break;
 	}
+}
+void CPostProcess::ReleaseTexture(void)
+{
+	if(renderTarget)
+		renderTarget->Release();
+}
+void CPostProcess::ReCreateTexture(void)
+{
+	D3DXCreateTexture( CSGD_Direct3D::GetInstance()->GetDirect3DDevice(), backbuffer.Width, backbuffer.Height, 1, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget); 
 }
