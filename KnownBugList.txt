@@ -11,15 +11,6 @@ E - cycle through weapons
 Getting the fire sword - Talk with Grimir (first NPC), find the flower on the forest, get it and come back to talk with Grimir
 Getting the earth hammer - Climb the mountain as high as you can and go east, there'll be a clearing with a crystal in the center. Hit it with the fire sword.
 
-
-NPC DIALOG
-==================
-- Speech pattern continues past the visible dialog box so you can't read the rest of the words.
-- Sanei doesn't finish his text
-- Grimir speech doesnt work properly and give you directions on how what to do.
-- Zemba says "TYeah" when you select Disagree instead of "Yeah."
-- Possible to talk with an NPC when near an enemy, which kinf of sucks if you want to attack
-
 COLLISION
 ==================
 - Possible to break collision when using the speed mask
@@ -32,20 +23,11 @@ MAP
 ITEMS PICKUP
 ===================
 - Can't pick the wind bow on the desert
-- Chest gives you more apples than it should
 
 SAVING LOADING
 ===================
 - Saving and loading is messed up
 
-CREDITS
-===================
-- Screen scrolls one Pixel, then goes back.
-
 FRAMERATE
 ======================
 increases with speed mask, slows down without
-
-PARTICLES
-======================
-sandstorm repeats and doesn't look good.
