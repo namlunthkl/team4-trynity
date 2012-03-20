@@ -9,7 +9,6 @@
 <Tileset file="resource/Tilesets/DesertMaze.xml"/>
 <Tileset file="resource/Tilesets/VolcanoTileset.xml"/>
 
-<COMMENT>
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
 <Map file="resource/Maps/Dungeon2.xml"/>
@@ -19,7 +18,6 @@
 <Map file="resource/Maps/Dungeon6.xml"/>
 <Map file="resource/Maps/Dungeon7.xml"/>
 <Map file="resource/Maps/Dungeon8.xml"/>
-</COMMENT>
 
 <Map file="resource/Maps/SnowMapFinal1.xml"/>
 <Map file="resource/Maps/SnowMapFinal2.xml"/>
@@ -29,7 +27,6 @@
 <Map file="resource/Maps/SnowMapFinal6.xml"/>
 <Map file="resource/Maps/SnowMapFinal7.xml"/>
 
-<COMMENT>
 <Map file="resource/Maps/TransitionSnowForest.xml"/>
 
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
@@ -55,9 +52,9 @@
 
 <Map file="resource/Maps/Volcano1.xml"/>
 <Map file="resource/Maps/Volcano2.xml"/>
-</COMMENT>
 
 </WorldEngine>
+
 
 
 
