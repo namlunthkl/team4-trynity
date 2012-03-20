@@ -29,6 +29,7 @@ private:
 	int m_nDamage;
 	bool m_nattacking;
 	Sound* m_sndAttack;
+
 	
 public:
 	//	Phil is dumb

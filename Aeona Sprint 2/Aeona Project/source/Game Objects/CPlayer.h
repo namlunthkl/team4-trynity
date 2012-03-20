@@ -34,6 +34,8 @@ public:
 	bool			m_bHasFlower;
 	unsigned int	m_uiGems;
 	float			m_fOuchTimer;
+	int				m_imgCharges;	//	the images of the charged attacks.
+	float			m_fBlastTimer;
 
 private:
 	bool			m_bHeartPiece;
