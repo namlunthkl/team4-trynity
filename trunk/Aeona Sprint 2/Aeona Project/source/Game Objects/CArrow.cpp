@@ -25,7 +25,7 @@ void CArrow::Update(float fElapsedTime)
 {
 	CBaseObject::Update(fElapsedTime);
 	timeout += fElapsedTime;
-	if(timeout > 0.50f)
+	if(timeout > 0.6f)
 		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
 }
 void CArrow::Render(void)
@@ -44,40 +44,38 @@ bool CArrow::CheckCollision(IBaseInterface* pObject)
 {
 	RECT rectCollisionResult = { 0, 0, 0, 0 };
 	CBaseObject* pBaseObject = (CBaseObject*)pObject;
-	if(pObject->GetType() == TYPE_CHAR_ENEMY)
-	{
-		if(pObject->GetType() == TYPE_CHAR_ENEMY )
-		{
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-		}
-		if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
-		{
-			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-		}
-	}
 	
-	
-	//
-	//if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
+	//if(pObject->GetType() == TYPE_CHAR_ENEMY )
 	//{
-	//	if(pObject->GetType() == TYPE_CHAR_ENEMY)
-	//	{
-	//		((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-	//		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-	//	}
-	//	else if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
-	//	{
-	//		((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
-	//		CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-	//	}
-	//	//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
-	//	//{
-	//	//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
-	//	//}
-	//	return true;
+	//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	//	((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
 	//}
+	//if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
+	//{
+	//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+	//	((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
+	//}
+
+	if(IntersectRect(&rectCollisionResult, &GetCollisionRect().GetWindowsRECT(), &pBaseObject->GetCollisionRect().GetWindowsRECT()))
+	{
+		if(pObject->GetType() == TYPE_CHAR_ENEMY)
+		{
+			((CEnemy*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
+			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		}
+		else if(pObject->GetType() == TYPE_CHAR_FINALBOSS)
+		{
+			((CFinalBoss*)pObject)->SufferDamage(CPlayer::GetInstance()->GetAttackDamage());
+			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		}
+
+		//if(pObject->GetType() != TYPE_CHAR_PLAYER && pObject->GetType() != TYPE_WEAPON_ARROW)
+		//{
+		//	CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(this));
+		//}
+
+		return true;
+	}
 	return false;
 }
 RectD CArrow::GetCollisionRect(void)

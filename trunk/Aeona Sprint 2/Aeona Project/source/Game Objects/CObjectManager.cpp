@@ -46,6 +46,8 @@ void CObjectManager::UpdateObjects(float fElapsedTime)
 		if(right > 0 &&	left < GAME->GetScreenWidth() &&
 			bottom > 0 && top < GAME->GetScreenHeight())
 			pObj->Update(fElapsedTime);
+		else if(pObj->GetType() == CBaseObject::TYPE_WEAPON_ARROW)
+			CMessageSystem::GetInstance()->SendMsg(new CDestroyObjectMessage(pObj));
 
 	}
 }
@@ -217,7 +219,8 @@ void CObjectManager::CheckCollisions()
 		if(right > 0 &&	left < GAME->GetScreenWidth() &&
 			bottom > 0 && top < GAME->GetScreenHeight())
 		{
-			WORLD->CheckCollisions(pObj);
+			if(pObj->GetType() != CBaseObject::TYPE_WEAPON_ARROW)
+				WORLD->CheckCollisions(pObj);
 
 			for(unsigned int j = 0; j < m_vpObjectList.size(); j++)
 			{

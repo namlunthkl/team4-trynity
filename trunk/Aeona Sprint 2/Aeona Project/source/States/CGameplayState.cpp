@@ -238,12 +238,13 @@ void CGameplayState::Update(float fElapsedTime)
 		// Update the Weather
 		CWeatherManager::GetInstance()->Update( fElapsedTime );
 
-		OBJECTS->CheckCollisions();
-		OBJECTS->UpdateObjects(fElapsedTime);
+		
 		// DANIEL CODE BEGIN
 		PLAYER->CheckWorldCollision();
 		// DANIEL CODE END
-
+		OBJECTS->UpdateObjects(fElapsedTime);
+		OBJECTS->CheckCollisions();
+		
 		MESSAGES->ProcessMessages();
 
 		double nNewCameraPosX = PLAYER->GetPosX() - GAME->GetScreenWidth()/2;

@@ -33,7 +33,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	TurnBitOn(m_byteMasks, MASK_NONE);
 
-#if 0
+#if 1
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
@@ -148,9 +148,9 @@ void CPlayer::Update(float fElapsedTime)
 		m_fBlastTimer = 0.0f;
 	
 	if(m_uiCurrentMask == MASK_SPEED)
-		m_nSpeedIncrease = 2;
+		m_fSpeedIncrease = 1.5;
 	else
-		m_nSpeedIncrease = 1;
+		m_fSpeedIncrease = 1;
 	
 	if(m_uiCurrentMask == MASK_STRENGHT)
 		m_nDamageIncrease = 2;
@@ -549,12 +549,12 @@ void CPlayer::Input(void)
 		if(CInputManager::GetInstance()->GetUp())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_UP);
-			SetVelY(-(float)GetSpeed()*m_nSpeedIncrease);
+			SetVelY(-(float)GetSpeed()*m_fSpeedIncrease);
 		}
 		else if(CInputManager::GetInstance()->GetDown())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_DOWN);
-			SetVelY((float)GetSpeed()*m_nSpeedIncrease);
+			SetVelY((float)GetSpeed()*m_fSpeedIncrease);
 		}
 		else
 		{
@@ -569,12 +569,12 @@ void CPlayer::Input(void)
 		if(CInputManager::GetInstance()->GetLeft())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_LEFT);
-			SetVelX(-(float)GetSpeed() * m_nSpeedIncrease);
+			SetVelX(-(float)GetSpeed() * m_fSpeedIncrease);
 		}
 		else if(CInputManager::GetInstance()->GetRight())
 		{
 			WEAPON->SetCurrentAnimation(ANM_WALK_RIGHT);
-			SetVelX((float)GetSpeed() * m_nSpeedIncrease);
+			SetVelX((float)GetSpeed() * m_fSpeedIncrease);
 		}
 		else
 		{
@@ -786,6 +786,7 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 
 	if( m_fOuchTimer == 0.0f)
 	{
+		WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Reset();
 		if(m_bDamageDecrease == true)
 		{
 			if(uiDamage > 1)
