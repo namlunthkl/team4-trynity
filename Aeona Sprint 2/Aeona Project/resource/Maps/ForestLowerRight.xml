@@ -891,9 +891,9 @@
       <Tile PosX="2" PosY="33" Type="0" Event="" />
       <Tile PosX="3" PosY="142" Type="128" Event="" />
       <Tile PosX="4" PosY="141" Type="128" Event="" />
-      <Tile PosX="0" PosY="32" Type="0" Event="" />
-      <Tile PosX="0" PosY="0" Type="0" Event="" />
-      <Tile PosX="0" PosY="0" Type="0" Event="" />
+      <Tile PosX="0" PosY="32" Type="128" Event="" />
+      <Tile PosX="0" PosY="0" Type="128" Event="" />
+      <Tile PosX="0" PosY="0" Type="128" Event="" />
       <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="0" PosY="32" Type="128" Event="" />
       <Tile PosX="0" PosY="0" Type="128" Event="" />
@@ -924,8 +924,8 @@
       <Tile PosX="0" PosY="143" Type="128" Event="" />
       <Tile PosX="1" PosY="143" Type="128" Event="" />
       <Tile PosX="0" PosY="32" Type="0" Event="" />
-      <Tile PosX="0" PosY="0" Type="0" Event="" />
-      <Tile PosX="0" PosY="0" Type="0" Event="" />
+      <Tile PosX="0" PosY="0" Type="128" Event="" />
+      <Tile PosX="0" PosY="0" Type="128" Event="" />
       <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="3" PosY="34" Type="128" Event="" />
       <Tile PosX="0" PosY="0" Type="128" Event="" />
@@ -2475,6 +2475,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
@@ -2504,9 +2505,8 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
@@ -2943,6 +2943,9 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
@@ -2973,11 +2976,8 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
+      <Tile PosX="6" PosY="0" Type="8" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />

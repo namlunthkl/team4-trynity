@@ -29,10 +29,12 @@
 
 <Map file="resource/Maps/TransitionSnowForest.xml"/>
 
+
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
 <Map file="resource/Maps/ForestLowerLeft.xml"/>
 <Map file="resource/Maps/ForestLowerRight.xml"/>
 <Map file="resource/Maps/ForestUpperRight.xml"/>
+
 
 <Map file="resource/Maps/Townright.xml"/>
 <Map file="resource/Maps/TownFarRight.xml"/>
