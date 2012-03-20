@@ -101,8 +101,7 @@ void CGameplayState::Enter(void)
 	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
 	
 	//		Sounds
-	SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
-	//SetBGMusic(AUDIO->MusicLoadSong("resource/sound/T4_M12.wav"));
+	//SetBGMusic(AUDIO->MusicLoadSong("resource/KSC_Beginning.xwm"));
 
 	// Initialize Player
 	// (1536, 1024)		- Boss Dungeon
