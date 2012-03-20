@@ -57,24 +57,7 @@ void CHammer::Attack(void)
 {
 	SetAttacking(true);
 	CPlayer::GetInstance()->SetAttackDamage(50);
-	if(m_fSlashTimer == 0.0f)
-	{
-		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
-		{
-			//GetSound()->Play();
-		}
-		else
-		{
-			//AUDIO->SFXPlaySound(m_sndCharged);
-		}
-	}
 }
-
-void CHammer::ChargedAttack(void)
-{
-
-}
-
 RectD CHammer::GetCollisionRect(void)
 {
 	RectD rectCollision;

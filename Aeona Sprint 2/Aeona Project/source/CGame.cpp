@@ -188,10 +188,10 @@ bool CGame::Main(void)
 bool CGame::Input(void)
 {
 	INPUT->ReadDevices();
-	if( INPUT->KeyPressed( DIK_T ) )
-	{
-		CCameraControl::GetInstance()->SetKillCam(true);
-	}
+	//if( INPUT->KeyPressed( DIK_T ) )
+	//{
+	//	CCameraControl::GetInstance()->SetKillCam(true);
+	//}
 	//TODO Change later when we have actual inventory.
 	if(m_bPaused == true)
 	{

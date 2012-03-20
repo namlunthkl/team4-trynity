@@ -73,7 +73,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	Activate();
 	// PARTICLE WEAPON
-	m_fxElementalWeapon.Load("Resource/data/Weapon.xml");
+	m_fxElementalWeapon.Load("Resource/data/ParticleWeapon.xml");
 
 	m_sndHit = AUDIO->SFXLoadSound("resource/sound/Hit.wav");
 
@@ -146,12 +146,12 @@ void CPlayer::Update(float fElapsedTime)
 		m_fBlastTimer -= fElapsedTime;
 	if(m_fBlastTimer < 0.0f)
 		m_fBlastTimer = 0.0f;
-	
+
 	if(m_uiCurrentMask == MASK_SPEED)
 		m_fSpeedIncrease = 1.5;
 	else
 		m_fSpeedIncrease = 1;
-	
+
 	if(m_uiCurrentMask == MASK_STRENGHT)
 		m_nDamageIncrease = 2;
 	else
@@ -173,11 +173,11 @@ void CPlayer::Update(float fElapsedTime)
 	PointD ptOldPosition = GetPosition();
 
 	// Call Base Character's update method to move the player
-	
+
 	CBaseCharacter::Update(fElapsedTime);
-	
+
 	WEAPON->Update(fElapsedTime);
-	
+
 	// Update the particles
 	m_fxElementalWeapon.Update(fElapsedTime);
 	LightEngine::GetInstance()->SetPlayerPointPos( (float)GetPosX(), (float)GetPosY() );
@@ -200,7 +200,7 @@ void CPlayer::Render(void)
 	{
 		WEAPON->Render(GetPosition());
 
-		
+
 		//begin shit for rendering charge crap below
 		if(m_fBlastTimer > 0.0f)
 		{
@@ -212,7 +212,7 @@ void CPlayer::Render(void)
 			float rotation = 0.0f;
 			int ox = 0;
 			int oy = 0;
-		
+
 			switch(WEAPON->GetCurrentAnimation())
 			{
 			case ANM_WALK_UP:
@@ -279,7 +279,7 @@ void CPlayer::Render(void)
 				ox = 24;
 				oy = 500;
 			}
-		
+
 			TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
 		}
 		//end render of charge stuff.
@@ -290,7 +290,7 @@ void CPlayer::Render(void)
 	}
 	// Render the particles
 	m_fxElementalWeapon.Render();
-	
+
 	//D3D->GetSprite()->Flush();
 	//RectD rect = GetCollisionRect();
 	//rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
@@ -329,7 +329,7 @@ void CPlayer::Render(void)
 
 	D3D->DrawLine((int)GetScreenPosX(GetPosX()), (int)GetScreenPosY(GetPosY()),
 		(int)GetScreenPosX(GetInteractivePoint().x), (int)GetScreenPosY(GetInteractivePoint().y), 255, 0, 0);
-	
+
 	temp = GetInteractiveRect();
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 	D3D->DrawRect(temp.GetWindowsRECT(), 255, 0, 0);
@@ -344,43 +344,6 @@ void CPlayer::Attack(void)
 	if( m_fOuchTimer == 0.0f )
 	{
 		m_fPhilChargeIdkman = 0.0f;	//	Set it to 0.0f when we begin an attack, cus we either are not charging, or we just Attack()'d a charged attack, so set it back to 0.0f anyway.
-
-		if( m_uiCurrentWeapon == WEAPON_SWORD )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 255;
-			m_fxElementalWeapon.emitter.ColorStartG = 0;
-			m_fxElementalWeapon.emitter.ColorStartB = 0;
-			m_fxElementalWeapon.emitter.ColorEndR = 255;
-			m_fxElementalWeapon.emitter.ColorEndG = 0;
-			m_fxElementalWeapon.emitter.ColorEndB = 0;
-			m_fxElementalWeapon.Fire();
-		}
-		if( m_uiCurrentWeapon == WEAPON_HAMMER )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 0;
-			m_fxElementalWeapon.emitter.ColorStartG = 255;
-			m_fxElementalWeapon.emitter.ColorStartB = 0;
-			m_fxElementalWeapon.emitter.ColorEndR = 0;
-			m_fxElementalWeapon.emitter.ColorEndG = 255;
-			m_fxElementalWeapon.emitter.ColorEndB = 0;
-			m_fxElementalWeapon.Fire();
-		}
-		if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 16.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 32.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 0;
-			m_fxElementalWeapon.emitter.ColorStartG = 0;
-			m_fxElementalWeapon.emitter.ColorStartB = 255;
-			m_fxElementalWeapon.emitter.ColorEndR = 0;
-			m_fxElementalWeapon.emitter.ColorEndG = 0;
-			m_fxElementalWeapon.emitter.ColorEndB = 255;
-			m_fxElementalWeapon.Fire();
-		}
 		WEAPON->Attack();
 	}
 }
@@ -406,6 +369,46 @@ void CPlayer::Input(void)
 {
 	if(IsBusy())
 		return;
+
+	if( CInputManager::GetInstance()->GetPressedA() )
+	{
+		if( m_uiCurrentWeapon == WEAPON_SWORD )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 255;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 200;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_HAMMER )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 255;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 200;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 255;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 200;
+			m_fxElementalWeapon.Fire();
+		}
+	}
 	// This If Check is breaking the attacks for bow and hammer fyi - NO ITS NOT, UR LYING U BUTTNOSE!
 	if(m_bPhilCharging == false)
 	{
@@ -535,7 +538,7 @@ void CPlayer::Input(void)
 		//		Attack();
 		//	}
 		//}
-		
+
 		if (WEAPON->GetCurrentAnimation() == ANM_ATK_UP || WEAPON->GetCurrentAnimation() == ANM_ATK_DOWN ||
 			WEAPON->GetCurrentAnimation() == ANM_ATK_LEFT || WEAPON->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
@@ -543,7 +546,7 @@ void CPlayer::Input(void)
 			WEAPON->SetCurrentAnimation(WEAPON->GetPreviousAnimation());
 			WEAPON->SetAttacking(false);
 		}
-		
+
 		SetPrevVelX(GetVelX());
 		SetPrevVelY(GetVelY());
 		if(CInputManager::GetInstance()->GetUp())
@@ -564,7 +567,7 @@ void CPlayer::Input(void)
 			else if(GetPrevVelY() > 0)
 				WEAPON->SetCurrentAnimation(ANM_IDLE_DOWN);
 		}
-			
+
 
 		if(CInputManager::GetInstance()->GetLeft())
 		{
@@ -584,7 +587,7 @@ void CPlayer::Input(void)
 			else if(GetPrevVelX() < 0)
 				WEAPON->SetCurrentAnimation(ANM_IDLE_LEFT);
 		}
-		
+
 	}
 }
 
@@ -804,7 +807,7 @@ void CPlayer::SufferDamage(unsigned int uiDamage)
 			CBaseCharacter::SufferDamage(uiDamage);
 		}
 		if(m_sndHit != -1)
-				AUDIO->SFXPlaySound(m_sndHit);
+			AUDIO->SFXPlaySound(m_sndHit);
 	}
 }
 void CPlayer::UsePotion(void)

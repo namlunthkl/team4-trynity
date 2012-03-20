@@ -9,6 +9,8 @@
 #include "CEnemy.h"
 #include "CPlayer.h"
 #include "../States/CGameplayState.h"
+#include "../Wrappers/SGD_Math.h"
+#include "../Camera/CCameraControl.h"
 
 CEnemy::CEnemy(double dPositionX, double dPositionY, unsigned int uiSpeed,
 		int nImageID, unsigned int uiWidth, unsigned int uiHeight, bool bActive,
@@ -64,6 +66,11 @@ bool CEnemy::CheckCollision(IBaseInterface* pObject)
 
 void CEnemy::Die(void)
 {
+	int random = RandomInt( 0, 5 );
+	if( random == 2 )
+	{
+		CCameraControl::GetInstance()->SetKillCam(true);
+	}
 	CBaseCharacter::Die();
 	m_dwDeadTimeStamp = timeGetTime();
 }
