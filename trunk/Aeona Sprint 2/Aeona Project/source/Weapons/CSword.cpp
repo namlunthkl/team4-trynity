@@ -13,9 +13,14 @@ CSword::CSword()
 	CBaseCharacter::LoadAnimations("resource/aeonaFireSword.xml");
 	SetAttacking(false);
 
-	SetSound(new Sound("resource/sound/Sword.wav"));
+	SetSound(new Sound("resource/sound/AtkFireSlash.wav"));
+	m_sndCharged = AUDIO->SFXLoadSound("resource/sound/AtkFireWhirl.wav");
 
 	m_fSlashTimer = 0.0f;
+}
+CSword::~CSword()
+{
+	AUDIO->SFXUnloadSound(m_sndCharged);
 }
 void CSword::Render(PointD nPos)
 {
@@ -53,7 +58,16 @@ void CSword::Attack(void)
 	SetAttacking(true);
 	CPlayer::GetInstance()->SetAttackDamage(24);
 	if(m_fSlashTimer == 0.0f)
-		GetSound()->Play();
+	{
+		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
+		{
+			GetSound()->Play();
+		}
+		else
+		{
+			AUDIO->SFXPlaySound(m_sndCharged);
+		}
+	}
 }
 
 void CSword::ChargedAttack(void)

@@ -38,7 +38,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteMasks,MASK_LIGHT);
 
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
-#if 0
+#if 1
 	//	Test the weapons!
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
@@ -659,13 +659,16 @@ bool CPlayer::CheckCollision(IBaseInterface* pObject)
 
 bool CPlayer::CheckWorldCollision(void)
 {
-	if(WEAPON->GetAttacking() == true)
+	if(WEAPON->GetType() != TYPE_WEAPON_CROSSBOW)
 	{
-		RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
-		WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
-		unsigned int WeaponType = WEAPON->GetType();
+		if(WEAPON->GetAttacking() == true)
+		{
+			RectD WeaponCollisionRect = WEAPON->GetCollisionRect();
+			WeaponCollisionRect.OffsetRect(GetPosX(),GetPosY());
+			unsigned int WeaponType = WEAPON->GetType();
 
-		return WORLD->CheckCollisions(nullptr, &WeaponCollisionRect, WeaponType);
+			return WORLD->CheckCollisions(nullptr, &WeaponCollisionRect, WeaponType);
+		}
 	}
 	return false;
 }

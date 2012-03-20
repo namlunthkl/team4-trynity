@@ -13,9 +13,14 @@ CHammer::CHammer()
 	CBaseCharacter::LoadAnimations("resource/aeonaEarthHammer.xml");
 	SetAttacking(false);
 
-	SetSound(new Sound("resource/sound/Hammer.wav"));
+	SetSound(new Sound("resource/sound/AtkHammerHit.wav"));
+	m_sndCharged = AUDIO->SFXLoadSound("resource/sound/AtkHammerBlast.wav");
 
 	m_fSlashTimer = 0.0f;
+}
+CHammer::~CHammer()
+{
+	AUDIO->SFXUnloadSound(m_sndCharged);
 }
 void CHammer::Render(PointD nPos)
 {
@@ -53,7 +58,16 @@ void CHammer::Attack(void)
 	SetAttacking(true);
 	CPlayer::GetInstance()->SetAttackDamage(50);
 	if(m_fSlashTimer == 0.0f)
-		GetSound()->Play();
+	{
+		if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
+		{
+			//GetSound()->Play();
+		}
+		else
+		{
+			//AUDIO->SFXPlaySound(m_sndCharged);
+		}
+	}
 }
 
 void CHammer::ChargedAttack(void)
@@ -77,12 +91,21 @@ RectD CHammer::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
-			rectCollision.left = -22;
-			rectCollision.top = -22 - 60;
-			rectCollision.right = 22;
-			rectCollision.bottom = 22 - 50;
-			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 			{
+				GetSound()->Play();
+
+				rectCollision.left = -22;
+				rectCollision.top = -22 - 60;
+				rectCollision.right = 22;
+				rectCollision.bottom = 22 - 50;
+			}
+			else
+			{
+				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
+				{
+					AUDIO->SFXPlaySound(m_sndCharged);
+				}
 				rectCollision.left = -90;
 				rectCollision.top = -90;
 				rectCollision.right = 90;
@@ -107,12 +130,21 @@ RectD CHammer::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
-			rectCollision.left = -22;
-			rectCollision.top = -22 + 50;
-			rectCollision.right = 22;
-			rectCollision.bottom = 22 + 60;
-			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 			{
+				GetSound()->Play();
+
+				rectCollision.left = -22;
+				rectCollision.top = -22 + 50;
+				rectCollision.right = 22;
+				rectCollision.bottom = 22 + 60;
+			}
+			else
+			{
+				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
+				{
+					AUDIO->SFXPlaySound(m_sndCharged);
+				}
 				rectCollision.left = -90;
 				rectCollision.top = -90;
 				rectCollision.right = 90;
@@ -137,12 +169,21 @@ RectD CHammer::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
-			rectCollision.left = -22 - 60;
-			rectCollision.top = -22;
-			rectCollision.right = 22 - 50;
-			rectCollision.bottom = 22;
-			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 			{
+				GetSound()->Play();
+
+				rectCollision.left = -22 - 60;
+				rectCollision.top = -22;
+				rectCollision.right = 22 - 50;
+				rectCollision.bottom = 22;
+			}
+			else
+			{
+				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
+				{
+					AUDIO->SFXPlaySound(m_sndCharged);
+				}
 				rectCollision.left = -90;
 				rectCollision.top = -90;
 				rectCollision.right = 90;
@@ -167,12 +208,21 @@ RectD CHammer::GetCollisionRect(void)
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
-			rectCollision.left = -22 + 50;
-			rectCollision.top = -22;
-			rectCollision.right = 22 + 60;
-			rectCollision.bottom = 22;
-			if(CPlayer::GetInstance()->m_bPhilSpecialAttack)
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 			{
+				GetSound()->Play();
+
+				rectCollision.left = -22 + 50;
+				rectCollision.top = -22;
+				rectCollision.right = 22 + 60;
+				rectCollision.bottom = 22;
+			}
+			else
+			{
+				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
+				{
+					AUDIO->SFXPlaySound(m_sndCharged);
+				}
 				rectCollision.left = -90;
 				rectCollision.top = -90;
 				rectCollision.right = 90;

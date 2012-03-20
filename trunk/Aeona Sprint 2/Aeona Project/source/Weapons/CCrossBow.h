@@ -24,16 +24,18 @@ private:
 	CArrow* m_pArrow;
 	int m_imgArrow;
 	float m_fTime;
+
+	int m_sndCharged;
 public:
 	CCrossBow();
-	~CCrossBow(void) {}
+	~CCrossBow(void);
 	void Attack(void);
 	void ChargedAttack(void);
 	void Update(float fElapsedTime);
 	void Render(PointD nPosition);
 	void Render(PointD nPos,DWORD WHICHCOLORYOUWANTHIMTOGLOWBRO);
 	unsigned int GetWeaponType(void) const { return TYPE_WEAPON_CROSSBOW; }
-	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_ARROW; }
+	unsigned int GetType(void) const { return IBaseInterface::TYPE_WEAPON_CROSSBOW; }
 	void ShootArrow(void);
 	RectD GetCollisionRect(void);
 	//void SetWeaponRotation(float fWeaponRotation);

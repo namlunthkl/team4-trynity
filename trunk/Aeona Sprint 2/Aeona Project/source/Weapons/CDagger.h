@@ -20,10 +20,10 @@
 class CDagger : public IBaseWeapon
 {
 private:
-
+	int m_sndCharged;
 public:
 	CDagger();
-	~CDagger(void) {}
+	~CDagger(void);
 	void Attack(void);
 	void ChargedAttack(void);
 	void Update(float fElapsedTime);
