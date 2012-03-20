@@ -82,7 +82,6 @@ void CGameplayState::Enter(void)
 	m_fHeartTimer = 0.0f;
 	m_bGameOver = false;
 	m_bVictory = false;
-	
 	// Register for events
 	EVENTS->RegisterForEvent("SpawnMessageBox", this);
 	EVENTS->RegisterForEvent("destroy", this);
@@ -112,8 +111,8 @@ void CGameplayState::Enter(void)
 	//PLAYER->SetPosX(1504);
 	//PLAYER->SetPosY(2720);
 	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
-	PLAYER->SetPosX(743);
-	PLAYER->SetPosY(4000);
+	PLAYER->SetPosX(6144+512);
+	PLAYER->SetPosY(8192-512);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
@@ -216,57 +215,61 @@ bool CGameplayState::Input(void)
 
 void CGameplayState::Update(float fElapsedTime)
 {
-	if(m_bGameOver || m_bVictory)
-		return;
+	if(!GAME->GetPaused())
+	{
+		if(m_bGameOver || m_bVictory)
+			return;
 
-	//	HEART TIMER FROM STUPID PHIL
-	m_fHeartTimer += fElapsedTime;
-	if(m_fHeartTimer >= 4.0f)
-		m_fHeartTimer = 0.0f;
-	
-	// Update the Camera
-	CCameraControl::GetInstance()->Update( fElapsedTime );
+		//	HEART TIMER FROM STUPID PHIL
+		m_fHeartTimer += fElapsedTime;
+		if(m_fHeartTimer >= 4.0f)
+			m_fHeartTimer = 0.0f;
 
-	// Update the best world engine ever created
-	WORLD->UpdateWorld(fElapsedTime);
-	EVENTS->ProcessEvents();
-	PUZZLES->UpdatePuzzles(fElapsedTime);
+		// Update the Camera
+		CCameraControl::GetInstance()->Update( fElapsedTime );
 
-	// Update the Weather
-	CWeatherManager::GetInstance()->Update( fElapsedTime );
+		// Update the best world engine ever created
+		WORLD->UpdateWorld(fElapsedTime);
+		EVENTS->ProcessEvents();
+		PUZZLES->UpdatePuzzles(fElapsedTime);
 
-	// DANIEL CODE BEGIN
-	PLAYER->CheckWorldCollision();
-	// DANIEL CODE END
+		// Update the Weather
+		CWeatherManager::GetInstance()->Update( fElapsedTime );
 
-	MESSAGES->ProcessMessages();
-	OBJECTS->UpdateObjects(fElapsedTime);
-	OBJECTS->CheckCollisions();
+		OBJECTS->CheckCollisions();
+		OBJECTS->UpdateObjects(fElapsedTime);
+		// DANIEL CODE BEGIN
+		PLAYER->CheckWorldCollision();
+		// DANIEL CODE END
 
-	double nNewCameraPosX = PLAYER->GetPosX() - GAME->GetScreenWidth()/2;
-	double nNewCameraPosY = PLAYER->GetPosY() - GAME->GetScreenHeight()/2;
+		MESSAGES->ProcessMessages();
 
-	if(nNewCameraPosX < 0)
-		nNewCameraPosX = 0;
-	if(nNewCameraPosY < 0)
-		nNewCameraPosY = 0;
-	if(nNewCameraPosX > WORLD->GetWorldWidth() - GAME->GetScreenWidth())
-		nNewCameraPosX = WORLD->GetWorldWidth() - GAME->GetScreenWidth();
-	if(nNewCameraPosY > WORLD->GetWorldHeight() - GAME->GetScreenHeight())
-		nNewCameraPosY = WORLD->GetWorldHeight() - GAME->GetScreenHeight();
+		double nNewCameraPosX = PLAYER->GetPosX() - GAME->GetScreenWidth()/2;
+		double nNewCameraPosY = PLAYER->GetPosY() - GAME->GetScreenHeight()/2;
 
-	CCameraControl::GetInstance()->SetPositionX((float)-nNewCameraPosX);
-	CCameraControl::GetInstance()->SetPositionY((float)-nNewCameraPosY);
-	
-	CCameraControl::GetInstance()->Update( fElapsedTime );
+		if(nNewCameraPosX < 0)
+			nNewCameraPosX = 0;
+		if(nNewCameraPosY < 0)
+			nNewCameraPosY = 0;
+		if(nNewCameraPosX > WORLD->GetWorldWidth() - GAME->GetScreenWidth())
+			nNewCameraPosX = WORLD->GetWorldWidth() - GAME->GetScreenWidth();
+		if(nNewCameraPosY > WORLD->GetWorldHeight() - GAME->GetScreenHeight())
+			nNewCameraPosY = WORLD->GetWorldHeight() - GAME->GetScreenHeight();
 
-	///////////////////////////
-	//ARI EXTRA CODE
-	///////////////////////////
-	CPostProcess::GetInstance()->Update();
-	///////////////////////////
-	//END ARI EXTRA CODE
-	///////////////////////////
+		CCameraControl::GetInstance()->SetPositionX((float)-nNewCameraPosX);
+		CCameraControl::GetInstance()->SetPositionY((float)-nNewCameraPosY);
+
+		CCameraControl::GetInstance()->Update( fElapsedTime );
+
+		///////////////////////////
+		//ARI EXTRA CODE
+		///////////////////////////
+		CPostProcess::GetInstance()->Update();
+		///////////////////////////
+		//END ARI EXTRA CODE
+		///////////////////////////
+	}
+
 }
 
 void CGameplayState::Render(void)
@@ -377,8 +380,10 @@ void CGameplayState::Render(void)
 				if(GAME->GetPaused() == false)
 					RenderHUD();
 		}
+		RenderGameOverScreens();
 		D3D->SpriteEnd();
 		D3D->DeviceEnd();
+		D3D->Present();
 	}
 
 	if(GAME->GetPaused() == true)
@@ -473,11 +478,10 @@ void CGameplayState::Render(void)
 		}
 		D3D->SpriteEnd();
 		D3D->DeviceEnd();
+		D3D->Present();
 	}
 
-	D3D->GetSprite()->Flush();
 
-	RenderGameOverScreens();
 #if 0
 #ifdef _DEBUG
 	char buffer[100];
@@ -496,7 +500,7 @@ void CGameplayState::Render(void)
 	}
 #endif
 #endif
-	D3D->Present();
+
 }
 
 void CGameplayState::RenderGameOverScreens(void)
@@ -649,6 +653,9 @@ string CGameplayState::BreakDownStrings(string szString, int nMin, int nMax)
 void CGameplayState::Exit(void)
 {
 	AUDIO->MusicStopSong(GetBGMusic());
+
+	EVENTS->ClearEvents();
+	MESSAGES->ClearMessages();
 
 	POSTPROCESS->ShutDown();
 	WEATHER->ShutDown();
