@@ -55,22 +55,27 @@ void CCreditsState::Update(float fElapsedTime)
 void CCreditsState::Render()
 {
 	pFont->Write("PROGRAMMING BY",		10, (int)(480 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
-	pFont->Write("Ari Bodaghee",		10, (int)(550 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Daniel Lima",			10, (int)(580 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Bryan Schotanes",		10, (int)(610 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Phil Sullivan",		10, (int)(640 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Ari Bodaghee",		10, (int)(510 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Daniel Lima",			10, (int)(540 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Bryan Schotanes",		10, (int)(570 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Phil Sullivan",		10, (int)(600 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+		
+	pFont->Write("ART BY",				10, (int)(650 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Chris",				10, (int)(680 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Maher",				10, (int)(710 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+
+	pFont->Write("MUSIC BY",			10, (int)(760 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Aaron Cook",			10, (int)(790 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Kim Stennabb Caesar",	10, (int)(820 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Heather Pluckard",	10, (int)(850 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 											
-	pFont->Write("MUSIC BY",			10, (int)(740 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
-	pFont->Write("Kim Stennabb Caesar",	10, (int)(810 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Heather Pluckard",	10, (int)(840 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-											
-	pFont->Write("SPECIAL THANKS",		10, (int)(940 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
-	pFont->Write("John OLeske",			10, (int)(970 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Rob Martinez",		10, (int)(1000 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Shawn Paris",			10, (int)(1030 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Sean Hathaway",		10, (int)(1060 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Lari Norri",			10, (int)(1090 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("David Brown",			10, (int)(1120 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("SPECIAL THANKS",		10, (int)(900 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("John OLeske",			10, (int)(930 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Rob Martinez",		10, (int)(960 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Shawn Paris",			10, (int)(990 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Sean Hathaway",		10, (int)(1020 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Lari Norri",			10, (int)(1050 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("David Brown",			10, (int)(1080 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 
 	pFont->Write("Press Enter",			600, 550, D3DCOLOR_XRGB(255, 0, 0));
 }
