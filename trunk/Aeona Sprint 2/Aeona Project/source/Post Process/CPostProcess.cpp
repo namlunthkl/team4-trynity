@@ -136,7 +136,6 @@ void CPostProcess::EndPostProcess( void )
 	{
 		postEffect->BeginPass(i);
 		postEffect->SetTexture( "gDiffuseTexture", renderTarget );
-		float x =  CGame::GetInstance()->GetTimer().m_fGameTime;
 		postEffect->SetFloat( "gTime" , CGame::GetInstance()->GetTimer().m_fGameTime );
 		postEffect->SetFloat( "gRed" , fRed );
 		postEffect->SetFloat( "gGreen" , fGreen );

@@ -269,8 +269,8 @@ void LightEngine::Dusk( void )
 void LightEngine::Night( void )
 {
 	SetAmbientAlpha( 1.0f );
-	SetAmbientRed(  0.2f );
-	SetAmbientGreen(0.2f );
+	SetAmbientRed(  0.35f );
+	SetAmbientGreen(0.35f );
 	SetAmbientBlue( 0.5f );
 }
 void LightEngine::Dawn( void )

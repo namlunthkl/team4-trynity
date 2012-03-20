@@ -24,9 +24,7 @@ CMainMenuState::CMainMenuState()// : CBaseMenu()
 	m_imgTempTitle = -1;
 }
 
-CMainMenuState::~CMainMenuState()
-{
-}
+CMainMenuState::~CMainMenuState(){}
 
 CMainMenuState* CMainMenuState::GetInstance()
 {
