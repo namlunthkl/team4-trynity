@@ -399,7 +399,6 @@ void CPlayer::Die(void)
 {
 	CBaseCharacter::Die();
 	WEAPON->SetCurrentAnimation(ANM_DIE_DIE);
-	//CEventSystem::GetInstance()->SendEvent("game.over");
 }
 
 // Get input for the player

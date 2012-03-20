@@ -14,6 +14,7 @@ CWeatherManager::CWeatherManager()
 	SetTimeToWait( 0.0f );
 	SetIsOn( false );
 	SetTime( 0.0f );
+	m_nTown = AUDIO->MusicLoadSong("resource/sound/KSC_Town.xwm");
 	m_nMountain = AUDIO->MusicLoadSong("resource/sound/KSC_Beginning.xwm");
 	m_nDesert = AUDIO->MusicLoadSong("resource/sound/JDesert.xwm");
 	m_nLake = AUDIO->MusicLoadSong("resource/sound/JLake.xwm");
@@ -87,6 +88,15 @@ void CWeatherManager::CheckRegion(void)
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "DesertMaze" ) == 0 )
 		{
 			m_nCurrRegion = 7;
+		}
+		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Town" ) == 0 )
+		{
+			if(!AUDIO->MusicIsSongPlaying(m_nTown))
+			{
+				AUDIO->SilenceAll();
+				AUDIO->MusicPlaySong(m_nTown,true);
+			}
+			m_nCurrRegion = 8;
 		}
 	}
 }
