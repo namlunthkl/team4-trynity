@@ -120,6 +120,7 @@ void CPlayer::Reset(void)
 	m_vGameWeapons[WEAPON_CROSSBOW]->SetCurrentAnimation(ANM_IDLE_UP);
 
 	m_bBusy = false;
+	m_bTrulyDead = false;
 }
 
 CPlayer* CPlayer::GetInstance(void)
