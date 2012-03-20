@@ -19,7 +19,7 @@
 #include "Input Manager/CInputManager.h"
 #include "Game Objects\CPlayer.h"
 #include "Util/ByteUtil.h"
-
+#include "Post Process/CPostProcess.h"
 #include <Shlobj.h>
 #include <direct.h>
 	///////////////////////////
@@ -124,6 +124,17 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 ////////////////////////////////////////////////////////////////////////
 bool CGame::Main(void)
 {
+	HRESULT hr = D3D->GetDirect3DDevice()->TestCooperativeLevel();
+	if(hr != D3D_OK)
+	{
+		if(hr == D3DERR_DEVICENOTRESET || hr == D3DERR_DEVICELOST)
+		{
+			CPostProcess::GetInstance()->ReleaseTexture();
+			D3D->Clear();
+			CPostProcess::GetInstance()->ReCreateTexture();
+		}
+		
+	}
 	// Calculate elapsed time
 	DWORD dwStartTimeStamp = timeGetTime();
 	m_Timer.m_fElapsedTime = (float)(dwStartTimeStamp - m_Timer.m_dwPreviousTimeStamp) / 1000.0f;

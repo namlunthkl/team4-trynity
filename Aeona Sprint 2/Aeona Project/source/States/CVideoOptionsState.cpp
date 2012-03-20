@@ -9,6 +9,7 @@
 #include "../StdAfx.h"
 #include "CVideoOptionsState.h"
 #include "COptionsState.h"
+#include "../Post Process/CPostProcess.h"
 
 CVideoOptionsState* CVideoOptionsState::m_pInstance = NULL;
 
@@ -69,7 +70,9 @@ bool CVideoOptionsState::Input()
 		case VDEO_FULLSCREEN:
 			{
 				GAME->SetIsWindowed( !GAME->GetIsWindowed() );
+				CPostProcess::GetInstance()->ReleaseTexture();
 				D3D->ChangeDisplayParam(GAME->GetScreenWidth(), GAME->GetScreenHeight(), GAME->GetIsWindowed());
+				CPostProcess::GetInstance()->ReCreateTexture();
 				break;
 			}
 		case VDEO_SHOWHUD:

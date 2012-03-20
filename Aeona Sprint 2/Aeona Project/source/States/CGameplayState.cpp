@@ -294,7 +294,7 @@ void CGameplayState::Render(void)
 //		D3D->DrawText(buffer2,(int)(GAME->GetScreenWidth()*0.5f+20),(int)(GAME->GetScreenHeight()*0.5f+20),255,0,255);
 //	}
 //#endif
-	
+	D3D->Clear(0,0,0);
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
@@ -305,7 +305,7 @@ void CGameplayState::Render(void)
 		///////////////////////////
 		//END ARI EXTRA CODE
 		///////////////////////////
-		D3D->Clear(0,0,0);
+		
 		//ARI EXTRA CODE
 		CCameraControl::GetInstance()->SetSpriteProjection();
 		//END ARI EXTRA CODE
@@ -390,10 +390,11 @@ void CGameplayState::Render(void)
 
 	if(GAME->GetPaused() == true)
 	{
+		D3D->Clear(160, 160, 160);
 		D3D->DeviceBegin();
 		D3D->SpriteBegin();
 
-		D3D->Clear(160, 160, 160);
+		
 		GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
 		GAME->GetFont()->Write("Press ESC again to resume", 32, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));
 		//GAME->GetFont()->Write("ESC brings up player inventory!", 32, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 255, 255));

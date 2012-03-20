@@ -36,7 +36,8 @@ public:
 	void BeginPostProcess( void );
 	void EndPostProcess( void );
 	void ShutDown( void );
-
+	void ReleaseTexture(void);
+	void ReCreateTexture(void);
 	void UpdateColor();
 };
 #endif
