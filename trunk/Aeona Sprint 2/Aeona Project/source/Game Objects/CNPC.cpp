@@ -74,12 +74,7 @@ void CNPC::LoadText(char const * const szFilename)
 		szSpeechName = xSpeechNode->Attribute("name");
 		szSpeechText = xSpeechNode->Attribute("text");
 		
-		// Hacks for tests
-		///string szEvent = xSpeechNode->Attribute("event");
-		//////////////////
-
 		tSpeechNode* pSpeechNode = m_Dialogue.AddSpeechNode(szSpeechName, GAMEPLAY->BreakDownStrings(szSpeechText, 50, 52));
-
 		TiXmlElement* xOptionNode = xSpeechNode->FirstChildElement("Option");
 		
 		while(xOptionNode)
