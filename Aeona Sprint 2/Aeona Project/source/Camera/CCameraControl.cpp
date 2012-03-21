@@ -37,7 +37,7 @@ void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 {
 	if( GetChange() )
 	{
-		if( !GetStop() ) { SetScale( GetScale() + 7.0f * GetTime() ); }
+		if( !GetStop() ) { SetScale( GetScale() + 21.0f * GetTime() ); }
 		if( GetScale() >= 3.0f )
 		{
 			SetStop( true );

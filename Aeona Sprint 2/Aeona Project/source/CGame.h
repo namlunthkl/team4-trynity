@@ -48,7 +48,10 @@ class CGame
 	bool			m_bMapLocation;	//	left and right
 	char			m_cMusicVolume;	//	0 thru 100
 	char			m_cSoundVolume;	//	0 thru 100
-
+	
+	bool			m_bSlowdowntime;
+	DWORD			m_dwSlowdownStamp;
+	
 	unsigned int	m_uiAmountLoaded;	//	for loading screen
 	int				m_imgLoadingBackground;	//	for loading screen
 
@@ -199,6 +202,8 @@ public:
 
 	inline void ResetAmountLoaded(void)							{ m_uiAmountLoaded = 0; }
 	inline unsigned int IncrementAndReturnAmountLoaded(void)	{ return ++m_uiAmountLoaded; }
+
+	void SlowDownFreakingTimeBro(void);
 };
 
 #endif // CGAME_H_

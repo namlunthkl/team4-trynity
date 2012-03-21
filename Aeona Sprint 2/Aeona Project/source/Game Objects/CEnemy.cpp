@@ -69,6 +69,7 @@ void CEnemy::Die(void)
 	int random = RandomInt( 0, 5 );
 	if( random == 2 )
 	{
+		GAME->SlowDownFreakingTimeBro();
 		CCameraControl::GetInstance()->SetKillCam(true);
 	}
 	CBaseCharacter::Die();
