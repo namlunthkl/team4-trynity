@@ -31,8 +31,6 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_bHasFlower = false;
 	m_uiGems = 0;
 
-	TurnBitOn(m_byteMasks, MASK_NONE);
-
 #if 0
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
@@ -41,7 +39,6 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	
 	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
 	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
-	
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 	//	Test the weapons!
 #endif
