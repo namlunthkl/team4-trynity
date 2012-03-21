@@ -145,12 +145,12 @@ void CSnowGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						if(CPlayer::GetInstance()->GetPosY() < pCharacter->GetPosY())
 						{
 							pCharacter->SetVelX( 0.0f );
-							pCharacter->SetVelY( -1.0f * pCharacter->GetSpeed() );
+							pCharacter->SetVelY( -1.3f * pCharacter->GetSpeed() );
 						}
 						else
 						{
 							pCharacter->SetVelX( 0.0f );
-							pCharacter->SetVelY( (float)pCharacter->GetSpeed() );
+							pCharacter->SetVelY( 1.3f * pCharacter->GetSpeed() );
 						}
 						pCharacter->SetPrevVelX( 0.0f );
 						pCharacter->SetPrevVelY( pCharacter->GetVelY() );
@@ -160,12 +160,12 @@ void CSnowGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						//then we are going east-west
 						if(CPlayer::GetInstance()->GetPosX() < pCharacter->GetPosX())
 						{
-							pCharacter->SetVelX( -1.0f * pCharacter->GetSpeed() );
+							pCharacter->SetVelX( -1.3f * pCharacter->GetSpeed() );
 							pCharacter->SetVelY( 0.0f );
 						}
 						else
 						{
-							pCharacter->SetVelX( (float) pCharacter->GetSpeed() );
+							pCharacter->SetVelX( 1.3f * pCharacter->GetSpeed() );
 							pCharacter->SetVelY( 0.0f );
 						}
 						pCharacter->SetPrevVelX( pCharacter->GetVelX() );

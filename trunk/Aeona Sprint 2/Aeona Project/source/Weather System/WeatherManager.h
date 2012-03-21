@@ -21,6 +21,7 @@ private:
 
 	// MUSIC
 	int m_nTown;
+	int m_nForest;
 	int m_nMountain;
 	int m_nLake;
 	int m_nVolcano;
