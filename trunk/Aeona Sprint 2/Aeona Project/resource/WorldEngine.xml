@@ -10,6 +10,7 @@
 <Tileset file="resource/Tilesets/VolcanoTileset.xml"/>
 <Tileset file="resource/Tilesets/TownTileset.xml"/>
 
+<COMMENT>
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
 <Map file="resource/Maps/Dungeon2.xml"/>
@@ -29,6 +30,7 @@
 <Map file="resource/Maps/SnowMapFinal7.xml"/>
 
 <Map file="resource/Maps/TransitionSnowForest.xml"/>
+</COMMENT>
 
 
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
@@ -37,11 +39,6 @@
 <Map file="resource/Maps/ForestUpperRight.xml"/>
 
 
-<Map file="resource/Maps/Townright.xml"/>
-<Map file="resource/Maps/TownFarRight.xml"/>
-
-<Map file="resource/Maps/Lake1.xml"/>
-<Map file="resource/Maps/Lake2.xml"/>
 
 <Map file="resource/Maps/Desert1.xml"/>
 <Map file="resource/Maps/Desert2.xml"/>
@@ -52,9 +49,18 @@
 <Map file="resource/Maps/DesertOasis.xml"/>
 <Map file="resource/Maps/DesertMaze.xml"/>
 
+<Map file="resource/Maps/Townright.xml"/>
+<Map file="resource/Maps/TownFarRight.xml"/>
+
+<COMMENT>
+
+<Map file="resource/Maps/Lake1.xml"/>
+<Map file="resource/Maps/Lake2.xml"/>
 
 <Map file="resource/Maps/Volcano1.xml"/>
 <Map file="resource/Maps/Volcano2.xml"/>
+
+</COMMENT>
 
 </WorldEngine>
 

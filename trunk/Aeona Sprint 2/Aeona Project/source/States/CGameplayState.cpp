@@ -89,6 +89,7 @@ void CGameplayState::Enter(void)
 	EVENTS->RegisterForEvent("victory", this);
 	EVENTS->RegisterForEvent("get.flower", this);
 	EVENTS->RegisterForEvent("get.hammer", this);
+	EVENTS->RegisterForEvent("Get.Bow", this);
 	EVENTS->RegisterForEvent("Teleport.Dungeon", this);
 	EVENTS->RegisterForEvent("Teleport.Volcano", this);
 	EVENTS->RegisterForEvent("Teleport.Lake", this);
@@ -723,6 +724,18 @@ void CGameplayState::HandleEvent(CEvent* pEvent)
 	if(pEvent->GetEventID() == "get.hammer")
 	{
 		PLAYER->AcquireWeapon(CPlayer::WEAPON_HAMMER);
+		PLAYER->CycleWeapon();
+
+		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();
+
+		eventInfo->Tile->SetPosX(-1);
+		eventInfo->Tile->SetPosY(-1);
+		eventInfo->Tile->SetInfo(0);
+		eventInfo->Tile->SetEventID(0);
+	}
+	if(pEvent->GetEventID() == "Get.Bow")
+	{
+		PLAYER->AcquireWeapon(CPlayer::WEAPON_CROSSBOW);
 		PLAYER->CycleWeapon();
 
 		CMap::TileInfo* eventInfo = (CMap::TileInfo*)pEvent->GetParam();

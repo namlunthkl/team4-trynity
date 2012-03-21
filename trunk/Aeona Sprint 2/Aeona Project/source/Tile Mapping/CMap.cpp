@@ -467,10 +467,11 @@ bool CMap::CheckCollisions(IBaseInterface* pBase, CStringTable* pStringTable,
 							if(ObjType == IBaseInterface::TYPE_CHAR_PLAYER)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_ACTION_BUTTON))
-							if(CInputManager::GetInstance()->GetPressedA())
+							if(ObjType == IBaseInterface::TYPE_WEAPON_DAGGER || ObjType == IBaseInterface::TYPE_WEAPON_SWORD
+								|| ObjType == IBaseInterface::TYPE_WEAPON_HAMMER || ObjType == IBaseInterface::TYPE_WEAPON_ARROW)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_BASIC_ATTACK))
-							if(ObjType == IBaseInterface::TYPE_WEAPON_DAGGER)
+							if(ObjType == IBaseInterface::TYPE_WEAPON_DAGGER || ObjType == IBaseInterface::TYPE_WEAPON_SWORD)
 								nConditionsMet++;
 						if(TestBit(tileCurrent->GetInfo(), BIT_EVENT_FIRE_BLADE))
 							if(ObjType == IBaseInterface::TYPE_WEAPON_SWORD)

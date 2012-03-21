@@ -55,7 +55,8 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	m_fLogoTimer = 0.0f;
 	m_fDerpScroll = 0.0f;
 	m_uiPic = 0;
-	
+	m_bSlowdowntime = false;
+	m_dwSlowdownStamp = timeGetTime();
 	//basically a char that has 3 bools whether slots contain info.
 	m_cLoadedOrNot = 0;
 	m_uiWhichSlotAreWeLoadingDawgQuestionMark = 0;
@@ -237,11 +238,27 @@ void CGame::Update(void)
 
 	AUDIO->Update();
 
+	if(m_bSlowdowntime)
+	{
+		if(timeGetTime() - m_dwSlowdownStamp > 2000)
+			m_bSlowdowntime = false;
+	}
+
 	if(m_pCurrentState != NULL)
 	{
-		m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+		if(!m_bSlowdowntime)
+			m_pCurrentState->Update(m_Timer.m_fElapsedTime);
+		else
+			m_pCurrentState->Update(m_Timer.m_fElapsedTime * 0.1f);
 	}
 }
+
+void CGame::SlowDownFreakingTimeBro(void)
+{
+	m_bSlowdowntime = true;
+	m_dwSlowdownStamp = timeGetTime();
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 //	Purpose		:	Call the current state's Render method, thus

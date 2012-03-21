@@ -155,7 +155,7 @@ void CBaseObject::Render(void)
 		}
 	}
 
-	//D3D->GetSprite()->Flush();
+	D3D->GetSprite()->Flush();
 
 	if(m_bDebugMode)
 	{
@@ -266,7 +266,6 @@ RectD CBaseObject::GetCollisionRect(void)
 	rectCollision.top = GetPosY() - m_uiHeight/2;
 	rectCollision.right = rectCollision.left + GetWidth();
 	rectCollision.bottom = rectCollision.top + GetHeight();
-
 
 	return rectCollision;
 }

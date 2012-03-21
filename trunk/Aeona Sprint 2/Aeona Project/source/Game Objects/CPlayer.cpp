@@ -32,17 +32,18 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiGems = 0;
 
 	TurnBitOn(m_byteMasks, MASK_NONE);
+	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
+	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
 
-#if 1
+#if 0
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
 	TurnBitOn(m_byteMasks,MASK_LIGHT);
 
+
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 	//	Test the weapons!
-	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
-	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
 #endif
 
 	m_bHeartPiece = false;
@@ -295,7 +296,7 @@ void CPlayer::Render(void)
 	//RectD rect = GetCollisionRect();
 	//rect.OffsetRect(CCameraControl::GetInstance()->GetPositionX(),
 	//	CCameraControl::GetInstance()->GetPositionY());
-	//D3D->DrawRect(rect.GetWindowsRECT(), 255, 0, 0);
+	//D3D->DrawRect(rect.GetWindowsRECT(), 0, 255, 0);
 
 	RectD temp = WEAPON->GetCollisionRect();
 	temp.OffsetRect(GetPosX(),GetPosY());
@@ -833,22 +834,22 @@ PointD CPlayer::GetInteractivePoint(void)
 	case ANM_WALK_UP:
 	case ANM_IDLE_UP:
 	case ANM_ATK_UP:
-		return PointD(GetPosX(), GetPosY() - 50);
+		return PointD(GetPosX(), GetPosY() - 40);
 		break;
 	case ANM_WALK_DOWN:
 	case ANM_IDLE_DOWN:
 	case ANM_ATK_DOWN:
-		return PointD(GetPosX(), GetPosY() + 50);
+		return PointD(GetPosX(), GetPosY() + 40);
 		break;
 	case ANM_WALK_LEFT:
 	case ANM_IDLE_LEFT:
 	case ANM_ATK_LEFT:
-		return PointD(GetPosX() - 50, GetPosY());
+		return PointD(GetPosX() - 40, GetPosY());
 		break;
 	case ANM_WALK_RIGHT:
 	case ANM_IDLE_RIGHT:
 	case ANM_ATK_RIGHT:
-		return PointD(GetPosX() + 50, GetPosY());
+		return PointD(GetPosX() + 40, GetPosY());
 		break;
 	default:
 		return PointD(GetPosX(), GetPosY());
