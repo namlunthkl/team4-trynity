@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Particle>
-  <ImageFile>particle.bmp</ImageFile>
+  <ImageFile>Slanty.png</ImageFile>
   <Continuous>1</Continuous>
   <Reanimate>0</Reanimate>
   <EmitterPosX>0</EmitterPosX>
   <EmitterPosY>-50</EmitterPosY>
-  <MaxParticles>500</MaxParticles>
+  <MaxParticles>1000</MaxParticles>
   <Size>0.06</Size>
-  <MaxLife>2</MaxLife>
+  <MaxLife>1</MaxLife>
   <SpawnWidth>800</SpawnWidth>
   <SpawnHeight>400</SpawnHeight>
   <ScaleStart>0.06</ScaleStart>
   <ScaleEnd>0.06</ScaleEnd>
   <Rotation>0</Rotation>
-  <MinVelX>0</MinVelX>
+  <MinVelX>-150</MinVelX>
   <MaxVelX>0</MaxVelX>
-  <MinVelY>0</MinVelY>
+  <MinVelY>499</MinVelY>
   <MaxVelY>500</MaxVelY>
   <StartColorA>255</StartColorA>
   <StartColorR>255</StartColorR>

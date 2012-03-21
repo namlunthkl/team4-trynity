@@ -843,7 +843,7 @@
             // 
             this.numericUpDownMinVelocityX.Location = new System.Drawing.Point(40, 14);
             this.numericUpDownMinVelocityX.Maximum = new decimal(new int[] {
-            0,
+            400,
             0,
             0,
             0});
