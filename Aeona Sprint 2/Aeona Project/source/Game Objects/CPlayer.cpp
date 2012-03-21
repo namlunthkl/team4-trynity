@@ -26,12 +26,14 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	TurnBitOn(m_byteWeapons, WEAPON_DAGGER);
 	TurnBitOn(m_byteMasks, MASK_NONE);
 	m_fOuchTimer = 0.0f;
-	m_Potion = new CPotion;
+	//m_Potion = new CPotion;
 
 	m_bHasFlower = false;
 	m_uiGems = 0;
 
-#if 0
+	rotation = 0.0f;	//	this is for the rotating effect and rotation direction (north-south, east-west) on charged attacks.
+
+#if 1
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
@@ -49,6 +51,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_sndPlayerMovement = -1;
 	m_uiNumPotions = 0;
 	m_bPhilCharging = false;
+	m_bHammerCircle = false;
 	m_bPhilSpecialAttack = false;
 	m_fPhilChargeIdkman = 0.0f;
 	m_imgCharges = TEX_MNG->LoadTexture("resource/Charges.png", D3DCOLOR_XRGB(255, 0, 255));
@@ -145,6 +148,13 @@ void CPlayer::Update(float fElapsedTime)
 	if(m_fBlastTimer < 0.0f)
 		m_fBlastTimer = 0.0f;
 
+	if(m_uiCurrentWeapon == WEAPON_SWORD || m_uiCurrentWeapon == WEAPON_HAMMER)
+	{
+		rotation -= fElapsedTime;
+		if(rotation < (3.14159f * -2.0f) )
+			rotation = 0.0f;
+	}
+
 	if(m_uiCurrentMask == MASK_SPEED)
 		m_fSpeedIncrease = 1.5;
 	else
@@ -197,44 +207,59 @@ void CPlayer::Render(void)
 	//
 	if( CPlayer::GetInstance()->m_fOuchTimer == 0.0f )
 	{
-		WEAPON->Render(GetPosition());
+		bool showplayer = false;
+		if(m_uiCurrentWeapon == WEAPON_HAMMER && m_fBlastTimer > 0.0f)
+			showplayer = false;
+		else if(m_uiCurrentWeapon == WEAPON_SWORD && m_fBlastTimer > 0.0f)
+			showplayer = false;
+		else
+			showplayer = true;
+
+		
 
 
 		//begin shit for rendering charge crap below
-		if(m_fBlastTimer > 0.0f)
+		if(m_fBlastTimer > 0.0f || m_bHammerCircle == true)
 		{
 			RECT r;
 			r.left = 0;
 			r.right = 1;
 			r.top = 0;
 			r.bottom = 1;
-			float rotation = 0.0f;
+			
 			int ox = 0;
 			int oy = 0;
 
-			switch(WEAPON->GetCurrentAnimation())
+			if(m_uiCurrentWeapon == WEAPON_DAGGER || m_uiCurrentWeapon == WEAPON_CROSSBOW)
 			{
-			case ANM_WALK_UP:
-			case ANM_IDLE_UP:
-			case ANM_ATK_UP:
-				rotation = 3.14159f/2.0f;
-				break;
-			case ANM_WALK_DOWN:
-			case ANM_IDLE_DOWN:
-			case ANM_ATK_DOWN:
-				rotation = 3.14159f/2.0f;
-				break;
-			case ANM_WALK_LEFT:
-			case ANM_IDLE_LEFT:
-			case ANM_ATK_LEFT:
-				rotation = 0.0f;
-				break;
-			case ANM_WALK_RIGHT:
-			case ANM_IDLE_RIGHT:
-			case ANM_ATK_RIGHT:
-				rotation = 0.0f;
-				break;
-			default:
+				switch(WEAPON->GetCurrentAnimation())
+				{
+				case ANM_WALK_UP:
+				case ANM_IDLE_UP:
+				case ANM_ATK_UP:
+					rotation = 3.14159f/2.0f;
+					break;
+				case ANM_WALK_DOWN:
+				case ANM_IDLE_DOWN:
+				case ANM_ATK_DOWN:
+					rotation = 3.14159f/2.0f;
+					break;
+				case ANM_WALK_LEFT:
+				case ANM_IDLE_LEFT:
+				case ANM_ATK_LEFT:
+					rotation = 0.0f;
+					break;
+				case ANM_WALK_RIGHT:
+				case ANM_IDLE_RIGHT:
+				case ANM_ATK_RIGHT:
+					rotation = 0.0f;
+					break;
+				default:
+					rotation = 0.0f;
+				}
+			}
+			else if(m_uiCurrentWeapon == WEAPON_HAMMER && m_bHammerCircle == false)
+			{
 				rotation = 0.0f;
 			}
 
@@ -260,8 +285,8 @@ void CPlayer::Render(void)
 			{
 				r.left = 0;
 				r.right = 220;
-				r.top = 60+200;
-				r.bottom = 60+200+220;
+				r.top = 60+200+220;
+				r.bottom = 60+200+220+220;
 				ox = 110;
 				oy = 110;
 			}
@@ -279,14 +304,37 @@ void CPlayer::Render(void)
 				oy = 500;
 			}
 
-			TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
+			if(m_bHammerCircle == true)
+			{
+				r.left = 0;
+				r.right = 220;
+				r.top = 60+200;
+				r.bottom = 60+200+220;
+				ox = 110;
+				oy = 110;
+			}
+
+			if(m_uiCurrentWeapon == WEAPON_DAGGER || m_uiCurrentWeapon == WEAPON_CROSSBOW)
+				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
+			else if(m_uiCurrentWeapon == WEAPON_SWORD)
+				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*13);
+			else if(m_uiCurrentWeapon == WEAPON_HAMMER && m_bHammerCircle == true)
+				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*3, D3DCOLOR_ARGB(205,255,255,255));
+			else
+				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation );
 		}
 		//end render of charge stuff.
+
+		//DRAW THE PLAYER HERE
+		if(showplayer == true)
+		WEAPON->Render(GetPosition());
+		//DRAW THE PLAYER HERE
 	}
 	else
 	{
 		WEAPON->Render(GetPosition(),D3DCOLOR_ARGB(155,255,0,0));
 	}
+
 	// Render the particles
 	m_fxElementalWeapon.Render();
 
@@ -301,7 +349,7 @@ void CPlayer::Render(void)
 	temp.OffsetRect(CCameraControl::GetInstance()->GetPositionX(), CCameraControl::GetInstance()->GetPositionY());
 
 #ifdef _DEBUG
-	if(true) //if(IsOnDebug())
+	if(false) //if(IsOnDebug())
 	{
 		if(m_uiCurrentWeapon == WEAPON_SWORD)
 		{
@@ -538,8 +586,7 @@ void CPlayer::Input(void)
 		//	}
 		//}
 
-		if (WEAPON->GetCurrentAnimation() == ANM_ATK_UP || WEAPON->GetCurrentAnimation() == ANM_ATK_DOWN ||
-			WEAPON->GetCurrentAnimation() == ANM_ATK_LEFT || WEAPON->GetCurrentAnimation() == ANM_ATK_RIGHT)
+		if (WEAPON->GetCurrentAnimation() == ANM_ATK_UP || WEAPON->GetCurrentAnimation() == ANM_ATK_DOWN || WEAPON->GetCurrentAnimation() == ANM_ATK_LEFT || WEAPON->GetCurrentAnimation() == ANM_ATK_RIGHT)
 		{
 			WEAPON->GetAnimationPlayer(WEAPON->GetCurrentAnimation())->Reset();
 			WEAPON->SetCurrentAnimation(WEAPON->GetPreviousAnimation());
@@ -593,8 +640,9 @@ void CPlayer::Input(void)
 // Cycle through the weapons
 void CPlayer::CycleWeapon(void)
 {
+	WEAPON->m_fSlashTimer = 0.0f;
 	// Increase the current weapon variable
-	m_uiCurrentWeapon++;
+	++m_uiCurrentWeapon;
 
 	// If we reached max, go back to the first one
 	if(m_uiCurrentWeapon >= WEAPON_MAX)
@@ -606,8 +654,9 @@ void CPlayer::CycleWeapon(void)
 		// Keep looking
 		CycleWeapon();
 	}
-	m_bPhilCharging = false;
-	m_bPhilSpecialAttack = false;
+
+	StopAttacking();
+
 	if(m_bDying == true)
 		WEAPON->SetCurrentAnimation(ANM_DIE_DIE);
 	m_sndSwitchWeapon->Play();

@@ -21,6 +21,8 @@ CEnemy::CEnemy(double dPositionX, double dPositionY, unsigned int uiSpeed,
 	m_ptRespawnPosition.y = dPositionY;
 	m_dwDeadTimeStamp = 0;
 	m_fRespawnTime = fRespawnTime;
+
+	m_nGetPotionSound = AUDIO->SFXLoadSound("resource/sound/Chest.wav");
 }
 
 CEnemy::~CEnemy(void)
@@ -72,6 +74,14 @@ void CEnemy::Die(void)
 		GAME->SlowDownFreakingTimeBro();
 		CCameraControl::GetInstance()->SetKillCam(true);
 	}
+
+	//do we get a potion?!?
+	if(rand()%15 == 0)
+	{
+		CPlayer::GetInstance()->AcquirePotion();
+		AUDIO->SFXPlaySound(m_nGetPotionSound);
+	}
+
 	CBaseCharacter::Die();
 	m_dwDeadTimeStamp = timeGetTime();
 }

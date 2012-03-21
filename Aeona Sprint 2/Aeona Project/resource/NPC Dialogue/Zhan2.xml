@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue>
+<SpeechNode text="Remember! You can hold down Attack to use a charged attack. Maybe you'll get better weapons later, but you might have to upgrade them before you can charge its attack." name="rem">
+<Option text="Thank you, Zhan.">
+</SpeechNode>
+
+</Dialogue>
