@@ -32,16 +32,16 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 	m_uiGems = 0;
 
 	TurnBitOn(m_byteMasks, MASK_NONE);
-	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
-	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
 
 #if 0
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
 	TurnBitOn(m_byteMasks,MASK_LIGHT);
-
-
+	
+	TurnBitOn(m_byteWeapons, WEAPON_SWORD);
+	TurnBitOn(m_byteWeapons, WEAPON_HAMMER);
+	
 	TurnBitOn(m_byteWeapons, WEAPON_CROSSBOW);
 	//	Test the weapons!
 #endif
