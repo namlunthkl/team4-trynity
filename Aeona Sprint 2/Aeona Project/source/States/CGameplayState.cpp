@@ -65,6 +65,7 @@ CGameplayState::CGameplayState(void)
 	m_nGameOverID = -1;
 	m_nVictoryID = -1;
 	m_pFont = new CBitmapFont();
+	m_imgInventory = -1;
 }
 
 // Initialize everything
@@ -98,6 +99,7 @@ void CGameplayState::Enter(void)
 	//		Textures
 	m_imgMessageBox = TEX_MNG->LoadTexture("resource/MessageBox.png");
 	m_imgHUD = TEX_MNG->LoadTexture("resource/HUD_Graphic.png", D3DCOLOR_XRGB(255, 0, 255));
+	m_imgInventory = TEX_MNG->LoadTexture("resource/Other/Inventory.png");
 	m_nGameOverID = TEX_MNG->LoadTexture("resource/GameOver.png");
 	m_nVictoryID = TEX_MNG->LoadTexture("resource/Victory.png");
 	
@@ -278,7 +280,7 @@ void CGameplayState::Update(float fElapsedTime)
 
 void CGameplayState::Render(void)
 {
-
+	
 
 	///////////////////////////////////////////////////////////////////////////////////
 	////////////////////////// RENDER GAME OBJECTS AND WORLD //////////////////////////
@@ -300,8 +302,7 @@ void CGameplayState::Render(void)
 	///////////////////////////
 	//ARI EXTRA CODE
 	///////////////////////////
-	if(!GAME->GetPaused())
-	{
+	
 		D3D->DeviceBegin();
 		CPostProcess::GetInstance()->BeginPostProcess();
 		///////////////////////////
@@ -385,11 +386,20 @@ void CGameplayState::Render(void)
 					RenderHUD();
 		}
 		RenderGameOverScreens();
+
+
+		if(GAME->GetPaused())
+		{
+			RenderInventory();
+		}
+
+
 		D3D->SpriteEnd();
 		D3D->DeviceEnd();
 		D3D->Present();
 	}
 
+#if 0
 	if(GAME->GetPaused() == true)
 	{
 		D3D->Clear(160, 160, 160);
@@ -486,8 +496,6 @@ void CGameplayState::Render(void)
 		D3D->Present();
 	}
 
-
-#if 0
 #ifdef _DEBUG
 	char buffer[100];
 	sprintf_s(&buffer[0], 100, "Player PosX:%f, PosY:%f" , PLAYER->GetPosX(), PLAYER->GetPosY());
@@ -505,6 +513,98 @@ void CGameplayState::Render(void)
 	}
 #endif
 #endif
+
+void CGameplayState::RenderInventory()
+{
+	TEX_MNG->Draw(m_imgInventory, 0, 0);
+
+	RECT rectSource;
+
+	// Draw the heart piece
+	//if(PLAYER->HasHeartPiece())
+	{
+		rectSource.left = 350;
+		rectSource.top = 130;
+		rectSource.right = rectSource.left + 126;
+		rectSource.bottom = rectSource.top + 97;
+		TEX_MNG->Draw(m_imgHUD, 337, 456, 1.0f, 1.0f, &rectSource);
+	}
+
+
+	// Draw the weapons
+	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_SWORD))
+	{
+		rectSource.left = 0;
+		rectSource.top = 128;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 92 - 4, 243 - 4, 1.0f, 1.0f, &rectSource);
+	}
+	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_HAMMER))
+	{
+		rectSource.left = 0;
+		rectSource.top = 256;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 235 - 4, 240 - 1, 1.0f, 1.0f, &rectSource);
+	}
+	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_CROSSBOW))
+	{
+		rectSource.left = 0;
+		rectSource.top = 384;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 163, 145, 1.0f, 1.0f, &rectSource);
+	}
+
+
+	// Draw the amulets
+	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_ENDURANCE))
+	{
+		// Third one
+		rectSource.left = 39;
+		rectSource.top = 256;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 538 - 7, 238 - 3, 1.0f, 1.0f, &rectSource);
+	}
+	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_SPEED))
+	{
+		// First one
+		rectSource.left = 39;
+		rectSource.top = 0;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 609 - 7, 144 - 3, 1.0f, 1.0f, &rectSource);
+	}
+	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_STRENGHT))
+	{
+		// Second one
+		rectSource.left = 39;
+		rectSource.top = 128;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 682 - 7, 238 - 3, 1.0f, 1.0f, &rectSource);
+	}
+	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_LIGHT))
+	{
+		// Fourth one
+		rectSource.left = 39;
+		rectSource.top = 384;
+		rectSource.right = rectSource.left + 39;
+		rectSource.bottom = rectSource.top + 128;
+		TEX_MNG->Draw(m_imgHUD, 609 - 7, 329 - 3, 1.0f, 1.0f, &rectSource);
+	}
+
+	// Draw the flower
+	if(PLAYER->HasFlower())
+	{
+
+
+	}
+		
+	// Draw the gems
+
 
 }
 
@@ -956,6 +1056,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 		}
 	}
 }
+
 
 
 void CGameplayState::RenderHUD()

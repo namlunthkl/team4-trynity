@@ -49,6 +49,7 @@ class CGameplayState : public IGameState , public IListener
 
 	//	Image for the HUD
 	int m_imgHUD;
+	int m_imgInventory;
 
 	//	Variables used to draw the message box to the screen
 	bool			m_bNPCTalking;
@@ -88,6 +89,7 @@ public:
 	
 	// Render the HUD in a separate function
 	void RenderHUD(void);
+	void RenderInventory(void);
 	void RenderGameOverScreens(void);
 	// Shutdown everything
 	void Exit(void);
