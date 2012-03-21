@@ -4,6 +4,7 @@
 #include "../Input Manager/CInputManager.h"
 #include "../Game Objects/CPlayer.h"
 #include "../StdAfx.h"
+#include "../States/CGameplayState.h"
 
 // Constructor
 CGrimirNPC::CGrimirNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
@@ -55,7 +56,8 @@ void CGrimirNPC::LoadText(char const * const szFilename)
 			// Read the speech node stuff
 			szSpeechName = xSpeechNode->Attribute("name");
 			szSpeechText = xSpeechNode->Attribute("text");
-			tSpeechNode* pSpeechNode = m_GrimirDialogues[i].AddSpeechNode(szSpeechName, szSpeechText);
+			tSpeechNode* pSpeechNode = m_GrimirDialogues[i].AddSpeechNode(szSpeechName,
+				CGameplayState::GetInstance()->BreakDownStrings(szSpeechText, 50, 52));
 
 			TiXmlElement* xOptionNode = xSpeechNode->FirstChildElement("Option");
 
@@ -79,7 +81,7 @@ void CGrimirNPC::LoadText(char const * const szFilename)
 		int nOption = 0;
 
 
-		TiXmlElement* xConnection = pRoot->FirstChildElement("Connection");
+		TiXmlElement* xConnection = xDialogue->FirstChildElement("Connection");
 		while(xConnection)
 		{
 			szSpeechA = xConnection->Attribute("speechA");
