@@ -8,7 +8,8 @@
 
 LightEngine::LightEngine(void)
 {
-	m_nDayWindSound = AUDIO->SFXLoadSound("resource/sound/HP_DayWind_Loop.wav");
+	m_nDay_AirBed = AUDIO->SFXLoadSound("resource/sound/HP_DayWind_Loop.wav");
+	m_nNight_AirBed = AUDIO->SFXLoadSound("resource/sound/HP_Night_AirBed.wav");
 }
 LightEngine::~LightEngine(void)
 {
@@ -52,7 +53,6 @@ void LightEngine::Initialize( void )
 
 	SetPointRadius( 0.3f );
 	SetItemRadius( 0.2f );
-
 }
 void LightEngine::Update( float fElapsedTime )
 {
@@ -296,53 +296,53 @@ void LightEngine::DayNightCycle( void )
 			{
 				Morning();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 2.0f );
-				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
+				SetTimeToWait( 20.0f );
+				AUDIO->SFXStopSound(m_nNight_AirBed);
+				AUDIO->SFXPlaySound(m_nDay_AirBed,true);
 			}
 			break;
 		case 2:
 			{
 				Afternoon();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 2.0f );
-				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
+				SetTimeToWait( 20.0f );
 			}
 			break;
 		case 3:
 			{
 				Day();				
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 5.0f );
-				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
+				SetTimeToWait( 50.0f );
 			}
 			break;
 		case 4:
 			{
 				Evening();
-				AUDIO->SFXStopSound( m_nDayWindSound );
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 2.0f );
+				SetTimeToWait( 20.0f );	
+				AUDIO->SFXStopSound(m_nDay_AirBed);
+				AUDIO->SFXPlaySound(m_nNight_AirBed,true);
 			}
 			break;
 		case 5:
 			{
 				Dusk();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 2.0f );
+				SetTimeToWait( 20.0f );
 			}
 			break;
 		case 6:
 			{
 				Night();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 5.0f );
+				SetTimeToWait( 50.0f );
 			}
 			break;
 		case 7:
 			{
 				Dawn();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 2.0f );
+				SetTimeToWait( 20.0f );
 			}
 			break;
 		}

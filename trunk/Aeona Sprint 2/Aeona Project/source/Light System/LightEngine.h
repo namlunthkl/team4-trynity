@@ -8,8 +8,8 @@ private:
 	enum CYCLE{ MORNING = 1, AFTERNOON, DAY, EVENING, DUSK, NIGHT, DAWN };
 
 	// SOUND
-	int m_nDayWindSound;
-
+	int m_nDay_AirBed;
+	int m_nNight_AirBed;
 
 
 	int m_sCurrentCycle;
