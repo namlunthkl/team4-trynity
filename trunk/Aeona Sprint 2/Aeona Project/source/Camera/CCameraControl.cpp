@@ -31,13 +31,13 @@ void CCameraControl::InitializeCamera( int screenWidth, int screenHeight, float 
 void CCameraControl::Update( float fTime )
 {
 	SetTime( fTime );
-	if( GetKillCam() ) { KillCamSequence( 3 ); }
+	if( GetKillCam() ) { KillCamSequence( 1.0f ); }
 }
 void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 {
 	if( GetChange() )
 	{
-		if( !GetStop() ) { SetScale( GetScale() + 21.0f * GetTime() ); }
+		if( !GetStop() ) { SetScale( GetScale() + 20.0f * GetTime() ); }
 		if( GetScale() >= 3.0f )
 		{
 			SetStop( true );
@@ -48,7 +48,7 @@ void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 	if( !GetChange() )
 	{
 		SetTimeToWait( 0 );
-		SetScale( GetScale() - 2.0f * GetTime() );
+		SetScale( GetScale() - 3.0f * GetTime() );
 		if( GetScale() <= 1.0f )
 		{
 			SetChange( true );
@@ -59,7 +59,7 @@ void CCameraControl::KillCamSequence( float fAmountOfTimeToPause )
 }
 void CCameraControl::ChargeCamSequence( float fChargeTime )
 {
-	if( fChargeTime >= 2.0f )
+	if( fChargeTime >= 1.0f )
 	{
 		SetScale( GetScale() + 0.02f * GetTime() );
 
