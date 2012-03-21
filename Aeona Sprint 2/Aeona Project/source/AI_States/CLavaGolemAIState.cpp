@@ -145,12 +145,12 @@ void CLavaGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						if(CPlayer::GetInstance()->GetPosY() < pCharacter->GetPosY())
 						{
 							pCharacter->SetVelX( 0.0f );
-							pCharacter->SetVelY( -1.0f * pCharacter->GetSpeed() );
+							pCharacter->SetVelY( -1.8f * pCharacter->GetSpeed() );
 						}
 						else
 						{
 							pCharacter->SetVelX( 0.0f );
-							pCharacter->SetVelY( (float) pCharacter->GetSpeed() );
+							pCharacter->SetVelY( 1.8f * pCharacter->GetSpeed() );
 						}
 						pCharacter->SetPrevVelX( 0.0f );
 						pCharacter->SetPrevVelY( pCharacter->GetVelY() );
@@ -160,12 +160,12 @@ void CLavaGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 						//then we are going east-west
 						if(CPlayer::GetInstance()->GetPosX() < pCharacter->GetPosX())
 						{
-							pCharacter->SetVelX( -1.0f * pCharacter->GetSpeed() );
+							pCharacter->SetVelX( -1.8f * pCharacter->GetSpeed() );
 							pCharacter->SetVelY( 0.0f );
 						}
 						else
 						{
-							pCharacter->SetVelX( (float) pCharacter->GetSpeed() );
+							pCharacter->SetVelX( 1.8f * pCharacter->GetSpeed() );
 							pCharacter->SetVelY( 0.0f );
 						}
 						pCharacter->SetPrevVelX( pCharacter->GetVelX() );
@@ -181,7 +181,7 @@ void CLavaGolemAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			else
 			{
 				//	Before leaving, let's see if the player is close enough for us to lunge at him!
-				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 24 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 24) || (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 24 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 24) )
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 56 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 56) || (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 56 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 56) )
 				{
 					pCharacter->SetMoveTimer( 0.0f );
 					pCharacter->SetMiniState( 5 );

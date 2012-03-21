@@ -15,6 +15,7 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 	m_nTown = AUDIO->MusicLoadSong("resource/sound/KSC_Town.xwm");
+	m_nForest = AUDIO->MusicLoadSong("resource/sound/SOM_Forest.xwm");
 	m_nMountain = AUDIO->MusicLoadSong("resource/sound/KSC_Beginning.xwm");
 	m_nDesert = AUDIO->MusicLoadSong("resource/sound/JDesert.xwm");
 	m_nLake = AUDIO->MusicLoadSong("resource/sound/JLake.xwm");
@@ -40,6 +41,11 @@ void CWeatherManager::CheckRegion(void)
 		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest" ) == 0 )
 		{
 			m_nCurrRegion = 0;
+			if(!AUDIO->MusicIsSongPlaying(m_nForest))
+			{
+				AUDIO->SilenceAll();
+				AUDIO->MusicPlaySong(m_nForest,true);
+			}
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Snow" ) == 0 )
 		{
