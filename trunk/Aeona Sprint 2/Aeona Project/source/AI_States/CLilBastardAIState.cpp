@@ -132,8 +132,17 @@ void CLilBastardAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			}
 			else
 			{
-				pCharacter->SetMoveTimer( 0.0f );
-				pCharacter->SetMiniState( 2 );	//	Endlessly sleep
+				//if player is near..
+				if( (CPlayer::GetInstance()->GetPosY() >= pCharacter->GetPosY() - 70 && CPlayer::GetInstance()->GetPosY() <= pCharacter->GetPosY() + 70) && (CPlayer::GetInstance()->GetPosX() >= pCharacter->GetPosX() - 70 && CPlayer::GetInstance()->GetPosX() <= pCharacter->GetPosX() + 70) )
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 3 );	//	Fuck'em up!
+				}
+				else
+				{
+					pCharacter->SetMoveTimer( 0.0f );
+					pCharacter->SetMiniState( 2 );	//	Endlessly sleep
+				}
 			}
 			break;
 		}

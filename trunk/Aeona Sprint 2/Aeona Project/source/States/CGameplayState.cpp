@@ -656,10 +656,7 @@ string CGameplayState::BreakDownStrings(string szString, int nMin, int nMax)
 }
 
 void CGameplayState::Exit(void)
-{
-	//unload charge img
-	TEX_MNG->UnloadTexture(PLAYER->m_imgCharges);
-	
+{	
 	AUDIO->MusicStopSong(GetBGMusic());
 	AUDIO->SilenceAll();
 	EVENTS->ClearEvents();
@@ -834,7 +831,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 50;
 					uiAttackDamage = 1;
 					break;
 				case 1:
@@ -842,7 +839,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 91;
 					uiAttackDamage = 1;
 					break;
 				case 2:
@@ -850,7 +847,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 30;
 					uiAttackDamage = 1;
 					break;
 				}
@@ -864,15 +861,23 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 100;
 					uiAttackDamage = 1;
 					break;
-				default:
+				case 1:
+					pAIState = CRatAIState::GetInstance();
+					uiSpeed = 40;
+					uiWidth = 50;
+					uiHeight = 50;
+					uiMaxHealth = 91;
+					uiAttackDamage = 1;
+					break;
+				case 2:
 					pAIState = CSlimeAIState::GetInstance();
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 50;
 					uiAttackDamage = 1;
 					break;
 				}
@@ -886,7 +891,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 131;
 					uiAttackDamage = 1;
 					break;
 				case 1:
@@ -902,7 +907,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 97;
 					uiAttackDamage = 1;
 					break;
 				}
@@ -916,7 +921,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 150;
 					uiAttackDamage = 1;
 					break;
 				default:
@@ -924,7 +929,7 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiSpeed = 40;
 					uiWidth = 50;
 					uiHeight = 50;
-					uiMaxHealth = 75;
+					uiMaxHealth = 108;
 					uiAttackDamage = 1;
 					break;
 				}

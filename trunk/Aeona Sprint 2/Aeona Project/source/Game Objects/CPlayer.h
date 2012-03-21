@@ -35,7 +35,9 @@ public:
 	unsigned int	m_uiGems;
 	float			m_fOuchTimer;
 	int				m_imgCharges;	//	the images of the charged attacks.
+	float			rotation;	//	this is for the rotating effect and rotation direction (north-south, east-west) on charged attacks.
 	float			m_fBlastTimer;
+	bool			m_bHammerCircle;
 
 private:
 	bool			m_bHeartPiece;
@@ -136,6 +138,8 @@ public:
 
 	inline void StopAttacking(void)
 	{
+		m_fBlastTimer = 0.0f;
+		m_bHammerCircle = false;
 		m_bPhilCharging = false;
 		m_bPhilSpecialAttack = false;
 		m_fPhilChargeIdkman = 0.0f;

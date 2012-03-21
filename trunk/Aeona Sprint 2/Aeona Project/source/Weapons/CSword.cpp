@@ -93,8 +93,8 @@ RectD CSword::GetCollisionRect(void)
 				rectCollision.top = -100;
 				rectCollision.right = 100;
 				rectCollision.bottom = 100;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
-				CPlayer::GetInstance()->SetAttackDamage(33);
+				CPlayer::GetInstance()->m_fBlastTimer = 0.3f;
+				CPlayer::GetInstance()->SetAttackDamage(39);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -148,8 +148,8 @@ RectD CSword::GetCollisionRect(void)
 				rectCollision.top = -100;
 				rectCollision.right = 100;
 				rectCollision.bottom = 100;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
-				CPlayer::GetInstance()->SetAttackDamage(33);
+				CPlayer::GetInstance()->m_fBlastTimer = 0.3f;
+				CPlayer::GetInstance()->SetAttackDamage(39);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -203,8 +203,8 @@ RectD CSword::GetCollisionRect(void)
 				rectCollision.top = -100;
 				rectCollision.right = 100;
 				rectCollision.bottom = 100;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
-				CPlayer::GetInstance()->SetAttackDamage(33);
+				CPlayer::GetInstance()->m_fBlastTimer = 0.3f;
+				CPlayer::GetInstance()->SetAttackDamage(39);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)
@@ -258,8 +258,8 @@ RectD CSword::GetCollisionRect(void)
 				rectCollision.top = -100;
 				rectCollision.right = 100;
 				rectCollision.bottom = 100;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
-				CPlayer::GetInstance()->SetAttackDamage(33);
+				CPlayer::GetInstance()->m_fBlastTimer = 0.3f;
+				CPlayer::GetInstance()->SetAttackDamage(39);
 			}
 		}
 		else if(m_fSlashTimer < 0.25f)

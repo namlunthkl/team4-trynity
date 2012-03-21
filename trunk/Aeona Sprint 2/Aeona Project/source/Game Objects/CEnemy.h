@@ -18,6 +18,8 @@ class CEnemy : public CBaseCharacter
 	DWORD	m_dwDeadTimeStamp;
 	float	m_fRespawnTime;
 
+	int m_nGetPotionSound;
+
 public:
 	// Constructor
 	CEnemy(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,

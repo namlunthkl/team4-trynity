@@ -46,6 +46,7 @@ void CHammer::Update(float fElapsedTime)
 	}
 	else
 	{
+		m_fSlashTimer = 0.0f;
 		if( CPlayer::GetInstance()->m_bPhilCharging == true )
 		{
 			CPlayer::GetInstance()->m_fPhilChargeIdkman += fElapsedTime;
@@ -71,13 +72,14 @@ RectD CHammer::GetCollisionRect(void)
 	{
 		if(m_fSlashTimer < 0.59f)
 		{
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == true)
+				CPlayer::GetInstance()->m_bHammerCircle = true;
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
 			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == false)
 			{
 				GetSound()->Play();
-
 				rectCollision.left = -22;
 				rectCollision.top = -22 - 60;
 				rectCollision.right = 22;
@@ -85,6 +87,7 @@ RectD CHammer::GetCollisionRect(void)
 			}
 			else
 			{
+				CPlayer::GetInstance()->m_bHammerCircle = false;
 				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
@@ -93,7 +96,7 @@ RectD CHammer::GetCollisionRect(void)
 				rectCollision.top = -110;
 				rectCollision.right = 110;
 				rectCollision.bottom = 110;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.11f;
 				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
@@ -112,6 +115,8 @@ RectD CHammer::GetCollisionRect(void)
 	{
 		if(m_fSlashTimer < 0.59f)
 		{
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == true)
+				CPlayer::GetInstance()->m_bHammerCircle = true;
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
@@ -126,6 +131,7 @@ RectD CHammer::GetCollisionRect(void)
 			}
 			else
 			{
+				CPlayer::GetInstance()->m_bHammerCircle = false;
 				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
@@ -134,7 +140,7 @@ RectD CHammer::GetCollisionRect(void)
 				rectCollision.top = -110;
 				rectCollision.right = 110;
 				rectCollision.bottom = 110;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.11f;
 				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
@@ -153,6 +159,8 @@ RectD CHammer::GetCollisionRect(void)
 	{
 		if(m_fSlashTimer < 0.59f)
 		{
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == true)
+				CPlayer::GetInstance()->m_bHammerCircle = true;
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
@@ -167,6 +175,7 @@ RectD CHammer::GetCollisionRect(void)
 			}
 			else
 			{
+				CPlayer::GetInstance()->m_bHammerCircle = false;
 				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
@@ -175,7 +184,7 @@ RectD CHammer::GetCollisionRect(void)
 				rectCollision.top = -110;
 				rectCollision.right = 110;
 				rectCollision.bottom = 110;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.11f;
 				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
@@ -194,6 +203,8 @@ RectD CHammer::GetCollisionRect(void)
 	{
 		if(m_fSlashTimer < 0.59f)
 		{
+			if(CPlayer::GetInstance()->m_bPhilSpecialAttack == true)
+				CPlayer::GetInstance()->m_bHammerCircle = true;
 		}
 		else if(m_fSlashTimer < 0.75f)
 		{
@@ -208,6 +219,7 @@ RectD CHammer::GetCollisionRect(void)
 			}
 			else
 			{
+				CPlayer::GetInstance()->m_bHammerCircle = false;
 				if(AUDIO->SFXIsSoundPlaying(m_sndCharged) == false)
 				{
 					AUDIO->SFXPlaySound(m_sndCharged);
@@ -216,7 +228,7 @@ RectD CHammer::GetCollisionRect(void)
 				rectCollision.top = -110;
 				rectCollision.right = 110;
 				rectCollision.bottom = 110;
-				CPlayer::GetInstance()->m_fBlastTimer = 0.35f;
+				CPlayer::GetInstance()->m_fBlastTimer = 0.11f;
 				CPlayer::GetInstance()->SetAttackDamage(76);
 			}
 		}
