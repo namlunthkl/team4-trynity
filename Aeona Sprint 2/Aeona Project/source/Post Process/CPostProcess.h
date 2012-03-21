@@ -31,7 +31,7 @@ public:
 	int index;
 
 	void Initialize( void );
-	void Update( void );
+	void Update( float fElapsedTime );
 	void Input( void );
 	void BeginPostProcess( void );
 	void EndPostProcess( void );

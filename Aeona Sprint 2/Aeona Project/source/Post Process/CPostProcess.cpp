@@ -89,9 +89,9 @@ void CPostProcess::Initialize( void )
 	current = 0;
 	output = 0;
 }
-void CPostProcess::Update( void )
+void CPostProcess::Update( float fElapsedTime )
 {
-	LightEngine::GetInstance()->Update();
+	LightEngine::GetInstance()->Update(fElapsedTime);
 	UpdateColor();
 }
 void CPostProcess::Input( void ){}

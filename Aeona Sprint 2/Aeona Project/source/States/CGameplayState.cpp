@@ -270,7 +270,7 @@ void CGameplayState::Update(float fElapsedTime)
 		///////////////////////////
 		//ARI EXTRA CODE
 		///////////////////////////
-		CPostProcess::GetInstance()->Update();
+		CPostProcess::GetInstance()->Update(fElapsedTime);
 		///////////////////////////
 		//END ARI EXTRA CODE
 		///////////////////////////

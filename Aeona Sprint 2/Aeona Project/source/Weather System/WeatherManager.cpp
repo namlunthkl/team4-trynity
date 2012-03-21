@@ -43,7 +43,10 @@ void CWeatherManager::CheckRegion(void)
 			m_nCurrRegion = 0;
 			if(!AUDIO->MusicIsSongPlaying(m_nForest))
 			{
-				AUDIO->SilenceAll();
+				AUDIO->MusicStopSong(m_nTown);
+				AUDIO->MusicStopSong(m_nDesert);
+				AUDIO->MusicStopSong(m_nMountain);
+				AUDIO->MusicStopSong(m_nLake);
 				AUDIO->MusicPlaySong(m_nForest,true);
 			}
 		}
@@ -51,7 +54,7 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nMountain))
 			{
-				AUDIO->SilenceAll();
+				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nMountain,true);
 			}
 			m_nCurrRegion = 1;
@@ -60,7 +63,7 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nDesert))
 			{
-				AUDIO->SilenceAll();
+				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nDesert,true);
 			}
 			m_nCurrRegion = 2;
@@ -69,7 +72,8 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nVolcano))
 			{
-				AUDIO->SilenceAll();
+				//AUDIO->MusicStopSong(m_nDungeon);
+				AUDIO->MusicStopSong(m_nLake);
 				AUDIO->MusicPlaySong(m_nVolcano,true);
 			}
 			m_nCurrRegion = 3;
@@ -82,7 +86,8 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nLake))
 			{
-				AUDIO->SilenceAll();
+				AUDIO->MusicStopSong(m_nMountain);
+				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nLake,true);
 			}
 			m_nCurrRegion = 5;
@@ -99,7 +104,7 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nTown))
 			{
-				AUDIO->SilenceAll();
+				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nTown,true);
 			}
 			m_nCurrRegion = 8;

@@ -67,7 +67,7 @@ void CCreditsState::Render()
 	pFont->Write("MUSIC BY",			10, (int)(760 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
 	pFont->Write("Aaron Cook",			10, (int)(790 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Kim Stennabb Caesar",	10, (int)(820 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Heather Pluckard",	10, (int)(850 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Heather Plunkard",	10, (int)(850 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 											
 	pFont->Write("SPECIAL THANKS",		10, (int)(900 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
 	pFont->Write("John OLeske",			10, (int)(930 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
