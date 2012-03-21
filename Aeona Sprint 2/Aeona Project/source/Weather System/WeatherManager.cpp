@@ -15,7 +15,7 @@ CWeatherManager::CWeatherManager()
 	SetIsOn( false );
 	SetTime( 0.0f );
 
-	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/HP_Rain1_Loop");
+	m_nRainSound = AUDIO->SFXLoadSound("resource/sound/HP_Rain1_Loop.wav");
 
 	m_nTown = AUDIO->MusicLoadSong("resource/sound/KSC_Town.xwm");
 	m_nForest = AUDIO->MusicLoadSong("resource/sound/SOM_Forest.xwm");
