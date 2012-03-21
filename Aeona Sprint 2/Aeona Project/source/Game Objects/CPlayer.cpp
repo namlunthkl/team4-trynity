@@ -368,45 +368,7 @@ void CPlayer::Input(void)
 	if(IsBusy())
 		return;
 
-	if( CInputManager::GetInstance()->GetPressedA() )
-	{
-		if( m_uiCurrentWeapon == WEAPON_SWORD )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 255;
-			m_fxElementalWeapon.emitter.ColorStartG = 0;
-			m_fxElementalWeapon.emitter.ColorStartB = 0;
-			m_fxElementalWeapon.emitter.ColorEndR = 200;
-			m_fxElementalWeapon.emitter.ColorEndG = 0;
-			m_fxElementalWeapon.emitter.ColorEndB = 0;
-			m_fxElementalWeapon.Fire();
-		}
-		if( m_uiCurrentWeapon == WEAPON_HAMMER )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 0;
-			m_fxElementalWeapon.emitter.ColorStartG = 255;
-			m_fxElementalWeapon.emitter.ColorStartB = 0;
-			m_fxElementalWeapon.emitter.ColorEndR = 0;
-			m_fxElementalWeapon.emitter.ColorEndG = 200;
-			m_fxElementalWeapon.emitter.ColorEndB = 0;
-			m_fxElementalWeapon.Fire();
-		}
-		if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
-		{
-			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
-			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
-			m_fxElementalWeapon.emitter.ColorStartR = 0;
-			m_fxElementalWeapon.emitter.ColorStartG = 0;
-			m_fxElementalWeapon.emitter.ColorStartB = 255;
-			m_fxElementalWeapon.emitter.ColorEndR = 0;
-			m_fxElementalWeapon.emitter.ColorEndG = 0;
-			m_fxElementalWeapon.emitter.ColorEndB = 200;
-			m_fxElementalWeapon.Fire();
-		}
-	}
+	
 	// This If Check is breaking the attacks for bow and hammer fyi - NO ITS NOT, UR LYING U BUTTNOSE!
 	if(m_bPhilCharging == false)
 	{
@@ -447,7 +409,45 @@ void CPlayer::Input(void)
 	{
 		UsePotion();
 	}
-
+	if( CInputManager::GetInstance()->GetPressedA() )
+	{
+		if( m_uiCurrentWeapon == WEAPON_SWORD )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 255;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 200;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_HAMMER )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 255;
+			m_fxElementalWeapon.emitter.ColorStartB = 0;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 200;
+			m_fxElementalWeapon.emitter.ColorEndB = 0;
+			m_fxElementalWeapon.Fire();
+		}
+		if( m_uiCurrentWeapon == WEAPON_CROSSBOW )
+		{
+			m_fxElementalWeapon.emitter.EmitterPosX = (float)(GetAnchorPoint().x + GetPosX() - 40.0f );
+			m_fxElementalWeapon.emitter.EmitterPosY = (float)(GetAnchorPoint().y + GetPosY() - 80.0f );
+			m_fxElementalWeapon.emitter.ColorStartR = 0;
+			m_fxElementalWeapon.emitter.ColorStartG = 0;
+			m_fxElementalWeapon.emitter.ColorStartB = 255;
+			m_fxElementalWeapon.emitter.ColorEndR = 0;
+			m_fxElementalWeapon.emitter.ColorEndG = 0;
+			m_fxElementalWeapon.emitter.ColorEndB = 200;
+			m_fxElementalWeapon.Fire();
+		}
+	}
 	//if i get hurt, stop my attack
 	if( m_fOuchTimer > 0.0f )
 		WEAPON->SetAttacking(false);
