@@ -19,16 +19,12 @@
 </SpeechNode>
 
 
-<SpeechNode text="It has to do with your present!" name="Grimir1_4">
+<SpeechNode text="It has to do with your present!"name="Grimir1_4">
 <Option text="YES!"/>
 <Option text="Nooo!  Not another fetch quest!"/>
 </SpeechNode>
 
-<SpeechNode text="It has to do with your present!" name="Grimir1_5">
-<Option text="YES!"/>
-</SpeechNode>
-
-<SpeechNode text="So I need you to head to the Forest, follow the river upstream and pick a flower for me." name="Grimir1_6">
+<SpeechNode text="So I need you to head to the Forest, follow the river upstream and pick a flower for me.  It's pink! Be careful however, there are a few enemies along the path.  Use your trusty dagger and remember to attack!" name="Grimir1_5">
 <Option text="Sounds easy enough."/>
 </SpeechNode>
 
@@ -42,7 +38,7 @@
 <Connection speechA="Grimir1_3" option="2" speechB="Grimir1_4"/>
 
 <Connection speechA="Grimir1_4" option="1" speechB="Grimir1_5"/>
-<Connection speechA="Grimir1_5" option="1" speechB="Grimir1_6"/>
+<Connection speechA="Grimir1_4" option="2" speechB="Grimir1_5"/>
 
 </Dialogue>
 
