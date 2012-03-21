@@ -166,7 +166,8 @@ void CPlayer::Update(float fElapsedTime)
 		LightEngine::GetInstance()->SetPlayerPointLight(false);
 
 	if( CCameraControl::GetInstance()->GetKillCam() == false )
-		CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
+		CCameraControl::GetInstance()->ChargeCamSequence(this->m_fPhilChargeIdkman);
+		//CCameraControl::GetInstance()->ChargeCamSequence(CInputManager::GetInstance()->Timeheld());
 	// Store the old position of the player for future checks
 	PointD ptOldPosition = GetPosition();
 
