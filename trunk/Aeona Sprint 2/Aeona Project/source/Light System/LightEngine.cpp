@@ -6,7 +6,10 @@
 #include "..\Camera\CCameraControl.h"
 
 
-LightEngine::LightEngine(void){}
+LightEngine::LightEngine(void)
+{
+	m_nDayWindSound = AUDIO->SFXLoadSound("resource/sound/HP_DayWind_Loop.wav");
+}
 LightEngine::~LightEngine(void)
 {
 	ShutDown();
@@ -51,9 +54,9 @@ void LightEngine::Initialize( void )
 	SetItemRadius( 0.2f );
 
 }
-void LightEngine::Update( void )
+void LightEngine::Update( float fElapsedTime )
 {
-	SetCurrentLTime( GetCurrentLTime() + CGame::GetInstance()->GetTimer().m_fElapsedTime );
+	SetCurrentLTime( GetCurrentLTime() + fElapsedTime );
 	DayNightCycle();
 
 	// PLAYER LIGHT
@@ -89,7 +92,6 @@ void LightEngine::Update( void )
 		SetItem1PointRed( 0.0f );
 		SetItem1PointGreen( 0.0f );
 		SetItem1PointBlue( 0.0f );
-
 	}
 
 	// Item2 LIGHT
@@ -107,7 +109,6 @@ void LightEngine::Update( void )
 		SetItem2PointRed( 0.0f );
 		SetItem2PointGreen( 0.0f );
 		SetItem2PointBlue( 0.0f );
-;
 	}
 
 	// Item3 LIGHT
@@ -125,7 +126,6 @@ void LightEngine::Update( void )
 		SetItem3PointRed( 0.0f );
 		SetItem3PointGreen( 0.0f );
 		SetItem3PointBlue( 0.0f );
-		
 	}
 	// Item4 LIGHT
 	if( GetItem4PointLight() )
@@ -296,49 +296,53 @@ void LightEngine::DayNightCycle( void )
 			{
 				Morning();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 20.0f );
+				SetTimeToWait( 2.0f );
+				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
 			}
 			break;
 		case 2:
 			{
 				Afternoon();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 20.0f );
+				SetTimeToWait( 2.0f );
+				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
 			}
 			break;
 		case 3:
 			{
-				Day();
+				Day();				
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 50.0f );
+				SetTimeToWait( 5.0f );
+				//AUDIO->SFXPlaySound(m_nDayWindSound,true);
 			}
 			break;
 		case 4:
 			{
 				Evening();
+				AUDIO->SFXStopSound( m_nDayWindSound );
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 20.0f );
+				SetTimeToWait( 2.0f );
 			}
 			break;
 		case 5:
 			{
 				Dusk();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 20.0f );
+				SetTimeToWait( 2.0f );
 			}
 			break;
 		case 6:
 			{
 				Night();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 50.0f );
+				SetTimeToWait( 5.0f );
 			}
 			break;
 		case 7:
 			{
 				Dawn();
 				SetCurrentLTime( 0.0f );
-				SetTimeToWait( 20.0f );
+				SetTimeToWait( 2.0f );
 			}
 			break;
 		}

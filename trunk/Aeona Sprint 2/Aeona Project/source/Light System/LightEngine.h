@@ -7,6 +7,11 @@ private:
 	// CURRENT CYCLE
 	enum CYCLE{ MORNING = 1, AFTERNOON, DAY, EVENING, DUSK, NIGHT, DAWN };
 
+	// SOUND
+	int m_nDayWindSound;
+
+
+
 	int m_sCurrentCycle;
 	float m_fCurrentLTime;
 	float m_fTimeToWait;
@@ -183,7 +188,7 @@ public:
 	float GetItemRadius(void)						{ return m_fItemPointRadius; }
 
 	void Initialize( void );
-	void Update( void );
+	void Update( float fElapsedTime );
 	void Input( void );
 	void ShutDown( void );
 
