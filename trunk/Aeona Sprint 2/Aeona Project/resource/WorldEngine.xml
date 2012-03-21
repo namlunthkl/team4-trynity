@@ -11,7 +11,7 @@
 <Tileset file="resource/Tilesets/TownTileset.xml"/>
 
 
-<COMMENT>
+
 <Map file="resource/Maps/Dungeon1.xml"/>
 <Map file="resource/Maps/BossRoom.xml"/>
 <Map file="resource/Maps/Dungeon2.xml"/>
@@ -46,7 +46,7 @@
 <Map file="resource/Maps/DesertTown.xml"/>
 <Map file="resource/Maps/DesertOasis.xml"/>
 <Map file="resource/Maps/DesertMaze.xml"/>
-</COMMENT>
+
 
 <Map file="resource/Maps/Townright.xml"/>
 <Map file="resource/Maps/TownFarRight.xml"/>
