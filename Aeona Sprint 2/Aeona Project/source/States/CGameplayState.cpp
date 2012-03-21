@@ -114,8 +114,8 @@ void CGameplayState::Enter(void)
 	//PLAYER->SetPosX(1504);
 	//PLAYER->SetPosY(2720);
 	// ( 6144+512 , 8192-512 )	== Actual starting spot of game
-	PLAYER->SetPosX( 6144+512);
-	PLAYER->SetPosY(8192-512-1024-256);
+	PLAYER->SetPosX( 6144+512-110);
+	PLAYER->SetPosY(8192-512-1024-90);
 	PLAYER->SetSpeed(200);
 	PLAYER->SetWidth(30);
 	PLAYER->SetHeight(30);
