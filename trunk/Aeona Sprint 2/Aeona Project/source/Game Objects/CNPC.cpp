@@ -37,6 +37,7 @@ CNPC::CNPC(const char* szName, bool bActiveTalk, double dRange, int sndNPC,
 	m_nCurrentOption = -1;
 
 	m_pCurrentDialogue = nullptr;
+	bHackToFixGrimir = false;
 }
 CNPC::~CNPC()
 {
@@ -205,7 +206,7 @@ void CNPC::Input(void)
 			}
 			// If player pressed Enter and NPC is talking
 			// but he didn't finish talking yet, force him to finish
-			else
+			else if(!bHackToFixGrimir)
 				m_uiTextIndex = m_pCurrentSpeech->GetText().size();
 		}
 	}
