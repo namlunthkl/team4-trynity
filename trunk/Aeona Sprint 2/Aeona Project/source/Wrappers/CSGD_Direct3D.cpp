@@ -75,7 +75,7 @@ LPDIRECT3D9					CSGD_Direct3D::GetDirect3DObject(void)	{ return m_lpDirect3DObje
 LPDIRECT3DDEVICE9			CSGD_Direct3D::GetDirect3DDevice(void)	{ return m_lpDirect3DDevice; }
 LPD3DXSPRITE				CSGD_Direct3D::GetSprite(void)			{ return m_lpSprite;		 }
 LPD3DXLINE					CSGD_Direct3D::GetLine(void)			{ return m_lpLine;			 }
-const D3DPRESENT_PARAMETERS*CSGD_Direct3D::GetPresentParams(void)	{ return &m_PresentParams;	 }
+D3DPRESENT_PARAMETERS*CSGD_Direct3D::GetPresentParams(void)	{ return &m_PresentParams;	 }
 
 ///////////////////////////////////////////////////////////////////
 //	Function:	"InitDirect3D"

@@ -134,8 +134,8 @@ bool CGame::Main(void)
 			D3D->Clear();
 			CPostProcess::GetInstance()->ReCreateTexture();
 		}
-		
 	}
+
 	// Calculate elapsed time
 	DWORD dwStartTimeStamp = timeGetTime();
 	m_Timer.m_fElapsedTime = (float)(dwStartTimeStamp - m_Timer.m_dwPreviousTimeStamp) / 1000.0f;

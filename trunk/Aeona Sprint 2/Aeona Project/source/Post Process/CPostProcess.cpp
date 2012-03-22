@@ -26,7 +26,7 @@ void CPostProcess::Initialize( void )
 	D3DXCreateEffectFromFile( CSGD_Direct3D::GetInstance()->GetDirect3DDevice(), "Resource/Shaders/post.fx", 0, 0, 0, 0, &postEffect, 0 );
 
 	// MAKE THE RENDER TARGET TEXTURE
-	D3DXCreateTexture( CSGD_Direct3D::GetInstance()->GetDirect3DDevice(), backbuffer.Width, backbuffer.Height, 1, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget); 
+	D3DXCreateTexture( CSGD_Direct3D::GetInstance()->GetDirect3DDevice(), 800, 600, 1, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget); 
 
 	// CREATE SCREEN SPACE QUAD WITH HALF-TEXEL OFFSET
 	void *mem = 0;
@@ -106,7 +106,7 @@ void CPostProcess::BeginPostProcess( void )
 	renderTarget->GetSurfaceLevel(0,&output);
 	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->SetRenderTarget(0,output);
 	// CLEAR RENDERTARGET
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
+	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
 	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
 }
 void CPostProcess::EndPostProcess( void )
@@ -121,8 +121,8 @@ void CPostProcess::EndPostProcess( void )
 	current->Release();
 	output->Release();
 	// CLEAR BACKBUFFER
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0,255,0), 1.0f, 0);	// MODIFY FOR ZBUFFER
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
+	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->Clear( 0, 0, D3DCLEAR_TARGET , D3DCOLOR_XRGB(0,255,0), 1.0f, 0);	// MODIFY FOR ZBUFFER
+	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->BeginScene();
 
 	// SET THE TECHNIQUE TO THE PROPER EFFECT
 	postEffect->SetTechnique( techs[index] );
@@ -195,7 +195,7 @@ void CPostProcess::EndPostProcess( void )
 		postEffect->EndPass();
 	}
 	postEffect->End();
-	CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->EndScene();
+	//CSGD_Direct3D::GetInstance()->GetDirect3DDevice()->EndScene();
 }
 void CPostProcess::ShutDown( void )
 {

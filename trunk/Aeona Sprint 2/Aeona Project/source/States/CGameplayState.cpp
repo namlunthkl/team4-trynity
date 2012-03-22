@@ -316,8 +316,8 @@ void CGameplayState::Render(void)
 		D3D->SpriteBegin();
 		
 		//ARI EXTRA CODE
-		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
-		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
+		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
+		D3D->GetDirect3DDevice()->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
 		D3D->GetSprite()->SetTransform( &CCameraControl::GetInstance()->GetView() );
 		//END ARI EXTRA CODE
 
@@ -335,11 +335,11 @@ void CGameplayState::Render(void)
 		D3D->GetSprite()->Flush();
 
 
-		D3D->SpriteEnd();
+		//D3D->SpriteEnd();
 		///////////////////////////
 		//ARI EXTRA CODE
 		///////////////////////////
-		D3D->DeviceEnd();
+		//D3D->DeviceEnd();
 		CPostProcess::GetInstance()->EndPostProcess();
 	
 		///////////////////////////
@@ -348,8 +348,8 @@ void CGameplayState::Render(void)
 
 
 
-		D3D->DeviceBegin();
-		D3D->SpriteBegin();
+		//D3D->DeviceBegin();
+		//D3D->SpriteBegin();
 
 		///////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////// RENDER HUD AND WEATHER ////////////////////////////
