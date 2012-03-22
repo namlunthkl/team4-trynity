@@ -55,6 +55,7 @@ void CNewGameState::Enter()
 
 void CNewGameState::Exit()
 {
+	AUDIO->MusicStopSong(GetBGMusic());
 	CBaseMenu::Exit();
 }
 
