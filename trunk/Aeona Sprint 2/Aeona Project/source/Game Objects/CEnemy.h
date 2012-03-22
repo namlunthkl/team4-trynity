@@ -24,7 +24,7 @@ public:
 	// Constructor
 	CEnemy(double dPositionX = 0, double dPositionY = 0, unsigned int uiSpeed = 0U,
 		int nImageID = -1, unsigned int uiWidth = 0U, unsigned int uiHeight = 0U, bool bActive = false,
-		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0, float fRespawnTime = 10.0f);
+		unsigned int uiMaxHealth = 0, unsigned int uiAttackDamage = 0, float fRespawnTime = 25.0f);
 
 	~CEnemy(void);
 

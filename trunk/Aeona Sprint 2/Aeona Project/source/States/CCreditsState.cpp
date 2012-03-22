@@ -63,19 +63,32 @@ void CCreditsState::Render()
 	pFont->Write("ART BY",				10, (int)(650 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
 	pFont->Write("Chris Jahosky",		10, (int)(680 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 	pFont->Write("Maher Sagrilo",		10, (int)(710 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Daniel Lima",			10, (int)(740 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Phil Sullivan",		10, (int)(770 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	
+	pFont->Write("MUSIC BY",			10, (int)(820 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Aaron Cook",			10, (int)(850 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Kim Stennabb Caesar",	10, (int)(880 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Heather Plunkard",	10, (int)(910 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 
-	pFont->Write("MUSIC BY",			10, (int)(760 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
-	pFont->Write("Aaron Cook",			10, (int)(790 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Kim Stennabb Caesar",	10, (int)(820 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Heather Plunkard",	10, (int)(850 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-											
-	pFont->Write("SPECIAL THANKS",		10, (int)(900 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
-	pFont->Write("John OLeske",			10, (int)(930 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Rob Martinez",		10, (int)(960 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Shawn Paris",			10, (int)(990 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Sean Hathaway",		10, (int)(1020 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("Lari Norri",			10, (int)(1050 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
-	pFont->Write("David Brown",			10, (int)(1080 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("TILESET GRAPHICS BY",	10, (int)(960 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Enterbrain (www.enterbrain.co.jp)",			10, (int)(990 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("ReinoRPG Community (www.reinorpg.com)",		10, (int)(1020 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("First Seed Material (www.tekepon.net/fsm/)",	10, (int)(1050 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Mundo RPG Maker (www.mundorpgmaker.com)",		10, (int)(1080 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+
+	pFont->Write("ASSOCIATE PRODUCERS", 10, (int)(1130 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Rob Martinez",		10, (int)(1160 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Shawn Paris",			10, (int)(1190 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("Sean Hathaway",		10, (int)(1220 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	
+	pFont->Write("PRODUCER",			10, (int)(1270 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("John OLeske",			10, (int)(1300 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	
+	pFont->Write("SPECIAL THANKS",		10, (int)(1350 + m_fWhatever), D3DCOLOR_XRGB(200, 100, 255));
+	pFont->Write("Lari Norri",			10, (int)(1380 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("David Brown",			10, (int)(1410 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
+	pFont->Write("The RPG Maker Fanbase",10, (int)(1440 + m_fWhatever), D3DCOLOR_XRGB(255, 255, 255));
 
 	pFont->Write("Press Enter",			600, 550, D3DCOLOR_XRGB(255, 0, 0));
 }
