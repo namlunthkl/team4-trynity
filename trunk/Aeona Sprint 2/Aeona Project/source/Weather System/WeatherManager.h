@@ -18,6 +18,10 @@ private:
 
 	// SOUND
 	int m_nRainSound;
+	int m_nEmberSound;
+	int m_nSandStormSound;
+	int m_nLeavesSound;
+	int m_nSnowSound;
 
 	// MUSIC
 	int m_nTown;
@@ -53,5 +57,6 @@ public:
 	void Render();
 	bool LoadXML(const char* szXMLFileName);
 	void ShutDown(void);
+	void StopAllSounds(void);
 };
 #endif
