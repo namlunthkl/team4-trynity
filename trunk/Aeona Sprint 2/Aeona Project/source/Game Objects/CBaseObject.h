@@ -63,7 +63,7 @@ public:
 	//	The second enemy, will be offsetted on the Y by 1*192.  The third enemy would be
 	//	offsetted by 2*192 down on the spritesheet.  I suck and only understand simple things!
 	enum { BEHAVIOR_0_NULL = 0, BEHAVIOR_LARVA = 1 , BEHAVIOR_GOLEM = 2 , BEHAVIOR_SLIME = 3 , BEHAVIOR_LILBASTARD = 4 , BEHAVIOR_SPIDER = 5, BEHAVIOR_SMALLSPIDER = 6 ,
-			BEHAVIOR_FLOWER = 7, BEHAVIOR_SNOWGOLEM = 8, BEHAVIOR_LAVAGOLEM = 9, BEHAVIOR_RAT = 10 };
+			BEHAVIOR_FLOWER = 7, BEHAVIOR_SNOWGOLEM = 8, BEHAVIOR_LAVAGOLEM = 9, BEHAVIOR_RAT = 10 , BEHAVIOR_CRICKET = 11 };
 	unsigned int m_uiEnemyBehavior;	//	to get Phil's AI and rendering work properly, because he's a-stoopid, derpf!1
 	unsigned int m_uiMiniState;		//	Phil's mini-state machine
 	unsigned int m_uiPhilDirection;	//	Phil's object direction...only matters on enemies.

@@ -28,6 +28,7 @@
 #include "../AI_States/CSnowGolemAIState.h"
 #include "../AI_States/CLavAGolemAIState.h"
 #include "../AI_States/CRatAIState.h"
+#include "../AI_States/CCricketAIState.h"
 
 #include "../AI_States/CBossFireAI.h"
 
@@ -943,12 +944,24 @@ void CGameplayState::MessageProc(CBaseMessage* pMsg)
 					uiAttackDamage = 1;
 					break;
 				case 1:
-					pAIState = CRatAIState::GetInstance();
-					uiSpeed = 40;
-					uiWidth = 50;
-					uiHeight = 50;
-					uiMaxHealth = 91;
-					uiAttackDamage = 1;
+					if(rand()%2 == 0)
+					{
+						pAIState = CRatAIState::GetInstance();
+						uiSpeed = 40;
+						uiWidth = 50;
+						uiHeight = 50;
+						uiMaxHealth = 91;
+						uiAttackDamage = 1;
+					}
+					else
+					{
+						pAIState = CCricketAIState::GetInstance();
+						uiSpeed = 40;
+						uiWidth = 50;
+						uiHeight = 50;
+						uiMaxHealth = 56;
+						uiAttackDamage = 1;
+					}
 					break;
 				case 2:
 					pAIState = CFlowerAIState::GetInstance();

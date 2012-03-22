@@ -178,6 +178,11 @@ void CBaseCharacter::SufferDamage(unsigned int uiDamage)
 					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
 					philEnemyColor = D3DCOLOR_XRGB(255, 0, 0);
 				}
+				else if(m_uiEnemyBehavior == BEHAVIOR_CRICKET && this->m_bDying == false )
+				{
+					AUDIO->SFXPlaySound( CGame::GetInstance()->m_sndDeathSplat );
+					philEnemyColor = D3DCOLOR_XRGB(0, 0, 255);
+				}
 				Die();
 			}
 		}
