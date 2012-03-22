@@ -52,7 +52,7 @@
 <Option text="Grandpa?"/>
 </SpeechNode>
 
-<SpeechNode text="A long time ago, there was a terrible evil that existed in the world.  Rann- the terrible, sought to destroy our world and bring shadow to the land.  He is a terrible force, one that we must fear!" name="Grimir2_3">
+<SpeechNode text="A long time ago, an evil existed in the world. Rann- the terrible, sought to destroy our world and bring shadow to the land. He's a destructive force, one that we must fear!"name="Grimir2_3">
 <Option text="How can we stop him?"/>
 </SpeechNode>
 
@@ -61,7 +61,7 @@
 <Option text="Nooo!  Not another fetch quest!"/>
 </SpeechNode>
 
-<SpeechNode text="Well, give me that flower, it has the properties I need to unlock the enchantment of this sword!  It is called the Ryza blade. Only a true Hero can collect these becons of strength. The weapon you are holding is very destructive, can clear many obstacles in your path. To get the next weapon, you need to climb the mountain in the west and acquire a great hammer!" name="Grimir2_5">
+<SpeechNode text="That flower has the properties I need to unlock the enchantment of this sword! It is called the Ryza blade. Only a true Hero can collect beacons of strength. The weapon you are holding is very destructive and can clear many obstacles in your path. To get the next weapon, you need to climb the mountain in the west!" name="Grimir2_5">
 <Option text="I will, Grandfather, I will make you proud!"/>
 </SpeechNode>
 
