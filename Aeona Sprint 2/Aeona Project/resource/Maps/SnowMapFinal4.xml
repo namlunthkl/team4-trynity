@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Root tileset="Snow">
+<Root tileset="untitled">
   <Map posX="1024" posY="3072" width="32" height="32" objectlayer="1">
     <Layer>
       <Tile PosX="0" PosY="5" Type="128" Event="" />
@@ -1822,7 +1822,7 @@
       <Tile PosX="27" PosY="34" Type="0" Event="" />
       <Tile PosX="28" PosY="34" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="Chest.Amulet.Endurance" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="12" PosY="23" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
@@ -1980,7 +1980,7 @@
       <Tile PosX="6" PosY="37" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="1" PosY="32" Type="4" Event="destroy" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="25" PosY="38" Type="2" Event="destroy" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
