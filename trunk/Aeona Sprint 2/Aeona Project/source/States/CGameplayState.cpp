@@ -606,6 +606,9 @@ void CGameplayState::RenderInventory()
 		TEX_MNG->Draw(m_imgHUD, 372, 178, 1.0f, 1.0f, &rectSource);
 	}
 	
+	GAME->GetFont()->Write("GAME IS PAUSED", 24, 2 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(255, 0, 0));
+	GAME->GetFont()->Write("Press ESC again to resume", 24, 3 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(0, 0, 255));
+	GAME->GetFont()->Write("Press DELETE for main menu", 24, 4 * GAME->GetFont()->GetCharHeight(), D3DCOLOR_XRGB(0, 0, 255));
 	// Draw the gems
 }
 
