@@ -521,7 +521,7 @@ void CGameplayState::RenderInventory()
 	RECT rectSource;
 
 	// Draw the heart piece
-	//if(PLAYER->HasHeartPiece())
+	if(PLAYER->HasHeartPiece())
 	{
 		rectSource.left = 350;
 		rectSource.top = 130;
@@ -530,9 +530,8 @@ void CGameplayState::RenderInventory()
 		TEX_MNG->Draw(m_imgHUD, 337, 456, 1.0f, 1.0f, &rectSource);
 	}
 
-
 	// Draw the weapons
-	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_SWORD))
+	if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_SWORD))
 	{
 		rectSource.left = 0;
 		rectSource.top = 128;
@@ -540,7 +539,7 @@ void CGameplayState::RenderInventory()
 		rectSource.bottom = rectSource.top + 128;
 		TEX_MNG->Draw(m_imgHUD, 92 - 4, 243 - 4, 1.0f, 1.0f, &rectSource);
 	}
-	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_HAMMER))
+	if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_HAMMER))
 	{
 		rectSource.left = 0;
 		rectSource.top = 256;
@@ -548,7 +547,7 @@ void CGameplayState::RenderInventory()
 		rectSource.bottom = rectSource.top + 128;
 		TEX_MNG->Draw(m_imgHUD, 235 - 4, 240 - 1, 1.0f, 1.0f, &rectSource);
 	}
-	//if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_CROSSBOW))
+	if(TestBit(PLAYER->m_byteWeapons, CPlayer::WEAPON_CROSSBOW))
 	{
 		rectSource.left = 0;
 		rectSource.top = 384;
@@ -559,7 +558,7 @@ void CGameplayState::RenderInventory()
 
 
 	// Draw the amulets
-	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_ENDURANCE))
+	if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_ENDURANCE))
 	{
 		// Third one
 		rectSource.left = 39;
@@ -568,7 +567,7 @@ void CGameplayState::RenderInventory()
 		rectSource.bottom = rectSource.top + 128;
 		TEX_MNG->Draw(m_imgHUD, 538 - 7, 238 - 3, 1.0f, 1.0f, &rectSource);
 	}
-	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_SPEED))
+	if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_SPEED))
 	{
 		// First one
 		rectSource.left = 39;
@@ -577,7 +576,7 @@ void CGameplayState::RenderInventory()
 		rectSource.bottom = rectSource.top + 128;
 		TEX_MNG->Draw(m_imgHUD, 609 - 7, 144 - 3, 1.0f, 1.0f, &rectSource);
 	}
-	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_STRENGHT))
+	if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_STRENGHT))
 	{
 		// Second one
 		rectSource.left = 39;
@@ -586,7 +585,7 @@ void CGameplayState::RenderInventory()
 		rectSource.bottom = rectSource.top + 128;
 		TEX_MNG->Draw(m_imgHUD, 682 - 7, 238 - 3, 1.0f, 1.0f, &rectSource);
 	}
-	// if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_LIGHT))
+	if(TestBit(PLAYER->m_byteMasks, CPlayer::MASK_LIGHT))
 	{
 		// Fourth one
 		rectSource.left = 39;
@@ -599,13 +598,14 @@ void CGameplayState::RenderInventory()
 	// Draw the flower
 	if(PLAYER->HasFlower())
 	{
-
-
+		rectSource.left = 440;
+		rectSource.top = 0;
+		rectSource.right = rectSource.left + 65;
+		rectSource.bottom = rectSource.top + 87;
+		TEX_MNG->Draw(m_imgHUD, 372, 178, 1.0f, 1.0f, &rectSource);
 	}
-		
+	
 	// Draw the gems
-
-
 }
 
 void CGameplayState::RenderGameOverScreens(void)
