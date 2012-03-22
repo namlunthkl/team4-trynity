@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Particle>
-  <ImageFile>Slanty.png</ImageFile>
+  <ImageFile>Corona.bmp</ImageFile>
   <Continuous>1</Continuous>
   <Reanimate>0</Reanimate>
   <EmitterPosX>0</EmitterPosX>
@@ -10,18 +10,18 @@
   <MaxLife>1</MaxLife>
   <SpawnWidth>800</SpawnWidth>
   <SpawnHeight>400</SpawnHeight>
-  <ScaleStart>0.06</ScaleStart>
-  <ScaleEnd>0.06</ScaleEnd>
+  <ScaleStart>0.25</ScaleStart>
+  <ScaleEnd>0.011</ScaleEnd>
   <Rotation>0</Rotation>
   <MinVelX>-150</MinVelX>
   <MaxVelX>0</MaxVelX>
   <MinVelY>499</MinVelY>
   <MaxVelY>500</MaxVelY>
-  <StartColorA>200</StartColorA>
+  <StartColorA>50</StartColorA>
   <StartColorR>100</StartColorR>
   <StartColorG>180</StartColorG>
   <StartColorB>255</StartColorB>
-  <EndColorA>255</EndColorA>
+  <EndColorA>114</EndColorA>
   <EndColorR>100</EndColorR>
   <EndColorG>180</EndColorG>
   <EndColorB>255</EndColorB>
