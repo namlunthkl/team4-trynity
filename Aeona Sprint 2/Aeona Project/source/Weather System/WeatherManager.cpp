@@ -184,6 +184,47 @@ void CWeatherManager::SetWeatherPattern(void)
 	{
 		switch( m_nCurrRegion )
 		{
+		case TOWN:
+			{
+				CPostProcess::GetInstance()->index = 5;
+				int nForest = RandomInt( 1, 5 );
+				switch( nForest )
+				{
+				case 1:
+					{
+						SetTypeOfWeather( CLEAR );
+						SetTimeToWait( 10.0f );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 2:
+					{
+						SetTypeOfWeather( RAIN );
+						SetTimeToWait( 20.0f );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 3:
+					{
+						SetTypeOfWeather( FIREFLIES );
+						SetTimeToWait( 20.0f );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				case 4:
+					{
+						SetTypeOfWeather( LEAVES );
+						SetTimeToWait( 20.0f );
+						LoadWeather();
+						SetTime( 0.0f );
+					}
+					break;
+				}
+				break;
+			}
 		case FOREST:
 			{
 				CPostProcess::GetInstance()->index = 5;
@@ -201,7 +242,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( RAIN );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -209,7 +250,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 3:
 					{
 						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -217,7 +258,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 4:
 					{
 						SetTypeOfWeather( LEAVES );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -250,7 +291,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( SNOW );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -270,7 +311,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			{
 				CPostProcess::GetInstance()->index = 5;
 				SetTypeOfWeather( CLEAR );
-				SetTimeToWait( 10.0f );
+				SetTimeToWait( 3.0f );
 				LoadWeather();
 				SetTime( 0.0f );
 			}
@@ -337,7 +378,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 1:
 					{
 						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -345,7 +386,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 2:
 					{
 						SetTypeOfWeather( RAIN );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -353,7 +394,7 @@ void CWeatherManager::SetWeatherPattern(void)
 				case 3:
 					{
 						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( 10.0f );
+						SetTimeToWait( 20.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -553,20 +594,5 @@ bool CWeatherManager::LoadXML(const char* szXMLFileName)
 void CWeatherManager::ShutDown(void)
 {
 	weather.ShutDown();
-
-	AUDIO->SFXStopSound( m_nRainSound );
-	//AUDIO->SFXStopSound( m_nFireFliesSound );
-	//AUDIO->SFXStopSound( m_nLeavesSound );
-	//AUDIO->SFXStopSound( m_nSnowSound );
-	//AUDIO->SFXStopSound( m_nSandStormSound );
-	//AUDIO->SFXStopSound( m_nEmberSound );
-	//AUDIO->SFXStopSound( m_nFogSound );
-
 	SetIsOn( false );
-
-}
-
-void CWeatherManager::StopAllSounds(void)
-{
-	AUDIO->SFXStopSound( m_nRainSound );
 }

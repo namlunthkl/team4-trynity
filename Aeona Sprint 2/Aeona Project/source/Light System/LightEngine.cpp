@@ -147,6 +147,11 @@ void LightEngine::Update( float fElapsedTime )
 void LightEngine::Input( void ){}
 void LightEngine::ShutDown( void )
 {
+	//AUDIO->SFXStopSound(m_nDay_AirBed);
+	//AUDIO->SFXStopSound(m_nNight_AirBed);
+	//AUDIO->SFXUnloadSound(m_nDay_AirBed);
+	//AUDIO->SFXUnloadSound(m_nNight_AirBed);
+
 	SetCurrentCycle( 0 );
 	SetCurrentLTime( 0.0f );
 	SetTimeToWait( 0.0f );
