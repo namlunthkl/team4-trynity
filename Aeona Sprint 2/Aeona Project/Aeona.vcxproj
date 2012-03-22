@@ -23,6 +23,9 @@
     <ClCompile Include="source\AI_States\CBossFireAI.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CCricketAIState.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\AI_States\CFlowerAIState.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
@@ -266,6 +269,7 @@
     <ClInclude Include="source\AI_States\CBossDaggerAI.h" />
     <ClInclude Include="source\AI_States\CBossEarthAI.h" />
     <ClInclude Include="source\AI_States\CBossFireAI.h" />
+    <ClInclude Include="source\AI_States\CCricketAIState.h" />
     <ClInclude Include="source\AI_States\CFlowerAIState.h" />
     <ClInclude Include="source\AI_States\CGolemAIState.h" />
     <ClInclude Include="source\AI_States\CIdleAIState.h" />

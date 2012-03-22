@@ -307,6 +307,9 @@
     <ClCompile Include="source\Game Objects\CItemChest.cpp">
       <Filter>Object Hierarchy\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="source\AI_States\CCricketAIState.cpp">
+      <Filter>Artificial Intelligence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game Objects\CObjectManager.h">
@@ -591,6 +594,9 @@
     </ClInclude>
     <ClInclude Include="source\Game Objects\CItemChest.h">
       <Filter>Object Hierarchy\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AI_States\CCricketAIState.h">
+      <Filter>Artificial Intelligence</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
