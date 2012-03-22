@@ -27,10 +27,10 @@ const int	g_nWINDOW_HEIGHT		= 600;						//	Window Height.
 
 //	Windowed or Full screen depending on project setting
 //#ifdef _DEBUG
-const BOOL	g_bIS_WINDOWED			= TRUE;
-//#else
-//const BOOL	g_bIS_WINDOWED			= FALSE;
-//#endif
+	const BOOL	g_bIS_WINDOWED			= TRUE;
+#else
+	const BOOL	g_bIS_WINDOWED			= FALSE;
+#endif
 
 //	Handler function that writes out a dump file
 LONG WINAPI Handler(_EXCEPTION_POINTERS * exPointers)

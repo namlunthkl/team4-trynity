@@ -99,7 +99,7 @@ class CSGD_Direct3D
 		LPDIRECT3DDEVICE9			GetDirect3DDevice(void);
 		LPD3DXSPRITE				GetSprite(void);
 		LPD3DXLINE					GetLine(void);
-		const D3DPRESENT_PARAMETERS*GetPresentParams(void);
+		D3DPRESENT_PARAMETERS*GetPresentParams(void);
 
 		///////////////////////////////////////////////////////////////////
 		//	Function:	"InitDirect3D"
