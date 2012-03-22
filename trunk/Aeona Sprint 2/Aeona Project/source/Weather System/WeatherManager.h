@@ -57,5 +57,6 @@ public:
 	void Render();
 	bool LoadXML(const char* szXMLFileName);
 	void ShutDown(void);
+	void ShutDownSound(void);
 };
 #endif
