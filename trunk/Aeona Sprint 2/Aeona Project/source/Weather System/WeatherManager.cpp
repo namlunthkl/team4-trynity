@@ -43,8 +43,12 @@ CWeatherManager* CWeatherManager::GetInstance(void)
 void CWeatherManager::CheckRegion(void)
 {
 	const char* m_szRegion = CPlayer::GetInstance()->GetRegion();
-
-	if( m_szRegion != NULL)
+	
+	if( m_szRegion == NULL )
+	{
+		m_nCurrRegion = 0;
+	}
+	else if( m_szRegion != NULL)
 	{		
 		if( strcmp(CPlayer::GetInstance()->GetRegion() ,"Forest" ) == 0 )
 		{
@@ -60,31 +64,30 @@ void CWeatherManager::CheckRegion(void)
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Snow" ) == 0 )
 		{
+			m_nCurrRegion = 1;
 			if(!AUDIO->MusicIsSongPlaying(m_nMountain))
 			{
 				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nMountain,true);
 			}
-			m_nCurrRegion = 1;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Desert" ) == 0 )
-		{
+		{			
+			m_nCurrRegion = 2;
 			if(!AUDIO->MusicIsSongPlaying(m_nDesert))
 			{
 				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nDesert,true);
 			}
-			m_nCurrRegion = 2;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Volcano" ) == 0 )
 		{
+			m_nCurrRegion = 3;
 			if(!AUDIO->MusicIsSongPlaying(m_nVolcano))
 			{
-				//AUDIO->MusicStopSong(m_nDungeon);
 				AUDIO->MusicStopSong(m_nLake);
 				AUDIO->MusicPlaySong(m_nVolcano,true);
 			}
-			m_nCurrRegion = 3;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Cave" ) == 0 )
 		{
@@ -92,13 +95,13 @@ void CWeatherManager::CheckRegion(void)
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Lake" ) == 0 )
 		{
+			m_nCurrRegion = 5;
 			if(!AUDIO->MusicIsSongPlaying(m_nLake))
 			{
 				AUDIO->MusicStopSong(m_nMountain);
 				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nLake,true);
 			}
-			m_nCurrRegion = 5;
 		}
 		if( strcmp(CPlayer::GetInstance()->GetRegion(), "Dungeon" ) == 0 )
 		{
@@ -132,7 +135,6 @@ void CWeatherManager::LoadWeather(void)
 	case RAIN:
 		{
 			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
 			AUDIO->SFXStopSound( m_nLeavesSound );
@@ -146,7 +148,6 @@ void CWeatherManager::LoadWeather(void)
 	case FIREFLIES:
 		{
 			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
 			AUDIO->SFXStopSound( m_nLeavesSound );
@@ -158,7 +159,6 @@ void CWeatherManager::LoadWeather(void)
 		break;	
 	case LEAVES:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
@@ -173,7 +173,6 @@ void CWeatherManager::LoadWeather(void)
 	case SNOW:
 		{
 			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
 			AUDIO->SFXStopSound( m_nLeavesSound );
@@ -187,7 +186,6 @@ void CWeatherManager::LoadWeather(void)
 	case SAND:
 		{
 			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
 			AUDIO->SFXStopSound( m_nLeavesSound );
@@ -200,7 +198,6 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case EMBER:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nRainSound );
 			AUDIO->SFXStopSound( m_nEmberSound );
 			AUDIO->SFXStopSound( m_nSandStormSound );
@@ -223,7 +220,7 @@ void CWeatherManager::SetWeatherPattern(void)
 		case TOWN:
 			{
 				CPostProcess::GetInstance()->index = 5;
-				int nForest = RandomInt( 1, 5 );
+				int nForest = RandomInt( 1, 4 );
 				switch( nForest )
 				{
 				case 1:
@@ -264,7 +261,7 @@ void CWeatherManager::SetWeatherPattern(void)
 		case FOREST:
 			{
 				CPostProcess::GetInstance()->index = 5;
-				int nForest = RandomInt( 1, 5 );
+				int nForest = RandomInt( 1, 4 );
 				switch( nForest )
 				{
 				case 1:
@@ -299,21 +296,13 @@ void CWeatherManager::SetWeatherPattern(void)
 						SetTime( 0.0f );
 					}
 					break;
-				case 5:
-					{
-						SetTypeOfWeather( FOG );
-						SetTimeToWait( 10.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
 				}
 				break;
 			}
 		case MOUNTAIN:
 			{
 				CPostProcess::GetInstance()->index = 5;
-				int nMountain = RandomInt( 1, 3 );
+				int nMountain = RandomInt( 1, 2 );
 				switch( nMountain )
 				{
 				case 1:
@@ -328,14 +317,6 @@ void CWeatherManager::SetWeatherPattern(void)
 					{
 						SetTypeOfWeather( SNOW );
 						SetTimeToWait( 20.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				case 3:
-					{
-						SetTypeOfWeather( FOG );
-						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
@@ -383,32 +364,15 @@ void CWeatherManager::SetWeatherPattern(void)
 		case CAVE:
 			{
 				CPostProcess::GetInstance()->index = 2;
-				int nCave = RandomInt( 1, 2 );
-				switch( nCave )
-				{
-				case 1:
-					{
-						SetTypeOfWeather( FIREFLIES );
-						SetTimeToWait( 10.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				case 2:
-					{
-						SetTypeOfWeather( FOG );
-						SetTimeToWait( 10.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				}
+				SetTypeOfWeather( FIREFLIES );
+				SetTimeToWait( 10.0f );
+				LoadWeather();
 			}
 			break;
 		case LAKE:
 			{
 				CPostProcess::GetInstance()->index = 5;
-				int nLake = RandomInt( 1, 4 );
+				int nLake = RandomInt( 1, 3 );
 				switch( nLake )
 				{
 				case 1:
@@ -431,14 +395,6 @@ void CWeatherManager::SetWeatherPattern(void)
 					{
 						SetTypeOfWeather( FIREFLIES );
 						SetTimeToWait( 20.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				case 4:
-					{
-						SetTypeOfWeather( FOG );
-						SetTimeToWait( 10.0f );
 						LoadWeather();
 						SetTime( 0.0f );
 					}
