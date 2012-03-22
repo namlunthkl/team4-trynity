@@ -91,7 +91,7 @@
 <Option text="Of Course!  Where to next?"/>
 </SpeechNode>
 
-<SpeechNode text="Travel West, in the Land of Sand, there is another weapon to pierce the heart of all enemies from a great distance.  But be careful, the desert doesn't play nice to any unwanted traveler." name="Grimir3_2">
+<SpeechNode text="Travel East, in the Land of Sand, there is another weapon to pierce the heart of all enemies from a great distance.  But be careful, the desert doesn't play nice to any unwanted traveler." name="Grimir3_2">
 <Option text="I will be careful Grandfather!"/>
 </SpeechNode>
 
