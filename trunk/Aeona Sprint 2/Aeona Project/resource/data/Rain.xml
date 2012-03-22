@@ -10,7 +10,7 @@
   <MaxLife>1</MaxLife>
   <SpawnWidth>800</SpawnWidth>
   <SpawnHeight>400</SpawnHeight>
-  <ScaleStart>0.25</ScaleStart>
+  <ScaleStart>0.016</ScaleStart>
   <ScaleEnd>0.011</ScaleEnd>
   <Rotation>0</Rotation>
   <MinVelX>-150</MinVelX>
