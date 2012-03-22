@@ -38,10 +38,10 @@ public:
 	float			rotation;	//	this is for the rotating effect and rotation direction (north-south, east-west) on charged attacks.
 	float			m_fBlastTimer;
 	bool			m_bHammerCircle;
-
+	vector<IBaseWeapon *>	m_vGameWeapons;
 private:
 	bool			m_bHeartPiece;
-	vector<IBaseWeapon *>	m_vGameWeapons;
+	
 	int				m_sndPlayerMovement;
 
 	// PARTICLE WEAPONS
