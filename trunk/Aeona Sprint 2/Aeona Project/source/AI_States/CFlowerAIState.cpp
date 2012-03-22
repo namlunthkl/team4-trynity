@@ -110,7 +110,7 @@ void CFlowerAIState::Update(CBaseCharacter* pCharacter, float fElapsedTime)
 			{
 				AUDIO->SFXPlaySound(m_sndSlimeBlurb);
 				pCharacter->m_bWalkCycle = !pCharacter->m_bWalkCycle;
-				//pCharacter->philEnemyColor = D3DCOLOR_XRGB(0, 96, 255);
+				pCharacter->philEnemyColor = D3DCOLOR_XRGB(255, 255, 255);
 				pCharacter->SetMoveTimer( pCharacter->GetMoveTimer() + fElapsedTime );	//	Increment time
 				float RandVelY = (float)(rand() % 3 - 1);								//	Move in a random way
 				pCharacter->SetVelY(RandVelY * pCharacter->GetSpeed() * 0.125f);		//	Actually set the vel (also, move slowly. looks really passive then)

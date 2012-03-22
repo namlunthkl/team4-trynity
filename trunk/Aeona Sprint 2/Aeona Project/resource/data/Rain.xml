@@ -17,15 +17,15 @@
   <MaxVelX>0</MaxVelX>
   <MinVelY>499</MinVelY>
   <MaxVelY>500</MaxVelY>
-  <StartColorA>255</StartColorA>
-  <StartColorR>255</StartColorR>
-  <StartColorG>255</StartColorG>
+  <StartColorA>200</StartColorA>
+  <StartColorR>100</StartColorR>
+  <StartColorG>180</StartColorG>
   <StartColorB>255</StartColorB>
   <EndColorA>255</EndColorA>
-  <EndColorR>255</EndColorR>
-  <EndColorG>255</EndColorG>
+  <EndColorR>100</EndColorR>
+  <EndColorG>180</EndColorG>
   <EndColorB>255</EndColorB>
-  <Source>14</Source>
+  <Source>5</Source>
   <Dest>7</Dest>
   <GravPosX>0</GravPosX>
   <GravPosY>0</GravPosY>
