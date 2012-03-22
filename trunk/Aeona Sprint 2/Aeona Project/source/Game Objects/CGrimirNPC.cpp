@@ -130,10 +130,14 @@ void CGrimirNPC::Input(void)
 				}
 			}
 			else
+			{
 				m_pCurrentDialogue = &m_GrimirDialogues[2];
+			}
 		}
 		else
+		{
 			m_pCurrentDialogue = &m_GrimirDialogues[0];
+		}
 	}
 
 	CNPC::Input();
