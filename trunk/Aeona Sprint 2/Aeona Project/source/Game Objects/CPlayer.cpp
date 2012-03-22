@@ -33,7 +33,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	rotation = 0.0f;	//	this is for the rotating effect and rotation direction (north-south, east-west) on charged attacks.
 
-#if 0
+#if 1
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
@@ -315,13 +315,13 @@ void CPlayer::Render(void)
 			}
 
 			if(m_uiCurrentWeapon == WEAPON_DAGGER || m_uiCurrentWeapon == WEAPON_CROSSBOW)
-				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
+				TEX_MNG->Draw(m_imgCharges, (int)(GetPosX()-ox), (int)(GetPosY()-oy), 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation);
 			else if(m_uiCurrentWeapon == WEAPON_SWORD)
-				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*13);
+				TEX_MNG->Draw(m_imgCharges, (int)(GetPosX()-ox), (int)(GetPosY()-oy), 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*13);
 			else if(m_uiCurrentWeapon == WEAPON_HAMMER && m_bHammerCircle == true)
-				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*3, D3DCOLOR_ARGB(205,255,255,255));
+				TEX_MNG->Draw(m_imgCharges, (int)(GetPosX()-ox),(int)(GetPosY()-oy), 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation*3, D3DCOLOR_ARGB(205,255,255,255));
 			else
-				TEX_MNG->Draw(m_imgCharges, GetPosX()-ox, GetPosY()-oy, 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation );
+				TEX_MNG->Draw(m_imgCharges, (int)(GetPosX()-ox),(int)(GetPosY()-oy), 1.0f, 1.0f, &r, 0.0f+ox, 0.0f+oy, rotation );
 		}
 		//end render of charge stuff.
 

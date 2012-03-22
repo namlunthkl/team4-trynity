@@ -26,7 +26,7 @@ const int	g_nWINDOW_WIDTH			= 800;						//	Window Width.
 const int	g_nWINDOW_HEIGHT		= 600;						//	Window Height.
 
 //	Windowed or Full screen depending on project setting
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	const BOOL	g_bIS_WINDOWED			= TRUE;
 #else
 	const BOOL	g_bIS_WINDOWED			= FALSE;
