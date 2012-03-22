@@ -115,6 +115,10 @@ void CWeatherManager::CheckRegion(void)
 		{
 			if(!AUDIO->MusicIsSongPlaying(m_nTown))
 			{
+				AUDIO->MusicStopSong(m_nMountain);
+				AUDIO->MusicStopSong(m_nDesert);
+				AUDIO->MusicStopSong(m_nLake);
+				AUDIO->MusicStopSong(m_nVolcano);
 				AUDIO->MusicStopSong(CGame::GetInstance()->m_musMainMenu);
 				AUDIO->MusicStopSong(m_nForest);
 				AUDIO->MusicPlaySong(m_nTown,true);
