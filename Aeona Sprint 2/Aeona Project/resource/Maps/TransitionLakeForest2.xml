@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root tileset="Forest">
-  <Map posX="5120" posY="4096" width="32" height="32" objectlayer="1">
+  <Map posX="5120" posY="4096" width="32" height="32" objectlayer="2">
     <Layer>
       <Tile PosX="1" PosY="143" Type="0" Event="" />
       <Tile PosX="1" PosY="143" Type="0" Event="" />
@@ -627,7 +627,7 @@
       <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="6" PosY="38" Type="0" Event="" />
-      <Tile PosX="6" PosY="38" Type="128" Event="" />
+      <Tile PosX="6" PosY="38" Type="0" Event="" />
       <Tile PosX="6" PosY="38" Type="0" Event="" />
       <Tile PosX="6" PosY="38" Type="0" Event="" />
       <Tile PosX="0" PosY="0" Type="0" Event="" />
@@ -2679,7 +2679,7 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="5" PosY="25" Type="8" Event="destroy" />
+      <Tile PosX="5" PosY="25" Type="8" Event="get.flower" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />

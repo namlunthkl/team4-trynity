@@ -95,9 +95,6 @@ void CBaseMenu::Enter()
 
 void CBaseMenu::Exit()
 {
-	//	Stop Song
-	//
-
 	//	Unload Assets
 	TEX_MNG->UnloadTexture(m_imgCursor);
 	TEX_MNG->UnloadTexture(m_imgTitle);
