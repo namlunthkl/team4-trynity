@@ -22,7 +22,7 @@ public:
 	string			m_szText;
 	CDialogueList	m_Dialogue;
 
-
+	bool bHackToFixGrimir;
 	
 	//	Range for the NPC to say something
 	double			m_dRange;

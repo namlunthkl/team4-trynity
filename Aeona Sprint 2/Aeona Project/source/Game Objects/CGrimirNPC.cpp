@@ -13,6 +13,8 @@ CGrimirNPC::CGrimirNPC(const char* szName, bool bActiveTalk, double dRange, int 
 	unsigned int uiMaxHealth, unsigned int uiAttackDamage)
 	: CNPC(szName, bActiveTalk, dRange, sndNPC, dPositionX, dPositionY, uiSpeed, nImageID, uiWidth, uiHeight, bActive, uiMaxHealth, uiAttackDamage)
 {
+
+	bHackToFixGrimir = true;
 }
 
 CGrimirNPC::~CGrimirNPC()
@@ -123,10 +125,15 @@ void CGrimirNPC::Input(void)
 			{
 				if(GetCollisionRect().ContainsPoint(CPlayer::GetInstance()->GetInteractivePoint()))
 				{
-					m_pCurrentDialogue = &m_GrimirDialogues[1];
-					CPlayer::GetInstance()->AcquireWeapon(CPlayer::WEAPON_SWORD);
-					CPlayer::GetInstance()->CycleWeapon();
-					AUDIO->SFXPlaySound(AUDIO->SFXLoadSound("resource/sound/GetItem.wav"));
+					if(CPlayer::GetInstance()->Lock())
+					{
+						m_pCurrentDialogue = &m_GrimirDialogues[1];
+						m_pCurrentSpeech = (*m_pCurrentDialogue)[0];
+						m_bTalk = true;
+						CPlayer::GetInstance()->AcquireWeapon(CPlayer::WEAPON_SWORD);
+						CPlayer::GetInstance()->CycleWeapon();
+						//AUDIO->SFXPlaySound(AUDIO->SFXLoadSound("resource/sound/GetItem.wav"));
+					}
 				}
 			}
 			else
