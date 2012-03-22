@@ -625,7 +625,15 @@ void CGameplayState::RenderGameOverScreens(void)
 		{
 			fadein = 0;
 			m_bGameOver = false;
-			CGame::GetInstance()->ChangeState(CMainMenuState::GetInstance());
+			PLAYER->SetPosX( 6144+512-110);
+			PLAYER->SetPosY(8192-512-1024-90);
+			PLAYER->SetCurHealth(PLAYER->GetMaxHealth());
+			PLAYER->Unlock();
+			PLAYER->m_bTrulyDead = false;
+			PLAYER->m_bDying = false;
+			PLAYER->m_vGameWeapons[PLAYER->GetCurrentWeapon()]->SetCurrentAnimation(CBaseCharacter::ANM_IDLE_UP);
+			PLAYER->Activate();
+			// CGame::GetInstance()->ChangeState(CMainMenuState::GetInstance());
 		}
 	}
 	else if(m_bVictory)
