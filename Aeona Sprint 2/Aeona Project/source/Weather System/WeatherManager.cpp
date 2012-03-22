@@ -43,7 +43,7 @@ CWeatherManager* CWeatherManager::GetInstance(void)
 void CWeatherManager::CheckRegion(void)
 {
 	const char* m_szRegion = CPlayer::GetInstance()->GetRegion();
-	
+
 	if( m_szRegion == NULL )
 	{
 		m_nCurrRegion = 0;
@@ -130,16 +130,13 @@ void CWeatherManager::LoadWeather(void)
 	case CLEAR:
 		{
 			ShutDown();
+			ShutDownSound();
 		}
 		break;	
 	case RAIN:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/Rain.xml");
 			AUDIO->SFXPlaySound( m_nRainSound, true );
 			SetIsOn( true );
@@ -147,24 +144,16 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case FIREFLIES:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/FireFlies.xml");
 			SetIsOn( true );
 		}
 		break;	
 	case LEAVES:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			AUDIO->SFXPlaySound( m_nLeavesSound, true );
 			SetIsOn( true );
@@ -172,12 +161,8 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case SNOW:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/Snow.xml");
 			AUDIO->SFXPlaySound( m_nSnowSound, true );
 			SetIsOn( true );
@@ -185,12 +170,8 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case SAND:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/SandStorm.xml");
 			AUDIO->SFXPlaySound( m_nSandStormSound, true );
 			SetIsOn( true );
@@ -198,12 +179,8 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case EMBER:
 		{
-			AUDIO->SFXStopSound( m_nRainSound );
-			AUDIO->SFXStopSound( m_nEmberSound );
-			AUDIO->SFXStopSound( m_nSandStormSound );
-			AUDIO->SFXStopSound( m_nLeavesSound );
-			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
+			ShutDownSound();
 			LoadXML("Resource/data/Embers.xml");
 			AUDIO->SFXPlaySound( m_nEmberSound, true );
 			SetIsOn( true );
@@ -219,6 +196,7 @@ void CWeatherManager::SetWeatherPattern(void)
 		{
 		case TOWN:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				int nForest = RandomInt( 1, 4 );
 				switch( nForest )
@@ -260,6 +238,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			}
 		case FOREST:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				int nForest = RandomInt( 1, 4 );
 				switch( nForest )
@@ -301,6 +280,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			}
 		case MOUNTAIN:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				int nMountain = RandomInt( 1, 2 );
 				switch( nMountain )
@@ -326,6 +306,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case DESERT:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				SetTypeOfWeather( CLEAR );
 				SetTimeToWait( 3.0f );
@@ -335,6 +316,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case DESERTMAZE:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				SetTypeOfWeather( SAND );
 				SetTimeToWait( 10.0f );
@@ -344,6 +326,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case VOLCANO:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 4;
 				SetTypeOfWeather( EMBER );
 				SetTimeToWait( 10.0f );
@@ -354,6 +337,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case DUNGEON:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 4;
 				SetTypeOfWeather( EMBER );
 				SetTimeToWait( 10.0f );
@@ -363,6 +347,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case CAVE:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 2;
 				SetTypeOfWeather( FIREFLIES );
 				SetTimeToWait( 10.0f );
@@ -371,6 +356,7 @@ void CWeatherManager::SetWeatherPattern(void)
 			break;
 		case LAKE:
 			{
+				ShutDownSound();
 				CPostProcess::GetInstance()->index = 5;
 				int nLake = RandomInt( 1, 3 );
 				switch( nLake )
@@ -587,4 +573,12 @@ void CWeatherManager::ShutDown(void)
 {
 	weather.ShutDown();
 	SetIsOn( false );
+}
+void CWeatherManager::ShutDownSound(void)
+{
+	AUDIO->SFXStopSound( m_nRainSound );
+	AUDIO->SFXStopSound( m_nEmberSound );
+	AUDIO->SFXStopSound( m_nSandStormSound );
+	AUDIO->SFXStopSound( m_nLeavesSound );
+	AUDIO->SFXStopSound( m_nSnowSound );
 }
