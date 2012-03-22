@@ -11,7 +11,7 @@
 <Option text="Why do you want me to pick flowers?"/>
 </SpeechNode>
 <SpeechNode text="Not to pick flowers - to slash them! Pretend these flowers are monsters, and slash them with your short sword. If you hold your attack, you can charge up and release a more powerful blast." name="attack">
-<Option text="It's true..Monsters control the world now..."/>
+<Option text="It's true..Evil has consumed the world.."/>
 </SpeechNode>
 <SpeechNode text="Aeona, you've always been strong..and I believe you will become even stronger with time..!" name="strong">
 <Option text="Thank you, Zhan."/>
