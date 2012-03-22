@@ -81,7 +81,7 @@ void CBaseMenu::Enter()
 	m_sndMoveCursor = AUDIO->SFXLoadSound("resource/MenuMove.wav");
 	m_sndConfirm = AUDIO->SFXLoadSound("resource/MenuEnter.wav");
 
-	SetBGMusic(AUDIO->MusicLoadSong("resource/sound/KSC_Dramatic.xwm"));
+	SetBGMusic( GAME->m_musMainMenu );
 
 	//	Members
 	m_fCursorTime = 0.0f;

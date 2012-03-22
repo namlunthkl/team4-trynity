@@ -82,6 +82,7 @@ bool CGame::Initialize(HWND hWnd, HINSTANCE hInstance, int nScreenWidth,
 	//	Font
 	pFont1 = new CBitmapFont;
 
+	m_musMainMenu = AUDIO->MusicLoadSong("resource/sound/KSC_Dramatic.xwm");
 	m_imgLoadingBackground = TEX_MNG->LoadTexture("resource/LoadingRiver.jpg");
 	m_imgEnemies = TEX_MNG->LoadTexture("resource/Enemies.png", D3DCOLOR_XRGB(255, 0, 255));
 	m_imgEnemiesDeath = TEX_MNG->LoadTexture("resource/EnemiesDeath.png", D3DCOLOR_XRGB(255, 0, 255));

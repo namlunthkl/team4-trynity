@@ -60,6 +60,8 @@ public:
 	int      m_imgEnemiesDeath;
 	int      m_sndFleshHit;	//whatever lul
 	int      m_sndDeathSplat;
+
+	int		m_musMainMenu;
 private:
 
 
