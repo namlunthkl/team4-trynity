@@ -90,15 +90,15 @@ void CBaseMenu::Enter()
 	if(!AUDIO->MusicIsSongPlaying(GetBGMusic()))
 		AUDIO->MusicPlaySong(GetBGMusic(),true);
 
-	pFont = new CBitmapFont;t()
+	pFont = new CBitmapFont();
+}
+
+void CBaseMenu::Exit()
 {
 	//	Unload Assets
 	TEX_MNG->UnloadTexture(m_imgCursor);
 	TEX_MNG->UnloadTexture(m_imgTitle);
 	TEX_MNG->UnloadTexture(m_imgTeamLogo);
-}
-
-void CBaseMenu::Exi
 	TEX_MNG->UnloadTexture(m_imgLeaderLogo);
 	//unloadsonghere
 	m_imgCursor = -1;

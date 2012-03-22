@@ -772,7 +772,7 @@ void CGameplayState::Exit(void)
 	TEX_MNG->UnloadTexture(m_nGameOverID);
 	TEX_MNG->UnloadTexture(m_nVictoryID);
 	
-	AUDIO->MusicUnloadSong(GetBGMusic());
+	//AUDIO->MusicUnloadSong(GetBGMusic());
 
 	EVENTS->UnregisterEveryone(this);
 	EVENTS->ShutdownEventSystem();
