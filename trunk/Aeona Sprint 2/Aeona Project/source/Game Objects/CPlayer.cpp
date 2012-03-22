@@ -33,7 +33,7 @@ CPlayer::CPlayer(void) : CBaseCharacter()
 
 	rotation = 0.0f;	//	this is for the rotating effect and rotation direction (north-south, east-west) on charged attacks.
 
-#if 1
+#if 0
 	TurnBitOn(m_byteMasks,MASK_SPEED);
 	TurnBitOn(m_byteMasks,MASK_ENDURANCE);
 	TurnBitOn(m_byteMasks,MASK_STRENGHT);
