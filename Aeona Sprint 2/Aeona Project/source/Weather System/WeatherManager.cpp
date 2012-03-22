@@ -281,27 +281,11 @@ void CWeatherManager::SetWeatherPattern(void)
 		case MOUNTAIN:
 			{
 				ShutDownSound();
-				CPostProcess::GetInstance()->index = 5;
-				int nMountain = RandomInt( 1, 2 );
-				switch( nMountain )
-				{
-				case 1:
-					{
-						SetTypeOfWeather( CLEAR );
-						SetTimeToWait( 10.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				case 2:
-					{
-						SetTypeOfWeather( SNOW );
-						SetTimeToWait( 20.0f );
-						LoadWeather();
-						SetTime( 0.0f );
-					}
-					break;
-				}
+				CPostProcess::GetInstance()->index = 5;		
+				SetTypeOfWeather( SNOW );
+				SetTimeToWait( 20.0f );
+				LoadWeather();
+				SetTime( 0.0f );
 			}
 			break;
 		case DESERT:
