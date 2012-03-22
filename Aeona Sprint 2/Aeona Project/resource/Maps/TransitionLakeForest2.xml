@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root tileset="Forest">
-  <Map posX="0" posY="0" width="32" height="32" objectlayer="1">
+  <Map posX="5120" posY="4096" width="32" height="32" objectlayer="1">
     <Layer>
       <Tile PosX="1" PosY="143" Type="0" Event="" />
       <Tile PosX="1" PosY="143" Type="0" Event="" />
