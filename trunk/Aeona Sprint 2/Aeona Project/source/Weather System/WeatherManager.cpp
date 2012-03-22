@@ -131,6 +131,12 @@ void CWeatherManager::LoadWeather(void)
 		break;	
 	case RAIN:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/Rain.xml");
 			AUDIO->SFXPlaySound( m_nRainSound, true );
@@ -139,6 +145,12 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case FIREFLIES:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/FireFlies.xml");
 			SetIsOn( true );
@@ -146,6 +158,12 @@ void CWeatherManager::LoadWeather(void)
 		break;	
 	case LEAVES:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/FallingLeaves.xml");
 			AUDIO->SFXPlaySound( m_nLeavesSound, true );
@@ -154,6 +172,12 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case SNOW:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/Snow.xml");
 			AUDIO->SFXPlaySound( m_nSnowSound, true );
@@ -162,6 +186,12 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case SAND:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/SandStorm.xml");
 			AUDIO->SFXPlaySound( m_nSandStormSound, true );
@@ -170,6 +200,12 @@ void CWeatherManager::LoadWeather(void)
 		break;
 	case EMBER:
 		{
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nRainSound );
+			AUDIO->SFXStopSound( m_nEmberSound );
+			AUDIO->SFXStopSound( m_nSandStormSound );
+			AUDIO->SFXStopSound( m_nLeavesSound );
+			AUDIO->SFXStopSound( m_nSnowSound );
 			ShutDown();
 			LoadXML("Resource/data/Embers.xml");
 			AUDIO->SFXPlaySound( m_nEmberSound, true );
