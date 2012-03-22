@@ -30,6 +30,8 @@
 
 <Map file="resource/Maps/TransitionSnowForest.xml"/>
 
+<Map file="resource/Maps/TransitionLakeForest1.xml"/>
+<Map file="resource/Maps/TransitionLakeForest2.xml"/>
 
 <Map file="resource/Maps/ForestUpperLeft.xml"/>
 <Map file="resource/Maps/ForestLowerLeft.xml"/>
