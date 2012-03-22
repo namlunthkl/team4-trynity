@@ -89,9 +89,9 @@
       <Tile PosX="2" PosY="35" Type="128" Event="" />
       <Tile PosX="0" PosY="143" Type="128" Event="" />
       <Tile PosX="1" PosY="143" Type="128" Event="" />
-      <Tile PosX="0" PosY="32" Type="128" Event="" />
-      <Tile PosX="0" PosY="0" Type="128" Event="" />
-      <Tile PosX="0" PosY="0" Type="128" Event="" />
+      <Tile PosX="0" PosY="32" Type="0" Event="" />
+      <Tile PosX="0" PosY="0" Type="0" Event="" />
+      <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="0" PosY="34" Type="128" Event="" />
       <Tile PosX="1" PosY="34" Type="128" Event="" />
       <Tile PosX="0" PosY="34" Type="128" Event="" />
@@ -121,9 +121,9 @@
       <Tile PosX="0" PosY="142" Type="128" Event="" />
       <Tile PosX="3" PosY="141" Type="128" Event="" />
       <Tile PosX="1" PosY="143" Type="128" Event="" />
-      <Tile PosX="0" PosY="32" Type="128" Event="" />
-      <Tile PosX="0" PosY="0" Type="128" Event="" />
-      <Tile PosX="0" PosY="0" Type="128" Event="" />
+      <Tile PosX="0" PosY="32" Type="0" Event="" />
+      <Tile PosX="0" PosY="0" Type="0" Event="" />
+      <Tile PosX="0" PosY="0" Type="0" Event="" />
       <Tile PosX="0" PosY="34" Type="128" Event="" />
       <Tile PosX="1" PosY="34" Type="128" Event="" />
       <Tile PosX="0" PosY="34" Type="128" Event="" />
@@ -2173,9 +2173,6 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="6" PosY="4" Type="0" Event="" />
-      <Tile PosX="6" PosY="4" Type="0" Event="" />
-      <Tile PosX="6" PosY="4" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
@@ -2269,7 +2266,10 @@
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
-      <Tile PosX="5" PosY="25" Type="8" Event="get.flower" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
+      <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
       <Tile PosX="-1" PosY="-1" Type="0" Event="" />
